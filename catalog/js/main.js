@@ -9,7 +9,8 @@ window.addEventListener('scroll', () => {
   scrollBtn.classList.toggle('visible', window.scrollY > 500);
 }, { passive: true });
 
-toggle.addEventListener('click', () => {
+toggle.addEventListener('click', (e) => {
+  e.stopPropagation();
   toggle.classList.toggle('open');
   menu.classList.toggle('open');
 });
@@ -17,6 +18,12 @@ menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
   toggle.classList.remove('open');
   menu.classList.remove('open');
 }));
+document.addEventListener('click', (e) => {
+  if (menu.classList.contains('open') && !nav.contains(e.target)) {
+    toggle.classList.remove('open');
+    menu.classList.remove('open');
+  }
+});
 
 scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
