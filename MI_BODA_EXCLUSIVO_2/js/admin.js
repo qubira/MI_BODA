@@ -324,11 +324,18 @@ function makeLine(id, labels, data) {
 
 /* ===== NAVIGATION ===== */
 const VIEW_LABELS = {
-  guests:     ['Lista de Invitados',   'Gestiona y organiza tus invitados'],
-  cronograma: ['Cronograma del Día',   'Itinerario completo de la boda'],
-  stats:      ['Estadísticas',         'Análisis visual de confirmaciones'],
-  export:     ['Exportar Datos',       'Descarga listas y reportes'],
-  config:     ['Configuración',        'Nombres, música y vestimenta'],
+  dashboard:   ['Dashboard',            'Vista general del estado de la boda'],
+  guests:      ['Lista de Invitados',   'Gestiona y organiza tus invitados'],
+  mesas:       ['Administración de Mesas', 'Organiza la distribución de mesas'],
+  mapa:        ['Mapa del Local',       'Visualiza el plano del salón'],
+  cronograma:  ['Cronograma del Día',   'Itinerario completo de la boda'],
+  presupuesto: ['Presupuesto',          'Control de gastos y pagos'],
+  proveedores: ['Proveedores',          'Gestiona tus proveedores y contratos'],
+  galeria:     ['Galería de Imágenes',  'Sube y organiza las fotos del evento'],
+  mensajes:    ['Mensajes',             'Mensajes enviados por los invitados'],
+  stats:       ['Estadísticas',         'Análisis visual de confirmaciones'],
+  export:      ['Exportar Datos',       'Descarga listas y reportes'],
+  config:      ['Configuración',        'Nombres, música y vestimenta'],
 };
 let currentView = '';
 let configCDTimer = null;
@@ -349,10 +356,17 @@ function switchView(view) {
 }
 
 function renderView(v) {
-  if      (v==='guests')     refreshGuests();
-  else if (v==='cronograma') refreshCrono();
-  else if (v==='stats')      refreshStats();
-  else if (v==='config')     refreshConfig();
+  if      (v==='dashboard')   refreshDashboard();
+  else if (v==='guests')      refreshGuests();
+  else if (v==='mesas')       refreshMesas();
+  else if (v==='mapa')        refreshMapa();
+  else if (v==='cronograma')  refreshCrono();
+  else if (v==='presupuesto') refreshPresupuesto();
+  else if (v==='proveedores') refreshProveedores();
+  else if (v==='galeria')     refreshGaleria();
+  else if (v==='mensajes')    refreshMensajes();
+  else if (v==='stats')       refreshStats();
+  else if (v==='config')      refreshConfig();
 }
 
 /* ===== GUESTS ===== */
@@ -1497,5 +1511,720 @@ function initDashboard() {
   document.getElementById('exportJSON').addEventListener('click',    exportJSON);
   document.getElementById('clearData').addEventListener('click',     clearAll);
 
+  /* Mesas */
+  document.getElementById('addMesaBtn').addEventListener('click', () => openMesaModal(null));
+  const closeMesa = () => document.getElementById('mesaModal').classList.add('hidden');
+  document.getElementById('mesaModalClose').addEventListener('click',  closeMesa);
+  document.getElementById('mesaModalCancel').addEventListener('click', closeMesa);
+  document.getElementById('mesaModal').addEventListener('click', e => { if (e.target.id==='mesaModal') closeMesa(); });
+  document.getElementById('mesaModalForm').addEventListener('submit', e => {
+    e.preventDefault();
+    const id = document.getElementById('ms-id').value;
+    const checked = Array.from(document.querySelectorAll('#mesaGuestsList input:checked')).map(c => c.value);
+    const mesa = {
+      id: id || uid(),
+      nombre: document.getElementById('ms-nombre').value.trim(),
+      capacidad: parseInt(document.getElementById('ms-capacidad').value) || 8,
+      forma: document.getElementById('ms-forma').value,
+      zona: document.getElementById('ms-zona').value.trim(),
+      guests: checked,
+    };
+    const mesas = getMesas();
+    if (id) setMesas(mesas.map(m => m.id===id ? mesa : m));
+    else setMesas([...mesas, mesa]);
+    closeMesa();
+    toast(id ? '✅ Mesa actualizada' : '✅ Mesa creada');
+    refreshMesas();
+  });
+
+  /* Mapa */
+  document.getElementById('resetMapaBtn').addEventListener('click', () => {
+    if (!confirm('¿Restablecer posiciones del mapa?')) return;
+    localStorage.removeItem('boda_mapa_pos');
+    refreshMapa();
+    toast('🔄 Mapa restablecido');
+  });
+
+  /* Galería */
+  const galeriaInput = document.getElementById('galeriaFileInput');
+  document.getElementById('uploadGaleriaBtn').addEventListener('click', () => galeriaInput.click());
+  galeriaInput.addEventListener('change', () => {
+    if (galeriaInput.files.length) handleGaleriaUpload(Array.from(galeriaInput.files));
+    galeriaInput.value = '';
+  });
+  const galDropZone = document.getElementById('galeriaDropZone');
+  galDropZone.addEventListener('click', () => galeriaInput.click());
+  galDropZone.addEventListener('dragover', e => { e.preventDefault(); galDropZone.classList.add('galeria-upload-zone--drag'); });
+  galDropZone.addEventListener('dragleave', () => galDropZone.classList.remove('galeria-upload-zone--drag'));
+  galDropZone.addEventListener('drop', e => {
+    e.preventDefault();
+    galDropZone.classList.remove('galeria-upload-zone--drag');
+    if (e.dataTransfer.files.length) handleGaleriaUpload(Array.from(e.dataTransfer.files));
+  });
+  document.getElementById('lightboxClose').addEventListener('click', () => document.getElementById('galeriaLightbox').classList.add('hidden'));
+  document.getElementById('galeriaLightbox').addEventListener('click', e => {
+    if (e.target.id==='galeriaLightbox') document.getElementById('galeriaLightbox').classList.add('hidden');
+  });
+
+  /* Presupuesto */
+  document.getElementById('addPresupuestoBtn').addEventListener('click', () => openPresupuestoModal(null));
+  const closePresupuesto = () => document.getElementById('presupuestoModal').classList.add('hidden');
+  document.getElementById('presupuestoModalClose').addEventListener('click',  closePresupuesto);
+  document.getElementById('presupuestoModalCancel').addEventListener('click', closePresupuesto);
+  document.getElementById('presupuestoModal').addEventListener('click', e => { if (e.target.id==='presupuestoModal') closePresupuesto(); });
+  document.getElementById('presupuestoModalForm').addEventListener('submit', e => {
+    e.preventDefault();
+    const id = document.getElementById('pr-id').value;
+    const item = {
+      id: id || uid(),
+      categoria: document.getElementById('pr-categoria').value,
+      concepto:  document.getElementById('pr-concepto').value.trim(),
+      estimado:  parseFloat(document.getElementById('pr-estimado').value) || 0,
+      real:      parseFloat(document.getElementById('pr-real').value) || 0,
+      pagado:    document.getElementById('pr-pagado').value,
+      notas:     document.getElementById('pr-notas').value.trim(),
+    };
+    const list = getPresupuesto();
+    if (id) setPresupuesto(list.map(x => x.id===id ? item : x));
+    else setPresupuesto([...list, item]);
+    closePresupuesto();
+    toast(id ? '✅ Item actualizado' : '✅ Item agregado');
+    refreshPresupuesto();
+  });
+
+  /* Proveedores */
+  document.getElementById('addProveedorBtn').addEventListener('click', () => openProveedorModal(null));
+  const closeProveedor = () => document.getElementById('proveedorModal').classList.add('hidden');
+  document.getElementById('proveedorModalClose').addEventListener('click',  closeProveedor);
+  document.getElementById('proveedorModalCancel').addEventListener('click', closeProveedor);
+  document.getElementById('proveedorModal').addEventListener('click', e => { if (e.target.id==='proveedorModal') closeProveedor(); });
+  document.getElementById('proveedorModalForm').addEventListener('submit', e => {
+    e.preventDefault();
+    const id = document.getElementById('pv-id').value;
+    const prov = {
+      id:       id || uid(),
+      nombre:   document.getElementById('pv-nombre').value.trim(),
+      tipo:     document.getElementById('pv-tipo').value,
+      contacto: document.getElementById('pv-contacto').value.trim(),
+      telefono: document.getElementById('pv-telefono').value.trim(),
+      email:    document.getElementById('pv-email').value.trim(),
+      web:      document.getElementById('pv-web').value.trim(),
+      estado:   document.getElementById('pv-estado').value,
+      pago:     document.getElementById('pv-pago').value,
+      monto:    parseFloat(document.getElementById('pv-monto').value) || 0,
+      fecha:    document.getElementById('pv-fecha').value,
+      notas:    document.getElementById('pv-notas').value.trim(),
+    };
+    const list = getProveedores();
+    if (id) setProveedores(list.map(x => x.id===id ? prov : x));
+    else setProveedores([...list, prov]);
+    closeProveedor();
+    toast(id ? '✅ Proveedor actualizado' : '✅ Proveedor agregado');
+    refreshProveedores();
+  });
+
   switchView('guests');
+}
+
+/* ================================================================
+   NUEVAS SECCIONES â€” DATOS + LÃ“GICA
+   ================================================================ */
+
+/* â”€â”€ Claves localStorage â”€â”€ */
+const MESAS_KEY      = 'boda_mesas';
+const PRES_KEY       = 'boda_presupuesto';
+const PROV_KEY       = 'boda_proveedores';
+const GAL_META_KEY   = 'boda_galeria_meta';
+const MAPA_POS_KEY   = 'boda_mapa_pos';
+
+/* â”€â”€ Acceso a datos â”€â”€ */
+function getMesas()        { try { return JSON.parse(localStorage.getItem(MESAS_KEY))||[]; }      catch{return[];} }
+function setMesas(a)       { localStorage.setItem(MESAS_KEY, JSON.stringify(a)); }
+function getPresupuesto()  { try { return JSON.parse(localStorage.getItem(PRES_KEY))||[]; }       catch{return[];} }
+function setPresupuesto(a) { localStorage.setItem(PRES_KEY, JSON.stringify(a)); }
+function getProveedores()  { try { return JSON.parse(localStorage.getItem(PROV_KEY))||[]; }       catch{return[];} }
+function setProveedores(a) { localStorage.setItem(PROV_KEY, JSON.stringify(a)); }
+function getGalMeta()      { try { return JSON.parse(localStorage.getItem(GAL_META_KEY))||[]; }   catch{return[];} }
+function setGalMeta(a)     { localStorage.setItem(GAL_META_KEY, JSON.stringify(a)); }
+function getMapaPos()      { try { return JSON.parse(localStorage.getItem(MAPA_POS_KEY))||{}; }   catch{return {};} }
+function setMapaPos(o)     { localStorage.setItem(MAPA_POS_KEY, JSON.stringify(o)); }
+
+/* â”€â”€ GalerÃ­a: IndexedDB â”€â”€ */
+const GAL_IDB   = 'bodaGaleria';
+const GAL_STORE = 'images';
+function openGalDB(cb) {
+  const req = indexedDB.open(GAL_IDB, 1);
+  req.onupgradeneeded = e => e.target.result.createObjectStore(GAL_STORE, { keyPath: 'id' });
+  req.onsuccess = e => cb(null, e.target.result);
+  req.onerror   = e => cb(e.target.error);
+}
+function saveGalImage(id, file, cb) {
+  const reader = new FileReader();
+  reader.onload = e => {
+    openGalDB((err, db) => {
+      if (err) return cb(err);
+      const tx = db.transaction(GAL_STORE, 'readwrite');
+      tx.objectStore(GAL_STORE).put({ id, data: e.target.result, type: file.type });
+      tx.oncomplete = () => cb(null);
+      tx.onerror    = ev => cb(ev.target.error);
+    });
+  };
+  reader.onerror = () => cb(new Error('Error leyendo imagen'));
+  reader.readAsDataURL(file);
+}
+function getGalImage(id, cb) {
+  openGalDB((err, db) => {
+    if (err) return cb(null);
+    const tx  = db.transaction(GAL_STORE, 'readonly');
+    const req = tx.objectStore(GAL_STORE).get(id);
+    req.onsuccess = e => cb(e.target.result ? e.target.result.data : null);
+    req.onerror   = () => cb(null);
+  });
+}
+function deleteGalImage(id, cb) {
+  openGalDB((err, db) => {
+    if (err) return cb && cb();
+    const tx = db.transaction(GAL_STORE, 'readwrite');
+    tx.objectStore(GAL_STORE).delete(id);
+    tx.oncomplete = () => cb && cb();
+  });
+}
+
+/* â”€â”€ Seed demo data â”€â”€ */
+function seedMesas() {
+  const existing = getMesas();
+  if (existing.length) return;
+  const guests = getGuests();
+  const getIds = fam => guests.filter(g => g.familia === fam).map(g => g.id);
+  setMesas([
+    {id:uid(),nombre:'Mesa 1',    capacidad:8,forma:'redonda',    zona:'Familia',   guests:getIds('Familia GarcÃ­a')},
+    {id:uid(),nombre:'Mesa 2',    capacidad:8,forma:'redonda',    zona:'Familia',   guests:getIds('Familia LÃ³pez')},
+    {id:uid(),nombre:'Mesa 3',    capacidad:8,forma:'redonda',    zona:'Amigos',    guests:getIds('Amigos del colegio')},
+    {id:uid(),nombre:'Mesa 4',    capacidad:8,forma:'redonda',    zona:'Amigos',    guests:getIds('Amigos universidad')},
+    {id:uid(),nombre:'Mesa 5',    capacidad:8,forma:'redonda',    zona:'Trabajo',   guests:getIds('Trabajo SofÃ­a')},
+    {id:uid(),nombre:'Mesa VIP',  capacidad:6,forma:'rectangular',zona:'Novios',    guests:[]},
+  ]);
+}
+function seedPresupuesto() {
+  if (getPresupuesto().length) return;
+  setPresupuesto([
+    {id:uid(),categoria:'Venue',       concepto:'Alquiler Casa Hacienda Mamacona',estimado:8000,real:7500,pagado:'parcial', notas:'50% anticipo pagado'},
+    {id:uid(),categoria:'Catering',    concepto:'Banquete 5 tiempos + bebidas',   estimado:6000,real:5800,pagado:'parcial', notas:'MenÃº degustado y aprobado'},
+    {id:uid(),categoria:'FotografÃ­a',  concepto:'FotÃ³grafo + videÃ³grafo',          estimado:3000,real:2800,pagado:'completo',notas:'Incluye Ã¡lbum digital'},
+    {id:uid(),categoria:'MÃºsica',      concepto:'DJ + equipo de sonido',           estimado:1500,real:1400,pagado:'pendiente',notas:''},
+    {id:uid(),categoria:'Flores',      concepto:'Arreglos florales y bouquet',     estimado:1200,real:1100,pagado:'pendiente',notas:'Rosas blancas y peonÃ­as'},
+    {id:uid(),categoria:'Vestimenta',  concepto:'Vestido de novia',                estimado:2500,real:2200,pagado:'completo', notas:'DiseÃ±adora Valentina Ruiz'},
+    {id:uid(),categoria:'Vestimenta',  concepto:'Traje del novio',                 estimado:800, real:750, pagado:'completo', notas:''},
+    {id:uid(),categoria:'DecoraciÃ³n',  concepto:'Centros de mesa y arcos florales',estimado:2000,real:1800,pagado:'pendiente',notas:''},
+    {id:uid(),categoria:'Invitaciones',concepto:'Tarjetas e impresiÃ³n',            estimado:400, real:380, pagado:'completo', notas:'80 invitaciones premium'},
+    {id:uid(),categoria:'Transporte',  concepto:'Limusina para novios',            estimado:600, real:550, pagado:'pendiente',notas:''},
+  ]);
+}
+function seedProveedores() {
+  if (getProveedores().length) return;
+  setProveedores([
+    {id:uid(),nombre:'Casa Hacienda Mamacona',tipo:'Venue',       contacto:'Jorge RÃ­os',   telefono:'555-2001',email:'info@mamacona.com',    web:'@haciendamamacona',estado:'contratado',pago:'parcial', monto:7500,fecha:'2027-02-14',notas:'Incluye jardines, salÃ³n y estacionamiento'},
+    {id:uid(),nombre:'Catering Delicias SA',  tipo:'Catering',    contacto:'Chef Roberto', telefono:'555-2002',email:'catering@delicias.com', web:'www.delicias.com',  estado:'contratado',pago:'parcial', monto:5800,fecha:'2027-02-14',notas:'MenÃº aprobado en degustaciÃ³n Nov 2026'},
+    {id:uid(),nombre:'Foto & Arte Studio',    tipo:'FotografÃ­a',  contacto:'Ana Vargas',   telefono:'555-2003',email:'ana@fotoyarte.com',     web:'@fotoyarte',         estado:'contratado',pago:'completo',monto:2800,fecha:'2027-02-14',notas:'Ãlbum digital + 2 lienzos'},
+    {id:uid(),nombre:'DJ Maestro Sounds',     tipo:'MÃºsica / DJ', contacto:'DJ Carlo',     telefono:'555-2004',email:'djcarlo@mail.com',      web:'@djcarlo',           estado:'contratado',pago:'pendiente',monto:1400,fecha:'2027-02-14',notas:'Sonido + luces incluidos'},
+    {id:uid(),nombre:'Flores & SueÃ±os',       tipo:'Flores',      contacto:'MarÃ­a PeÃ±a',   telefono:'555-2005',email:'flores@suenos.com',     web:'@floresysuenos',     estado:'contratado',pago:'pendiente',monto:1100,fecha:'2027-02-14',notas:'Rosas blancas, peonÃ­as y eucalipto'},
+    {id:uid(),nombre:'PastelerÃ­a Le GÃ¢teau',  tipo:'PastelerÃ­a',  contacto:'Chef Sophie',  telefono:'555-2006',email:'legateau@mail.com',     web:'@legateauperu',      estado:'cotizando', pago:'pendiente',monto:800, fecha:'2027-02-14',notas:'Pastel 5 pisos, sabor vainilla y maracuyÃ¡'},
+  ]);
+}
+
+/* ============================================================
+   DASHBOARD
+   ============================================================ */
+function refreshDashboard() {
+  const container = document.getElementById('dashboardContent');
+  if (!container) return;
+  const guests  = getGuests();
+  const stats   = calcStats(guests);
+  const wDate   = getWeddingDate();
+  const diff    = wDate - Date.now();
+  const daysLeft = diff > 0 ? Math.ceil(diff / 86400000) : 0;
+  const pctConf  = guests.length ? Math.round(stats.confirmed / guests.length * 100) : 0;
+  const recent   = [...guests].sort((a,b) => new Date(b.fecha||0) - new Date(a.fecha||0)).slice(0, 6);
+  const mesas    = getMesas();
+  const presup   = getPresupuesto();
+  const totalEst = presup.reduce((s,x) => s + x.estimado, 0);
+  const totalReal= presup.reduce((s,x) => s + x.real, 0);
+  const provContr= getProveedores().filter(p => p.estado === 'contratado').length;
+
+  container.innerHTML = `
+    <div class="dash-kpi-grid">
+      <div class="dash-kpi">
+        <div class="dash-kpi-icon dash-kpi-icon--gold"><i class="fa-solid fa-users"></i></div>
+        <div class="dash-kpi-body"><div class="dash-kpi-num">${stats.total}</div><div class="dash-kpi-label">Invitados totales</div></div>
+      </div>
+      <div class="dash-kpi">
+        <div class="dash-kpi-icon dash-kpi-icon--green"><i class="fa-solid fa-circle-check"></i></div>
+        <div class="dash-kpi-body"><div class="dash-kpi-num">${stats.confirmed}</div><div class="dash-kpi-label">Confirmados</div></div>
+      </div>
+      <div class="dash-kpi">
+        <div class="dash-kpi-icon dash-kpi-icon--amber"><i class="fa-solid fa-clock"></i></div>
+        <div class="dash-kpi-body"><div class="dash-kpi-num">${stats.pending}</div><div class="dash-kpi-label">Pendientes</div></div>
+      </div>
+      <div class="dash-kpi">
+        <div class="dash-kpi-icon dash-kpi-icon--red"><i class="fa-solid fa-circle-xmark"></i></div>
+        <div class="dash-kpi-body"><div class="dash-kpi-num">${stats.rejected}</div><div class="dash-kpi-label">No asisten</div></div>
+      </div>
+      <div class="dash-kpi">
+        <div class="dash-kpi-icon dash-kpi-icon--blue"><i class="fa-solid fa-person-walking"></i></div>
+        <div class="dash-kpi-body"><div class="dash-kpi-num">${stats.totalPersons}</div><div class="dash-kpi-label">Personas totales</div></div>
+      </div>
+      <div class="dash-kpi">
+        <div class="dash-kpi-icon dash-kpi-icon--purple"><i class="fa-solid fa-hourglass-half"></i></div>
+        <div class="dash-kpi-body"><div class="dash-kpi-num">${daysLeft}</div><div class="dash-kpi-label">DÃ­as para la boda</div></div>
+      </div>
+    </div>
+
+    <div class="dash-row">
+      <div class="card">
+        <h3 class="card-title"><i class="fa-solid fa-chart-pie" style="color:var(--gold)"></i> ConfirmaciÃ³n</h3>
+        <p style="font-size:2rem;font-weight:700;color:var(--text-main);margin:8px 0 4px">${pctConf}%</p>
+        <p style="font-size:.78rem;color:var(--text-soft);margin-bottom:10px">${stats.confirmed} de ${stats.total} han respondido</p>
+        <div class="dash-progress-bar-wrap">
+          <div class="dash-progress-bar" style="width:${pctConf}%"></div>
+        </div>
+      </div>
+      <div class="card">
+        <h3 class="card-title"><i class="fa-solid fa-wallet" style="color:var(--gold)"></i> Presupuesto</h3>
+        <p style="font-size:2rem;font-weight:700;color:var(--text-main);margin:8px 0 2px">$${fmtMoney(totalReal)}</p>
+        <p style="font-size:.78rem;color:var(--text-soft);margin-bottom:4px">Real Â· Estimado: $${fmtMoney(totalEst)}</p>
+        <p style="font-size:.8rem;color:${totalReal<=totalEst?'#4caf50':'#f44336'};font-weight:600">
+          ${totalReal<=totalEst?'âœ“ Dentro del presupuesto':'â–² Presupuesto excedido'} $${fmtMoney(Math.abs(totalReal-totalEst))}
+        </p>
+      </div>
+    </div>
+
+    <div class="dash-row">
+      <div class="card">
+        <h3 class="card-title"><i class="fa-solid fa-chair" style="color:var(--gold)"></i> Mesas &mdash; ${mesas.length} configuradas</h3>
+        <p style="font-size:.82rem;color:var(--text-soft);margin:8px 0 12px">
+          ${mesas.reduce((s,m)=>s+m.guests.length,0)} invitados asignados de ${mesas.reduce((s,m)=>s+m.capacidad,0)} lugares totales
+        </p>
+        <button class="dash-quick-btn" onclick="switchView('mesas')"><i class="fa-solid fa-chair"></i> Gestionar mesas</button>
+      </div>
+      <div class="card">
+        <h3 class="card-title"><i class="fa-solid fa-handshake" style="color:var(--gold)"></i> Proveedores</h3>
+        <p style="font-size:.82rem;color:var(--text-soft);margin:8px 0 12px">
+          <strong>${provContr}</strong> contratados de <strong>${getProveedores().length}</strong> en total
+        </p>
+        <button class="dash-quick-btn" onclick="switchView('proveedores')"><i class="fa-solid fa-handshake"></i> Ver proveedores</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3 class="card-title"><i class="fa-solid fa-bolt" style="color:var(--gold)"></i> Acciones R&aacute;pidas</h3>
+      <div class="dash-quick-actions">
+        <button class="dash-quick-btn" onclick="switchView('guests');setTimeout(()=>openGuestModal(null),80)"><i class="fa-solid fa-user-plus"></i> Agregar invitado</button>
+        <button class="dash-quick-btn" onclick="switchView('mesas');setTimeout(()=>openMesaModal(null),80)"><i class="fa-solid fa-chair"></i> Nueva mesa</button>
+        <button class="dash-quick-btn" onclick="switchView('presupuesto');setTimeout(()=>openPresupuestoModal(null),80)"><i class="fa-solid fa-wallet"></i> Agregar gasto</button>
+        <button class="dash-quick-btn" onclick="switchView('cronograma');setTimeout(()=>document.getElementById('addEventoBtn')?.click(),80)"><i class="fa-solid fa-calendar-plus"></i> Nuevo evento</button>
+        <button class="dash-quick-btn" onclick="switchView('galeria')"><i class="fa-solid fa-images"></i> Ir a galerÃ­a</button>
+        <button class="dash-quick-btn" onclick="switchView('stats')"><i class="fa-solid fa-chart-bar"></i> Ver estadÃ­sticas</button>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:14px">
+      <h3 class="card-title"><i class="fa-solid fa-clock-rotate-left" style="color:var(--gold)"></i> Actividad Reciente</h3>
+      <ul class="dash-activity">
+        ${recent.length ? recent.map(g => `
+          <li class="dash-activity-item">
+            <span class="dash-activity-dot dash-activity-dot--${g.estado}"></span>
+            <span><strong>${esc(g.nombre)} ${esc(g.apellido||'')}</strong> &mdash; ${estadoLabel(g.estado)}</span>
+            <span style="margin-left:auto;font-size:.72rem;color:var(--text-soft)">${fmtDate(g.fecha)}</span>
+          </li>`).join('') : '<li class="dash-activity-item" style="color:var(--text-soft)">Sin actividad aÃºn.</li>'}
+      </ul>
+    </div>`;
+}
+
+function fmtMoney(n) {
+  return Number(n || 0).toLocaleString('es', { minimumFractionDigits: 0, maximumFractionDigits: 2 });
+}
+
+/* ============================================================
+   MESAS
+   ============================================================ */
+window.openMesaModal = function(id) {
+  seedMesas();
+  const modal = document.getElementById('mesaModal');
+  if (!modal) return;
+  const mesa = id ? getMesas().find(m => m.id === id) : null;
+  setText('mesaModalTitle', mesa ? 'Editar Mesa' : 'Nueva Mesa');
+  document.getElementById('ms-id').value        = mesa?.id || '';
+  document.getElementById('ms-nombre').value    = mesa?.nombre || '';
+  document.getElementById('ms-capacidad').value = mesa?.capacidad || 8;
+  document.getElementById('ms-forma').value     = mesa?.forma || 'redonda';
+  document.getElementById('ms-zona').value      = mesa?.zona || '';
+  const assigned = mesa?.guests || [];
+  const guests   = getGuests().filter(g => g.estado !== 'rechazado');
+  const listEl   = document.getElementById('mesaGuestsList');
+  listEl.innerHTML = guests.length
+    ? guests.map(g => `
+        <label class="mesa-assign-row">
+          <input type="checkbox" value="${g.id}" ${assigned.includes(g.id) ? 'checked' : ''} />
+          <span>${esc(g.nombre)} ${esc(g.apellido || '')} <span style="color:var(--text-soft);font-size:.72rem">(${estadoLabel(g.estado)})</span></span>
+        </label>`).join('')
+    : '<p style="color:var(--text-soft);font-size:.8rem;padding:6px">No hay invitados disponibles.</p>';
+  modal.classList.remove('hidden');
+};
+
+function refreshMesas() {
+  seedMesas();
+  const mesas = getMesas();
+  const grid  = document.getElementById('mesasGrid');
+  const empty = document.getElementById('mesasEmpty');
+  if (!grid) return;
+  if (!mesas.length) { grid.innerHTML = ''; empty?.classList.remove('hidden'); return; }
+  empty?.classList.add('hidden');
+  const guests   = getGuests();
+  const shapeIcon = { redonda: 'â­•', rectangular: 'â–­', cuadrada: 'â¬œ' };
+  grid.innerHTML = mesas.map(m => {
+    const assigned = m.guests || [];
+    const cap  = m.capacidad || 8;
+    const pct  = Math.min(100, Math.round(assigned.length / cap * 100));
+    const full = assigned.length >= cap;
+    const guestNames = assigned.map(gid => {
+      const g = guests.find(x => x.id === gid);
+      return g ? (g.nombre + ' ' + (g.apellido || '')).trim() : null;
+    }).filter(Boolean);
+    return `<div class="mesa-card">
+      <div class="mesa-card__head">
+        <div class="mesa-card__icon">${shapeIcon[m.forma] || 'â­•'}</div>
+        <div>
+          <div class="mesa-card__name">${esc(m.nombre)}</div>
+          <div class="mesa-card__zona">${esc(m.zona) || 'Sin zona'}</div>
+        </div>
+      </div>
+      <div class="mesa-card__stats">
+        <div class="mesa-stat"><div class="mesa-stat__num">${assigned.length}</div><div class="mesa-stat__lab">Asignados</div></div>
+        <div class="mesa-stat"><div class="mesa-stat__num">${cap}</div><div class="mesa-stat__lab">Capacidad</div></div>
+        <div class="mesa-stat"><div class="mesa-stat__num">${cap - assigned.length}</div><div class="mesa-stat__lab">Libres</div></div>
+      </div>
+      <div class="mesa-occupancy">
+        <div class="mesa-occupancy-fill${full ? ' mesa-occupancy-fill--full' : ''}" style="width:${pct}%"></div>
+      </div>
+      ${guestNames.length
+        ? '<div class="mesa-card__guests">' + guestNames.map(n => '&bull; ' + esc(n)).join('<br>') + '</div>'
+        : '<div class="mesa-card__guests" style="color:var(--text-soft)">Sin invitados asignados</div>'}
+      <div class="mesa-card__actions">
+        <button class="mesa-card__btn mesa-card__btn--edit" onclick="openMesaModal('${m.id}')"><i class="fa-solid fa-pen"></i> Editar</button>
+        <button class="mesa-card__btn mesa-card__btn--del"  onclick="deleteMesa('${m.id}')"><i class="fa-solid fa-trash"></i></button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+window.deleteMesa = function(id) {
+  if (!confirm('Â¿Eliminar esta mesa?')) return;
+  setMesas(getMesas().filter(m => m.id !== id));
+  toast('ðŸ—‘ï¸ Mesa eliminada');
+  refreshMesas();
+};
+
+/* ============================================================
+   MAPA DEL LOCAL
+   ============================================================ */
+function refreshMapa() {
+  seedMesas();
+  const stage  = document.getElementById('mapaStage');
+  if (!stage) return;
+  const mesas  = getMesas();
+  const guests = getGuests();
+  const pos    = getMapaPos();
+
+  const defaultPos = (i, m) => {
+    const cols = 3;
+    const row  = Math.floor(i / cols);
+    const col  = i % cols;
+    return { x: 60 + col * 200, y: 60 + row * 160 };
+  };
+
+  stage.querySelectorAll('.mapa-table-node').forEach(n => n.remove());
+
+  mesas.forEach((m, i) => {
+    const assigned = (m.guests || []).length;
+    const cap = m.capacidad || 8;
+    const ratio = assigned / cap;
+    const fillClass  = ratio >= 1 ? '--full' : ratio > 0 ? '--partial' : '--free';
+    const shapeClass = m.forma === 'rectangular' ? 'mapa-table-inner--rect' : m.forma === 'cuadrada' ? 'mapa-table-inner--cuad' : '';
+    const saved = pos[m.id] || defaultPos(i, m);
+
+    const node = document.createElement('div');
+    node.className   = 'mapa-table-node';
+    node.dataset.id  = m.id;
+    node.style.cssText = `left:${saved.x}px;top:${saved.y}px;`;
+    node.innerHTML = `
+      <div class="mapa-table-inner ${shapeClass} mapa-table-inner${fillClass}">
+        <span class="mapa-table-name">${esc(m.nombre)}</span>
+        <span class="mapa-table-count">${assigned}/${cap}</span>
+      </div>`;
+    makeDraggable(node, m.id);
+    stage.appendChild(node);
+  });
+}
+
+function makeDraggable(el, id) {
+  let startX, startY, origX, origY, dragging = false;
+  const onStart = e => {
+    const ev = e.touches ? e.touches[0] : e;
+    startX = ev.clientX; startY = ev.clientY;
+    origX  = parseInt(el.style.left) || 0;
+    origY  = parseInt(el.style.top)  || 0;
+    dragging = true;
+    el.style.zIndex = '10';
+  };
+  const onMove = e => {
+    if (!dragging) return;
+    const ev = e.touches ? e.touches[0] : e;
+    el.style.left = Math.max(0, origX + ev.clientX - startX) + 'px';
+    el.style.top  = Math.max(0, origY + ev.clientY - startY) + 'px';
+  };
+  const onEnd = () => {
+    if (!dragging) return;
+    dragging = false;
+    el.style.zIndex = '';
+    const pos = getMapaPos();
+    pos[id] = { x: parseInt(el.style.left), y: parseInt(el.style.top) };
+    setMapaPos(pos);
+  };
+  el.addEventListener('mousedown',  onStart);
+  el.addEventListener('touchstart', onStart, { passive: true });
+  document.addEventListener('mousemove',  onMove);
+  document.addEventListener('touchmove',  onMove, { passive: true });
+  document.addEventListener('mouseup',    onEnd);
+  document.addEventListener('touchend',   onEnd);
+}
+
+/* ============================================================
+   GALERÃA
+   ============================================================ */
+function refreshGaleria() {
+  const meta  = getGalMeta();
+  const grid  = document.getElementById('galeriaGrid');
+  const empty = document.getElementById('galeriaEmpty');
+  if (!grid) return;
+  if (!meta.length) { grid.innerHTML = ''; empty?.classList.remove('hidden'); return; }
+  empty?.classList.add('hidden');
+  grid.innerHTML = '';
+  meta.forEach(item => {
+    getGalImage(item.id, dataUrl => {
+      if (!dataUrl) return;
+      const div = document.createElement('div');
+      div.className  = 'galeria-item';
+      div.dataset.id = item.id;
+      div.innerHTML  = `
+        <img src="${dataUrl}" alt="${esc(item.caption || item.name)}" loading="lazy" />
+        ${item.caption ? `<div class="galeria-item__caption">${esc(item.caption)}</div>` : ''}
+        <div class="galeria-item__overlay">
+          <button class="galeria-item__btn" title="Ver" onclick="openLightbox('${item.id}')">
+            <i class="fa-solid fa-expand"></i>
+          </button>
+          <button class="galeria-item__btn galeria-item__btn--del" title="Eliminar" onclick="deleteGaleriaItem('${item.id}')">
+            <i class="fa-solid fa-trash"></i>
+          </button>
+        </div>`;
+      grid.appendChild(div);
+    });
+  });
+}
+
+function handleGaleriaUpload(files) {
+  const valid = files.filter(f => f.type.startsWith('image/') && f.size <= 10485760);
+  if (!valid.length) { toast('âš ï¸ Solo imÃ¡genes hasta 10 MB'); return; }
+  let saved = 0;
+  valid.forEach(file => {
+    const id   = uid();
+    const meta = { id, name: file.name, caption: '', date: new Date().toISOString() };
+    saveGalImage(id, file, err => {
+      if (err) { toast('Error: ' + err.message); return; }
+      const metas = getGalMeta();
+      metas.push(meta);
+      setGalMeta(metas);
+      saved++;
+      if (saved === valid.length) { toast('âœ… ' + saved + ' imagen(es) guardada(s)'); refreshGaleria(); }
+    });
+  });
+}
+
+window.openLightbox = function(id) {
+  getGalImage(id, dataUrl => {
+    if (!dataUrl) return;
+    const meta = getGalMeta().find(m => m.id === id);
+    document.getElementById('lightboxImg').src              = dataUrl;
+    document.getElementById('lightboxCaption').textContent  = meta?.caption || meta?.name || '';
+    document.getElementById('galeriaLightbox').classList.remove('hidden');
+  });
+};
+
+window.deleteGaleriaItem = function(id) {
+  if (!confirm('Â¿Eliminar esta imagen?')) return;
+  deleteGalImage(id, () => {
+    setGalMeta(getGalMeta().filter(m => m.id !== id));
+    toast('ðŸ—‘ï¸ Imagen eliminada');
+    refreshGaleria();
+  });
+};
+
+/* ============================================================
+   PRESUPUESTO
+   ============================================================ */
+window.openPresupuestoModal = function(id) {
+  seedPresupuesto();
+  const modal = document.getElementById('presupuestoModal');
+  if (!modal) return;
+  const item = id ? getPresupuesto().find(x => x.id === id) : null;
+  setText('presupuestoModalTitle', item ? 'Editar Item' : 'Nuevo Item');
+  document.getElementById('pr-id').value        = item?.id || '';
+  document.getElementById('pr-categoria').value = item?.categoria || 'Venue';
+  document.getElementById('pr-concepto').value  = item?.concepto || '';
+  document.getElementById('pr-estimado').value  = item?.estimado || '';
+  document.getElementById('pr-real').value      = item?.real || '';
+  document.getElementById('pr-pagado').value    = item?.pagado || 'pendiente';
+  document.getElementById('pr-notas').value     = item?.notas || '';
+  modal.classList.remove('hidden');
+};
+
+function refreshPresupuesto() {
+  seedPresupuesto();
+  const list  = getPresupuesto();
+  const body  = document.getElementById('presupuestoBody');
+  const empty = document.getElementById('presupuestoEmpty');
+  const sumEl = document.getElementById('presupuestoSummary');
+  const totalEst  = list.reduce((s, x) => s + x.estimado, 0);
+  const totalReal = list.reduce((s, x) => s + x.real, 0);
+  const diff      = totalReal - totalEst;
+  const pagados   = list.filter(x => x.pagado === 'completo').reduce((s, x) => s + x.real, 0);
+  if (sumEl) sumEl.innerHTML = `
+    <div class="pres-kpi"><div class="pres-kpi__label">Total estimado</div><div class="pres-kpi__num pres-kpi__num--gold">$${fmtMoney(totalEst)}</div></div>
+    <div class="pres-kpi"><div class="pres-kpi__label">Total real</div><div class="pres-kpi__num">$${fmtMoney(totalReal)}</div></div>
+    <div class="pres-kpi"><div class="pres-kpi__label">Diferencia</div><div class="pres-kpi__num ${diff <= 0 ? 'pres-kpi__num--green' : 'pres-kpi__num--red'}">${diff <= 0 ? 'âœ“' : 'â–²'} $${fmtMoney(Math.abs(diff))}</div></div>
+    <div class="pres-kpi"><div class="pres-kpi__label">Ya pagado</div><div class="pres-kpi__num pres-kpi__num--green">$${fmtMoney(pagados)}</div></div>`;
+  if (!body) return;
+  if (!list.length) { body.innerHTML = ''; empty?.classList.remove('hidden'); return; }
+  empty?.classList.add('hidden');
+  const catEmoji = {Venue:'ðŸ›ï¸',Catering:'ðŸ½ï¸','FotografÃ­a':'ðŸ“¸','MÃºsica':'ðŸŽµ',Flores:'ðŸ’',Vestimenta:'ðŸ‘—',Transporte:'ðŸš—','DecoraciÃ³n':'ðŸŽ€',Invitaciones:'ðŸ’Œ','Luna de Miel':'âœˆï¸',Otros:'ðŸ“¦'};
+  body.innerHTML = list.map(x => {
+    const d = x.real - x.estimado;
+    return `<tr>
+      <td><span class="cat-badge">${catEmoji[x.categoria] || 'ðŸ“¦'} ${esc(x.categoria)}</span></td>
+      <td>${esc(x.concepto)}</td>
+      <td>$${fmtMoney(x.estimado)}</td>
+      <td>$${fmtMoney(x.real)}</td>
+      <td style="color:${d > 0 ? '#f44336' : '#4caf50'};font-weight:600">${d > 0 ? 'â–²' : 'âœ“'} $${fmtMoney(Math.abs(d))}</td>
+      <td><span class="pago-badge pago-badge--${x.pagado || 'pendiente'}">${{pendiente:'â³ Pendiente',parcial:'ðŸ”„ Parcial',completo:'âœ… Completo'}[x.pagado] || x.pagado}</span></td>
+      <td style="font-size:.78rem;max-width:140px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${esc(x.notas || 'â€”')}</td>
+      <td><div class="action-btns">
+        <button class="action-btn action-btn--edit" onclick="openPresupuestoModal('${x.id}')" title="Editar"><i class="fa-solid fa-pen"></i></button>
+        <button class="action-btn action-btn--del"  onclick="deletePresupuestoItem('${x.id}')" title="Eliminar"><i class="fa-solid fa-trash"></i></button>
+      </div></td>
+    </tr>`;
+  }).join('');
+}
+
+window.deletePresupuestoItem = function(id) {
+  if (!confirm('Â¿Eliminar este item?')) return;
+  setPresupuesto(getPresupuesto().filter(x => x.id !== id));
+  toast('ðŸ—‘ï¸ Item eliminado');
+  refreshPresupuesto();
+};
+
+/* ============================================================
+   PROVEEDORES
+   ============================================================ */
+window.openProveedorModal = function(id) {
+  seedProveedores();
+  const modal = document.getElementById('proveedorModal');
+  if (!modal) return;
+  const prov = id ? getProveedores().find(x => x.id === id) : null;
+  setText('proveedorModalTitle', prov ? 'Editar Proveedor' : 'Nuevo Proveedor');
+  document.getElementById('pv-id').value        = prov?.id || '';
+  document.getElementById('pv-nombre').value    = prov?.nombre || '';
+  document.getElementById('pv-tipo').value      = prov?.tipo || 'Venue';
+  document.getElementById('pv-contacto').value  = prov?.contacto || '';
+  document.getElementById('pv-telefono').value  = prov?.telefono || '';
+  document.getElementById('pv-email').value     = prov?.email || '';
+  document.getElementById('pv-web').value       = prov?.web || '';
+  document.getElementById('pv-estado').value    = prov?.estado || 'cotizando';
+  document.getElementById('pv-pago').value      = prov?.pago || 'pendiente';
+  document.getElementById('pv-monto').value     = prov?.monto || '';
+  document.getElementById('pv-fecha').value     = prov?.fecha || '';
+  document.getElementById('pv-notas').value     = prov?.notas || '';
+  modal.classList.remove('hidden');
+};
+
+function refreshProveedores() {
+  seedProveedores();
+  const list  = getProveedores();
+  const grid  = document.getElementById('proveedoresGrid');
+  const empty = document.getElementById('proveedoresEmpty');
+  if (!grid) return;
+  if (!list.length) { grid.innerHTML = ''; empty?.classList.remove('hidden'); return; }
+  empty?.classList.add('hidden');
+  const tipoEmoji = {Venue:'ðŸ›ï¸',Catering:'ðŸ½ï¸','FotografÃ­a':'ðŸ“¸',Video:'ðŸŽ¥','MÃºsica / DJ':'ðŸŽµ',Flores:'ðŸ’',Vestimenta:'ðŸ‘—',Transporte:'ðŸš—','DecoraciÃ³n':'ðŸŽ€','PastelerÃ­a':'ðŸŽ‚',Maquillaje:'ðŸ’„',Otros:'ðŸ“¦'};
+  const estadoLbl = {cotizando:'ðŸ” Cotizando',contratado:'âœ… Contratado',cancelado:'âŒ Cancelado'};
+  const pagoLbl   = {pendiente:'â³ Pendiente',parcial:'ðŸ”„ Anticipo',completo:'ðŸ’š Completo'};
+  grid.innerHTML = list.map(p => `
+    <div class="proveedor-card">
+      <div class="proveedor-card__head">
+        <div class="proveedor-card__icon">${tipoEmoji[p.tipo] || 'ðŸ“¦'}</div>
+        <div>
+          <div class="proveedor-card__name">${esc(p.nombre)}</div>
+          <div class="proveedor-card__tipo">${esc(p.tipo || 'Otros')}</div>
+        </div>
+      </div>
+      <div class="proveedor-card__badges">
+        <span class="proveedor-estado proveedor-estado--${p.estado || 'cotizando'}">${estadoLbl[p.estado] || p.estado}</span>
+        <span class="pago-badge pago-badge--${p.pago || 'pendiente'}">${pagoLbl[p.pago] || p.pago}</span>
+      </div>
+      <div class="proveedor-card__contact">
+        ${p.contacto ? '<span><i class="fa-solid fa-user" style="width:14px;color:var(--gold)"></i> ' + esc(p.contacto) + '</span>' : ''}
+        ${p.telefono ? '<span><i class="fa-solid fa-phone" style="width:14px;color:var(--gold)"></i> ' + esc(p.telefono) + '</span>' : ''}
+        ${p.email    ? '<a href="mailto:' + esc(p.email) + '"><i class="fa-solid fa-envelope" style="width:14px"></i> ' + esc(p.email) + '</a>' : ''}
+      </div>
+      ${p.monto ? '<div class="proveedor-card__monto"><i class="fa-solid fa-tag" style="color:var(--gold);margin-right:5px"></i> $' + fmtMoney(p.monto) + '</div>' : ''}
+      ${p.notas ? '<p style="font-size:.76rem;color:var(--text-soft);margin-bottom:10px;font-style:italic">' + esc(p.notas) + '</p>' : ''}
+      <div class="proveedor-card__actions">
+        <button class="mesa-card__btn mesa-card__btn--edit" onclick="openProveedorModal('${p.id}')"><i class="fa-solid fa-pen"></i> Editar</button>
+        <button class="mesa-card__btn mesa-card__btn--del"  onclick="deleteProveedor('${p.id}')"><i class="fa-solid fa-trash"></i></button>
+      </div>
+    </div>`).join('');
+}
+
+window.deleteProveedor = function(id) {
+  if (!confirm('Â¿Eliminar este proveedor?')) return;
+  setProveedores(getProveedores().filter(x => x.id !== id));
+  toast('ðŸ—‘ï¸ Proveedor eliminado');
+  refreshProveedores();
+};
+
+/* ============================================================
+   MENSAJES
+   ============================================================ */
+function refreshMensajes() {
+  const guests = getGuests().filter(g => g.mensaje && g.mensaje.trim());
+  const grid   = document.getElementById('mensajesGrid');
+  const empty  = document.getElementById('mensajesEmpty');
+  if (!grid) return;
+  if (!guests.length) { grid.innerHTML = ''; empty?.classList.remove('hidden'); return; }
+  empty?.classList.add('hidden');
+  grid.innerHTML = guests.map(g => {
+    const initials = ((g.nombre || '?').charAt(0) + (g.apellido || '').charAt(0)).toUpperCase();
+    return `<div class="mensaje-card">
+      <div class="mensaje-card__quote">"</div>
+      <p class="mensaje-card__text">${esc(g.mensaje)}</p>
+      <div class="mensaje-card__footer">
+        <div class="mensaje-card__avatar">${initials}</div>
+        <div>
+          <div class="mensaje-card__author">${esc(g.nombre)} ${esc(g.apellido || '')}</div>
+          <div class="mensaje-card__date">${fmtDate(g.fecha)}</div>
+        </div>
+        <span class="mensaje-card__estado">
+          <span class="status-badge status-badge--${g.estado}">${estadoLabel(g.estado)}</span>
+        </span>
+      </div>
+    </div>`;
+  }).join('');
 }

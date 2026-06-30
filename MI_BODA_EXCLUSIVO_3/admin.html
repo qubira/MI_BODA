@@ -157,17 +157,39 @@
 
         <nav class="sidebar__nav">
           <p class="sidebar__nav-group">Principal</p>
+          <a href="#" class="sidebar__link" data-view="dashboard">
+            <i class="fa-solid fa-gauge-high"></i> Dashboard
+          </a>
           <a href="#" class="sidebar__link active" data-view="guests">
             <i class="fa-solid fa-users"></i> Invitados
           </a>
-          <p class="sidebar__nav-group">Planificación</p>
+          <p class="sidebar__nav-group">Evento</p>
+          <a href="#" class="sidebar__link" data-view="mesas">
+            <i class="fa-solid fa-chair"></i> Mesas
+          </a>
+          <a href="#" class="sidebar__link" data-view="mapa">
+            <i class="fa-solid fa-map-location-dot"></i> Mapa del Local
+          </a>
           <a href="#" class="sidebar__link" data-view="cronograma">
             <i class="fa-solid fa-calendar-days"></i> Cronograma
           </a>
+          <p class="sidebar__nav-group">Gestión</p>
+          <a href="#" class="sidebar__link" data-view="presupuesto">
+            <i class="fa-solid fa-wallet"></i> Presupuesto
+          </a>
+          <a href="#" class="sidebar__link" data-view="proveedores">
+            <i class="fa-solid fa-handshake"></i> Proveedores
+          </a>
+          <a href="#" class="sidebar__link" data-view="galeria">
+            <i class="fa-solid fa-images"></i> Galería
+          </a>
+          <a href="#" class="sidebar__link" data-view="mensajes">
+            <i class="fa-solid fa-envelope"></i> Mensajes
+          </a>
+          <p class="sidebar__nav-group">Datos</p>
           <a href="#" class="sidebar__link" data-view="stats">
             <i class="fa-solid fa-chart-bar"></i> Estadísticas
           </a>
-          <p class="sidebar__nav-group">Datos</p>
           <a href="#" class="sidebar__link" data-view="export">
             <i class="fa-solid fa-file-export"></i> Exportar
           </a>
@@ -452,6 +474,133 @@
           </div>
         </section>
 
+        <!-- ===== VIEW: DASHBOARD ===== -->
+        <section class="view" id="view-dashboard">
+          <div id="dashboardContent"></div>
+        </section>
+
+        <!-- ===== VIEW: MESAS ===== -->
+        <section class="view" id="view-mesas">
+          <div class="toolbar">
+            <div class="toolbar-right" style="margin-left:auto">
+              <button class="btn-primary-sm" id="addMesaBtn">
+                <i class="fa-solid fa-plus"></i> Nueva Mesa
+              </button>
+            </div>
+          </div>
+          <div id="mesasGrid" class="mesas-grid"></div>
+          <div class="table-empty hidden" id="mesasEmpty">
+            <i class="fa-solid fa-chair"></i>
+            <p>No hay mesas configuradas. ¡Crea la primera!</p>
+          </div>
+        </section>
+
+        <!-- ===== VIEW: MAPA ===== -->
+        <section class="view" id="view-mapa">
+          <div class="toolbar">
+            <div class="toolbar-right" style="margin-left:auto">
+              <span style="font-size:.78rem;color:var(--text-soft)">Arrastra las mesas para organizarlas</span>
+              <button class="btn-outline-sm" id="resetMapaBtn">
+                <i class="fa-solid fa-rotate-left"></i> Restablecer
+              </button>
+            </div>
+          </div>
+          <div class="mapa-wrapper">
+            <div class="mapa-container" id="mapaContainer">
+              <div class="mapa-stage" id="mapaStage">
+                <div class="mapa-dance-floor">Pista de Baile</div>
+              </div>
+            </div>
+            <div class="mapa-legend">
+              <span class="mapa-legend-item mapa-legend-item--free">Disponible</span>
+              <span class="mapa-legend-item mapa-legend-item--partial">Parcial</span>
+              <span class="mapa-legend-item mapa-legend-item--full">Llena</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===== VIEW: GALERÍA ===== -->
+        <section class="view" id="view-galeria">
+          <div class="toolbar">
+            <div class="toolbar-right" style="margin-left:auto">
+              <button class="btn-primary-sm" id="uploadGaleriaBtn">
+                <i class="fa-solid fa-cloud-arrow-up"></i> Subir Imágenes
+              </button>
+              <input type="file" id="galeriaFileInput" multiple accept="image/*" style="display:none" />
+            </div>
+          </div>
+          <div class="galeria-upload-zone" id="galeriaDropZone">
+            <i class="fa-solid fa-cloud-arrow-up" style="font-size:2rem;color:var(--gold)"></i>
+            <strong>Arrastra imágenes aquí</strong>
+            <span>JPG · PNG · WebP · máx. 10 MB por imagen</span>
+          </div>
+          <div id="galeriaGrid" class="galeria-grid"></div>
+          <div class="table-empty hidden" id="galeriaEmpty">
+            <i class="fa-solid fa-images"></i>
+            <p>No hay imágenes. ¡Sube la primera!</p>
+          </div>
+        </section>
+
+        <!-- ===== VIEW: PRESUPUESTO ===== -->
+        <section class="view" id="view-presupuesto">
+          <div class="toolbar">
+            <div class="toolbar-right" style="margin-left:auto">
+              <button class="btn-primary-sm" id="addPresupuestoBtn">
+                <i class="fa-solid fa-plus"></i> Agregar Item
+              </button>
+            </div>
+          </div>
+          <div id="presupuestoSummary" class="presupuesto-summary"></div>
+          <div class="card mt-16">
+            <div class="table-wrap">
+              <table class="data-table" id="presupuestoTable">
+                <thead>
+                  <tr>
+                    <th>Categoría</th>
+                    <th>Concepto</th>
+                    <th>Estimado</th>
+                    <th>Real</th>
+                    <th>Diferencia</th>
+                    <th>Estado</th>
+                    <th>Notas</th>
+                    <th>Acciones</th>
+                  </tr>
+                </thead>
+                <tbody id="presupuestoBody"></tbody>
+              </table>
+              <div class="table-empty hidden" id="presupuestoEmpty">
+                <i class="fa-solid fa-wallet"></i>
+                <p>Aún no hay items. ¡Agrega el primero!</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===== VIEW: PROVEEDORES ===== -->
+        <section class="view" id="view-proveedores">
+          <div class="toolbar">
+            <div class="toolbar-right" style="margin-left:auto">
+              <button class="btn-primary-sm" id="addProveedorBtn">
+                <i class="fa-solid fa-plus"></i> Agregar Proveedor
+              </button>
+            </div>
+          </div>
+          <div id="proveedoresGrid" class="proveedores-grid"></div>
+          <div class="table-empty hidden" id="proveedoresEmpty">
+            <i class="fa-solid fa-handshake"></i>
+            <p>Aún no hay proveedores. ¡Agrega el primero!</p>
+          </div>
+        </section>
+
+        <!-- ===== VIEW: MENSAJES ===== -->
+        <section class="view" id="view-mensajes">
+          <div id="mensajesGrid" class="mensajes-grid"></div>
+          <div class="table-empty hidden" id="mensajesEmpty">
+            <i class="fa-solid fa-envelope-open-text"></i>
+            <p>No hay mensajes de invitados aún.</p>
+          </div>
+        </section>
+
         <!-- ===== VIEW: CONFIGURACIÓN ===== -->
         <section class="view" id="view-config">
           <div class="cfg-content"></div>
@@ -677,6 +826,216 @@
             </button>
           </div>
         </form>
+      </div>
+    </div>
+
+    <!-- ===== MODAL MESA ===== -->
+    <div class="modal-overlay hidden" id="mesaModal">
+      <div class="modal">
+        <div class="modal-header">
+          <div class="modal-header-icon"><i class="fa-solid fa-chair"></i></div>
+          <h3 id="mesaModalTitle">Nueva Mesa</h3>
+          <button class="modal-close" id="mesaModalClose"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <form id="mesaModalForm">
+          <input type="hidden" id="ms-id" />
+          <div class="modal-grid">
+            <div class="form-group">
+              <label>Nombre *</label>
+              <input type="text" id="ms-nombre" required placeholder="Ej: Mesa 1, Mesa VIP…" />
+            </div>
+            <div class="form-group">
+              <label>Capacidad *</label>
+              <input type="number" id="ms-capacidad" required min="1" max="30" value="8" />
+            </div>
+          </div>
+          <div class="modal-grid">
+            <div class="form-group">
+              <label>Forma</label>
+              <select id="ms-forma">
+                <option value="redonda">⭕ Redonda</option>
+                <option value="rectangular">▭ Rectangular</option>
+                <option value="cuadrada">⬜ Cuadrada</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Etiqueta / Zona</label>
+              <input type="text" id="ms-zona" placeholder="Ej: VIP, Familiares, Amigos…" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Invitados asignados</label>
+            <div id="mesaGuestsList" class="mesa-guests-assign"></div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn-cancel" id="mesaModalCancel">Cancelar</button>
+            <button type="submit" class="btn-save"><i class="fa-solid fa-floppy-disk"></i> Guardar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- ===== MODAL PRESUPUESTO ===== -->
+    <div class="modal-overlay hidden" id="presupuestoModal">
+      <div class="modal">
+        <div class="modal-header">
+          <div class="modal-header-icon"><i class="fa-solid fa-wallet"></i></div>
+          <h3 id="presupuestoModalTitle">Nuevo Item</h3>
+          <button class="modal-close" id="presupuestoModalClose"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <form id="presupuestoModalForm">
+          <input type="hidden" id="pr-id" />
+          <div class="modal-grid">
+            <div class="form-group">
+              <label>Categoría *</label>
+              <select id="pr-categoria" required>
+                <option value="Venue">🏛️ Venue</option>
+                <option value="Catering">🍽️ Catering</option>
+                <option value="Fotografía">📸 Fotografía</option>
+                <option value="Música">🎵 Música</option>
+                <option value="Flores">💐 Flores</option>
+                <option value="Vestimenta">👗 Vestimenta</option>
+                <option value="Transporte">🚗 Transporte</option>
+                <option value="Decoración">🎀 Decoración</option>
+                <option value="Invitaciones">💌 Invitaciones</option>
+                <option value="Luna de Miel">✈️ Luna de Miel</option>
+                <option value="Otros">📦 Otros</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Estado de pago</label>
+              <select id="pr-pagado">
+                <option value="pendiente">⏳ Pendiente</option>
+                <option value="parcial">🔄 Parcial</option>
+                <option value="completo">✅ Completo</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Concepto *</label>
+            <input type="text" id="pr-concepto" required placeholder="Descripción del gasto…" />
+          </div>
+          <div class="modal-grid">
+            <div class="form-group">
+              <label>Estimado ($)</label>
+              <input type="number" id="pr-estimado" min="0" step="0.01" placeholder="0.00" />
+            </div>
+            <div class="form-group">
+              <label>Real / Cotizado ($)</label>
+              <input type="number" id="pr-real" min="0" step="0.01" placeholder="0.00" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Notas</label>
+            <textarea id="pr-notas" rows="2" placeholder="Observaciones, detalles del contrato…"></textarea>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn-cancel" id="presupuestoModalCancel">Cancelar</button>
+            <button type="submit" class="btn-save"><i class="fa-solid fa-floppy-disk"></i> Guardar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- ===== MODAL PROVEEDOR ===== -->
+    <div class="modal-overlay hidden" id="proveedorModal">
+      <div class="modal modal--wide">
+        <div class="modal-header">
+          <div class="modal-header-icon"><i class="fa-solid fa-handshake"></i></div>
+          <h3 id="proveedorModalTitle">Nuevo Proveedor</h3>
+          <button class="modal-close" id="proveedorModalClose"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <form id="proveedorModalForm">
+          <input type="hidden" id="pv-id" />
+          <div class="modal-grid">
+            <div class="form-group">
+              <label>Nombre *</label>
+              <input type="text" id="pv-nombre" required placeholder="Nombre del proveedor…" />
+            </div>
+            <div class="form-group">
+              <label>Tipo / Servicio</label>
+              <select id="pv-tipo">
+                <option value="Venue">🏛️ Venue</option>
+                <option value="Catering">🍽️ Catering</option>
+                <option value="Fotografía">📸 Fotografía</option>
+                <option value="Video">🎥 Video</option>
+                <option value="Música / DJ">🎵 Música / DJ</option>
+                <option value="Flores">💐 Flores</option>
+                <option value="Vestimenta">👗 Vestimenta</option>
+                <option value="Transporte">🚗 Transporte</option>
+                <option value="Decoración">🎀 Decoración</option>
+                <option value="Pastelería">🎂 Pastelería</option>
+                <option value="Maquillaje">💄 Maquillaje</option>
+                <option value="Otros">📦 Otros</option>
+              </select>
+            </div>
+          </div>
+          <div class="modal-grid">
+            <div class="form-group">
+              <label>Persona de contacto</label>
+              <input type="text" id="pv-contacto" placeholder="Nombre del contacto…" />
+            </div>
+            <div class="form-group">
+              <label>Teléfono</label>
+              <input type="tel" id="pv-telefono" placeholder="555-1234" />
+            </div>
+          </div>
+          <div class="modal-grid">
+            <div class="form-group">
+              <label>Email</label>
+              <input type="email" id="pv-email" placeholder="proveedor@mail.com" />
+            </div>
+            <div class="form-group">
+              <label>Web / Instagram</label>
+              <input type="text" id="pv-web" placeholder="@proveedor o www.web.com" />
+            </div>
+          </div>
+          <div class="modal-grid">
+            <div class="form-group">
+              <label>Estado del contrato</label>
+              <select id="pv-estado">
+                <option value="cotizando">🔍 Cotizando</option>
+                <option value="contratado">✅ Contratado</option>
+                <option value="cancelado">❌ Cancelado</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Estado de pago</label>
+              <select id="pv-pago">
+                <option value="pendiente">⏳ Pendiente</option>
+                <option value="parcial">🔄 Anticipo pagado</option>
+                <option value="completo">💚 Pago completo</option>
+              </select>
+            </div>
+          </div>
+          <div class="modal-grid">
+            <div class="form-group">
+              <label>Monto contratado ($)</label>
+              <input type="number" id="pv-monto" min="0" step="0.01" placeholder="0.00" />
+            </div>
+            <div class="form-group">
+              <label>Fecha del servicio</label>
+              <input type="date" id="pv-fecha" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Notas / Contrato</label>
+            <textarea id="pv-notas" rows="2" placeholder="Detalles del servicio, condiciones…"></textarea>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn-cancel" id="proveedorModalCancel">Cancelar</button>
+            <button type="submit" class="btn-save"><i class="fa-solid fa-floppy-disk"></i> Guardar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- ===== LIGHTBOX GALERÍA ===== -->
+    <div class="modal-overlay hidden" id="galeriaLightbox">
+      <div class="lightbox-inner">
+        <button class="lightbox-close" id="lightboxClose"><i class="fa-solid fa-xmark"></i></button>
+        <img id="lightboxImg" src="" alt="" />
+        <p id="lightboxCaption" class="lightbox-caption"></p>
       </div>
     </div>
 
