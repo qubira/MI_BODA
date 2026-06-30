@@ -1778,9 +1778,10 @@ function initDashboard() {
    ================================================================ */
 
 /* â”€â”€ Claves localStorage â”€â”€ */
-const MESAS_KEY      = 'boda_mesas';
-const PRES_KEY       = 'boda_presupuesto';
-const PROV_KEY       = 'boda_proveedores';
+const MESAS_KEY        = 'boda_mesas';
+const MESAS_INIT_KEY   = 'boda_mesas_initialized';
+const PRES_KEY         = 'boda_presupuesto';
+const PROV_KEY         = 'boda_proveedores';
 const GAL_META_KEY   = 'boda_galeria_meta';
 const MAPA_POS_KEY   = 'boda_mapa_pos';
 
@@ -1839,13 +1840,13 @@ function deleteGalImage(id, cb) {
 
 /* â”€â”€ Seed demo data â”€â”€ */
 function seedMesas() {
-  const existing = getMesas();
-  if (existing.length) return;
+  if (localStorage.getItem(MESAS_INIT_KEY)) return;
+  localStorage.setItem(MESAS_INIT_KEY, '1');
   const guests = getGuests();
   const getIds = fam => guests.filter(g => g.familia === fam).map(g => g.id);
   setMesas([
     {id:uid(),nombre:'Mesa 1',    capacidad:8,forma:'redonda',    zona:'Familia',   guests:getIds('Familia García')},
-    {id:uid(),nombre:'Mesa 2',    capacidad:8,forma:'redonda',    zona:'Familia',   guests:getIds('Familia LÓpez')},
+    {id:uid(),nombre:'Mesa 2',    capacidad:8,forma:'redonda',    zona:'Familia',   guests:getIds('Familia López')},
     {id:uid(),nombre:'Mesa 3',    capacidad:8,forma:'redonda',    zona:'Amigos',    guests:getIds('Amigos del colegio')},
     {id:uid(),nombre:'Mesa 4',    capacidad:8,forma:'redonda',    zona:'Amigos',    guests:getIds('Amigos universidad')},
     {id:uid(),nombre:'Mesa 5',    capacidad:8,forma:'redonda',    zona:'Trabajo',   guests:getIds('Trabajo Sofía')},
