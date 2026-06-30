@@ -9,21 +9,31 @@ window.addEventListener('scroll', () => {
   scrollBtn.classList.toggle('visible', window.scrollY > 500);
 }, { passive: true });
 
-toggle.addEventListener('click', (e) => {
-  e.stopPropagation();
-  toggle.classList.toggle('open');
-  menu.classList.toggle('open');
+/* Backdrop para el menú (z-index 999 = debajo del nav 1000) */
+const backdrop = document.createElement('div');
+Object.assign(backdrop.style, {
+  position:'fixed', inset:'0', zIndex:'999',
+  background:'rgba(0,0,0,.5)', opacity:'0',
+  pointerEvents:'none', transition:'opacity .3s'
 });
-menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+document.body.appendChild(backdrop);
+
+function closeNav() {
   toggle.classList.remove('open');
   menu.classList.remove('open');
-}));
-document.addEventListener('click', (e) => {
-  if (menu.classList.contains('open') && !nav.contains(e.target)) {
-    toggle.classList.remove('open');
-    menu.classList.remove('open');
-  }
+  backdrop.style.opacity = '0';
+  backdrop.style.pointerEvents = 'none';
+}
+toggle.addEventListener('click', (e) => {
+  e.stopPropagation();
+  const opening = !menu.classList.contains('open');
+  toggle.classList.toggle('open');
+  menu.classList.toggle('open');
+  backdrop.style.opacity = opening ? '1' : '0';
+  backdrop.style.pointerEvents = opening ? 'auto' : 'none';
 });
+backdrop.addEventListener('click', closeNav);
+menu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeNav));
 
 scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 

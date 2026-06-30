@@ -126,7 +126,7 @@ function saveGuest(g) { const a = getGuests(); a.push(g); localStorage.setItem(D
 
   const backdrop = document.createElement('div');
   Object.assign(backdrop.style, {
-    position:'fixed', inset:'0', zIndex:'9998',
+    position:'fixed', inset:'0', zIndex:'999',
     background:'rgba(0,0,0,.45)', opacity:'0',
     pointerEvents:'none', transition:'opacity .35s'
   });
