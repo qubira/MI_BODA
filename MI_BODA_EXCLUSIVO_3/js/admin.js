@@ -1132,6 +1132,19 @@ function refreshConfig() {
       <div style="margin-top:6px">
         <details>
           <summary style="cursor:pointer;font-size:.8rem;color:var(--text-soft);user-select:none;padding:6px 0">
+            <i class="fa-solid fa-folder-open" style="color:var(--gold)"></i> Usar archivo de la carpeta <code style="background:rgba(0,0,0,.06);padding:1px 5px;border-radius:4px">music/</code>
+          </summary>
+          <div class="cfg-field" style="margin-top:8px">
+            <label class="cfg-label" style="font-size:.75rem">Nombre del archivo (ej: cancion.mp3)</label>
+            <input type="text" class="cfg-input" id="cfg-music-local" value="${esc(getMusic().localFile||'')}" placeholder="mi-cancion.mp3" />
+            <p style="font-size:.71rem;color:var(--text-soft);margin-top:5px">
+              Copia tu MP3 a la carpeta <code style="background:rgba(0,0,0,.06);padding:1px 5px;border-radius:4px">music/</code> del proyecto y escribe el nombre aquí.
+              Funciona en todos los dispositivos sin necesidad de subir el archivo.
+            </p>
+          </div>
+        </details>
+        <details style="margin-top:4px">
+          <summary style="cursor:pointer;font-size:.8rem;color:var(--text-soft);user-select:none;padding:6px 0">
             Usar link de YouTube en vez de archivo
           </summary>
           <div class="cfg-field" style="margin-top:8px">
@@ -1403,8 +1416,9 @@ function refreshConfig() {
 
   /* ── Botón Guardar ── */
   document.getElementById('saveMusicBtn').addEventListener('click', () => {
-    const title = document.getElementById('cfg-music-title').value.trim();
-    const url   = (document.getElementById('cfg-music-url')||{}).value?.trim() || '';
+    const title     = document.getElementById('cfg-music-title').value.trim();
+    const url       = (document.getElementById('cfg-music-url')||{}).value?.trim() || '';
+    const localFile = (document.getElementById('cfg-music-local')||{}).value?.trim() || '';
 
     if (pendingAudioFile) {
       // Guardar archivo en IndexedDB
@@ -1433,6 +1447,13 @@ function refreshConfig() {
       }, 300);
       setTimeout(() => clearInterval(ticker), 3000);
 
+    } else if (localFile) {
+      // Usar archivo de la carpeta music/
+      deleteAudioFile();
+      setMusic({ localFile, title: title || localFile.replace(/\.[^.]+$/, '') });
+      toast('✅ Archivo local configurado: music/' + localFile);
+      refreshConfig();
+
     } else if (url) {
       // Guardar URL (YouTube / MP3 remoto)
       deleteAudioFile(); // limpiar cualquier archivo local
@@ -1441,7 +1462,7 @@ function refreshConfig() {
       refreshConfig();
 
     } else {
-      toast('⚠️ Selecciona un archivo o ingresa una URL');
+      toast('⚠️ Selecciona un archivo, escribe un nombre de la carpeta music/ o ingresa una URL');
     }
   });
 

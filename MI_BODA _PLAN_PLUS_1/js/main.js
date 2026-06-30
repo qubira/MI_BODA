@@ -556,7 +556,13 @@ function saveGuest(g) { const a = getGuests(); a.push(g); localStorage.setItem(D
     req.onerror   = function()  { cb(true); };
   }
 
-  /* Intenta cargar archivo de IndexedDB; si no hay, usa URL */
+  /* 1) Archivo local en carpeta music/ (funciona en todos los dispositivos) */
+  if (music.localFile && music.localFile.trim()) {
+    startPlayer('music/' + music.localFile.trim(), music.title || music.localFile.replace(/\.[^.]+$/, ''));
+    return;
+  }
+
+  /* 2) Intenta cargar archivo subido en IndexedDB; si no hay, usa URL */
   openAudioDB(function(err, db) {
     if (err) { if (music.url) startPlayer(null, null); return; }
     var tx  = db.transaction('tracks', 'readonly');

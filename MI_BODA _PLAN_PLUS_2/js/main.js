@@ -9,7 +9,7 @@ const DB_KEY = 'boda_rsvp_guests';
 function getGuests()  { try { return JSON.parse(localStorage.getItem(DB_KEY)) || []; } catch { return []; } }
 function saveGuest(g) { const a = getGuests(); a.push(g); localStorage.setItem(DB_KEY, JSON.stringify(a)); }
 
-/* ===== INTRO: INVITACIÓN TIPO CARTA ===== */
+/* ===== INTRO CURTAIN ===== */
 (function initIntro() {
   var overlay = document.getElementById('introOverlay');
   if (!overlay) return;
@@ -23,70 +23,29 @@ function saveGuest(g) { const a = getGuests(); a.push(g); localStorage.setItem(D
   var brideEl = document.getElementById('introCardBride');
   var groomEl = document.getElementById('introCardGroom');
   var dateEl  = document.getElementById('introCardDate');
-  var monoBrideEl = document.getElementById('introMonoBride');
-  var monoGroomEl = document.getElementById('introMonoGroom');
 
   if (brideEl) brideEl.textContent = bride;
   if (groomEl) groomEl.textContent = groom;
-  if (monoBrideEl) monoBrideEl.textContent = bride.charAt(0).toUpperCase();
-  if (monoGroomEl) monoGroomEl.textContent = groom.charAt(0).toUpperCase();
   if (dateEl && cfg.date) {
     var d = new Date(cfg.date + 'T12:00:00');
     dateEl.textContent = String(d.getDate()).padStart(2,'0') + ' · ' +
       String(d.getMonth()+1).padStart(2,'0') + ' · ' + d.getFullYear();
   }
 
-  /* Carrusel de fotos dentro del marco circular */
-  var frame  = document.getElementById('invitePhotoFrame');
-  var photos = frame ? frame.querySelectorAll('.invite-photo') : [];
-  var current = 0;
-  if (photos.length > 1) {
-    setInterval(function() {
-      var prev = current;
-      current = (current + 1) % photos.length;
-      photos[current].classList.add('invite-photo--active');
-      photos[prev].classList.remove('invite-photo--active');
-      /* reiniciar la animación Ken Burns en la foto entrante */
-      photos[current].style.animation = 'none';
-      void photos[current].offsetWidth;
-      photos[current].style.animation = '';
-    }, 3200);
-  }
-
-  var envelope = document.getElementById('introEnvelope');
-  var enterBtn = document.getElementById('introEnterBtn');
   document.body.style.overflow = 'hidden';
-  var opened  = false;
-  var entered = false;
+  var opened = false;
 
-  /* Primer clic: el lazo se desamarra y la carta emerge revelando su
-     contenido en cascada, despacio, para poder apreciarla con calma */
-  function openLetter() {
+  function open() {
     if (opened) return;
     opened = true;
-    if (envelope) envelope.classList.add('opening');
-
-    /* Una vez revelado el contenido, el botón invita a continuar al sitio */
-    setTimeout(function() {
-      if (enterBtn) {
-        enterBtn.innerHTML = '<i class="fa-solid fa-arrow-right-to-bracket"></i> Continuar al sitio';
-      }
-    }, 2900);
-  }
-
-  /* Segundo clic (cuando la carta ya está abierta): recién ahí se pasa al sitio */
-  function enterSite() {
-    if (!opened || entered) return;
-    entered = true;
+    overlay.classList.add('opening');
     document.body.style.overflow = '';
-    overlay.classList.add('invite-overlay--closing');
-    setTimeout(function() { overlay.style.display = 'none'; }, 900);
+    /* Quitar overlay cuando termina la transición (1s paneles + buffer) */
+    setTimeout(function() { overlay.style.display = 'none'; }, 1050);
   }
 
-  overlay.addEventListener('click', function() {
-    if (!opened) openLetter();
-    else enterSite();
-  });
+  overlay.addEventListener('click',      open);
+  overlay.addEventListener('touchstart', open, { passive: true });
 })();
 
 /* ===== CURSOR — DOS ARGOLLAS ENTRELAZADAS ===== */
@@ -147,6 +106,216 @@ function saveGuest(g) { const a = getGuests(); a.push(g); localStorage.setItem(D
       setTimeout(() => s.remove(), 700);
     }
   });
+})();
+
+/* ===== PÉTALOS DE ROSA SVG ===== */
+(function initPetals() {
+  const container = document.getElementById('petalsContainer');
+  const isMobile  = window.matchMedia('(max-width:768px)').matches;
+  const count     = isMobile ? 24 : 48;
+  const NS        = 'http://www.w3.org/2000/svg';
+  let   uid       = 0;
+
+  /* --- 5 siluetas orgánicas de pétalo de rosa --- */
+  /* viewBox 0 0 22 30  — base abajo, punta arriba */
+  const SHAPES = [
+    {
+      /* Clásico: redondeado arriba, base estrecha */
+      outer: 'M 11,29 C 2,22 0,12 3,5 C 5,1 8,0 11,2 C 14,0 17,1 19,5 C 22,12 20,22 11,29 Z',
+      inner: 'M 11,29 C 3,22 2,12 5,5',          // nervadura izquierda
+      inner2:'M 11,29 C 19,22 20,12 17,5',        // nervadura derecha
+      vein:  'M 11,29 C 11,19 11,9 11,2',         // nervio central
+    },
+    {
+      /* Corazón suave en la punta */
+      outer: 'M 11,29 C 1,21 0,10 4,4 C 7,0 9,0 11,3 C 13,0 15,0 18,4 C 22,10 21,21 11,29 Z',
+      inner: 'M 11,29 C 4,21 3,11 6,4',
+      inner2:'M 11,29 C 18,21 19,11 16,4',
+      vein:  'M 11,29 C 11,18 11,9 11,3',
+    },
+    {
+      /* Alargado y fino */
+      outer: 'M 10,30 C 2,23 0,13 3,6 C 5,1 8,0 10,2 C 12,0 15,2 17,6 C 20,13 18,23 10,30 Z',
+      inner: 'M 10,30 C 3,23 2,13 5,6',
+      inner2:'M 10,30 C 17,23 18,13 15,6',
+      vein:  'M 10,30 C 10,20 10,10 10,2',
+    },
+    {
+      /* Ancho y redondeado */
+      outer: 'M 11,28 C 1,20 0,9 4,3 C 7,-1 10,0 11,2 C 12,0 15,-1 18,3 C 22,9 21,20 11,28 Z',
+      inner: 'M 11,28 C 3,20 2,10 5,3',
+      inner2:'M 11,28 C 19,20 20,10 17,3',
+      vein:  'M 11,28 C 11,19 11,10 11,2',
+    },
+    {
+      /* Asimétrico natural */
+      outer: 'M 10,29 C 1,21 -1,10 3,4 C 6,0 9,0 11,3 C 14,0 17,1 19,5 C 22,12 21,22 10,29 Z',
+      inner: 'M 10,29 C 2,21 1,10 5,4',
+      inner2:'M 10,29 C 18,21 20,11 17,5',
+      vein:  'M 10,29 C 11,19 11,9 11,3',
+    },
+  ];
+
+  /* --- Paletas de color para cada tipo --- */
+  const REDS = [
+    { base:'#6B0000', mid:'#B71C1C', tip:'#EF5350', edge:'#FF8A80', vein:'rgba(40,0,0,.5)' },
+    { base:'#7F0000', mid:'#C62828', tip:'#E53935', edge:'#FF5252', vein:'rgba(50,0,0,.45)' },
+    { base:'#880E4F', mid:'#C2185B', tip:'#E91E63', edge:'#FF80AB', vein:'rgba(60,0,30,.4)' },
+    { base:'#4A0000', mid:'#9B0000', tip:'#D32F2F', edge:'#EF9A9A', vein:'rgba(30,0,0,.5)' },
+  ];
+  const WHITES = [
+    { base:'#F8C8D0', mid:'#FFE8EC', tip:'#FFFFFF', edge:'#FFFFFF', vein:'rgba(180,100,110,.22)' },
+    { base:'#FADADD', mid:'#FFF0F3', tip:'#FFFFFF', edge:'#FFFFFF', vein:'rgba(200,120,130,.18)' },
+    { base:'#F5B8C4', mid:'#FFE0E8', tip:'#FFF8FA', edge:'#FFFFFF', vein:'rgba(160,80,90,.2)' },
+    { base:'#EDD5D8', mid:'#FAF0F1', tip:'#FFFFFF', edge:'#FFFFFF', vein:'rgba(150,90,100,.15)' },
+  ];
+
+  function rnd(a, b) { return a + Math.random() * (b - a); }
+  function pick(arr)  { return arr[Math.floor(Math.random() * arr.length)]; }
+  function swing()    { return (Math.random() > .5 ? 1 : -1) * rnd(6, 22); }
+
+  for (let i = 0; i < count; i++) {
+    const isRed  = Math.random() > .38;   // 62% rojos, 38% blancos
+    const palette= isRed ? pick(REDS) : pick(WHITES);
+    const shape  = pick(SHAPES);
+    const id     = `p${uid++}`;
+
+    /* Tamaño: varía para dar sensación de profundidad */
+    const w   = rnd(14, 28);
+    const h   = w * rnd(1.3, 1.7);
+    const op  = rnd(.65, .95);
+    const dur = rnd(8, 16);
+    const del = -rnd(0, dur);   // comienzan ya en movimiento
+    const left= rnd(0, 101);
+    const blur= Math.random() > .65 ? rnd(.5, 1.2) : 0;
+
+    /* Movimiento lateral orgánico */
+    const xs = [swing(), swing(), swing(), swing(), swing(), swing()];
+    /* Rotaciones progresivas */
+    const r0 = rnd(0, 360);
+    const rs  = [r0, r0+rnd(30,70), r0+rnd(90,150), r0+rnd(160,220),
+                 r0+rnd(230,290), r0+rnd(300,350), r0+rnd(350,400)];
+
+    /* --- SVG --- */
+    const svg = document.createElementNS(NS, 'svg');
+    svg.setAttribute('viewBox', '0 0 22 30');
+    svg.setAttribute('width',  `${w}px`);
+    svg.setAttribute('height', `${h}px`);
+    svg.style.cssText = `
+      left:${left}%; overflow:visible;
+      filter:${blur > 0 ? `blur(${blur}px)` : 'none'};
+      --dur:${dur}s; --delay:${del}s; --op:${op};
+      --r0:${rs[0]}deg;--r1:${rs[1]}deg;--r2:${rs[2]}deg;
+      --r3:${rs[3]}deg;--r4:${rs[4]}deg;--r5:${rs[5]}deg;--r6:${rs[6]}deg;
+      --x1:${xs[0]}px;--x2:${xs[1]}px;--x3:${xs[2]}px;
+      --x4:${xs[3]}px;--x5:${xs[4]}px;--x6:${xs[5]}px;
+    `;
+    svg.classList.add('petal');
+
+    /* DEFS */
+    const defs = document.createElementNS(NS, 'defs');
+
+    /* Gradiente principal base→punta */
+    const lg = document.createElementNS(NS, 'linearGradient');
+    lg.setAttribute('id', id);
+    lg.setAttribute('x1','50%'); lg.setAttribute('y1','100%');
+    lg.setAttribute('x2','50%'); lg.setAttribute('y2','0%');
+    [
+      [0,   palette.base, 1   ],
+      [0.35, palette.mid, .97 ],
+      [0.72, palette.tip, .92 ],
+      [1,    palette.edge,.8  ],
+    ].forEach(([off, col, sop]) => {
+      const s = document.createElementNS(NS, 'stop');
+      s.setAttribute('offset', `${off*100}%`);
+      s.setAttribute('stop-color', col);
+      s.setAttribute('stop-opacity', sop);
+      lg.appendChild(s);
+    });
+    defs.appendChild(lg);
+
+    /* Gradiente lateral: brillo en el lado izquierdo */
+    const rg = document.createElementNS(NS, 'radialGradient');
+    rg.setAttribute('id', `${id}s`);
+    rg.setAttribute('cx','30%'); rg.setAttribute('cy','25%'); rg.setAttribute('r','55%');
+    [
+      [0,   'rgba(255,255,255,.40)'],
+      [0.5, 'rgba(255,255,255,.12)'],
+      [1,   'rgba(255,255,255,0)'  ],
+    ].forEach(([off, col]) => {
+      const s = document.createElementNS(NS, 'stop');
+      s.setAttribute('offset', `${off*100}%`);
+      s.setAttribute('stop-color', col);
+      rg.appendChild(s);
+    });
+    defs.appendChild(rg);
+
+    /* Sombra suave para dar volumen */
+    const filt = document.createElementNS(NS, 'filter');
+    filt.setAttribute('id', `${id}f`);
+    filt.setAttribute('x','-15%'); filt.setAttribute('y','-15%');
+    filt.setAttribute('width','130%'); filt.setAttribute('height','130%');
+    const fe = document.createElementNS(NS, 'feDropShadow');
+    fe.setAttribute('dx','0.4'); fe.setAttribute('dy','0.8');
+    fe.setAttribute('stdDeviation','0.6');
+    fe.setAttribute('flood-color', isRed ? 'rgba(80,0,0,.35)' : 'rgba(180,80,90,.2)');
+    filt.appendChild(fe);
+    defs.appendChild(filt);
+
+    svg.appendChild(defs);
+
+    /* Cuerpo del pétalo */
+    const body = document.createElementNS(NS, 'path');
+    body.setAttribute('d', shape.outer);
+    body.setAttribute('fill', `url(#${id})`);
+    body.setAttribute('filter', `url(#${id}f)`);
+    svg.appendChild(body);
+
+    /* Brillo especular (reflejo de luz) */
+    const sheen = document.createElementNS(NS, 'path');
+    sheen.setAttribute('d', shape.outer);
+    sheen.setAttribute('fill', `url(#${id}s)`);
+    svg.appendChild(sheen);
+
+    /* Nervio central */
+    const vein = document.createElementNS(NS, 'path');
+    vein.setAttribute('d', shape.vein);
+    vein.setAttribute('fill', 'none');
+    vein.setAttribute('stroke', palette.vein);
+    vein.setAttribute('stroke-width', '0.45');
+    vein.setAttribute('stroke-linecap', 'round');
+    svg.appendChild(vein);
+
+    /* Nervadura secundaria izquierda */
+    const v2 = document.createElementNS(NS, 'path');
+    v2.setAttribute('d', shape.inner);
+    v2.setAttribute('fill', 'none');
+    v2.setAttribute('stroke', palette.vein);
+    v2.setAttribute('stroke-width', '0.28');
+    v2.setAttribute('stroke-linecap', 'round');
+    v2.setAttribute('opacity', '0.7');
+    svg.appendChild(v2);
+
+    /* Nervadura secundaria derecha */
+    const v3 = document.createElementNS(NS, 'path');
+    v3.setAttribute('d', shape.inner2);
+    v3.setAttribute('fill', 'none');
+    v3.setAttribute('stroke', palette.vein);
+    v3.setAttribute('stroke-width', '0.28');
+    v3.setAttribute('stroke-linecap', 'round');
+    v3.setAttribute('opacity', '0.7');
+    svg.appendChild(v3);
+
+    /* Contorno del borde (muy sutil) */
+    const outline = document.createElementNS(NS, 'path');
+    outline.setAttribute('d', shape.outer);
+    outline.setAttribute('fill', 'none');
+    outline.setAttribute('stroke', isRed ? 'rgba(120,0,0,.25)' : 'rgba(200,150,155,.2)');
+    outline.setAttribute('stroke-width', '0.3');
+    svg.appendChild(outline);
+
+    container.appendChild(svg);
+  }
 })();
 
 /* ===== NAV ===== */
@@ -387,7 +556,13 @@ function saveGuest(g) { const a = getGuests(); a.push(g); localStorage.setItem(D
     req.onerror   = function()  { cb(true); };
   }
 
-  /* Intenta cargar archivo de IndexedDB; si no hay, usa URL */
+  /* 1) Archivo local en carpeta music/ (funciona en todos los dispositivos) */
+  if (music.localFile && music.localFile.trim()) {
+    startPlayer('music/' + music.localFile.trim(), music.title || music.localFile.replace(/\.[^.]+$/, ''));
+    return;
+  }
+
+  /* 2) Intenta cargar archivo subido en IndexedDB; si no hay, usa URL */
   openAudioDB(function(err, db) {
     if (err) { if (music.url) startPlayer(null, null); return; }
     var tx  = db.transaction('tracks', 'readonly');
@@ -596,7 +771,7 @@ function saveGuest(g) { const a = getGuests(); a.push(g); localStorage.setItem(D
   if (!container) return;
 
   const CRONO_DEFAULTS = [
-    {hora:'11:00',icon:'💐',nombre:'Llegada de invitados',         lugar:'Jardín principal',        color:'#8FB8D8',notas:'Bienvenida con champán y jazz en vivo'},
+    {hora:'11:00',icon:'💐',nombre:'Llegada de invitados',         lugar:'Jardín principal',        color:'#C9A96E',notas:'Bienvenida con champán y jazz en vivo'},
     {hora:'12:00',icon:'💍',nombre:'Ceremonia civil',              lugar:'Capilla de Los Laureles', color:'#E91E63',notas:'Duración aprox. 40 minutos'},
     {hora:'13:00',icon:'📸',nombre:'Sesión de fotos',              lugar:'Jardín de las rosas',     color:'#9C27B0',notas:'Fotos familiares y con invitados'},
     {hora:'14:00',icon:'🍽️',nombre:'Cocktail & aperitivos',        lugar:'Terraza principal',       color:'#FF9800',notas:'Bebidas y canapés de bienvenida'},
@@ -627,7 +802,7 @@ function saveGuest(g) { const a = getGuests(); a.push(g); localStorage.setItem(D
 
   container.innerHTML = sorted.map(ev => {
     const time     = to12h(ev.hora || '00:00');
-    const color    = ev.color || '#8FB8D8';
+    const color    = ev.color || '#C9A96E';
     const icon     = ev.icon  || '📌';
     const subtitle = [ev.lugar, ev.notas].filter(Boolean).join(' · ');
     return `<div class="tl-item reveal">
@@ -690,7 +865,7 @@ function makeQR(text) {
 
   const seed = [...text].reduce((a, ch) => (a * 31 + ch.charCodeAt(0)) | 0, 0);
   const cell = 16; const grid = 10;
-  ctx.fillStyle = '#1B3A55';
+  ctx.fillStyle = '#1E1E3A';
 
   for (let r = 0; r < grid; r++) {
     for (let c2 = 0; c2 < grid; c2++) {
@@ -701,9 +876,9 @@ function makeQR(text) {
     }
   }
   [[0,0],[0,7],[7,0]].forEach(([cr, cc]) => {
-    ctx.fillStyle = '#1B3A55';  ctx.fillRect(cc*cell, cr*cell, 3*cell-2, 3*cell-2);
+    ctx.fillStyle = '#1E1E3A';  ctx.fillRect(cc*cell, cr*cell, 3*cell-2, 3*cell-2);
     ctx.fillStyle = '#FFF';     ctx.fillRect(cc*cell+2, cr*cell+2, 3*cell-6, 3*cell-6);
-    ctx.fillStyle = '#8FB8D8';  ctx.fillRect(cc*cell+5, cr*cell+5, 3*cell-12, 3*cell-12);
+    ctx.fillStyle = '#C9A96E';  ctx.fillRect(cc*cell+5, cr*cell+5, 3*cell-12, 3*cell-12);
   });
 
   const img = new Image();
@@ -717,7 +892,7 @@ function spawnConfetti() {
   const container = document.getElementById('successConfetti');
   if (!container) return;
   container.innerHTML = '';
-  const colors = ['#8FB8D8','#D9EDF8','#A9CDE3','#BFE0F2','#4D7FA3','#FFF'];
+  const colors = ['#C9A96E','#E8D5B7','#D4A5A5','#B5C8C0','#4CAF50','#FFF'];
   for (let i = 0; i < 30; i++) {
     const piece = document.createElement('div');
     piece.className = 'confetti-piece';
