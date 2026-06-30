@@ -16,6 +16,7 @@
     />
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
     <link rel="stylesheet" href="css/admin.css" />
   </head>
   <body>
@@ -482,11 +483,24 @@
         <!-- ===== VIEW: MESAS ===== -->
         <section class="view" id="view-mesas">
           <div class="toolbar">
-            <div class="toolbar-right" style="margin-left:auto">
+            <div class="toolbar-right" style="margin-left:auto;flex-wrap:wrap;gap:8px">
+              <button class="btn-outline-sm" onclick="autoAssignGuests()" title="Asigna invitados automáticamente agrupando por familia">
+                <i class="fa-solid fa-wand-magic-sparkles"></i> Auto-asignar
+              </button>
+              <button class="btn-outline-sm" onclick="clearMesaAssignments()" title="Quitar todas las asignaciones">
+                <i class="fa-solid fa-eraser"></i> Limpiar
+              </button>
+              <button class="btn-outline-sm" onclick="exportMesasPDF()">
+                <i class="fa-solid fa-file-pdf"></i> PDF
+              </button>
               <button class="btn-primary-sm" id="addMesaBtn">
                 <i class="fa-solid fa-plus"></i> Nueva Mesa
               </button>
             </div>
+          </div>
+          <div id="mesasUnassigned" class="mesas-unassigned hidden">
+            <p class="mesas-unassigned__title"><i class="fa-solid fa-circle-exclamation"></i> Sin asignar</p>
+            <div id="mesasUnassignedList" class="mesas-unassigned__list"></div>
           </div>
           <div id="mesasGrid" class="mesas-grid"></div>
           <div class="table-empty hidden" id="mesasEmpty">
@@ -496,25 +510,40 @@
         </section>
 
         <!-- ===== VIEW: MAPA ===== -->
-        <section class="view" id="view-mapa">
-          <div class="toolbar">
-            <div class="toolbar-right" style="margin-left:auto">
-              <span style="font-size:.78rem;color:var(--text-soft)">Arrastra las mesas para organizarlas</span>
-              <button class="btn-outline-sm" id="resetMapaBtn">
-                <i class="fa-solid fa-rotate-left"></i> Restablecer
+        <section class="view view--fullh" id="view-mapa">
+          <div class="mapa-topbar">
+            <div class="mapa-topbar__left">
+              <button class="mapa-btn" onclick="clearMapaElements()" title="Limpiar todo el plano">
+                <i class="fa-solid fa-trash"></i><span class="mapa-btn-lbl"> Limpiar</span>
+              </button>
+              <button class="mapa-btn" onclick="exportMapaImage()" title="Exportar como imagen PNG">
+                <i class="fa-solid fa-image"></i><span class="mapa-btn-lbl"> Exportar PNG</span>
+              </button>
+            </div>
+            <div class="mapa-topbar__right">
+              <button class="mapa-btn mapa-btn--toggle" id="mapaTogglePanel" title="Mostrar/ocultar panel de elementos">
+                <i class="fa-solid fa-palette"></i><span class="mapa-btn-lbl"> Elementos</span>
               </button>
             </div>
           </div>
-          <div class="mapa-wrapper">
-            <div class="mapa-container" id="mapaContainer">
-              <div class="mapa-stage" id="mapaStage">
-                <div class="mapa-dance-floor">Pista de Baile</div>
+          <div class="mapa-builder" id="mapaBuilder">
+            <!-- Panel de componentes -->
+            <aside class="mapa-panel" id="mapaPanel">
+              <div class="mapa-panel__head">
+                <span class="mapa-panel__title"><i class="fa-solid fa-palette"></i> Elementos</span>
+                <input type="search" id="mapaPanelSearch" class="mapa-panel__search" placeholder="Buscar..." />
+                <button class="mapa-panel__close" id="mapaClosePanel"><i class="fa-solid fa-xmark"></i></button>
               </div>
-            </div>
-            <div class="mapa-legend">
-              <span class="mapa-legend-item mapa-legend-item--free">Disponible</span>
-              <span class="mapa-legend-item mapa-legend-item--partial">Parcial</span>
-              <span class="mapa-legend-item mapa-legend-item--full">Llena</span>
+              <div class="mapa-panel__cats" id="mapaPanelCats"></div>
+            </aside>
+            <!-- Stage scrollable -->
+            <div class="mapa-stage-wrap" id="mapaStageWrap">
+              <div class="mapa-stage" id="mapaStage">
+                <!-- Elements placed by JS -->
+              </div>
+              <div class="mapa-hint" id="mapaHint">
+                <i class="fa-solid fa-hand-pointer"></i> Selecciona un elemento del panel y tócalo aquí para agregarlo
+              </div>
             </div>
           </div>
         </section>

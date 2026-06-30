@@ -2228,3 +2228,616 @@ function refreshMensajes() {
     </div>`;
   }).join('');
 }
+
+/* ================================================================
+   MESAS â€” ASIGNACIÃ“N INTELIGENTE + PDF
+   ================================================================ */
+
+window.autoAssignGuests = function() {
+  const mesas  = getMesas();
+  const guests = getGuests().filter(g => g.estado === 'confirmado');
+  if (!mesas.length)  { toast('âš ï¸ Crea mesas primero'); return; }
+  if (!guests.length) { toast('âš ï¸ No hay invitados confirmados'); return; }
+
+  // Clear assignments
+  const newMesas = mesas.map(m => ({ ...m, guests: [] }));
+
+  // Group by family (familia field), sort largest first
+  const famMap = {};
+  guests.forEach(g => {
+    const key = (g.familia && g.familia.trim()) ? g.familia.trim() : '__solo__' + g.id;
+    if (!famMap[key]) famMap[key] = [];
+    famMap[key].push(g);
+  });
+  const groups = Object.values(famMap).sort((a, b) => b.length - a.length);
+
+  // Greedy assignment: place each group in the table with most remaining space that can fit them
+  groups.forEach(group => {
+    let target = newMesas
+      .filter(m => (m.capacidad - m.guests.length) >= group.length)
+      .sort((a, b) => (b.capacidad - b.guests.length) - (a.capacidad - a.guests.length))[0];
+    if (!target) {
+      // Split group
+      group.forEach(g => {
+        target = newMesas.filter(m => m.guests.length < m.capacidad)
+          .sort((a, b) => (b.capacidad - b.guests.length) - (a.capacidad - a.guests.length))[0];
+        if (target) target.guests.push(g.id);
+      });
+    } else {
+      group.forEach(g => target.guests.push(g.id));
+    }
+  });
+
+  setMesas(newMesas);
+  toast('âœ… Invitados asignados automÃ¡ticamente por familias');
+  refreshMesas();
+};
+
+window.clearMesaAssignments = function() {
+  if (!confirm('Â¿Quitar todas las asignaciones de invitados?')) return;
+  setMesas(getMesas().map(m => ({ ...m, guests: [] })));
+  toast('ðŸ—‘ï¸ Asignaciones eliminadas');
+  refreshMesas();
+};
+
+window.exportMesasPDF = function() {
+  const mesas  = getMesas();
+  const guests = getGuests();
+  const cfg    = getWeddingConfig();
+  const bride  = cfg.bride || 'SofÃ­a';
+  const groom  = cfg.groom || 'Alejandro';
+  const d      = getWeddingDate();
+  const dateStr = d.toLocaleDateString('es-ES', { weekday:'long', day:'2-digit', month:'long', year:'numeric' });
+
+  const allAssigned = new Set(mesas.flatMap(m => m.guests || []));
+  const unassigned  = guests.filter(g => g.estado === 'confirmado' && !allAssigned.has(g.id));
+
+  const mesaRows = mesas.map(m => {
+    const assigned = (m.guests || []).map(id => guests.find(g => g.id === id)).filter(Boolean);
+    const rows = assigned.length
+      ? assigned.map(g => {
+          const total = 1 + (parseInt(g.acompanantes) || 0);
+          return `<tr><td>${esc(g.nombre)} ${esc(g.apellido || '')}</td><td>${esc(g.grupo || '')}</td><td style="text-align:center">${total}</td><td>${esc(g.menu ? ({carne:'Res',pollo:'Pollo',pescado:'Pescado',vegetariano:'Vegeta.'}[g.menu] || g.menu) : 'â€”')}</td></tr>`;
+        }).join('')
+      : '<tr><td colspan="4" style="color:#bbb;font-style:italic">Sin invitados asignados</td></tr>';
+    return `
+      <div class="mesa-block">
+        <div class="mesa-block-header">
+          <strong>${esc(m.nombre)}</strong>
+          <span>${m.forma || 'Redonda'} Â· ${assigned.length}/${m.capacidad} lugares</span>
+          ${m.zona ? `<span class="mesa-zona">${esc(m.zona)}</span>` : ''}
+        </div>
+        <table><thead><tr><th>Invitado</th><th>Grupo</th><th>Pers.</th><th>MenÃº</th></tr></thead>
+        <tbody>${rows}</tbody></table>
+      </div>`;
+  }).join('');
+
+  const unassignedBlock = unassigned.length ? `
+    <div class="mesa-block" style="border-color:#ff9800">
+      <div class="mesa-block-header" style="background:rgba(255,152,0,.08)">
+        <strong>âš ï¸ Sin asignar</strong>
+        <span>${unassigned.length} invitado(s) confirmado(s) sin mesa</span>
+      </div>
+      <table><thead><tr><th>Invitado</th><th>Grupo</th><th>Pers.</th><th>MenÃº</th></tr></thead>
+      <tbody>${unassigned.map(g => {
+        const total = 1 + (parseInt(g.acompanantes) || 0);
+        return `<tr><td>${esc(g.nombre)} ${esc(g.apellido || '')}</td><td>${esc(g.grupo || '')}</td><td style="text-align:center">${total}</td><td>${esc(g.menu ? ({carne:'Res',pollo:'Pollo',pescado:'Pescado',vegetariano:'Vegeta.'}[g.menu] || g.menu) : 'â€”')}</td></tr>`;
+      }).join('')}</tbody></table>
+    </div>` : '';
+
+  const totalPersonas = guests.filter(g => g.estado === 'confirmado').reduce((s, g) => s + 1 + (parseInt(g.acompanantes) || 0), 0);
+
+  const html = `<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Plan de Mesas â€” ${bride} & ${groom}</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Georgia, 'Times New Roman', serif; background: #fff; color: #2c2c2c; padding: 24px; }
+    h1 { text-align:center; font-size:1.7rem; color:#c9a96e; margin-bottom:4px; font-family:Georgia,serif; }
+    .subtitle { text-align:center; font-size:.85rem; color:#888; margin-bottom:6px; }
+    .meta { text-align:center; font-size:.78rem; color:#bbb; margin-bottom:24px; }
+    .stats { display:flex; gap:20px; justify-content:center; margin-bottom:20px; flex-wrap:wrap; }
+    .stat { text-align:center; }
+    .stat-num { font-size:1.4rem; font-weight:700; color:#c9a96e; }
+    .stat-lbl { font-size:.7rem; color:#888; }
+    .mesa-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:16px; }
+    .mesa-block { border:1px solid #e0d5c0; border-radius:10px; overflow:hidden; break-inside:avoid; }
+    .mesa-block-header { background:rgba(201,169,110,.08); padding:10px 14px; display:flex; align-items:center; gap:10px; flex-wrap:wrap; border-bottom:1px solid #e0d5c0; }
+    .mesa-block-header strong { font-size:.95rem; color:#c9a96e; }
+    .mesa-block-header span { font-size:.72rem; color:#888; }
+    .mesa-zona { background:rgba(201,169,110,.15); border-radius:20px; padding:2px 8px; color:#c9a96e !important; font-size:.68rem !important; }
+    table { width:100%; border-collapse:collapse; }
+    th { font-size:.7rem; font-weight:700; color:#888; text-align:left; padding:6px 10px; border-bottom:1px solid #f0ebe0; background:#fafaf8; }
+    td { font-size:.78rem; padding:6px 10px; border-bottom:1px solid #f8f4ee; }
+    tr:last-child td { border-bottom:none; }
+    hr { border:none; border-top:1px solid #e0d5c0; margin:20px 0; }
+    @media print { body{padding:10px;} @page{margin:.8cm;} }
+  </style>
+</head>
+<body>
+  <h1>ðŸ’ Plan de Mesas</h1>
+  <p class="subtitle">${bride} &amp; ${groom}</p>
+  <p class="meta">${dateStr}</p>
+  <div class="stats">
+    <div class="stat"><div class="stat-num">${mesas.length}</div><div class="stat-lbl">Mesas</div></div>
+    <div class="stat"><div class="stat-num">${guests.filter(g=>g.estado==='confirmado').length}</div><div class="stat-lbl">Confirmados</div></div>
+    <div class="stat"><div class="stat-num">${totalPersonas}</div><div class="stat-lbl">Personas totales</div></div>
+    <div class="stat"><div class="stat-num">${unassigned.length}</div><div class="stat-lbl">Sin asignar</div></div>
+  </div>
+  <div class="mesa-grid">${mesaRows}${unassignedBlock}</div>
+  <script>window.onload=()=>setTimeout(()=>window.print(),400);<\/script>
+</body>
+</html>`;
+
+  const win = window.open('', '_blank', 'width=960,height=720');
+  if (!win) { toast('âš ï¸ Permite pop-ups para exportar'); return; }
+  win.document.write(html);
+  win.document.close();
+};
+
+/* ================================================================
+   MAPA DEL LOCAL â€” CONSTRUCTOR INTERACTIVO V2
+   ================================================================ */
+const MAPA_EL_KEY = 'boda_mapa_elements_v2';
+
+const MAPA_CATS = [
+  {
+    cat: 'Mesas', icon: 'ðŸª‘',
+    items: [
+      { src:'img/mesa_invitados.png',  lbl:'Invitados',  w:90, h:90 },
+      { src:'img/mesa_novios.png',     lbl:'Novios',     w:90, h:80 },
+      { src:'img/mesa_padrinos.png',   lbl:'Padrinos',   w:90, h:80 },
+      { src:'img/mesa_pastel.png',     lbl:'Pastel',     w:80, h:80 },
+    ]
+  },
+  {
+    cat: 'Escena', icon: 'ðŸ’',
+    items: [
+      { src:'img/altar.png',      lbl:'Altar',       w:100, h:120 },
+      { src:'img/pista_baile.png',lbl:'Pista Baile', w:130, h:100 },
+      { src:'img/entrada.png',    lbl:'Entrada',     w:80,  h:80  },
+    ]
+  },
+  {
+    cat: 'Servicios', icon: 'ðŸ¹',
+    items: [
+      { src:'img/bar.png',        lbl:'Bar',         w:90, h:80 },
+      { src:'img/dj.png',         lbl:'DJ',          w:90, h:90 },
+      { src:'img/photo_booth.png',lbl:'Photo Booth', w:90, h:90 },
+      { src:'img/zona_lounge.png',lbl:'Lounge',      w:110,h:90 },
+    ]
+  },
+  {
+    cat: 'DecoraciÃ³n', icon: 'ðŸŒ¸',
+    items: [
+      { src:'img/decoracion_arco_de_entrada.png',     lbl:'Arco',        w:80, h:110 },
+      { src:'img/decoracion_camino_de_flores.png',    lbl:'Camino',      w:130,h:50  },
+      { src:'img/decoracion_cartel_de_bienbenida.png',lbl:'Cartel 1',    w:80, h:80  },
+      { src:'img/decoracion_cartel_de_bienbenida_2.png',lbl:'Cartel 2',  w:80, h:80  },
+      { src:'img/decoracion_cartel_de_bienbenida_3.png',lbl:'Cartel 3',  w:80, h:80  },
+      { src:'img/decoracion_corazon_de_flores.png',   lbl:'CorazÃ³n',     w:80, h:80  },
+      { src:'img/decoracion_cortinas.png',            lbl:'Cortinas',    w:90, h:100 },
+      { src:'img/decoracion_flores_5.png',            lbl:'Flores',      w:70, h:80  },
+      { src:'img/decoracion_fuente.png',              lbl:'Fuente',      w:70, h:90  },
+      { src:'img/decoracion_iluminaria_y_sonido.png', lbl:'Luces&Audio', w:90, h:80  },
+      { src:'img/decoracion_luces.png',               lbl:'Luces v1',    w:70, h:80  },
+      { src:'img/decoracion_luces_2.png',             lbl:'Luces v2',    w:70, h:80  },
+      { src:'img/decoracion_luces_3.png',             lbl:'Luces v3',    w:70, h:80  },
+      { src:'img/decoracion_lugar_de_regalos.png',    lbl:'Regalos 1',   w:80, h:80  },
+      { src:'img/decoracion_lugar_de_regalos_2.png',  lbl:'Regalos 2',   w:80, h:80  },
+      { src:'img/decoracion_lugar_de_regalos_3.png',  lbl:'Regalos 3',   w:80, h:80  },
+      { src:'img/decoracion_lugar_de_regalos_4.png',  lbl:'Regalos 4',   w:80, h:80  },
+      { src:'img/decoracion_mesa_decorativa.png',     lbl:'Mesa Deco',   w:80, h:80  },
+      { src:'img/decoracion_mosos.png',               lbl:'Meseros',     w:70, h:90  },
+      { src:'img/decoracion_planta.png',              lbl:'Planta 1',    w:60, h:90  },
+      { src:'img/decoracion_planta_3.png',            lbl:'Planta 2',    w:60, h:90  },
+      { src:'img/decoracion_planta_4.png',            lbl:'Planta 3',    w:60, h:90  },
+      { src:'img/decoracion_plata_2.png',             lbl:'Planta 4',    w:60, h:90  },
+      { src:'img/decoracion_torta_2.png',             lbl:'Torta',       w:70, h:80  },
+    ]
+  },
+];
+
+function getMapaEls()  { try { return JSON.parse(localStorage.getItem(MAPA_EL_KEY)) || []; } catch { return []; } }
+function setMapaEls(a) { localStorage.setItem(MAPA_EL_KEY, JSON.stringify(a)); }
+
+/* State */
+let _selMapaId = null;
+let _mapaDrag  = null;
+let _mapaGhost = null;
+let _pendingPanel = null; // component selected in panel (mobile tap)
+
+function refreshMapa() {
+  buildMapaPanel();
+  renderMapaEls();
+  initMapaEvents();
+}
+
+/* â”€â”€ Panel builder â”€â”€ */
+function buildMapaPanel() {
+  const catsEl = document.getElementById('mapaPanelCats');
+  if (!catsEl) return;
+  const q = (document.getElementById('mapaPanelSearch')?.value || '').toLowerCase();
+  catsEl.innerHTML = '';
+  MAPA_CATS.forEach(cat => {
+    const items = cat.items.filter(it => !q || it.lbl.toLowerCase().includes(q) || cat.cat.toLowerCase().includes(q));
+    if (!items.length) return;
+    const catDiv = document.createElement('div');
+    catDiv.className = 'mapa-cat';
+    catDiv.innerHTML = `<div class="mapa-cat__title">${cat.icon} ${cat.cat}</div><div class="mapa-cat__items" id="mcat-${cat.cat}"></div>`;
+    catsEl.appendChild(catDiv);
+    const itemsEl = catDiv.querySelector('.mapa-cat__items');
+    items.forEach(it => {
+      const comp = document.createElement('div');
+      comp.className = 'mapa-comp';
+      comp.dataset.src = it.src;
+      comp.dataset.lbl = it.lbl;
+      comp.dataset.w   = it.w;
+      comp.dataset.h   = it.h;
+      comp.innerHTML = `<img src="${it.src}" alt="${esc(it.lbl)}" /><span class="mapa-comp__lbl">${esc(it.lbl)}</span>`;
+      itemsEl.appendChild(comp);
+    });
+  });
+}
+
+/* â”€â”€ Render elements on stage â”€â”€ */
+function renderMapaEls() {
+  const stage = document.getElementById('mapaStage');
+  const hint  = document.getElementById('mapaHint');
+  if (!stage) return;
+  stage.querySelectorAll('.mapa-el').forEach(n => n.remove());
+  const els = getMapaEls();
+  if (hint) hint.classList.toggle('hidden', els.length > 0);
+  els.forEach(el => {
+    const node = createMapaNode(el);
+    stage.appendChild(node);
+  });
+}
+
+function createMapaNode(el) {
+  const node = document.createElement('div');
+  node.className = 'mapa-el' + (_selMapaId === el.id ? ' selected' : '');
+  node.id        = 'mel-' + el.id;
+  node.dataset.id = el.id;
+  node.style.cssText = `left:${el.x}px;top:${el.y}px;width:${el.w}px;height:${el.h}px;transform:rotate(${el.rot||0}deg);z-index:${el.zIndex||1};`;
+  node.innerHTML = `
+    <img class="mapa-el__img" src="${el.src}" alt="${esc(el.lbl||'')}" draggable="false" />
+    <div class="mapa-el-handles">
+      <div class="mapa-handle mapa-handle--tl" data-handle="tl"></div>
+      <div class="mapa-handle mapa-handle--tr" data-handle="tr"></div>
+      <div class="mapa-handle mapa-handle--bl" data-handle="bl"></div>
+      <div class="mapa-handle mapa-handle--br" data-handle="br"></div>
+      <div class="mapa-handle mapa-handle--rot" data-handle="rot" title="Rotar"></div>
+      <button class="mapa-el__del" data-del="${el.id}" title="Eliminar">âœ•</button>
+    </div>`;
+  return node;
+}
+
+/* â”€â”€ Place element â”€â”€ */
+function placeMapaEl(comp, stageX, stageY) {
+  const els  = getMapaEls();
+  const maxZ = els.length ? Math.max(...els.map(e => e.zIndex || 1)) : 1;
+  const w = parseInt(comp.dataset.w) || 80;
+  const h = parseInt(comp.dataset.h) || 80;
+  const newEl = {
+    id:     uid(),
+    src:    comp.dataset.src,
+    lbl:    comp.dataset.lbl,
+    x:      Math.max(0, stageX - w / 2),
+    y:      Math.max(0, stageY - h / 2),
+    w, h,
+    rot:    0,
+    zIndex: maxZ + 1,
+  };
+  els.push(newEl);
+  setMapaEls(els);
+  _selMapaId = newEl.id;
+  renderMapaEls();
+  const hint = document.getElementById('mapaHint');
+  if (hint) hint.classList.add('hidden');
+}
+
+/* â”€â”€ Delete element â”€â”€ */
+function deleteMapaElById(id) {
+  setMapaEls(getMapaEls().filter(e => e.id !== id));
+  if (_selMapaId === id) _selMapaId = null;
+  renderMapaEls();
+  toast('ðŸ—‘ï¸ Elemento eliminado');
+}
+window.deleteMapaElById = deleteMapaElById;
+
+/* â”€â”€ Clear all â”€â”€ */
+window.clearMapaElements = function() {
+  if (!confirm('Â¿Limpiar todo el plano?')) return;
+  setMapaEls([]);
+  _selMapaId = null;
+  renderMapaEls();
+  toast('ðŸ—‘ï¸ Plano limpiado');
+};
+
+/* â”€â”€ Export image â”€â”€ */
+window.exportMapaImage = function() {
+  const stage = document.getElementById('mapaStage');
+  if (!stage) return;
+  // Temporarily deselect
+  const prevSel = _selMapaId;
+  _selMapaId = null;
+  renderMapaEls();
+
+  const btn = document.querySelector('[onclick="exportMapaImage()"]');
+  if (btn) btn.textContent = 'â³ Generando...';
+
+  const promise = (typeof html2canvas !== 'undefined')
+    ? html2canvas(stage, { backgroundColor: '#f9f6f0', scale: 2, useCORS: true, allowTaint: true, logging: false })
+    : Promise.reject(new Error('html2canvas no disponible'));
+
+  promise.then(canvas => {
+    canvas.toBlob(blob => {
+      const url = URL.createObjectURL(blob);
+      const a   = document.createElement('a');
+      a.href     = url;
+      a.download = 'mapa-boda.png';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      if (btn) btn.innerHTML = '<i class="fa-solid fa-image"></i><span class="mapa-btn-lbl"> Exportar PNG</span>';
+      _selMapaId = prevSel;
+      renderMapaEls();
+    });
+  }).catch(err => {
+    toast('âŒ Error al exportar: ' + err.message);
+    if (btn) btn.innerHTML = '<i class="fa-solid fa-image"></i><span class="mapa-btn-lbl"> Exportar PNG</span>';
+    _selMapaId = prevSel;
+    renderMapaEls();
+  });
+};
+
+/* â”€â”€ Events â”€â”€ */
+let _mapaEventsInited = false;
+function initMapaEvents() {
+  if (_mapaEventsInited) return;
+  _mapaEventsInited = true;
+
+  const stage     = document.getElementById('mapaStage');
+  const stageWrap = document.getElementById('mapaStageWrap');
+  const panel     = document.getElementById('mapaPanel');
+  const search    = document.getElementById('mapaPanelSearch');
+  const toggleBtn = document.getElementById('mapaTogglePanel');
+  const closeBtn  = document.getElementById('mapaClosePanel');
+
+  // Search
+  if (search) {
+    search.addEventListener('input', () => buildMapaPanel());
+  }
+
+  // Toggle panel
+  if (toggleBtn) {
+    toggleBtn.addEventListener('click', () => {
+      panel?.classList.toggle('hidden');
+      toggleBtn.classList.toggle('mapa-btn--active', !panel?.classList.contains('hidden'));
+    });
+  }
+  if (closeBtn) {
+    closeBtn.addEventListener('click', () => {
+      panel?.classList.add('hidden');
+      toggleBtn?.classList.remove('mapa-btn--active');
+    });
+  }
+
+  // Panel search setup
+  if (search) search.addEventListener('input', buildMapaPanel);
+
+  /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+     POINTER EVENTS (mouse + touch unified)
+     â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+
+  // â”€â”€ Panel component: pointerdown â†’ start panel drag (or tap on mobile)
+  document.getElementById('mapaPanelCats')?.addEventListener('pointerdown', e => {
+    const comp = e.target.closest('.mapa-comp');
+    if (!comp) return;
+
+    const isMobile = window.innerWidth <= 768;
+    if (isMobile) {
+      // Mobile: tap to select comp, then tap stage to place
+      document.querySelectorAll('.mapa-comp').forEach(c => c.style.outline = '');
+      comp.style.outline = '2px solid var(--gold)';
+      _pendingPanel = comp;
+      toast('ðŸ’¡ Toca el plano para colocar el elemento');
+      return;
+    }
+
+    // Desktop: start ghost drag
+    e.preventDefault();
+    const w = parseInt(comp.dataset.w) || 80;
+    const h = parseInt(comp.dataset.h) || 80;
+    _mapaGhost = document.createElement('div');
+    _mapaGhost.className = 'mapa-ghost';
+    _mapaGhost.style.width  = w + 'px';
+    _mapaGhost.style.height = h + 'px';
+    _mapaGhost.innerHTML = `<img src="${comp.dataset.src}" style="width:100%;height:100%;object-fit:contain;pointer-events:none" />`;
+    document.body.appendChild(_mapaGhost);
+    _mapaDrag = { type: 'panel', comp };
+    comp.classList.add('dragging-source');
+    _mapaGhost.style.left = e.clientX + 'px';
+    _mapaGhost.style.top  = e.clientY + 'px';
+  });
+
+  // â”€â”€ Stage: pointerdown on placed element or background
+  if (stage) {
+    stage.addEventListener('pointerdown', e => {
+      // Mobile pending placement
+      if (_pendingPanel) {
+        const rect = stage.getBoundingClientRect();
+        const wrap = document.getElementById('mapaStageWrap');
+        const sx = e.clientX - rect.left + (wrap?.scrollLeft || 0);
+        const sy = e.clientY - rect.top  + (wrap?.scrollTop  || 0);
+        placeMapaEl(_pendingPanel, sx, sy);
+        _pendingPanel.style.outline = '';
+        _pendingPanel = null;
+        return;
+      }
+
+      // Delete button
+      if (e.target.dataset.del) {
+        deleteMapaElById(e.target.dataset.del);
+        return;
+      }
+
+      // Handle click
+      const handle = e.target.closest('[data-handle]');
+      const elNode = e.target.closest('.mapa-el');
+
+      if (!elNode) {
+        // Click on stage background â†’ deselect
+        _selMapaId = null;
+        renderMapaEls();
+        return;
+      }
+
+      // Select element
+      const id = elNode.dataset.id;
+      _selMapaId = id;
+      renderMapaEls();
+
+      if (handle) {
+        e.preventDefault();
+        const elData = getMapaEls().find(x => x.id === id);
+        if (!elData) return;
+        const wrap = document.getElementById('mapaStageWrap');
+        const stageRect = stage.getBoundingClientRect();
+        const cx = stageRect.left - (wrap?.scrollLeft || 0) + elData.x + elData.w / 2;
+        const cy = stageRect.top  - (wrap?.scrollTop  || 0) + elData.y + elData.h / 2;
+        const hType = handle.dataset.handle;
+        if (hType === 'rot') {
+          _mapaDrag = {
+            type: 'rotate', id,
+            cx, cy,
+            startRot:   elData.rot || 0,
+            startAngle: Math.atan2(e.clientY - cy, e.clientX - cx) * 180 / Math.PI,
+          };
+        } else {
+          // Resize
+          _mapaDrag = {
+            type: 'resize', id, corner: hType,
+            startPX: e.clientX, startPY: e.clientY,
+            startW: elData.w, startH: elData.h,
+            startX: elData.x, startY: elData.y,
+          };
+        }
+        stage.setPointerCapture(e.pointerId);
+        return;
+      }
+
+      // Move element
+      e.preventDefault();
+      _mapaDrag = {
+        type: 'move', id,
+        startPX: e.clientX, startPY: e.clientY,
+        startEX: parseInt(elNode.style.left) || 0,
+        startEY: parseInt(elNode.style.top)  || 0,
+      };
+      stage.setPointerCapture(e.pointerId);
+    });
+
+    stage.addEventListener('pointermove', e => {
+      if (!_mapaDrag) return;
+      e.preventDefault();
+
+      if (_mapaDrag.type === 'panel') {
+        if (_mapaGhost) {
+          _mapaGhost.style.left = e.clientX + 'px';
+          _mapaGhost.style.top  = e.clientY + 'px';
+        }
+        return;
+      }
+
+      const els = getMapaEls();
+      const idx = els.findIndex(x => x.id === _mapaDrag.id);
+      if (idx < 0) return;
+
+      if (_mapaDrag.type === 'move') {
+        const dx = e.clientX - _mapaDrag.startPX;
+        const dy = e.clientY - _mapaDrag.startPY;
+        els[idx].x = Math.max(0, _mapaDrag.startEX + dx);
+        els[idx].y = Math.max(0, _mapaDrag.startEY + dy);
+        const node = document.getElementById('mel-' + _mapaDrag.id);
+        if (node) { node.style.left = els[idx].x + 'px'; node.style.top = els[idx].y + 'px'; }
+
+      } else if (_mapaDrag.type === 'rotate') {
+        const angle = Math.atan2(e.clientY - _mapaDrag.cy, e.clientX - _mapaDrag.cx) * 180 / Math.PI;
+        let rot = _mapaDrag.startRot + (angle - _mapaDrag.startAngle);
+        if (e.shiftKey) rot = Math.round(rot / 15) * 15; // snap to 15Â°
+        els[idx].rot = rot;
+        const node = document.getElementById('mel-' + _mapaDrag.id);
+        if (node) node.style.transform = `rotate(${rot}deg)`;
+
+      } else if (_mapaDrag.type === 'resize') {
+        const dx = e.clientX - _mapaDrag.startPX;
+        const dy = e.clientY - _mapaDrag.startPY;
+        const c  = _mapaDrag.corner;
+        let newW = _mapaDrag.startW;
+        let newH = _mapaDrag.startH;
+        let newX = _mapaDrag.startX;
+        let newY = _mapaDrag.startY;
+
+        if (c === 'br') { newW = Math.max(30, _mapaDrag.startW + dx); newH = Math.max(30, _mapaDrag.startH + dy); }
+        if (c === 'bl') { newW = Math.max(30, _mapaDrag.startW - dx); newH = Math.max(30, _mapaDrag.startH + dy); newX = _mapaDrag.startX + (_mapaDrag.startW - newW); }
+        if (c === 'tr') { newW = Math.max(30, _mapaDrag.startW + dx); newH = Math.max(30, _mapaDrag.startH - dy); newY = _mapaDrag.startY + (_mapaDrag.startH - newH); }
+        if (c === 'tl') { newW = Math.max(30, _mapaDrag.startW - dx); newH = Math.max(30, _mapaDrag.startH - dy); newX = _mapaDrag.startX + (_mapaDrag.startW - newW); newY = _mapaDrag.startY + (_mapaDrag.startH - newH); }
+
+        if (e.shiftKey) {
+          const ratio = _mapaDrag.startW / _mapaDrag.startH;
+          newH = newW / ratio;
+        }
+
+        els[idx].w = newW; els[idx].h = newH;
+        els[idx].x = newX; els[idx].y = newY;
+        const node = document.getElementById('mel-' + _mapaDrag.id);
+        if (node) { node.style.width = newW + 'px'; node.style.height = newH + 'px'; node.style.left = newX + 'px'; node.style.top = newY + 'px'; }
+      }
+
+      setMapaEls(els);
+    });
+
+    stage.addEventListener('pointerup', e => {
+      if (!_mapaDrag) return;
+
+      if (_mapaDrag.type === 'panel') {
+        // Check if dropped over stage
+        const stageRect = stage.getBoundingClientRect();
+        const wrap = document.getElementById('mapaStageWrap');
+        if (e.clientX >= stageRect.left && e.clientX <= stageRect.right &&
+            e.clientY >= stageRect.top  && e.clientY <= stageRect.bottom) {
+          const sx = e.clientX - stageRect.left + (wrap?.scrollLeft || 0);
+          const sy = e.clientY - stageRect.top  + (wrap?.scrollTop  || 0);
+          placeMapaEl(_mapaDrag.comp, sx, sy);
+        }
+        _mapaDrag.comp.classList.remove('dragging-source');
+        _mapaGhost?.remove();
+        _mapaGhost = null;
+      }
+
+      _mapaDrag = null;
+    });
+
+    stage.addEventListener('pointercancel', () => {
+      if (_mapaDrag?.comp) _mapaDrag.comp.classList.remove('dragging-source');
+      _mapaGhost?.remove();
+      _mapaGhost = null;
+      _mapaDrag = null;
+    });
+  }
+
+  // Global pointerup for panel ghost drag (in case it ends outside stage)
+  document.addEventListener('pointerup', () => {
+    if (_mapaDrag?.type === 'panel') {
+      _mapaDrag.comp?.classList.remove('dragging-source');
+      _mapaGhost?.remove();
+      _mapaGhost = null;
+      _mapaDrag = null;
+    }
+  });
+}
