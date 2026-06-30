@@ -1,0 +1,23 @@
+# Dependencias
+node_modules/
+MI_BODA_PLAN_BASICO_1/node_modules/
+MI_BODA_PLAN_BASICO_2/node_modules/
+MI_BODA_PLAN_BASICO_3/node_modules/
+MI_BODA _PLAN_PLUS_1/node_modules/
+MI_BODA _PLAN_PLUS_2/node_modules/
+MI_BODA _PLAN_PLUS_3/node_modules/
+MI_BODA_EXCLUSIVO_1/node_modules/
+MI_BODA_EXCLUSIVO_2/node_modules/
+MI_BODA_EXCLUSIVO_3/node_modules/
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
