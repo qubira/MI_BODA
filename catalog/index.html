@@ -1,556 +1,1287 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mi Boda · Sitios RSVP de lujo para tu gran día</title>
-  <meta name="description" content="Diseños exclusivos de sitios web RSVP para bodas. Cuatro planes: Básico, Plus, Exclusivo y Personalizado." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Sacramento&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <link rel="stylesheet" href="css/styles.css" />
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mi Boda · Sitios RSVP de lujo para tu gran día</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="shortcut icon" href="favicon.svg" />
+    <meta
+      name="description"
+      content="Diseños exclusivos de sitios web RSVP para bodas. Cuatro planes: Básico, Plus, Exclusivo y Personalizado."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Sacramento&family=Raleway:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <!-- NAV -->
+    <nav class="nav" id="mainNav">
+      <a href="#" class="nav__brand">
+        <span class="nav__brand-script">Mi</span>
+        <span class="nav__brand-display">BODA</span>
+      </a>
+      <ul class="nav__menu" id="navMenu">
+        <li><a href="#planes">Planes</a></li>
+        <li><a href="#basico">Básico</a></li>
+        <li><a href="#plus">Plus</a></li>
+        <li><a href="#exclusivo">Exclusivo</a></li>
+        <li>
+          <a href="#personalizado" class="nav__link--special"
+            >✦ Personalizado</a
+          >
+        </li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+      <button class="nav__toggle" id="navToggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
 
-  <!-- NAV -->
-  <nav class="nav" id="mainNav">
-    <a href="#" class="nav__brand">
-      <span class="nav__brand-script">Mi</span>
-      <span class="nav__brand-display">BODA</span>
-    </a>
-    <ul class="nav__menu" id="navMenu">
-      <li><a href="#planes">Planes</a></li>
-      <li><a href="#basico">Básico</a></li>
-      <li><a href="#plus">Plus</a></li>
-      <li><a href="#exclusivo">Exclusivo</a></li>
-      <li><a href="#personalizado" class="nav__link--special">✦ Personalizado</a></li>
-      <li><a href="#contacto">Contacto</a></li>
-    </ul>
-    <button class="nav__toggle" id="navToggle" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
-  </nav>
-
-  <!-- HERO -->
-  <section class="hero" id="inicio">
-    <div class="hero__orb hero__orb--1"></div>
-    <div class="hero__orb hero__orb--2"></div>
-    <div class="hero__orb hero__orb--3"></div>
-    <div class="hero__particles" id="heroParticles"></div>
-    <div class="container hero__grid">
-      <div class="hero__content">
-        <div class="hero__eyebrow">
-          <span class="hero__eyebrow-line"></span>
-          Sitios RSVP para bodas · Diseños únicos
-        </div>
-        <h1 class="hero__title">
-          Tu historia de amor<br/>
-          <em>merece una vitrina</em><br/>
-          extraordinaria
-        </h1>
-        <p class="hero__sub">
-          Invitaciones digitales con diseño editorial, animaciones cinematográficas y funcionalidad completa.
-          Desde lo esencial hasta lo completamente a medida.
-        </p>
-        <div class="hero__cta">
-          <a href="#planes" class="btn btn--gold"><i class="fa-solid fa-layer-group"></i> Explorar planes</a>
-          <a href="#personalizado" class="btn btn--ghost"><i class="fa-solid fa-wand-magic-sparkles"></i> Quiero algo único</a>
-        </div>
-        <div class="hero__stats">
-          <div class="hero__stat">
-            <span class="hero__stat-num" data-target="10">0</span>
-            <span class="hero__stat-label">Diseños disponibles</span>
+    <!-- HERO -->
+    <section class="hero" id="inicio">
+      <div class="hero__orb hero__orb--1"></div>
+      <div class="hero__orb hero__orb--2"></div>
+      <div class="hero__orb hero__orb--3"></div>
+      <div class="hero__particles" id="heroParticles"></div>
+      <div class="container hero__grid">
+        <div class="hero__content">
+          <div class="hero__eyebrow">
+            <span class="hero__eyebrow-line"></span>
+            Sitios RSVP para bodas · Diseños únicos
           </div>
-          <div class="hero__stat-div"></div>
-          <div class="hero__stat">
-            <span class="hero__stat-num" data-target="4">0</span>
-            <span class="hero__stat-label">Planes a elegir</span>
-          </div>
-          <div class="hero__stat-div"></div>
-          <div class="hero__stat">
-            <span class="hero__stat-num" data-target="100" data-suffix="%">0</span>
-            <span class="hero__stat-label">Personalizable</span>
-          </div>
-        </div>
-      </div>
-      <div class="hero__mockup">
-        <div class="mockup-browser">
-          <div class="mockup-browser__bar">
-            <span class="mockup-dot mockup-dot--r"></span>
-            <span class="mockup-dot mockup-dot--y"></span>
-            <span class="mockup-dot mockup-dot--g"></span>
-            <div class="mockup-url">miboda.com/sofia-alejandro</div>
-          </div>
-          <div class="mockup-screen">
-            <div class="ms-nav ms-nav--navy"><div class="ms-nav__logo"></div><div class="ms-nav__links"><span></span><span></span><span></span></div></div>
-            <div class="ms-hero ms-hero--navy"><div class="ms-hero__text"><div class="ms-line ms-line--lg ms-line--gold"></div><div class="ms-line ms-line--md ms-line--muted"></div><div class="ms-line ms-line--sm ms-line--muted"></div><div class="ms-cta-row"><div class="ms-btn ms-btn--gold"></div><div class="ms-btn ms-btn--ghost-dark"></div></div></div></div>
-            <div class="ms-countdown"><div class="ms-cd"></div><div class="ms-cd"></div><div class="ms-cd"></div><div class="ms-cd"></div></div>
-            <div class="ms-row"><div class="ms-card ms-card--navy"></div><div class="ms-card ms-card--navy"></div><div class="ms-card ms-card--navy"></div></div>
-          </div>
-        </div>
-        <div class="mockup-phone">
-          <div class="mockup-phone__notch"></div>
-          <div class="mockup-phone__screen">
-            <div class="ms-nav ms-nav--noir" style="height:14px;padding:0 6px"></div>
-            <div class="ms-hero ms-hero--noir" style="height:72px"></div>
-            <div class="ms-row" style="padding:5px;gap:4px"><div class="ms-card ms-card--noir" style="height:36px"></div><div class="ms-card ms-card--noir" style="height:36px"></div></div>
-          </div>
-        </div>
-        <div class="mockup-badge mockup-badge--1"><i class="fa-solid fa-check"></i> 48 confirmaciones</div>
-        <div class="mockup-badge mockup-badge--2"><i class="fa-solid fa-music"></i> Nuestra canción</div>
-      </div>
-    </div>
-    <a href="#planes" class="hero__scroll"><div class="scroll-line"></div><span>Descubrir</span></a>
-  </section>
-
-  <!-- PLANES -->
-  <section class="section planes-section" id="planes">
-    <div class="container">
-      <div class="section__header reveal">
-        <span class="section__eyebrow"><i class="fa-solid fa-layer-group"></i> Elige tu plan</span>
-        <h2 class="section__title">Cuatro niveles de experiencia</h2>
-        <p class="section__sub">Desde lo esencial hasta un diseño creado desde cero solo para ti</p>
-      </div>
-      <div class="planes-grid">
-
-        <div class="plan-card reveal" style="--stag:1">
-          <div class="plan-card__num">01</div>
-          <div class="plan-card__icon"><i class="fa-solid fa-seedling"></i></div>
-          <h3 class="plan-card__name">Básico</h3>
-          <p class="plan-card__desc">Todo lo esencial para una invitación digital hermosa y funcional.</p>
-          <ul class="plan-card__features">
-            <li><i class="fa-solid fa-check"></i> Sitio RSVP completo</li>
-            <li><i class="fa-solid fa-check"></i> Cuenta regresiva animada</li>
-            <li><i class="fa-solid fa-check"></i> Mapa de ubicación</li>
-            <li><i class="fa-solid fa-check"></i> Galería de fotos</li>
-            <li><i class="fa-solid fa-check"></i> Formulario de confirmación</li>
-            <li><i class="fa-solid fa-check"></i> 3 diseños a elegir</li>
-            <li class="feat-no"><i class="fa-solid fa-xmark"></i> Panel de administración</li>
-            <li class="feat-no"><i class="fa-solid fa-xmark"></i> Exportar invitados</li>
-          </ul>
-          <a href="#basico" class="btn btn--outline btn--full">Ver diseños <i class="fa-solid fa-arrow-right"></i></a>
-        </div>
-
-        <div class="plan-card plan-card--featured reveal" style="--stag:2">
-          <div class="plan-card__recommended">★ Recomendado</div>
-          <div class="plan-card__num plan-card__num--gold">02</div>
-          <div class="plan-card__icon plan-card__icon--gold"><i class="fa-solid fa-gem"></i></div>
-          <h3 class="plan-card__name">Plus</h3>
-          <p class="plan-card__desc">Mayor control. Gestiona tu lista de invitados con elegancia total.</p>
-          <ul class="plan-card__features">
-            <li><i class="fa-solid fa-check"></i> Todo lo del Plan Básico</li>
-            <li><i class="fa-solid fa-check"></i> Panel de administración</li>
-            <li><i class="fa-solid fa-check"></i> Lista de invitados</li>
-            <li><i class="fa-solid fa-check"></i> Exportar confirmaciones</li>
-            <li><i class="fa-solid fa-check"></i> Código QR personalizado</li>
-            <li><i class="fa-solid fa-check"></i> 3 diseños a elegir</li>
-            <li><i class="fa-solid fa-check"></i> Música de fondo</li>
-            <li><i class="fa-solid fa-check"></i> Animaciones premium</li>
-          </ul>
-          <a href="#plus" class="btn btn--gold btn--full">Ver diseños <i class="fa-solid fa-arrow-right"></i></a>
-        </div>
-
-        <div class="plan-card plan-card--dark reveal" style="--stag:3">
-          <div class="plan-card__num plan-card__num--cream">03</div>
-          <div class="plan-card__icon plan-card__icon--cream"><i class="fa-solid fa-crown"></i></div>
-          <h3 class="plan-card__name">Exclusivo</h3>
-          <p class="plan-card__desc">Diseño editorial de lujo con animaciones cinematográficas y experiencia única.</p>
-          <ul class="plan-card__features">
-            <li><i class="fa-solid fa-check"></i> Todo lo del Plan Plus</li>
-            <li><i class="fa-solid fa-check"></i> Diseño editorial de lujo</li>
-            <li><i class="fa-solid fa-check"></i> Animaciones cinematográficas</li>
-            <li><i class="fa-solid fa-check"></i> Cursor personalizado</li>
-            <li><i class="fa-solid fa-check"></i> Historia en capítulos</li>
-            <li><i class="fa-solid fa-check"></i> Galería filmstrip / masonry</li>
-            <li><i class="fa-solid fa-check"></i> 3 diseños únicos</li>
-            <li><i class="fa-solid fa-check"></i> Intro animada exclusiva</li>
-          </ul>
-          <a href="#exclusivo" class="btn btn--cream btn--full">Ver diseños <i class="fa-solid fa-arrow-right"></i></a>
-        </div>
-
-        <div class="plan-card plan-card--personalizado reveal" style="--stag:4">
-          <div class="plan-card__glow"></div>
-          <div class="plan-card__badge-special"><i class="fa-solid fa-wand-magic-sparkles"></i> Solo para ti</div>
-          <div class="plan-card__num plan-card__num--special">04</div>
-          <div class="plan-card__icon plan-card__icon--special"><i class="fa-solid fa-infinity"></i></div>
-          <h3 class="plan-card__name">Personalizado</h3>
-          <p class="plan-card__desc">Desde cero, solo para ti. Tu historia, tu estética, sin ningún límite.</p>
-          <ul class="plan-card__features">
-            <li><i class="fa-solid fa-check"></i> Todo lo del Plan Exclusivo</li>
-            <li><i class="fa-solid fa-check"></i> Diseño 100% desde cero</li>
-            <li><i class="fa-solid fa-check"></i> Tu paleta de colores</li>
-            <li><i class="fa-solid fa-check"></i> Tipografías elegidas por ti</li>
-            <li><i class="fa-solid fa-check"></i> Secciones a la medida</li>
-            <li><i class="fa-solid fa-check"></i> Consultoría 1 a 1</li>
-            <li><i class="fa-solid fa-check"></i> Revisiones ilimitadas</li>
-            <li><i class="fa-solid fa-check"></i> Soporte prioritario</li>
-          </ul>
-          <a href="#personalizado" class="btn btn--special btn--full">Quiero el mío <i class="fa-solid fa-arrow-right"></i></a>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- PROCESO -->
-  <section class="section process-section">
-    <div class="container">
-      <div class="section__header reveal">
-        <span class="section__eyebrow"><i class="fa-solid fa-route"></i> El proceso</span>
-        <h2 class="section__title">Así de fácil</h2>
-        <p class="section__sub">Tres pasos simples — de la idea a tu sitio en línea</p>
-      </div>
-      <div class="process-steps">
-        <div class="process-step reveal" style="--stag:1">
-          <div class="process-step__num">01</div>
-          <div class="process-step__icon"><i class="fa-solid fa-hand-pointer"></i></div>
-          <h4>Elige tu diseño</h4>
-          <p>Navega los demos en vivo, explora cada detalle y escoge el que conecta con tu historia.</p>
-        </div>
-        <div class="process-connector reveal" style="--stag:2">
-          <div class="connector-line"></div>
-          <i class="fa-solid fa-heart"></i>
-          <div class="connector-line"></div>
-        </div>
-        <div class="process-step reveal" style="--stag:3">
-          <div class="process-step__num">02</div>
-          <div class="process-step__icon"><i class="fa-solid fa-pen-nib"></i></div>
-          <h4>Personalizamos juntos</h4>
-          <p>Compártenos fotos, fechas y detalles. Los transformamos en algo extraordinario.</p>
-        </div>
-        <div class="process-connector reveal" style="--stag:4">
-          <div class="connector-line"></div>
-          <i class="fa-solid fa-heart"></i>
-          <div class="connector-line"></div>
-        </div>
-        <div class="process-step reveal" style="--stag:5">
-          <div class="process-step__num">03</div>
-          <div class="process-step__icon"><i class="fa-solid fa-cloud-arrow-up"></i></div>
-          <h4>En línea y celebrando</h4>
-          <p>Tu sitio queda publicado. Comparte el enlace y sorprende a cada invitado.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- BASICO DISEÑOS -->
-  <section class="section designs-section" id="basico">
-    <div class="designs-section__label"><i class="fa-solid fa-seedling"></i> Plan Básico</div>
-    <div class="container">
-      <div class="section__header reveal">
-        <span class="section__eyebrow">Plan 01 · Básico</span>
-        <h2 class="section__title">Elegancia esencial</h2>
-        <p class="section__sub">Tres estilos — escoge el que habla de ti</p>
-      </div>
-      <div class="designs-grid">
-        <div class="design-card reveal" style="--stag:1">
-          <div class="design-card__preview">
-            <div class="mock-site"><div class="ms-nav ms-nav--pink"><div class="ms-nav__logo"></div><div class="ms-nav__links"><span></span><span></span><span></span></div></div><div class="ms-hero ms-hero--pink"><div class="ms-hero__text"><div class="ms-line ms-line--lg"></div><div class="ms-line ms-line--md"></div><div class="ms-line ms-line--sm"></div><div class="ms-cta-row"><div class="ms-btn ms-btn--pink"></div><div class="ms-btn ms-btn--ghost"></div></div></div></div><div class="ms-row"><div class="ms-card ms-card--pink"></div><div class="ms-card ms-card--pink"></div><div class="ms-card ms-card--pink"></div></div></div>
-            <div class="design-card__hover-cta"><a href="/basico-1" target="_blank" class="btn btn--gold btn--sm"><i class="fa-solid fa-eye"></i> Ver demo en vivo</a></div>
-            <div class="design-card__num-float">01</div>
-          </div>
-          <div class="design-card__body">
-            <div class="design-card__plan-tag">Básico</div>
-            <h3 class="design-card__title">Rosa & Blanco</h3>
-            <p class="design-card__desc">Paleta romántica en rosas y blancos. Tipografía floral. Ideal para bodas íntimas y emotivas.</p>
-            <div class="design-card__palette"><span style="--c:#F4C0C0"></span><span style="--c:#D4828F"></span><span style="--c:#8B3A4A"></span><span style="--c:#FFF5F5"></span></div>
-            <div class="design-card__tags"><span>Romántico</span><span>Floral</span><span>Clásico</span></div>
-          </div>
-        </div>
-        <div class="design-card reveal" style="--stag:2">
-          <div class="design-card__preview">
-            <div class="mock-site"><div class="ms-nav ms-nav--green"><div class="ms-nav__logo"></div><div class="ms-nav__links"><span></span><span></span><span></span></div></div><div class="ms-hero ms-hero--green"><div class="ms-hero__text"><div class="ms-line ms-line--lg ms-line--gold"></div><div class="ms-line ms-line--md"></div><div class="ms-line ms-line--sm"></div><div class="ms-cta-row"><div class="ms-btn ms-btn--gold"></div><div class="ms-btn ms-btn--ghost"></div></div></div></div><div class="ms-row"><div class="ms-card ms-card--green"></div><div class="ms-card ms-card--green"></div><div class="ms-card ms-card--green"></div></div></div>
-            <div class="design-card__hover-cta"><a href="/basico-2" target="_blank" class="btn btn--gold btn--sm"><i class="fa-solid fa-eye"></i> Ver demo en vivo</a></div>
-            <div class="design-card__num-float">02</div>
-          </div>
-          <div class="design-card__body">
-            <div class="design-card__plan-tag">Básico</div>
-            <h3 class="design-card__title">Verde & Oro</h3>
-            <p class="design-card__desc">Colores naturales con toques dorados. Perfecto para bodas al aire libre o en jardín.</p>
-            <div class="design-card__palette"><span style="--c:#4A6A48"></span><span style="--c:#6B8F71"></span><span style="--c:#C9A054"></span><span style="--c:#F5EDD8"></span></div>
-            <div class="design-card__tags"><span>Natural</span><span>Jardín</span><span>Dorado</span></div>
-          </div>
-        </div>
-        <div class="design-card reveal" style="--stag:3">
-          <div class="design-card__preview">
-            <div class="mock-site"><div class="ms-nav ms-nav--blue"><div class="ms-nav__logo"></div><div class="ms-nav__links"><span></span><span></span><span></span></div></div><div class="ms-hero ms-hero--blue"><div class="ms-hero__text"><div class="ms-line ms-line--lg"></div><div class="ms-line ms-line--md"></div><div class="ms-line ms-line--sm"></div><div class="ms-cta-row"><div class="ms-btn ms-btn--blue"></div><div class="ms-btn ms-btn--ghost"></div></div></div></div><div class="ms-row"><div class="ms-card ms-card--blue"></div><div class="ms-card ms-card--blue"></div><div class="ms-card ms-card--blue"></div></div></div>
-            <div class="design-card__hover-cta"><a href="/basico-3" target="_blank" class="btn btn--gold btn--sm"><i class="fa-solid fa-eye"></i> Ver demo en vivo</a></div>
-            <div class="design-card__num-float">03</div>
-          </div>
-          <div class="design-card__body">
-            <div class="design-card__plan-tag">Básico</div>
-            <h3 class="design-card__title">Azul & Plata</h3>
-            <p class="design-card__desc">Elegancia marina con acentos plateados. Moderno, limpio y muy sofisticado.</p>
-            <div class="design-card__palette"><span style="--c:#2A4A7A"></span><span style="--c:#7090C0"></span><span style="--c:#B8C8E0"></span><span style="--c:#F0F4F8"></span></div>
-            <div class="design-card__tags"><span>Marino</span><span>Moderno</span><span>Plata</span></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PLUS DISEÑOS -->
-  <section class="section designs-section designs-section--alt" id="plus">
-    <div class="designs-section__label designs-section__label--gold"><i class="fa-solid fa-gem"></i> Plan Plus</div>
-    <div class="container">
-      <div class="section__header reveal">
-        <span class="section__eyebrow section__eyebrow--gold">Plan 02 · Plus</span>
-        <h2 class="section__title">Sofisticación con control</h2>
-        <p class="section__sub">Panel admin incluido — gestiona cada confirmación con elegancia</p>
-      </div>
-      <div class="designs-grid">
-        <div class="design-card design-card--plus reveal" style="--stag:1">
-          <div class="design-card__preview">
-            <div class="mock-site"><div class="ms-nav ms-nav--champagne"><div class="ms-nav__logo"></div><div class="ms-nav__links"><span></span><span></span><span></span></div></div><div class="ms-hero ms-hero--champagne"><div class="ms-hero__text"><div class="ms-line ms-line--lg ms-line--gold"></div><div class="ms-line ms-line--md"></div><div class="ms-line ms-line--sm"></div><div class="ms-cta-row"><div class="ms-btn ms-btn--gold"></div><div class="ms-btn ms-btn--ghost"></div></div></div></div><div class="ms-row"><div class="ms-card ms-card--champagne"></div><div class="ms-card ms-card--champagne"></div><div class="ms-card ms-card--champagne"></div></div></div>
-            <div class="design-card__hover-cta"><a href="/plus-1" target="_blank" class="btn btn--gold btn--sm"><i class="fa-solid fa-eye"></i> Ver demo</a><a href="/plus-1/admin" target="_blank" class="btn btn--outline btn--sm"><i class="fa-solid fa-lock"></i> Admin</a></div>
-            <div class="design-card__num-float design-card__num-float--gold">01</div>
-          </div>
-          <div class="design-card__body">
-            <div class="design-card__plan-tag design-card__plan-tag--gold">Plus</div>
-            <h3 class="design-card__title">Ivory & Champagne</h3>
-            <p class="design-card__desc">Marfil y champagne con detalles dorados. Lujo accesible y funcionalidad completa.</p>
-            <div class="design-card__palette"><span style="--c:#F5EDD8"></span><span style="--c:#E8D5B0"></span><span style="--c:#C9A054"></span><span style="--c:#8A6030"></span></div>
-            <div class="design-card__tags"><span>Lujoso</span><span>Champagne</span><span>Dorado</span></div>
-          </div>
-        </div>
-        <div class="design-card design-card--plus reveal" style="--stag:2">
-          <div class="design-card__preview">
-            <div class="mock-site"><div class="ms-nav ms-nav--burgundy"><div class="ms-nav__logo"></div><div class="ms-nav__links"><span></span><span></span><span></span></div></div><div class="ms-hero ms-hero--burgundy"><div class="ms-hero__text"><div class="ms-line ms-line--lg"></div><div class="ms-line ms-line--md"></div><div class="ms-line ms-line--sm"></div><div class="ms-cta-row"><div class="ms-btn ms-btn--burgundy"></div><div class="ms-btn ms-btn--ghost"></div></div></div></div><div class="ms-row"><div class="ms-card ms-card--burgundy"></div><div class="ms-card ms-card--burgundy"></div><div class="ms-card ms-card--burgundy"></div></div></div>
-            <div class="design-card__hover-cta"><a href="/plus-2" target="_blank" class="btn btn--gold btn--sm"><i class="fa-solid fa-eye"></i> Ver demo</a><a href="/plus-2/admin" target="_blank" class="btn btn--outline btn--sm"><i class="fa-solid fa-lock"></i> Admin</a></div>
-            <div class="design-card__num-float design-card__num-float--gold">02</div>
-          </div>
-          <div class="design-card__body">
-            <div class="design-card__plan-tag design-card__plan-tag--gold">Plus</div>
-            <h3 class="design-card__title">Borgoña & Nude</h3>
-            <p class="design-card__desc">Paleta profunda en borgoña y nude. Romántico, intenso y absolutamente memorable.</p>
-            <div class="design-card__palette"><span style="--c:#6A2828"></span><span style="--c:#A06050"></span><span style="--c:#D4B0A0"></span><span style="--c:#F0E8E0"></span></div>
-            <div class="design-card__tags"><span>Intenso</span><span>Romántico</span><span>Profundo</span></div>
-          </div>
-        </div>
-        <div class="design-card design-card--plus reveal" style="--stag:3">
-          <div class="design-card__preview">
-            <div class="mock-site"><div class="ms-nav ms-nav--lavender"><div class="ms-nav__logo"></div><div class="ms-nav__links"><span></span><span></span><span></span></div></div><div class="ms-hero ms-hero--lavender"><div class="ms-hero__text"><div class="ms-line ms-line--lg"></div><div class="ms-line ms-line--md"></div><div class="ms-line ms-line--sm"></div><div class="ms-cta-row"><div class="ms-btn ms-btn--lavender"></div><div class="ms-btn ms-btn--ghost"></div></div></div></div><div class="ms-row"><div class="ms-card ms-card--lavender"></div><div class="ms-card ms-card--lavender"></div><div class="ms-card ms-card--lavender"></div></div></div>
-            <div class="design-card__hover-cta"><a href="/plus-3" target="_blank" class="btn btn--gold btn--sm"><i class="fa-solid fa-eye"></i> Ver demo</a><a href="/plus-3/admin" target="_blank" class="btn btn--outline btn--sm"><i class="fa-solid fa-lock"></i> Admin</a></div>
-            <div class="design-card__num-float design-card__num-float--gold">03</div>
-          </div>
-          <div class="design-card__body">
-            <div class="design-card__plan-tag design-card__plan-tag--gold">Plus</div>
-            <h3 class="design-card__title">Lavanda & Sage</h3>
-            <p class="design-card__desc">Frescura provenzal con lavanda y salvia. Elegante, orgánico y lleno de vida.</p>
-            <div class="design-card__palette"><span style="--c:#5A3A80"></span><span style="--c:#9070B0"></span><span style="--c:#D0C0E0"></span><span style="--c:#6B8F71"></span></div>
-            <div class="design-card__tags"><span>Fresco</span><span>Provenzal</span><span>Orgánico</span></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- EXCLUSIVO DISEÑOS -->
-  <section class="section designs-section designs-section--dark" id="exclusivo">
-    <div class="designs-section__label designs-section__label--dark"><i class="fa-solid fa-crown"></i> Plan Exclusivo</div>
-    <div class="container">
-      <div class="section__header reveal">
-        <span class="section__eyebrow section__eyebrow--cream">Plan 03 · Exclusivo</span>
-        <h2 class="section__title">Nivel editorial</h2>
-        <p class="section__sub">Tres mundos distintos — todos extraordinarios y completamente únicos</p>
-      </div>
-      <div class="designs-grid">
-        <div class="design-card design-card--exclusivo reveal" style="--stag:1">
-          <div class="design-card__preview">
-            <div class="mock-site"><div class="ms-nav ms-nav--navy"><div class="ms-nav__logo"></div><div class="ms-nav__links"><span></span><span></span><span></span></div></div><div class="ms-hero ms-hero--navy"><div class="ms-hero__text"><div class="ms-line ms-line--lg ms-line--gold"></div><div class="ms-line ms-line--md ms-line--muted"></div><div class="ms-line ms-line--sm ms-line--muted"></div><div class="ms-cta-row"><div class="ms-btn ms-btn--gold"></div><div class="ms-btn ms-btn--ghost-dark"></div></div></div></div><div class="ms-row"><div class="ms-card ms-card--navy"></div><div class="ms-card ms-card--navy"></div><div class="ms-card ms-card--navy"></div></div></div>
-            <div class="design-card__hover-cta"><a href="/exclusivo-1" target="_blank" class="btn btn--gold btn--sm"><i class="fa-solid fa-eye"></i> Ver demo</a><a href="/exclusivo-1/admin" target="_blank" class="btn btn--outline btn--sm"><i class="fa-solid fa-lock"></i> Admin</a></div>
-            <div class="design-card__num-float design-card__num-float--cream">01</div>
-          </div>
-          <div class="design-card__body">
-            <div class="design-card__plan-tag design-card__plan-tag--cream">Exclusivo</div>
-            <h3 class="design-card__title">Belle Époque</h3>
-            <p class="design-card__desc">Clásico y atemporal. Marino profundo y dorado con tipografía serif de lujo absoluto.</p>
-            <div class="design-card__palette"><span style="--c:#0A1428"></span><span style="--c:#1A2A44"></span><span style="--c:#C9A054"></span><span style="--c:#F5EDD8"></span></div>
-            <div class="design-card__tags"><span>Clásico</span><span>Marino</span><span>Atemporal</span></div>
-          </div>
-        </div>
-        <div class="design-card design-card--exclusivo reveal" style="--stag:2">
-          <div class="design-card__preview">
-            <div class="mock-site"><div class="ms-nav ms-nav--sky"><div class="ms-nav__logo"></div><div class="ms-nav__links"><span></span><span></span><span></span></div></div><div class="ms-hero ms-hero--sky"><div class="ms-hero__text"><div class="ms-line ms-line--lg ms-line--sky"></div><div class="ms-line ms-line--md ms-line--muted"></div><div class="ms-line ms-line--sm ms-line--muted"></div><div class="ms-cta-row"><div class="ms-btn ms-btn--sky"></div><div class="ms-btn ms-btn--ghost-dark"></div></div></div></div><div class="ms-row"><div class="ms-card ms-card--sky"></div><div class="ms-card ms-card--sky"></div><div class="ms-card ms-card--sky"></div></div></div>
-            <div class="design-card__hover-cta"><a href="/exclusivo-2" target="_blank" class="btn btn--gold btn--sm"><i class="fa-solid fa-eye"></i> Ver demo</a><a href="/exclusivo-2/admin" target="_blank" class="btn btn--outline btn--sm"><i class="fa-solid fa-lock"></i> Admin</a></div>
-            <div class="design-card__num-float design-card__num-float--cream">02</div>
-          </div>
-          <div class="design-card__body">
-            <div class="design-card__plan-tag design-card__plan-tag--cream">Exclusivo</div>
-            <h3 class="design-card__title">Jardin Secret</h3>
-            <p class="design-card__desc">Azul cielo con toques florales y cinematográficos. Fresco, moderno y de gran impacto visual.</p>
-            <div class="design-card__palette"><span style="--c:#0A1A28"></span><span style="--c:#3060A0"></span><span style="--c:#60A0D0"></span><span style="--c:#C0E0F0"></span></div>
-            <div class="design-card__tags"><span>Cinematográfico</span><span>Azul</span><span>Floral</span></div>
-          </div>
-        </div>
-        <div class="design-card design-card--exclusivo design-card--noir reveal" style="--stag:3">
-          <div class="design-card__preview">
-            <div class="mock-site"><div class="ms-nav ms-nav--noir"><div class="ms-nav__logo"></div><div class="ms-nav__links"><span></span><span></span><span></span></div></div><div class="ms-hero ms-hero--noir"><div class="ms-hero__text"><div class="ms-line ms-line--lg ms-line--gold"></div><div class="ms-line ms-line--md ms-line--gold-dim"></div><div class="ms-line ms-line--sm ms-line--gold-dim"></div><div class="ms-cta-row"><div class="ms-btn ms-btn--gold"></div><div class="ms-btn ms-btn--ghost-dark"></div></div></div></div><div class="ms-row"><div class="ms-card ms-card--noir"></div><div class="ms-card ms-card--noir"></div><div class="ms-card ms-card--noir"></div></div></div>
-            <div class="design-card__hover-cta"><a href="/exclusivo-3" target="_blank" class="btn btn--gold btn--sm"><i class="fa-solid fa-eye"></i> Ver demo</a><a href="/exclusivo-3/admin" target="_blank" class="btn btn--outline btn--sm"><i class="fa-solid fa-lock"></i> Admin</a></div>
-            <div class="design-card__num-float design-card__num-float--gold">03</div>
-          </div>
-          <div class="design-card__body">
-            <div class="design-card__plan-tag design-card__plan-tag--dark">Exclusivo · Noir</div>
-            <h3 class="design-card__title">Noir Élégant</h3>
-            <p class="design-card__desc">Negro absoluto con detalles dorados. La más oscura, lujosa y verdaderamente única de todas.</p>
-            <div class="design-card__palette"><span style="--c:#050505"></span><span style="--c:#1C1C1C"></span><span style="--c:#C9A054"></span><span style="--c:#E5C88A"></span></div>
-            <div class="design-card__tags"><span>Oscuro</span><span>Dorado</span><span>Único</span></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PLAN PERSONALIZADO -->
-  <section class="personalizado-section" id="personalizado">
-    <div class="pers-orb pers-orb--1"></div>
-    <div class="pers-orb pers-orb--2"></div>
-    <div class="pers-orb pers-orb--3"></div>
-    <div class="container">
-      <div class="personalizado-inner">
-
-        <div class="personalizado-left reveal">
-          <span class="pers-eyebrow"><i class="fa-solid fa-wand-magic-sparkles"></i> Plan 04 · El más especial</span>
-          <h2 class="pers-title">
-            Un sitio de boda<br/>
-            <em>creado solo</em><br/>
-            para ti
-          </h2>
-          <p class="pers-desc">
-            ¿Tienes una visión específica que ninguna plantilla podría capturar?
-            El Plan Personalizado es la respuesta definitiva: diseñamos desde cero,
-            contigo, con consultoría uno a uno y revisiones hasta que quede perfecto.
+          <h1 class="hero__title">
+            Tu historia de amor<br />
+            <em>merece una vitrina</em><br />
+            extraordinaria
+          </h1>
+          <p class="hero__sub">
+            Invitaciones digitales con diseño editorial, animaciones
+            cinematográficas y funcionalidad completa. Desde lo esencial hasta
+            lo completamente a medida.
           </p>
-          <div class="pers-features">
-            <div class="pers-feat"><i class="fa-solid fa-paintbrush"></i><div><strong>Diseño 100% a medida</strong><span>Tu paleta, tus fuentes, tu estética — sin límites</span></div></div>
-            <div class="pers-feat"><i class="fa-solid fa-comments"></i><div><strong>Consultoría 1 a 1</strong><span>Trabajamos juntos desde la primera idea hasta el último detalle</span></div></div>
-            <div class="pers-feat"><i class="fa-solid fa-rotate"></i><div><strong>Revisiones ilimitadas</strong><span>Hasta que quede exactamente como lo imaginas</span></div></div>
-            <div class="pers-feat"><i class="fa-solid fa-layer-group"></i><div><strong>Secciones únicas</strong><span>Creamos cualquier sección que tu historia necesite</span></div></div>
-            <div class="pers-feat"><i class="fa-solid fa-headset"></i><div><strong>Soporte prioritario</strong><span>Respuesta en menos de 24 horas, siempre</span></div></div>
-            <div class="pers-feat"><i class="fa-solid fa-rocket"></i><div><strong>Publicación incluida</strong><span>Te ayudamos a publicar y adquirir tu dominio personalizado</span></div></div>
+          <div class="hero__cta">
+            <a href="#planes" class="btn btn--gold"
+              ><i class="fa-solid fa-layer-group"></i> Explorar planes</a
+            >
+            <a href="#personalizado" class="btn btn--ghost"
+              ><i class="fa-solid fa-wand-magic-sparkles"></i> Quiero algo
+              único</a
+            >
           </div>
-          <div class="pers-cta">
-            <a href="https://wa.me/50212345678?text=Hola,%20quiero%20un%20plan%20personalizado%20para%20mi%20boda" target="_blank" class="btn btn--special-lg">
-              <i class="fa-brands fa-whatsapp"></i> Hablemos por WhatsApp
-            </a>
-            <a href="mailto:contacto@miboda.com" class="btn btn--ghost-light">
-              <i class="fa-solid fa-envelope"></i> Enviar email
-            </a>
+          <div class="hero__stats">
+            <div class="hero__stat">
+              <span class="hero__stat-num" data-target="10">0</span>
+              <span class="hero__stat-label">Diseños disponibles</span>
+            </div>
+            <div class="hero__stat-div"></div>
+            <div class="hero__stat">
+              <span class="hero__stat-num" data-target="4">0</span>
+              <span class="hero__stat-label">Planes a elegir</span>
+            </div>
+            <div class="hero__stat-div"></div>
+            <div class="hero__stat">
+              <span class="hero__stat-num" data-target="100" data-suffix="%"
+                >0</span
+              >
+              <span class="hero__stat-label">Personalizable</span>
+            </div>
           </div>
         </div>
-
-        <div class="personalizado-right reveal">
-          <div class="pers-card">
-            <div class="pers-card__glow"></div>
-            <div class="pers-card__header">
-              <i class="fa-solid fa-infinity pers-card__ico"></i>
-              <div>
-                <span class="pers-card__plan">Plan Personalizado</span>
-                <span class="pers-card__tagline">Ilimitado · Único · Solo para ti</span>
+        <div class="hero__mockup">
+          <div class="mockup-browser">
+            <div class="mockup-browser__bar">
+              <span class="mockup-dot mockup-dot--r"></span>
+              <span class="mockup-dot mockup-dot--y"></span>
+              <span class="mockup-dot mockup-dot--g"></span>
+              <div class="mockup-url">miboda.com/sofia-alejandro</div>
+            </div>
+            <div class="mockup-screen">
+              <div class="ms-nav ms-nav--navy">
+                <div class="ms-nav__logo"></div>
+                <div class="ms-nav__links">
+                  <span></span><span></span><span></span>
+                </div>
+              </div>
+              <div class="ms-hero ms-hero--navy">
+                <div class="ms-hero__text">
+                  <div class="ms-line ms-line--lg ms-line--gold"></div>
+                  <div class="ms-line ms-line--md ms-line--muted"></div>
+                  <div class="ms-line ms-line--sm ms-line--muted"></div>
+                  <div class="ms-cta-row">
+                    <div class="ms-btn ms-btn--gold"></div>
+                    <div class="ms-btn ms-btn--ghost-dark"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="ms-countdown">
+                <div class="ms-cd"></div>
+                <div class="ms-cd"></div>
+                <div class="ms-cd"></div>
+                <div class="ms-cd"></div>
+              </div>
+              <div class="ms-row">
+                <div class="ms-card ms-card--navy"></div>
+                <div class="ms-card ms-card--navy"></div>
+                <div class="ms-card ms-card--navy"></div>
               </div>
             </div>
-            <div class="pers-card__divider"><span>Incluye todo esto</span></div>
-            <ul class="pers-card__list">
-              <li><i class="fa-solid fa-check"></i> Todo lo del Plan Exclusivo</li>
+          </div>
+          <div class="mockup-phone">
+            <div class="mockup-phone__notch"></div>
+            <div class="mockup-phone__screen">
+              <div
+                class="ms-nav ms-nav--noir"
+                style="height: 14px; padding: 0 6px"
+              ></div>
+              <div class="ms-hero ms-hero--noir" style="height: 72px"></div>
+              <div class="ms-row" style="padding: 5px; gap: 4px">
+                <div class="ms-card ms-card--noir" style="height: 36px"></div>
+                <div class="ms-card ms-card--noir" style="height: 36px"></div>
+              </div>
+            </div>
+          </div>
+          <div class="mockup-badge mockup-badge--1">
+            <i class="fa-solid fa-check"></i> 48 confirmaciones
+          </div>
+          <div class="mockup-badge mockup-badge--2">
+            <i class="fa-solid fa-music"></i> Nuestra canción
+          </div>
+        </div>
+      </div>
+      <a href="#planes" class="hero__scroll"
+        ><div class="scroll-line"></div>
+        <span>Descubrir</span></a
+      >
+    </section>
+
+    <!-- PLANES -->
+    <section class="section planes-section" id="planes">
+      <div class="container">
+        <div class="section__header reveal">
+          <span class="section__eyebrow"
+            ><i class="fa-solid fa-layer-group"></i> Elige tu plan</span
+          >
+          <h2 class="section__title">Cuatro niveles de experiencia</h2>
+          <p class="section__sub">
+            Desde lo esencial hasta un diseño creado desde cero solo para ti
+          </p>
+        </div>
+        <div class="planes-grid">
+          <div class="plan-card reveal" style="--stag: 1">
+            <div class="plan-card__num">01</div>
+            <div class="plan-card__icon">
+              <i class="fa-solid fa-seedling"></i>
+            </div>
+            <h3 class="plan-card__name">Básico</h3>
+            <p class="plan-card__desc">
+              Todo lo esencial para una invitación digital hermosa y funcional.
+            </p>
+            <ul class="plan-card__features">
+              <li><i class="fa-solid fa-check"></i> Sitio RSVP completo</li>
+              <li>
+                <i class="fa-solid fa-check"></i> Cuenta regresiva animada
+              </li>
+              <li><i class="fa-solid fa-check"></i> Mapa de ubicación</li>
+              <li><i class="fa-solid fa-check"></i> Galería de fotos</li>
+              <li>
+                <i class="fa-solid fa-check"></i> Formulario de confirmación
+              </li>
+              <li><i class="fa-solid fa-check"></i> 3 diseños a elegir</li>
+              <li class="feat-no">
+                <i class="fa-solid fa-xmark"></i> Panel de administración
+              </li>
+              <li class="feat-no">
+                <i class="fa-solid fa-xmark"></i> Exportar invitados
+              </li>
+            </ul>
+            <a href="#basico" class="btn btn--outline btn--full"
+              >Ver diseños <i class="fa-solid fa-arrow-right"></i
+            ></a>
+          </div>
+
+          <div class="plan-card plan-card--featured reveal" style="--stag: 2">
+            <div class="plan-card__recommended">★ Recomendado</div>
+            <div class="plan-card__num plan-card__num--gold">02</div>
+            <div class="plan-card__icon plan-card__icon--gold">
+              <i class="fa-solid fa-gem"></i>
+            </div>
+            <h3 class="plan-card__name">Plus</h3>
+            <p class="plan-card__desc">
+              Mayor control. Gestiona tu lista de invitados con elegancia total.
+            </p>
+            <ul class="plan-card__features">
+              <li><i class="fa-solid fa-check"></i> Todo lo del Plan Básico</li>
+              <li><i class="fa-solid fa-check"></i> Panel de administración</li>
+              <li><i class="fa-solid fa-check"></i> Lista de invitados</li>
+              <li><i class="fa-solid fa-check"></i> Exportar confirmaciones</li>
+              <li><i class="fa-solid fa-check"></i> Código QR personalizado</li>
+              <li><i class="fa-solid fa-check"></i> 3 diseños a elegir</li>
+              <li><i class="fa-solid fa-check"></i> Música de fondo</li>
+              <li><i class="fa-solid fa-check"></i> Animaciones premium</li>
+            </ul>
+            <a href="#plus" class="btn btn--gold btn--full"
+              >Ver diseños <i class="fa-solid fa-arrow-right"></i
+            ></a>
+          </div>
+
+          <div class="plan-card plan-card--dark reveal" style="--stag: 3">
+            <div class="plan-card__num plan-card__num--cream">03</div>
+            <div class="plan-card__icon plan-card__icon--cream">
+              <i class="fa-solid fa-crown"></i>
+            </div>
+            <h3 class="plan-card__name">Exclusivo</h3>
+            <p class="plan-card__desc">
+              Diseño editorial de lujo con animaciones cinematográficas y
+              experiencia única.
+            </p>
+            <ul class="plan-card__features">
+              <li><i class="fa-solid fa-check"></i> Todo lo del Plan Plus</li>
+              <li>
+                <i class="fa-solid fa-check"></i> Diseño editorial de lujo
+              </li>
+              <li>
+                <i class="fa-solid fa-check"></i> Animaciones cinematográficas
+              </li>
+              <li><i class="fa-solid fa-check"></i> Cursor personalizado</li>
+              <li><i class="fa-solid fa-check"></i> Historia en capítulos</li>
+              <li>
+                <i class="fa-solid fa-check"></i> Galería filmstrip / masonry
+              </li>
+              <li><i class="fa-solid fa-check"></i> 3 diseños únicos</li>
+              <li><i class="fa-solid fa-check"></i> Intro animada exclusiva</li>
+            </ul>
+            <a href="#exclusivo" class="btn btn--cream btn--full"
+              >Ver diseños <i class="fa-solid fa-arrow-right"></i
+            ></a>
+          </div>
+
+          <div
+            class="plan-card plan-card--personalizado reveal"
+            style="--stag: 4"
+          >
+            <div class="plan-card__glow"></div>
+            <div class="plan-card__badge-special">
+              <i class="fa-solid fa-wand-magic-sparkles"></i> Solo para ti
+            </div>
+            <div class="plan-card__num plan-card__num--special">04</div>
+            <div class="plan-card__icon plan-card__icon--special">
+              <i class="fa-solid fa-infinity"></i>
+            </div>
+            <h3 class="plan-card__name">Personalizado</h3>
+            <p class="plan-card__desc">
+              Desde cero, solo para ti. Tu historia, tu estética, sin ningún
+              límite.
+            </p>
+            <ul class="plan-card__features">
+              <li>
+                <i class="fa-solid fa-check"></i> Todo lo del Plan Exclusivo
+              </li>
               <li><i class="fa-solid fa-check"></i> Diseño 100% desde cero</li>
-              <li><i class="fa-solid fa-check"></i> Colores y tipografías únicas</li>
+              <li><i class="fa-solid fa-check"></i> Tu paleta de colores</li>
+              <li>
+                <i class="fa-solid fa-check"></i> Tipografías elegidas por ti
+              </li>
               <li><i class="fa-solid fa-check"></i> Secciones a la medida</li>
               <li><i class="fa-solid fa-check"></i> Consultoría 1 a 1</li>
               <li><i class="fa-solid fa-check"></i> Revisiones ilimitadas</li>
               <li><i class="fa-solid fa-check"></i> Soporte prioritario</li>
-              <li><i class="fa-solid fa-check"></i> Dominio y publicación incluidos</li>
             </ul>
-            <div class="pers-card__price">
-              <span class="pers-card__price-pre">Inversión</span>
-              <span class="pers-card__price-val">A consultar</span>
-              <span class="pers-card__price-note">según alcance del proyecto</span>
-            </div>
-            <a href="https://wa.me/50212345678?text=Hola,%20quiero%20un%20plan%20personalizado" target="_blank" class="btn btn--special btn--full">
-              <i class="fa-solid fa-wand-magic-sparkles"></i> Comenzar mi proyecto único
-            </a>
+            <a href="#personalizado" class="btn btn--special btn--full"
+              >Quiero el mío <i class="fa-solid fa-arrow-right"></i
+            ></a>
           </div>
         </div>
+      </div>
+    </section>
 
-      </div>
-    </div>
-  </section>
-
-  <!-- POR QUÉ ELEGIRNOS -->
-  <section class="section why-section">
-    <div class="container">
-      <div class="section__header reveal">
-        <span class="section__eyebrow"><i class="fa-solid fa-award"></i> ¿Por qué elegirnos?</span>
-        <h2 class="section__title">Diseñado con amor <em>& detalle</em></h2>
-      </div>
-      <div class="why-grid">
-        <div class="why-card reveal" style="--stag:1"><div class="why-card__icon"><i class="fa-solid fa-mobile-screen"></i></div><h4>100% Responsive</h4><p>Perfecto en móvil, tablet y escritorio. Cada invitado lo ve impecable sin importar el dispositivo.</p></div>
-        <div class="why-card reveal" style="--stag:2"><div class="why-card__icon"><i class="fa-solid fa-bolt"></i></div><h4>Carga ultra rápida</h4><p>Optimizado para velocidad. Sin esperas — solo la emoción de ver la invitación al instante.</p></div>
-        <div class="why-card reveal" style="--stag:3"><div class="why-card__icon"><i class="fa-solid fa-palette"></i></div><h4>Totalmente personalizable</h4><p>Nombres, fechas, fotos y textos — todo refleja exactamente tu historia de amor única.</p></div>
-        <div class="why-card reveal" style="--stag:4"><div class="why-card__icon"><i class="fa-solid fa-music"></i></div><h4>Música de fondo</h4><p>Su canción especial suena mientras los invitados exploran la invitación. Una experiencia completa.</p></div>
-        <div class="why-card reveal" style="--stag:5"><div class="why-card__icon"><i class="fa-solid fa-shield-halved"></i></div><h4>Sin base de datos</h4><p>Funciona con localStorage. Simple, seguro y sin complicaciones técnicas ni costos extra.</p></div>
-        <div class="why-card reveal" style="--stag:6"><div class="why-card__icon"><i class="fa-solid fa-cloud-arrow-up"></i></div><h4>Listo para publicar</h4><p>Compatible con Render, Vercel y Netlify. En minutos tu sitio está en línea para el mundo.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACTO -->
-  <section class="section contacto-section" id="contacto">
-    <div class="container">
-      <div class="section__header reveal">
-        <span class="section__eyebrow"><i class="fa-solid fa-paper-plane"></i> Hablemos</span>
-        <h2 class="section__title">¿Listo para comenzar?</h2>
-        <p class="section__sub">Cuéntanos tu historia y te ayudamos a elegir o crear el diseño perfecto</p>
-      </div>
-      <div class="contacto-grid">
-        <a href="https://wa.me/50212345678?text=Hola,%20me%20interesa%20un%20sitio%20para%20mi%20boda" target="_blank" class="contacto-card reveal" style="--stag:1">
-          <div class="contacto-card__ico contacto-card__ico--wa"><i class="fa-brands fa-whatsapp"></i></div>
-          <h4>WhatsApp</h4><p>Respuesta rápida · Asesoría gratuita</p>
-          <span class="contacto-card__cta">Escribir ahora <i class="fa-solid fa-arrow-right"></i></span>
-        </a>
-        <a href="mailto:contacto@miboda.com" class="contacto-card reveal" style="--stag:2">
-          <div class="contacto-card__ico contacto-card__ico--mail"><i class="fa-solid fa-envelope"></i></div>
-          <h4>Email</h4><p>Para consultas detalladas y presupuestos</p>
-          <span class="contacto-card__cta">Enviar correo <i class="fa-solid fa-arrow-right"></i></span>
-        </a>
-        <a href="https://instagram.com/miboda" target="_blank" class="contacto-card reveal" style="--stag:3">
-          <div class="contacto-card__ico contacto-card__ico--ig"><i class="fa-brands fa-instagram"></i></div>
-          <h4>Instagram</h4><p>Inspiración, novedades y trabajos recientes</p>
-          <span class="contacto-card__cta">Ver perfil <i class="fa-solid fa-arrow-right"></i></span>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer__top">
-        <div class="footer__brand"><span class="footer__script">Mi</span><span class="footer__display">BODA</span></div>
-        <p class="footer__tagline">Invitaciones digitales de lujo · Sitios RSVP para bodas inolvidables</p>
-        <nav class="footer__nav">
-          <a href="#planes">Planes</a><span>·</span>
-          <a href="#basico">Básico</a><span>·</span>
-          <a href="#plus">Plus</a><span>·</span>
-          <a href="#exclusivo">Exclusivo</a><span>·</span>
-          <a href="#personalizado">Personalizado</a><span>·</span>
-          <a href="#contacto">Contacto</a>
-        </nav>
-      </div>
-      <div class="footer__bottom">
-        <p class="footer__copy">&copy; 2026 Mi Boda · Hecho con <i class="fa-solid fa-heart"></i> para parejas especiales</p>
-        <div class="footer__social">
-          <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-          <a href="#" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
-          <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+    <!-- PROCESO -->
+    <section class="section process-section">
+      <div class="container">
+        <div class="section__header reveal">
+          <span class="section__eyebrow"
+            ><i class="fa-solid fa-route"></i> El proceso</span
+          >
+          <h2 class="section__title">Así de fácil</h2>
+          <p class="section__sub">
+            Tres pasos simples — de la idea a tu sitio en línea
+          </p>
+        </div>
+        <div class="process-steps">
+          <div class="process-step reveal" style="--stag: 1">
+            <div class="process-step__num">01</div>
+            <div class="process-step__icon">
+              <i class="fa-solid fa-hand-pointer"></i>
+            </div>
+            <h4>Elige tu diseño</h4>
+            <p>
+              Navega los demos en vivo, explora cada detalle y escoge el que
+              conecta con tu historia.
+            </p>
+          </div>
+          <div class="process-connector reveal" style="--stag: 2">
+            <div class="connector-line"></div>
+            <i class="fa-solid fa-heart"></i>
+            <div class="connector-line"></div>
+          </div>
+          <div class="process-step reveal" style="--stag: 3">
+            <div class="process-step__num">02</div>
+            <div class="process-step__icon">
+              <i class="fa-solid fa-pen-nib"></i>
+            </div>
+            <h4>Personalizamos juntos</h4>
+            <p>
+              Compártenos fotos, fechas y detalles. Los transformamos en algo
+              extraordinario.
+            </p>
+          </div>
+          <div class="process-connector reveal" style="--stag: 4">
+            <div class="connector-line"></div>
+            <i class="fa-solid fa-heart"></i>
+            <div class="connector-line"></div>
+          </div>
+          <div class="process-step reveal" style="--stag: 5">
+            <div class="process-step__num">03</div>
+            <div class="process-step__icon">
+              <i class="fa-solid fa-cloud-arrow-up"></i>
+            </div>
+            <h4>En línea y celebrando</h4>
+            <p>
+              Tu sitio queda publicado. Comparte el enlace y sorprende a cada
+              invitado.
+            </p>
+          </div>
         </div>
       </div>
-    </div>
-  </footer>
+    </section>
 
-  <button class="scroll-top" id="scrollTop" aria-label="Inicio">
-    <i class="fa-solid fa-chevron-up"></i>
-  </button>
-  <script src="js/main.js"></script>
-</body>
+    <!-- BASICO DISEÑOS -->
+    <section class="section designs-section" id="basico">
+      <div class="designs-section__label">
+        <i class="fa-solid fa-seedling"></i> Plan Básico
+      </div>
+      <div class="container">
+        <div class="section__header reveal">
+          <span class="section__eyebrow">Plan 01 · Básico</span>
+          <h2 class="section__title">Elegancia esencial</h2>
+          <p class="section__sub">Tres estilos — escoge el que habla de ti</p>
+        </div>
+        <div class="designs-grid">
+          <div class="design-card reveal" style="--stag: 1">
+            <div class="design-card__preview">
+              <div class="mock-site">
+                <div class="ms-nav ms-nav--pink">
+                  <div class="ms-nav__logo"></div>
+                  <div class="ms-nav__links">
+                    <span></span><span></span><span></span>
+                  </div>
+                </div>
+                <div class="ms-hero ms-hero--pink">
+                  <div class="ms-hero__text">
+                    <div class="ms-line ms-line--lg"></div>
+                    <div class="ms-line ms-line--md"></div>
+                    <div class="ms-line ms-line--sm"></div>
+                    <div class="ms-cta-row">
+                      <div class="ms-btn ms-btn--pink"></div>
+                      <div class="ms-btn ms-btn--ghost"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="ms-row">
+                  <div class="ms-card ms-card--pink"></div>
+                  <div class="ms-card ms-card--pink"></div>
+                  <div class="ms-card ms-card--pink"></div>
+                </div>
+              </div>
+              <div class="design-card__hover-cta">
+                <a
+                  href="/basico-1"
+                  target="_blank"
+                  class="btn btn--gold btn--sm"
+                  ><i class="fa-solid fa-eye"></i> Ver demo en vivo</a
+                >
+              </div>
+              <div class="design-card__num-float">01</div>
+            </div>
+            <div class="design-card__body">
+              <div class="design-card__plan-tag">Básico</div>
+              <h3 class="design-card__title">Rosa & Blanco</h3>
+              <p class="design-card__desc">
+                Paleta romántica en rosas y blancos. Tipografía floral. Ideal
+                para bodas íntimas y emotivas.
+              </p>
+              <div class="design-card__palette">
+                <span style="--c: #f4c0c0"></span
+                ><span style="--c: #d4828f"></span
+                ><span style="--c: #8b3a4a"></span
+                ><span style="--c: #fff5f5"></span>
+              </div>
+              <div class="design-card__tags">
+                <span>Romántico</span><span>Floral</span><span>Clásico</span>
+              </div>
+            </div>
+          </div>
+          <div class="design-card reveal" style="--stag: 2">
+            <div class="design-card__preview">
+              <div class="mock-site">
+                <div class="ms-nav ms-nav--green">
+                  <div class="ms-nav__logo"></div>
+                  <div class="ms-nav__links">
+                    <span></span><span></span><span></span>
+                  </div>
+                </div>
+                <div class="ms-hero ms-hero--green">
+                  <div class="ms-hero__text">
+                    <div class="ms-line ms-line--lg ms-line--gold"></div>
+                    <div class="ms-line ms-line--md"></div>
+                    <div class="ms-line ms-line--sm"></div>
+                    <div class="ms-cta-row">
+                      <div class="ms-btn ms-btn--gold"></div>
+                      <div class="ms-btn ms-btn--ghost"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="ms-row">
+                  <div class="ms-card ms-card--green"></div>
+                  <div class="ms-card ms-card--green"></div>
+                  <div class="ms-card ms-card--green"></div>
+                </div>
+              </div>
+              <div class="design-card__hover-cta">
+                <a
+                  href="/basico-2"
+                  target="_blank"
+                  class="btn btn--gold btn--sm"
+                  ><i class="fa-solid fa-eye"></i> Ver demo en vivo</a
+                >
+              </div>
+              <div class="design-card__num-float">02</div>
+            </div>
+            <div class="design-card__body">
+              <div class="design-card__plan-tag">Básico</div>
+              <h3 class="design-card__title">Verde & Oro</h3>
+              <p class="design-card__desc">
+                Colores naturales con toques dorados. Perfecto para bodas al
+                aire libre o en jardín.
+              </p>
+              <div class="design-card__palette">
+                <span style="--c: #4a6a48"></span
+                ><span style="--c: #6b8f71"></span
+                ><span style="--c: #c9a054"></span
+                ><span style="--c: #f5edd8"></span>
+              </div>
+              <div class="design-card__tags">
+                <span>Natural</span><span>Jardín</span><span>Dorado</span>
+              </div>
+            </div>
+          </div>
+          <div class="design-card reveal" style="--stag: 3">
+            <div class="design-card__preview">
+              <div class="mock-site">
+                <div class="ms-nav ms-nav--blue">
+                  <div class="ms-nav__logo"></div>
+                  <div class="ms-nav__links">
+                    <span></span><span></span><span></span>
+                  </div>
+                </div>
+                <div class="ms-hero ms-hero--blue">
+                  <div class="ms-hero__text">
+                    <div class="ms-line ms-line--lg"></div>
+                    <div class="ms-line ms-line--md"></div>
+                    <div class="ms-line ms-line--sm"></div>
+                    <div class="ms-cta-row">
+                      <div class="ms-btn ms-btn--blue"></div>
+                      <div class="ms-btn ms-btn--ghost"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="ms-row">
+                  <div class="ms-card ms-card--blue"></div>
+                  <div class="ms-card ms-card--blue"></div>
+                  <div class="ms-card ms-card--blue"></div>
+                </div>
+              </div>
+              <div class="design-card__hover-cta">
+                <a
+                  href="/basico-3"
+                  target="_blank"
+                  class="btn btn--gold btn--sm"
+                  ><i class="fa-solid fa-eye"></i> Ver demo en vivo</a
+                >
+              </div>
+              <div class="design-card__num-float">03</div>
+            </div>
+            <div class="design-card__body">
+              <div class="design-card__plan-tag">Básico</div>
+              <h3 class="design-card__title">Azul & Plata</h3>
+              <p class="design-card__desc">
+                Elegancia marina con acentos plateados. Moderno, limpio y muy
+                sofisticado.
+              </p>
+              <div class="design-card__palette">
+                <span style="--c: #2a4a7a"></span
+                ><span style="--c: #7090c0"></span
+                ><span style="--c: #b8c8e0"></span
+                ><span style="--c: #f0f4f8"></span>
+              </div>
+              <div class="design-card__tags">
+                <span>Marino</span><span>Moderno</span><span>Plata</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PLUS DISEÑOS -->
+    <section class="section designs-section designs-section--alt" id="plus">
+      <div class="designs-section__label designs-section__label--gold">
+        <i class="fa-solid fa-gem"></i> Plan Plus
+      </div>
+      <div class="container">
+        <div class="section__header reveal">
+          <span class="section__eyebrow section__eyebrow--gold"
+            >Plan 02 · Plus</span
+          >
+          <h2 class="section__title">Sofisticación con control</h2>
+          <p class="section__sub">
+            Panel admin incluido — gestiona cada confirmación con elegancia
+          </p>
+        </div>
+        <div class="designs-grid">
+          <div class="design-card design-card--plus reveal" style="--stag: 1">
+            <div class="design-card__preview">
+              <div class="mock-site">
+                <div class="ms-nav ms-nav--champagne">
+                  <div class="ms-nav__logo"></div>
+                  <div class="ms-nav__links">
+                    <span></span><span></span><span></span>
+                  </div>
+                </div>
+                <div class="ms-hero ms-hero--champagne">
+                  <div class="ms-hero__text">
+                    <div class="ms-line ms-line--lg ms-line--gold"></div>
+                    <div class="ms-line ms-line--md"></div>
+                    <div class="ms-line ms-line--sm"></div>
+                    <div class="ms-cta-row">
+                      <div class="ms-btn ms-btn--gold"></div>
+                      <div class="ms-btn ms-btn--ghost"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="ms-row">
+                  <div class="ms-card ms-card--champagne"></div>
+                  <div class="ms-card ms-card--champagne"></div>
+                  <div class="ms-card ms-card--champagne"></div>
+                </div>
+              </div>
+              <div class="design-card__hover-cta">
+                <a href="/plus-1" target="_blank" class="btn btn--gold btn--sm"
+                  ><i class="fa-solid fa-eye"></i> Ver demo</a
+                ><a
+                  href="/plus-1/admin"
+                  target="_blank"
+                  class="btn btn--outline btn--sm"
+                  ><i class="fa-solid fa-lock"></i> Admin</a
+                >
+              </div>
+              <div class="design-card__num-float design-card__num-float--gold">
+                01
+              </div>
+            </div>
+            <div class="design-card__body">
+              <div class="design-card__plan-tag design-card__plan-tag--gold">
+                Plus
+              </div>
+              <h3 class="design-card__title">Ivory & Champagne</h3>
+              <p class="design-card__desc">
+                Marfil y champagne con detalles dorados. Lujo accesible y
+                funcionalidad completa.
+              </p>
+              <div class="design-card__palette">
+                <span style="--c: #f5edd8"></span
+                ><span style="--c: #e8d5b0"></span
+                ><span style="--c: #c9a054"></span
+                ><span style="--c: #8a6030"></span>
+              </div>
+              <div class="design-card__tags">
+                <span>Lujoso</span><span>Champagne</span><span>Dorado</span>
+              </div>
+            </div>
+          </div>
+          <div class="design-card design-card--plus reveal" style="--stag: 2">
+            <div class="design-card__preview">
+              <div class="mock-site">
+                <div class="ms-nav ms-nav--burgundy">
+                  <div class="ms-nav__logo"></div>
+                  <div class="ms-nav__links">
+                    <span></span><span></span><span></span>
+                  </div>
+                </div>
+                <div class="ms-hero ms-hero--burgundy">
+                  <div class="ms-hero__text">
+                    <div class="ms-line ms-line--lg"></div>
+                    <div class="ms-line ms-line--md"></div>
+                    <div class="ms-line ms-line--sm"></div>
+                    <div class="ms-cta-row">
+                      <div class="ms-btn ms-btn--burgundy"></div>
+                      <div class="ms-btn ms-btn--ghost"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="ms-row">
+                  <div class="ms-card ms-card--burgundy"></div>
+                  <div class="ms-card ms-card--burgundy"></div>
+                  <div class="ms-card ms-card--burgundy"></div>
+                </div>
+              </div>
+              <div class="design-card__hover-cta">
+                <a href="/plus-2" target="_blank" class="btn btn--gold btn--sm"
+                  ><i class="fa-solid fa-eye"></i> Ver demo</a
+                ><a
+                  href="/plus-2/admin"
+                  target="_blank"
+                  class="btn btn--outline btn--sm"
+                  ><i class="fa-solid fa-lock"></i> Admin</a
+                >
+              </div>
+              <div class="design-card__num-float design-card__num-float--gold">
+                02
+              </div>
+            </div>
+            <div class="design-card__body">
+              <div class="design-card__plan-tag design-card__plan-tag--gold">
+                Plus
+              </div>
+              <h3 class="design-card__title">Borgoña & Nude</h3>
+              <p class="design-card__desc">
+                Paleta profunda en borgoña y nude. Romántico, intenso y
+                absolutamente memorable.
+              </p>
+              <div class="design-card__palette">
+                <span style="--c: #6a2828"></span
+                ><span style="--c: #a06050"></span
+                ><span style="--c: #d4b0a0"></span
+                ><span style="--c: #f0e8e0"></span>
+              </div>
+              <div class="design-card__tags">
+                <span>Intenso</span><span>Romántico</span><span>Profundo</span>
+              </div>
+            </div>
+          </div>
+          <div class="design-card design-card--plus reveal" style="--stag: 3">
+            <div class="design-card__preview">
+              <div class="mock-site">
+                <div class="ms-nav ms-nav--lavender">
+                  <div class="ms-nav__logo"></div>
+                  <div class="ms-nav__links">
+                    <span></span><span></span><span></span>
+                  </div>
+                </div>
+                <div class="ms-hero ms-hero--lavender">
+                  <div class="ms-hero__text">
+                    <div class="ms-line ms-line--lg"></div>
+                    <div class="ms-line ms-line--md"></div>
+                    <div class="ms-line ms-line--sm"></div>
+                    <div class="ms-cta-row">
+                      <div class="ms-btn ms-btn--lavender"></div>
+                      <div class="ms-btn ms-btn--ghost"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="ms-row">
+                  <div class="ms-card ms-card--lavender"></div>
+                  <div class="ms-card ms-card--lavender"></div>
+                  <div class="ms-card ms-card--lavender"></div>
+                </div>
+              </div>
+              <div class="design-card__hover-cta">
+                <a href="/plus-3" target="_blank" class="btn btn--gold btn--sm"
+                  ><i class="fa-solid fa-eye"></i> Ver demo</a
+                ><a
+                  href="/plus-3/admin"
+                  target="_blank"
+                  class="btn btn--outline btn--sm"
+                  ><i class="fa-solid fa-lock"></i> Admin</a
+                >
+              </div>
+              <div class="design-card__num-float design-card__num-float--gold">
+                03
+              </div>
+            </div>
+            <div class="design-card__body">
+              <div class="design-card__plan-tag design-card__plan-tag--gold">
+                Plus
+              </div>
+              <h3 class="design-card__title">Lavanda & Sage</h3>
+              <p class="design-card__desc">
+                Frescura provenzal con lavanda y salvia. Elegante, orgánico y
+                lleno de vida.
+              </p>
+              <div class="design-card__palette">
+                <span style="--c: #5a3a80"></span
+                ><span style="--c: #9070b0"></span
+                ><span style="--c: #d0c0e0"></span
+                ><span style="--c: #6b8f71"></span>
+              </div>
+              <div class="design-card__tags">
+                <span>Fresco</span><span>Provenzal</span><span>Orgánico</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXCLUSIVO DISEÑOS -->
+    <section
+      class="section designs-section designs-section--dark"
+      id="exclusivo"
+    >
+      <div class="designs-section__label designs-section__label--dark">
+        <i class="fa-solid fa-crown"></i> Plan Exclusivo
+      </div>
+      <div class="container">
+        <div class="section__header reveal">
+          <span class="section__eyebrow section__eyebrow--cream"
+            >Plan 03 · Exclusivo</span
+          >
+          <h2 class="section__title">Nivel editorial</h2>
+          <p class="section__sub">
+            Tres mundos distintos — todos extraordinarios y completamente únicos
+          </p>
+        </div>
+        <div class="designs-grid">
+          <div
+            class="design-card design-card--exclusivo reveal"
+            style="--stag: 1"
+          >
+            <div class="design-card__preview">
+              <div class="mock-site">
+                <div class="ms-nav ms-nav--navy">
+                  <div class="ms-nav__logo"></div>
+                  <div class="ms-nav__links">
+                    <span></span><span></span><span></span>
+                  </div>
+                </div>
+                <div class="ms-hero ms-hero--navy">
+                  <div class="ms-hero__text">
+                    <div class="ms-line ms-line--lg ms-line--gold"></div>
+                    <div class="ms-line ms-line--md ms-line--muted"></div>
+                    <div class="ms-line ms-line--sm ms-line--muted"></div>
+                    <div class="ms-cta-row">
+                      <div class="ms-btn ms-btn--gold"></div>
+                      <div class="ms-btn ms-btn--ghost-dark"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="ms-row">
+                  <div class="ms-card ms-card--navy"></div>
+                  <div class="ms-card ms-card--navy"></div>
+                  <div class="ms-card ms-card--navy"></div>
+                </div>
+              </div>
+              <div class="design-card__hover-cta">
+                <a
+                  href="/exclusivo-1"
+                  target="_blank"
+                  class="btn btn--gold btn--sm"
+                  ><i class="fa-solid fa-eye"></i> Ver demo</a
+                ><a
+                  href="/exclusivo-1/admin"
+                  target="_blank"
+                  class="btn btn--outline btn--sm"
+                  ><i class="fa-solid fa-lock"></i> Admin</a
+                >
+              </div>
+              <div class="design-card__num-float design-card__num-float--cream">
+                01
+              </div>
+            </div>
+            <div class="design-card__body">
+              <div class="design-card__plan-tag design-card__plan-tag--cream">
+                Exclusivo
+              </div>
+              <h3 class="design-card__title">Belle Époque</h3>
+              <p class="design-card__desc">
+                Clásico y atemporal. Marino profundo y dorado con tipografía
+                serif de lujo absoluto.
+              </p>
+              <div class="design-card__palette">
+                <span style="--c: #0a1428"></span
+                ><span style="--c: #1a2a44"></span
+                ><span style="--c: #c9a054"></span
+                ><span style="--c: #f5edd8"></span>
+              </div>
+              <div class="design-card__tags">
+                <span>Clásico</span><span>Marino</span><span>Atemporal</span>
+              </div>
+            </div>
+          </div>
+          <div
+            class="design-card design-card--exclusivo reveal"
+            style="--stag: 2"
+          >
+            <div class="design-card__preview">
+              <div class="mock-site">
+                <div class="ms-nav ms-nav--sky">
+                  <div class="ms-nav__logo"></div>
+                  <div class="ms-nav__links">
+                    <span></span><span></span><span></span>
+                  </div>
+                </div>
+                <div class="ms-hero ms-hero--sky">
+                  <div class="ms-hero__text">
+                    <div class="ms-line ms-line--lg ms-line--sky"></div>
+                    <div class="ms-line ms-line--md ms-line--muted"></div>
+                    <div class="ms-line ms-line--sm ms-line--muted"></div>
+                    <div class="ms-cta-row">
+                      <div class="ms-btn ms-btn--sky"></div>
+                      <div class="ms-btn ms-btn--ghost-dark"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="ms-row">
+                  <div class="ms-card ms-card--sky"></div>
+                  <div class="ms-card ms-card--sky"></div>
+                  <div class="ms-card ms-card--sky"></div>
+                </div>
+              </div>
+              <div class="design-card__hover-cta">
+                <a
+                  href="/exclusivo-2"
+                  target="_blank"
+                  class="btn btn--gold btn--sm"
+                  ><i class="fa-solid fa-eye"></i> Ver demo</a
+                ><a
+                  href="/exclusivo-2/admin"
+                  target="_blank"
+                  class="btn btn--outline btn--sm"
+                  ><i class="fa-solid fa-lock"></i> Admin</a
+                >
+              </div>
+              <div class="design-card__num-float design-card__num-float--cream">
+                02
+              </div>
+            </div>
+            <div class="design-card__body">
+              <div class="design-card__plan-tag design-card__plan-tag--cream">
+                Exclusivo
+              </div>
+              <h3 class="design-card__title">Jardin Secret</h3>
+              <p class="design-card__desc">
+                Azul cielo con toques florales y cinematográficos. Fresco,
+                moderno y de gran impacto visual.
+              </p>
+              <div class="design-card__palette">
+                <span style="--c: #0a1a28"></span
+                ><span style="--c: #3060a0"></span
+                ><span style="--c: #60a0d0"></span
+                ><span style="--c: #c0e0f0"></span>
+              </div>
+              <div class="design-card__tags">
+                <span>Cinematográfico</span><span>Azul</span><span>Floral</span>
+              </div>
+            </div>
+          </div>
+          <div
+            class="design-card design-card--exclusivo design-card--noir reveal"
+            style="--stag: 3"
+          >
+            <div class="design-card__preview">
+              <div class="mock-site">
+                <div class="ms-nav ms-nav--noir">
+                  <div class="ms-nav__logo"></div>
+                  <div class="ms-nav__links">
+                    <span></span><span></span><span></span>
+                  </div>
+                </div>
+                <div class="ms-hero ms-hero--noir">
+                  <div class="ms-hero__text">
+                    <div class="ms-line ms-line--lg ms-line--gold"></div>
+                    <div class="ms-line ms-line--md ms-line--gold-dim"></div>
+                    <div class="ms-line ms-line--sm ms-line--gold-dim"></div>
+                    <div class="ms-cta-row">
+                      <div class="ms-btn ms-btn--gold"></div>
+                      <div class="ms-btn ms-btn--ghost-dark"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="ms-row">
+                  <div class="ms-card ms-card--noir"></div>
+                  <div class="ms-card ms-card--noir"></div>
+                  <div class="ms-card ms-card--noir"></div>
+                </div>
+              </div>
+              <div class="design-card__hover-cta">
+                <a
+                  href="/exclusivo-3"
+                  target="_blank"
+                  class="btn btn--gold btn--sm"
+                  ><i class="fa-solid fa-eye"></i> Ver demo</a
+                ><a
+                  href="/exclusivo-3/admin"
+                  target="_blank"
+                  class="btn btn--outline btn--sm"
+                  ><i class="fa-solid fa-lock"></i> Admin</a
+                >
+              </div>
+              <div class="design-card__num-float design-card__num-float--gold">
+                03
+              </div>
+            </div>
+            <div class="design-card__body">
+              <div class="design-card__plan-tag design-card__plan-tag--dark">
+                Exclusivo · Noir
+              </div>
+              <h3 class="design-card__title">Noir Élégant</h3>
+              <p class="design-card__desc">
+                Negro absoluto con detalles dorados. La más oscura, lujosa y
+                verdaderamente única de todas.
+              </p>
+              <div class="design-card__palette">
+                <span style="--c: #050505"></span
+                ><span style="--c: #1c1c1c"></span
+                ><span style="--c: #c9a054"></span
+                ><span style="--c: #e5c88a"></span>
+              </div>
+              <div class="design-card__tags">
+                <span>Oscuro</span><span>Dorado</span><span>Único</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PLAN PERSONALIZADO -->
+    <section class="personalizado-section" id="personalizado">
+      <div class="pers-orb pers-orb--1"></div>
+      <div class="pers-orb pers-orb--2"></div>
+      <div class="pers-orb pers-orb--3"></div>
+      <div class="container">
+        <div class="personalizado-inner">
+          <div class="personalizado-left reveal">
+            <span class="pers-eyebrow"
+              ><i class="fa-solid fa-wand-magic-sparkles"></i> Plan 04 · El más
+              especial</span
+            >
+            <h2 class="pers-title">
+              Un sitio de boda<br />
+              <em>creado solo</em><br />
+              para ti
+            </h2>
+            <p class="pers-desc">
+              ¿Tienes una visión específica que ninguna plantilla podría
+              capturar? El Plan Personalizado es la respuesta definitiva:
+              diseñamos desde cero, contigo, con consultoría uno a uno y
+              revisiones hasta que quede perfecto.
+            </p>
+            <div class="pers-features">
+              <div class="pers-feat">
+                <i class="fa-solid fa-paintbrush"></i>
+                <div>
+                  <strong>Diseño 100% a medida</strong
+                  ><span
+                    >Tu paleta, tus fuentes, tu estética — sin límites</span
+                  >
+                </div>
+              </div>
+              <div class="pers-feat">
+                <i class="fa-solid fa-comments"></i>
+                <div>
+                  <strong>Consultoría 1 a 1</strong
+                  ><span
+                    >Trabajamos juntos desde la primera idea hasta el último
+                    detalle</span
+                  >
+                </div>
+              </div>
+              <div class="pers-feat">
+                <i class="fa-solid fa-rotate"></i>
+                <div>
+                  <strong>Revisiones ilimitadas</strong
+                  ><span>Hasta que quede exactamente como lo imaginas</span>
+                </div>
+              </div>
+              <div class="pers-feat">
+                <i class="fa-solid fa-layer-group"></i>
+                <div>
+                  <strong>Secciones únicas</strong
+                  ><span
+                    >Creamos cualquier sección que tu historia necesite</span
+                  >
+                </div>
+              </div>
+              <div class="pers-feat">
+                <i class="fa-solid fa-headset"></i>
+                <div>
+                  <strong>Soporte prioritario</strong
+                  ><span>Respuesta en menos de 24 horas, siempre</span>
+                </div>
+              </div>
+              <div class="pers-feat">
+                <i class="fa-solid fa-rocket"></i>
+                <div>
+                  <strong>Publicación incluida</strong
+                  ><span
+                    >Te ayudamos a publicar y adquirir tu dominio
+                    personalizado</span
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="pers-cta">
+              <a
+                href="https://wa.me/50212345678?text=Hola,%20quiero%20un%20plan%20personalizado%20para%20mi%20boda"
+                target="_blank"
+                class="btn btn--special-lg"
+              >
+                <i class="fa-brands fa-whatsapp"></i> Hablemos por WhatsApp
+              </a>
+              <a href="mailto:contacto@miboda.com" class="btn btn--ghost-light">
+                <i class="fa-solid fa-envelope"></i> Enviar email
+              </a>
+            </div>
+          </div>
+
+          <div class="personalizado-right reveal">
+            <div class="pers-card">
+              <div class="pers-card__glow"></div>
+              <div class="pers-card__header">
+                <i class="fa-solid fa-infinity pers-card__ico"></i>
+                <div>
+                  <span class="pers-card__plan">Plan Personalizado</span>
+                  <span class="pers-card__tagline"
+                    >Ilimitado · Único · Solo para ti</span
+                  >
+                </div>
+              </div>
+              <div class="pers-card__divider">
+                <span>Incluye todo esto</span>
+              </div>
+              <ul class="pers-card__list">
+                <li>
+                  <i class="fa-solid fa-check"></i> Todo lo del Plan Exclusivo
+                </li>
+                <li>
+                  <i class="fa-solid fa-check"></i> Diseño 100% desde cero
+                </li>
+                <li>
+                  <i class="fa-solid fa-check"></i> Colores y tipografías únicas
+                </li>
+                <li><i class="fa-solid fa-check"></i> Secciones a la medida</li>
+                <li><i class="fa-solid fa-check"></i> Consultoría 1 a 1</li>
+                <li><i class="fa-solid fa-check"></i> Revisiones ilimitadas</li>
+                <li><i class="fa-solid fa-check"></i> Soporte prioritario</li>
+                <li>
+                  <i class="fa-solid fa-check"></i> Dominio y publicación
+                  incluidos
+                </li>
+              </ul>
+              <div class="pers-card__price">
+                <span class="pers-card__price-pre">Inversión</span>
+                <span class="pers-card__price-val">A consultar</span>
+                <span class="pers-card__price-note"
+                  >según alcance del proyecto</span
+                >
+              </div>
+              <a
+                href="https://wa.me/50212345678?text=Hola,%20quiero%20un%20plan%20personalizado"
+                target="_blank"
+                class="btn btn--special btn--full"
+              >
+                <i class="fa-solid fa-wand-magic-sparkles"></i> Comenzar mi
+                proyecto único
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- POR QUÉ ELEGIRNOS -->
+    <section class="section why-section">
+      <div class="container">
+        <div class="section__header reveal">
+          <span class="section__eyebrow"
+            ><i class="fa-solid fa-award"></i> ¿Por qué elegirnos?</span
+          >
+          <h2 class="section__title">Diseñado con amor <em>& detalle</em></h2>
+        </div>
+        <div class="why-grid">
+          <div class="why-card reveal" style="--stag: 1">
+            <div class="why-card__icon">
+              <i class="fa-solid fa-mobile-screen"></i>
+            </div>
+            <h4>100% Responsive</h4>
+            <p>
+              Perfecto en móvil, tablet y escritorio. Cada invitado lo ve
+              impecable sin importar el dispositivo.
+            </p>
+          </div>
+          <div class="why-card reveal" style="--stag: 2">
+            <div class="why-card__icon"><i class="fa-solid fa-bolt"></i></div>
+            <h4>Carga ultra rápida</h4>
+            <p>
+              Optimizado para velocidad. Sin esperas — solo la emoción de ver la
+              invitación al instante.
+            </p>
+          </div>
+          <div class="why-card reveal" style="--stag: 3">
+            <div class="why-card__icon">
+              <i class="fa-solid fa-palette"></i>
+            </div>
+            <h4>Totalmente personalizable</h4>
+            <p>
+              Nombres, fechas, fotos y textos — todo refleja exactamente tu
+              historia de amor única.
+            </p>
+          </div>
+          <div class="why-card reveal" style="--stag: 4">
+            <div class="why-card__icon"><i class="fa-solid fa-music"></i></div>
+            <h4>Música de fondo</h4>
+            <p>
+              Su canción especial suena mientras los invitados exploran la
+              invitación. Una experiencia completa.
+            </p>
+          </div>
+          <div class="why-card reveal" style="--stag: 5">
+            <div class="why-card__icon">
+              <i class="fa-solid fa-shield-halved"></i>
+            </div>
+            <h4>Sin base de datos</h4>
+            <p>
+              Funciona con localStorage. Simple, seguro y sin complicaciones
+              técnicas ni costos extra.
+            </p>
+          </div>
+          <div class="why-card reveal" style="--stag: 6">
+            <div class="why-card__icon">
+              <i class="fa-solid fa-cloud-arrow-up"></i>
+            </div>
+            <h4>Listo para publicar</h4>
+            <p>
+              Compatible con Render, Vercel y Netlify. En minutos tu sitio está
+              en línea para el mundo.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section class="section contacto-section" id="contacto">
+      <div class="container">
+        <div class="section__header reveal">
+          <span class="section__eyebrow"
+            ><i class="fa-solid fa-paper-plane"></i> Hablemos</span
+          >
+          <h2 class="section__title">¿Listo para comenzar?</h2>
+          <p class="section__sub">
+            Cuéntanos tu historia y te ayudamos a elegir o crear el diseño
+            perfecto
+          </p>
+        </div>
+        <div class="contacto-grid">
+          <a
+            href="https://wa.me/50212345678?text=Hola,%20me%20interesa%20un%20sitio%20para%20mi%20boda"
+            target="_blank"
+            class="contacto-card reveal"
+            style="--stag: 1"
+          >
+            <div class="contacto-card__ico contacto-card__ico--wa">
+              <i class="fa-brands fa-whatsapp"></i>
+            </div>
+            <h4>WhatsApp</h4>
+            <p>Respuesta rápida · Asesoría gratuita</p>
+            <span class="contacto-card__cta"
+              >Escribir ahora <i class="fa-solid fa-arrow-right"></i
+            ></span>
+          </a>
+          <a
+            href="mailto:contacto@miboda.com"
+            class="contacto-card reveal"
+            style="--stag: 2"
+          >
+            <div class="contacto-card__ico contacto-card__ico--mail">
+              <i class="fa-solid fa-envelope"></i>
+            </div>
+            <h4>Email</h4>
+            <p>Para consultas detalladas y presupuestos</p>
+            <span class="contacto-card__cta"
+              >Enviar correo <i class="fa-solid fa-arrow-right"></i
+            ></span>
+          </a>
+          <a
+            href="https://instagram.com/miboda"
+            target="_blank"
+            class="contacto-card reveal"
+            style="--stag: 3"
+          >
+            <div class="contacto-card__ico contacto-card__ico--ig">
+              <i class="fa-brands fa-instagram"></i>
+            </div>
+            <h4>Instagram</h4>
+            <p>Inspiración, novedades y trabajos recientes</p>
+            <span class="contacto-card__cta"
+              >Ver perfil <i class="fa-solid fa-arrow-right"></i
+            ></span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer__top">
+          <div class="footer__brand">
+            <span class="footer__script">Mi</span
+            ><span class="footer__display">BODA</span>
+          </div>
+          <p class="footer__tagline">
+            Invitaciones digitales de lujo · Sitios RSVP para bodas inolvidables
+          </p>
+          <nav class="footer__nav">
+            <a href="#planes">Planes</a><span>·</span>
+            <a href="#basico">Básico</a><span>·</span> <a href="#plus">Plus</a
+            ><span>·</span> <a href="#exclusivo">Exclusivo</a><span>·</span>
+            <a href="#personalizado">Personalizado</a><span>·</span>
+            <a href="#contacto">Contacto</a>
+          </nav>
+        </div>
+        <div class="footer__bottom">
+          <p class="footer__copy">
+            &copy; 2026 Mi Boda · Hecho con
+            <i class="fa-solid fa-heart"></i> para parejas especiales
+          </p>
+          <div class="footer__social">
+            <a href="#" aria-label="Instagram"
+              ><i class="fa-brands fa-instagram"></i
+            ></a>
+            <a href="#" aria-label="WhatsApp"
+              ><i class="fa-brands fa-whatsapp"></i
+            ></a>
+            <a href="#" aria-label="Facebook"
+              ><i class="fa-brands fa-facebook-f"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <button class="scroll-top" id="scrollTop" aria-label="Inicio">
+      <i class="fa-solid fa-chevron-up"></i>
+    </button>
+    <script src="js/main.js"></script>
+  </body>
 </html>
