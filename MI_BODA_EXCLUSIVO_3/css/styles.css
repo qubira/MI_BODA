@@ -1497,20 +1497,24 @@ textarea:focus { outline: none; border-color: var(--gold); }
   .dress-divider__line { width: 50px; height: 1px; }
 }
 
-@media (max-width: 700px) {
+/* Nav hamburger a 900px para evitar overflow lateral */
+@media (max-width: 900px) {
   .nav           { padding: 0 20px; }
   .nav__toggle   { display: flex; }
   .nav__menu {
     position: fixed; inset: 0; top: var(--nav-h);
+    z-index: 1001;
     background: rgba(5,5,5,.97); backdrop-filter: blur(20px);
     flex-direction: column; align-items: center; justify-content: center;
-    gap: 32px; opacity: 0; pointer-events: none;
-    transform: translateY(-8px);
+    gap: 36px; opacity: 0; pointer-events: none;
+    transform: translateY(-10px);
     transition: opacity .4s, transform .4s;
   }
   .nav__menu.open { opacity: 1; pointer-events: auto; transform: none; }
-  .nav__menu a { font-size: .85rem; letter-spacing: .15em; }
+  .nav__menu a { font-size: .88rem; letter-spacing: .15em; }
+}
 
+@media (max-width: 700px) {
   .hero__names   { font-size: clamp(2.8rem, 12vw, 4.5rem); }
   .hero__corner  { width: 40px; height: 40px; top: 16px; left: 16px; right: 16px; bottom: 16px; }
   .hero__corner--tr { right: 16px; left: auto; }
