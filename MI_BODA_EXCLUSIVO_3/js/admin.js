@@ -1534,6 +1534,7 @@ function showDashboard() {
   document.getElementById('dashboard').classList.remove('hidden');
   checkAndSeed();
   initDashboard();
+  switchView('dashboard');
 }
 
 function initDashboard() {
@@ -1685,7 +1686,7 @@ function initDashboard() {
   });
 
   /* Mapa */
-  document.getElementById('resetMapaBtn').addEventListener('click', () => {
+  document.getElementById('resetMapaBtn')?.addEventListener('click', () => {
     if (!confirm('¿Restablecer posiciones del mapa?')) return;
     localStorage.removeItem('boda_mapa_pos');
     refreshMapa();
