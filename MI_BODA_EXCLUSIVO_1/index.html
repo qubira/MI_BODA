@@ -640,29 +640,75 @@
       <div class="rsvp__wrap">
         <!-- Steps indicator -->
         <div class="steps-bar" id="stepsBar">
-          <div class="step-dot active" data-step="1"><span>1</span><small>Info</small></div>
+          <div class="step-dot active" data-step="1"><span>1</span><small>Verificar</small></div>
           <div class="step-line"></div>
-          <div class="step-dot" data-step="2"><span>2</span><small>Detalles</small></div>
+          <div class="step-dot" data-step="2"><span>2</span><small>Info</small></div>
           <div class="step-line"></div>
-          <div class="step-dot" data-step="3"><span>3</span><small>Listo</small></div>
+          <div class="step-dot" data-step="3"><span>3</span><small>Detalles</small></div>
+          <div class="step-line"></div>
+          <div class="step-dot" data-step="4"><span>4</span><small>Listo</small></div>
         </div>
 
         <form class="rsvp-form" id="rsvpForm" novalidate>
 
-          <!-- PASO 1 -->
-          <div class="form-step active" id="step1">
+          <!-- PASO 0: VERIFICACIÓN -->
+          <div class="form-step active" id="step0">
+            <div class="form-step__header">
+              <i class="fa-solid fa-id-card"></i>
+              <h3>Verificar Invitación</h3>
+            </div>
+            <p class="rsvp-lookup-hint">Ingresa tu nombre y apellido tal como aparecen en tu invitación.</p>
+            <div class="fg-row">
+              <div class="fg">
+                <label for="lookup-nombre">Nombre <span class="req">*</span></label>
+                <div class="fi-wrap"><i class="fa-solid fa-user fi-icon"></i>
+                  <input type="text" id="lookup-nombre" placeholder="Ej. María" autocomplete="given-name" />
+                </div>
+              </div>
+              <div class="fg">
+                <label for="lookup-apellido">Apellido <span class="req">*</span></label>
+                <div class="fi-wrap"><i class="fa-solid fa-id-badge fi-icon"></i>
+                  <input type="text" id="lookup-apellido" placeholder="Ej. García" autocomplete="family-name" />
+                </div>
+              </div>
+            </div>
+            <span class="ferr" id="err-lookup"></span>
+
+            <!-- Resultado: encontrado -->
+            <div class="guest-found-card hidden" id="guestFoundCard">
+              <div class="guest-found-card__icon"><i class="fa-solid fa-circle-check"></i></div>
+              <div class="guest-found-card__body">
+                <p class="guest-found-card__name" id="foundGuestName"></p>
+                <div class="guest-found-card__details" id="foundGuestDetails"></div>
+              </div>
+            </div>
+
+            <!-- Resultado: no encontrado -->
+            <div class="guest-not-found hidden" id="guestNotFound">
+              <i class="fa-solid fa-circle-xmark"></i>
+              <p>No encontramos tu nombre en la lista. Verifica la ortografía o contacta a los novios.</p>
+            </div>
+
+            <button type="button" class="btn btn--gold btn--full" id="lookupBtn">
+              <i class="fa-solid fa-magnifying-glass"></i> Verificar invitación
+            </button>
+            <button type="button" class="btn btn--gold btn--full hidden" id="proceedBtn">
+              Continuar <i class="fa-solid fa-arrow-right"></i>
+            </button>
+          </div>
+
+          <!-- PASO 1: INFORMACIÓN -->
+          <div class="form-step" id="step1">
             <div class="form-step__header">
               <i class="fa-solid fa-user-pen"></i>
               <h3>Tu Información</h3>
             </div>
 
-            <div class="fg">
-              <label for="nombre">Nombre completo <span class="req">*</span></label>
-              <div class="fi-wrap"><i class="fa-solid fa-user fi-icon"></i>
-                <input type="text" id="nombre" name="nombre" placeholder="Ej. María García López" autocomplete="name" required />
-              </div>
-              <span class="ferr" id="err-nombre"></span>
-            </div>
+            <!-- Saludo al invitado verificado -->
+            <div class="rsvp-guest-greeting" id="guestGreeting"></div>
+
+            <!-- Campos ocultos con datos del invitado verificado -->
+            <input type="hidden" id="nombre" name="nombre" />
 
             <div class="fg-row">
               <div class="fg">
@@ -675,24 +721,41 @@
               <div class="fg">
                 <label for="telefono">Teléfono</label>
                 <div class="fi-wrap"><i class="fa-solid fa-phone fi-icon"></i>
-                  <input type="tel" id="telefono" name="telefono" placeholder="+52 55 1234 5678" autocomplete="tel" />
+                  <input type="tel" id="telefono" name="telefono" placeholder="+502 1234 5678" autocomplete="tel" />
                 </div>
               </div>
             </div>
 
             <div class="fg">
-              <label for="acompanantes">¿Cuántos acompañantes traerás? <span class="req">*</span></label>
+              <label for="acompanantes">Acompañantes autorizados <span class="req">*</span></label>
               <div class="fi-wrap"><i class="fa-solid fa-users fi-icon"></i>
                 <select id="acompanantes" name="acompanantes" required>
                   <option value="">Selecciona una opción</option>
-                  <option value="0">Vendré solo(a)</option>
-                  <option value="1">+ 1 acompañante</option>
-                  <option value="2">+ 2 acompañantes</option>
-                  <option value="3">+ 3 acompañantes</option>
-                  <option value="4">+ 4 acompañantes</option>
                 </select>
               </div>
               <span class="ferr" id="err-acompanantes"></span>
+            </div>
+
+            <!-- Sección hijos (visible solo si el invitado puede traer niños) -->
+            <div class="fg hidden" id="hijosWrapper">
+              <label>¿Traerás niños? <span class="req">*</span></label>
+              <div class="rsvp-cards rsvp-cards--sm">
+                <label class="rsvp-card rsvp-card--yes" id="cardHijosYes">
+                  <input type="radio" name="traerHijos" value="si" />
+                  <div class="rsvp-card__inner">
+                    <div class="rsvp-card__icon"><i class="fa-solid fa-child-reaching"></i></div>
+                    <span class="rsvp-card__title">Sí traeré niños</span>
+                  </div>
+                </label>
+                <label class="rsvp-card rsvp-card--no" id="cardHijosNo">
+                  <input type="radio" name="traerHijos" value="no" />
+                  <div class="rsvp-card__inner">
+                    <div class="rsvp-card__icon"><i class="fa-solid fa-xmark"></i></div>
+                    <span class="rsvp-card__title">No traeré niños</span>
+                  </div>
+                </label>
+              </div>
+              <span class="ferr" id="err-hijos"></span>
             </div>
 
             <div class="fg">
@@ -718,9 +781,12 @@
               <span class="ferr" id="err-asistencia"></span>
             </div>
 
-            <button type="button" class="btn btn--gold btn--full" id="nextStep1">
-              Continuar <i class="fa-solid fa-arrow-right"></i>
-            </button>
+            <div class="form-btns">
+              <button type="button" class="btn btn--outline" id="backToStep0"><i class="fa-solid fa-arrow-left"></i> Volver</button>
+              <button type="button" class="btn btn--gold" id="nextStep1">
+                Continuar <i class="fa-solid fa-arrow-right"></i>
+              </button>
+            </div>
           </div>
 
           <!-- PASO 2 SI -->
@@ -729,6 +795,12 @@
               <i class="fa-solid fa-utensils"></i>
               <h3>Detalles Adicionales</h3>
             </div>
+
+            <!-- Info de regalo (visible solo si hay tipo asignado) -->
+            <div class="rsvp-gift-info hidden" id="giftInfoBox"></div>
+
+            <!-- Info rol de honor (visible si aplica) -->
+            <div class="rsvp-honor-info hidden" id="honorInfoBox"></div>
 
             <div class="fg">
               <label>Selección de menú</label>
@@ -794,6 +866,7 @@
             <p class="success-qr-note" id="qrNote">Guarda este código QR · lo necesitarás el día del evento</p>
             <div class="success-confetti" id="successConfetti"></div>
             <button type="button" class="btn btn--outline" id="resetForm">Enviar otra respuesta</button>
+            <p class="success-guest-honor hidden" id="successHonorMsg"></p>
           </div>
 
         </form>

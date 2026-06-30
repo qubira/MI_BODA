@@ -9,6 +9,32 @@ const DB_KEY = 'boda_rsvp_guests';
 function getGuests()  { try { return JSON.parse(localStorage.getItem(DB_KEY)) || []; } catch { return []; } }
 function saveGuest(g) { const a = getGuests(); a.push(g); localStorage.setItem(DB_KEY, JSON.stringify(a)); }
 
+/* Normaliza nombre para comparación flexible (sin acentos, minúsculas, sin espacios extra) */
+function normName(s) {
+  return String(s||'').trim().toLowerCase()
+    .normalize('NFD').replace(/[̀-ͯ]/g,'')
+    .replace(/\s+/g,' ');
+}
+
+/* Busca invitado por nombre + apellido */
+function findGuestByName(nombre, apellido) {
+  const n = normName(nombre), a = normName(apellido);
+  const matches = getGuests().filter(g => normName(g.nombre)===n && normName(g.apellido)===a);
+  return matches.length === 1 ? matches[0] : (matches.length > 1 ? matches[0] : null);
+}
+
+/* Actualiza invitado existente por id */
+function updateGuestById(id, data) {
+  const guests = getGuests();
+  const idx = guests.findIndex(g => g.id === id);
+  if (idx !== -1) {
+    guests[idx] = Object.assign({}, guests[idx], data);
+    localStorage.setItem(DB_KEY, JSON.stringify(guests));
+    return true;
+  }
+  return false;
+}
+
 /* ===== VENUE (from admin config) ===== */
 (function applyVenue() {
   var venue = {};
@@ -829,12 +855,17 @@ function validate(fieldId, errId, rules) {
 /* ===== RSVP FORM ===== */
 (function initForm() {
   const form = document.getElementById('rsvpForm');
+  if (!form) return;
+
   const steps = {
+    s0:  document.getElementById('step0'),
     s1:  document.getElementById('step1'),
     s2si:document.getElementById('step2si'),
     s2no:document.getElementById('step2no'),
     ok:  document.getElementById('stepSuccess'),
   };
+
+  let foundGuest = null; // invitado verificado en step0
 
   function setStep(current, next) {
     current.classList.remove('active');
@@ -850,9 +881,115 @@ function validate(fieldId, errId, rules) {
     });
   }
 
-  // Paso 1 → Paso 2
-  document.getElementById('nextStep1').addEventListener('click', () => {
-    const v1 = validate('nombre', 'err-nombre', { required: true, minLen: 2 });
+  /* ---- REGALO & ROL helpers ---- */
+  const REGALO_TEXTO = {
+    efectivo:   '💵 Tus anfitriones prefieren un sobre con efectivo.',
+    lista:      '🎁 Consulta la lista de regalos de los novios.',
+    experiencia:'✨ Los novios agradecen experiencias o contribuciones para su viaje.',
+    ninguno:    '— Tu presencia es el mejor regalo.',
+    cualquiera: '',
+  };
+  const ROL_TEXTO = {
+    dama_novia:     '👗 Eres Dama de Honor de la Novia. ¡Gracias por ser parte de este día tan especial!',
+    dama_novio:     '👗 Eres Dama de Honor del Novio. ¡Gracias por acompañarnos!',
+    chambelan_novia:'🤵 Eres Chambelán de la Novia. ¡Tu presencia es fundamental!',
+    chambelan_novio:'🤵 Eres Chambelán del Novio. ¡Qué alegría contar contigo!',
+    padrino:        '🎩 Eres Padrino de la boda. ¡Gracias por este honor tan grande!',
+    madrina:        '💐 Eres Madrina de la boda. ¡Gracias por este honor tan especial!',
+  };
+
+  /* ---- Llena el select de acompañantes según el máximo del invitado ---- */
+  function buildAcompSelect(max) {
+    const sel = document.getElementById('acompanantes');
+    if (!sel) return;
+    sel.innerHTML = '<option value="">Selecciona una opción</option>';
+    sel.add(new Option('Vendré solo(a)', '0'));
+    for (let i = 1; i <= Math.max(0, max); i++) {
+      sel.add(new Option(`+ ${i} acompañante${i > 1 ? 's' : ''}`, String(i)));
+    }
+  }
+
+  /* ---- STEP 0: VERIFICACIÓN ---- */
+  const lookupBtn  = document.getElementById('lookupBtn');
+  const proceedBtn = document.getElementById('proceedBtn');
+  const foundCard  = document.getElementById('guestFoundCard');
+  const notFound   = document.getElementById('guestNotFound');
+  const errLookup  = document.getElementById('err-lookup');
+
+  function resetLookupUI() {
+    foundCard?.classList.add('hidden');
+    notFound?.classList.add('hidden');
+    if (errLookup) errLookup.textContent = '';
+    proceedBtn?.classList.add('hidden');
+    lookupBtn?.classList.remove('hidden');
+  }
+
+  lookupBtn?.addEventListener('click', () => {
+    const nombreVal   = (document.getElementById('lookup-nombre')?.value || '').trim();
+    const apellidoVal = (document.getElementById('lookup-apellido')?.value || '').trim();
+    if (!nombreVal || !apellidoVal) {
+      if (errLookup) errLookup.textContent = 'Por favor ingresa nombre y apellido.';
+      return;
+    }
+    resetLookupUI();
+    foundGuest = findGuestByName(nombreVal, apellidoVal);
+
+    if (foundGuest) {
+      /* Mostrar tarjeta de bienvenida */
+      const nameEl    = document.getElementById('foundGuestName');
+      const detailsEl = document.getElementById('foundGuestDetails');
+      if (nameEl) nameEl.textContent = `¡Hola, ${foundGuest.nombre} ${foundGuest.apellido||''}!`;
+      if (detailsEl) {
+        const maxAcomp = foundGuest.maxAcompanantes ?? 2;
+        let html = `<span>👥 Hasta ${maxAcomp} acompañante${maxAcomp !== 1 ? 's' : ''} autorizados</span>`;
+        if (foundGuest.puedeLlevarHijos === 'si') html += `<span>👶 Puedes traer niños</span>`;
+        if (foundGuest.rolHonor && foundGuest.rolHonor !== 'ninguno') {
+          html += `<span class="honor-badge">${ROL_TEXTO[foundGuest.rolHonor] || ''}</span>`;
+        }
+        detailsEl.innerHTML = html;
+      }
+      foundCard?.classList.remove('hidden');
+      proceedBtn?.classList.remove('hidden');
+      lookupBtn?.classList.add('hidden');
+    } else {
+      notFound?.classList.remove('hidden');
+    }
+  });
+
+  proceedBtn?.addEventListener('click', () => {
+    if (!foundGuest) return;
+    /* Trasladar datos al step 1 */
+    const nombreHidden = document.getElementById('nombre');
+    if (nombreHidden) nombreHidden.value = `${foundGuest.nombre} ${foundGuest.apellido||''}`.trim();
+
+    /* Saludo en step 1 */
+    const greetEl = document.getElementById('guestGreeting');
+    if (greetEl) {
+      greetEl.innerHTML = `<i class="fa-solid fa-circle-check"></i> Bienvenido/a, <strong>${foundGuest.nombre}</strong>`;
+      greetEl.classList.add('active');
+    }
+
+    /* Companion selector dinámico */
+    buildAcompSelect(foundGuest.maxAcompanantes ?? 2);
+
+    /* Sección hijos */
+    const hijosWrapper = document.getElementById('hijosWrapper');
+    if (hijosWrapper) {
+      hijosWrapper.classList.toggle('hidden', foundGuest.puedeLlevarHijos !== 'si');
+    }
+
+    markStep(2);
+    setStep(steps.s0, steps.s1);
+  });
+
+  /* ---- Volver de step1 a step0 ---- */
+  document.getElementById('backToStep0')?.addEventListener('click', () => {
+    markStep(1);
+    setStep(steps.s1, steps.s0);
+  });
+
+  /* ---- STEP 1 → STEP 2 ---- */
+  document.getElementById('nextStep1')?.addEventListener('click', () => {
     const v2 = validate('correo', 'err-correo', { required: true, email: true });
     const v3 = validate('acompanantes', 'err-acompanantes', { required: true });
     const asist = form.querySelector('[name="asistencia"]:checked');
@@ -860,92 +997,118 @@ function validate(fieldId, errId, rules) {
 
     if (!asist) { errAs.textContent = 'Por favor selecciona una opción.'; return; }
     errAs.textContent = '';
-    if (!v1 || !v2 || !v3) return;
+    if (!v2 || !v3) return;
 
-    markStep(2);
+    /* Mostrar info de regalo y rol en step 2 */
+    const giftBox  = document.getElementById('giftInfoBox');
+    const honorBox = document.getElementById('honorInfoBox');
+    if (giftBox && foundGuest) {
+      const gtexto = REGALO_TEXTO[foundGuest.tipoRegalo];
+      if (gtexto) { giftBox.textContent = gtexto; giftBox.classList.remove('hidden'); }
+      else giftBox.classList.add('hidden');
+    }
+    if (honorBox && foundGuest) {
+      const rtexto = ROL_TEXTO[foundGuest.rolHonor];
+      if (rtexto) { honorBox.textContent = rtexto; honorBox.classList.remove('hidden'); }
+      else honorBox.classList.add('hidden');
+    }
+
+    markStep(3);
     if (asist.value === 'si') setStep(steps.s1, steps.s2si);
     else                       setStep(steps.s1, steps.s2no);
   });
 
-  document.getElementById('prev2si').addEventListener('click', () => { markStep(1); setStep(steps.s2si, steps.s1); });
-  document.getElementById('prev2no').addEventListener('click', () => { markStep(1); setStep(steps.s2no, steps.s1); });
+  document.getElementById('prev2si')?.addEventListener('click', () => { markStep(2); setStep(steps.s2si, steps.s1); });
+  document.getElementById('prev2no')?.addEventListener('click', () => { markStep(2); setStep(steps.s2no, steps.s1); });
 
-  // Submit
+  /* ---- SUBMIT ---- */
   form.addEventListener('submit', e => {
     e.preventDefault();
     const asist = form.querySelector('[name="asistencia"]:checked');
     if (!asist) return;
 
-    const isYes = asist.value === 'si';
-    const guest = {
-      id:      Date.now(),
-      nombre:  document.getElementById('nombre').value.trim(),
-      correo:  document.getElementById('correo').value.trim(),
-      telefono:document.getElementById('telefono').value.trim(),
-      acompanantes: parseInt(document.getElementById('acompanantes').value) || 0,
+    const isYes    = asist.value === 'si';
+    const nombreFull = document.getElementById('nombre')?.value.trim() ||
+                       (foundGuest ? `${foundGuest.nombre} ${foundGuest.apellido||''}`.trim() : '');
+    const hijosVal = (form.querySelector('[name="traerHijos"]:checked') || {}).value || 'no';
+
+    const updateData = {
+      correo:    document.getElementById('correo')?.value.trim() || foundGuest?.correo || '',
+      telefono:  document.getElementById('telefono')?.value.trim() || foundGuest?.telefono || '',
+      acompanantes: parseInt(document.getElementById('acompanantes')?.value) || 0,
       asistencia: asist.value,
-      estado:     isYes ? 'confirmado' : 'rechazado',
-      menu:       isYes ? ((form.querySelector('[name="menu"]:checked') || {}).value || '') : '',
-      restricciones: isYes ? (document.getElementById('restricciones').value || '') : '',
+      estado:    isYes ? 'confirmado' : 'rechazado',
+      traerHijos: hijosVal,
+      menu:      isYes ? ((form.querySelector('[name="menu"]:checked') || {}).value || '') : '',
+      restricciones: isYes ? (document.getElementById('restricciones')?.value || '') : '',
       mensaje: isYes
-        ? (document.getElementById('mensaje').value || '')
-        : (document.getElementById('mensaje-no').value || ''),
+        ? (document.getElementById('mensaje')?.value || '')
+        : (document.getElementById('mensaje-no')?.value || ''),
       fecha_confirmacion: new Date().toISOString(),
     };
-    saveGuest(guest);
 
-    markStep(3);
+    /* Actualizar registro existente; si no existe (no debería pasar) agregar */
+    if (foundGuest && updateGuestById(foundGuest.id, updateData)) {
+      /* ok */
+    } else {
+      saveGuest(Object.assign({ id: Date.now(), nombre: nombreFull }, updateData));
+    }
+
+    markStep(4);
     steps.s2si.classList.remove('active');
     steps.s2no.classList.remove('active');
     steps.ok.classList.add('active');
 
     document.getElementById('successTitle').textContent = isYes ? '¡Gracias por confirmar!' : 'Gracias por avisarnos';
     document.getElementById('successMsg').textContent   = isYes
-      ? `¡${guest.nombre}, te esperamos con todo el amor del mundo el 14 de Febrero!`
-      : `${guest.nombre}, lamentamos que no puedas estar, ¡tus buenos deseos nos alegran!`;
+      ? `¡${foundGuest?.nombre || nombreFull}, te esperamos con todo el amor el 14 de Febrero!`
+      : `${foundGuest?.nombre || nombreFull}, lamentamos que no puedas estar, ¡tus buenos deseos nos alegran!`;
+
+    /* Rol de honor en success */
+    const honorSuccessEl = document.getElementById('successHonorMsg');
+    if (honorSuccessEl && foundGuest && ROL_TEXTO[foundGuest.rolHonor]) {
+      honorSuccessEl.textContent = ROL_TEXTO[foundGuest.rolHonor];
+      honorSuccessEl.classList.remove('hidden');
+    }
 
     if (isYes) {
       const qrEl = document.getElementById('successQR');
-      qrEl.innerHTML = '';
-      qrEl.appendChild(makeQR(`BODA2027-${guest.id}-${guest.nombre}`));
-      document.getElementById('qrNote').style.display = '';
+      if (qrEl) { qrEl.innerHTML = ''; qrEl.appendChild(makeQR(`BODA2027-${foundGuest?.id||Date.now()}-${nombreFull}`)); }
+      const qrNote = document.getElementById('qrNote');
+      if (qrNote) qrNote.style.display = '';
       spawnConfetti();
     } else {
-      document.getElementById('successQR').style.display = 'none';
-      document.getElementById('qrNote').style.display = 'none';
+      const qrEl = document.getElementById('successQR');
+      if (qrEl) qrEl.style.display = 'none';
+      const qrNote = document.getElementById('qrNote');
+      if (qrNote) qrNote.style.display = 'none';
     }
 
     toast('✓ Respuesta enviada correctamente');
     document.getElementById('rsvp').scrollIntoView({ behavior: 'smooth' });
   });
 
-  document.getElementById('resetForm').addEventListener('click', () => {
+  /* ---- RESET: vuelve al step0 ---- */
+  document.getElementById('resetForm')?.addEventListener('click', () => {
     form.reset();
-    steps.ok.classList.remove('active');
-    steps.s2si.classList.remove('active');
-    steps.s2no.classList.remove('active');
-    steps.s1.classList.add('active');
+    foundGuest = null;
+    resetLookupUI();
+    [steps.ok, steps.s2si, steps.s2no, steps.s1].forEach(s => s?.classList.remove('active'));
+    steps.s0?.classList.add('active');
     markStep(1);
     document.getElementById('successQR').style.display = '';
     document.getElementById('qrNote').style.display = '';
+    document.getElementById('guestGreeting')?.classList.remove('active');
+    document.getElementById('successHonorMsg')?.classList.add('hidden');
+    document.getElementById('giftInfoBox')?.classList.add('hidden');
+    document.getElementById('honorInfoBox')?.classList.add('hidden');
   });
 
-  // NOMBRE: solo letras + espacios, Title Case al salir del campo
-  const nombreInp = document.getElementById('nombre');
-  nombreInp.addEventListener('input', function() {
-    const pos = this.selectionStart;
-    const filtered = this.value.replace(/[^a-záéíóúüñA-ZÁÉÍÓÚÜÑ\s]/g, '');
-    if (filtered !== this.value) {
-      const diff = this.value.length - filtered.length;
-      this.value = filtered;
-      this.setSelectionRange(Math.max(0, pos - diff), Math.max(0, pos - diff));
-    }
-  });
-  nombreInp.addEventListener('blur', function() {
-    this.value = this.value
-      .replace(/\s+/g, ' ').trim()
-      .replace(/\S+/g, w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase());
-    validate('nombre', 'err-nombre', { required: true, minLen: 2 });
+  // LOOKUP: Enter en los campos de búsqueda activa el botón Verificar
+  ['lookup-nombre','lookup-apellido'].forEach(id => {
+    document.getElementById(id)?.addEventListener('keydown', e => {
+      if (e.key === 'Enter') { e.preventDefault(); lookupBtn?.click(); }
+    });
   });
 
   // CORREO: validación al salir

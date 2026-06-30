@@ -302,9 +302,11 @@
                   <th>Correo</th>
                   <th>Tel.</th>
                   <th class="sortable" data-col="acompanantes">
-                    Acomp. <i class="fa-solid fa-sort"></i>
+                    Conf. <i class="fa-solid fa-sort"></i>
                   </th>
-                  <th>Total Personas</th>
+                  <th>Máx.</th>
+                  <th>Total</th>
+                  <th>Invitación</th>
                   <th>Estado</th>
                   <th class="sortable" data-col="grupo">
                     Grupo <i class="fa-solid fa-sort"></i>
@@ -747,6 +749,44 @@
                 id="m-familia"
                 placeholder="Ej. Familia García"
               />
+            </div>
+          </div>
+          <div class="modal-section-title"><i class="fa-solid fa-sliders" style="color:var(--gold);margin-right:6px"></i>Control de Invitación</div>
+          <div class="modal-grid">
+            <div class="form-group">
+              <label>Máx. acompañantes permitidos</label>
+              <input type="number" id="m-maxAcomp" min="0" max="10" value="2" />
+            </div>
+            <div class="form-group">
+              <label>¿Puede traer niños?</label>
+              <select id="m-puedeLlevarHijos">
+                <option value="no">No</option>
+                <option value="si">Sí</option>
+              </select>
+            </div>
+          </div>
+          <div class="modal-grid">
+            <div class="form-group">
+              <label>Tipo de regalo esperado</label>
+              <select id="m-tipoRegalo">
+                <option value="cualquiera">Sin especificar</option>
+                <option value="efectivo">💵 Efectivo / Sobrecito</option>
+                <option value="lista">🎁 Lista de regalos</option>
+                <option value="experiencia">✨ Experiencia / Viaje</option>
+                <option value="ninguno">— Sin regalo</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Rol de honor</label>
+              <select id="m-rolHonor">
+                <option value="ninguno">Sin rol especial</option>
+                <option value="dama_novia">👗 Dama de honor (Novia)</option>
+                <option value="dama_novio">👗 Dama de honor (Novio)</option>
+                <option value="chambelan_novia">🤵 Chambelán (Novia)</option>
+                <option value="chambelan_novio">🤵 Chambelán (Novio)</option>
+                <option value="padrino">🎩 Padrino</option>
+                <option value="madrina">💐 Madrina</option>
+              </select>
             </div>
           </div>
           <div class="modal-section-title">Notas</div>

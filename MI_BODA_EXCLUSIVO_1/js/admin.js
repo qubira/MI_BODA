@@ -206,7 +206,14 @@ function seedDemoData() {
     {id:uid(),nombre:'Ricardo',  apellido:'Guzmán',   correo:'ricardo.g@mail.com',     telefono:'555-1018',acompanantes:1,estado:'confirmado',grupo:'trabajo',familia:'Trabajo Alejandro',  mesa:5,menu:'carne',       restricciones:'',           mensaje:'',                        notas:'',           fecha:daysAgo(15)},
     {id:uid(),nombre:'Daniela',  apellido:'Reyes',    correo:'dani.r@mail.com',        telefono:'555-1019',acompanantes:0,estado:'pendiente', grupo:'amigos', familia:'Amigos del colegio', mesa:0,menu:'',            restricciones:'',           mensaje:'',                        notas:'',           fecha:daysAgo(1)},
     {id:uid(),nombre:'Manuel',   apellido:'Ortega',   correo:'manuel.o@mail.com',      telefono:'555-1020',acompanantes:2,estado:'confirmado',grupo:'familia',familia:'Familia Ortega',     mesa:1,menu:'carne',       restricciones:'',           mensaje:'Dios los bendiga',       notas:'',           fecha:daysAgo(16)},
-  ]);
+  ].map((g,i)=>{
+    /* Roles y configuración de ejemplo en los primeros invitados */
+    const roles    = [null,'dama_novia','chambelan_novio','madrina','padrino','dama_novio','chambelan_novia',null,null,null,null,null,null,null,null,null,null,null,null,null];
+    const regalos  = ['lista','efectivo','lista','efectivo','efectivo','lista','lista','cualquiera','cualquiera','cualquiera','efectivo','lista','lista','efectivo','cualquiera','cualquiera','lista','cualquiera','cualquiera','cualquiera'];
+    const maxAcomp = [2,1,2,3,0,1,2,0,1,2,2,0,1,3,0,1,2,1,0,2];
+    const hijos    = ['si','no','si','si','no','no','si','no','no','no','si','no','no','si','no','no','si','no','no','no'];
+    return Object.assign({maxAcompanantes:maxAcomp[i]??2, puedeLlevarHijos:hijos[i]??'no', tipoRegalo:regalos[i]??'cualquiera', rolHonor:roles[i]||'ninguno'},g);
+  }));
 }
 
 /* ===== DEFAULT CRONOGRAMA ===== */
@@ -375,6 +382,20 @@ function renderView(v) {
 /* ===== GUESTS ===== */
 let guestFilter='all', guestSort='nombre', guestGroupFilter='all', guestSortDir=1;
 
+const REGALO_LABELS = {cualquiera:'',efectivo:'💵',lista:'🎁',experiencia:'✨',ninguno:'—'};
+const ROL_LABELS    = {ninguno:'',dama_novia:'👗N',dama_novio:'👗A',chambelan_novia:'🤵N',chambelan_novio:'🤵A',padrino:'🎩',madrina:'💐'};
+const ROL_TITLES    = {dama_novia:'Dama de honor (Novia)',dama_novio:'Dama de honor (Novio)',chambelan_novia:'Chambelán (Novia)',chambelan_novio:'Chambelán (Novio)',padrino:'Padrino',madrina:'Madrina'};
+
+function invBadges(g) {
+  let b = '';
+  if (g.puedeLlevarHijos==='si') b += `<span title="Puede traer niños" style="font-size:.9rem">👶</span>`;
+  const rLabel = REGALO_LABELS[g.tipoRegalo];
+  if (rLabel) b += `<span title="Regalo: ${g.tipoRegalo}" style="font-size:.9rem">${rLabel}</span>`;
+  const rolLabel = ROL_LABELS[g.rolHonor];
+  if (rolLabel) b += `<span title="${ROL_TITLES[g.rolHonor]||''}" style="font-size:.85rem">${rolLabel}</span>`;
+  return b || '<span style="color:var(--text-soft);font-size:.7rem">—</span>';
+}
+
 function refreshGuests() { renderTable(); }
 
 function renderTable() {
@@ -402,7 +423,9 @@ function renderTable() {
       <td>${esc(g.correo||'—')}</td>
       <td>${esc(g.telefono||'—')}</td>
       <td style="text-align:center">${parseInt(g.acompanantes)||0}</td>
+      <td style="text-align:center;color:var(--gold-light)"><strong>${g.maxAcompanantes??2}</strong></td>
       <td style="text-align:center"><strong>${total}</strong></td>
+      <td style="text-align:center">${invBadges(g)}</td>
       <td><span class="status-badge status-badge--${g.estado}">${estadoLabel(g.estado)}</span></td>
       <td><span class="grupo-badge grupo--${g.grupo||'otro'}">${grupoLabel(g.grupo)}</span></td>
       <td>${esc(g.familia||'—')}</td>
@@ -435,6 +458,10 @@ function openGuestModal(id) {
   document.getElementById('m-familia').value     = g?.familia||'';
   document.getElementById('m-mensaje').value     = g?.mensaje||'';
   document.getElementById('m-notas').value       = g?.notas||'';
+  document.getElementById('m-maxAcomp').value    = g?.maxAcompanantes??2;
+  document.getElementById('m-puedeLlevarHijos').value = g?.puedeLlevarHijos||'no';
+  document.getElementById('m-tipoRegalo').value  = g?.tipoRegalo||'cualquiera';
+  document.getElementById('m-rolHonor').value    = g?.rolHonor||'ninguno';
   modal.classList.remove('hidden');
 }
 window.openGuestModal = openGuestModal;
@@ -1593,7 +1620,7 @@ function initDashboard() {
   document.getElementById('guestModalForm').addEventListener('submit', e=>{
     e.preventDefault();
     const id=document.getElementById('m-id').value;
-    const g={id:id||uid(),nombre:document.getElementById('m-nombre').value.trim(),apellido:document.getElementById('m-apellido').value.trim(),correo:document.getElementById('m-correo').value.trim(),telefono:document.getElementById('m-telefono').value.trim(),acompanantes:parseInt(document.getElementById('m-acompanantes').value)||0,estado:document.getElementById('m-estado').value,menu:document.getElementById('m-menu').value,restricciones:document.getElementById('m-restricciones').value.trim(),grupo:document.getElementById('m-grupo').value,familia:document.getElementById('m-familia').value.trim(),mensaje:document.getElementById('m-mensaje').value.trim(),notas:document.getElementById('m-notas').value.trim(),fecha:id?(getGuests().find(x=>x.id===id)?.fecha||new Date().toISOString()):new Date().toISOString()};
+    const g={id:id||uid(),nombre:document.getElementById('m-nombre').value.trim(),apellido:document.getElementById('m-apellido').value.trim(),correo:document.getElementById('m-correo').value.trim(),telefono:document.getElementById('m-telefono').value.trim(),acompanantes:parseInt(document.getElementById('m-acompanantes').value)||0,estado:document.getElementById('m-estado').value,menu:document.getElementById('m-menu').value,restricciones:document.getElementById('m-restricciones').value.trim(),grupo:document.getElementById('m-grupo').value,familia:document.getElementById('m-familia').value.trim(),mensaje:document.getElementById('m-mensaje').value.trim(),notas:document.getElementById('m-notas').value.trim(),fecha:id?(getGuests().find(x=>x.id===id)?.fecha||new Date().toISOString()):new Date().toISOString(),maxAcompanantes:parseInt(document.getElementById('m-maxAcomp').value)??2,puedeLlevarHijos:document.getElementById('m-puedeLlevarHijos').value,tipoRegalo:document.getElementById('m-tipoRegalo').value,rolHonor:document.getElementById('m-rolHonor').value};
     if (id){updateGuest(g);toast('✅ Invitado actualizado');}
     else   {addGuest(g);toast('✅ Invitado agregado');}
     document.getElementById('guestModal').classList.add('hidden');
