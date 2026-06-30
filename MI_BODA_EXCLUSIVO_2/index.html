@@ -14,50 +14,37 @@
 </head>
 <body>
 
-  <!-- ===== INTRO: CARTA DE INVITACIÓN ===== -->
+  <!-- ===== INTRO CURTAIN ===== -->
   <div id="introOverlay" class="intro-overlay">
-    <!-- Fotos de fondo divididas -->
-    <div class="intro-photo intro-photo--l" aria-hidden="true"
-         style="background-image:url('img/mujer-abraza-al-hombre-sostiene-ramo-peonias-blancas-al-aire-libre-vista-frontal-detalles_8353-10966.avif')"></div>
-    <div class="intro-photo intro-photo--r" aria-hidden="true"
-         style="background-image:url('img/novio-que-pone-anillo-dedo-novia_1157-338.avif')"></div>
-    <!-- Overlay azul translúcido -->
-    <div class="intro-photo-overlay" aria-hidden="true"></div>
+    <!-- Dos paneles que se abren -->
+    <div class="intro-panel intro-panel--l"></div>
+    <div class="intro-panel intro-panel--r"></div>
     <!-- Partículas de fondo -->
     <div class="intro-particles" aria-hidden="true">
       <span></span><span></span><span></span><span></span>
       <span></span><span></span><span></span><span></span>
     </div>
-    <!-- Escena del sobre -->
-    <div class="intro-scene">
-      <p class="intro-eyebrow">Te invitamos a celebrar</p>
-
-      <div class="envelope" id="introEnvelope">
-        <div class="envelope__body">
-          <div class="envelope__letter">
-            <div class="intro-sep">
-              <span></span><i class="fa-solid fa-heart"></i><span></span>
-            </div>
-            <h1 class="intro-names">
-              <span id="introCardBride">Sofía</span>
-              <em>&amp;</em>
-              <span id="introCardGroom">Alejandro</span>
-            </h1>
-            <p class="intro-date" id="introCardDate">14 · 02 · 2027</p>
-          </div>
-        </div>
-        <div class="envelope__flap" aria-hidden="true">
-          <span class="envelope__seal">
-            <span class="intro-monogram">
-              <span id="introMonoBride">S</span><span class="intro-monogram__amp">&amp;</span><span id="introMonoGroom">A</span>
-            </span>
-          </span>
-        </div>
+    <!-- Contenido central -->
+    <div class="intro-content">
+      <div class="intro-monogram" aria-hidden="true">
+        <span id="introMonoBride">S</span><span class="intro-monogram__amp">&amp;</span><span id="introMonoGroom">A</span>
       </div>
-
+      <p class="intro-eyebrow">Te invitamos a celebrar</p>
+      <div class="intro-sep">
+        <span></span><i class="fa-solid fa-heart"></i><span></span>
+      </div>
+      <h1 class="intro-names">
+        <span id="introCardBride">Sofía</span>
+        <em>&amp;</em>
+        <span id="introCardGroom">Alejandro</span>
+      </h1>
+      <div class="intro-sep">
+        <span></span><i class="fa-solid fa-star"></i><span></span>
+      </div>
+      <p class="intro-date" id="introCardDate">14 · 02 · 2027</p>
       <p class="intro-cta" id="introHint">
         <span class="intro-cta__dot"></span>
-        Toca el sobre para abrir tu invitación
+        Toca para abrir tu invitación
       </p>
     </div>
   </div>
@@ -89,12 +76,37 @@
 
   <!-- ===== HERO ===== -->
   <section class="hero" id="inicio">
-    <!-- Columna de texto -->
-    <div class="hero__text">
+    <!-- Capas de fondo con parallax -->
+    <div class="hero__bg hero__bg--1" style="background-image:url('img/53853-boda.jpg')"></div>
+    <div class="hero__bg hero__bg--2" style="background-image:url('img/mujer-abraza-al-hombre-sostiene-ramo-peonias-blancas-al-aire-libre-vista-frontal-detalles_8353-10966.avif')"></div>
+    <div class="hero__overlay"></div>
+    <div class="hero__vignette"></div>
+
+    <!-- Decoraciones flotantes SVG -->
+    <div class="hero__deco hero__deco--ring-l" aria-hidden="true">
+      <svg viewBox="0 0 120 120" fill="none"><circle cx="60" cy="60" r="55" stroke="rgba(201,169,110,.4)" stroke-width="1.5"/><circle cx="60" cy="60" r="45" stroke="rgba(201,169,110,.25)" stroke-width="1"/><circle cx="60" cy="60" r="8" fill="rgba(201,169,110,.5)"/></svg>
+    </div>
+    <div class="hero__deco hero__deco--ring-r" aria-hidden="true">
+      <svg viewBox="0 0 80 80" fill="none"><circle cx="40" cy="40" r="36" stroke="rgba(255,255,255,.2)" stroke-width="1"/><circle cx="40" cy="40" r="28" stroke="rgba(201,169,110,.3)" stroke-width="1"/></svg>
+    </div>
+    <div class="hero__deco hero__deco--flower-t" aria-hidden="true">🌸</div>
+    <div class="hero__deco hero__deco--flower-b" aria-hidden="true">🌿</div>
+
+    <div class="hero__content">
       <!-- Fecha superior -->
       <div class="hero__eyebrow">
         <span class="hero__line-deco"></span>
         <span class="hero__eyebrow-text" id="heroBodaDate">Domingo · 14 · Febrero · 2027</span>
+        <span class="hero__line-deco"></span>
+      </div>
+
+      <!-- Ramo decorativo -->
+      <div class="hero__bouquet" aria-hidden="true">
+        <span class="bq-emoji">🌸</span>
+        <span class="bq-emoji">🌹</span>
+        <span class="bq-emoji">💐</span>
+        <span class="bq-emoji">🌷</span>
+        <span class="bq-emoji">🌸</span>
       </div>
 
       <p class="hero__pre">Con toda la alegría de nuestros corazones</p>
@@ -160,22 +172,12 @@
       </div>
     </div>
 
-    <!-- Columna de fotos en collage -->
-    <div class="hero__photo-wrap">
-      <div class="hero__photo-main">
-        <div class="hero__bg hero__bg--1" style="background-image:url('img/53853-boda.jpg')"></div>
-      </div>
-      <div class="hero__photo-accent">
-        <div class="hero__bg hero__bg--2" style="background-image:url('img/mujer-abraza-al-hombre-sostiene-ramo-peonias-blancas-al-aire-libre-vista-frontal-detalles_8353-10966.avif')"></div>
-      </div>
-    </div>
-
     <!-- Scroll indicator animado -->
     <div class="hero__scroll-indicator">
+      <span class="scroll-text">Desliza</span>
       <div class="scroll-mouse">
         <div class="scroll-wheel"></div>
       </div>
-      <span class="scroll-text">Desliza</span>
     </div>
   </section>
 
@@ -600,7 +602,7 @@
         <h2 class="section__title" data-split="word">Tu Presencia es Nuestro Mayor Regalo</h2>
         <p class="section__sub">Pero si deseas obsequiarnos algo para nuestro nuevo hogar, aquí van algunas ideas.</p>
       </div>
-      <div class="gift-grid">
+      <div class="gift-grid" id="giftGrid">
         <div class="gift-card reveal-rotate"><span class="gift-card__icon"><i class="fa-solid fa-blender"></i></span><h4>Licuadora</h4></div>
         <div class="gift-card reveal-rotate"><span class="gift-card__icon"><i class="fa-solid fa-bed"></i></span><h4>Juego de Cama</h4></div>
         <div class="gift-card reveal-rotate"><span class="gift-card__icon"><i class="fa-solid fa-tv"></i></span><h4>Smart TV</h4></div>

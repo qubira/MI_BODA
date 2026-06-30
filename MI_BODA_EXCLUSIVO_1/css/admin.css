@@ -1635,6 +1635,98 @@ form { padding: 16px 20px 0; }
   .mapa-comp img { width: 36px; height: 36px; }
 }
 
+/* MESAS SPLIT LAYOUT */
+.mesas-layout { display: flex; gap: 16px; height: calc(100vh - 140px); min-height: 500px; }
+.mesas-sidebar {
+  width: 240px; flex-shrink: 0;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 16px; display: flex; flex-direction: column;
+  overflow: hidden;
+}
+.mesas-sidebar__hd {
+  padding: 12px 14px 8px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  font-size: .82rem; font-weight: 600; color: var(--text);
+}
+.ms-tabs { display: flex; gap: 4px; }
+.ms-tab {
+  padding: 3px 8px; border-radius: 6px; border: none;
+  font-size: .65rem; font-weight: 600; cursor: pointer;
+  background: transparent; color: var(--text-soft); font-family: inherit;
+}
+.ms-tab.active { background: rgba(201,169,110,.15); color: var(--gold-dark); }
+.mesas-sidebar__search {
+  margin: 8px 10px; padding: 6px 10px;
+  border: 1px solid var(--border); border-radius: 8px;
+  font-size: .78rem; background: var(--bg); color: var(--text);
+  font-family: inherit; width: calc(100% - 20px);
+}
+.mesas-guest-list {
+  flex: 1; overflow-y: auto; padding: 4px 8px 8px;
+  display: flex; flex-direction: column; gap: 3px;
+}
+.mg-row {
+  display: flex; align-items: center; gap: 8px;
+  padding: 6px 8px; border-radius: 8px;
+  font-size: .74rem; cursor: default;
+  border: 1px solid transparent;
+}
+.mg-row--confirmado { background: rgba(76,175,80,.06); }
+.mg-row--pendiente  { background: rgba(255,152,0,.06); }
+.mg-row--rechazado  { background: rgba(244,67,54,.05); opacity: .6; }
+.mg-row--asignado   { opacity: .45; }
+.mg-av {
+  width: 24px; height: 24px; border-radius: 50%; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: .6rem; font-weight: 700; color: #fff;
+}
+.mg-av--confirmado { background: #4caf50; }
+.mg-av--pendiente  { background: #ff9800; }
+.mg-av--rechazado  { background: #f44336; }
+.mg-info { flex: 1; min-width: 0; }
+.mg-name { font-weight: 600; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.mg-status { font-size: .62rem; color: var(--text-soft); }
+.mg-mesa-tag { font-size: .6rem; padding: 1px 6px; border-radius: 99px; background: rgba(201,169,110,.12); color: var(--gold-dark); white-space: nowrap; }
+.mesas-main { flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; }
+@media (max-width: 768px) {
+  .mesas-layout { flex-direction: column; height: auto; }
+  .mesas-sidebar { width: 100%; max-height: 220px; }
+}
+
+/* Mesa chips — pending state */
+.mesa-chip--pending { border-color: rgba(239,68,68,.35); background: rgba(239,68,68,.06); color: #b91c1c; }
+.mesa-chip__av--pending { background: linear-gradient(135deg, #ef4444, #b91c1c); }
+
+/* Proveedor action buttons */
+.prov-btn-edit {
+  flex: 1; padding: 7px 14px;
+  background: rgba(201,169,110,.1); color: var(--gold-dark);
+  border: 1px solid rgba(201,169,110,.25); border-radius: 11px;
+  font-size: .8rem; font-weight: 600; cursor: pointer; font-family: inherit;
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  transition: background .15s, transform .1s;
+}
+.prov-btn-edit:hover { background: rgba(201,169,110,.2); transform: translateY(-1px); }
+.prov-btn-del {
+  width: 38px; height: 38px; flex-shrink: 0;
+  background: rgba(239,68,68,.08); color: #ef4444;
+  border: 1px solid rgba(239,68,68,.18); border-radius: 11px;
+  font-size: .88rem; cursor: pointer; font-family: inherit;
+  display: flex; align-items: center; justify-content: center;
+  transition: background .15s, transform .1s;
+}
+.prov-btn-del:hover { background: rgba(239,68,68,.18); transform: translateY(-1px); }
+
+/* Gift list editor */
+.cfg-regalos-list { display: flex; flex-direction: column; gap: 8px; }
+.cfg-regalo-row {
+  display: flex; align-items: center; gap: 8px;
+  padding: 8px; background: rgba(201,169,110,.05);
+  border: 1px solid rgba(201,169,110,.15); border-radius: 10px;
+}
+.cfg-regalo-row input { flex: 1; padding: 6px 10px; border: 1px solid var(--border); border-radius: 7px; font-size: .8rem; background: var(--surface); color: var(--text); font-family: inherit; }
+.cfg-regalo-del { background: rgba(239,68,68,.08); color: #ef4444; border: 1px solid rgba(239,68,68,.2); border-radius: 7px; padding: 5px 9px; cursor: pointer; font-size: .8rem; flex-shrink: 0; }
+
 /* ============================================================
    PRINT — SEATING CHART PDF
    ============================================================ */

@@ -482,30 +482,50 @@
 
         <!-- ===== VIEW: MESAS ===== -->
         <section class="view" id="view-mesas">
-          <div class="toolbar">
-            <div class="toolbar-right" style="margin-left:auto;flex-wrap:wrap;gap:8px">
-              <button class="btn-outline-sm" onclick="autoAssignGuests()" title="Asigna invitados automáticamente agrupando por familia">
-                <i class="fa-solid fa-wand-magic-sparkles"></i> Auto-asignar
-              </button>
-              <button class="btn-outline-sm" onclick="clearMesaAssignments()" title="Quitar todas las asignaciones">
-                <i class="fa-solid fa-eraser"></i> Limpiar
-              </button>
-              <button class="btn-outline-sm" onclick="exportMesasPDF()">
-                <i class="fa-solid fa-file-pdf"></i> PDF
-              </button>
-              <button class="btn-primary-sm" id="addMesaBtn">
-                <i class="fa-solid fa-plus"></i> Nueva Mesa
-              </button>
+          <div class="mesas-layout">
+            <!-- Sidebar: guest list -->
+            <aside class="mesas-sidebar" id="mesasSidebar">
+              <div class="mesas-sidebar__hd">
+                <span><i class="fa-solid fa-users"></i> Invitados</span>
+                <div class="ms-tabs">
+                  <button class="ms-tab active" data-tab="all">Todos</button>
+                  <button class="ms-tab" data-tab="sin">Sin mesa</button>
+                </div>
+              </div>
+              <input type="search" id="mesasSideSearch" class="mesas-sidebar__search" placeholder="Buscar invitado..." />
+              <div id="mesasGuestList" class="mesas-guest-list"></div>
+            </aside>
+            <!-- Main: toolbar + grid -->
+            <div class="mesas-main">
+              <div class="toolbar">
+                <div class="toolbar-right" style="margin-left:auto;flex-wrap:wrap;gap:8px">
+                  <button class="btn-outline-sm" onclick="autoAssignGuests()" title="Asigna invitados automáticamente agrupando por familia">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i> Auto-asignar
+                  </button>
+                  <button class="btn-outline-sm" onclick="clearMesaAssignments()" title="Quitar todas las asignaciones">
+                    <i class="fa-solid fa-eraser"></i> Limpiar
+                  </button>
+                  <button class="btn-outline-sm" onclick="exportMesasPDF()">
+                    <i class="fa-solid fa-file-pdf"></i> PDF
+                  </button>
+                  <button class="btn-outline-sm" id="quickCreateMesasBtn">
+                    <i class="fa-solid fa-table-cells-large"></i> Creación rápida
+                  </button>
+                  <button class="btn-primary-sm" id="addMesaBtn">
+                    <i class="fa-solid fa-plus"></i> Nueva Mesa
+                  </button>
+                </div>
+              </div>
+              <div id="mesasUnassigned" class="mesas-unassigned hidden">
+                <p class="mesas-unassigned__title"><i class="fa-solid fa-circle-exclamation"></i> Sin asignar</p>
+                <div id="mesasUnassignedList" class="mesas-unassigned__list"></div>
+              </div>
+              <div id="mesasGrid" class="mesas-grid"></div>
+              <div class="table-empty hidden" id="mesasEmpty">
+                <i class="fa-solid fa-chair"></i>
+                <p>No hay mesas configuradas. ¡Crea la primera!</p>
+              </div>
             </div>
-          </div>
-          <div id="mesasUnassigned" class="mesas-unassigned hidden">
-            <p class="mesas-unassigned__title"><i class="fa-solid fa-circle-exclamation"></i> Sin asignar</p>
-            <div id="mesasUnassignedList" class="mesas-unassigned__list"></div>
-          </div>
-          <div id="mesasGrid" class="mesas-grid"></div>
-          <div class="table-empty hidden" id="mesasEmpty">
-            <i class="fa-solid fa-chair"></i>
-            <p>No hay mesas configuradas. ¡Crea la primera!</p>
           </div>
         </section>
 
@@ -1065,6 +1085,46 @@
         <button class="lightbox-close" id="lightboxClose"><i class="fa-solid fa-xmark"></i></button>
         <img id="lightboxImg" src="" alt="" />
         <p id="lightboxCaption" class="lightbox-caption"></p>
+      </div>
+    </div>
+
+    <!-- ===== MODAL CREACIÓN RÁPIDA MESAS ===== -->
+    <div class="modal-overlay hidden" id="quickMesaModal">
+      <div class="modal">
+        <div class="modal-header">
+          <div class="modal-header-icon"><i class="fa-solid fa-table-cells-large"></i></div>
+          <h3>Creación Rápida de Mesas</h3>
+          <button class="modal-close" id="quickMesaClose"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="modal-grid" style="margin-bottom:16px">
+          <div class="form-group">
+            <label>Número de mesas *</label>
+            <input type="number" id="qm-count" min="1" max="50" value="10" />
+          </div>
+          <div class="form-group">
+            <label>Asientos por mesa *</label>
+            <input type="number" id="qm-seats" min="1" max="30" value="8" />
+          </div>
+        </div>
+        <div class="modal-grid" style="margin-bottom:16px">
+          <div class="form-group">
+            <label>Forma</label>
+            <select id="qm-forma">
+              <option value="redonda">Redonda</option>
+              <option value="rectangular">Rectangular</option>
+              <option value="cuadrada">Cuadrada</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Prefijo del nombre</label>
+            <input type="text" id="qm-prefix" value="Mesa" placeholder="Ej: Mesa, Table, M" />
+          </div>
+        </div>
+        <p style="font-size:.8rem;color:var(--text-soft);margin-bottom:16px" id="qm-preview">Se crearán: Mesa 1, Mesa 2... Mesa 10 · 8 asientos c/u</p>
+        <div class="modal-footer">
+          <button type="button" class="btn-cancel" id="quickMesaCancel">Cancelar</button>
+          <button type="button" class="btn-save" id="quickMesaConfirm"><i class="fa-solid fa-wand-magic-sparkles"></i> Crear mesas</button>
+        </div>
       </div>
     </div>
 

@@ -9,6 +9,36 @@ const DB_KEY = 'boda_rsvp_guests';
 function getGuests()  { try { return JSON.parse(localStorage.getItem(DB_KEY)) || []; } catch { return []; } }
 function saveGuest(g) { const a = getGuests(); a.push(g); localStorage.setItem(DB_KEY, JSON.stringify(a)); }
 
+/* ===== VENUE (from admin config) ===== */
+(function applyVenue() {
+  var venue = {};
+  try { venue = JSON.parse(localStorage.getItem('boda_ubicacion')) || {}; } catch(e) {}
+  if (venue.embedUrl) {
+    var iframe = document.getElementById('venueMapIframe');
+    if (iframe) iframe.src = venue.embedUrl;
+  }
+  if (venue.mapsUrl) {
+    var link = document.getElementById('venueDirections');
+    if (link) link.href = venue.mapsUrl;
+  }
+  var nameEl = document.getElementById('venueNameDisplay');
+  var addrEl = document.getElementById('venueAddrDisplay');
+  if (nameEl && venue.name) nameEl.textContent = venue.name;
+  if (addrEl && venue.address) addrEl.textContent = venue.address;
+})();
+
+/* ===== GIFT LIST (from admin config) ===== */
+(function applyGifts() {
+  var gifts = null;
+  try { gifts = JSON.parse(localStorage.getItem('boda_regalos')); } catch(e) {}
+  if (!gifts || !gifts.length) return;
+  var grid = document.getElementById('giftGrid');
+  if (!grid) return;
+  grid.innerHTML = gifts.map(function(g) {
+    return '<div class="gift-card reveal-rotate"><span class="gift-card__icon"><i class="fa-solid ' + (g.icon || 'fa-gift') + '"></i></span><h4>' + (g.name || '') + '</h4></div>';
+  }).join('');
+})();
+
 /* ===== INTRO CURTAIN ===== */
 (function initIntro() {
   var overlay = document.getElementById('introOverlay');

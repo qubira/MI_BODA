@@ -9,6 +9,9 @@ const TOTAL_INVITED  = 120;
 const WEDDING_KEY    = 'boda_wedding_config';
 const MUSIC_KEY      = 'boda_musica';
 const VENUE_KEY      = 'boda_ubicacion';
+const REGALOS_KEY    = 'boda_regalos';
+function getRegalos() { try { return JSON.parse(localStorage.getItem(REGALOS_KEY)) || null; } catch(e) { return null; } }
+function setRegalos(r) { localStorage.setItem(REGALOS_KEY, JSON.stringify(r)); }
 
 /* ===== WEDDING CONFIG ===== */
 function getWeddingConfig() {
@@ -1211,6 +1214,47 @@ function refreshConfig() {
       <button class="btn-cfg-save" id="saveDressCodeBtn" style="margin-top:24px">
         <i class="fa-solid fa-floppy-disk"></i> Guardar vestimenta
       </button>
+    </div>
+
+    <div class="card mt-16">
+      <h3 class="card-title"><i class="fa-solid fa-location-dot"></i> Ubicación del Evento</h3>
+      <p style="font-size:.78rem;color:var(--text-soft);margin-bottom:18px">
+        Configura el lugar del evento. Se mostrará automáticamente en la página de invitados.
+      </p>
+      <div class="cfg-form">
+        <div class="cfg-field">
+          <label class="cfg-label"><i class="fa-solid fa-building"></i> Nombre del local</label>
+          <input type="text" class="cfg-input" id="cfg-venue-name" value="${esc(getVenue().name || 'Casa Hacienda Mamacona')}" placeholder="Ej: Casa Hacienda Mamacona" />
+        </div>
+        <div class="cfg-field">
+          <label class="cfg-label"><i class="fa-solid fa-map-pin"></i> Dirección</label>
+          <input type="text" class="cfg-input" id="cfg-venue-addr" value="${esc(getVenue().address || 'Av. Mamacona s/n, Lurín, Lima')}" placeholder="Ej: Av. Mamacona s/n, Lurín, Lima" />
+        </div>
+        <div class="cfg-field">
+          <label class="cfg-label"><i class="fa-solid fa-map-location-dot"></i> URL de Google Maps (para el botón "Cómo llegar")</label>
+          <input type="url" class="cfg-input" id="cfg-venue-url" value="${esc(getVenue().mapsUrl || '')}" placeholder="https://maps.google.com/..." />
+        </div>
+        <div class="cfg-field">
+          <label class="cfg-label"><i class="fa-solid fa-map"></i> URL del iframe del mapa (Google Maps embed)</label>
+          <input type="url" class="cfg-input" id="cfg-venue-embed" value="${esc(getVenue().embedUrl || '')}" placeholder="https://maps.google.com/maps?q=...&output=embed" />
+          <p style="font-size:.72rem;color:var(--text-soft);margin-top:4px">En Google Maps: Compartir → Insertar un mapa → copia la URL del src="" del iframe</p>
+        </div>
+      </div>
+      <button class="btn-cfg-save" id="saveVenueBtn" style="margin-top:16px">
+        <i class="fa-solid fa-floppy-disk"></i> Guardar ubicación
+      </button>
+    </div>
+
+    <div class="card mt-16">
+      <h3 class="card-title"><i class="fa-solid fa-gift"></i> Lista de Regalos</h3>
+      <p style="font-size:.78rem;color:var(--text-soft);margin-bottom:18px">
+        Personaliza la lista de regalos sugeridos que aparece en la página de invitados.
+      </p>
+      <div id="cfgRegalosList" class="cfg-regalos-list"></div>
+      <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap">
+        <button class="btn-cfg-save" id="addRegalosItem"><i class="fa-solid fa-plus"></i> Agregar item</button>
+        <button class="btn-cfg-save" id="saveRegalosBtn"><i class="fa-solid fa-floppy-disk"></i> Guardar lista</button>
+      </div>
     </div>`;
 
   const pad = n => String(n).padStart(2,'0');
@@ -1245,6 +1289,62 @@ function refreshConfig() {
     setWeddingConfig({...cfg, bride, groom});
     updateAdminNames();
     toast('✅ Nombres guardados correctamente');
+  });
+
+  /* ── Ubicación ── */
+  document.getElementById('saveVenueBtn').addEventListener('click', () => {
+    const venue = {
+      name:     document.getElementById('cfg-venue-name').value.trim(),
+      address:  document.getElementById('cfg-venue-addr').value.trim(),
+      mapsUrl:  document.getElementById('cfg-venue-url').value.trim(),
+      embedUrl: document.getElementById('cfg-venue-embed').value.trim(),
+    };
+    setVenue(venue);
+    toast('✅ Ubicación guardada');
+  });
+
+  /* ── Lista de Regalos ── */
+  const DEFAULT_REGALOS = [
+    {icon:'fa-blender',name:'Licuadora'},
+    {icon:'fa-bed',name:'Juego de Cama'},
+    {icon:'fa-tv',name:'Smart TV'},
+    {icon:'fa-mobile-screen-button',name:'Celular'},
+    {icon:'fa-kitchen-set',name:'Vajilla'},
+    {icon:'fa-couch',name:'Muebles del Hogar'},
+    {icon:'fa-suitcase-rolling',name:'Luna de Miel'},
+    {icon:'fa-gift',name:'Sobre de Felicitación'},
+  ];
+  let regalos = getRegalos() || DEFAULT_REGALOS;
+
+  function renderRegalosEditor() {
+    const el = document.getElementById('cfgRegalosList');
+    if (!el) return;
+    el.innerHTML = regalos.map((r, i) => `
+      <div class="cfg-regalo-row">
+        <input type="text" value="${esc(r.icon)}" placeholder="fa-gift (clase FA6)" data-ri="${i}" data-rfield="icon" />
+        <input type="text" value="${esc(r.name)}" placeholder="Nombre del regalo" data-ri="${i}" data-rfield="name" />
+        <button class="cfg-regalo-del" data-rdel="${i}"><i class="fa-solid fa-trash-can"></i></button>
+      </div>`).join('');
+    el.querySelectorAll('input').forEach(inp => inp.addEventListener('input', () => {
+      const idx = parseInt(inp.dataset.ri);
+      const field = inp.dataset.rfield;
+      regalos[idx][field] = inp.value;
+    }));
+    el.querySelectorAll('[data-rdel]').forEach(btn => btn.addEventListener('click', () => {
+      regalos.splice(parseInt(btn.dataset.rdel), 1);
+      renderRegalosEditor();
+    }));
+  }
+  renderRegalosEditor();
+
+  document.getElementById('addRegalosItem')?.addEventListener('click', () => {
+    regalos.push({icon:'fa-gift', name:'Nuevo regalo'});
+    renderRegalosEditor();
+    document.getElementById('cfgRegalosList').lastElementChild?.querySelector('input:last-of-type')?.focus();
+  });
+  document.getElementById('saveRegalosBtn')?.addEventListener('click', () => {
+    setRegalos(regalos);
+    toast('✅ Lista de regalos guardada');
   });
 
   /* ── Música: cargar estado guardado ── */
@@ -1513,6 +1613,53 @@ function initDashboard() {
 
   /* Mesas */
   document.getElementById('addMesaBtn').addEventListener('click', () => openMesaModal(null));
+
+  // Quick create mesas
+  document.getElementById('quickCreateMesasBtn')?.addEventListener('click', () => {
+    document.getElementById('quickMesaModal').classList.remove('hidden');
+    updateQMPreview();
+  });
+  const closeQM = () => document.getElementById('quickMesaModal').classList.add('hidden');
+  document.getElementById('quickMesaClose')?.addEventListener('click', closeQM);
+  document.getElementById('quickMesaCancel')?.addEventListener('click', closeQM);
+  document.getElementById('quickMesaModal')?.addEventListener('click', e => { if (e.target.id === 'quickMesaModal') closeQM(); });
+
+  function updateQMPreview() {
+    const n = parseInt(document.getElementById('qm-count')?.value) || 10;
+    const s = parseInt(document.getElementById('qm-seats')?.value) || 8;
+    const p = document.getElementById('qm-prefix')?.value.trim() || 'Mesa';
+    const el = document.getElementById('qm-preview');
+    if (el) el.textContent = `Se crearán: ${p} 1, ${p} 2... ${p} ${n} · ${s} asientos c/u`;
+  }
+  ['qm-count','qm-seats','qm-prefix'].forEach(id => {
+    document.getElementById(id)?.addEventListener('input', updateQMPreview);
+  });
+
+  document.getElementById('quickMesaConfirm')?.addEventListener('click', () => {
+    const n    = Math.min(50, Math.max(1, parseInt(document.getElementById('qm-count').value) || 10));
+    const seats = Math.min(30, Math.max(1, parseInt(document.getElementById('qm-seats').value) || 8));
+    const forma = document.getElementById('qm-forma').value;
+    const prefix = document.getElementById('qm-prefix').value.trim() || 'Mesa';
+    const existing = getMesas();
+    const newMesas = [];
+    for (let i = 1; i <= n; i++) {
+      newMesas.push({ id: uid(), nombre: `${prefix} ${i}`, capacidad: seats, forma, zona: '', guests: [] });
+    }
+    setMesas([...existing, ...newMesas]);
+    closeQM();
+    toast(`✅ ${n} mesas creadas`);
+    refreshMesas();
+  });
+
+  // Mesas sidebar tabs and search
+  document.getElementById('mesasSidebar')?.addEventListener('click', e => {
+    const tab = e.target.closest('.ms-tab');
+    if (!tab) return;
+    document.querySelectorAll('.ms-tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    refreshMesasSidebar();
+  });
+  document.getElementById('mesasSideSearch')?.addEventListener('input', refreshMesasSidebar);
   const closeMesa = () => document.getElementById('mesaModal').classList.add('hidden');
   document.getElementById('mesaModalClose').addEventListener('click',  closeMesa);
   document.getElementById('mesaModalCancel').addEventListener('click', closeMesa);
@@ -1723,7 +1870,7 @@ function seedPresupuesto() {
 function seedProveedores() {
   if (getProveedores().length) return;
   setProveedores([
-    {id:uid(),nombre:'Casa Hacienda Mamacona',tipo:'Venue',       contacto:'Jorge Ríos',   telefono:'555-2001',email:'info@mamacona.com',    web:'@haciendamamacona',estado:'contratado',pago:'parcial', monto:7500,fecha:'2027-02-14',notas:'Incluye jardines, salÓn y estacionamiento'},
+    {id:uid(),nombre:'Casa Hacienda Mamacona',tipo:'Venue',       contacto:'Jorge Ríos',   telefono:'555-2001',email:'info@mamacona.com',    web:'@haciendamamacona',estado:'contratado',pago:'parcial', monto:7500,fecha:'2027-02-14',notas:'Incluye jardines, salón y estacionamiento'},
     {id:uid(),nombre:'Catering Delicias SA',  tipo:'Catering',    contacto:'Chef Roberto', telefono:'555-2002',email:'catering@delicias.com', web:'www.delicias.com',  estado:'contratado',pago:'parcial', monto:5800,fecha:'2027-02-14',notas:'Menú aprobado en degustaciÓn Nov 2026'},
     {id:uid(),nombre:'Foto & Arte Studio',    tipo:'Fotografía',  contacto:'Ana Vargas',   telefono:'555-2003',email:'ana@fotoyarte.com',     web:'@fotoyarte',         estado:'contratado',pago:'completo',monto:2800,fecha:'2027-02-14',notas:'Álbum digital + 2 lienzos'},
     {id:uid(),nombre:'DJ Maestro Sounds',     tipo:'Música / DJ', contacto:'DJ Carlo',     telefono:'555-2004',email:'djcarlo@mail.com',      web:'@djcarlo',           estado:'contratado',pago:'pendiente',monto:1400,fecha:'2027-02-14',notas:'Sonido + luces incluidos'},
@@ -1896,7 +2043,8 @@ function refreshMesas() {
       ? `<div class="mesa-card__guests">${
           gObjs.slice(0, SHOW).map(g => {
             const ini = ((g.nombre[0] || '') + (g.apellido?.[0] || '')).toUpperCase();
-            return `<div class="mesa-chip"><span class="mesa-chip__av">${ini}</span>${esc((g.nombre + ' ' + (g.apellido || '')).trim())}</div>`;
+            const isPending = g.estado !== 'confirmado';
+            return `<div class="mesa-chip${isPending ? ' mesa-chip--pending' : ''}"><span class="mesa-chip__av${isPending ? ' mesa-chip__av--pending' : ''}">${ini}</span>${esc((g.nombre + ' ' + (g.apellido || '')).trim())}</div>`;
           }).join('') +
           (gObjs.length > SHOW ? `<div class="mesa-chip mesa-chip--more">+${gObjs.length - SHOW} más</div>` : '')
         }</div>`
@@ -1936,6 +2084,7 @@ function refreshMesas() {
       </div>
     </div>`;
   }).join('');
+  refreshMesasSidebar();
 }
 
 window.deleteMesa = function(id) {
@@ -1944,6 +2093,41 @@ window.deleteMesa = function(id) {
   toast('🗑️ Mesa eliminada');
   refreshMesas();
 };
+
+function refreshMesasSidebar() {
+  const listEl = document.getElementById('mesasGuestList');
+  if (!listEl) return;
+  const guests = getGuests().filter(g => g.estado !== 'rechazado');
+  const mesas  = getMesas();
+  const assignedIds = new Set(mesas.flatMap(m => m.guests || []));
+  const mesaOf = {};
+  mesas.forEach(m => (m.guests || []).forEach(gid => { mesaOf[gid] = m.nombre; }));
+
+  const activeTab = document.querySelector('.ms-tab.active')?.dataset?.tab || 'all';
+  const q = (document.getElementById('mesasSideSearch')?.value || '').toLowerCase();
+
+  let filtered = guests;
+  if (activeTab === 'sin') filtered = filtered.filter(g => !assignedIds.has(g.id));
+  if (q) filtered = filtered.filter(g =>
+    (g.nombre + ' ' + (g.apellido || '')).toLowerCase().includes(q)
+  );
+
+  if (!filtered.length) { listEl.innerHTML = '<p style="font-size:.72rem;color:var(--text-soft);padding:8px">Sin resultados</p>'; return; }
+
+  listEl.innerHTML = filtered.map(g => {
+    const ini = ((g.nombre[0] || '') + (g.apellido?.[0] || '')).toUpperCase();
+    const mesa = mesaOf[g.id];
+    const assigned = assignedIds.has(g.id);
+    return `<div class="mg-row mg-row--${g.estado}${assigned ? ' mg-row--asignado' : ''}">
+      <div class="mg-av mg-av--${g.estado}">${ini}</div>
+      <div class="mg-info">
+        <div class="mg-name">${esc((g.nombre + ' ' + (g.apellido || '')).trim())}</div>
+        <div class="mg-status">${g.estado === 'confirmado' ? '✓ Confirmado' : '⏳ Pendiente'}</div>
+      </div>
+      ${mesa ? `<span class="mg-mesa-tag">${esc(mesa)}</span>` : ''}
+    </div>`;
+  }).join('');
+}
 
 /* ============================================================
    MAPA DEL LOCAL
@@ -2208,8 +2392,8 @@ function refreshProveedores() {
       ${p.monto ? '<div class="proveedor-card__monto"><i class="fa-solid fa-tag" style="color:var(--gold);margin-right:5px"></i> $' + fmtMoney(p.monto) + '</div>' : ''}
       ${p.notas ? '<p style="font-size:.76rem;color:var(--text-soft);margin-bottom:10px;font-style:italic">' + esc(p.notas) + '</p>' : ''}
       <div class="proveedor-card__actions">
-        <button class="mesa-card__btn mesa-card__btn--edit" onclick="openProveedorModal('${p.id}')"><i class="fa-solid fa-pen"></i> Editar</button>
-        <button class="mesa-card__btn mesa-card__btn--del"  onclick="deleteProveedor('${p.id}')"><i class="fa-solid fa-trash"></i></button>
+        <button class="prov-btn-edit" onclick="openProveedorModal('${p.id}')"><i class="fa-solid fa-pen-to-square"></i> Editar</button>
+        <button class="prov-btn-del"  onclick="deleteProveedor('${p.id}')"><i class="fa-solid fa-trash-can"></i></button>
       </div>
     </div>`).join('');
 }
@@ -2525,7 +2709,7 @@ function createMapaNode(el) {
   node.style.cssText = `left:${el.x}px;top:${el.y}px;width:${el.w}px;height:${el.h}px;transform:rotate(${el.rot||0}deg);z-index:${el.zIndex||1};`;
   node.innerHTML = `
     <img class="mapa-el__img" src="${el.src}" alt="${esc(el.lbl||'')}" draggable="false" />
-    ${el.lbl ? `<div class="mapa-el__label">${esc(el.lbl)}</div>` : ''}
+    ${el.lbl ? `<div class="mapa-el__label" style="transform:rotate(${-(el.rot||0)}deg)">${esc(el.lbl)}</div>` : ''}
     <div class="mapa-el-handles">
       <div class="mapa-handle mapa-handle--tl" data-handle="tl"></div>
       <div class="mapa-handle mapa-handle--tr" data-handle="tr"></div>

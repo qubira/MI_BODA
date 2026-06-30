@@ -3,82 +3,70 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Sofía & Alejandro — 14 de Febrero 2027 · Invitación exclusiva" />
-  <title>Sofía & Alejandro · XIV · II · MMXXVII</title>
+  <meta name="description" content="Confirma tu asistencia a la boda de Sofía & Alejandro — 14 de Febrero 2027" />
+  <title>💍 Sofía & Alejandro · 14·02·2027</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Sacramento&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Montserrat:wght@300;400;500;600&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
 
-  <!-- ============================================================
-       INTRO — Medallón de anillos dorados
-       ============================================================ -->
+  <!-- ===== INTRO CURTAIN ===== -->
   <div id="introOverlay" class="intro-overlay">
-    <div class="intro-ring intro-ring--1" aria-hidden="true"></div>
-    <div class="intro-ring intro-ring--2" aria-hidden="true"></div>
-    <div class="intro-ring intro-ring--3" aria-hidden="true"></div>
-    <div class="intro-ring intro-ring--4" aria-hidden="true"></div>
-
+    <!-- Dos paneles que se abren -->
+    <div class="intro-panel intro-panel--l"></div>
+    <div class="intro-panel intro-panel--r"></div>
+    <!-- Partículas de fondo -->
     <div class="intro-particles" aria-hidden="true">
       <span></span><span></span><span></span><span></span>
       <span></span><span></span><span></span><span></span>
     </div>
-
-    <div class="intro-scene">
-      <p class="intro-eyebrow">Una invitación exclusiva</p>
-
-      <div class="intro-monogram">
-        <span id="introMonoBride">S</span>
-        <span class="intro-monogram__amp">&amp;</span>
-        <span id="introMonoGroom">A</span>
+    <!-- Contenido central -->
+    <div class="intro-content">
+      <div class="intro-monogram" aria-hidden="true">
+        <span id="introMonoBride">S</span><span class="intro-monogram__amp">&amp;</span><span id="introMonoGroom">A</span>
       </div>
-
+      <p class="intro-eyebrow">Te invitamos a celebrar</p>
       <div class="intro-sep">
-        <span class="intro-sep__line"></span>
-        <i class="fa-solid fa-ring" aria-hidden="true"></i>
-        <span class="intro-sep__line"></span>
+        <span></span><i class="fa-solid fa-heart"></i><span></span>
       </div>
-
       <h1 class="intro-names">
         <span id="introCardBride">Sofía</span>
         <em>&amp;</em>
         <span id="introCardGroom">Alejandro</span>
       </h1>
-
+      <div class="intro-sep">
+        <span></span><i class="fa-solid fa-star"></i><span></span>
+      </div>
       <p class="intro-date" id="introCardDate">14 · 02 · 2027</p>
-
       <p class="intro-cta" id="introHint">
         <span class="intro-cta__dot"></span>
-        Toca para ingresar
+        Toca para abrir tu invitación
       </p>
     </div>
   </div>
 
-  <!-- Cursor -->
+  <!-- ===== CURSOR PERSONALIZADO ===== -->
   <div class="cursor" id="cursor"></div>
   <div class="cursor-trail" id="cursorTrail"></div>
 
-  <!-- ============================================================
-       NAV — Barra minimal oscura
-       ============================================================ -->
+  <!-- ===== NAV ===== -->
   <nav class="nav" id="mainNav">
     <div class="nav__brand">
-      <span id="navBrideInitial">S</span>
+      <span class="nav__s" id="navBrideInitial">S</span>
       <span class="nav__amp">&</span>
-      <span id="navGroomInitial">A</span>
+      <span class="nav__a" id="navGroomInitial">A</span>
     </div>
-    <button class="nav__toggle" id="navToggle" aria-label="Menú">
+    <button class="nav__toggle" id="navToggle" aria-label="Abrir menú">
       <span></span><span></span><span></span>
     </button>
     <ul class="nav__menu" id="navMenu">
-      <li><a href="#historia">Historia</a></li>
+      <li><a href="#historia">Nuestra Historia</a></li>
       <li><a href="#evento">El Evento</a></li>
-      <li><a href="#faq">FAQ</a></li>
-      <li><a href="#galeria">Galería</a></li>
+      <li><a href="#faq">Preguntas</a></li>
       <li><a href="#regalos">Regalos</a></li>
       <li><a href="#rsvp">Confirmar</a></li>
       <li><a href="#contacto">Contacto</a></li>
@@ -86,60 +74,53 @@
     </ul>
   </nav>
 
-  <!-- ============================================================
-       HERO — Cine editorial oscuro
-       ============================================================ -->
+  <!-- ===== HERO ===== -->
   <section class="hero" id="inicio">
+    <!-- Capas de fondo con parallax -->
     <div class="hero__bg hero__bg--1" style="background-image:url('img/53853-boda.jpg')"></div>
     <div class="hero__bg hero__bg--2" style="background-image:url('img/mujer-abraza-al-hombre-sostiene-ramo-peonias-blancas-al-aire-libre-vista-frontal-detalles_8353-10966.avif')"></div>
     <div class="hero__overlay"></div>
+    <div class="hero__vignette"></div>
 
-    <!-- Ornamentos de esquina SVG -->
-    <div class="hero__corner hero__corner--tl" aria-hidden="true">
-      <svg width="70" height="70" viewBox="0 0 70 70" fill="none">
-        <path d="M4 4 L4 38 M4 4 L38 4" stroke="rgba(201,160,84,.55)" stroke-width="1.4"/>
-        <circle cx="4" cy="4" r="3" fill="rgba(201,160,84,.7)"/>
-      </svg>
+    <!-- Decoraciones flotantes SVG -->
+    <div class="hero__deco hero__deco--ring-l" aria-hidden="true">
+      <svg viewBox="0 0 120 120" fill="none"><circle cx="60" cy="60" r="55" stroke="rgba(201,169,110,.4)" stroke-width="1.5"/><circle cx="60" cy="60" r="45" stroke="rgba(201,169,110,.25)" stroke-width="1"/><circle cx="60" cy="60" r="8" fill="rgba(201,169,110,.5)"/></svg>
     </div>
-    <div class="hero__corner hero__corner--tr" aria-hidden="true">
-      <svg width="70" height="70" viewBox="0 0 70 70" fill="none">
-        <path d="M66 4 L66 38 M66 4 L32 4" stroke="rgba(201,160,84,.55)" stroke-width="1.4"/>
-        <circle cx="66" cy="4" r="3" fill="rgba(201,160,84,.7)"/>
-      </svg>
+    <div class="hero__deco hero__deco--ring-r" aria-hidden="true">
+      <svg viewBox="0 0 80 80" fill="none"><circle cx="40" cy="40" r="36" stroke="rgba(255,255,255,.2)" stroke-width="1"/><circle cx="40" cy="40" r="28" stroke="rgba(201,169,110,.3)" stroke-width="1"/></svg>
     </div>
-    <div class="hero__corner hero__corner--bl" aria-hidden="true">
-      <svg width="70" height="70" viewBox="0 0 70 70" fill="none">
-        <path d="M4 66 L4 32 M4 66 L38 66" stroke="rgba(201,160,84,.55)" stroke-width="1.4"/>
-        <circle cx="4" cy="66" r="3" fill="rgba(201,160,84,.7)"/>
-      </svg>
-    </div>
-    <div class="hero__corner hero__corner--br" aria-hidden="true">
-      <svg width="70" height="70" viewBox="0 0 70 70" fill="none">
-        <path d="M66 66 L66 32 M66 66 L32 66" stroke="rgba(201,160,84,.55)" stroke-width="1.4"/>
-        <circle cx="66" cy="66" r="3" fill="rgba(201,160,84,.7)"/>
-      </svg>
-    </div>
+    <div class="hero__deco hero__deco--flower-t" aria-hidden="true">🌸</div>
+    <div class="hero__deco hero__deco--flower-b" aria-hidden="true">🌿</div>
 
     <div class="hero__content">
+      <!-- Fecha superior -->
       <div class="hero__eyebrow">
-        <span class="hero__eyebrow-line"></span>
+        <span class="hero__line-deco"></span>
         <span class="hero__eyebrow-text" id="heroBodaDate">Domingo · 14 · Febrero · 2027</span>
-        <span class="hero__eyebrow-line"></span>
+        <span class="hero__line-deco"></span>
+      </div>
+
+      <!-- Ramo decorativo -->
+      <div class="hero__bouquet" aria-hidden="true">
+        <span class="bq-emoji">🌸</span>
+        <span class="bq-emoji">🌹</span>
+        <span class="bq-emoji">💐</span>
+        <span class="bq-emoji">🌷</span>
+        <span class="bq-emoji">🌸</span>
       </div>
 
       <p class="hero__pre">Con toda la alegría de nuestros corazones</p>
-
       <h1 class="hero__names">
-        <span class="hero__name" id="heroBride">Sofía</span>
+        <span class="hero__name hero__name--sofia" id="heroBride">Sofía</span>
         <span class="hero__and">&</span>
-        <span class="hero__name" id="heroGroom">Alejandro</span>
+        <span class="hero__name hero__name--alejandro" id="heroGroom">Alejandro</span>
       </h1>
 
       <div class="hero__ornament" aria-hidden="true">
         <span class="ornament-line"></span>
         <span class="ornament-diamond">◆</span>
         <span class="ornament-dot">·</span>
-        <i class="fa-solid fa-ring ornament-ring"></i>
+        <span class="ornament-heart"><i class="fa-solid fa-heart"></i></span>
         <span class="ornament-dot">·</span>
         <span class="ornament-diamond">◆</span>
         <span class="ornament-line"></span>
@@ -150,25 +131,34 @@
         <em>Tu presencia será nuestro mejor regalo.</em>"
       </p>
 
+      <!-- Countdown -->
       <div class="countdown" id="countdown">
         <div class="countdown__unit">
-          <span class="countdown__num" id="cd-days">00</span>
+          <div class="countdown__circle">
+            <span class="countdown__num" id="cd-days">00</span>
+          </div>
           <span class="countdown__label">Días</span>
         </div>
-        <span class="countdown__sep">·</span>
+        <div class="countdown__sep"><i class="fa-solid fa-heart"></i></div>
         <div class="countdown__unit">
-          <span class="countdown__num" id="cd-hours">00</span>
+          <div class="countdown__circle">
+            <span class="countdown__num" id="cd-hours">00</span>
+          </div>
           <span class="countdown__label">Horas</span>
         </div>
-        <span class="countdown__sep">·</span>
+        <div class="countdown__sep"><i class="fa-solid fa-heart"></i></div>
         <div class="countdown__unit">
-          <span class="countdown__num" id="cd-minutes">00</span>
-          <span class="countdown__label">Min</span>
+          <div class="countdown__circle">
+            <span class="countdown__num" id="cd-minutes">00</span>
+          </div>
+          <span class="countdown__label">Minutos</span>
         </div>
-        <span class="countdown__sep">·</span>
+        <div class="countdown__sep"><i class="fa-solid fa-heart"></i></div>
         <div class="countdown__unit">
-          <span class="countdown__num" id="cd-seconds">00</span>
-          <span class="countdown__label">Seg</span>
+          <div class="countdown__circle">
+            <span class="countdown__num" id="cd-seconds">00</span>
+          </div>
+          <span class="countdown__label">Segundos</span>
         </div>
       </div>
 
@@ -182,102 +172,118 @@
       </div>
     </div>
 
+    <!-- Scroll indicator animado -->
     <div class="hero__scroll-indicator">
-      <div class="scroll-line"></div>
-      <span class="scroll-text">DESLIZA</span>
+      <span class="scroll-text">Desliza</span>
+      <div class="scroll-mouse">
+        <div class="scroll-wheel"></div>
+      </div>
     </div>
   </section>
 
-  <!-- ============================================================
-       HISTORIA — Capítulos editoriales numerados
-       ============================================================ -->
+  <!-- ===== SEPARADOR FLORAL ===== -->
+  <div class="floral-divider floral-divider--1" aria-hidden="true">
+    <div class="fd-inner">
+      <span class="fd-line"></span>
+      <span class="fd-icon">🌸</span>
+      <span class="fd-icon">🌿</span>
+      <span class="fd-icon fd-icon--main">💍</span>
+      <span class="fd-icon">🌿</span>
+      <span class="fd-icon">🌸</span>
+      <span class="fd-line"></span>
+    </div>
+  </div>
+
+  <!-- ===== HISTORIA DE LOS NOVIOS ===== -->
   <section class="section historia" id="historia">
     <div class="container">
       <div class="section__header reveal">
-        <span class="section__eyebrow">Nuestra Historia</span>
+        <span class="section__tag">Nuestra Historia</span>
         <h2 class="section__title" data-split="word">Un Amor que Merece Celebrarse</h2>
         <p class="section__sub">Cada etapa de nuestro camino nos trajo hasta este momento.</p>
       </div>
+
+      <!-- Línea de tiempo narrativa -->
+      <div class="timeline-historia">
+        <div class="th-item reveal-left">
+          <div class="th-item__media reveal-clip">
+            <img src="img/53853-boda.jpg" alt="Cómo nos conocimos" loading="lazy" />
+          </div>
+          <div class="th-item__body">
+            <span class="th-item__icon"><i class="fa-solid fa-circle-nodes"></i></span>
+            <span class="th-item__date">2018</span>
+            <h3 data-split="word">Cómo nos conocimos</h3>
+            <p>Un encuentro casual que el destino convirtió en el comienzo de todo. Desde esa primera conversación supimos que algo especial estaba naciendo.</p>
+          </div>
+        </div>
+
+        <div class="th-item th-item--alt reveal-right">
+          <div class="th-item__media reveal-clip">
+            <img src="img/mujer-abraza-al-hombre-sostiene-ramo-peonias-blancas-al-aire-libre-vista-frontal-detalles_8353-10966.avif" alt="Nuestra primera cita" loading="lazy" />
+          </div>
+          <div class="th-item__body">
+            <span class="th-item__icon"><i class="fa-solid fa-mug-hot"></i></span>
+            <span class="th-item__date">2018</span>
+            <h3 data-split="word">Nuestra primera cita</h3>
+            <p>Risas, nervios y la certeza de querer volver a vernos. Esa tarde marcó el inicio de incontables momentos juntos.</p>
+          </div>
+        </div>
+
+        <div class="th-item reveal-left">
+          <div class="th-item__media reveal-clip">
+            <img src="img/aa.jpg" alt="Un amor que crece" loading="lazy" />
+          </div>
+          <div class="th-item__body">
+            <span class="th-item__icon"><i class="fa-solid fa-seedling"></i></span>
+            <span class="th-item__date">2020 — 2025</span>
+            <h3 data-split="word">Un amor que crece</h3>
+            <p>Viajes, metas cumplidas y días simples que se volvieron extraordinarios. Aprendimos a construir un hogar mucho antes de tener uno.</p>
+          </div>
+        </div>
+
+        <div class="th-item th-item--alt reveal-right">
+          <div class="th-item__media reveal-clip">
+            <img src="img/novio-que-pone-anillo-dedo-novia_1157-338.avif" alt="La propuesta" loading="lazy" />
+          </div>
+          <div class="th-item__body">
+            <span class="th-item__icon"><i class="fa-solid fa-ring"></i></span>
+            <span class="th-item__date">2026</span>
+            <h3 data-split="word">La propuesta</h3>
+            <p>Una rodilla en el suelo, un anillo y un "sí" que nos cambió la vida para siempre.</p>
+          </div>
+        </div>
+
+        <div class="th-item reveal-left">
+          <div class="th-item__media reveal-clip">
+            <img src="img/s.jpg" alt="Y ahora, para siempre" loading="lazy" />
+          </div>
+          <div class="th-item__body">
+            <span class="th-item__icon"><i class="fa-solid fa-heart"></i></span>
+            <span class="th-item__date">2027</span>
+            <h3 data-split="word">Y ahora, para siempre</h3>
+            <p>Hoy celebramos el inicio de nuestro próximo capítulo, y nos encantaría escribirlo junto a las personas que más amamos.</p>
+          </div>
+        </div>
+      </div>
     </div>
-
-    <article class="chapter reveal">
-      <div class="chapter__num-bg" aria-hidden="true">01</div>
-      <div class="chapter__media">
-        <img src="img/53853-boda.jpg" alt="Cómo nos conocimos" loading="lazy" />
-        <div class="chapter__media-year">2018</div>
-      </div>
-      <div class="chapter__body">
-        <span class="chapter__year">2018</span>
-        <h3 class="chapter__title">Cómo nos conocimos</h3>
-        <div class="chapter__rule"></div>
-        <p>Un encuentro casual que el destino convirtió en el comienzo de todo. Desde esa primera conversación supimos que algo especial estaba naciendo.</p>
-      </div>
-    </article>
-
-    <article class="chapter chapter--alt reveal">
-      <div class="chapter__num-bg" aria-hidden="true">02</div>
-      <div class="chapter__body">
-        <span class="chapter__year">2018</span>
-        <h3 class="chapter__title">Nuestra primera cita</h3>
-        <div class="chapter__rule"></div>
-        <p>Risas, nervios y la certeza de querer volver a vernos. Esa tarde marcó el inicio de incontables momentos juntos.</p>
-      </div>
-      <div class="chapter__media">
-        <img src="img/mujer-abraza-al-hombre-sostiene-ramo-peonias-blancas-al-aire-libre-vista-frontal-detalles_8353-10966.avif" alt="Primera cita" loading="lazy" />
-        <div class="chapter__media-year">2018</div>
-      </div>
-    </article>
-
-    <article class="chapter reveal">
-      <div class="chapter__num-bg" aria-hidden="true">03</div>
-      <div class="chapter__media">
-        <img src="img/aa.jpg" alt="Un amor que crece" loading="lazy" />
-        <div class="chapter__media-year">2020–2025</div>
-      </div>
-      <div class="chapter__body">
-        <span class="chapter__year">2020 — 2025</span>
-        <h3 class="chapter__title">Un amor que crece</h3>
-        <div class="chapter__rule"></div>
-        <p>Viajes, metas cumplidas y días simples que se volvieron extraordinarios. Aprendimos a construir un hogar mucho antes de tener uno.</p>
-      </div>
-    </article>
-
-    <article class="chapter chapter--alt reveal">
-      <div class="chapter__num-bg" aria-hidden="true">04</div>
-      <div class="chapter__body">
-        <span class="chapter__year">2026</span>
-        <h3 class="chapter__title">La propuesta</h3>
-        <div class="chapter__rule"></div>
-        <p>Una rodilla en el suelo, un anillo y un "sí" que nos cambió la vida para siempre.</p>
-      </div>
-      <div class="chapter__media">
-        <img src="img/novio-que-pone-anillo-dedo-novia_1157-338.avif" alt="La propuesta" loading="lazy" />
-        <div class="chapter__media-year">2026</div>
-      </div>
-    </article>
-
-    <article class="chapter reveal">
-      <div class="chapter__num-bg" aria-hidden="true">05</div>
-      <div class="chapter__media">
-        <img src="img/s.jpg" alt="Para siempre" loading="lazy" />
-        <div class="chapter__media-year">2027</div>
-      </div>
-      <div class="chapter__body">
-        <span class="chapter__year">2027</span>
-        <h3 class="chapter__title">Y ahora, para siempre</h3>
-        <div class="chapter__rule"></div>
-        <p>Hoy celebramos el inicio de nuestro próximo capítulo, y nos encantaría escribirlo junto a las personas que más amamos.</p>
-      </div>
-    </article>
   </section>
 
-  <!-- ============================================================
-       PADRINOS
-       ============================================================ -->
+  <!-- ===== SEPARADOR ===== -->
+  <div class="floral-divider floral-divider--2" aria-hidden="true">
+    <div class="fd-inner">
+      <span class="fd-line"></span>
+      <span class="fd-icon">🌷</span>
+      <span class="fd-icon fd-icon--main">💌</span>
+      <span class="fd-icon">🌷</span>
+      <span class="fd-line"></span>
+    </div>
+  </div>
+
+  <!-- ===== PADRINOS / CORTEJO DE HONOR ===== -->
   <section class="section padrinos-section" id="padrinos">
     <div class="container">
       <div class="section__header reveal">
-        <span class="section__eyebrow">Honor &amp; Gratitud</span>
+        <span class="section__tag">Quiénes nos Acompañan</span>
         <h2 class="section__title" data-split="word">Padrinos y Cortejo de Honor</h2>
         <p class="section__sub">Las personas que han sido parte fundamental de nuestra historia.</p>
       </div>
@@ -318,9 +324,7 @@
     </div>
   </section>
 
-  <!-- ============================================================
-       VERSÍCULO
-       ============================================================ -->
+  <!-- ===== VERSÍCULO ===== -->
   <section class="section verse-section" id="versiculo">
     <div class="verse-section__bg" style="background-image:url('img/decoracion_flores_5.png')" aria-hidden="true"></div>
     <div class="container verse-container">
@@ -339,18 +343,17 @@
     </div>
   </section>
 
-  <!-- ============================================================
-       EVENTO
-       ============================================================ -->
+  <!-- ===== EVENTO (consolidado: ceremonia/recepción + vestimenta + hospedaje + ubicación + programa) ===== -->
   <section class="section evento" id="evento">
     <div class="container">
       <div class="section__header reveal">
-        <span class="section__eyebrow">El Gran Día</span>
+        <span class="section__tag">El Gran Día</span>
         <h2 class="section__title" data-split="word">Detalles del Evento</h2>
         <p class="section__sub">Todo lo que necesitas saber, en un solo lugar.</p>
       </div>
 
       <div class="evento__cards">
+        <!-- Ceremonia -->
         <div class="evento-card reveal-zoom">
           <div class="evento-card__photo" style="background-image:url('img/53853-boda.jpg')">
             <div class="evento-card__photo-overlay"></div>
@@ -370,6 +373,7 @@
           </div>
         </div>
 
+        <!-- Recepción -->
         <div class="evento-card reveal-zoom">
           <div class="evento-card__photo" style="background-image:url('img/mujer-abraza-al-hombre-sostiene-ramo-peonias-blancas-al-aire-libre-vista-frontal-detalles_8353-10966.avif')">
             <div class="evento-card__photo-overlay"></div>
@@ -390,6 +394,7 @@
         </div>
       </div>
 
+      <!-- Info extra: detalles adicionales -->
       <div class="evento__extra reveal">
         <div class="extra-box">
           <i class="fa-solid fa-camera extra-box__icon"></i>
@@ -404,13 +409,16 @@
         </div>
       </div>
 
+      <!-- Dress code section — Damas & Caballeros -->
       <div class="dress-section reveal" id="dressCodeSection">
         <div class="dress-section__header">
-          <span class="section__eyebrow">Vestimenta</span>
+          <span class="section__tag">Vestimenta</span>
           <h3 class="dress-section__title" data-split="word">Código de Vestimenta</h3>
           <span class="dress-type-badge" id="dressCodeType">Formal Elegante</span>
         </div>
+
         <div class="dress-section__cols">
+          <!-- Damas -->
           <div class="dress-col dress-col--ladies reveal-left">
             <span class="dress-col__icon" aria-hidden="true"><i class="fa-solid fa-person-dress"></i></span>
             <h4 class="dress-col__heading">Damas</h4>
@@ -427,11 +435,15 @@
               Evitar el blanco — reservado para la novia
             </p>
           </div>
+
+          <!-- Divisor central -->
           <div class="dress-divider" aria-hidden="true">
             <span class="dress-divider__line"></span>
             <span class="dress-divider__icon"><i class="fa-solid fa-ring"></i></span>
             <span class="dress-divider__line"></span>
           </div>
+
+          <!-- Caballeros -->
           <div class="dress-col dress-col--gents reveal-right">
             <span class="dress-col__icon" aria-hidden="true"><i class="fa-solid fa-user-tie"></i></span>
             <h4 class="dress-col__heading">Caballeros</h4>
@@ -451,6 +463,7 @@
         </div>
       </div>
 
+      <!-- Hospedaje y Transporte -->
       <div class="evento-sub reveal">
         <h3 class="evento-sub__title"><i class="fa-solid fa-bed"></i> Hospedaje y Transporte</h3>
         <div class="hosp-grid">
@@ -472,6 +485,7 @@
         </div>
       </div>
 
+      <!-- Ubicación -->
       <div class="evento-sub reveal" id="ubicacion">
         <h3 class="evento-sub__title"><i class="fa-solid fa-location-dot"></i> Cómo Llegar</h3>
         <div class="location-map-wrap reveal-clip">
@@ -481,14 +495,14 @@
             referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
         <div class="location-cta reveal">
-          <a id="venueDirections"
-             href="https://www.google.com/maps/search/Casa+Hacienda+Mamacona,+Av.+Mamacona+s/n,+Lurín,+Lima"
+          <a id="venueDirections" href="https://www.google.com/maps/search/Casa+Hacienda+Mamacona,+Av.+Mamacona+s/n,+Lurín,+Lima"
              target="_blank" rel="noopener" class="btn btn--gold">
             <i class="fa-solid fa-map-location-dot"></i> Cómo llegar
           </a>
         </div>
       </div>
 
+      <!-- Programa del día -->
       <div class="evento-sub evento-sub--programa" id="programa">
         <div class="timeline-bg" style="background-image:url('img/aa.jpg')"></div>
         <div class="timeline-overlay"></div>
@@ -506,13 +520,22 @@
     </div>
   </section>
 
-  <!-- ============================================================
-       FAQ
-       ============================================================ -->
+  <!-- ===== SEPARADOR ===== -->
+  <div class="floral-divider" aria-hidden="true">
+    <div class="fd-inner">
+      <span class="fd-line"></span>
+      <span class="fd-icon">🌸</span>
+      <span class="fd-icon fd-icon--main">❓</span>
+      <span class="fd-icon">🌸</span>
+      <span class="fd-line"></span>
+    </div>
+  </div>
+
+  <!-- ===== PREGUNTAS FRECUENTES ===== -->
   <section class="section faq-section" id="faq">
     <div class="container">
       <div class="section__header reveal">
-        <span class="section__eyebrow">¿Tienes Dudas?</span>
+        <span class="section__tag">¿Tienes Dudas?</span>
         <h2 class="section__title" data-split="word">Preguntas Frecuentes</h2>
       </div>
       <div class="faq-list">
@@ -534,45 +557,52 @@
         </details>
         <details class="faq-item reveal-left">
           <summary>¿Habrá transporte el día del evento?<i class="fa-solid fa-chevron-down faq-item__chev"></i></summary>
-          <p>El local tiene fácil acceso en auto propio o por aplicaciones de transporte.</p>
+          <p>El local tiene fácil acceso en auto propio o por aplicaciones de transporte. Revisa la sección "Hospedaje y Transporte" para más detalles.</p>
         </details>
       </div>
     </div>
   </section>
 
-  <!-- ============================================================
-       GALERÍA — Tira filmstrip horizontal
-       ============================================================ -->
+  <!-- ===== GALERÍA DE FOTOS ===== -->
   <section class="section galeria-section" id="galeria">
     <div class="container">
       <div class="section__header reveal">
-        <span class="section__eyebrow">Momentos</span>
+        <span class="section__tag">Momentos</span>
         <h2 class="section__title" data-split="word">Nuestra Galería</h2>
         <p class="section__sub">Algunos instantes que atesoramos antes de este gran día.</p>
       </div>
-    </div>
-    <div class="galeria__strip" id="galeriaStrip">
-      <div class="strip-item reveal-zoom"><img src="img/53853-boda.jpg" alt="Boda" loading="lazy" /></div>
-      <div class="strip-item reveal-zoom"><img src="img/q.jpg" alt="Momento" loading="lazy" /></div>
-      <div class="strip-item reveal-zoom"><img src="img/aa.jpg" alt="Juntos" loading="lazy" /></div>
-      <div class="strip-item reveal-zoom"><img src="img/s.jpg" alt="Amor" loading="lazy" /></div>
-      <div class="strip-item reveal-zoom"><img src="img/x.jpg" alt="Momentos" loading="lazy" /></div>
-      <div class="strip-item reveal-zoom"><img src="img/z.jpg" alt="Detalles" loading="lazy" /></div>
-      <div class="strip-item reveal-zoom"><img src="img/mujer-abraza-al-hombre-sostiene-ramo-peonias-blancas-al-aire-libre-vista-frontal-detalles_8353-10966.avif" alt="Romance" loading="lazy" /></div>
+      <div class="masonry-gallery">
+        <div class="mg-item mg-item--tall reveal-zoom">
+          <img src="img/53853-boda.jpg" alt="Nuestra boda" loading="lazy" />
+        </div>
+        <div class="mg-item reveal-rotate">
+          <img src="img/q.jpg" alt="Momento especial" loading="lazy" />
+        </div>
+        <div class="mg-item reveal-zoom">
+          <img src="img/aa.jpg" alt="Momento especial" loading="lazy" />
+        </div>
+        <div class="mg-item mg-item--wide reveal-rotate">
+          <img src="img/s.jpg" alt="Juntos" loading="lazy" />
+        </div>
+        <div class="mg-item reveal-zoom">
+          <img src="img/x.jpg" alt="Momentos" loading="lazy" />
+        </div>
+        <div class="mg-item reveal-rotate">
+          <img src="img/z.jpg" alt="Detalles" loading="lazy" />
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- ============================================================
-       REGALOS
-       ============================================================ -->
+  <!-- ===== SUGERENCIA DE REGALOS ===== -->
   <section class="section regalos-section" id="regalos">
     <div class="container">
       <div class="section__header reveal">
-        <span class="section__eyebrow">Mesa de Regalos</span>
+        <span class="section__tag">Mesa de Regalos</span>
         <h2 class="section__title" data-split="word">Tu Presencia es Nuestro Mayor Regalo</h2>
         <p class="section__sub">Pero si deseas obsequiarnos algo para nuestro nuevo hogar, aquí van algunas ideas.</p>
       </div>
-      <div class="gift-grid">
+      <div class="gift-grid" id="giftGrid">
         <div class="gift-card reveal-rotate"><span class="gift-card__icon"><i class="fa-solid fa-blender"></i></span><h4>Licuadora</h4></div>
         <div class="gift-card reveal-rotate"><span class="gift-card__icon"><i class="fa-solid fa-bed"></i></span><h4>Juego de Cama</h4></div>
         <div class="gift-card reveal-rotate"><span class="gift-card__icon"><i class="fa-solid fa-tv"></i></span><h4>Smart TV</h4></div>
@@ -585,20 +615,30 @@
     </div>
   </section>
 
-  <!-- ============================================================
-       RSVP
-       ============================================================ -->
+  <!-- ===== SEPARADOR ===== -->
+  <div class="floral-divider" aria-hidden="true">
+    <div class="fd-inner">
+      <span class="fd-line"></span>
+      <span class="fd-icon">🌸</span>
+      <span class="fd-icon fd-icon--main">💌</span>
+      <span class="fd-icon">🌸</span>
+      <span class="fd-line"></span>
+    </div>
+  </div>
+
+  <!-- ===== RSVP ===== -->
   <section class="section rsvp-section" id="rsvp">
     <div class="rsvp-bg" style="background-image:url('img/novio-que-pone-anillo-dedo-novia_1157-338.avif')"></div>
     <div class="rsvp-overlay"></div>
     <div class="container" style="position:relative;z-index:2">
       <div class="section__header reveal">
-        <span class="section__eyebrow section__eyebrow--light">Tu Respuesta</span>
+        <span class="section__tag section__tag--light">Tu Respuesta</span>
         <h2 class="section__title section__title--light" data-split="word">Confirma tu Asistencia</h2>
         <p class="section__sub section__sub--light">Por favor responde antes del <strong>1 de Enero de 2027</strong></p>
       </div>
 
       <div class="rsvp__wrap">
+        <!-- Steps indicator -->
         <div class="steps-bar" id="stepsBar">
           <div class="step-dot active" data-step="1"><span>1</span><small>Info</small></div>
           <div class="step-line"></div>
@@ -608,11 +648,14 @@
         </div>
 
         <form class="rsvp-form" id="rsvpForm" novalidate>
+
+          <!-- PASO 1 -->
           <div class="form-step active" id="step1">
             <div class="form-step__header">
               <i class="fa-solid fa-user-pen"></i>
               <h3>Tu Información</h3>
             </div>
+
             <div class="fg">
               <label for="nombre">Nombre completo <span class="req">*</span></label>
               <div class="fi-wrap"><i class="fa-solid fa-user fi-icon"></i>
@@ -620,6 +663,7 @@
               </div>
               <span class="ferr" id="err-nombre"></span>
             </div>
+
             <div class="fg-row">
               <div class="fg">
                 <label for="correo">Correo <span class="req">*</span></label>
@@ -631,10 +675,11 @@
               <div class="fg">
                 <label for="telefono">Teléfono</label>
                 <div class="fi-wrap"><i class="fa-solid fa-phone fi-icon"></i>
-                  <input type="tel" id="telefono" name="telefono" placeholder="+51 999 999 999" autocomplete="tel" />
+                  <input type="tel" id="telefono" name="telefono" placeholder="+52 55 1234 5678" autocomplete="tel" />
                 </div>
               </div>
             </div>
+
             <div class="fg">
               <label for="acompanantes">¿Cuántos acompañantes traerás? <span class="req">*</span></label>
               <div class="fi-wrap"><i class="fa-solid fa-users fi-icon"></i>
@@ -649,6 +694,7 @@
               </div>
               <span class="ferr" id="err-acompanantes"></span>
             </div>
+
             <div class="fg">
               <label>¿Confirmas tu asistencia? <span class="req">*</span></label>
               <div class="rsvp-cards">
@@ -671,16 +717,19 @@
               </div>
               <span class="ferr" id="err-asistencia"></span>
             </div>
+
             <button type="button" class="btn btn--gold btn--full" id="nextStep1">
               Continuar <i class="fa-solid fa-arrow-right"></i>
             </button>
           </div>
 
+          <!-- PASO 2 SI -->
           <div class="form-step" id="step2si">
             <div class="form-step__header">
               <i class="fa-solid fa-utensils"></i>
               <h3>Detalles Adicionales</h3>
             </div>
+
             <div class="fg">
               <label>Selección de menú</label>
               <div class="menu-grid">
@@ -690,25 +739,29 @@
                 <label class="menu-opt"><input type="radio" name="menu" value="vegetariano" /><div class="menu-opt__inner"><span class="menu-opt__emoji">🥗</span><b>Vegetariano</b><small>Sin carne</small></div></label>
               </div>
             </div>
+
             <div class="fg">
               <label for="restricciones">Restricciones alimenticias o alergias</label>
               <div class="fi-wrap"><i class="fa-solid fa-triangle-exclamation fi-icon"></i>
                 <input type="text" id="restricciones" placeholder="Ej. Sin gluten, alergia a nueces…" />
               </div>
             </div>
+
             <div class="fg">
-              <label for="mensaje">Mensaje para los novios <i class="fa-regular fa-heart" style="color:var(--gold)"></i></label>
+              <label for="mensaje">Mensaje para los novios <i class="fa-regular fa-heart" style="color:var(--rose)"></i></label>
               <textarea id="mensaje" rows="4" placeholder="Escríbenos unas palabras especiales…"></textarea>
             </div>
+
             <div class="form-btns">
               <button type="button" class="btn btn--outline" id="prev2si"><i class="fa-solid fa-arrow-left"></i> Volver</button>
               <button type="submit" class="btn btn--gold"><i class="fa-solid fa-paper-plane"></i> Enviar</button>
             </div>
           </div>
 
+          <!-- PASO 2 NO -->
           <div class="form-step" id="step2no">
             <div class="form-step__header">
-              <i class="fa-solid fa-heart-crack" style="color:var(--gold)"></i>
+              <i class="fa-solid fa-heart-crack" style="color:var(--rose)"></i>
               <h3>Lo Sentimos Mucho</h3>
             </div>
             <div class="sorry-box">
@@ -725,6 +778,7 @@
             </div>
           </div>
 
+          <!-- ÉXITO -->
           <div class="form-step success-step" id="stepSuccess">
             <div class="success-anim" id="successAnim">
               <div class="success-rings">
@@ -735,24 +789,23 @@
               <div class="success-icon"><i class="fa-solid fa-circle-check"></i></div>
             </div>
             <h3 class="success-title" id="successTitle">¡Gracias por confirmar!</h3>
-            <p class="success-msg" id="successMsg">Hemos registrado tu respuesta con amor.</p>
+            <p class="success-msg"  id="successMsg">Hemos registrado tu respuesta con amor.</p>
             <div class="success-qr" id="successQR"></div>
             <p class="success-qr-note" id="qrNote">Guarda este código QR · lo necesitarás el día del evento</p>
             <div class="success-confetti" id="successConfetti"></div>
             <button type="button" class="btn btn--outline" id="resetForm">Enviar otra respuesta</button>
           </div>
+
         </form>
       </div>
     </div>
   </section>
 
-  <!-- ============================================================
-       CONTACTO
-       ============================================================ -->
+  <!-- ===== CONTACTO ===== -->
   <section class="section contacto" id="contacto">
     <div class="container">
       <div class="section__header reveal">
-        <span class="section__eyebrow">¿Tienes dudas?</span>
+        <span class="section__tag">¿Tienes dudas?</span>
         <h2 class="section__title" data-split="word">Estamos Aquí para Ti</h2>
       </div>
       <div class="contacto__grid">
@@ -787,15 +840,16 @@
     </div>
   </section>
 
-  <!-- ============================================================
-       FOOTER — Minimal oscuro
-       ============================================================ -->
+  <!-- ===== FOOTER ===== -->
   <footer class="footer">
+    <div class="footer__wave" aria-hidden="true">
+      <svg viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z" fill="var(--navy)"/></svg>
+    </div>
     <div class="footer__body">
-      <div class="footer__monogram" aria-hidden="true">S<em>&</em>A</div>
+      <div class="footer__flowers" aria-hidden="true">🌸 🌿 💍 🌿 🌸</div>
       <p class="footer__names" id="footerNames">Sofía <span>&</span> Alejandro</p>
-      <div class="footer__divider"><span></span><i class="fa-solid fa-ring"></i><span></span></div>
       <p class="footer__date" id="footerBodaDate">14 · 02 · 2027</p>
+      <div class="footer__divider"><span>·</span><i class="fa-solid fa-heart"></i><span>·</span></div>
       <p class="footer__tag" id="footerHashtag">#SofíaYAlejandro2027</p>
       <p class="footer__copy">Hecho con <i class="fa-solid fa-heart"></i> para el día más hermoso de nuestras vidas</p>
     </div>
@@ -814,10 +868,10 @@
 
   <!-- UI helpers -->
   <div class="toast" id="toast"></div>
-  <button class="theme-toggle" id="themeToggle" aria-label="Tema"><i class="fa-solid fa-sun" id="themeIcon"></i></button>
+  <button class="theme-toggle" id="themeToggle" aria-label="Tema"><i class="fa-solid fa-moon" id="themeIcon"></i></button>
   <button class="scroll-top" id="scrollTop" aria-label="Inicio"><i class="fa-solid fa-chevron-up"></i></button>
 
-  <!-- Music Player -->
+  <!-- ===== MUSIC PLAYER ===== -->
   <div class="music-player" id="musicPlayer">
     <div class="music-player__bar">
       <div class="music-player__left">
@@ -841,17 +895,5 @@
   </div>
 
   <script src="js/main.js"></script>
-  <script>
-    /* Drag-to-scroll galería */
-    (function(){
-      var s=document.getElementById('galeriaStrip');
-      if(!s)return;
-      var isDown=false,startX,scrollL;
-      s.addEventListener('mousedown',function(e){isDown=true;s.classList.add('dragging');startX=e.pageX-s.offsetLeft;scrollL=s.scrollLeft;});
-      s.addEventListener('mouseleave',function(){isDown=false;s.classList.remove('dragging');});
-      s.addEventListener('mouseup',function(){isDown=false;s.classList.remove('dragging');});
-      s.addEventListener('mousemove',function(e){if(!isDown)return;e.preventDefault();var x=e.pageX-s.offsetLeft;s.scrollLeft=scrollL-(x-startX);});
-    })();
-  </script>
 </body>
 </html>

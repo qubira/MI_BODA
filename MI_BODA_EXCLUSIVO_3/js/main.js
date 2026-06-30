@@ -9,6 +9,36 @@ const DB_KEY = 'boda_rsvp_guests';
 function getGuests()  { try { return JSON.parse(localStorage.getItem(DB_KEY)) || []; } catch { return []; } }
 function saveGuest(g) { const a = getGuests(); a.push(g); localStorage.setItem(DB_KEY, JSON.stringify(a)); }
 
+/* ===== VENUE (from admin config) ===== */
+(function applyVenue() {
+  var venue = {};
+  try { venue = JSON.parse(localStorage.getItem('boda_ubicacion')) || {}; } catch(e) {}
+  if (venue.embedUrl) {
+    var iframe = document.getElementById('venueMapIframe');
+    if (iframe) iframe.src = venue.embedUrl;
+  }
+  if (venue.mapsUrl) {
+    var link = document.getElementById('venueDirections');
+    if (link) link.href = venue.mapsUrl;
+  }
+  var nameEl = document.getElementById('venueNameDisplay');
+  var addrEl = document.getElementById('venueAddrDisplay');
+  if (nameEl && venue.name) nameEl.textContent = venue.name;
+  if (addrEl && venue.address) addrEl.textContent = venue.address;
+})();
+
+/* ===== GIFT LIST (from admin config) ===== */
+(function applyGifts() {
+  var gifts = null;
+  try { gifts = JSON.parse(localStorage.getItem('boda_regalos')); } catch(e) {}
+  if (!gifts || !gifts.length) return;
+  var grid = document.getElementById('giftGrid');
+  if (!grid) return;
+  grid.innerHTML = gifts.map(function(g) {
+    return '<div class="gift-card reveal-rotate"><span class="gift-card__icon"><i class="fa-solid ' + (g.icon || 'fa-gift') + '"></i></span><h4>' + (g.name || '') + '</h4></div>';
+  }).join('');
+})();
+
 /* ===== INTRO CURTAIN ===== */
 (function initIntro() {
   var overlay = document.getElementById('introOverlay');
@@ -45,8 +75,8 @@ function saveGuest(g) { const a = getGuests(); a.push(g); localStorage.setItem(D
     overlay.classList.add('opening');
     document.body.style.overflow = '';
     if (window.__revealHeroNames) window.__revealHeroNames();
-    /* Quitar overlay cuando termina la animación del sobre + carta + fade */
-    setTimeout(function() { overlay.style.display = 'none'; }, 1650);
+    /* Quitar overlay cuando termina la transición (1s paneles + buffer) */
+    setTimeout(function() { overlay.style.display = 'none'; }, 1050);
   }
 
   overlay.addEventListener('click',      open);
@@ -60,7 +90,7 @@ function saveGuest(g) { const a = getGuests(); a.push(g); localStorage.setItem(D
   if (!cursor || !trail) return;
   if (!window.matchMedia('(pointer:fine)').matches) return;
 
-  cursor.textContent = '💌';
+  cursor.textContent = '💍';
 
   let mx = 0, my = 0, tx = 0, ty = 0;
 
@@ -92,7 +122,7 @@ function saveGuest(g) { const a = getGuests(); a.push(g); localStorage.setItem(D
     setTimeout(() => cursor.classList.remove('cursor--click'), 220);
   });
 
-  const sparks = ['💌','✨','💎','❄','🩵','✦','⭐'];
+  const sparks = ['💍','✨','💫','⭐','🌟','💎','✦'];
   document.addEventListener('click', e => {
     for (let i = 0; i < 6; i++) {
       const s = document.createElement('div');
@@ -127,8 +157,8 @@ function saveGuest(g) { const a = getGuests(); a.push(g); localStorage.setItem(D
   const backdrop = document.createElement('div');
   Object.assign(backdrop.style, {
     position:'fixed', inset:'0', zIndex:'999',
-    background:'rgba(0,0,0,.6)', opacity:'0',
-    pointerEvents:'none', transition:'opacity .4s'
+    background:'rgba(0,0,0,.45)', opacity:'0',
+    pointerEvents:'none', transition:'opacity .35s'
   });
   document.body.appendChild(backdrop);
 
@@ -552,16 +582,16 @@ function saveGuest(g) { const a = getGuests(); a.push(g); localStorage.setItem(D
   if (!container) return;
 
   const CRONO_DEFAULTS = [
-    {hora:'11:00',icon:'💐',nombre:'Llegada de invitados',         lugar:'Jardín principal',        color:'#6FA8DC',notas:'Bienvenida con champán y jazz en vivo'},
-    {hora:'12:00',icon:'💍',nombre:'Ceremonia civil',              lugar:'Casa Hacienda Mamacona',  color:'#15294D',notas:'Duración aprox. 40 minutos'},
-    {hora:'13:00',icon:'📸',nombre:'Sesión de fotos',              lugar:'Jardín de las rosas',     color:'#3D6FA3',notas:'Fotos familiares y con invitados'},
-    {hora:'14:00',icon:'🍽️',nombre:'Cocktail & aperitivos',        lugar:'Terraza principal',       color:'#8EB8E5',notas:'Bebidas y canapés de bienvenida'},
-    {hora:'15:30',icon:'🥂',nombre:'Recepción & banquete',         lugar:'Salón Imperial',          color:'#244A77',notas:'5 tiempos. Música suave de fondo'},
-    {hora:'17:00',icon:'🎂',nombre:'Corte del pastel',             lugar:'Salón Imperial',          color:'#4A77AD',notas:'Brindis con champán'},
-    {hora:'17:30',icon:'💃',nombre:'Primer baile de los novios',   lugar:'Pista central',           color:'#2F5C8A',notas:'"Perfect" - Ed Sheeran'},
-    {hora:'18:00',icon:'🎵',nombre:'Fiesta & baile libre',         lugar:'Pista central',           color:'#A9CCEB',notas:'Playlist especial de los novios'},
-    {hora:'21:00',icon:'🎆',nombre:'Show de fuegos artificiales',  lugar:'Jardín posterior',        color:'#5B8FC7',notas:'8 minutos de espectáculo'},
-    {hora:'23:00',icon:'🌙',nombre:'Cierre & despedida de novios', lugar:'Entrada principal',       color:'#1F3A61',notas:'Pétalos y mariposas en la salida'},
+    {hora:'11:00',icon:'💐',nombre:'Llegada de invitados',         lugar:'Jardín principal',        color:'#C9A96E',notas:'Bienvenida con champán y jazz en vivo'},
+    {hora:'12:00',icon:'💍',nombre:'Ceremonia civil',              lugar:'Casa Hacienda Mamacona',  color:'#E91E63',notas:'Duración aprox. 40 minutos'},
+    {hora:'13:00',icon:'📸',nombre:'Sesión de fotos',              lugar:'Jardín de las rosas',     color:'#9C27B0',notas:'Fotos familiares y con invitados'},
+    {hora:'14:00',icon:'🍽️',nombre:'Cocktail & aperitivos',        lugar:'Terraza principal',       color:'#FF9800',notas:'Bebidas y canapés de bienvenida'},
+    {hora:'15:30',icon:'🥂',nombre:'Recepción & banquete',         lugar:'Salón Imperial',          color:'#4CAF50',notas:'5 tiempos. Música suave de fondo'},
+    {hora:'17:00',icon:'🎂',nombre:'Corte del pastel',             lugar:'Salón Imperial',          color:'#F44336',notas:'Brindis con champán'},
+    {hora:'17:30',icon:'💃',nombre:'Primer baile de los novios',   lugar:'Pista central',           color:'#3F51B5',notas:'"Perfect" - Ed Sheeran'},
+    {hora:'18:00',icon:'🎵',nombre:'Fiesta & baile libre',         lugar:'Pista central',           color:'#009688',notas:'Playlist especial de los novios'},
+    {hora:'21:00',icon:'🎆',nombre:'Show de fuegos artificiales',  lugar:'Jardín posterior',        color:'#FF5722',notas:'8 minutos de espectáculo'},
+    {hora:'23:00',icon:'🌙',nombre:'Cierre & despedida de novios', lugar:'Entrada principal',       color:'#607D8B',notas:'Pétalos y mariposas en la salida'},
   ];
 
   let events;
@@ -583,7 +613,7 @@ function saveGuest(g) { const a = getGuests(); a.push(g); localStorage.setItem(D
 
   container.innerHTML = sorted.map((ev, i) => {
     const time     = to12h(ev.hora || '00:00');
-    const color    = ev.color || '#6FA8DC';
+    const color    = ev.color || '#C9A96E';
     const icon     = ev.icon  || '📌';
     const subtitle = [ev.lugar, ev.notas].filter(Boolean).join(' · ');
     const dir      = i % 2 === 0 ? 'reveal-left' : 'reveal-right';
@@ -696,7 +726,7 @@ initBgParallax('.verse-section__bg', .08);
 (function initTheme() {
   const btn  = document.getElementById('themeToggle');
   const icon = document.getElementById('themeIcon');
-  const saved = localStorage.getItem('boda_theme') || 'dark';
+  const saved = localStorage.getItem('boda_theme') || 'light';
 
   function apply(t) {
     document.documentElement.setAttribute('data-theme', t);
@@ -728,7 +758,7 @@ function makeQR(text) {
 
   const seed = [...text].reduce((a, ch) => (a * 31 + ch.charCodeAt(0)) | 0, 0);
   const cell = 16; const grid = 10;
-  ctx.fillStyle = '#15294D';
+  ctx.fillStyle = '#1E1E3A';
 
   for (let r = 0; r < grid; r++) {
     for (let c2 = 0; c2 < grid; c2++) {
@@ -739,9 +769,9 @@ function makeQR(text) {
     }
   }
   [[0,0],[0,7],[7,0]].forEach(([cr, cc]) => {
-    ctx.fillStyle = '#15294D';  ctx.fillRect(cc*cell, cr*cell, 3*cell-2, 3*cell-2);
+    ctx.fillStyle = '#1E1E3A';  ctx.fillRect(cc*cell, cr*cell, 3*cell-2, 3*cell-2);
     ctx.fillStyle = '#FFF';     ctx.fillRect(cc*cell+2, cr*cell+2, 3*cell-6, 3*cell-6);
-    ctx.fillStyle = '#6FA8DC';  ctx.fillRect(cc*cell+5, cr*cell+5, 3*cell-12, 3*cell-12);
+    ctx.fillStyle = '#C9A96E';  ctx.fillRect(cc*cell+5, cr*cell+5, 3*cell-12, 3*cell-12);
   });
 
   const img = new Image();
@@ -755,7 +785,7 @@ function spawnConfetti() {
   const container = document.getElementById('successConfetti');
   if (!container) return;
   container.innerHTML = '';
-  const colors = ['#6FA8DC','#D7E9F8','#B9D4F0','#CFE0EE','#3D6FA3','#FFF'];
+  const colors = ['#C9A96E','#E8D5B7','#D4A5A5','#B5C8C0','#4CAF50','#FFF'];
   for (let i = 0; i < 30; i++) {
     const piece = document.createElement('div');
     piece.className = 'confetti-piece';
