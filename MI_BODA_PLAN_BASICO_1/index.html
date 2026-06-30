@@ -1,524 +1,682 @@
-﻿<!DOCTYPE html>
+﻿<!doctype html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Acompáñanos a celebrar la boda de Sofía & Alejandro — 14 de Febrero 2027" />
-  <title>💍 Sofía & Alejandro · 14·02·2027</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Acompáñanos a celebrar la boda de Sofía & Alejandro — 14 de Febrero 2027"
+    />
+    <title>💍 Sofía & Alejandro · 14·02·2027</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Montserrat:wght@300;400;500;600&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <link rel="stylesheet" href="css/styles.css" />
-</head>
-<body>
-
-  <!-- ===== INTRO CURTAIN ===== -->
-  <div id="introOverlay" class="intro-overlay">
-    <!-- Dos paneles que se abren -->
-    <div class="intro-panel intro-panel--l"></div>
-    <div class="intro-panel intro-panel--r"></div>
-    <!-- Partículas de fondo -->
-    <div class="intro-particles" aria-hidden="true">
-      <span></span><span></span><span></span><span></span>
-      <span></span><span></span><span></span><span></span>
-    </div>
-    <!-- Contenido central -->
-    <div class="intro-content">
-      <p class="intro-eyebrow">Te invitamos a celebrar</p>
-      <div class="intro-sep">
-        <span></span><i class="fa-solid fa-heart"></i><span></span>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Montserrat:wght@300;400;500;600&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <!-- ===== INTRO CURTAIN ===== -->
+    <div id="introOverlay" class="intro-overlay">
+      <!-- Dos paneles que se abren -->
+      <div class="intro-panel intro-panel--l"></div>
+      <div class="intro-panel intro-panel--r"></div>
+      <!-- Partículas de fondo -->
+      <div class="intro-particles" aria-hidden="true">
+        <span></span><span></span><span></span><span></span> <span></span
+        ><span></span><span></span><span></span>
       </div>
-      <h1 class="intro-names">
-        <span id="introCardBride">Sofía</span>
-        <em>&amp;</em>
-        <span id="introCardGroom">Alejandro</span>
-      </h1>
-      <div class="intro-sep">
-        <span></span><i class="fa-solid fa-star"></i><span></span>
+      <!-- Contenido central -->
+      <div class="intro-content">
+        <p class="intro-eyebrow">Te invitamos a celebrar</p>
+        <div class="intro-sep">
+          <span></span><i class="fa-solid fa-heart"></i><span></span>
+        </div>
+        <h1 class="intro-names">
+          <span id="introCardBride">Sofía</span>
+          <em>&amp;</em>
+          <span id="introCardGroom">Alejandro</span>
+        </h1>
+        <div class="intro-sep">
+          <span></span><i class="fa-solid fa-star"></i><span></span>
+        </div>
+        <p class="intro-date" id="introCardDate">14 · 02 · 2027</p>
+        <p class="intro-cta" id="introHint">
+          <span class="intro-cta__dot"></span>
+          Toca para abrir tu invitación
+        </p>
       </div>
-      <p class="intro-date" id="introCardDate">14 · 02 · 2027</p>
-      <p class="intro-cta" id="introHint">
-        <span class="intro-cta__dot"></span>
-        Toca para abrir tu invitación
-      </p>
     </div>
-  </div>
 
-  <!-- ===== CURSOR PERSONALIZADO ===== -->
-  <div class="cursor" id="cursor"></div>
-  <div class="cursor-trail" id="cursorTrail"></div>
+    <!-- ===== CURSOR PERSONALIZADO ===== -->
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-trail" id="cursorTrail"></div>
 
-  <!-- ===== NAV ===== -->
-  <nav class="nav" id="mainNav">
-    <div class="nav__brand">
-      <span class="nav__s" id="navBrideInitial">S</span>
-      <span class="nav__amp">&</span>
-      <span class="nav__a" id="navGroomInitial">A</span>
-    </div>
-    <button class="nav__toggle" id="navToggle" aria-label="Abrir menú">
-      <span></span><span></span><span></span>
+    <!-- ===== NAV ===== -->
+    <nav class="nav" id="mainNav">
+      <div class="nav__brand">
+        <span class="nav__s" id="navBrideInitial">S</span>
+        <span class="nav__amp">&</span>
+        <span class="nav__a" id="navGroomInitial">A</span>
+      </div>
+      <button class="nav__toggle" id="navToggle" aria-label="Abrir menú">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav__menu" id="navMenu">
+        <li><a href="#evento">El Evento</a></li>
+        <li><a href="#historia">Nuestra Historia</a></li>
+        <li><a href="#regalos">Regalos</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero" id="inicio">
+      <!-- Capas de fondo con parallax -->
+      <div
+        class="hero__bg hero__bg--1"
+        style="background-image: url(&quot;img/53853-boda.jpg&quot;)"
+      ></div>
+      <div
+        class="hero__bg hero__bg--2"
+        style="
+          background-image: url(&quot;img/mujer-abraza-al-hombre-sostiene-ramo-peonias-blancas-al-aire-libre-vista-frontal-detalles_8353-10966.avif&quot;);
+        "
+      ></div>
+      <div class="hero__overlay"></div>
+      <div class="hero__vignette"></div>
+
+      <!-- Decoraciones flotantes SVG -->
+      <div class="hero__deco hero__deco--ring-l" aria-hidden="true">
+        <svg viewBox="0 0 120 120" fill="none">
+          <circle
+            cx="60"
+            cy="60"
+            r="55"
+            stroke="rgba(201,169,110,.4)"
+            stroke-width="1.5"
+          />
+          <circle
+            cx="60"
+            cy="60"
+            r="45"
+            stroke="rgba(201,169,110,.25)"
+            stroke-width="1"
+          />
+          <circle cx="60" cy="60" r="8" fill="rgba(201,169,110,.5)" />
+        </svg>
+      </div>
+      <div class="hero__deco hero__deco--ring-r" aria-hidden="true">
+        <svg viewBox="0 0 80 80" fill="none">
+          <circle
+            cx="40"
+            cy="40"
+            r="36"
+            stroke="rgba(255,255,255,.2)"
+            stroke-width="1"
+          />
+          <circle
+            cx="40"
+            cy="40"
+            r="28"
+            stroke="rgba(201,169,110,.3)"
+            stroke-width="1"
+          />
+        </svg>
+      </div>
+      <div class="hero__deco hero__deco--flower-t" aria-hidden="true">🌸</div>
+      <div class="hero__deco hero__deco--flower-b" aria-hidden="true">🌿</div>
+
+      <div class="hero__content">
+        <!-- Fecha superior -->
+        <div class="hero__eyebrow">
+          <span class="hero__line-deco"></span>
+          <span class="hero__eyebrow-text" id="heroBodaDate"
+            >Domingo · 14 · Febrero · 2027</span
+          >
+          <span class="hero__line-deco"></span>
+        </div>
+
+        <p class="hero__pre">Con toda la alegría de nuestros corazones</p>
+        <h1 class="hero__names">
+          <span class="hero__name hero__name--sofia" id="heroBride">Sofía</span>
+          <span class="hero__and">&</span>
+          <span class="hero__name hero__name--alejandro" id="heroGroom"
+            >Alejandro</span
+          >
+        </h1>
+
+        <div class="hero__ornament" aria-hidden="true">
+          <span class="ornament-line"></span>
+          <span class="ornament-diamond">◆</span>
+          <span class="ornament-dot">·</span>
+          <span class="ornament-heart"><i class="fa-solid fa-heart"></i></span>
+          <span class="ornament-dot">·</span>
+          <span class="ornament-diamond">◆</span>
+          <span class="ornament-line"></span>
+        </div>
+
+        <p class="hero__invite">
+          "Nos encantaría que fueras parte de este día tan especial.<br />
+          <em>Tu presencia será nuestro mejor regalo.</em>"
+        </p>
+
+        <!-- Countdown -->
+        <div class="countdown" id="countdown">
+          <div class="countdown__unit">
+            <div class="countdown__circle">
+              <span class="countdown__num" id="cd-days">00</span>
+            </div>
+            <span class="countdown__label">Días</span>
+          </div>
+          <div class="countdown__sep"><i class="fa-solid fa-heart"></i></div>
+          <div class="countdown__unit">
+            <div class="countdown__circle">
+              <span class="countdown__num" id="cd-hours">00</span>
+            </div>
+            <span class="countdown__label">Horas</span>
+          </div>
+          <div class="countdown__sep"><i class="fa-solid fa-heart"></i></div>
+          <div class="countdown__unit">
+            <div class="countdown__circle">
+              <span class="countdown__num" id="cd-minutes">00</span>
+            </div>
+            <span class="countdown__label">Minutos</span>
+          </div>
+          <div class="countdown__sep"><i class="fa-solid fa-heart"></i></div>
+          <div class="countdown__unit">
+            <div class="countdown__circle">
+              <span class="countdown__num" id="cd-seconds">00</span>
+            </div>
+            <span class="countdown__label">Segundos</span>
+          </div>
+        </div>
+
+        <div class="hero__actions">
+          <a href="#ubicacion" class="btn btn--gold">
+            <i class="fa-solid fa-map-location-dot"></i> Cómo Llegar
+          </a>
+          <a href="#evento" class="btn btn--ghost">
+            <i class="fa-solid fa-calendar-heart"></i> Ver Detalles
+          </a>
+        </div>
+      </div>
+
+      <!-- Scroll indicator animado -->
+      <div class="hero__scroll-indicator">
+        <span class="scroll-text">Desliza</span>
+        <div class="scroll-mouse">
+          <div class="scroll-wheel"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PROVERBIO ===== -->
+    <section class="section proverbio-section" id="proverbio">
+      <div class="container">
+        <div class="proverbio__box reveal">
+          <i class="fa-solid fa-dove proverbio__icon" aria-hidden="true"></i>
+          <p class="proverbio__text">
+            El amor es paciente, es bondadoso. El amor no es envidioso, ni
+            jactancioso, ni orgulloso. No se comporta con rudeza, no es egoísta,
+            no se enoja fácilmente, no guarda rencor. Todo lo sufre, todo lo
+            cree, todo lo espera, todo lo soporta.
+            <strong>El amor jamás se extingue.</strong>
+          </p>
+          <div class="divider-ornament" aria-hidden="true">
+            <span class="divider-ornament__line"></span>
+            <span class="divider-ornament__icon">✦</span>
+            <span class="divider-ornament__line"></span>
+          </div>
+          <p class="proverbio__cite">1 Corintios 13:4-8</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== HISTORIA / GALERÍA ===== -->
+    <section class="section historia" id="historia">
+      <div class="container">
+        <div class="section__header reveal">
+          <span class="section__tag">Nuestra Historia</span>
+          <h2 class="section__title">Un Amor que Merece Celebrarse</h2>
+          <p class="section__sub">
+            Cada foto cuenta un capítulo de nuestra historia.
+          </p>
+        </div>
+
+        <!-- Galería masonry con imágenes reales -->
+        <div class="masonry-gallery">
+          <div class="mg-item mg-item--tall reveal">
+            <img src="img/53853-boda.jpg" alt="Nuestra boda" loading="lazy" />
+            <div class="mg-overlay">
+              <i class="fa-solid fa-heart"></i>
+              <span>Nuestro Amor</span>
+            </div>
+          </div>
+          <div class="mg-item reveal">
+            <img
+              src="img/mujer-abraza-al-hombre-sostiene-ramo-peonias-blancas-al-aire-libre-vista-frontal-detalles_8353-10966.avif"
+              alt="La novia con ramo"
+              loading="lazy"
+            />
+            <div class="mg-overlay">
+              <i class="fa-solid fa-spa"></i>
+              <span>El Ramo</span>
+            </div>
+          </div>
+          <div class="mg-item reveal">
+            <img
+              src="img/novio-que-pone-anillo-dedo-novia_1157-338.avif"
+              alt="El anillo"
+              loading="lazy"
+            />
+            <div class="mg-overlay">
+              <i class="fa-solid fa-ring"></i>
+              <span>El Sí</span>
+            </div>
+          </div>
+          <div class="mg-item reveal">
+            <img src="img/aa.jpg" alt="Momento especial" loading="lazy" />
+            <div class="mg-overlay">
+              <i class="fa-solid fa-camera"></i><span>Memorias</span>
+            </div>
+          </div>
+          <div class="mg-item reveal">
+            <img src="img/q.jpg" alt="Momento especial" loading="lazy" />
+            <div class="mg-overlay">
+              <i class="fa-solid fa-heart"></i><span>Amor</span>
+            </div>
+          </div>
+          <div class="mg-item mg-item--wide reveal">
+            <img src="img/s.jpg" alt="Juntos" loading="lazy" />
+            <div class="mg-overlay">
+              <i class="fa-solid fa-champagne-glasses"></i><span>Juntos</span>
+            </div>
+          </div>
+          <div class="mg-item reveal">
+            <img src="img/x.jpg" alt="Momentos" loading="lazy" />
+            <div class="mg-overlay">
+              <i class="fa-solid fa-music"></i><span>Nuestra Canción</span>
+            </div>
+          </div>
+          <div class="mg-item reveal">
+            <img src="img/z.jpg" alt="Detalles" loading="lazy" />
+            <div class="mg-overlay">
+              <i class="fa-solid fa-star"></i><span>Detalles</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== EVENTO ===== -->
+    <section class="section evento" id="evento">
+      <div class="container">
+        <div class="section__header reveal">
+          <span class="section__tag">El Gran Día</span>
+          <h2 class="section__title">Detalles del Evento</h2>
+          <p class="section__sub">
+            Cada detalle ha sido preparado con amor para ti.
+          </p>
+        </div>
+
+        <div class="evento__cards">
+          <!-- Ceremonia -->
+          <div class="evento-card reveal">
+            <div
+              class="evento-card__photo"
+              style="background-image: url(&quot;img/53853-boda.jpg&quot;)"
+            >
+              <div class="evento-card__photo-overlay"></div>
+              <div class="evento-card__photo-icon">
+                <i class="fa-solid fa-church"></i>
+              </div>
+            </div>
+            <div class="evento-card__body">
+              <span class="evento-card__tag">Ceremonia</span>
+              <h3>Parroquia Virgen del Pilar</h3>
+              <ul class="evento-card__info">
+                <li id="ceremoniaBodaDate">
+                  <i class="fa-regular fa-calendar"></i> Domingo, 14 de Febrero
+                  2027
+                </li>
+                <li><i class="fa-regular fa-clock"></i> 5:00 PM</li>
+                <li>
+                  <i class="fa-solid fa-location-dot"></i> Av. Santa Cruz 1190,
+                  San Isidro, Lima
+                </li>
+              </ul>
+              <a
+                href="https://maps.google.com/?q=Parroquia+Virgen+del+Pilar+San+Isidro+Lima"
+                target="_blank"
+                rel="noopener"
+                class="evento-card__btn"
+              >
+                <i class="fa-solid fa-map-location-dot"></i> Ver en Maps
+              </a>
+            </div>
+          </div>
+
+          <!-- Recepción -->
+          <div class="evento-card reveal">
+            <div
+              class="evento-card__photo"
+              style="
+                background-image: url(&quot;img/mujer-abraza-al-hombre-sostiene-ramo-peonias-blancas-al-aire-libre-vista-frontal-detalles_8353-10966.avif&quot;);
+              "
+            >
+              <div class="evento-card__photo-overlay"></div>
+              <div class="evento-card__photo-icon">
+                <i class="fa-solid fa-champagne-glasses"></i>
+              </div>
+            </div>
+            <div class="evento-card__body">
+              <span class="evento-card__tag">Recepción</span>
+              <h3>Casa Hacienda Mamacona</h3>
+              <ul class="evento-card__info">
+                <li id="recepcionBodaDate">
+                  <i class="fa-regular fa-calendar"></i> Domingo, 14 de Febrero
+                  2027
+                </li>
+                <li><i class="fa-regular fa-clock"></i> 7:30 PM</li>
+                <li>
+                  <i class="fa-solid fa-location-dot"></i> Av. Mamacona s/n,
+                  Lurín, Lima
+                </li>
+              </ul>
+              <a
+                href="https://maps.google.com/?q=Casa+Hacienda+Mamacona+Lurin+Lima"
+                target="_blank"
+                rel="noopener"
+                class="evento-card__btn"
+              >
+                <i class="fa-solid fa-map-location-dot"></i> Ver en Maps
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Info extra: detalles adicionales -->
+        <div class="evento__extra reveal">
+          <div class="extra-box">
+            <i class="fa-solid fa-camera extra-box__icon"></i>
+            <h4>Comparte tus fotos</h4>
+            <p>Etiqueta tus momentos con nuestro hashtag oficial</p>
+            <span class="hashtag" id="heroHashtag">#SofíaYAlejandro2027</span>
+          </div>
+          <div class="extra-box">
+            <i class="fa-solid fa-baby extra-box__icon"></i>
+            <h4>Información Adicional</h4>
+            <p>
+              Evento para mayores de 16 años · Estacionamiento gratuito
+              disponible
+            </p>
+          </div>
+        </div>
+
+        <!-- Dress code section — Damas & Caballeros -->
+        <div class="dress-section reveal" id="dressCodeSection">
+          <div class="dress-section__header">
+            <span class="section__tag">Vestimenta</span>
+            <h3 class="dress-section__title">Código de Vestimenta</h3>
+            <span class="dress-type-badge" id="dressCodeType"
+              >Formal Elegante</span
+            >
+          </div>
+
+          <div class="dress-section__cols">
+            <!-- Damas -->
+            <div class="dress-col dress-col--ladies">
+              <div class="dress-col__emoji" aria-hidden="true">👗</div>
+              <h4 class="dress-col__heading">Damas</h4>
+              <p class="dress-col__type" id="dressLadiesType">
+                Vestido largo de noche
+              </p>
+              <div class="palette dress-col__palette" id="dressLadiesPalette">
+                <span style="background: #d4a5a5" title="Rosa polvo"></span>
+                <span style="background: #c8a2c8" title="Lila"></span>
+                <span style="background: #e8d5b7" title="Champagne"></span>
+                <span style="background: #c9a96e" title="Dorado"></span>
+                <span style="background: #b5c8c0" title="Salvia"></span>
+              </div>
+              <p class="dress-col__note" id="dressLadiesNote">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+                Evitar el blanco — reservado para la novia
+              </p>
+            </div>
+
+            <!-- Divisor central -->
+            <div class="dress-divider" aria-hidden="true">
+              <span class="dress-divider__line"></span>
+              <span class="dress-divider__icon">💍</span>
+              <span class="dress-divider__line"></span>
+            </div>
+
+            <!-- Caballeros -->
+            <div class="dress-col dress-col--gents">
+              <div class="dress-col__emoji" aria-hidden="true">🤵</div>
+              <h4 class="dress-col__heading">Caballeros</h4>
+              <p class="dress-col__type" id="dressGentsType">Traje formal</p>
+              <div class="palette dress-col__palette" id="dressGentsPalette">
+                <span style="background: #2c2c2c" title="Negro"></span>
+                <span style="background: #4a4a6a" title="Marino"></span>
+                <span style="background: #7b2d3b" title="Burdeos"></span>
+                <span style="background: #c9a96e" title="Dorado"></span>
+                <span style="background: #6b7c4e" title="Verde olivo"></span>
+              </div>
+              <p class="dress-col__note" id="dressGentsNote">
+                <i class="fa-solid fa-circle-info"></i>
+                Corbata o moño obligatorio
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== UBICACIÓN ===== -->
+    <section class="section location-section" id="ubicacion">
+      <div class="container">
+        <div class="section__header reveal">
+          <span class="section__tag">El Lugar</span>
+          <h2 class="section__title" id="venueTitle">Casa Hacienda Mamacona</h2>
+          <p class="section__sub" id="venueAddress">
+            Av. Mamacona s/n, Lurín, Lima
+          </p>
+        </div>
+        <div class="location-map-wrap reveal">
+          <iframe
+            id="venueMapIframe"
+            src="https://maps.google.com/maps?q=Casa+Hacienda+Mamacona+Lurin+Lima&output=embed&hl=es"
+            class="location-map-iframe"
+            allowfullscreen
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
+        <div class="location-cta reveal">
+          <a
+            id="venueDirections"
+            href="https://www.google.com/maps/search/Casa+Hacienda+Mamacona+Lurin+Lima"
+            target="_blank"
+            rel="noopener"
+            class="btn btn--gold"
+          >
+            <i class="fa-solid fa-map-location-dot"></i> Cómo llegar
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== REGALOS ===== -->
+    <section class="section regalos-section" id="regalos">
+      <div class="container">
+        <div class="section__header reveal">
+          <span class="section__tag">Con Cariño</span>
+          <h2 class="section__title">Mesa de Regalos</h2>
+          <p class="section__sub">
+            Tu presencia es el regalo más grande que podemos recibir.
+          </p>
+        </div>
+
+        <div class="regalos-card reveal">
+          <div class="regalos-card__icon">
+            <i class="fa-solid fa-blender"></i>
+          </div>
+          <p class="regalos-card__text">
+            Si deseas hacernos un obsequio adicional, nos harías muy felices con
+            un
+            <strong>electrodoméstico</strong> para equipar nuestro nuevo hogar.
+          </p>
+          <span class="dress-type-badge">Electrodomésticos de preferencia</span>
+          <div class="divider-ornament" aria-hidden="true">
+            <span class="divider-ornament__line"></span>
+            <span class="divider-ornament__icon">💛</span>
+            <span class="divider-ornament__line"></span>
+          </div>
+          <p class="regalos-card__note">
+            <i class="fa-solid fa-envelope-open-text"></i>
+            También habrá un buzón especial para sobres el día del evento
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CONTACTO ===== -->
+    <section class="section contacto" id="contacto">
+      <div class="container">
+        <div class="section__header reveal">
+          <span class="section__tag">¿Tienes dudas?</span>
+          <h2 class="section__title">Estamos Aquí para Ti</h2>
+        </div>
+        <div class="contacto__grid">
+          <div class="contacto-card reveal">
+            <div
+              class="contacto-card__img"
+              style="background-image: url(&quot;img/q.jpg&quot;)"
+            ></div>
+            <div class="contacto-card__body">
+              <div class="contacto-card__icon">
+                <i class="fa-brands fa-whatsapp"></i>
+              </div>
+              <h4>WhatsApp</h4>
+              <a
+                href="https://wa.me/51924687363"
+                target="_blank"
+                rel="noopener"
+                class="contacto-card__tel"
+                >+51 924 687 363</a
+              >
+              <a
+                href="https://wa.me/51924687363"
+                target="_blank"
+                rel="noopener"
+                class="btn btn--outline btn--sm"
+                >Escribir</a
+              >
+            </div>
+          </div>
+          <div class="contacto-card reveal">
+            <div
+              class="contacto-card__img"
+              style="background-image: url(&quot;img/s.jpg&quot;)"
+            ></div>
+            <div class="contacto-card__body">
+              <div class="contacto-card__icon">
+                <i class="fa-regular fa-envelope"></i>
+              </div>
+              <h4>Correo</h4>
+              <p>boda@sofiayanejandro.com</p>
+              <a
+                href="mailto:boda@sofiayanejandro.com"
+                class="btn btn--outline btn--sm"
+                >Enviar</a
+              >
+            </div>
+          </div>
+          <div class="contacto-card reveal">
+            <div
+              class="contacto-card__img"
+              style="background-image: url(&quot;img/x.jpg&quot;)"
+            ></div>
+            <div class="contacto-card__body">
+              <div class="contacto-card__icon">
+                <i class="fa-brands fa-instagram"></i>
+              </div>
+              <h4>Instagram</h4>
+              <p>#SofíaYAlejandro2027</p>
+              <a href="#" class="btn btn--outline btn--sm">Seguir</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+      <div class="footer__wave" aria-hidden="true">
+        <svg viewBox="0 0 1440 80" preserveAspectRatio="none">
+          <path
+            d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z"
+            fill="var(--navy)"
+          />
+        </svg>
+      </div>
+      <div class="footer__body">
+        <p class="footer__names" id="footerNames">
+          Sofía <span>&</span> Alejandro
+        </p>
+        <p class="footer__date" id="footerBodaDate">14 · 02 · 2027</p>
+        <div class="footer__divider">
+          <span>·</span><i class="fa-solid fa-heart"></i><span>·</span>
+        </div>
+        <p class="footer__tag" id="footerHashtag">#SofíaYAlejandro2027</p>
+        <p class="footer__copy">
+          Hecho con <i class="fa-solid fa-heart"></i> para el día más hermoso de
+          nuestras vidas
+        </p>
+      </div>
+      <div class="footer__credits">
+        <span class="footer__credits-text">Creado por</span>
+        <a
+          href="https://qubira.onrender.com/"
+          target="_blank"
+          rel="noopener"
+          class="footer__credits-brand"
+        >
+          <img
+            src="https://raw.githubusercontent.com/qubira/IMAGENES/main/logo2.png"
+            alt="Qubira"
+            class="footer__credits-logo"
+          />
+          <span class="footer__credits-name">QUBIRA</span>
+        </a>
+        <span class="footer__credits-sep">|</span>
+        <a
+          href="https://wa.me/51924687363"
+          target="_blank"
+          rel="noopener"
+          class="footer__credits-wa"
+        >
+          <i class="fa-brands fa-whatsapp"></i> +51 924 687 363
+        </a>
+      </div>
+    </footer>
+
+    <!-- UI helpers -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Tema">
+      <i class="fa-solid fa-moon" id="themeIcon"></i>
     </button>
-    <ul class="nav__menu" id="navMenu">
-      <li><a href="#evento">El Evento</a></li>
-      <li><a href="#historia">Nuestra Historia</a></li>
-      <li><a href="#regalos">Regalos</a></li>
-      <li><a href="#contacto">Contacto</a></li>
-    </ul>
-  </nav>
+    <button class="scroll-top" id="scrollTop" aria-label="Inicio">
+      <i class="fa-solid fa-chevron-up"></i>
+    </button>
 
-  <!-- ===== HERO ===== -->
-  <section class="hero" id="inicio">
-    <!-- Capas de fondo con parallax -->
-    <div class="hero__bg hero__bg--1" style="background-image:url('img/53853-boda.jpg')"></div>
-    <div class="hero__bg hero__bg--2" style="background-image:url('img/mujer-abraza-al-hombre-sostiene-ramo-peonias-blancas-al-aire-libre-vista-frontal-detalles_8353-10966.avif')"></div>
-    <div class="hero__overlay"></div>
-    <div class="hero__vignette"></div>
-
-    <!-- Decoraciones flotantes SVG -->
-    <div class="hero__deco hero__deco--ring-l" aria-hidden="true">
-      <svg viewBox="0 0 120 120" fill="none"><circle cx="60" cy="60" r="55" stroke="rgba(201,169,110,.4)" stroke-width="1.5"/><circle cx="60" cy="60" r="45" stroke="rgba(201,169,110,.25)" stroke-width="1"/><circle cx="60" cy="60" r="8" fill="rgba(201,169,110,.5)"/></svg>
-    </div>
-    <div class="hero__deco hero__deco--ring-r" aria-hidden="true">
-      <svg viewBox="0 0 80 80" fill="none"><circle cx="40" cy="40" r="36" stroke="rgba(255,255,255,.2)" stroke-width="1"/><circle cx="40" cy="40" r="28" stroke="rgba(201,169,110,.3)" stroke-width="1"/></svg>
-    </div>
-    <div class="hero__deco hero__deco--flower-t" aria-hidden="true">🌸</div>
-    <div class="hero__deco hero__deco--flower-b" aria-hidden="true">🌿</div>
-
-    <div class="hero__content">
-      <!-- Fecha superior -->
-      <div class="hero__eyebrow">
-        <span class="hero__line-deco"></span>
-        <span class="hero__eyebrow-text" id="heroBodaDate">Domingo · 14 · Febrero · 2027</span>
-        <span class="hero__line-deco"></span>
-      </div>
-
-      <!-- Ramo decorativo -->
-      <div class="hero__bouquet" aria-hidden="true">
-        <span class="bq-emoji">🌸</span>
-        <span class="bq-emoji">🌹</span>
-        <span class="bq-emoji">💐</span>
-        <span class="bq-emoji">🌷</span>
-        <span class="bq-emoji">🌸</span>
-      </div>
-
-      <p class="hero__pre">Con toda la alegría de nuestros corazones</p>
-      <h1 class="hero__names">
-        <span class="hero__name hero__name--sofia" id="heroBride">Sofía</span>
-        <span class="hero__and">&</span>
-        <span class="hero__name hero__name--alejandro" id="heroGroom">Alejandro</span>
-      </h1>
-
-      <div class="hero__ornament" aria-hidden="true">
-        <span class="ornament-line"></span>
-        <span class="ornament-diamond">◆</span>
-        <span class="ornament-dot">·</span>
-        <span class="ornament-heart"><i class="fa-solid fa-heart"></i></span>
-        <span class="ornament-dot">·</span>
-        <span class="ornament-diamond">◆</span>
-        <span class="ornament-line"></span>
-      </div>
-
-      <p class="hero__invite">
-        "Nos encantaría que fueras parte de este día tan especial.<br>
-        <em>Tu presencia será nuestro mejor regalo.</em>"
-      </p>
-
-      <!-- Countdown -->
-      <div class="countdown" id="countdown">
-        <div class="countdown__unit">
-          <div class="countdown__circle">
-            <span class="countdown__num" id="cd-days">00</span>
-          </div>
-          <span class="countdown__label">Días</span>
-        </div>
-        <div class="countdown__sep"><i class="fa-solid fa-heart"></i></div>
-        <div class="countdown__unit">
-          <div class="countdown__circle">
-            <span class="countdown__num" id="cd-hours">00</span>
-          </div>
-          <span class="countdown__label">Horas</span>
-        </div>
-        <div class="countdown__sep"><i class="fa-solid fa-heart"></i></div>
-        <div class="countdown__unit">
-          <div class="countdown__circle">
-            <span class="countdown__num" id="cd-minutes">00</span>
-          </div>
-          <span class="countdown__label">Minutos</span>
-        </div>
-        <div class="countdown__sep"><i class="fa-solid fa-heart"></i></div>
-        <div class="countdown__unit">
-          <div class="countdown__circle">
-            <span class="countdown__num" id="cd-seconds">00</span>
-          </div>
-          <span class="countdown__label">Segundos</span>
-        </div>
-      </div>
-
-      <div class="hero__actions">
-        <a href="#ubicacion" class="btn btn--gold">
-          <i class="fa-solid fa-map-location-dot"></i> Cómo Llegar
-        </a>
-        <a href="#evento" class="btn btn--ghost">
-          <i class="fa-solid fa-calendar-heart"></i> Ver Detalles
-        </a>
-      </div>
-    </div>
-
-    <!-- Scroll indicator animado -->
-    <div class="hero__scroll-indicator">
-      <span class="scroll-text">Desliza</span>
-      <div class="scroll-mouse">
-        <div class="scroll-wheel"></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== PROVERBIO ===== -->
-  <section class="section proverbio-section" id="proverbio">
-    <div class="container">
-      <div class="proverbio__box reveal">
-        <i class="fa-solid fa-dove proverbio__icon" aria-hidden="true"></i>
-        <p class="proverbio__text">
-          El amor es paciente, es bondadoso. El amor no es envidioso, ni jactancioso, ni orgulloso.
-          No se comporta con rudeza, no es egoísta, no se enoja fácilmente, no guarda rencor.
-          Todo lo sufre, todo lo cree, todo lo espera, todo lo soporta.
-          <strong>El amor jamás se extingue.</strong>
-        </p>
-        <div class="divider-ornament" aria-hidden="true">
-          <span class="divider-ornament__line"></span>
-          <span class="divider-ornament__icon">✦</span>
-          <span class="divider-ornament__line"></span>
-        </div>
-        <p class="proverbio__cite">1 Corintios 13:4-8</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== SEPARADOR FLORAL ===== -->
-  <div class="floral-divider floral-divider--1" aria-hidden="true">
-    <div class="fd-inner">
-      <span class="fd-line"></span>
-      <span class="fd-icon">🌸</span>
-      <span class="fd-icon">🌿</span>
-      <span class="fd-icon fd-icon--main">💍</span>
-      <span class="fd-icon">🌿</span>
-      <span class="fd-icon">🌸</span>
-      <span class="fd-line"></span>
-    </div>
-  </div>
-
-  <!-- ===== HISTORIA / GALERÍA ===== -->
-  <section class="section historia" id="historia">
-    <div class="container">
-      <div class="section__header reveal">
-        <span class="section__tag">Nuestra Historia</span>
-        <h2 class="section__title">Un Amor que Merece Celebrarse</h2>
-        <p class="section__sub">Cada foto cuenta un capítulo de nuestra historia.</p>
-      </div>
-
-      <!-- Galería masonry con imágenes reales -->
-      <div class="masonry-gallery">
-        <div class="mg-item mg-item--tall reveal">
-          <img src="img/53853-boda.jpg" alt="Nuestra boda" loading="lazy" />
-          <div class="mg-overlay">
-            <i class="fa-solid fa-heart"></i>
-            <span>Nuestro Amor</span>
-          </div>
-        </div>
-        <div class="mg-item reveal">
-          <img src="img/mujer-abraza-al-hombre-sostiene-ramo-peonias-blancas-al-aire-libre-vista-frontal-detalles_8353-10966.avif" alt="La novia con ramo" loading="lazy" />
-          <div class="mg-overlay">
-            <i class="fa-solid fa-spa"></i>
-            <span>El Ramo</span>
-          </div>
-        </div>
-        <div class="mg-item reveal">
-          <img src="img/novio-que-pone-anillo-dedo-novia_1157-338.avif" alt="El anillo" loading="lazy" />
-          <div class="mg-overlay">
-            <i class="fa-solid fa-ring"></i>
-            <span>El Sí</span>
-          </div>
-        </div>
-        <div class="mg-item reveal">
-          <img src="img/aa.jpg" alt="Momento especial" loading="lazy" />
-          <div class="mg-overlay"><i class="fa-solid fa-camera"></i><span>Memorias</span></div>
-        </div>
-        <div class="mg-item reveal">
-          <img src="img/q.jpg" alt="Momento especial" loading="lazy" />
-          <div class="mg-overlay"><i class="fa-solid fa-heart"></i><span>Amor</span></div>
-        </div>
-        <div class="mg-item mg-item--wide reveal">
-          <img src="img/s.jpg" alt="Juntos" loading="lazy" />
-          <div class="mg-overlay"><i class="fa-solid fa-champagne-glasses"></i><span>Juntos</span></div>
-        </div>
-        <div class="mg-item reveal">
-          <img src="img/x.jpg" alt="Momentos" loading="lazy" />
-          <div class="mg-overlay"><i class="fa-solid fa-music"></i><span>Nuestra Canción</span></div>
-        </div>
-        <div class="mg-item reveal">
-          <img src="img/z.jpg" alt="Detalles" loading="lazy" />
-          <div class="mg-overlay"><i class="fa-solid fa-star"></i><span>Detalles</span></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== SEPARADOR ===== -->
-  <div class="floral-divider floral-divider--2" aria-hidden="true">
-    <div class="fd-inner">
-      <span class="fd-line"></span>
-      <span class="fd-icon">🌷</span>
-      <span class="fd-icon fd-icon--main">⛪</span>
-      <span class="fd-icon">🌷</span>
-      <span class="fd-line"></span>
-    </div>
-  </div>
-
-  <!-- ===== EVENTO ===== -->
-  <section class="section evento" id="evento">
-    <div class="container">
-      <div class="section__header reveal">
-        <span class="section__tag">El Gran Día</span>
-        <h2 class="section__title">Detalles del Evento</h2>
-        <p class="section__sub">Cada detalle ha sido preparado con amor para ti.</p>
-      </div>
-
-      <div class="evento__cards">
-        <!-- Ceremonia -->
-        <div class="evento-card reveal">
-          <div class="evento-card__photo" style="background-image:url('img/53853-boda.jpg')">
-            <div class="evento-card__photo-overlay"></div>
-            <div class="evento-card__photo-icon"><i class="fa-solid fa-church"></i></div>
-          </div>
-          <div class="evento-card__body">
-            <span class="evento-card__tag">Ceremonia</span>
-            <h3>Parroquia Virgen del Pilar</h3>
-            <ul class="evento-card__info">
-              <li id="ceremoniaBodaDate"><i class="fa-regular fa-calendar"></i> Domingo, 14 de Febrero 2027</li>
-              <li><i class="fa-regular fa-clock"></i> 5:00 PM</li>
-              <li><i class="fa-solid fa-location-dot"></i> Av. Santa Cruz 1190, San Isidro, Lima</li>
-            </ul>
-            <a href="https://maps.google.com/?q=Parroquia+Virgen+del+Pilar+San+Isidro+Lima" target="_blank" rel="noopener" class="evento-card__btn">
-              <i class="fa-solid fa-map-location-dot"></i> Ver en Maps
-            </a>
-          </div>
-        </div>
-
-        <!-- Recepción -->
-        <div class="evento-card reveal">
-          <div class="evento-card__photo" style="background-image:url('img/mujer-abraza-al-hombre-sostiene-ramo-peonias-blancas-al-aire-libre-vista-frontal-detalles_8353-10966.avif')">
-            <div class="evento-card__photo-overlay"></div>
-            <div class="evento-card__photo-icon"><i class="fa-solid fa-champagne-glasses"></i></div>
-          </div>
-          <div class="evento-card__body">
-            <span class="evento-card__tag">Recepción</span>
-            <h3>Casa Hacienda Mamacona</h3>
-            <ul class="evento-card__info">
-              <li id="recepcionBodaDate"><i class="fa-regular fa-calendar"></i> Domingo, 14 de Febrero 2027</li>
-              <li><i class="fa-regular fa-clock"></i> 7:30 PM</li>
-              <li><i class="fa-solid fa-location-dot"></i> Av. Mamacona s/n, Lurín, Lima</li>
-            </ul>
-            <a href="https://maps.google.com/?q=Casa+Hacienda+Mamacona+Lurin+Lima" target="_blank" rel="noopener" class="evento-card__btn">
-              <i class="fa-solid fa-map-location-dot"></i> Ver en Maps
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Info extra: detalles adicionales -->
-      <div class="evento__extra reveal">
-        <div class="extra-box">
-          <i class="fa-solid fa-camera extra-box__icon"></i>
-          <h4>Comparte tus fotos</h4>
-          <p>Etiqueta tus momentos con nuestro hashtag oficial</p>
-          <span class="hashtag" id="heroHashtag">#SofíaYAlejandro2027</span>
-        </div>
-        <div class="extra-box">
-          <i class="fa-solid fa-baby extra-box__icon"></i>
-          <h4>Información Adicional</h4>
-          <p>Evento para mayores de 16 años · Estacionamiento gratuito disponible</p>
-        </div>
-      </div>
-
-      <!-- Dress code section — Damas & Caballeros -->
-      <div class="dress-section reveal" id="dressCodeSection">
-        <div class="dress-section__header">
-          <span class="section__tag">Vestimenta</span>
-          <h3 class="dress-section__title">Código de Vestimenta</h3>
-          <span class="dress-type-badge" id="dressCodeType">Formal Elegante</span>
-        </div>
-
-        <div class="dress-section__cols">
-          <!-- Damas -->
-          <div class="dress-col dress-col--ladies">
-            <div class="dress-col__emoji" aria-hidden="true">👗</div>
-            <h4 class="dress-col__heading">Damas</h4>
-            <p class="dress-col__type" id="dressLadiesType">Vestido largo de noche</p>
-            <div class="palette dress-col__palette" id="dressLadiesPalette">
-              <span style="background:#D4A5A5" title="Rosa polvo"></span>
-              <span style="background:#C8A2C8" title="Lila"></span>
-              <span style="background:#E8D5B7" title="Champagne"></span>
-              <span style="background:#C9A96E" title="Dorado"></span>
-              <span style="background:#B5C8C0" title="Salvia"></span>
-            </div>
-            <p class="dress-col__note" id="dressLadiesNote">
-              <i class="fa-solid fa-triangle-exclamation"></i>
-              Evitar el blanco — reservado para la novia
-            </p>
-          </div>
-
-          <!-- Divisor central -->
-          <div class="dress-divider" aria-hidden="true">
-            <span class="dress-divider__line"></span>
-            <span class="dress-divider__icon">💍</span>
-            <span class="dress-divider__line"></span>
-          </div>
-
-          <!-- Caballeros -->
-          <div class="dress-col dress-col--gents">
-            <div class="dress-col__emoji" aria-hidden="true">🤵</div>
-            <h4 class="dress-col__heading">Caballeros</h4>
-            <p class="dress-col__type" id="dressGentsType">Traje formal</p>
-            <div class="palette dress-col__palette" id="dressGentsPalette">
-              <span style="background:#2C2C2C" title="Negro"></span>
-              <span style="background:#4A4A6A" title="Marino"></span>
-              <span style="background:#7B2D3B" title="Burdeos"></span>
-              <span style="background:#C9A96E" title="Dorado"></span>
-              <span style="background:#6B7C4E" title="Verde olivo"></span>
-            </div>
-            <p class="dress-col__note" id="dressGentsNote">
-              <i class="fa-solid fa-circle-info"></i>
-              Corbata o moño obligatorio
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== UBICACIÓN ===== -->
-  <section class="section location-section" id="ubicacion">
-    <div class="container">
-      <div class="section__header reveal">
-        <span class="section__tag">El Lugar</span>
-        <h2 class="section__title" id="venueTitle">Casa Hacienda Mamacona</h2>
-        <p class="section__sub" id="venueAddress">Av. Mamacona s/n, Lurín, Lima</p>
-      </div>
-      <div class="location-map-wrap reveal">
-        <iframe id="venueMapIframe"
-          src="https://maps.google.com/maps?q=Casa+Hacienda+Mamacona+Lurin+Lima&output=embed&hl=es"
-          class="location-map-iframe" allowfullscreen loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"></iframe>
-      </div>
-      <div class="location-cta reveal">
-        <a id="venueDirections" href="https://www.google.com/maps/search/Casa+Hacienda+Mamacona+Lurin+Lima"
-           target="_blank" rel="noopener" class="btn btn--gold">
-          <i class="fa-solid fa-map-location-dot"></i> Cómo llegar
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== REGALOS ===== -->
-  <section class="section regalos-section" id="regalos">
-    <div class="container">
-      <div class="section__header reveal">
-        <span class="section__tag">Con Cariño</span>
-        <h2 class="section__title">Mesa de Regalos</h2>
-        <p class="section__sub">Tu presencia es el regalo más grande que podemos recibir.</p>
-      </div>
-
-      <div class="regalos-card reveal">
-        <div class="regalos-card__icon"><i class="fa-solid fa-blender"></i></div>
-        <p class="regalos-card__text">
-          Si deseas hacernos un obsequio adicional, nos harías muy felices con un
-          <strong>electrodoméstico</strong> para equipar nuestro nuevo hogar.
-        </p>
-        <span class="dress-type-badge">Electrodomésticos de preferencia</span>
-        <div class="divider-ornament" aria-hidden="true">
-          <span class="divider-ornament__line"></span>
-          <span class="divider-ornament__icon">💛</span>
-          <span class="divider-ornament__line"></span>
-        </div>
-        <p class="regalos-card__note">
-          <i class="fa-solid fa-envelope-open-text"></i>
-          También habrá un buzón especial para sobres el día del evento
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== CONTACTO ===== -->
-  <section class="section contacto" id="contacto">
-    <div class="container">
-      <div class="section__header reveal">
-        <span class="section__tag">¿Tienes dudas?</span>
-        <h2 class="section__title">Estamos Aquí para Ti</h2>
-      </div>
-      <div class="contacto__grid">
-        <div class="contacto-card reveal">
-          <div class="contacto-card__img" style="background-image:url('img/q.jpg')"></div>
-          <div class="contacto-card__body">
-            <div class="contacto-card__icon"><i class="fa-brands fa-whatsapp"></i></div>
-            <h4>WhatsApp</h4>
-            <a href="https://wa.me/51924687363" target="_blank" rel="noopener" class="contacto-card__tel">+51 924 687 363</a>
-            <a href="https://wa.me/51924687363" target="_blank" rel="noopener" class="btn btn--outline btn--sm">Escribir</a>
-          </div>
-        </div>
-        <div class="contacto-card reveal">
-          <div class="contacto-card__img" style="background-image:url('img/s.jpg')"></div>
-          <div class="contacto-card__body">
-            <div class="contacto-card__icon"><i class="fa-regular fa-envelope"></i></div>
-            <h4>Correo</h4>
-            <p>boda@sofiayanejandro.com</p>
-            <a href="mailto:boda@sofiayanejandro.com" class="btn btn--outline btn--sm">Enviar</a>
-          </div>
-        </div>
-        <div class="contacto-card reveal">
-          <div class="contacto-card__img" style="background-image:url('img/x.jpg')"></div>
-          <div class="contacto-card__body">
-            <div class="contacto-card__icon"><i class="fa-brands fa-instagram"></i></div>
-            <h4>Instagram</h4>
-            <p>#SofíaYAlejandro2027</p>
-            <a href="#" class="btn btn--outline btn--sm">Seguir</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== FOOTER ===== -->
-  <footer class="footer">
-    <div class="footer__wave" aria-hidden="true">
-      <svg viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z" fill="var(--navy)"/></svg>
-    </div>
-    <div class="footer__body">
-      <div class="footer__flowers" aria-hidden="true">🌸 🌿 💍 🌿 🌸</div>
-      <p class="footer__names" id="footerNames">Sofía <span>&</span> Alejandro</p>
-      <p class="footer__date" id="footerBodaDate">14 · 02 · 2027</p>
-      <div class="footer__divider"><span>·</span><i class="fa-solid fa-heart"></i><span>·</span></div>
-      <p class="footer__tag" id="footerHashtag">#SofíaYAlejandro2027</p>
-      <p class="footer__copy">Hecho con <i class="fa-solid fa-heart"></i> para el día más hermoso de nuestras vidas</p>
-    </div>
-    <div class="footer__credits">
-      <span class="footer__credits-text">Creado por</span>
-      <a href="https://qubira.onrender.com/" target="_blank" rel="noopener" class="footer__credits-brand">
-        <img src="https://raw.githubusercontent.com/qubira/IMAGENES/main/logo2.png" alt="Qubira" class="footer__credits-logo" />
-        <span class="footer__credits-name">QUBIRA</span>
-      </a>
-      <span class="footer__credits-sep">|</span>
-      <a href="https://wa.me/51924687363" target="_blank" rel="noopener" class="footer__credits-wa">
-        <i class="fa-brands fa-whatsapp"></i> +51 924 687 363
-      </a>
-    </div>
-  </footer>
-
-  <!-- UI helpers -->
-  <button class="theme-toggle" id="themeToggle" aria-label="Tema"><i class="fa-solid fa-moon" id="themeIcon"></i></button>
-  <button class="scroll-top" id="scrollTop" aria-label="Inicio"><i class="fa-solid fa-chevron-up"></i></button>
-
-  <script src="js/main.js"></script>
-</body>
+    <script src="js/main.js"></script>
+  </body>
 </html>

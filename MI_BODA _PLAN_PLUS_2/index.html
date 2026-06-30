@@ -1,809 +1,1193 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Confirma tu asistencia a la boda de Sofía & Alejandro — 14 de Febrero 2026" />
-  <title>💍 Sofía & Alejandro · 14·02·2026</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Confirma tu asistencia a la boda de Sofía & Alejandro — 14 de Febrero 2026"
+    />
+    <title>💍 Sofía & Alejandro · 14·02·2026</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Montserrat:wght@300;400;500;600&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <link rel="stylesheet" href="css/styles.css" />
-</head>
-<body>
-
-  <!-- ===== INTRO: INVITACIÓN TIPO CARTA ===== -->
-  <div id="introOverlay" class="invite-overlay">
-    <!-- Partículas de fondo -->
-    <div class="invite-particles" aria-hidden="true">
-      <span></span><span></span><span></span><span></span>
-      <span></span><span></span><span></span><span></span>
-    </div>
-
-    <div class="invite-envelope" id="introEnvelope">
-    <!-- Frente del sobre cerrado: cubre la carta hasta que se abre -->
-    <div class="invite-envelope__body" aria-hidden="true">
-      <span class="invite-envelope__monogram">
-        <span id="introMonoBride">S</span><i class="fa-solid fa-heart"></i><span id="introMonoGroom">A</span>
-      </span>
-      <p class="invite-envelope__label">Para Ti, con cariño</p>
-    </div>
-
-    <div class="invite-letter">
-      <!-- Esquinas ornamentales -->
-      <span class="invite-letter__corner invite-letter__corner--tl" aria-hidden="true"></span>
-      <span class="invite-letter__corner invite-letter__corner--tr" aria-hidden="true"></span>
-      <span class="invite-letter__corner invite-letter__corner--bl" aria-hidden="true"></span>
-      <span class="invite-letter__corner invite-letter__corner--br" aria-hidden="true"></span>
-
-      <p class="invite-letter__eyebrow">Con la bendición de Dios y nuestras familias</p>
-
-      <!-- Marco de fotos con carrusel animado -->
-      <div class="invite-photo-frame" id="invitePhotoFrame" aria-hidden="true">
-        <div class="invite-photo invite-photo--active" style="background-image:url('img/53853-boda.jpg')"></div>
-        <div class="invite-photo" style="background-image:url('img/mujer-abraza-al-hombre-sostiene-ramo-peonias-blancas-al-aire-libre-vista-frontal-detalles_8353-10966.avif')"></div>
-        <div class="invite-photo" style="background-image:url('img/novio-que-pone-anillo-dedo-novia_1157-338.avif')"></div>
-        <div class="invite-photo" style="background-image:url('img/aa.jpg')"></div>
-        <div class="invite-photo" style="background-image:url('img/q.jpg')"></div>
-        <div class="invite-photo" style="background-image:url('img/s.jpg')"></div>
-        <div class="invite-photo" style="background-image:url('img/x.jpg')"></div>
-        <div class="invite-photo" style="background-image:url('img/z.jpg')"></div>
-        <span class="invite-photo-frame__ring"></span>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Montserrat:wght@300;400;500;600&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <!-- ===== INTRO: INVITACIÓN TIPO CARTA ===== -->
+    <div id="introOverlay" class="invite-overlay">
+      <!-- Partículas de fondo -->
+      <div class="invite-particles" aria-hidden="true">
+        <span></span><span></span><span></span><span></span> <span></span
+        ><span></span><span></span><span></span>
       </div>
 
-      <div class="invite-letter__sep">
-        <span></span><i class="fa-solid fa-heart"></i><span></span>
+      <div class="invite-envelope" id="introEnvelope">
+        <!-- Frente del sobre cerrado: cubre la carta hasta que se abre -->
+        <div class="invite-envelope__body" aria-hidden="true">
+          <span class="invite-envelope__monogram">
+            <span id="introMonoBride">S</span><i class="fa-solid fa-heart"></i
+            ><span id="introMonoGroom">A</span>
+          </span>
+          <p class="invite-envelope__label">Para Ti, con cariño</p>
+        </div>
+
+        <div class="invite-letter">
+          <!-- Esquinas ornamentales -->
+          <span
+            class="invite-letter__corner invite-letter__corner--tl"
+            aria-hidden="true"
+          ></span>
+          <span
+            class="invite-letter__corner invite-letter__corner--tr"
+            aria-hidden="true"
+          ></span>
+          <span
+            class="invite-letter__corner invite-letter__corner--bl"
+            aria-hidden="true"
+          ></span>
+          <span
+            class="invite-letter__corner invite-letter__corner--br"
+            aria-hidden="true"
+          ></span>
+
+          <p class="invite-letter__eyebrow">
+            Con la bendición de Dios y nuestras familias
+          </p>
+
+          <!-- Marco de fotos con carrusel animado -->
+          <div
+            class="invite-photo-frame"
+            id="invitePhotoFrame"
+            aria-hidden="true"
+          >
+            <div
+              class="invite-photo invite-photo--active"
+              style="background-image: url(&quot;img/53853-boda.jpg&quot;)"
+            ></div>
+            <div
+              class="invite-photo"
+              style="
+                background-image: url(&quot;img/mujer-abraza-al-hombre-sostiene-ramo-peonias-blancas-al-aire-libre-vista-frontal-detalles_8353-10966.avif&quot;);
+              "
+            ></div>
+            <div
+              class="invite-photo"
+              style="
+                background-image: url(&quot;img/novio-que-pone-anillo-dedo-novia_1157-338.avif&quot;);
+              "
+            ></div>
+            <div
+              class="invite-photo"
+              style="background-image: url(&quot;img/aa.jpg&quot;)"
+            ></div>
+            <div
+              class="invite-photo"
+              style="background-image: url(&quot;img/q.jpg&quot;)"
+            ></div>
+            <div
+              class="invite-photo"
+              style="background-image: url(&quot;img/s.jpg&quot;)"
+            ></div>
+            <div
+              class="invite-photo"
+              style="background-image: url(&quot;img/x.jpg&quot;)"
+            ></div>
+            <div
+              class="invite-photo"
+              style="background-image: url(&quot;img/z.jpg&quot;)"
+            ></div>
+            <span class="invite-photo-frame__ring"></span>
+          </div>
+
+          <div class="invite-letter__sep">
+            <span></span><i class="fa-solid fa-heart"></i><span></span>
+          </div>
+
+          <h1 class="invite-letter__names">
+            <span id="introCardBride">Sofía</span>
+            <em>&amp;</em>
+            <span id="introCardGroom">Alejandro</span>
+          </h1>
+
+          <p class="invite-letter__date" id="introCardDate">14 · 02 · 2026</p>
+
+          <p class="invite-letter__msg">
+            Nos casamos y queremos compartir contigo<br />
+            este día tan especial.
+          </p>
+
+          <button type="button" class="invite-letter__btn" id="introEnterBtn">
+            <i class="fa-solid fa-envelope-open-text"></i> Abrir mi Invitación
+          </button>
+        </div>
+
+        <!-- Lazo que amarra la carta: se desamarra y cae al abrir -->
+        <div class="invite-ribbon" aria-hidden="true">
+          <span class="invite-ribbon__band invite-ribbon__band--t"></span>
+          <span class="invite-ribbon__band invite-ribbon__band--b"></span>
+          <span class="invite-ribbon__bow">
+            <span class="bow-tail bow-tail--l"></span>
+            <span class="bow-tail bow-tail--r"></span>
+            <span class="bow-loop bow-loop--l"></span>
+            <span class="bow-loop bow-loop--r"></span>
+            <span class="bow-knot"></span>
+          </span>
+        </div>
       </div>
+    </div>
 
-      <h1 class="invite-letter__names">
-        <span id="introCardBride">Sofía</span>
-        <em>&amp;</em>
-        <span id="introCardGroom">Alejandro</span>
-      </h1>
+    <!-- ===== CURSOR PERSONALIZADO ===== -->
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-trail" id="cursorTrail"></div>
 
-      <p class="invite-letter__date" id="introCardDate">14 · 02 · 2026</p>
-
-      <p class="invite-letter__msg">
-        Nos casamos y queremos compartir contigo<br> este día tan especial.
-      </p>
-
-      <button type="button" class="invite-letter__btn" id="introEnterBtn">
-        <i class="fa-solid fa-envelope-open-text"></i> Abrir mi Invitación
+    <!-- ===== NAV ===== -->
+    <nav class="nav" id="mainNav">
+      <div class="nav__brand">
+        <span class="nav__s" id="navBrideInitial">S</span>
+        <span class="nav__amp">&</span>
+        <span class="nav__a" id="navGroomInitial">A</span>
+      </div>
+      <button class="nav__toggle" id="navToggle" aria-label="Abrir menú">
+        <span></span><span></span><span></span>
       </button>
-    </div>
+      <ul class="nav__menu" id="navMenu">
+        <li><a href="#evento">El Evento</a></li>
+        <li><a href="#historia">Nuestra Historia</a></li>
+        <li><a href="#regalos">Regalos</a></li>
+        <li><a href="#rsvp">Confirmar</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+        <li>
+          <a href="admin.html" class="nav__admin"
+            ><i class="fa-solid fa-lock"></i> Admin</a
+          >
+        </li>
+      </ul>
+    </nav>
 
-    <!-- Lazo que amarra la carta: se desamarra y cae al abrir -->
-    <div class="invite-ribbon" aria-hidden="true">
-      <span class="invite-ribbon__band invite-ribbon__band--t"></span>
-      <span class="invite-ribbon__band invite-ribbon__band--b"></span>
-      <span class="invite-ribbon__bow">
-        <span class="bow-tail bow-tail--l"></span>
-        <span class="bow-tail bow-tail--r"></span>
-        <span class="bow-loop bow-loop--l"></span>
-        <span class="bow-loop bow-loop--r"></span>
-        <span class="bow-knot"></span>
-      </span>
-    </div>
-    </div>
-  </div>
+    <!-- ===== HERO ===== -->
+    <section class="hero" id="inicio">
+      <!-- Capas de fondo con parallax -->
+      <div
+        class="hero__bg hero__bg--1"
+        style="background-image: url(&quot;img/53853-boda.jpg&quot;)"
+      ></div>
+      <div
+        class="hero__bg hero__bg--2"
+        style="
+          background-image: url(&quot;img/mujer-abraza-al-hombre-sostiene-ramo-peonias-blancas-al-aire-libre-vista-frontal-detalles_8353-10966.avif&quot;);
+        "
+      ></div>
+      <div class="hero__overlay"></div>
+      <div class="hero__vignette"></div>
 
-  <!-- ===== CURSOR PERSONALIZADO ===== -->
-  <div class="cursor" id="cursor"></div>
-  <div class="cursor-trail" id="cursorTrail"></div>
+      <!-- Decoraciones flotantes SVG -->
+      <div class="hero__deco hero__deco--ring-l" aria-hidden="true">
+        <svg viewBox="0 0 120 120" fill="none">
+          <circle
+            cx="60"
+            cy="60"
+            r="55"
+            stroke="rgba(143,184,216,.4)"
+            stroke-width="1.5"
+          />
+          <circle
+            cx="60"
+            cy="60"
+            r="45"
+            stroke="rgba(143,184,216,.25)"
+            stroke-width="1"
+          />
+          <circle cx="60" cy="60" r="8" fill="rgba(143,184,216,.5)" />
+        </svg>
+      </div>
+      <div class="hero__deco hero__deco--ring-r" aria-hidden="true">
+        <svg viewBox="0 0 80 80" fill="none">
+          <circle
+            cx="40"
+            cy="40"
+            r="36"
+            stroke="rgba(255,255,255,.2)"
+            stroke-width="1"
+          />
+          <circle
+            cx="40"
+            cy="40"
+            r="28"
+            stroke="rgba(143,184,216,.3)"
+            stroke-width="1"
+          />
+        </svg>
+      </div>
+      <div class="hero__deco hero__deco--flower-t" aria-hidden="true">🌸</div>
+      <div class="hero__deco hero__deco--flower-b" aria-hidden="true">🌿</div>
 
-  <!-- ===== NAV ===== -->
-  <nav class="nav" id="mainNav">
-    <div class="nav__brand">
-      <span class="nav__s" id="navBrideInitial">S</span>
-      <span class="nav__amp">&</span>
-      <span class="nav__a" id="navGroomInitial">A</span>
-    </div>
-    <button class="nav__toggle" id="navToggle" aria-label="Abrir menú">
-      <span></span><span></span><span></span>
+      <div class="hero__content">
+        <!-- Fecha superior -->
+        <div class="hero__eyebrow">
+          <span class="hero__line-deco"></span>
+          <span class="hero__eyebrow-text" id="heroBodaDate"
+            >Sábado · 14 · Febrero · 2026</span
+          >
+          <span class="hero__line-deco"></span>
+        </div>
+
+        <p class="hero__pre">Con toda la alegría de nuestros corazones</p>
+        <h1 class="hero__names">
+          <span class="hero__name hero__name--sofia" id="heroBride">Sofía</span>
+          <span class="hero__and">&</span>
+          <span class="hero__name hero__name--alejandro" id="heroGroom"
+            >Alejandro</span
+          >
+        </h1>
+
+        <div class="hero__ornament" aria-hidden="true">
+          <span class="ornament-line"></span>
+          <span class="ornament-diamond">◆</span>
+          <span class="ornament-dot">·</span>
+          <span class="ornament-heart"><i class="fa-solid fa-heart"></i></span>
+          <span class="ornament-dot">·</span>
+          <span class="ornament-diamond">◆</span>
+          <span class="ornament-line"></span>
+        </div>
+
+        <p class="hero__invite">
+          "Nos encantaría que fueras parte de este día tan especial.<br />
+          <em>Tu presencia será nuestro mejor regalo.</em>"
+        </p>
+
+        <!-- Countdown -->
+        <div class="countdown" id="countdown">
+          <div class="countdown__unit">
+            <div class="countdown__circle">
+              <span class="countdown__num" id="cd-days">00</span>
+            </div>
+            <span class="countdown__label">Días</span>
+          </div>
+          <div class="countdown__sep"><i class="fa-solid fa-heart"></i></div>
+          <div class="countdown__unit">
+            <div class="countdown__circle">
+              <span class="countdown__num" id="cd-hours">00</span>
+            </div>
+            <span class="countdown__label">Horas</span>
+          </div>
+          <div class="countdown__sep"><i class="fa-solid fa-heart"></i></div>
+          <div class="countdown__unit">
+            <div class="countdown__circle">
+              <span class="countdown__num" id="cd-minutes">00</span>
+            </div>
+            <span class="countdown__label">Minutos</span>
+          </div>
+          <div class="countdown__sep"><i class="fa-solid fa-heart"></i></div>
+          <div class="countdown__unit">
+            <div class="countdown__circle">
+              <span class="countdown__num" id="cd-seconds">00</span>
+            </div>
+            <span class="countdown__label">Segundos</span>
+          </div>
+        </div>
+
+        <div class="hero__actions">
+          <a href="#rsvp" class="btn btn--gold">
+            <i class="fa-solid fa-envelope-open-text"></i> Confirmar Asistencia
+          </a>
+          <a href="#evento" class="btn btn--ghost">
+            <i class="fa-solid fa-calendar-heart"></i> Ver Detalles
+          </a>
+        </div>
+      </div>
+
+      <!-- Scroll indicator animado -->
+      <div class="hero__scroll-indicator">
+        <span class="scroll-text">Desliza</span>
+        <div class="scroll-mouse">
+          <div class="scroll-wheel"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PASAJE BÍBLICO ===== -->
+    <section class="section verse-section" id="versiculo">
+      <div
+        class="verse-bg"
+        style="
+          background-image: url(&quot;img/decoracion_corazon_de_flores.png&quot;);
+        "
+      ></div>
+      <div class="verse-overlay"></div>
+      <div class="container" style="position: relative; z-index: 2">
+        <div class="verse-card reveal">
+          <i
+            class="fa-solid fa-book-open-reader verse-card__icon"
+            aria-hidden="true"
+          ></i>
+          <p class="verse-card__text">
+            "El amor es paciente, es bondadoso. El amor no es envidioso ni
+            jactancioso, ni orgulloso. No se comporta con rudeza, no es egoísta,
+            no se enoja fácilmente, no guarda rencor. Todo lo disculpa, todo lo
+            cree, todo lo espera, todo lo soporta. El amor jamás se extingue."
+          </p>
+          <span class="verse-card__ref">— 1 Corintios 13:4-8</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== HISTORIA / GALERÍA ===== -->
+    <section class="section historia" id="historia">
+      <div class="container">
+        <div class="section__header reveal">
+          <span class="section__tag">Nuestra Historia</span>
+          <h2 class="section__title">Un Amor que Merece Celebrarse</h2>
+          <p class="section__sub">
+            Cada foto cuenta un capítulo de nuestra historia.
+          </p>
+        </div>
+
+        <!-- Galería masonry con imágenes reales -->
+        <div class="masonry-gallery">
+          <div class="mg-item mg-item--tall reveal">
+            <img src="img/53853-boda.jpg" alt="Nuestra boda" loading="lazy" />
+            <div class="mg-overlay">
+              <i class="fa-solid fa-heart"></i>
+              <span>Nuestro Amor</span>
+            </div>
+          </div>
+          <div class="mg-item reveal">
+            <img
+              src="img/mujer-abraza-al-hombre-sostiene-ramo-peonias-blancas-al-aire-libre-vista-frontal-detalles_8353-10966.avif"
+              alt="La novia con ramo"
+              loading="lazy"
+            />
+            <div class="mg-overlay">
+              <i class="fa-solid fa-spa"></i>
+              <span>El Ramo</span>
+            </div>
+          </div>
+          <div class="mg-item reveal">
+            <img
+              src="img/novio-que-pone-anillo-dedo-novia_1157-338.avif"
+              alt="El anillo"
+              loading="lazy"
+            />
+            <div class="mg-overlay">
+              <i class="fa-solid fa-ring"></i>
+              <span>El Sí</span>
+            </div>
+          </div>
+          <div class="mg-item reveal">
+            <img src="img/aa.jpg" alt="Momento especial" loading="lazy" />
+            <div class="mg-overlay">
+              <i class="fa-solid fa-camera"></i><span>Memorias</span>
+            </div>
+          </div>
+          <div class="mg-item reveal">
+            <img src="img/q.jpg" alt="Momento especial" loading="lazy" />
+            <div class="mg-overlay">
+              <i class="fa-solid fa-heart"></i><span>Amor</span>
+            </div>
+          </div>
+          <div class="mg-item mg-item--wide reveal">
+            <img src="img/s.jpg" alt="Juntos" loading="lazy" />
+            <div class="mg-overlay">
+              <i class="fa-solid fa-champagne-glasses"></i><span>Juntos</span>
+            </div>
+          </div>
+          <div class="mg-item reveal">
+            <img src="img/x.jpg" alt="Momentos" loading="lazy" />
+            <div class="mg-overlay">
+              <i class="fa-solid fa-music"></i><span>Nuestra Canción</span>
+            </div>
+          </div>
+          <div class="mg-item reveal">
+            <img src="img/z.jpg" alt="Detalles" loading="lazy" />
+            <div class="mg-overlay">
+              <i class="fa-solid fa-star"></i><span>Detalles</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== EVENTO ===== -->
+    <section class="section evento" id="evento">
+      <div class="container">
+        <div class="section__header reveal">
+          <span class="section__tag">El Gran Día</span>
+          <h2 class="section__title">Detalles del Evento</h2>
+          <p class="section__sub">
+            Cada detalle ha sido preparado con amor para ti.
+          </p>
+        </div>
+
+        <div class="evento__cards">
+          <!-- Ceremonia -->
+          <div class="evento-card reveal">
+            <div
+              class="evento-card__photo"
+              style="background-image: url(&quot;img/53853-boda.jpg&quot;)"
+            >
+              <div class="evento-card__photo-overlay"></div>
+              <div class="evento-card__photo-icon">
+                <i class="fa-solid fa-church"></i>
+              </div>
+            </div>
+            <div class="evento-card__body">
+              <span class="evento-card__tag">Ceremonia</span>
+              <h3>Catedral de San Francisco</h3>
+              <ul class="evento-card__info">
+                <li id="ceremoniaBodaDate">
+                  <i class="fa-regular fa-calendar"></i> Sábado, 14 de Febrero
+                  2026
+                </li>
+                <li><i class="fa-regular fa-clock"></i> 5:00 PM</li>
+                <li>
+                  <i class="fa-solid fa-location-dot"></i> Av. Principal 123,
+                  Centro Histórico
+                </li>
+              </ul>
+              <a
+                href="https://maps.google.com/?q=Catedral+San+Francisco"
+                target="_blank"
+                rel="noopener"
+                class="evento-card__btn"
+              >
+                <i class="fa-solid fa-map-location-dot"></i> Ver en Maps
+              </a>
+            </div>
+          </div>
+
+          <!-- Recepción -->
+          <div class="evento-card reveal">
+            <div
+              class="evento-card__photo"
+              style="
+                background-image: url(&quot;img/mujer-abraza-al-hombre-sostiene-ramo-peonias-blancas-al-aire-libre-vista-frontal-detalles_8353-10966.avif&quot;);
+              "
+            >
+              <div class="evento-card__photo-overlay"></div>
+              <div class="evento-card__photo-icon">
+                <i class="fa-solid fa-champagne-glasses"></i>
+              </div>
+            </div>
+            <div class="evento-card__body">
+              <span class="evento-card__tag">Recepción</span>
+              <h3>Casa Hacienda Mamacona</h3>
+              <ul class="evento-card__info">
+                <li id="recepcionBodaDate">
+                  <i class="fa-regular fa-calendar"></i> Sábado, 14 de Febrero
+                  2026
+                </li>
+                <li><i class="fa-regular fa-clock"></i> 7:30 PM</li>
+                <li>
+                  <i class="fa-solid fa-location-dot"></i> Av. Mamacona s/n,
+                  Lurín, Lima
+                </li>
+              </ul>
+              <a
+                href="https://maps.google.com/?q=Casa+Hacienda+Mamacona%2C+Av.+Mamacona+s%2Fn%2C+Lur%C3%ADn%2C+Lima"
+                target="_blank"
+                rel="noopener"
+                class="evento-card__btn"
+              >
+                <i class="fa-solid fa-map-location-dot"></i> Ver en Maps
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Info extra: detalles adicionales -->
+        <div class="evento__extra reveal">
+          <div class="extra-box">
+            <i class="fa-solid fa-camera extra-box__icon"></i>
+            <h4>Comparte tus fotos</h4>
+            <p>Etiqueta tus momentos con nuestro hashtag oficial</p>
+            <span class="hashtag" id="heroHashtag">#SofíaYAlejandro2026</span>
+          </div>
+          <div class="extra-box">
+            <i class="fa-solid fa-baby extra-box__icon"></i>
+            <h4>Información Adicional</h4>
+            <p>
+              Evento para mayores de 16 años · Estacionamiento gratuito
+              disponible
+            </p>
+          </div>
+        </div>
+
+        <!-- Dress code section — Damas & Caballeros -->
+        <div class="dress-section reveal" id="dressCodeSection">
+          <div class="dress-section__header">
+            <span class="section__tag">Vestimenta</span>
+            <h3 class="dress-section__title">Código de Vestimenta</h3>
+            <span class="dress-type-badge" id="dressCodeType"
+              >Formal Elegante</span
+            >
+          </div>
+
+          <div class="dress-section__cols">
+            <!-- Damas -->
+            <div class="dress-col dress-col--ladies">
+              <div class="dress-col__emoji" aria-hidden="true">👗</div>
+              <h4 class="dress-col__heading">Damas</h4>
+              <p class="dress-col__type" id="dressLadiesType">
+                Vestido largo de noche
+              </p>
+              <div class="palette dress-col__palette" id="dressLadiesPalette">
+                <span style="background: #d4a5a5" title="Rosa polvo"></span>
+                <span style="background: #c8a2c8" title="Lila"></span>
+                <span style="background: #e8d5b7" title="Champagne"></span>
+                <span style="background: #c9a96e" title="Dorado"></span>
+                <span style="background: #b5c8c0" title="Salvia"></span>
+              </div>
+              <p class="dress-col__note" id="dressLadiesNote">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+                Evitar el blanco — reservado para la novia
+              </p>
+            </div>
+
+            <!-- Divisor central -->
+            <div class="dress-divider" aria-hidden="true">
+              <span class="dress-divider__line"></span>
+              <span class="dress-divider__icon">💍</span>
+              <span class="dress-divider__line"></span>
+            </div>
+
+            <!-- Caballeros -->
+            <div class="dress-col dress-col--gents">
+              <div class="dress-col__emoji" aria-hidden="true">🤵</div>
+              <h4 class="dress-col__heading">Caballeros</h4>
+              <p class="dress-col__type" id="dressGentsType">Traje formal</p>
+              <div class="palette dress-col__palette" id="dressGentsPalette">
+                <span style="background: #2c2c2c" title="Negro"></span>
+                <span style="background: #4a4a6a" title="Marino"></span>
+                <span style="background: #7b2d3b" title="Burdeos"></span>
+                <span style="background: #c9a96e" title="Dorado"></span>
+                <span style="background: #6b7c4e" title="Verde olivo"></span>
+              </div>
+              <p class="dress-col__note" id="dressGentsNote">
+                <i class="fa-solid fa-circle-info"></i>
+                Corbata o moño obligatorio
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== UBICACIÓN ===== -->
+    <section class="section location-section" id="ubicacion">
+      <div class="container">
+        <div class="section__header reveal">
+          <span class="section__tag">El Lugar</span>
+          <h2 class="section__title" id="venueTitle">Casa Hacienda Mamacona</h2>
+          <p class="section__sub" id="venueAddress">
+            Av. Mamacona s/n, Lurín, Lima
+          </p>
+        </div>
+        <div class="location-map-wrap reveal">
+          <iframe
+            id="venueMapIframe"
+            src="https://maps.google.com/maps?q=Casa+Hacienda+Mamacona%2C+Av.+Mamacona+s%2Fn%2C+Lur%C3%ADn%2C+Lima&output=embed&hl=es"
+            class="location-map-iframe"
+            allowfullscreen
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
+        <div class="location-cta reveal">
+          <a
+            id="venueDirections"
+            href="https://www.google.com/maps/search/Casa+Hacienda+Mamacona%2C+Av.+Mamacona+s%2Fn%2C+Lur%C3%ADn%2C+Lima"
+            target="_blank"
+            rel="noopener"
+            class="btn btn--gold"
+          >
+            <i class="fa-solid fa-map-location-dot"></i> Cómo llegar
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== TIMELINE ===== -->
+    <section class="section timeline-section">
+      <div
+        class="timeline-bg"
+        style="background-image: url(&quot;img/aa.jpg&quot;)"
+      ></div>
+      <div class="timeline-overlay"></div>
+      <div class="container" style="position: relative; z-index: 2">
+        <div class="section__header reveal">
+          <span class="section__tag section__tag--light">La Agenda</span>
+          <h2 class="section__title section__title--light">
+            El Programa del Día
+          </h2>
+        </div>
+        <div class="timeline" id="mainTimeline">
+          <div class="tl-item reveal">
+            <div class="tl-time">5:00 PM</div>
+            <div class="tl-dot"><i class="fa-solid fa-church"></i></div>
+            <div class="tl-body">
+              <h4>Ceremonia Religiosa</h4>
+              <p>Catedral de San Francisco</p>
+            </div>
+          </div>
+          <div class="tl-item reveal">
+            <div class="tl-time">6:30 PM</div>
+            <div class="tl-dot"><i class="fa-solid fa-martini-glass"></i></div>
+            <div class="tl-body">
+              <h4>Cóctel de Bienvenida</h4>
+              <p>Jardines de Casa Hacienda Mamacona</p>
+            </div>
+          </div>
+          <div class="tl-item reveal">
+            <div class="tl-time">7:30 PM</div>
+            <div class="tl-dot"><i class="fa-solid fa-utensils"></i></div>
+            <div class="tl-body">
+              <h4>Recepción y Cena</h4>
+              <p>Salón Principal · Música en vivo</p>
+            </div>
+          </div>
+          <div class="tl-item reveal">
+            <div class="tl-time">9:00 PM</div>
+            <div class="tl-dot"><i class="fa-solid fa-music"></i></div>
+            <div class="tl-body">
+              <h4>Primer Baile</h4>
+              <p>¡Que comience la fiesta!</p>
+            </div>
+          </div>
+          <div class="tl-item reveal">
+            <div class="tl-time">12:00 AM</div>
+            <div class="tl-dot"><i class="fa-solid fa-cake-candles"></i></div>
+            <div class="tl-body">
+              <h4>Pastel de Bodas</h4>
+              <p>El momento más dulce de la noche</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== REGALOS ===== -->
+    <section class="section gift-section" id="regalos">
+      <div class="container">
+        <div class="section__header reveal">
+          <span class="section__tag">Detalle Especial</span>
+          <h2 class="section__title">Mesa de Regalos</h2>
+          <p class="section__sub">
+            Tu presencia es el regalo más importante para nosotros.
+          </p>
+        </div>
+
+        <div class="gift-card reveal">
+          <div class="gift-card__icon"><i class="fa-solid fa-gift"></i></div>
+          <h3>Sin Protocolo de Regalos</h3>
+          <p>
+            Lo único que necesitamos es compartir este día junto a ti. Si aun
+            así deseas tener un detalle con nosotros, te dejamos algunas ideas
+            que nos serían de gran ayuda para nuestro nuevo hogar.
+          </p>
+        </div>
+
+        <div class="gift-suggestions reveal">
+          <div class="gift-item">
+            <i class="fa-solid fa-blender"></i><span>Licuadora</span>
+          </div>
+          <div class="gift-item">
+            <i class="fa-solid fa-bed"></i><span>Cama</span>
+          </div>
+          <div class="gift-item">
+            <i class="fa-solid fa-tv"></i><span>Televisor</span>
+          </div>
+          <div class="gift-item">
+            <i class="fa-solid fa-mobile-screen"></i><span>Celular</span>
+          </div>
+          <div class="gift-item">
+            <i class="fa-solid fa-kitchen-set"></i><span>Vajilla</span>
+          </div>
+          <div class="gift-item">
+            <i class="fa-solid fa-couch"></i><span>Muebles</span>
+          </div>
+          <div class="gift-item">
+            <i class="fa-solid fa-blender-phone"></i
+            ><span>Electrodomésticos</span>
+          </div>
+          <div class="gift-item">
+            <i class="fa-solid fa-broom"></i><span>Artículos de limpieza</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== RSVP ===== -->
+    <section class="section rsvp-section" id="rsvp">
+      <div
+        class="rsvp-bg"
+        style="
+          background-image: url(&quot;img/novio-que-pone-anillo-dedo-novia_1157-338.avif&quot;);
+        "
+      ></div>
+      <div class="rsvp-overlay"></div>
+      <div class="container" style="position: relative; z-index: 2">
+        <div class="section__header reveal">
+          <span class="section__tag section__tag--light">Tu Respuesta</span>
+          <h2 class="section__title section__title--light">
+            Confirma tu Asistencia
+          </h2>
+          <p class="section__sub section__sub--light">
+            Por favor responde antes del <strong>1 de Enero de 2026</strong>
+          </p>
+        </div>
+
+        <div class="rsvp__wrap">
+          <!-- Steps indicator -->
+          <div class="steps-bar" id="stepsBar">
+            <div class="step-dot active" data-step="1">
+              <span>1</span><small>Info</small>
+            </div>
+            <div class="step-line"></div>
+            <div class="step-dot" data-step="2">
+              <span>2</span><small>Detalles</small>
+            </div>
+            <div class="step-line"></div>
+            <div class="step-dot" data-step="3">
+              <span>3</span><small>Listo</small>
+            </div>
+          </div>
+
+          <form class="rsvp-form" id="rsvpForm" novalidate>
+            <!-- PASO 1 -->
+            <div class="form-step active" id="step1">
+              <div class="form-step__header">
+                <i class="fa-solid fa-user-pen"></i>
+                <h3>Tu Información</h3>
+              </div>
+
+              <div class="fg">
+                <label for="nombre"
+                  >Nombre completo <span class="req">*</span></label
+                >
+                <div class="fi-wrap">
+                  <i class="fa-solid fa-user fi-icon"></i>
+                  <input
+                    type="text"
+                    id="nombre"
+                    name="nombre"
+                    placeholder="Ej. María García López"
+                    autocomplete="name"
+                    required
+                  />
+                </div>
+                <span class="ferr" id="err-nombre"></span>
+              </div>
+
+              <div class="fg-row">
+                <div class="fg">
+                  <label for="correo">Correo <span class="req">*</span></label>
+                  <div class="fi-wrap">
+                    <i class="fa-regular fa-envelope fi-icon"></i>
+                    <input
+                      type="email"
+                      id="correo"
+                      name="correo"
+                      placeholder="tu@correo.com"
+                      autocomplete="email"
+                      required
+                    />
+                  </div>
+                  <span class="ferr" id="err-correo"></span>
+                </div>
+                <div class="fg">
+                  <label for="telefono">Teléfono</label>
+                  <div class="fi-wrap">
+                    <i class="fa-solid fa-phone fi-icon"></i>
+                    <input
+                      type="tel"
+                      id="telefono"
+                      name="telefono"
+                      placeholder="+52 55 1234 5678"
+                      autocomplete="tel"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="fg">
+                <label for="acompanantes"
+                  >¿Cuántos acompañantes traerás?
+                  <span class="req">*</span></label
+                >
+                <div class="fi-wrap">
+                  <i class="fa-solid fa-users fi-icon"></i>
+                  <select id="acompanantes" name="acompanantes" required>
+                    <option value="">Selecciona una opción</option>
+                    <option value="0">Vendré solo(a)</option>
+                    <option value="1">+ 1 acompañante</option>
+                    <option value="2">+ 2 acompañantes</option>
+                    <option value="3">+ 3 acompañantes</option>
+                    <option value="4">+ 4 acompañantes</option>
+                  </select>
+                </div>
+                <span class="ferr" id="err-acompanantes"></span>
+              </div>
+
+              <div class="fg">
+                <label
+                  >¿Confirmas tu asistencia? <span class="req">*</span></label
+                >
+                <div class="rsvp-cards">
+                  <label class="rsvp-card rsvp-card--yes" id="cardYes">
+                    <input type="radio" name="asistencia" value="si" />
+                    <div class="rsvp-card__inner">
+                      <div class="rsvp-card__icon">
+                        <i class="fa-solid fa-circle-check"></i>
+                      </div>
+                      <span class="rsvp-card__title">Sí asistiré</span>
+                      <span class="rsvp-card__sub">¡Con mucho gusto!</span>
+                    </div>
+                  </label>
+                  <label class="rsvp-card rsvp-card--no" id="cardNo">
+                    <input type="radio" name="asistencia" value="no" />
+                    <div class="rsvp-card__inner">
+                      <div class="rsvp-card__icon">
+                        <i class="fa-solid fa-circle-xmark"></i>
+                      </div>
+                      <span class="rsvp-card__title">No podré asistir</span>
+                      <span class="rsvp-card__sub">Lo lamento mucho</span>
+                    </div>
+                  </label>
+                </div>
+                <span class="ferr" id="err-asistencia"></span>
+              </div>
+
+              <button
+                type="button"
+                class="btn btn--gold btn--full"
+                id="nextStep1"
+              >
+                Continuar <i class="fa-solid fa-arrow-right"></i>
+              </button>
+            </div>
+
+            <!-- PASO 2 SI -->
+            <div class="form-step" id="step2si">
+              <div class="form-step__header">
+                <i class="fa-solid fa-utensils"></i>
+                <h3>Detalles Adicionales</h3>
+              </div>
+
+              <div class="fg">
+                <label>Selección de menú</label>
+                <div class="menu-grid">
+                  <label class="menu-opt"
+                    ><input type="radio" name="menu" value="carne" />
+                    <div class="menu-opt__inner">
+                      <span class="menu-opt__emoji">🥩</span><b>Res</b
+                      ><small>Filete al grill</small>
+                    </div></label
+                  >
+                  <label class="menu-opt"
+                    ><input type="radio" name="menu" value="pollo" />
+                    <div class="menu-opt__inner">
+                      <span class="menu-opt__emoji">🍗</span><b>Pollo</b
+                      ><small>Suprema en salsa</small>
+                    </div></label
+                  >
+                  <label class="menu-opt"
+                    ><input type="radio" name="menu" value="pescado" />
+                    <div class="menu-opt__inner">
+                      <span class="menu-opt__emoji">🐟</span><b>Pescado</b
+                      ><small>Salmón a las finas</small>
+                    </div></label
+                  >
+                  <label class="menu-opt"
+                    ><input type="radio" name="menu" value="vegetariano" />
+                    <div class="menu-opt__inner">
+                      <span class="menu-opt__emoji">🥗</span><b>Vegetariano</b
+                      ><small>Sin carne</small>
+                    </div></label
+                  >
+                </div>
+              </div>
+
+              <div class="fg">
+                <label for="restricciones"
+                  >Restricciones alimenticias o alergias</label
+                >
+                <div class="fi-wrap">
+                  <i class="fa-solid fa-triangle-exclamation fi-icon"></i>
+                  <input
+                    type="text"
+                    id="restricciones"
+                    placeholder="Ej. Sin gluten, alergia a nueces…"
+                  />
+                </div>
+              </div>
+
+              <div class="fg">
+                <label for="mensaje"
+                  >Mensaje para los novios
+                  <i class="fa-regular fa-heart" style="color: var(--rose)"></i
+                ></label>
+                <textarea
+                  id="mensaje"
+                  rows="4"
+                  placeholder="Escríbenos unas palabras especiales…"
+                ></textarea>
+              </div>
+
+              <div class="form-btns">
+                <button type="button" class="btn btn--outline" id="prev2si">
+                  <i class="fa-solid fa-arrow-left"></i> Volver
+                </button>
+                <button type="submit" class="btn btn--gold">
+                  <i class="fa-solid fa-paper-plane"></i> Enviar
+                </button>
+              </div>
+            </div>
+
+            <!-- PASO 2 NO -->
+            <div class="form-step" id="step2no">
+              <div class="form-step__header">
+                <i
+                  class="fa-solid fa-heart-crack"
+                  style="color: var(--rose)"
+                ></i>
+                <h3>Lo Sentimos Mucho</h3>
+              </div>
+              <div class="sorry-box">
+                <img
+                  src="img/novio-que-pone-anillo-dedo-novia_1157-338.avif"
+                  alt=""
+                />
+                <p>
+                  Lamentamos que no puedas acompañarnos, pero agradecemos tu
+                  respuesta.
+                </p>
+              </div>
+              <div class="fg">
+                <label for="mensaje-no">Déjanos un mensaje</label>
+                <textarea
+                  id="mensaje-no"
+                  rows="3"
+                  placeholder="Tus buenos deseos nos llenarán de alegría…"
+                ></textarea>
+              </div>
+              <div class="form-btns">
+                <button type="button" class="btn btn--outline" id="prev2no">
+                  <i class="fa-solid fa-arrow-left"></i> Volver
+                </button>
+                <button type="submit" class="btn btn--gold">
+                  <i class="fa-solid fa-paper-plane"></i> Enviar
+                </button>
+              </div>
+            </div>
+
+            <!-- ÉXITO -->
+            <div class="form-step success-step" id="stepSuccess">
+              <div class="success-anim" id="successAnim">
+                <div class="success-rings">
+                  <div class="ring ring-1"></div>
+                  <div class="ring ring-2"></div>
+                  <div class="ring ring-3"></div>
+                </div>
+                <div class="success-icon">
+                  <i class="fa-solid fa-circle-check"></i>
+                </div>
+              </div>
+              <h3 class="success-title" id="successTitle">
+                ¡Gracias por confirmar!
+              </h3>
+              <p class="success-msg" id="successMsg">
+                Hemos registrado tu respuesta con amor.
+              </p>
+              <div class="success-qr" id="successQR"></div>
+              <p class="success-qr-note" id="qrNote">
+                Guarda este código QR · lo necesitarás el día del evento
+              </p>
+              <div class="success-confetti" id="successConfetti"></div>
+              <button type="button" class="btn btn--outline" id="resetForm">
+                Enviar otra respuesta
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CONTACTO ===== -->
+    <section class="section contacto" id="contacto">
+      <div class="container">
+        <div class="section__header reveal">
+          <span class="section__tag">¿Tienes dudas?</span>
+          <h2 class="section__title">Estamos Aquí para Ti</h2>
+        </div>
+        <div class="contacto__grid">
+          <div class="contacto-card reveal">
+            <div
+              class="contacto-card__img"
+              style="background-image: url(&quot;img/q.jpg&quot;)"
+            ></div>
+            <div class="contacto-card__body">
+              <div class="contacto-card__icon">
+                <i class="fa-brands fa-whatsapp"></i>
+              </div>
+              <h4>WhatsApp</h4>
+              <a
+                href="https://wa.me/51924687363"
+                target="_blank"
+                rel="noopener"
+                class="contacto-card__tel"
+                >+51 924 687 363</a
+              >
+              <a
+                href="https://wa.me/51924687363"
+                target="_blank"
+                rel="noopener"
+                class="btn btn--outline btn--sm"
+                >Escribir</a
+              >
+            </div>
+          </div>
+          <div class="contacto-card reveal">
+            <div
+              class="contacto-card__img"
+              style="background-image: url(&quot;img/s.jpg&quot;)"
+            ></div>
+            <div class="contacto-card__body">
+              <div class="contacto-card__icon">
+                <i class="fa-regular fa-envelope"></i>
+              </div>
+              <h4>Correo</h4>
+              <p>boda@sofiayanejandro.com</p>
+              <a
+                href="mailto:boda@sofiayanejandro.com"
+                class="btn btn--outline btn--sm"
+                >Enviar</a
+              >
+            </div>
+          </div>
+          <div class="contacto-card reveal">
+            <div
+              class="contacto-card__img"
+              style="background-image: url(&quot;img/x.jpg&quot;)"
+            ></div>
+            <div class="contacto-card__body">
+              <div class="contacto-card__icon">
+                <i class="fa-brands fa-instagram"></i>
+              </div>
+              <h4>Instagram</h4>
+              <p>#SofíaYAlejandro2026</p>
+              <a href="#" class="btn btn--outline btn--sm">Seguir</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+      <div class="footer__wave" aria-hidden="true">
+        <svg viewBox="0 0 1440 80" preserveAspectRatio="none">
+          <path
+            d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z"
+            fill="var(--navy)"
+          />
+        </svg>
+      </div>
+      <div class="footer__body">
+        <p class="footer__names" id="footerNames">
+          Sofía <span>&</span> Alejandro
+        </p>
+        <p class="footer__date" id="footerBodaDate">14 · 02 · 2026</p>
+        <div class="footer__divider">
+          <span>·</span><i class="fa-solid fa-heart"></i><span>·</span>
+        </div>
+        <p class="footer__tag" id="footerHashtag">#SofíaYAlejandro2026</p>
+        <p class="footer__copy">
+          Hecho con <i class="fa-solid fa-heart"></i> para el día más hermoso de
+          nuestras vidas
+        </p>
+      </div>
+      <div class="footer__credits">
+        <span class="footer__credits-text">Creado por</span>
+        <a
+          href="https://qubira.onrender.com/"
+          target="_blank"
+          rel="noopener"
+          class="footer__credits-brand"
+        >
+          <img
+            src="https://raw.githubusercontent.com/qubira/IMAGENES/main/logo2.png"
+            alt="Qubira"
+            class="footer__credits-logo"
+          />
+          <span class="footer__credits-name">QUBIRA</span>
+        </a>
+        <span class="footer__credits-sep">|</span>
+        <a
+          href="https://wa.me/51924687363"
+          target="_blank"
+          rel="noopener"
+          class="footer__credits-wa"
+        >
+          <i class="fa-brands fa-whatsapp"></i> +51 924 687 363
+        </a>
+      </div>
+    </footer>
+
+    <!-- UI helpers -->
+    <div class="toast" id="toast"></div>
+    <button class="theme-toggle" id="themeToggle" aria-label="Tema">
+      <i class="fa-solid fa-moon" id="themeIcon"></i>
     </button>
-    <ul class="nav__menu" id="navMenu">
-      <li><a href="#evento">El Evento</a></li>
-      <li><a href="#historia">Nuestra Historia</a></li>
-      <li><a href="#regalos">Regalos</a></li>
-      <li><a href="#rsvp">Confirmar</a></li>
-      <li><a href="#contacto">Contacto</a></li>
-      <li><a href="admin.html" class="nav__admin"><i class="fa-solid fa-lock"></i> Admin</a></li>
-    </ul>
-  </nav>
+    <button class="scroll-top" id="scrollTop" aria-label="Inicio">
+      <i class="fa-solid fa-chevron-up"></i>
+    </button>
 
-  <!-- ===== HERO ===== -->
-  <section class="hero" id="inicio">
-    <!-- Capas de fondo con parallax -->
-    <div class="hero__bg hero__bg--1" style="background-image:url('img/53853-boda.jpg')"></div>
-    <div class="hero__bg hero__bg--2" style="background-image:url('img/mujer-abraza-al-hombre-sostiene-ramo-peonias-blancas-al-aire-libre-vista-frontal-detalles_8353-10966.avif')"></div>
-    <div class="hero__overlay"></div>
-    <div class="hero__vignette"></div>
-
-    <!-- Decoraciones flotantes SVG -->
-    <div class="hero__deco hero__deco--ring-l" aria-hidden="true">
-      <svg viewBox="0 0 120 120" fill="none"><circle cx="60" cy="60" r="55" stroke="rgba(143,184,216,.4)" stroke-width="1.5"/><circle cx="60" cy="60" r="45" stroke="rgba(143,184,216,.25)" stroke-width="1"/><circle cx="60" cy="60" r="8" fill="rgba(143,184,216,.5)"/></svg>
-    </div>
-    <div class="hero__deco hero__deco--ring-r" aria-hidden="true">
-      <svg viewBox="0 0 80 80" fill="none"><circle cx="40" cy="40" r="36" stroke="rgba(255,255,255,.2)" stroke-width="1"/><circle cx="40" cy="40" r="28" stroke="rgba(143,184,216,.3)" stroke-width="1"/></svg>
-    </div>
-    <div class="hero__deco hero__deco--flower-t" aria-hidden="true">🌸</div>
-    <div class="hero__deco hero__deco--flower-b" aria-hidden="true">🌿</div>
-
-    <div class="hero__content">
-      <!-- Fecha superior -->
-      <div class="hero__eyebrow">
-        <span class="hero__line-deco"></span>
-        <span class="hero__eyebrow-text" id="heroBodaDate">Sábado · 14 · Febrero · 2026</span>
-        <span class="hero__line-deco"></span>
-      </div>
-
-      <!-- Ramo decorativo -->
-      <div class="hero__bouquet" aria-hidden="true">
-        <span class="bq-emoji">🌸</span>
-        <span class="bq-emoji">🌹</span>
-        <span class="bq-emoji">💐</span>
-        <span class="bq-emoji">🌷</span>
-        <span class="bq-emoji">🌸</span>
-      </div>
-
-      <p class="hero__pre">Con toda la alegría de nuestros corazones</p>
-      <h1 class="hero__names">
-        <span class="hero__name hero__name--sofia" id="heroBride">Sofía</span>
-        <span class="hero__and">&</span>
-        <span class="hero__name hero__name--alejandro" id="heroGroom">Alejandro</span>
-      </h1>
-
-      <div class="hero__ornament" aria-hidden="true">
-        <span class="ornament-line"></span>
-        <span class="ornament-diamond">◆</span>
-        <span class="ornament-dot">·</span>
-        <span class="ornament-heart"><i class="fa-solid fa-heart"></i></span>
-        <span class="ornament-dot">·</span>
-        <span class="ornament-diamond">◆</span>
-        <span class="ornament-line"></span>
-      </div>
-
-      <p class="hero__invite">
-        "Nos encantaría que fueras parte de este día tan especial.<br>
-        <em>Tu presencia será nuestro mejor regalo.</em>"
-      </p>
-
-      <!-- Countdown -->
-      <div class="countdown" id="countdown">
-        <div class="countdown__unit">
-          <div class="countdown__circle">
-            <span class="countdown__num" id="cd-days">00</span>
+    <!-- ===== MUSIC PLAYER ===== -->
+    <div class="music-player" id="musicPlayer">
+      <div class="music-player__bar">
+        <div class="music-player__left">
+          <div class="music-player__eq" id="musicEq">
+            <span></span><span></span><span></span><span></span>
           </div>
-          <span class="countdown__label">Días</span>
+          <span class="music-player__title" id="musicTitle"
+            >Música de la boda</span
+          >
         </div>
-        <div class="countdown__sep"><i class="fa-solid fa-heart"></i></div>
-        <div class="countdown__unit">
-          <div class="countdown__circle">
-            <span class="countdown__num" id="cd-hours">00</span>
-          </div>
-          <span class="countdown__label">Horas</span>
+        <div class="music-player__controls">
+          <button
+            class="music-player__btn"
+            id="musicPlayBtn"
+            aria-label="Reproducir / Pausar"
+          >
+            <i class="fa-solid fa-play" id="musicPlayIcon"></i>
+          </button>
+          <button
+            class="music-player__vol"
+            id="musicVolBtn"
+            aria-label="Sonido"
+          >
+            <i class="fa-solid fa-volume-xmark" id="musicVolIcon"></i>
+          </button>
+          <button
+            class="music-player__close"
+            id="musicClose"
+            aria-label="Cerrar"
+          >
+            <i class="fa-solid fa-xmark"></i>
+          </button>
         </div>
-        <div class="countdown__sep"><i class="fa-solid fa-heart"></i></div>
-        <div class="countdown__unit">
-          <div class="countdown__circle">
-            <span class="countdown__num" id="cd-minutes">00</span>
-          </div>
-          <span class="countdown__label">Minutos</span>
-        </div>
-        <div class="countdown__sep"><i class="fa-solid fa-heart"></i></div>
-        <div class="countdown__unit">
-          <div class="countdown__circle">
-            <span class="countdown__num" id="cd-seconds">00</span>
-          </div>
-          <span class="countdown__label">Segundos</span>
-        </div>
-      </div>
-
-      <div class="hero__actions">
-        <a href="#rsvp" class="btn btn--gold">
-          <i class="fa-solid fa-envelope-open-text"></i> Confirmar Asistencia
-        </a>
-        <a href="#evento" class="btn btn--ghost">
-          <i class="fa-solid fa-calendar-heart"></i> Ver Detalles
-        </a>
       </div>
     </div>
 
-    <!-- Scroll indicator animado -->
-    <div class="hero__scroll-indicator">
-      <span class="scroll-text">Desliza</span>
-      <div class="scroll-mouse">
-        <div class="scroll-wheel"></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== SEPARADOR FLORAL ===== -->
-  <div class="floral-divider floral-divider--1" aria-hidden="true">
-    <div class="fd-inner">
-      <span class="fd-line"></span>
-      <span class="fd-icon">🌸</span>
-      <span class="fd-icon">🌿</span>
-      <span class="fd-icon fd-icon--main">💍</span>
-      <span class="fd-icon">🌿</span>
-      <span class="fd-icon">🌸</span>
-      <span class="fd-line"></span>
-    </div>
-  </div>
-
-  <!-- ===== PASAJE BÍBLICO ===== -->
-  <section class="section verse-section" id="versiculo">
-    <div class="verse-bg" style="background-image:url('img/decoracion_corazon_de_flores.png')"></div>
-    <div class="verse-overlay"></div>
-    <div class="container" style="position:relative;z-index:2">
-      <div class="verse-card reveal">
-        <i class="fa-solid fa-book-open-reader verse-card__icon" aria-hidden="true"></i>
-        <p class="verse-card__text">
-          "El amor es paciente, es bondadoso. El amor no es envidioso ni jactancioso, ni orgulloso.
-          No se comporta con rudeza, no es egoísta, no se enoja fácilmente, no guarda rencor.
-          Todo lo disculpa, todo lo cree, todo lo espera, todo lo soporta.
-          El amor jamás se extingue."
-        </p>
-        <span class="verse-card__ref">— 1 Corintios 13:4-8</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== HISTORIA / GALERÍA ===== -->
-  <section class="section historia" id="historia">
-    <div class="container">
-      <div class="section__header reveal">
-        <span class="section__tag">Nuestra Historia</span>
-        <h2 class="section__title">Un Amor que Merece Celebrarse</h2>
-        <p class="section__sub">Cada foto cuenta un capítulo de nuestra historia.</p>
-      </div>
-
-      <!-- Galería masonry con imágenes reales -->
-      <div class="masonry-gallery">
-        <div class="mg-item mg-item--tall reveal">
-          <img src="img/53853-boda.jpg" alt="Nuestra boda" loading="lazy" />
-          <div class="mg-overlay">
-            <i class="fa-solid fa-heart"></i>
-            <span>Nuestro Amor</span>
-          </div>
-        </div>
-        <div class="mg-item reveal">
-          <img src="img/mujer-abraza-al-hombre-sostiene-ramo-peonias-blancas-al-aire-libre-vista-frontal-detalles_8353-10966.avif" alt="La novia con ramo" loading="lazy" />
-          <div class="mg-overlay">
-            <i class="fa-solid fa-spa"></i>
-            <span>El Ramo</span>
-          </div>
-        </div>
-        <div class="mg-item reveal">
-          <img src="img/novio-que-pone-anillo-dedo-novia_1157-338.avif" alt="El anillo" loading="lazy" />
-          <div class="mg-overlay">
-            <i class="fa-solid fa-ring"></i>
-            <span>El Sí</span>
-          </div>
-        </div>
-        <div class="mg-item reveal">
-          <img src="img/aa.jpg" alt="Momento especial" loading="lazy" />
-          <div class="mg-overlay"><i class="fa-solid fa-camera"></i><span>Memorias</span></div>
-        </div>
-        <div class="mg-item reveal">
-          <img src="img/q.jpg" alt="Momento especial" loading="lazy" />
-          <div class="mg-overlay"><i class="fa-solid fa-heart"></i><span>Amor</span></div>
-        </div>
-        <div class="mg-item mg-item--wide reveal">
-          <img src="img/s.jpg" alt="Juntos" loading="lazy" />
-          <div class="mg-overlay"><i class="fa-solid fa-champagne-glasses"></i><span>Juntos</span></div>
-        </div>
-        <div class="mg-item reveal">
-          <img src="img/x.jpg" alt="Momentos" loading="lazy" />
-          <div class="mg-overlay"><i class="fa-solid fa-music"></i><span>Nuestra Canción</span></div>
-        </div>
-        <div class="mg-item reveal">
-          <img src="img/z.jpg" alt="Detalles" loading="lazy" />
-          <div class="mg-overlay"><i class="fa-solid fa-star"></i><span>Detalles</span></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== SEPARADOR ===== -->
-  <div class="floral-divider floral-divider--2" aria-hidden="true">
-    <div class="fd-inner">
-      <span class="fd-line"></span>
-      <span class="fd-icon">🌷</span>
-      <span class="fd-icon fd-icon--main">⛪</span>
-      <span class="fd-icon">🌷</span>
-      <span class="fd-line"></span>
-    </div>
-  </div>
-
-  <!-- ===== EVENTO ===== -->
-  <section class="section evento" id="evento">
-    <div class="container">
-      <div class="section__header reveal">
-        <span class="section__tag">El Gran Día</span>
-        <h2 class="section__title">Detalles del Evento</h2>
-        <p class="section__sub">Cada detalle ha sido preparado con amor para ti.</p>
-      </div>
-
-      <div class="evento__cards">
-        <!-- Ceremonia -->
-        <div class="evento-card reveal">
-          <div class="evento-card__photo" style="background-image:url('img/53853-boda.jpg')">
-            <div class="evento-card__photo-overlay"></div>
-            <div class="evento-card__photo-icon"><i class="fa-solid fa-church"></i></div>
-          </div>
-          <div class="evento-card__body">
-            <span class="evento-card__tag">Ceremonia</span>
-            <h3>Catedral de San Francisco</h3>
-            <ul class="evento-card__info">
-              <li id="ceremoniaBodaDate"><i class="fa-regular fa-calendar"></i> Sábado, 14 de Febrero 2026</li>
-              <li><i class="fa-regular fa-clock"></i> 5:00 PM</li>
-              <li><i class="fa-solid fa-location-dot"></i> Av. Principal 123, Centro Histórico</li>
-            </ul>
-            <a href="https://maps.google.com/?q=Catedral+San+Francisco" target="_blank" rel="noopener" class="evento-card__btn">
-              <i class="fa-solid fa-map-location-dot"></i> Ver en Maps
-            </a>
-          </div>
-        </div>
-
-        <!-- Recepción -->
-        <div class="evento-card reveal">
-          <div class="evento-card__photo" style="background-image:url('img/mujer-abraza-al-hombre-sostiene-ramo-peonias-blancas-al-aire-libre-vista-frontal-detalles_8353-10966.avif')">
-            <div class="evento-card__photo-overlay"></div>
-            <div class="evento-card__photo-icon"><i class="fa-solid fa-champagne-glasses"></i></div>
-          </div>
-          <div class="evento-card__body">
-            <span class="evento-card__tag">Recepción</span>
-            <h3>Casa Hacienda Mamacona</h3>
-            <ul class="evento-card__info">
-              <li id="recepcionBodaDate"><i class="fa-regular fa-calendar"></i> Sábado, 14 de Febrero 2026</li>
-              <li><i class="fa-regular fa-clock"></i> 7:30 PM</li>
-              <li><i class="fa-solid fa-location-dot"></i> Av. Mamacona s/n, Lurín, Lima</li>
-            </ul>
-            <a href="https://maps.google.com/?q=Casa+Hacienda+Mamacona%2C+Av.+Mamacona+s%2Fn%2C+Lur%C3%ADn%2C+Lima" target="_blank" rel="noopener" class="evento-card__btn">
-              <i class="fa-solid fa-map-location-dot"></i> Ver en Maps
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Info extra: detalles adicionales -->
-      <div class="evento__extra reveal">
-        <div class="extra-box">
-          <i class="fa-solid fa-camera extra-box__icon"></i>
-          <h4>Comparte tus fotos</h4>
-          <p>Etiqueta tus momentos con nuestro hashtag oficial</p>
-          <span class="hashtag" id="heroHashtag">#SofíaYAlejandro2026</span>
-        </div>
-        <div class="extra-box">
-          <i class="fa-solid fa-baby extra-box__icon"></i>
-          <h4>Información Adicional</h4>
-          <p>Evento para mayores de 16 años · Estacionamiento gratuito disponible</p>
-        </div>
-      </div>
-
-      <!-- Dress code section — Damas & Caballeros -->
-      <div class="dress-section reveal" id="dressCodeSection">
-        <div class="dress-section__header">
-          <span class="section__tag">Vestimenta</span>
-          <h3 class="dress-section__title">Código de Vestimenta</h3>
-          <span class="dress-type-badge" id="dressCodeType">Formal Elegante</span>
-        </div>
-
-        <div class="dress-section__cols">
-          <!-- Damas -->
-          <div class="dress-col dress-col--ladies">
-            <div class="dress-col__emoji" aria-hidden="true">👗</div>
-            <h4 class="dress-col__heading">Damas</h4>
-            <p class="dress-col__type" id="dressLadiesType">Vestido largo de noche</p>
-            <div class="palette dress-col__palette" id="dressLadiesPalette">
-              <span style="background:#D4A5A5" title="Rosa polvo"></span>
-              <span style="background:#C8A2C8" title="Lila"></span>
-              <span style="background:#E8D5B7" title="Champagne"></span>
-              <span style="background:#C9A96E" title="Dorado"></span>
-              <span style="background:#B5C8C0" title="Salvia"></span>
-            </div>
-            <p class="dress-col__note" id="dressLadiesNote">
-              <i class="fa-solid fa-triangle-exclamation"></i>
-              Evitar el blanco — reservado para la novia
-            </p>
-          </div>
-
-          <!-- Divisor central -->
-          <div class="dress-divider" aria-hidden="true">
-            <span class="dress-divider__line"></span>
-            <span class="dress-divider__icon">💍</span>
-            <span class="dress-divider__line"></span>
-          </div>
-
-          <!-- Caballeros -->
-          <div class="dress-col dress-col--gents">
-            <div class="dress-col__emoji" aria-hidden="true">🤵</div>
-            <h4 class="dress-col__heading">Caballeros</h4>
-            <p class="dress-col__type" id="dressGentsType">Traje formal</p>
-            <div class="palette dress-col__palette" id="dressGentsPalette">
-              <span style="background:#2C2C2C" title="Negro"></span>
-              <span style="background:#4A4A6A" title="Marino"></span>
-              <span style="background:#7B2D3B" title="Burdeos"></span>
-              <span style="background:#C9A96E" title="Dorado"></span>
-              <span style="background:#6B7C4E" title="Verde olivo"></span>
-            </div>
-            <p class="dress-col__note" id="dressGentsNote">
-              <i class="fa-solid fa-circle-info"></i>
-              Corbata o moño obligatorio
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== UBICACIÓN ===== -->
-  <section class="section location-section" id="ubicacion">
-    <div class="container">
-      <div class="section__header reveal">
-        <span class="section__tag">El Lugar</span>
-        <h2 class="section__title" id="venueTitle">Casa Hacienda Mamacona</h2>
-        <p class="section__sub" id="venueAddress">Av. Mamacona s/n, Lurín, Lima</p>
-      </div>
-      <div class="location-map-wrap reveal">
-        <iframe id="venueMapIframe"
-          src="https://maps.google.com/maps?q=Casa+Hacienda+Mamacona%2C+Av.+Mamacona+s%2Fn%2C+Lur%C3%ADn%2C+Lima&output=embed&hl=es"
-          class="location-map-iframe" allowfullscreen loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"></iframe>
-      </div>
-      <div class="location-cta reveal">
-        <a id="venueDirections" href="https://www.google.com/maps/search/Casa+Hacienda+Mamacona%2C+Av.+Mamacona+s%2Fn%2C+Lur%C3%ADn%2C+Lima"
-           target="_blank" rel="noopener" class="btn btn--gold">
-          <i class="fa-solid fa-map-location-dot"></i> Cómo llegar
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== TIMELINE ===== -->
-  <section class="section timeline-section">
-    <div class="timeline-bg" style="background-image:url('img/aa.jpg')"></div>
-    <div class="timeline-overlay"></div>
-    <div class="container" style="position:relative;z-index:2">
-      <div class="section__header reveal">
-        <span class="section__tag section__tag--light">La Agenda</span>
-        <h2 class="section__title section__title--light">El Programa del Día</h2>
-      </div>
-      <div class="timeline" id="mainTimeline">
-        <div class="tl-item reveal"><div class="tl-time">5:00 PM</div><div class="tl-dot"><i class="fa-solid fa-church"></i></div><div class="tl-body"><h4>Ceremonia Religiosa</h4><p>Catedral de San Francisco</p></div></div>
-        <div class="tl-item reveal"><div class="tl-time">6:30 PM</div><div class="tl-dot"><i class="fa-solid fa-martini-glass"></i></div><div class="tl-body"><h4>Cóctel de Bienvenida</h4><p>Jardines de Casa Hacienda Mamacona</p></div></div>
-        <div class="tl-item reveal"><div class="tl-time">7:30 PM</div><div class="tl-dot"><i class="fa-solid fa-utensils"></i></div><div class="tl-body"><h4>Recepción y Cena</h4><p>Salón Principal · Música en vivo</p></div></div>
-        <div class="tl-item reveal"><div class="tl-time">9:00 PM</div><div class="tl-dot"><i class="fa-solid fa-music"></i></div><div class="tl-body"><h4>Primer Baile</h4><p>¡Que comience la fiesta!</p></div></div>
-        <div class="tl-item reveal"><div class="tl-time">12:00 AM</div><div class="tl-dot"><i class="fa-solid fa-cake-candles"></i></div><div class="tl-body"><h4>Pastel de Bodas</h4><p>El momento más dulce de la noche</p></div></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== SEPARADOR ===== -->
-  <div class="floral-divider" aria-hidden="true">
-    <div class="fd-inner">
-      <span class="fd-line"></span>
-      <span class="fd-icon">🌸</span>
-      <span class="fd-icon fd-icon--main">🎁</span>
-      <span class="fd-icon">🌸</span>
-      <span class="fd-line"></span>
-    </div>
-  </div>
-
-  <!-- ===== REGALOS ===== -->
-  <section class="section gift-section" id="regalos">
-    <div class="container">
-      <div class="section__header reveal">
-        <span class="section__tag">Detalle Especial</span>
-        <h2 class="section__title">Mesa de Regalos</h2>
-        <p class="section__sub">Tu presencia es el regalo más importante para nosotros.</p>
-      </div>
-
-      <div class="gift-card reveal">
-        <div class="gift-card__icon"><i class="fa-solid fa-gift"></i></div>
-        <h3>Sin Protocolo de Regalos</h3>
-        <p>
-          Lo único que necesitamos es compartir este día junto a ti.
-          Si aun así deseas tener un detalle con nosotros, te dejamos algunas ideas
-          que nos serían de gran ayuda para nuestro nuevo hogar.
-        </p>
-      </div>
-
-      <div class="gift-suggestions reveal">
-        <div class="gift-item"><i class="fa-solid fa-blender"></i><span>Licuadora</span></div>
-        <div class="gift-item"><i class="fa-solid fa-bed"></i><span>Cama</span></div>
-        <div class="gift-item"><i class="fa-solid fa-tv"></i><span>Televisor</span></div>
-        <div class="gift-item"><i class="fa-solid fa-mobile-screen"></i><span>Celular</span></div>
-        <div class="gift-item"><i class="fa-solid fa-kitchen-set"></i><span>Vajilla</span></div>
-        <div class="gift-item"><i class="fa-solid fa-couch"></i><span>Muebles</span></div>
-        <div class="gift-item"><i class="fa-solid fa-blender-phone"></i><span>Electrodomésticos</span></div>
-        <div class="gift-item"><i class="fa-solid fa-broom"></i><span>Artículos de limpieza</span></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== SEPARADOR ===== -->
-  <div class="floral-divider" aria-hidden="true">
-    <div class="fd-inner">
-      <span class="fd-line"></span>
-      <span class="fd-icon">🌸</span>
-      <span class="fd-icon fd-icon--main">💌</span>
-      <span class="fd-icon">🌸</span>
-      <span class="fd-line"></span>
-    </div>
-  </div>
-
-  <!-- ===== RSVP ===== -->
-  <section class="section rsvp-section" id="rsvp">
-    <div class="rsvp-bg" style="background-image:url('img/novio-que-pone-anillo-dedo-novia_1157-338.avif')"></div>
-    <div class="rsvp-overlay"></div>
-    <div class="container" style="position:relative;z-index:2">
-      <div class="section__header reveal">
-        <span class="section__tag section__tag--light">Tu Respuesta</span>
-        <h2 class="section__title section__title--light">Confirma tu Asistencia</h2>
-        <p class="section__sub section__sub--light">Por favor responde antes del <strong>1 de Enero de 2026</strong></p>
-      </div>
-
-      <div class="rsvp__wrap">
-        <!-- Steps indicator -->
-        <div class="steps-bar" id="stepsBar">
-          <div class="step-dot active" data-step="1"><span>1</span><small>Info</small></div>
-          <div class="step-line"></div>
-          <div class="step-dot" data-step="2"><span>2</span><small>Detalles</small></div>
-          <div class="step-line"></div>
-          <div class="step-dot" data-step="3"><span>3</span><small>Listo</small></div>
-        </div>
-
-        <form class="rsvp-form" id="rsvpForm" novalidate>
-
-          <!-- PASO 1 -->
-          <div class="form-step active" id="step1">
-            <div class="form-step__header">
-              <i class="fa-solid fa-user-pen"></i>
-              <h3>Tu Información</h3>
-            </div>
-
-            <div class="fg">
-              <label for="nombre">Nombre completo <span class="req">*</span></label>
-              <div class="fi-wrap"><i class="fa-solid fa-user fi-icon"></i>
-                <input type="text" id="nombre" name="nombre" placeholder="Ej. María García López" autocomplete="name" required />
-              </div>
-              <span class="ferr" id="err-nombre"></span>
-            </div>
-
-            <div class="fg-row">
-              <div class="fg">
-                <label for="correo">Correo <span class="req">*</span></label>
-                <div class="fi-wrap"><i class="fa-regular fa-envelope fi-icon"></i>
-                  <input type="email" id="correo" name="correo" placeholder="tu@correo.com" autocomplete="email" required />
-                </div>
-                <span class="ferr" id="err-correo"></span>
-              </div>
-              <div class="fg">
-                <label for="telefono">Teléfono</label>
-                <div class="fi-wrap"><i class="fa-solid fa-phone fi-icon"></i>
-                  <input type="tel" id="telefono" name="telefono" placeholder="+52 55 1234 5678" autocomplete="tel" />
-                </div>
-              </div>
-            </div>
-
-            <div class="fg">
-              <label for="acompanantes">¿Cuántos acompañantes traerás? <span class="req">*</span></label>
-              <div class="fi-wrap"><i class="fa-solid fa-users fi-icon"></i>
-                <select id="acompanantes" name="acompanantes" required>
-                  <option value="">Selecciona una opción</option>
-                  <option value="0">Vendré solo(a)</option>
-                  <option value="1">+ 1 acompañante</option>
-                  <option value="2">+ 2 acompañantes</option>
-                  <option value="3">+ 3 acompañantes</option>
-                  <option value="4">+ 4 acompañantes</option>
-                </select>
-              </div>
-              <span class="ferr" id="err-acompanantes"></span>
-            </div>
-
-            <div class="fg">
-              <label>¿Confirmas tu asistencia? <span class="req">*</span></label>
-              <div class="rsvp-cards">
-                <label class="rsvp-card rsvp-card--yes" id="cardYes">
-                  <input type="radio" name="asistencia" value="si" />
-                  <div class="rsvp-card__inner">
-                    <div class="rsvp-card__icon"><i class="fa-solid fa-circle-check"></i></div>
-                    <span class="rsvp-card__title">Sí asistiré</span>
-                    <span class="rsvp-card__sub">¡Con mucho gusto!</span>
-                  </div>
-                </label>
-                <label class="rsvp-card rsvp-card--no" id="cardNo">
-                  <input type="radio" name="asistencia" value="no" />
-                  <div class="rsvp-card__inner">
-                    <div class="rsvp-card__icon"><i class="fa-solid fa-circle-xmark"></i></div>
-                    <span class="rsvp-card__title">No podré asistir</span>
-                    <span class="rsvp-card__sub">Lo lamento mucho</span>
-                  </div>
-                </label>
-              </div>
-              <span class="ferr" id="err-asistencia"></span>
-            </div>
-
-            <button type="button" class="btn btn--gold btn--full" id="nextStep1">
-              Continuar <i class="fa-solid fa-arrow-right"></i>
-            </button>
-          </div>
-
-          <!-- PASO 2 SI -->
-          <div class="form-step" id="step2si">
-            <div class="form-step__header">
-              <i class="fa-solid fa-utensils"></i>
-              <h3>Detalles Adicionales</h3>
-            </div>
-
-            <div class="fg">
-              <label>Selección de menú</label>
-              <div class="menu-grid">
-                <label class="menu-opt"><input type="radio" name="menu" value="carne" /><div class="menu-opt__inner"><span class="menu-opt__emoji">🥩</span><b>Res</b><small>Filete al grill</small></div></label>
-                <label class="menu-opt"><input type="radio" name="menu" value="pollo" /><div class="menu-opt__inner"><span class="menu-opt__emoji">🍗</span><b>Pollo</b><small>Suprema en salsa</small></div></label>
-                <label class="menu-opt"><input type="radio" name="menu" value="pescado" /><div class="menu-opt__inner"><span class="menu-opt__emoji">🐟</span><b>Pescado</b><small>Salmón a las finas</small></div></label>
-                <label class="menu-opt"><input type="radio" name="menu" value="vegetariano" /><div class="menu-opt__inner"><span class="menu-opt__emoji">🥗</span><b>Vegetariano</b><small>Sin carne</small></div></label>
-              </div>
-            </div>
-
-            <div class="fg">
-              <label for="restricciones">Restricciones alimenticias o alergias</label>
-              <div class="fi-wrap"><i class="fa-solid fa-triangle-exclamation fi-icon"></i>
-                <input type="text" id="restricciones" placeholder="Ej. Sin gluten, alergia a nueces…" />
-              </div>
-            </div>
-
-            <div class="fg">
-              <label for="mensaje">Mensaje para los novios <i class="fa-regular fa-heart" style="color:var(--rose)"></i></label>
-              <textarea id="mensaje" rows="4" placeholder="Escríbenos unas palabras especiales…"></textarea>
-            </div>
-
-            <div class="form-btns">
-              <button type="button" class="btn btn--outline" id="prev2si"><i class="fa-solid fa-arrow-left"></i> Volver</button>
-              <button type="submit" class="btn btn--gold"><i class="fa-solid fa-paper-plane"></i> Enviar</button>
-            </div>
-          </div>
-
-          <!-- PASO 2 NO -->
-          <div class="form-step" id="step2no">
-            <div class="form-step__header">
-              <i class="fa-solid fa-heart-crack" style="color:var(--rose)"></i>
-              <h3>Lo Sentimos Mucho</h3>
-            </div>
-            <div class="sorry-box">
-              <img src="img/novio-que-pone-anillo-dedo-novia_1157-338.avif" alt="" />
-              <p>Lamentamos que no puedas acompañarnos, pero agradecemos tu respuesta.</p>
-            </div>
-            <div class="fg">
-              <label for="mensaje-no">Déjanos un mensaje</label>
-              <textarea id="mensaje-no" rows="3" placeholder="Tus buenos deseos nos llenarán de alegría…"></textarea>
-            </div>
-            <div class="form-btns">
-              <button type="button" class="btn btn--outline" id="prev2no"><i class="fa-solid fa-arrow-left"></i> Volver</button>
-              <button type="submit" class="btn btn--gold"><i class="fa-solid fa-paper-plane"></i> Enviar</button>
-            </div>
-          </div>
-
-          <!-- ÉXITO -->
-          <div class="form-step success-step" id="stepSuccess">
-            <div class="success-anim" id="successAnim">
-              <div class="success-rings">
-                <div class="ring ring-1"></div>
-                <div class="ring ring-2"></div>
-                <div class="ring ring-3"></div>
-              </div>
-              <div class="success-icon"><i class="fa-solid fa-circle-check"></i></div>
-            </div>
-            <h3 class="success-title" id="successTitle">¡Gracias por confirmar!</h3>
-            <p class="success-msg"  id="successMsg">Hemos registrado tu respuesta con amor.</p>
-            <div class="success-qr" id="successQR"></div>
-            <p class="success-qr-note" id="qrNote">Guarda este código QR · lo necesitarás el día del evento</p>
-            <div class="success-confetti" id="successConfetti"></div>
-            <button type="button" class="btn btn--outline" id="resetForm">Enviar otra respuesta</button>
-          </div>
-
-        </form>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== CONTACTO ===== -->
-  <section class="section contacto" id="contacto">
-    <div class="container">
-      <div class="section__header reveal">
-        <span class="section__tag">¿Tienes dudas?</span>
-        <h2 class="section__title">Estamos Aquí para Ti</h2>
-      </div>
-      <div class="contacto__grid">
-        <div class="contacto-card reveal">
-          <div class="contacto-card__img" style="background-image:url('img/q.jpg')"></div>
-          <div class="contacto-card__body">
-            <div class="contacto-card__icon"><i class="fa-brands fa-whatsapp"></i></div>
-            <h4>WhatsApp</h4>
-            <a href="https://wa.me/51924687363" target="_blank" rel="noopener" class="contacto-card__tel">+51 924 687 363</a>
-            <a href="https://wa.me/51924687363" target="_blank" rel="noopener" class="btn btn--outline btn--sm">Escribir</a>
-          </div>
-        </div>
-        <div class="contacto-card reveal">
-          <div class="contacto-card__img" style="background-image:url('img/s.jpg')"></div>
-          <div class="contacto-card__body">
-            <div class="contacto-card__icon"><i class="fa-regular fa-envelope"></i></div>
-            <h4>Correo</h4>
-            <p>boda@sofiayanejandro.com</p>
-            <a href="mailto:boda@sofiayanejandro.com" class="btn btn--outline btn--sm">Enviar</a>
-          </div>
-        </div>
-        <div class="contacto-card reveal">
-          <div class="contacto-card__img" style="background-image:url('img/x.jpg')"></div>
-          <div class="contacto-card__body">
-            <div class="contacto-card__icon"><i class="fa-brands fa-instagram"></i></div>
-            <h4>Instagram</h4>
-            <p>#SofíaYAlejandro2026</p>
-            <a href="#" class="btn btn--outline btn--sm">Seguir</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== FOOTER ===== -->
-  <footer class="footer">
-    <div class="footer__wave" aria-hidden="true">
-      <svg viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z" fill="var(--navy)"/></svg>
-    </div>
-    <div class="footer__body">
-      <div class="footer__flowers" aria-hidden="true">🌸 🌿 💍 🌿 🌸</div>
-      <p class="footer__names" id="footerNames">Sofía <span>&</span> Alejandro</p>
-      <p class="footer__date" id="footerBodaDate">14 · 02 · 2026</p>
-      <div class="footer__divider"><span>·</span><i class="fa-solid fa-heart"></i><span>·</span></div>
-      <p class="footer__tag" id="footerHashtag">#SofíaYAlejandro2026</p>
-      <p class="footer__copy">Hecho con <i class="fa-solid fa-heart"></i> para el día más hermoso de nuestras vidas</p>
-    </div>
-    <div class="footer__credits">
-      <span class="footer__credits-text">Creado por</span>
-      <a href="https://qubira.onrender.com/" target="_blank" rel="noopener" class="footer__credits-brand">
-        <img src="https://raw.githubusercontent.com/qubira/IMAGENES/main/logo2.png" alt="Qubira" class="footer__credits-logo" />
-        <span class="footer__credits-name">QUBIRA</span>
-      </a>
-      <span class="footer__credits-sep">|</span>
-      <a href="https://wa.me/51924687363" target="_blank" rel="noopener" class="footer__credits-wa">
-        <i class="fa-brands fa-whatsapp"></i> +51 924 687 363
-      </a>
-    </div>
-  </footer>
-
-  <!-- UI helpers -->
-  <div class="toast" id="toast"></div>
-  <button class="theme-toggle" id="themeToggle" aria-label="Tema"><i class="fa-solid fa-moon" id="themeIcon"></i></button>
-  <button class="scroll-top" id="scrollTop" aria-label="Inicio"><i class="fa-solid fa-chevron-up"></i></button>
-
-  <!-- ===== MUSIC PLAYER ===== -->
-  <div class="music-player" id="musicPlayer">
-    <div class="music-player__bar">
-      <div class="music-player__left">
-        <div class="music-player__eq" id="musicEq">
-          <span></span><span></span><span></span><span></span>
-        </div>
-        <span class="music-player__title" id="musicTitle">Música de la boda</span>
-      </div>
-      <div class="music-player__controls">
-        <button class="music-player__btn" id="musicPlayBtn" aria-label="Reproducir / Pausar">
-          <i class="fa-solid fa-play" id="musicPlayIcon"></i>
-        </button>
-        <button class="music-player__vol" id="musicVolBtn" aria-label="Sonido">
-          <i class="fa-solid fa-volume-xmark" id="musicVolIcon"></i>
-        </button>
-        <button class="music-player__close" id="musicClose" aria-label="Cerrar">
-          <i class="fa-solid fa-xmark"></i>
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <script src="js/main.js"></script>
-</body>
+    <script src="js/main.js"></script>
+  </body>
 </html>
