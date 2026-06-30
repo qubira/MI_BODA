@@ -61,7 +61,11 @@ function updateGuestById(id, data) {
   var grid = document.getElementById('giftGrid');
   if (!grid) return;
   grid.innerHTML = gifts.map(function(g) {
-    return '<div class="gift-card reveal-rotate"><span class="gift-card__icon"><i class="fa-solid ' + (g.icon || 'fa-gift') + '"></i></span><h4>' + (g.name || '') + '</h4></div>';
+    var inner = '<span class="gift-card__icon"><i class="fa-solid ' + (g.icon || 'fa-gift') + '"></i></span><h4>' + (g.name || '') + '</h4>';
+    if (g.link) {
+      return '<a class="gift-card reveal-rotate" href="' + g.link + '" target="_blank" rel="noopener">' + inner + '</a>';
+    }
+    return '<div class="gift-card reveal-rotate">' + inner + '</div>';
   }).join('');
 })();
 
@@ -656,7 +660,7 @@ function updateGuestById(id, data) {
     const dir      = i % 2 === 0 ? 'reveal-left' : 'reveal-right';
     return `<div class="tl-item ${dir}">
       <div class="tl-time">${time}</div>
-      <div class="tl-dot" style="background:${color};box-shadow:0 0 0 6px ${color}33,0 4px 16px rgba(0,0,0,.3)">${esc(icon)}</div>
+      <div class="tl-dot">${esc(icon)}</div>
       <div class="tl-body">
         <h4>${esc(ev.nombre)}</h4>
         ${subtitle ? `<p>${esc(subtitle)}</p>` : ''}

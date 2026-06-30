@@ -1336,6 +1336,7 @@ function refreshConfig() {
       <div class="cfg-regalo-row">
         <input type="text" value="${esc(r.icon)}" placeholder="fa-gift (clase FA6)" data-ri="${i}" data-rfield="icon" />
         <input type="text" value="${esc(r.name)}" placeholder="Nombre del regalo" data-ri="${i}" data-rfield="name" />
+        <input type="url" value="${esc(r.link||'')}" placeholder="https://enlace (opcional)" data-ri="${i}" data-rfield="link" style="flex:2" />
         <button class="cfg-regalo-del" data-rdel="${i}"><i class="fa-solid fa-trash-can"></i></button>
       </div>`).join('');
     el.querySelectorAll('input').forEach(inp => inp.addEventListener('input', () => {
