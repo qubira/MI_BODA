@@ -1,4 +1,4 @@
-'use strict';
+﻿'use strict';
 
 /* ===== CONSTANTS ===== */
 const ADMIN_USER    = 'admin';
@@ -1627,7 +1627,7 @@ function initDashboard() {
 }
 
 /* ================================================================
-   NUEVAS SECCIONES â€” DATOS + LÃ“GICA
+   NUEVAS SECCIONES — DATOS + LÓGICA
    ================================================================ */
 
 /* â”€â”€ Claves localStorage â”€â”€ */
@@ -1649,7 +1649,7 @@ function setGalMeta(a)     { localStorage.setItem(GAL_META_KEY, JSON.stringify(a
 function getMapaPos()      { try { return JSON.parse(localStorage.getItem(MAPA_POS_KEY))||{}; }   catch{return {};} }
 function setMapaPos(o)     { localStorage.setItem(MAPA_POS_KEY, JSON.stringify(o)); }
 
-/* â”€â”€ GalerÃ­a: IndexedDB â”€â”€ */
+/* â”€â”€ Galería: IndexedDB â”€â”€ */
 const GAL_IDB   = 'bodaGaleria';
 const GAL_STORE = 'images';
 function openGalDB(cb) {
@@ -1697,11 +1697,11 @@ function seedMesas() {
   const guests = getGuests();
   const getIds = fam => guests.filter(g => g.familia === fam).map(g => g.id);
   setMesas([
-    {id:uid(),nombre:'Mesa 1',    capacidad:8,forma:'redonda',    zona:'Familia',   guests:getIds('Familia GarcÃ­a')},
-    {id:uid(),nombre:'Mesa 2',    capacidad:8,forma:'redonda',    zona:'Familia',   guests:getIds('Familia LÃ³pez')},
+    {id:uid(),nombre:'Mesa 1',    capacidad:8,forma:'redonda',    zona:'Familia',   guests:getIds('Familia García')},
+    {id:uid(),nombre:'Mesa 2',    capacidad:8,forma:'redonda',    zona:'Familia',   guests:getIds('Familia LÓpez')},
     {id:uid(),nombre:'Mesa 3',    capacidad:8,forma:'redonda',    zona:'Amigos',    guests:getIds('Amigos del colegio')},
     {id:uid(),nombre:'Mesa 4',    capacidad:8,forma:'redonda',    zona:'Amigos',    guests:getIds('Amigos universidad')},
-    {id:uid(),nombre:'Mesa 5',    capacidad:8,forma:'redonda',    zona:'Trabajo',   guests:getIds('Trabajo SofÃ­a')},
+    {id:uid(),nombre:'Mesa 5',    capacidad:8,forma:'redonda',    zona:'Trabajo',   guests:getIds('Trabajo Sofía')},
     {id:uid(),nombre:'Mesa VIP',  capacidad:6,forma:'rectangular',zona:'Novios',    guests:[]},
   ]);
 }
@@ -1709,26 +1709,26 @@ function seedPresupuesto() {
   if (getPresupuesto().length) return;
   setPresupuesto([
     {id:uid(),categoria:'Venue',       concepto:'Alquiler Casa Hacienda Mamacona',estimado:8000,real:7500,pagado:'parcial', notas:'50% anticipo pagado'},
-    {id:uid(),categoria:'Catering',    concepto:'Banquete 5 tiempos + bebidas',   estimado:6000,real:5800,pagado:'parcial', notas:'MenÃº degustado y aprobado'},
-    {id:uid(),categoria:'FotografÃ­a',  concepto:'FotÃ³grafo + videÃ³grafo',          estimado:3000,real:2800,pagado:'completo',notas:'Incluye Ã¡lbum digital'},
-    {id:uid(),categoria:'MÃºsica',      concepto:'DJ + equipo de sonido',           estimado:1500,real:1400,pagado:'pendiente',notas:''},
-    {id:uid(),categoria:'Flores',      concepto:'Arreglos florales y bouquet',     estimado:1200,real:1100,pagado:'pendiente',notas:'Rosas blancas y peonÃ­as'},
-    {id:uid(),categoria:'Vestimenta',  concepto:'Vestido de novia',                estimado:2500,real:2200,pagado:'completo', notas:'DiseÃ±adora Valentina Ruiz'},
+    {id:uid(),categoria:'Catering',    concepto:'Banquete 5 tiempos + bebidas',   estimado:6000,real:5800,pagado:'parcial', notas:'Menú degustado y aprobado'},
+    {id:uid(),categoria:'Fotografía',  concepto:'FotÓgrafo + videÓgrafo',          estimado:3000,real:2800,pagado:'completo',notas:'Incluye Álbum digital'},
+    {id:uid(),categoria:'Música',      concepto:'DJ + equipo de sonido',           estimado:1500,real:1400,pagado:'pendiente',notas:''},
+    {id:uid(),categoria:'Flores',      concepto:'Arreglos florales y bouquet',     estimado:1200,real:1100,pagado:'pendiente',notas:'Rosas blancas y peonías'},
+    {id:uid(),categoria:'Vestimenta',  concepto:'Vestido de novia',                estimado:2500,real:2200,pagado:'completo', notas:'Diseñadora Valentina Ruiz'},
     {id:uid(),categoria:'Vestimenta',  concepto:'Traje del novio',                 estimado:800, real:750, pagado:'completo', notas:''},
-    {id:uid(),categoria:'DecoraciÃ³n',  concepto:'Centros de mesa y arcos florales',estimado:2000,real:1800,pagado:'pendiente',notas:''},
-    {id:uid(),categoria:'Invitaciones',concepto:'Tarjetas e impresiÃ³n',            estimado:400, real:380, pagado:'completo', notas:'80 invitaciones premium'},
+    {id:uid(),categoria:'Decoración',  concepto:'Centros de mesa y arcos florales',estimado:2000,real:1800,pagado:'pendiente',notas:''},
+    {id:uid(),categoria:'Invitaciones',concepto:'Tarjetas e impresiÓn',            estimado:400, real:380, pagado:'completo', notas:'80 invitaciones premium'},
     {id:uid(),categoria:'Transporte',  concepto:'Limusina para novios',            estimado:600, real:550, pagado:'pendiente',notas:''},
   ]);
 }
 function seedProveedores() {
   if (getProveedores().length) return;
   setProveedores([
-    {id:uid(),nombre:'Casa Hacienda Mamacona',tipo:'Venue',       contacto:'Jorge RÃ­os',   telefono:'555-2001',email:'info@mamacona.com',    web:'@haciendamamacona',estado:'contratado',pago:'parcial', monto:7500,fecha:'2027-02-14',notas:'Incluye jardines, salÃ³n y estacionamiento'},
-    {id:uid(),nombre:'Catering Delicias SA',  tipo:'Catering',    contacto:'Chef Roberto', telefono:'555-2002',email:'catering@delicias.com', web:'www.delicias.com',  estado:'contratado',pago:'parcial', monto:5800,fecha:'2027-02-14',notas:'MenÃº aprobado en degustaciÃ³n Nov 2026'},
-    {id:uid(),nombre:'Foto & Arte Studio',    tipo:'FotografÃ­a',  contacto:'Ana Vargas',   telefono:'555-2003',email:'ana@fotoyarte.com',     web:'@fotoyarte',         estado:'contratado',pago:'completo',monto:2800,fecha:'2027-02-14',notas:'Ãlbum digital + 2 lienzos'},
-    {id:uid(),nombre:'DJ Maestro Sounds',     tipo:'MÃºsica / DJ', contacto:'DJ Carlo',     telefono:'555-2004',email:'djcarlo@mail.com',      web:'@djcarlo',           estado:'contratado',pago:'pendiente',monto:1400,fecha:'2027-02-14',notas:'Sonido + luces incluidos'},
-    {id:uid(),nombre:'Flores & SueÃ±os',       tipo:'Flores',      contacto:'MarÃ­a PeÃ±a',   telefono:'555-2005',email:'flores@suenos.com',     web:'@floresysuenos',     estado:'contratado',pago:'pendiente',monto:1100,fecha:'2027-02-14',notas:'Rosas blancas, peonÃ­as y eucalipto'},
-    {id:uid(),nombre:'PastelerÃ­a Le GÃ¢teau',  tipo:'PastelerÃ­a',  contacto:'Chef Sophie',  telefono:'555-2006',email:'legateau@mail.com',     web:'@legateauperu',      estado:'cotizando', pago:'pendiente',monto:800, fecha:'2027-02-14',notas:'Pastel 5 pisos, sabor vainilla y maracuyÃ¡'},
+    {id:uid(),nombre:'Casa Hacienda Mamacona',tipo:'Venue',       contacto:'Jorge Ríos',   telefono:'555-2001',email:'info@mamacona.com',    web:'@haciendamamacona',estado:'contratado',pago:'parcial', monto:7500,fecha:'2027-02-14',notas:'Incluye jardines, salÓn y estacionamiento'},
+    {id:uid(),nombre:'Catering Delicias SA',  tipo:'Catering',    contacto:'Chef Roberto', telefono:'555-2002',email:'catering@delicias.com', web:'www.delicias.com',  estado:'contratado',pago:'parcial', monto:5800,fecha:'2027-02-14',notas:'Menú aprobado en degustaciÓn Nov 2026'},
+    {id:uid(),nombre:'Foto & Arte Studio',    tipo:'Fotografía',  contacto:'Ana Vargas',   telefono:'555-2003',email:'ana@fotoyarte.com',     web:'@fotoyarte',         estado:'contratado',pago:'completo',monto:2800,fecha:'2027-02-14',notas:'Álbum digital + 2 lienzos'},
+    {id:uid(),nombre:'DJ Maestro Sounds',     tipo:'Música / DJ', contacto:'DJ Carlo',     telefono:'555-2004',email:'djcarlo@mail.com',      web:'@djcarlo',           estado:'contratado',pago:'pendiente',monto:1400,fecha:'2027-02-14',notas:'Sonido + luces incluidos'},
+    {id:uid(),nombre:'Flores & Sueños',       tipo:'Flores',      contacto:'María Peña',   telefono:'555-2005',email:'flores@suenos.com',     web:'@floresysuenos',     estado:'contratado',pago:'pendiente',monto:1100,fecha:'2027-02-14',notas:'Rosas blancas, peonías y eucalipto'},
+    {id:uid(),nombre:'Pastelería Le Gâteau',  tipo:'Pastelería',  contacto:'Chef Sophie',  telefono:'555-2006',email:'legateau@mail.com',     web:'@legateauperu',      estado:'cotizando', pago:'pendiente',monto:800, fecha:'2027-02-14',notas:'Pastel 5 pisos, sabor vainilla y maracuyÁ'},
   ]);
 }
 
@@ -1775,13 +1775,13 @@ function refreshDashboard() {
       </div>
       <div class="dash-kpi">
         <div class="dash-kpi-icon dash-kpi-icon--purple"><i class="fa-solid fa-hourglass-half"></i></div>
-        <div class="dash-kpi-body"><div class="dash-kpi-num">${daysLeft}</div><div class="dash-kpi-label">DÃ­as para la boda</div></div>
+        <div class="dash-kpi-body"><div class="dash-kpi-num">${daysLeft}</div><div class="dash-kpi-label">Días para la boda</div></div>
       </div>
     </div>
 
     <div class="dash-row">
       <div class="card">
-        <h3 class="card-title"><i class="fa-solid fa-chart-pie" style="color:var(--gold)"></i> ConfirmaciÃ³n</h3>
+        <h3 class="card-title"><i class="fa-solid fa-chart-pie" style="color:var(--gold)"></i> ConfirmaciÓn</h3>
         <p style="font-size:2rem;font-weight:700;color:var(--text-main);margin:8px 0 4px">${pctConf}%</p>
         <p style="font-size:.78rem;color:var(--text-soft);margin-bottom:10px">${stats.confirmed} de ${stats.total} han respondido</p>
         <div class="dash-progress-bar-wrap">
@@ -1793,7 +1793,7 @@ function refreshDashboard() {
         <p style="font-size:2rem;font-weight:700;color:var(--text-main);margin:8px 0 2px">$${fmtMoney(totalReal)}</p>
         <p style="font-size:.78rem;color:var(--text-soft);margin-bottom:4px">Real Â· Estimado: $${fmtMoney(totalEst)}</p>
         <p style="font-size:.8rem;color:${totalReal<=totalEst?'#4caf50':'#f44336'};font-weight:600">
-          ${totalReal<=totalEst?'âœ“ Dentro del presupuesto':'â–² Presupuesto excedido'} $${fmtMoney(Math.abs(totalReal-totalEst))}
+          ${totalReal<=totalEst?'✓ Dentro del presupuesto':'▲ Presupuesto excedido'} $${fmtMoney(Math.abs(totalReal-totalEst))}
         </p>
       </div>
     </div>
@@ -1822,8 +1822,8 @@ function refreshDashboard() {
         <button class="dash-quick-btn" onclick="switchView('mesas');setTimeout(()=>openMesaModal(null),80)"><i class="fa-solid fa-chair"></i> Nueva mesa</button>
         <button class="dash-quick-btn" onclick="switchView('presupuesto');setTimeout(()=>openPresupuestoModal(null),80)"><i class="fa-solid fa-wallet"></i> Agregar gasto</button>
         <button class="dash-quick-btn" onclick="switchView('cronograma');setTimeout(()=>document.getElementById('addEventoBtn')?.click(),80)"><i class="fa-solid fa-calendar-plus"></i> Nuevo evento</button>
-        <button class="dash-quick-btn" onclick="switchView('galeria')"><i class="fa-solid fa-images"></i> Ir a galerÃ­a</button>
-        <button class="dash-quick-btn" onclick="switchView('stats')"><i class="fa-solid fa-chart-bar"></i> Ver estadÃ­sticas</button>
+        <button class="dash-quick-btn" onclick="switchView('galeria')"><i class="fa-solid fa-images"></i> Ir a galería</button>
+        <button class="dash-quick-btn" onclick="switchView('stats')"><i class="fa-solid fa-chart-bar"></i> Ver estadísticas</button>
       </div>
     </div>
 
@@ -1835,7 +1835,7 @@ function refreshDashboard() {
             <span class="dash-activity-dot dash-activity-dot--${g.estado}"></span>
             <span><strong>${esc(g.nombre)} ${esc(g.apellido||'')}</strong> &mdash; ${estadoLabel(g.estado)}</span>
             <span style="margin-left:auto;font-size:.72rem;color:var(--text-soft)">${fmtDate(g.fecha)}</span>
-          </li>`).join('') : '<li class="dash-activity-item" style="color:var(--text-soft)">Sin actividad aÃºn.</li>'}
+          </li>`).join('') : '<li class="dash-activity-item" style="color:var(--text-soft)">Sin actividad aún.</li>'}
       </ul>
     </div>`;
 }
@@ -1873,54 +1873,75 @@ window.openMesaModal = function(id) {
 
 function refreshMesas() {
   seedMesas();
-  const mesas = getMesas();
-  const grid  = document.getElementById('mesasGrid');
-  const empty = document.getElementById('mesasEmpty');
+  const mesas  = getMesas();
+  const grid   = document.getElementById('mesasGrid');
+  const empty  = document.getElementById('mesasEmpty');
   if (!grid) return;
   if (!mesas.length) { grid.innerHTML = ''; empty?.classList.remove('hidden'); return; }
   empty?.classList.add('hidden');
-  const guests   = getGuests();
-  const shapeIcon = { redonda: 'â­•', rectangular: 'â–­', cuadrada: 'â¬œ' };
+  const guests    = getGuests();
+  const shapeCls  = { redonda: 'mesa-shape--round', rectangular: 'mesa-shape--rect', cuadrada: 'mesa-shape--square' };
+  const CIRC = 163.36; // 2π × r26
+
   grid.innerHTML = mesas.map(m => {
     const assigned = m.guests || [];
-    const cap  = m.capacidad || 8;
-    const pct  = Math.min(100, Math.round(assigned.length / cap * 100));
-    const full = assigned.length >= cap;
-    const guestNames = assigned.map(gid => {
-      const g = guests.find(x => x.id === gid);
-      return g ? (g.nombre + ' ' + (g.apellido || '')).trim() : null;
-    }).filter(Boolean);
+    const cap   = m.capacidad || 8;
+    const pct   = Math.min(100, assigned.length / cap * 100);
+    const offset = (CIRC * (1 - pct / 100)).toFixed(2);
+    const ringCls = pct >= 100 ? 'mesa-ring__fill--full' : pct >= 75 ? 'mesa-ring__fill--near' : '';
+
+    const gObjs = assigned.map(gid => guests.find(x => x.id === gid)).filter(Boolean);
+    const SHOW  = 4;
+    const guestSection = gObjs.length
+      ? `<div class="mesa-card__guests">${
+          gObjs.slice(0, SHOW).map(g => {
+            const ini = ((g.nombre[0] || '') + (g.apellido?.[0] || '')).toUpperCase();
+            return `<div class="mesa-chip"><span class="mesa-chip__av">${ini}</span>${esc((g.nombre + ' ' + (g.apellido || '')).trim())}</div>`;
+          }).join('') +
+          (gObjs.length > SHOW ? `<div class="mesa-chip mesa-chip--more">+${gObjs.length - SHOW} más</div>` : '')
+        }</div>`
+      : '<p class="mesa-no-guests">Sin invitados asignados</p>';
+
     return `<div class="mesa-card">
-      <div class="mesa-card__head">
-        <div class="mesa-card__icon">${shapeIcon[m.forma] || 'â­•'}</div>
-        <div>
+      <div class="mesa-card__hd">
+        <div class="mesa-shape ${shapeCls[m.forma] || 'mesa-shape--round'}"></div>
+        <div class="mesa-card__info">
           <div class="mesa-card__name">${esc(m.nombre)}</div>
-          <div class="mesa-card__zona">${esc(m.zona) || 'Sin zona'}</div>
+          <span class="mesa-zona-tag">${esc(m.zona) || 'General'}</span>
+        </div>
+        <span class="mesa-cap"><i class="fa-solid fa-chair"></i>${cap}</span>
+      </div>
+      <div class="mesa-card__mid">
+        <div class="mesa-ring">
+          <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+            <circle class="mesa-ring__bg"   cx="32" cy="32" r="26"/>
+            <circle class="mesa-ring__fill ${ringCls}" cx="32" cy="32" r="26"
+              stroke-dasharray="${CIRC.toFixed(2)}" stroke-dashoffset="${offset}"/>
+          </svg>
+          <div class="mesa-ring__lbl">
+            <span class="mesa-ring__num">${assigned.length}</span>
+            <span class="mesa-ring__cap">/${cap}</span>
+          </div>
+        </div>
+        <div class="mesa-stats">
+          <div class="mesa-stat-row"><span class="mesa-stat-row__lbl">Asignados</span><span class="mesa-stat-row__val">${assigned.length}</span></div>
+          <div class="mesa-stat-row"><span class="mesa-stat-row__lbl">Capacidad</span><span class="mesa-stat-row__val">${cap}</span></div>
+          <div class="mesa-stat-row"><span class="mesa-stat-row__lbl">Disponibles</span><span class="mesa-stat-row__val">${cap - assigned.length}</span></div>
         </div>
       </div>
-      <div class="mesa-card__stats">
-        <div class="mesa-stat"><div class="mesa-stat__num">${assigned.length}</div><div class="mesa-stat__lab">Asignados</div></div>
-        <div class="mesa-stat"><div class="mesa-stat__num">${cap}</div><div class="mesa-stat__lab">Capacidad</div></div>
-        <div class="mesa-stat"><div class="mesa-stat__num">${cap - assigned.length}</div><div class="mesa-stat__lab">Libres</div></div>
-      </div>
-      <div class="mesa-occupancy">
-        <div class="mesa-occupancy-fill${full ? ' mesa-occupancy-fill--full' : ''}" style="width:${pct}%"></div>
-      </div>
-      ${guestNames.length
-        ? '<div class="mesa-card__guests">' + guestNames.map(n => '&bull; ' + esc(n)).join('<br>') + '</div>'
-        : '<div class="mesa-card__guests" style="color:var(--text-soft)">Sin invitados asignados</div>'}
-      <div class="mesa-card__actions">
-        <button class="mesa-card__btn mesa-card__btn--edit" onclick="openMesaModal('${m.id}')"><i class="fa-solid fa-pen"></i> Editar</button>
-        <button class="mesa-card__btn mesa-card__btn--del"  onclick="deleteMesa('${m.id}')"><i class="fa-solid fa-trash"></i></button>
+      ${guestSection}
+      <div class="mesa-card__ft">
+        <button class="mesa-btn-edit" onclick="openMesaModal('${m.id}')"><i class="fa-solid fa-pen-to-square"></i> Editar</button>
+        <button class="mesa-btn-del"  onclick="deleteMesa('${m.id}')"><i class="fa-solid fa-trash-can"></i></button>
       </div>
     </div>`;
   }).join('');
 }
 
 window.deleteMesa = function(id) {
-  if (!confirm('Â¿Eliminar esta mesa?')) return;
+  if (!confirm('¿Eliminar esta mesa?')) return;
   setMesas(getMesas().filter(m => m.id !== id));
-  toast('ðŸ—‘ï¸ Mesa eliminada');
+  toast('🗑️ Mesa eliminada');
   refreshMesas();
 };
 
@@ -1999,7 +2020,7 @@ function makeDraggable(el, id) {
 }
 
 /* ============================================================
-   GALERÃA
+   GALERÍA
    ============================================================ */
 function refreshGaleria() {
   const meta  = getGalMeta();
@@ -2033,7 +2054,7 @@ function refreshGaleria() {
 
 function handleGaleriaUpload(files) {
   const valid = files.filter(f => f.type.startsWith('image/') && f.size <= 10485760);
-  if (!valid.length) { toast('âš ï¸ Solo imÃ¡genes hasta 10 MB'); return; }
+  if (!valid.length) { toast('⚠️ Solo imÁgenes hasta 10 MB'); return; }
   let saved = 0;
   valid.forEach(file => {
     const id   = uid();
@@ -2044,7 +2065,7 @@ function handleGaleriaUpload(files) {
       metas.push(meta);
       setGalMeta(metas);
       saved++;
-      if (saved === valid.length) { toast('âœ… ' + saved + ' imagen(es) guardada(s)'); refreshGaleria(); }
+      if (saved === valid.length) { toast('✅ ' + saved + ' imagen(es) guardada(s)'); refreshGaleria(); }
     });
   });
 }
@@ -2060,10 +2081,10 @@ window.openLightbox = function(id) {
 };
 
 window.deleteGaleriaItem = function(id) {
-  if (!confirm('Â¿Eliminar esta imagen?')) return;
+  if (!confirm('¿Eliminar esta imagen?')) return;
   deleteGalImage(id, () => {
     setGalMeta(getGalMeta().filter(m => m.id !== id));
-    toast('ðŸ—‘ï¸ Imagen eliminada');
+    toast('🗑️ Imagen eliminada');
     refreshGaleria();
   });
 };
@@ -2100,22 +2121,22 @@ function refreshPresupuesto() {
   if (sumEl) sumEl.innerHTML = `
     <div class="pres-kpi"><div class="pres-kpi__label">Total estimado</div><div class="pres-kpi__num pres-kpi__num--gold">$${fmtMoney(totalEst)}</div></div>
     <div class="pres-kpi"><div class="pres-kpi__label">Total real</div><div class="pres-kpi__num">$${fmtMoney(totalReal)}</div></div>
-    <div class="pres-kpi"><div class="pres-kpi__label">Diferencia</div><div class="pres-kpi__num ${diff <= 0 ? 'pres-kpi__num--green' : 'pres-kpi__num--red'}">${diff <= 0 ? 'âœ“' : 'â–²'} $${fmtMoney(Math.abs(diff))}</div></div>
+    <div class="pres-kpi"><div class="pres-kpi__label">Diferencia</div><div class="pres-kpi__num ${diff <= 0 ? 'pres-kpi__num--green' : 'pres-kpi__num--red'}">${diff <= 0 ? '✓' : '▲'} $${fmtMoney(Math.abs(diff))}</div></div>
     <div class="pres-kpi"><div class="pres-kpi__label">Ya pagado</div><div class="pres-kpi__num pres-kpi__num--green">$${fmtMoney(pagados)}</div></div>`;
   if (!body) return;
   if (!list.length) { body.innerHTML = ''; empty?.classList.remove('hidden'); return; }
   empty?.classList.add('hidden');
-  const catEmoji = {Venue:'ðŸ›ï¸',Catering:'ðŸ½ï¸','FotografÃ­a':'ðŸ“¸','MÃºsica':'ðŸŽµ',Flores:'ðŸ’',Vestimenta:'ðŸ‘—',Transporte:'ðŸš—','DecoraciÃ³n':'ðŸŽ€',Invitaciones:'ðŸ’Œ','Luna de Miel':'âœˆï¸',Otros:'ðŸ“¦'};
+  const catEmoji = {Venue:'🏛️',Catering:'🍽️','Fotografía':'📸','Música':'🎵',Flores:'💐',Vestimenta:'👗',Transporte:'🚗','Decoración':'🎀',Invitaciones:'💌','Luna de Miel':'✈️',Otros:'📦'};
   body.innerHTML = list.map(x => {
     const d = x.real - x.estimado;
     return `<tr>
-      <td><span class="cat-badge">${catEmoji[x.categoria] || 'ðŸ“¦'} ${esc(x.categoria)}</span></td>
+      <td><span class="cat-badge">${catEmoji[x.categoria] || '📦'} ${esc(x.categoria)}</span></td>
       <td>${esc(x.concepto)}</td>
       <td>$${fmtMoney(x.estimado)}</td>
       <td>$${fmtMoney(x.real)}</td>
-      <td style="color:${d > 0 ? '#f44336' : '#4caf50'};font-weight:600">${d > 0 ? 'â–²' : 'âœ“'} $${fmtMoney(Math.abs(d))}</td>
-      <td><span class="pago-badge pago-badge--${x.pagado || 'pendiente'}">${{pendiente:'â³ Pendiente',parcial:'ðŸ”„ Parcial',completo:'âœ… Completo'}[x.pagado] || x.pagado}</span></td>
-      <td style="font-size:.78rem;max-width:140px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${esc(x.notas || 'â€”')}</td>
+      <td style="color:${d > 0 ? '#f44336' : '#4caf50'};font-weight:600">${d > 0 ? '▲' : '✓'} $${fmtMoney(Math.abs(d))}</td>
+      <td><span class="pago-badge pago-badge--${x.pagado || 'pendiente'}">${{pendiente:'⏳ Pendiente',parcial:'🔄 Parcial',completo:'✅ Completo'}[x.pagado] || x.pagado}</span></td>
+      <td style="font-size:.78rem;max-width:140px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${esc(x.notas || '—')}</td>
       <td><div class="action-btns">
         <button class="action-btn action-btn--edit" onclick="openPresupuestoModal('${x.id}')" title="Editar"><i class="fa-solid fa-pen"></i></button>
         <button class="action-btn action-btn--del"  onclick="deletePresupuestoItem('${x.id}')" title="Eliminar"><i class="fa-solid fa-trash"></i></button>
@@ -2125,9 +2146,9 @@ function refreshPresupuesto() {
 }
 
 window.deletePresupuestoItem = function(id) {
-  if (!confirm('Â¿Eliminar este item?')) return;
+  if (!confirm('¿Eliminar este item?')) return;
   setPresupuesto(getPresupuesto().filter(x => x.id !== id));
-  toast('ðŸ—‘ï¸ Item eliminado');
+  toast('🗑️ Item eliminado');
   refreshPresupuesto();
 };
 
@@ -2163,13 +2184,13 @@ function refreshProveedores() {
   if (!grid) return;
   if (!list.length) { grid.innerHTML = ''; empty?.classList.remove('hidden'); return; }
   empty?.classList.add('hidden');
-  const tipoEmoji = {Venue:'ðŸ›ï¸',Catering:'ðŸ½ï¸','FotografÃ­a':'ðŸ“¸',Video:'ðŸŽ¥','MÃºsica / DJ':'ðŸŽµ',Flores:'ðŸ’',Vestimenta:'ðŸ‘—',Transporte:'ðŸš—','DecoraciÃ³n':'ðŸŽ€','PastelerÃ­a':'ðŸŽ‚',Maquillaje:'ðŸ’„',Otros:'ðŸ“¦'};
-  const estadoLbl = {cotizando:'ðŸ” Cotizando',contratado:'âœ… Contratado',cancelado:'âŒ Cancelado'};
-  const pagoLbl   = {pendiente:'â³ Pendiente',parcial:'ðŸ”„ Anticipo',completo:'ðŸ’š Completo'};
+  const tipoEmoji = {Venue:'🏛️',Catering:'🍽️','Fotografía':'📸',Video:'🎥','Música / DJ':'🎵',Flores:'💐',Vestimenta:'👗',Transporte:'🚗','Decoración':'🎀','Pastelería':'🎂',Maquillaje:'💄',Otros:'📦'};
+  const estadoLbl = {cotizando:'🔍 Cotizando',contratado:'✅ Contratado',cancelado:'❌ Cancelado'};
+  const pagoLbl   = {pendiente:'⏳ Pendiente',parcial:'🔄 Anticipo',completo:'💚 Completo'};
   grid.innerHTML = list.map(p => `
     <div class="proveedor-card">
       <div class="proveedor-card__head">
-        <div class="proveedor-card__icon">${tipoEmoji[p.tipo] || 'ðŸ“¦'}</div>
+        <div class="proveedor-card__icon">${tipoEmoji[p.tipo] || '📦'}</div>
         <div>
           <div class="proveedor-card__name">${esc(p.nombre)}</div>
           <div class="proveedor-card__tipo">${esc(p.tipo || 'Otros')}</div>
@@ -2194,9 +2215,9 @@ function refreshProveedores() {
 }
 
 window.deleteProveedor = function(id) {
-  if (!confirm('Â¿Eliminar este proveedor?')) return;
+  if (!confirm('¿Eliminar este proveedor?')) return;
   setProveedores(getProveedores().filter(x => x.id !== id));
-  toast('ðŸ—‘ï¸ Proveedor eliminado');
+  toast('🗑️ Proveedor eliminado');
   refreshProveedores();
 };
 
@@ -2230,14 +2251,14 @@ function refreshMensajes() {
 }
 
 /* ================================================================
-   MESAS â€” ASIGNACIÃ“N INTELIGENTE + PDF
+   MESAS — ASIGNACIÓN INTELIGENTE + PDF
    ================================================================ */
 
 window.autoAssignGuests = function() {
   const mesas  = getMesas();
   const guests = getGuests().filter(g => g.estado === 'confirmado');
-  if (!mesas.length)  { toast('âš ï¸ Crea mesas primero'); return; }
-  if (!guests.length) { toast('âš ï¸ No hay invitados confirmados'); return; }
+  if (!mesas.length)  { toast('⚠️ Crea mesas primero'); return; }
+  if (!guests.length) { toast('⚠️ No hay invitados confirmados'); return; }
 
   // Clear assignments
   const newMesas = mesas.map(m => ({ ...m, guests: [] }));
@@ -2269,14 +2290,14 @@ window.autoAssignGuests = function() {
   });
 
   setMesas(newMesas);
-  toast('âœ… Invitados asignados automÃ¡ticamente por familias');
+  toast('✅ Invitados asignados automÁticamente por familias');
   refreshMesas();
 };
 
 window.clearMesaAssignments = function() {
-  if (!confirm('Â¿Quitar todas las asignaciones de invitados?')) return;
+  if (!confirm('¿Quitar todas las asignaciones de invitados?')) return;
   setMesas(getMesas().map(m => ({ ...m, guests: [] })));
-  toast('ðŸ—‘ï¸ Asignaciones eliminadas');
+  toast('🗑️ Asignaciones eliminadas');
   refreshMesas();
 };
 
@@ -2284,7 +2305,7 @@ window.exportMesasPDF = function() {
   const mesas  = getMesas();
   const guests = getGuests();
   const cfg    = getWeddingConfig();
-  const bride  = cfg.bride || 'SofÃ­a';
+  const bride  = cfg.bride || 'Sofía';
   const groom  = cfg.groom || 'Alejandro';
   const d      = getWeddingDate();
   const dateStr = d.toLocaleDateString('es-ES', { weekday:'long', day:'2-digit', month:'long', year:'numeric' });
@@ -2297,7 +2318,7 @@ window.exportMesasPDF = function() {
     const rows = assigned.length
       ? assigned.map(g => {
           const total = 1 + (parseInt(g.acompanantes) || 0);
-          return `<tr><td>${esc(g.nombre)} ${esc(g.apellido || '')}</td><td>${esc(g.grupo || '')}</td><td style="text-align:center">${total}</td><td>${esc(g.menu ? ({carne:'Res',pollo:'Pollo',pescado:'Pescado',vegetariano:'Vegeta.'}[g.menu] || g.menu) : 'â€”')}</td></tr>`;
+          return `<tr><td>${esc(g.nombre)} ${esc(g.apellido || '')}</td><td>${esc(g.grupo || '')}</td><td style="text-align:center">${total}</td><td>${esc(g.menu ? ({carne:'Res',pollo:'Pollo',pescado:'Pescado',vegetariano:'Vegeta.'}[g.menu] || g.menu) : '—')}</td></tr>`;
         }).join('')
       : '<tr><td colspan="4" style="color:#bbb;font-style:italic">Sin invitados asignados</td></tr>';
     return `
@@ -2307,7 +2328,7 @@ window.exportMesasPDF = function() {
           <span>${m.forma || 'Redonda'} Â· ${assigned.length}/${m.capacidad} lugares</span>
           ${m.zona ? `<span class="mesa-zona">${esc(m.zona)}</span>` : ''}
         </div>
-        <table><thead><tr><th>Invitado</th><th>Grupo</th><th>Pers.</th><th>MenÃº</th></tr></thead>
+        <table><thead><tr><th>Invitado</th><th>Grupo</th><th>Pers.</th><th>Menú</th></tr></thead>
         <tbody>${rows}</tbody></table>
       </div>`;
   }).join('');
@@ -2315,13 +2336,13 @@ window.exportMesasPDF = function() {
   const unassignedBlock = unassigned.length ? `
     <div class="mesa-block" style="border-color:#ff9800">
       <div class="mesa-block-header" style="background:rgba(255,152,0,.08)">
-        <strong>âš ï¸ Sin asignar</strong>
+        <strong>⚠️ Sin asignar</strong>
         <span>${unassigned.length} invitado(s) confirmado(s) sin mesa</span>
       </div>
-      <table><thead><tr><th>Invitado</th><th>Grupo</th><th>Pers.</th><th>MenÃº</th></tr></thead>
+      <table><thead><tr><th>Invitado</th><th>Grupo</th><th>Pers.</th><th>Menú</th></tr></thead>
       <tbody>${unassigned.map(g => {
         const total = 1 + (parseInt(g.acompanantes) || 0);
-        return `<tr><td>${esc(g.nombre)} ${esc(g.apellido || '')}</td><td>${esc(g.grupo || '')}</td><td style="text-align:center">${total}</td><td>${esc(g.menu ? ({carne:'Res',pollo:'Pollo',pescado:'Pescado',vegetariano:'Vegeta.'}[g.menu] || g.menu) : 'â€”')}</td></tr>`;
+        return `<tr><td>${esc(g.nombre)} ${esc(g.apellido || '')}</td><td>${esc(g.grupo || '')}</td><td style="text-align:center">${total}</td><td>${esc(g.menu ? ({carne:'Res',pollo:'Pollo',pescado:'Pescado',vegetariano:'Vegeta.'}[g.menu] || g.menu) : '—')}</td></tr>`;
       }).join('')}</tbody></table>
     </div>` : '';
 
@@ -2331,7 +2352,7 @@ window.exportMesasPDF = function() {
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Plan de Mesas â€” ${bride} & ${groom}</title>
+  <title>Plan de Mesas — ${bride} & ${groom}</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: Georgia, 'Times New Roman', serif; background: #fff; color: #2c2c2c; padding: 24px; }
@@ -2357,7 +2378,7 @@ window.exportMesasPDF = function() {
   </style>
 </head>
 <body>
-  <h1>ðŸ’ Plan de Mesas</h1>
+  <h1>💍 Plan de Mesas</h1>
   <p class="subtitle">${bride} &amp; ${groom}</p>
   <p class="meta">${dateStr}</p>
   <div class="stats">
@@ -2372,19 +2393,19 @@ window.exportMesasPDF = function() {
 </html>`;
 
   const win = window.open('', '_blank', 'width=960,height=720');
-  if (!win) { toast('âš ï¸ Permite pop-ups para exportar'); return; }
+  if (!win) { toast('⚠️ Permite pop-ups para exportar'); return; }
   win.document.write(html);
   win.document.close();
 };
 
 /* ================================================================
-   MAPA DEL LOCAL â€” CONSTRUCTOR INTERACTIVO V2
+   MAPA DEL LOCAL — CONSTRUCTOR INTERACTIVO V2
    ================================================================ */
 const MAPA_EL_KEY = 'boda_mapa_elements_v2';
 
 const MAPA_CATS = [
   {
-    cat: 'Mesas', icon: 'ðŸª‘',
+    cat: 'Mesas', icon: '🪑',
     items: [
       { src:'img/mesa_invitados.png',  lbl:'Invitados',  w:90, h:90 },
       { src:'img/mesa_novios.png',     lbl:'Novios',     w:90, h:80 },
@@ -2393,7 +2414,7 @@ const MAPA_CATS = [
     ]
   },
   {
-    cat: 'Escena', icon: 'ðŸ’',
+    cat: 'Escena', icon: '💍',
     items: [
       { src:'img/altar.png',      lbl:'Altar',       w:100, h:120 },
       { src:'img/pista_baile.png',lbl:'Pista Baile', w:130, h:100 },
@@ -2401,7 +2422,7 @@ const MAPA_CATS = [
     ]
   },
   {
-    cat: 'Servicios', icon: 'ðŸ¹',
+    cat: 'Servicios', icon: '🍹',
     items: [
       { src:'img/bar.png',        lbl:'Bar',         w:90, h:80 },
       { src:'img/dj.png',         lbl:'DJ',          w:90, h:90 },
@@ -2410,14 +2431,14 @@ const MAPA_CATS = [
     ]
   },
   {
-    cat: 'DecoraciÃ³n', icon: 'ðŸŒ¸',
+    cat: 'Decoración', icon: '🌸',
     items: [
       { src:'img/decoracion_arco_de_entrada.png',     lbl:'Arco',        w:80, h:110 },
       { src:'img/decoracion_camino_de_flores.png',    lbl:'Camino',      w:130,h:50  },
       { src:'img/decoracion_cartel_de_bienbenida.png',lbl:'Cartel 1',    w:80, h:80  },
       { src:'img/decoracion_cartel_de_bienbenida_2.png',lbl:'Cartel 2',  w:80, h:80  },
       { src:'img/decoracion_cartel_de_bienbenida_3.png',lbl:'Cartel 3',  w:80, h:80  },
-      { src:'img/decoracion_corazon_de_flores.png',   lbl:'CorazÃ³n',     w:80, h:80  },
+      { src:'img/decoracion_corazon_de_flores.png',   lbl:'CorazÓn',     w:80, h:80  },
       { src:'img/decoracion_cortinas.png',            lbl:'Cortinas',    w:90, h:100 },
       { src:'img/decoracion_flores_5.png',            lbl:'Flores',      w:70, h:80  },
       { src:'img/decoracion_fuente.png',              lbl:'Fuente',      w:70, h:90  },
@@ -2545,17 +2566,17 @@ function deleteMapaElById(id) {
   setMapaEls(getMapaEls().filter(e => e.id !== id));
   if (_selMapaId === id) _selMapaId = null;
   renderMapaEls();
-  toast('ðŸ—‘ï¸ Elemento eliminado');
+  toast('🗑️ Elemento eliminado');
 }
 window.deleteMapaElById = deleteMapaElById;
 
 /* â”€â”€ Clear all â”€â”€ */
 window.clearMapaElements = function() {
-  if (!confirm('Â¿Limpiar todo el plano?')) return;
+  if (!confirm('¿Limpiar todo el plano?')) return;
   setMapaEls([]);
   _selMapaId = null;
   renderMapaEls();
-  toast('ðŸ—‘ï¸ Plano limpiado');
+  toast('🗑️ Plano limpiado');
 };
 
 /* â”€â”€ Export image â”€â”€ */
@@ -2568,7 +2589,7 @@ window.exportMapaImage = function() {
   renderMapaEls();
 
   const btn = document.querySelector('[onclick="exportMapaImage()"]');
-  if (btn) btn.textContent = 'â³ Generando...';
+  if (btn) btn.textContent = '⏳ Generando...';
 
   const promise = (typeof html2canvas !== 'undefined')
     ? html2canvas(stage, { backgroundColor: '#f9f6f0', scale: 2, useCORS: true, allowTaint: true, logging: false })
@@ -2589,7 +2610,7 @@ window.exportMapaImage = function() {
       renderMapaEls();
     });
   }).catch(err => {
-    toast('âŒ Error al exportar: ' + err.message);
+    toast('❌ Error al exportar: ' + err.message);
     if (btn) btn.innerHTML = '<i class="fa-solid fa-image"></i><span class="mapa-btn-lbl"> Exportar PNG</span>';
     _selMapaId = prevSel;
     renderMapaEls();
@@ -2646,7 +2667,7 @@ function initMapaEvents() {
       document.querySelectorAll('.mapa-comp').forEach(c => c.style.outline = '');
       comp.style.outline = '2px solid var(--gold)';
       _pendingPanel = comp;
-      toast('ðŸ’¡ Toca el plano para colocar el elemento');
+      toast('💡 Toca el plano para colocar el elemento');
       return;
     }
 
