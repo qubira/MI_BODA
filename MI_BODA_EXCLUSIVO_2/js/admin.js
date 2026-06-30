@@ -2504,13 +2504,14 @@ function createMapaNode(el) {
   node.style.cssText = `left:${el.x}px;top:${el.y}px;width:${el.w}px;height:${el.h}px;transform:rotate(${el.rot||0}deg);z-index:${el.zIndex||1};`;
   node.innerHTML = `
     <img class="mapa-el__img" src="${el.src}" alt="${esc(el.lbl||'')}" draggable="false" />
+    ${el.lbl ? `<div class="mapa-el__label">${esc(el.lbl)}</div>` : ''}
     <div class="mapa-el-handles">
       <div class="mapa-handle mapa-handle--tl" data-handle="tl"></div>
       <div class="mapa-handle mapa-handle--tr" data-handle="tr"></div>
       <div class="mapa-handle mapa-handle--bl" data-handle="bl"></div>
       <div class="mapa-handle mapa-handle--br" data-handle="br"></div>
       <div class="mapa-handle mapa-handle--rot" data-handle="rot" title="Rotar"></div>
-      <button class="mapa-el__del" data-del="${el.id}" title="Eliminar">âœ•</button>
+      <button class="mapa-el__del" data-del="${el.id}" title="Eliminar">✕</button>
     </div>`;
   return node;
 }
