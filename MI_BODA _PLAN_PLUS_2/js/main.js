@@ -9,23 +9,29 @@ const DB_KEY = 'boda_rsvp_guests';
 function getGuests()  { try { return JSON.parse(localStorage.getItem(DB_KEY)) || []; } catch { return []; } }
 function saveGuest(g) { const a = getGuests(); a.push(g); localStorage.setItem(DB_KEY, JSON.stringify(a)); }
 
-/* ===== INTRO CURTAIN ===== */
+/* ===== INTRO — SOBRE CON LAZO ===== */
 (function initIntro() {
-  var overlay = document.getElementById('introOverlay');
+  var overlay  = document.getElementById('introOverlay');
+  var envelope = document.getElementById('introEnvelope');
+  var enterBtn = document.getElementById('introEnterBtn');
   if (!overlay) return;
 
-  /* Rellenar nombres y fecha desde config */
+  /* Rellenar nombres, iniciales y fecha desde config */
   var cfg = {};
   try { cfg = JSON.parse(localStorage.getItem('boda_wedding_config')) || {}; } catch(e) {}
   var bride = cfg.bride || 'Sofía';
   var groom = cfg.groom || 'Alejandro';
 
-  var brideEl = document.getElementById('introCardBride');
-  var groomEl = document.getElementById('introCardGroom');
-  var dateEl  = document.getElementById('introCardDate');
+  var brideEl     = document.getElementById('introCardBride');
+  var groomEl     = document.getElementById('introCardGroom');
+  var dateEl      = document.getElementById('introCardDate');
+  var monoBrideEl = document.getElementById('introMonoBride');
+  var monoGroomEl = document.getElementById('introMonoGroom');
 
-  if (brideEl) brideEl.textContent = bride;
-  if (groomEl) groomEl.textContent = groom;
+  if (brideEl)     brideEl.textContent     = bride;
+  if (groomEl)     groomEl.textContent     = groom;
+  if (monoBrideEl) monoBrideEl.textContent = bride.trim().charAt(0).toUpperCase();
+  if (monoGroomEl) monoGroomEl.textContent = groom.trim().charAt(0).toUpperCase();
   if (dateEl && cfg.date) {
     var d = new Date(cfg.date + 'T12:00:00');
     dateEl.textContent = String(d.getDate()).padStart(2,'0') + ' · ' +
@@ -33,19 +39,42 @@ function saveGuest(g) { const a = getGuests(); a.push(g); localStorage.setItem(D
   }
 
   document.body.style.overflow = 'hidden';
-  var opened = false;
+  var phase = 0; // 0=cerrado · 1=sobre abierto · 2=cerrando
 
-  function open() {
-    if (opened) return;
-    opened = true;
-    overlay.classList.add('opening');
-    document.body.style.overflow = '';
-    /* Quitar overlay cuando termina la transición (1s paneles + buffer) */
-    setTimeout(function() { overlay.style.display = 'none'; }, 1050);
+  /* Abre el sobre: lazo se desata, carta sube */
+  function openEnvelope() {
+    if (phase !== 0) return;
+    phase = 1;
+    if (envelope) envelope.classList.add('opening');
   }
 
-  overlay.addEventListener('click',      open);
-  overlay.addEventListener('touchstart', open, { passive: true });
+  /* Cierra el overlay con animación de carta que se aleja */
+  function closeOverlay() {
+    if (phase >= 2) return;
+    phase = 2;
+    document.body.style.overflow = '';
+    overlay.classList.add('invite-overlay--closing');
+    setTimeout(function() { overlay.style.display = 'none'; }, 950);
+  }
+
+  /* Click en el overlay: primer clic abre · segundo clic cierra */
+  overlay.addEventListener('click', function() {
+    if (phase === 0) openEnvelope();
+    else if (phase === 1) closeOverlay();
+  });
+  overlay.addEventListener('touchstart', function() {
+    if (phase === 0) openEnvelope();
+    else if (phase === 1) closeOverlay();
+  }, { passive: true });
+
+  /* Botón "Abrir mi Invitación" dentro de la carta → cierra el overlay */
+  if (enterBtn) {
+    enterBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      if (phase === 0) { openEnvelope(); return; }
+      closeOverlay();
+    });
+  }
 })();
 
 /* ===== CURSOR — DOS ARGOLLAS ENTRELAZADAS ===== */
