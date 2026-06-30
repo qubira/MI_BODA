@@ -31,7 +31,7 @@ ul{list-style:none}
 .container{max-width:1220px;margin:0 auto;padding:0 28px}
 
 /* ── NAV ── */
-.nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:0 40px;overflow:hidden;transition:background .4s var(--ease),backdrop-filter .4s,border-bottom .4s}
+.nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:0 40px;transition:background .4s var(--ease),backdrop-filter .4s,border-bottom .4s}
 .nav.scrolled{background:rgba(8,8,8,.93);backdrop-filter:blur(18px);border-bottom:1px solid var(--gold-border)}
 .nav__brand{display:flex;align-items:baseline;gap:5px}
 .nav__brand-script{font-family:'Sacramento',cursive;font-size:2.2rem;line-height:1;color:var(--gold)}
@@ -353,7 +353,7 @@ ul{list-style:none}
 }
 /* Nav hamburger aparece antes que los ítems se salgan */
 @media(max-width:960px){
-  .nav{padding:0 20px;overflow:visible}
+  .nav{padding:0 20px}
   .nav__toggle{display:flex}
   .nav__menu{
     position:fixed;

@@ -251,7 +251,7 @@ input, select, textarea { cursor: text; }
   position: fixed; top: 0; left: 0; right: 0;
   height: var(--nav-h); z-index: 1000;
   display: flex; align-items: center; justify-content: space-between;
-  padding: 0 40px; overflow: hidden;
+  padding: 0 40px;
   transition: background var(--transition), backdrop-filter var(--transition),
               border-bottom var(--transition), box-shadow var(--transition);
 }
@@ -1499,7 +1499,7 @@ textarea:focus { outline: none; border-color: var(--gold); }
 
 /* Nav hamburger a 900px para evitar overflow lateral */
 @media (max-width: 900px) {
-  .nav           { padding: 0 20px; overflow: visible; }
+  .nav           { padding: 0 20px; }
   .nav__toggle   { display: flex; }
   .nav__menu {
     position: fixed; inset: 0; top: var(--nav-h);

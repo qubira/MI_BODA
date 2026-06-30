@@ -431,7 +431,6 @@ input, select, textarea { cursor: text; }
   justify-content: space-between;
   padding: 0 44px;
   z-index: 1000;
-  overflow: hidden;
   transition: all var(--transition);
 }
 .nav.scrolled {
@@ -2348,7 +2347,7 @@ input, select, textarea { cursor: text; }
    RESPONSIVE — NAV (≤ 1024px): hamburger antes del overflow
    ============================================================ */
 @media (max-width: 1024px) {
-  .nav { padding: 0 20px; overflow: visible; }
+  .nav { padding: 0 20px; }
   .nav__toggle { display: flex; }
   .nav__menu {
     position: fixed;
