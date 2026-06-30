@@ -49,6 +49,7 @@
 
 /* ---------- Reset ---------- */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+.hidden { display: none !important; }
 html { scroll-behavior: smooth; overflow-x: hidden; }
 body {
   font-family: var(--font-sans);
@@ -1785,21 +1786,27 @@ input, select, textarea { cursor: text; }
 .sorry-box p { font-family: var(--font-serif); font-size: 1.05rem; color: var(--charcoal); font-style: italic; }
 
 /* ---- Step 0: Verificación ---- */
-.rsvp-lookup-hint{font-size:.88rem;color:var(--muted,#888);margin-bottom:18px;text-align:center}
-.guest-found-card{display:flex;align-items:flex-start;gap:14px;background:linear-gradient(135deg,rgba(201,169,110,.12),rgba(201,169,110,.05));border:1px solid rgba(201,169,110,.35);border-radius:14px;padding:18px 20px;margin:14px 0}
-.guest-found-card__icon{font-size:1.6rem;color:#4CAF50;flex-shrink:0;margin-top:2px}
-.guest-found-card__name{font-family:var(--font-display,'Cinzel'),serif;font-size:1.05rem;color:var(--gold-light,#e8c98a);font-weight:600;margin:0 0 8px}
+.rsvp-lookup-hint{font-size:.88rem;color:var(--muted,#aaa);margin-bottom:24px;text-align:center;line-height:1.55}
+/* Separador visual entre campos y resultado */
+#step0 .fg-row{margin-bottom:6px}
+#step0 #err-lookup{display:block;margin-bottom:12px}
+.guest-found-card{display:flex;align-items:flex-start;gap:14px;background:linear-gradient(135deg,rgba(76,175,80,.1),rgba(76,175,80,.04));border:1px solid rgba(76,175,80,.4);border-radius:14px;padding:18px 20px;margin:16px 0 20px}
+.guest-found-card__icon{font-size:1.8rem;color:#4CAF50;flex-shrink:0;margin-top:1px}
+.guest-found-card__name{font-family:var(--font-display,'Cinzel'),serif;font-size:1.05rem;color:#7ed68a;font-weight:600;margin:0 0 10px}
 .guest-found-card__details{display:flex;flex-wrap:wrap;gap:8px}
-.guest-found-card__details span{font-size:.78rem;background:rgba(255,255,255,.07);border:1px solid rgba(201,169,110,.2);border-radius:20px;padding:3px 10px;color:var(--cream,#f5edd8)}
+.guest-found-card__details span{font-size:.78rem;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:4px 12px;color:var(--cream,#f5edd8)}
 .guest-found-card__details .honor-badge{border-color:rgba(201,169,110,.5);background:rgba(201,169,110,.12);color:var(--gold-light,#e8c98a)}
-.guest-not-found{display:flex;align-items:flex-start;gap:12px;background:rgba(231,76,60,.08);border:1px solid rgba(231,76,60,.3);border-radius:14px;padding:16px 18px;margin:14px 0;font-size:.88rem;color:#e57373}
-.guest-not-found i{font-size:1.3rem;flex-shrink:0;margin-top:1px}
+.guest-not-found{display:flex;align-items:flex-start;gap:12px;background:rgba(231,76,60,.08);border:1px solid rgba(231,76,60,.3);border-radius:14px;padding:16px 18px;margin:16px 0 20px;font-size:.86rem;color:#e57373;line-height:1.5}
+.guest-not-found i{font-size:1.3rem;flex-shrink:0;margin-top:2px}
+/* botón continuar con separación del botón verificar */
+#proceedBtn{margin-top:0}
+#lookupBtn{margin-top:4px}
 /* Saludo en step 1 */
-.rsvp-guest-greeting{display:none;align-items:center;gap:10px;background:rgba(201,169,110,.1);border:1px solid rgba(201,169,110,.3);border-radius:10px;padding:12px 16px;margin-bottom:20px;font-size:.9rem;color:var(--gold-light,#e8c98a)}
+.rsvp-guest-greeting{display:none;align-items:center;gap:10px;background:rgba(76,175,80,.08);border:1px solid rgba(76,175,80,.3);border-radius:10px;padding:12px 16px;margin-bottom:22px;font-size:.9rem;color:#7ed68a}
 .rsvp-guest-greeting.active{display:flex}
-.rsvp-guest-greeting i{color:#4CAF50;font-size:1.1rem}
+.rsvp-guest-greeting i{color:#4CAF50;font-size:1.1rem;flex-shrink:0}
 /* Gift & honor info en step 2 */
-.rsvp-gift-info,.rsvp-honor-info{border-radius:12px;padding:14px 16px;margin-bottom:16px;font-size:.88rem;line-height:1.55}
+.rsvp-gift-info,.rsvp-honor-info{border-radius:12px;padding:14px 16px;margin-bottom:18px;font-size:.88rem;line-height:1.55}
 .rsvp-gift-info{background:rgba(255,213,79,.08);border:1px solid rgba(255,213,79,.25);color:var(--cream,#f5edd8)}
 .rsvp-honor-info{background:rgba(201,169,110,.1);border:1px solid rgba(201,169,110,.35);color:var(--gold-light,#e8c98a);font-weight:500}
 /* Small RSVP cards (para hijos) */
@@ -1807,7 +1814,7 @@ input, select, textarea { cursor: text; }
 .rsvp-cards--sm .rsvp-card{padding:14px}
 .rsvp-cards--sm .rsvp-card__title{font-size:.85rem}
 /* Success honor msg */
-.success-guest-honor{font-size:.9rem;color:var(--gold-light,#e8c98a);margin-top:10px;padding:10px 16px;background:rgba(201,169,110,.1);border-radius:10px;border:1px solid rgba(201,169,110,.25)}
+.success-guest-honor{font-size:.9rem;color:var(--gold-light,#e8c98a);margin-top:12px;padding:10px 16px;background:rgba(201,169,110,.1);border-radius:10px;border:1px solid rgba(201,169,110,.25)}
 
 /* Success */
 .success-step { text-align: center; padding: 20px 0; }
