@@ -548,6 +548,11 @@ function saveGuest(g) { const a = getGuests(); a.push(g); localStorage.setItem(D
   var music;
   try { music = JSON.parse(localStorage.getItem('boda_musica')) || {}; } catch(e) { music = {}; }
 
+  /* Si no hay configuración de música, usa el archivo por defecto de la carpeta music/ */
+  if (!music.localFile && !music.url && !music.savedFile) {
+    music = { localFile: 'Christina Perri - A Thousand Years.mp3', title: 'A Thousand Years - Christina Perri' };
+  }
+
   /* Abre IndexedDB de audio */
   function openAudioDB(cb) {
     var req = indexedDB.open('bodaAudio', 1);
