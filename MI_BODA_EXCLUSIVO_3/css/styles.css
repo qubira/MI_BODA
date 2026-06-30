@@ -1497,21 +1497,64 @@ textarea:focus { outline: none; border-color: var(--gold); }
   .dress-divider__line { width: 50px; height: 1px; }
 }
 
-/* Nav hamburger a 900px para evitar overflow lateral */
+/* Nav drawer lateral — Noir Élégant */
 @media (max-width: 900px) {
-  .nav           { padding: 0 20px; }
-  .nav__toggle   { display: flex; }
+  .nav         { padding: 0 20px; }
+  .nav__toggle { display: flex; }
+
   .nav__menu {
-    position: fixed; inset: 0; top: var(--nav-h);
+    position: absolute;
+    top: 0; right: 0;
+    width: min(280px, 80vw);
+    height: 100vh;
     z-index: 9999;
-    background: #060606;
-    flex-direction: column; align-items: center; justify-content: center;
-    gap: 36px; opacity: 0; pointer-events: none;
-    transform: translateY(-10px);
-    transition: opacity .4s, transform .4s;
+    background: #0a0a0a;
+    border-left: 1px solid var(--gold-border);
+    box-shadow: -16px 0 60px rgba(0,0,0,.8);
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: calc(var(--nav-h) + 32px) 0 40px;
+    overflow-y: auto;
+    transform: translateX(110%);
+    transition: transform .4s cubic-bezier(.4,0,.2,1);
   }
-  .nav__menu.open { opacity: 1; pointer-events: auto; transform: none; }
-  .nav__menu a { font-size: .88rem; letter-spacing: .15em; }
+  .nav__menu.open { transform: translateX(0); }
+
+  /* Monograma decorativo en la parte superior */
+  .nav__menu::before {
+    content: '✦';
+    position: absolute; top: calc(var(--nav-h) + 8px); left: 50%;
+    transform: translateX(-50%);
+    font-size: .7rem; color: var(--gold); letter-spacing: .3em;
+    opacity: .5;
+  }
+
+  .nav__menu a {
+    display: block;
+    padding: 16px 32px;
+    font-family: var(--font-display);
+    font-size: .6rem; letter-spacing: .25em;
+    text-transform: uppercase;
+    color: rgba(240,232,216,.6) !important;
+    border-bottom: 1px solid rgba(201,160,84,.08);
+    transition: color .22s, background .22s, letter-spacing .22s;
+    position: relative;
+  }
+  .nav__menu a::after {
+    content: '';
+    position: absolute; left: 0; top: 0; bottom: 0;
+    width: 2px; background: var(--gold);
+    transform: scaleY(0); transform-origin: bottom;
+    transition: transform .25s;
+  }
+  .nav__menu a:hover {
+    color: var(--gold) !important;
+    background: rgba(201,160,84,.05);
+    letter-spacing: .3em;
+  }
+  .nav__menu a:hover::after { transform: scaleY(1); }
+  .nav__menu li:last-child a { border-bottom: none; }
 }
 
 @media (max-width: 700px) {

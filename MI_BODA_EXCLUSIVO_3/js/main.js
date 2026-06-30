@@ -124,8 +124,30 @@ function saveGuest(g) { const a = getGuests(); a.push(g); localStorage.setItem(D
     document.getElementById('scrollTop').classList.toggle('visible', window.scrollY > 400);
   });
 
-  toggle.addEventListener('click', () => menu.classList.toggle('open'));
-  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => menu.classList.remove('open')));
+  const backdrop = document.createElement('div');
+  Object.assign(backdrop.style, {
+    position:'fixed', inset:'0', zIndex:'9998',
+    background:'rgba(0,0,0,.6)', opacity:'0',
+    pointerEvents:'none', transition:'opacity .4s'
+  });
+  document.body.appendChild(backdrop);
+
+  function closeMenu() {
+    toggle.classList.remove('open');
+    menu.classList.remove('open');
+    backdrop.style.opacity = '0';
+    backdrop.style.pointerEvents = 'none';
+  }
+  toggle.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const opening = !menu.classList.contains('open');
+    toggle.classList.toggle('open');
+    menu.classList.toggle('open');
+    backdrop.style.opacity = opening ? '1' : '0';
+    backdrop.style.pointerEvents = opening ? 'auto' : 'none';
+  });
+  backdrop.addEventListener('click', closeMenu);
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
 })();
 
 /* ===== PARALLAX HERO ===== */
