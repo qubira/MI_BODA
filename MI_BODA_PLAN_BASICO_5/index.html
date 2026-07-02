@@ -466,27 +466,28 @@
       padding: 4px 24px 28px;
       display: flex; justify-content: center;
     }
-    .reception-oval { position: relative; width: 240px; }
+    .reception-oval { position: relative; width: 310px; }
     .reception-oval__bg { width: 100%; display: block; }
     .reception-oval__inner {
       position: absolute; inset: 0;
       display: flex; flex-direction: column;
       align-items: center; justify-content: center;
-      padding: 24px 20px 30px; text-align: center;
+      padding: 20px 28px 24px; text-align: center;
+      overflow: hidden;
     }
     .reception-oval__head {
       font-size: 9px; font-weight: 600;
       letter-spacing: 0.28em; text-transform: uppercase;
-      color: var(--dark); margin-bottom: 4px;
+      color: var(--dark); margin-bottom: 3px;
     }
     .reception-oval__time {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 11.5px; font-style: italic; font-weight: 300;
-      color: var(--gray); margin-bottom: 9px;
+      font-size: 11px; font-style: italic; font-weight: 300;
+      color: var(--gray); margin-bottom: 7px;
     }
     .reception-oval__arch {
-      width: 86px; height: 60px; display: block;
-      margin: 0 auto 11px;
+      width: 78px; height: 52px; display: block;
+      margin: 0 auto 8px;
       object-fit: cover; object-position: 50% 0%;
     }
 
@@ -825,7 +826,7 @@
              alt="" aria-hidden="true" />
         <a href="https://maps.google.com/?q=CDMX"
            target="_blank" rel="noopener"
-           class="btn rv up d4"><span>Ubicación</span></a>
+           class="btn rv up d4" style="padding:5px 18px; font-size:8px;"><span>Ubicación</span></a>
       </div>
     </div>
   </div>
