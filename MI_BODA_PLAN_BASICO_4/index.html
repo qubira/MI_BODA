@@ -1,0 +1,1217 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Acompáñanos a celebrar nuestra boda — 14 de Febrero 2027" />
+  <title>Sofía &amp; Alejandro · 14·02·2027</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gd:    #243D18;
+      --gm:    #3A6430;
+      --gs:    #5C7F52;
+      --gl:    #B0C9A8;
+      --cr:    #FAF8F3;
+      --crd:   #F0EDE4;
+      --gold:  #C4A35A;
+      --glow:  #E2C98A;
+      --tx:    #1A1A1A;
+      --txl:   #706A60;
+      --wh:    #FFFFFF;
+      --ease:  cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      background: #dedad3;
+      color: var(--tx);
+      overflow-x: hidden;
+    }
+
+    .page {
+      max-width: 420px;
+      margin: 0 auto;
+      background: var(--wh);
+      position: relative;
+      box-shadow: 0 0 100px rgba(0,0,0,0.18);
+      overflow: hidden;
+    }
+
+    /* Linen texture overlay */
+    .page__texture {
+      position: fixed;
+      top: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 420px;
+      height: 100%;
+      background: url("10_DEMO_invitacion_Miguel y Camila_files/6d16bb92693f371c7db9ee9efb9d8ece.png") center / cover;
+      opacity: 0.22;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── Reveal ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(26px);
+      transition: opacity 1s var(--ease), transform 1s var(--ease);
+    }
+    .reveal.up { opacity: 1; transform: translateY(0); }
+    .d1 { transition-delay: 0.12s; }
+    .d2 { transition-delay: 0.26s; }
+    .d3 { transition-delay: 0.42s; }
+    .d4 { transition-delay: 0.58s; }
+    .d5 { transition-delay: 0.74s; }
+
+    /* ─── Botanical divider — reusable ─── */
+    .b-div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      padding: 0 36px;
+      margin: 0 auto;
+    }
+    .b-div__line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--glow), transparent);
+    }
+    .b-div__lily {
+      width: 30px;
+      opacity: 0.55;
+      filter: drop-shadow(0 1px 2px rgba(0,0,0,0.08));
+    }
+
+
+    /* ══════════════════════════════════════
+       1. HERO
+    ══════════════════════════════════════ */
+    .hero {
+      position: relative;
+      background: var(--wh);
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 80px 32px 56px;
+      z-index: 1;
+    }
+
+    /* Calla lily top-right — grande */
+    .hero__lily-tr {
+      position: absolute;
+      top: -20px;
+      right: -24px;
+      width: 225px;
+      transform: rotate(7deg);
+      z-index: 6;
+      pointer-events: none;
+      filter: drop-shadow(0 6px 16px rgba(0,0,0,0.1));
+    }
+
+    /* Calla lily left side — segunda cala */
+    .hero__lily-tl {
+      position: absolute;
+      top: 60px;
+      left: -30px;
+      width: 120px;
+      transform: rotate(-15deg) scaleX(-1);
+      z-index: 2;
+      pointer-events: none;
+      opacity: 0.7;
+      filter: drop-shadow(0 4px 10px rgba(0,0,0,0.08));
+    }
+
+    /* Eyebrow */
+    .hero__eyebrow {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 8.5px;
+      font-weight: 300;
+      letter-spacing: 0.48em;
+      text-transform: uppercase;
+      color: var(--gs);
+      display: block;
+      margin-bottom: 14px;
+      position: relative;
+      z-index: 3;
+    }
+
+    /* Nombres */
+    .hero__names {
+      font-family: 'Great Vibes', cursive;
+      font-size: clamp(58px, 16vw, 76px);
+      color: var(--tx);
+      line-height: 1;
+      margin-bottom: 10px;
+      position: relative;
+      z-index: 3;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+
+    /* Separador dorado bajo nombres */
+    .hero__rule {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px;
+      position: relative;
+      z-index: 3;
+    }
+    .hero__rule-line {
+      width: 50px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold));
+    }
+    .hero__rule-line:last-child {
+      background: linear-gradient(90deg, var(--gold), transparent);
+    }
+    .hero__rule-diamond {
+      width: 5px;
+      height: 5px;
+      background: var(--gold);
+      transform: rotate(45deg);
+    }
+
+    .hero__date {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 10.5px;
+      font-weight: 300;
+      letter-spacing: 0.30em;
+      color: var(--txl);
+      margin-bottom: 36px;
+      position: relative;
+      z-index: 3;
+    }
+
+    /* Composición sobre + foto */
+    .hero__comp {
+      position: relative;
+      width: 265px;
+      margin: 0 auto;
+      z-index: 3;
+    }
+
+    .hero__envelope {
+      width: 100%;
+      display: block;
+      filter: drop-shadow(0 10px 32px rgba(0,0,0,0.20));
+    }
+
+    /* Foto polaroid sobre el sobre */
+    .hero__photo-wrap {
+      position: absolute;
+      top: 20%;
+      left: 50%;
+      transform: translateX(-50%) rotate(-2.5deg);
+      width: 148px;
+      z-index: 4;
+      filter: drop-shadow(0 8px 20px rgba(0,0,0,0.25));
+      transition: transform 0.4s var(--ease);
+    }
+    .hero__photo-wrap:hover {
+      transform: translateX(-50%) rotate(0deg) scale(1.02);
+    }
+    .hero__photo-wrap img {
+      width: 100%;
+      display: block;
+      border-radius: 2px;
+    }
+
+    /* Cala bottom-left sobre envelope */
+    .hero__lily-bl {
+      position: absolute;
+      bottom: -32px;
+      left: -34px;
+      width: 155px;
+      transform: rotate(-5deg) scaleX(-1);
+      z-index: 5;
+      pointer-events: none;
+      filter: drop-shadow(0 6px 14px rgba(0,0,0,0.12));
+    }
+
+    /* Scroll hint */
+    .hero__scroll {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      opacity: 0.35;
+      margin-top: 44px;
+      position: relative;
+      z-index: 3;
+    }
+    .hero__scroll span {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 8px;
+      letter-spacing: 0.30em;
+      text-transform: uppercase;
+    }
+    .hero__scroll-line {
+      width: 1px;
+      height: 32px;
+      background: var(--tx);
+      animation: scrollPulse 2.2s ease-in-out infinite;
+    }
+    @keyframes scrollPulse {
+      0%,100% { transform: scaleY(1); opacity: 0.35; }
+      50% { transform: scaleY(0.4); opacity: 0.85; }
+    }
+
+
+    /* ══════════════════════════════════════
+       2. MÚSICA
+    ══════════════════════════════════════ */
+    .music {
+      background: var(--wh);
+      text-align: center;
+      padding: 44px 32px;
+      position: relative;
+      z-index: 1;
+    }
+    .music::before, .music::after {
+      content: '';
+      display: block;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--crd), var(--crd), transparent);
+    }
+    .music::before { margin-bottom: 44px; }
+    .music::after  { margin-top: 44px; }
+
+    .music__label {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 16px;
+      font-style: italic;
+      font-weight: 300;
+      color: var(--txl);
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+    .music__wrap {
+      position: relative;
+      width: 200px;
+      margin: 0 auto;
+    }
+    .music__img {
+      width: 100%;
+      display: block;
+      opacity: 0.35;
+      pointer-events: none;
+    }
+    .music__btn {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--gm);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--wh);
+      box-shadow: 0 6px 24px rgba(58,100,48,0.40);
+      transition: background 0.35s, transform 0.35s var(--ease), box-shadow 0.35s;
+    }
+    .music__btn:hover {
+      background: var(--gd);
+      transform: translate(-50%,-50%) scale(1.08);
+      box-shadow: 0 10px 32px rgba(36,61,24,0.45);
+    }
+    .ico-play  { width:0; height:0; border-style:solid; border-width:10px 0 10px 17px; border-color:transparent transparent transparent currentColor; margin-left:4px; }
+    .ico-pause { display:none; gap:4px; }
+    .ico-pause span { display:block; width:4px; height:16px; background:currentColor; border-radius:2px; }
+    .music__btn.on .ico-play  { display:none; }
+    .music__btn.on .ico-pause { display:flex; }
+
+
+    /* ══════════════════════════════════════
+       3. PADRES
+    ══════════════════════════════════════ */
+    .parents {
+      background: var(--cr);
+      text-align: center;
+      padding: 72px 28px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .parents__tag {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 8px;
+      font-weight: 300;
+      letter-spacing: 0.44em;
+      text-transform: uppercase;
+      color: var(--gs);
+      display: block;
+      margin-bottom: 28px;
+    }
+
+    .parents__card {
+      background: url("10_DEMO_invitacion_Miguel y Camila_files/71fd24ed7e1f18821e7476ebcb60b079.png") center / cover;
+      border: 1px solid rgba(196,163,90,0.38);
+      padding: 34px 30px;
+      max-width: 305px;
+      margin: 0 auto;
+      position: relative;
+      box-shadow:
+        0 2px 8px rgba(0,0,0,0.05),
+        inset 0 0 0 6px rgba(255,255,255,0.5);
+    }
+    /* Cuatro esquinas doradas */
+    .parents__card::before,
+    .parents__card::after {
+      content: '';
+      position: absolute;
+      width: 20px; height: 20px;
+    }
+    .parents__card::before {
+      top: -6px; left: -6px;
+      border-top: 2px solid var(--gold);
+      border-left: 2px solid var(--gold);
+    }
+    .parents__card::after {
+      bottom: -6px; right: -6px;
+      border-bottom: 2px solid var(--gold);
+      border-right: 2px solid var(--gold);
+    }
+    .parents__card-inner {
+      position: relative;
+    }
+    .parents__card-inner::before {
+      content: '';
+      position: absolute;
+      top: -40px; right: -36px;
+      width: 20px; height: 20px;
+      border-top: 2px solid var(--gold);
+      border-right: 2px solid var(--gold);
+    }
+    .parents__card-inner::after {
+      content: '';
+      position: absolute;
+      bottom: -40px; left: -36px;
+      width: 20px; height: 20px;
+      border-bottom: 2px solid var(--gold);
+      border-left: 2px solid var(--gold);
+    }
+
+    .parents__side { margin-bottom: 14px; }
+    .parents__side:last-child { margin-bottom: 0; }
+
+    .parents__role {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 7.5px;
+      font-weight: 300;
+      letter-spacing: 0.34em;
+      text-transform: uppercase;
+      color: var(--gs);
+      display: block;
+      margin-bottom: 7px;
+    }
+    .parents__name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 17px;
+      font-weight: 300;
+      color: var(--tx);
+      line-height: 1.6;
+    }
+    .parents__sep {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 14px auto;
+    }
+    .parents__sep-line {
+      flex: 1;
+      height: 1px;
+      background: var(--glow);
+    }
+    .parents__sep-dot {
+      width: 4px; height: 4px;
+      background: var(--gold);
+      border-radius: 50%;
+    }
+
+
+    /* ══════════════════════════════════════
+       4. COUNTDOWN
+    ══════════════════════════════════════ */
+    .countdown {
+      background: var(--gd);
+      text-align: center;
+      padding: 80px 28px;
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+    }
+    .countdown::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("10_DEMO_invitacion_Miguel y Camila_files/6d16bb92693f371c7db9ee9efb9d8ece.png") center / cover;
+      opacity: 0.06;
+    }
+
+    .countdown__lily {
+      position: absolute;
+      top: -18px; right: -22px;
+      width: 155px;
+      opacity: 0.1;
+      transform: rotate(10deg);
+      pointer-events: none;
+      filter: brightness(20) saturate(0);
+    }
+    .countdown__lily-bl {
+      position: absolute;
+      bottom: -15px; left: -20px;
+      width: 120px;
+      opacity: 0.07;
+      transform: rotate(-8deg) scaleX(-1);
+      pointer-events: none;
+      filter: brightness(20) saturate(0);
+    }
+
+    .countdown__intro {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 15px;
+      font-style: italic;
+      font-weight: 300;
+      color: rgba(255,255,255,0.48);
+      margin-bottom: 10px;
+      position: relative;
+      z-index: 1;
+      letter-spacing: 0.04em;
+    }
+    .countdown__big {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 100px;
+      font-weight: 300;
+      color: var(--wh);
+      line-height: 1;
+      letter-spacing: -6px;
+      position: relative;
+      z-index: 1;
+    }
+    .countdown__dias {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 8.5px;
+      font-weight: 200;
+      letter-spacing: 0.50em;
+      text-transform: uppercase;
+      color: var(--gl);
+      margin-bottom: 42px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .countdown__rule {
+      width: 1px;
+      height: 24px;
+      background: rgba(255,255,255,0.15);
+      margin: 0 auto 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .countdown__hms {
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      margin-bottom: 28px;
+      position: relative;
+      z-index: 1;
+    }
+    .countdown__cell { flex: 1; max-width: 90px; position: relative; }
+    .countdown__cell + .countdown__cell::before {
+      content: ':';
+      position: absolute;
+      left: -3px; top: 4px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 26px;
+      color: rgba(255,255,255,0.2);
+    }
+    .countdown__num {
+      display: block;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 42px;
+      font-weight: 300;
+      color: var(--wh);
+      line-height: 1;
+    }
+    .countdown__lbl {
+      display: block;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 7px;
+      font-weight: 200;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.30);
+      margin-top: 6px;
+    }
+    .countdown__fecha {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 10px;
+      font-weight: 300;
+      letter-spacing: 0.32em;
+      color: var(--gl);
+      position: relative;
+      z-index: 1;
+    }
+
+
+    /* ══════════════════════════════════════
+       5. EVENTOS
+    ══════════════════════════════════════ */
+    .event {
+      background: var(--wh);
+      text-align: center;
+      padding: 78px 32px 60px;
+      position: relative;
+      z-index: 1;
+    }
+    .event--alt { background: var(--cr); }
+
+    .event__tag {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 8px;
+      font-weight: 300;
+      letter-spacing: 0.44em;
+      text-transform: uppercase;
+      color: var(--gs);
+      display: block;
+      margin-bottom: 12px;
+    }
+    .event__time {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 15px;
+      font-style: italic;
+      color: var(--txl);
+      margin-bottom: 28px;
+    }
+
+    .event__illustration {
+      width: 210px;
+      margin: 0 auto 24px;
+      display: block;
+      opacity: 0.80;
+    }
+
+    .event__bouquet {
+      width: 120px;
+      margin: 0 auto 24px;
+      display: block;
+      opacity: 0.85;
+    }
+
+    .event__venue {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 24px;
+      font-weight: 400;
+      color: var(--tx);
+      margin-bottom: 10px;
+      letter-spacing: 0.01em;
+    }
+    .event__addr {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 15px;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--txl);
+      line-height: 1.72;
+      margin-bottom: 30px;
+    }
+
+    /* Botón pill */
+    .btn-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid var(--tx);
+      padding: 10px 26px;
+      border-radius: 100px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 9px;
+      font-weight: 400;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--tx);
+      transition: background 0.35s var(--ease), color 0.35s var(--ease), transform 0.3s var(--ease);
+    }
+    .btn-pill:hover { background: var(--tx); color: var(--wh); transform: translateY(-1px); }
+    .btn-pill--solid { background: var(--gd); border-color: var(--gd); color: var(--wh); }
+    .btn-pill--solid:hover { background: var(--gm); border-color: var(--gm); }
+
+
+    /* ══════════════════════════════════════
+       6. DRESS CODE
+    ══════════════════════════════════════ */
+    .dresscode {
+      background: var(--crd);
+      text-align: center;
+      padding: 70px 28px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .section-tag {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 8px;
+      font-weight: 300;
+      letter-spacing: 0.44em;
+      text-transform: uppercase;
+      color: var(--gs);
+      display: block;
+      margin-bottom: 20px;
+    }
+    .dresscode__img {
+      width: 210px;
+      display: block;
+      margin: 0 auto;
+    }
+
+
+    /* ══════════════════════════════════════
+       7. REGALOS
+    ══════════════════════════════════════ */
+    .gifts {
+      background: var(--wh);
+      text-align: center;
+      padding: 80px 32px;
+      position: relative;
+      z-index: 1;
+    }
+    .gifts__bouquet {
+      width: 95px;
+      display: block;
+      margin: 0 auto 26px;
+      opacity: 0.88;
+    }
+    .gifts__title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28px;
+      font-style: italic;
+      font-weight: 400;
+      color: var(--tx);
+      margin-bottom: 14px;
+      letter-spacing: 0.01em;
+    }
+    .gifts__text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 15.5px;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--txl);
+      line-height: 1.80;
+      margin-bottom: 32px;
+    }
+
+
+    /* ══════════════════════════════════════
+       8. RSVP
+    ══════════════════════════════════════ */
+    .rsvp {
+      background: var(--cr);
+      text-align: center;
+      padding: 80px 32px 90px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .rsvp__lily-top {
+      width: 80px;
+      display: block;
+      margin: 0 auto 32px;
+      opacity: 0.62;
+      filter: drop-shadow(0 2px 6px rgba(0,0,0,0.08));
+    }
+
+    .rsvp__label-wrap {
+      position: relative;
+      width: 230px;
+      margin: 0 auto 30px;
+    }
+    .rsvp__label-img {
+      width: 100%;
+      display: block;
+    }
+    .rsvp__label-text {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 8px;
+      font-weight: 300;
+      letter-spacing: 0.40em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.88);
+      white-space: nowrap;
+    }
+
+    .rsvp__title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 30px;
+      font-weight: 400;
+      color: var(--tx);
+      margin-bottom: 14px;
+      letter-spacing: 0.01em;
+    }
+    .rsvp__text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 16px;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--txl);
+      line-height: 1.78;
+      margin-bottom: 34px;
+    }
+    .rsvp__deadline {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 9px;
+      font-weight: 300;
+      letter-spacing: 0.20em;
+      color: var(--txl);
+      margin-top: 18px;
+    }
+
+
+    /* ══════════════════════════════════════
+       FOOTER
+    ══════════════════════════════════════ */
+    .footer {
+      background: var(--gd);
+      text-align: center;
+      padding: 52px 28px 44px;
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+    }
+    .footer::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: url("10_DEMO_invitacion_Miguel y Camila_files/6d16bb92693f371c7db9ee9efb9d8ece.png") center / cover;
+      opacity: 0.06;
+    }
+    .footer__lily-r {
+      position: absolute;
+      bottom: -16px; right: -20px;
+      width: 145px;
+      opacity: 0.10;
+      transform: rotate(7deg);
+      pointer-events: none;
+      filter: brightness(20) saturate(0);
+    }
+    .footer__lily-l {
+      position: absolute;
+      bottom: -10px; left: -20px;
+      width: 110px;
+      opacity: 0.08;
+      transform: rotate(-12deg) scaleX(-1);
+      pointer-events: none;
+      filter: brightness(20) saturate(0);
+    }
+    .footer__names {
+      font-family: 'Great Vibes', cursive;
+      font-size: 48px;
+      color: rgba(255,255,255,0.92);
+      position: relative; z-index: 1;
+      margin-bottom: 10px;
+      text-shadow: 0 2px 14px rgba(0,0,0,0.2);
+    }
+    .footer__sep {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin: 0 auto 10px;
+      max-width: 180px;
+      position: relative; z-index: 1;
+    }
+    .footer__sep-line {
+      flex: 1; height: 1px;
+      background: rgba(255,255,255,0.18);
+    }
+    .footer__sep-diamond {
+      width: 4px; height: 4px;
+      background: var(--gold);
+      transform: rotate(45deg);
+    }
+    .footer__date {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 9.5px;
+      font-weight: 200;
+      letter-spacing: 0.36em;
+      color: rgba(255,255,255,0.34);
+      position: relative; z-index: 1;
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+  <div class="page__texture" aria-hidden="true"></div>
+
+  <!-- ══════════════════════════════════════
+       1. HERO
+  ══════════════════════════════════════ -->
+  <section class="hero">
+
+    <img class="hero__lily-tr"
+         src="10_DEMO_invitacion_Miguel y Camila_files/9c5ee6a05d682887b1ad6bf78c04835b.png"
+         alt="" aria-hidden="true" />
+
+    <img class="hero__lily-tl reveal"
+         src="10_DEMO_invitacion_Miguel y Camila_files/dd37223e46b0d6fc4c12432a5782661f.png"
+         alt="" aria-hidden="true" />
+
+    <span class="hero__eyebrow reveal d1">Nos casamos</span>
+    <h1 class="hero__names reveal d2">Sofía &amp; Alejandro</h1>
+
+    <div class="hero__rule reveal d3">
+      <span class="hero__rule-line"></span>
+      <span class="hero__rule-diamond"></span>
+      <span class="hero__rule-line"></span>
+    </div>
+
+    <p class="hero__date reveal d3">14 · 02 · 2027</p>
+
+    <div class="hero__comp reveal d4">
+      <img class="hero__envelope"
+           src="10_DEMO_invitacion_Miguel y Camila_files/9349232ab82f850ab26e398a997683b8.png"
+           alt="Sobre de invitación" />
+
+      <div class="hero__photo-wrap">
+        <img src="10_DEMO_invitacion_Miguel y Camila_files/599730b97ce50e4f8eef9ec19741be40.png"
+             alt="Sofía y Alejandro" />
+      </div>
+
+      <img class="hero__lily-bl"
+           src="10_DEMO_invitacion_Miguel y Camila_files/9c5ee6a05d682887b1ad6bf78c04835b.png"
+           alt="" aria-hidden="true" />
+    </div>
+
+    <div class="hero__scroll reveal d5">
+      <span>Desliza</span>
+      <div class="hero__scroll-line"></div>
+    </div>
+  </section>
+
+
+  <!-- Divisor botánico -->
+  <div class="b-div reveal" style="padding: 28px 36px; background: var(--wh); position:relative; z-index:1;">
+    <span class="b-div__line"></span>
+    <img class="b-div__lily"
+         src="10_DEMO_invitacion_Miguel y Camila_files/dd37223e46b0d6fc4c12432a5782661f.png"
+         alt="" aria-hidden="true" />
+    <span class="b-div__line"></span>
+  </div>
+
+
+  <!-- ══════════════════════════════════════
+       2. MÚSICA
+  ══════════════════════════════════════ -->
+  <section class="music">
+    <p class="music__label reveal">"Dale play para escuchar nuestra canción"</p>
+    <div class="music__wrap reveal d1">
+      <img class="music__img"
+           src="10_DEMO_invitacion_Miguel y Camila_files/1a1798e611373d7d7c91bee806c1af41.png"
+           alt="" aria-hidden="true" />
+      <button class="music__btn" id="musicBtn" aria-label="Reproducir / Pausar">
+        <div class="ico-play"></div>
+        <div class="ico-pause"><span></span><span></span></div>
+      </button>
+    </div>
+    <audio id="weddingAudio" loop preload="none">
+      <source src="audio/cancion.mp3" type="audio/mpeg" />
+    </audio>
+  </section>
+
+
+  <!-- ══════════════════════════════════════
+       3. PADRES
+  ══════════════════════════════════════ -->
+  <section class="parents">
+
+    <div class="b-div reveal" style="margin-bottom: 32px;">
+      <span class="b-div__line"></span>
+      <img class="b-div__lily"
+           src="10_DEMO_invitacion_Miguel y Camila_files/9c5ee6a05d682887b1ad6bf78c04835b.png"
+           alt="" aria-hidden="true" />
+      <span class="b-div__line"></span>
+    </div>
+
+    <p class="parents__tag reveal">En compañía de nuestros padres</p>
+
+    <div class="parents__card reveal d1">
+      <div class="parents__card-inner">
+        <div class="parents__side">
+          <span class="parents__role">Padres de la novia</span>
+          <div class="parents__name">Marco Moreno &amp;<br>Elena García de Moreno</div>
+        </div>
+        <div class="parents__sep">
+          <span class="parents__sep-line"></span>
+          <span class="parents__sep-dot"></span>
+          <span class="parents__sep-line"></span>
+        </div>
+        <div class="parents__side">
+          <span class="parents__role">Padres del novio</span>
+          <div class="parents__name">Rubén García &amp;<br>Carmen López de García</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="b-div reveal d2" style="margin-top: 32px;">
+      <span class="b-div__line"></span>
+      <img class="b-div__lily"
+           src="10_DEMO_invitacion_Miguel y Camila_files/9c5ee6a05d682887b1ad6bf78c04835b.png"
+           alt="" aria-hidden="true" />
+      <span class="b-div__line"></span>
+    </div>
+
+  </section>
+
+
+  <!-- ══════════════════════════════════════
+       4. COUNTDOWN
+  ══════════════════════════════════════ -->
+  <section class="countdown">
+    <img class="countdown__lily"
+         src="10_DEMO_invitacion_Miguel y Camila_files/9c5ee6a05d682887b1ad6bf78c04835b.png"
+         alt="" aria-hidden="true" />
+    <img class="countdown__lily-bl"
+         src="10_DEMO_invitacion_Miguel y Camila_files/9c5ee6a05d682887b1ad6bf78c04835b.png"
+         alt="" aria-hidden="true" />
+
+    <p class="countdown__intro reveal">Para nuestro gran día</p>
+    <div class="countdown__big reveal d1" id="cdDays">000</div>
+    <p class="countdown__dias reveal d2">días</p>
+
+    <div class="countdown__rule reveal d2"></div>
+
+    <div class="countdown__hms reveal d3">
+      <div class="countdown__cell">
+        <span class="countdown__num" id="cdHours">00</span>
+        <span class="countdown__lbl">horas</span>
+      </div>
+      <div class="countdown__cell">
+        <span class="countdown__num" id="cdMins">00</span>
+        <span class="countdown__lbl">min</span>
+      </div>
+      <div class="countdown__cell">
+        <span class="countdown__num" id="cdSecs">00</span>
+        <span class="countdown__lbl">seg</span>
+      </div>
+    </div>
+
+    <p class="countdown__fecha reveal d4">14 · FEBRERO · 2027</p>
+  </section>
+
+
+  <!-- ══════════════════════════════════════
+       5a. CEREMONIA
+  ══════════════════════════════════════ -->
+  <section class="event">
+
+    <span class="event__tag reveal">Ceremonia</span>
+    <p class="event__time reveal d1">3:00 pm · Domingo, 14 de Febrero 2027</p>
+
+    <img class="event__illustration reveal d2"
+         src="10_DEMO_invitacion_Miguel y Camila_files/76284a780b5f6c7ef0211842001d1f9b.png"
+         alt="Iglesia de la ceremonia" />
+
+    <h3 class="event__venue reveal d3">Parroquia Virgen del Pilar</h3>
+    <p class="event__addr reveal d3">Av. Santa Cruz 1190,<br>San Isidro, Lima</p>
+
+    <a href="https://maps.google.com/?q=Parroquia+Virgen+del+Pilar+San+Isidro+Lima"
+       target="_blank" rel="noopener" class="btn-pill reveal d4">
+      <svg width="9" height="12" viewBox="0 0 10 13" fill="none">
+        <path d="M5 0C2.24 0 0 2.24 0 5c0 3.75 5 8 5 8s5-4.25 5-8c0-2.76-2.24-5-5-5z" fill="currentColor"/>
+        <circle cx="5" cy="5" r="1.6" fill="white"/>
+      </svg>
+      Ver ubicación
+    </a>
+  </section>
+
+  <!-- Divisor entre eventos -->
+  <div class="b-div reveal" style="padding: 24px 36px; background: var(--wh); position:relative; z-index:1;">
+    <span class="b-div__line"></span>
+    <img class="b-div__lily"
+         src="10_DEMO_invitacion_Miguel y Camila_files/dd37223e46b0d6fc4c12432a5782661f.png"
+         alt="" aria-hidden="true" />
+    <span class="b-div__line"></span>
+  </div>
+
+
+  <!-- ══════════════════════════════════════
+       5b. RECEPCIÓN
+  ══════════════════════════════════════ -->
+  <section class="event event--alt">
+
+    <span class="event__tag reveal">Recepción</span>
+    <p class="event__time reveal d1">7:00 pm · Domingo, 14 de Febrero 2027</p>
+
+    <img class="event__bouquet reveal d2"
+         src="10_DEMO_invitacion_Miguel y Camila_files/e0f60cdb76de8f76026c8aa51fc37cfe.png"
+         alt="Recepción" />
+
+    <h3 class="event__venue reveal d3">Club Villa de Lima</h3>
+    <p class="event__addr reveal d3">Av. Los Rosales 500,<br>Miraflores, Lima</p>
+
+    <a href="https://maps.google.com/?q=Club+Villa+de+Lima+Miraflores"
+       target="_blank" rel="noopener" class="btn-pill reveal d4">
+      <svg width="9" height="12" viewBox="0 0 10 13" fill="none">
+        <path d="M5 0C2.24 0 0 2.24 0 5c0 3.75 5 8 5 8s5-4.25 5-8c0-2.76-2.24-5-5-5z" fill="currentColor"/>
+        <circle cx="5" cy="5" r="1.6" fill="white"/>
+      </svg>
+      Ver ubicación
+    </a>
+  </section>
+
+
+  <!-- ══════════════════════════════════════
+       6. DRESS CODE
+  ══════════════════════════════════════ -->
+  <section class="dresscode">
+
+    <div class="b-div reveal" style="margin-bottom: 36px;">
+      <span class="b-div__line"></span>
+      <img class="b-div__lily"
+           src="10_DEMO_invitacion_Miguel y Camila_files/9c5ee6a05d682887b1ad6bf78c04835b.png"
+           alt="" aria-hidden="true" />
+      <span class="b-div__line"></span>
+    </div>
+
+    <span class="section-tag reveal">Código de vestimenta</span>
+    <img class="dresscode__img reveal d1"
+         src="10_DEMO_invitacion_Miguel y Camila_files/0fc9cac9e9d967a98325962970639e72.png"
+         alt="Dress code formal" />
+  </section>
+
+
+  <!-- ══════════════════════════════════════
+       7. REGALOS
+  ══════════════════════════════════════ -->
+  <section class="gifts">
+
+    <img class="gifts__bouquet reveal"
+         src="10_DEMO_invitacion_Miguel y Camila_files/e0f60cdb76de8f76026c8aa51fc37cfe.png"
+         alt="" aria-hidden="true" />
+
+    <span class="section-tag reveal d1">Lista de regalos</span>
+    <h3 class="gifts__title reveal d2">Para nuestro nido</h3>
+    <p class="gifts__text reveal d3">
+      Tu presencia es nuestro mayor regalo.<br>
+      Si deseas obsequiarnos algo especial,<br>
+      aquí encontrarás nuestra lista.
+    </p>
+    <a href="#" class="btn-pill reveal d4">Ver lista de regalos</a>
+  </section>
+
+
+  <!-- ══════════════════════════════════════
+       8. RSVP
+  ══════════════════════════════════════ -->
+  <section class="rsvp">
+
+    <div class="b-div reveal" style="margin-bottom: 36px;">
+      <span class="b-div__line"></span>
+      <img class="b-div__lily"
+           src="10_DEMO_invitacion_Miguel y Camila_files/dd37223e46b0d6fc4c12432a5782661f.png"
+           alt="" aria-hidden="true" />
+      <span class="b-div__line"></span>
+    </div>
+
+    <div class="rsvp__label-wrap reveal d1">
+      <img class="rsvp__label-img"
+           src="10_DEMO_invitacion_Miguel y Camila_files/19530f7bb897ddc02079eaaaaec80b4e.png"
+           alt="" aria-hidden="true" />
+      <span class="rsvp__label-text">Confirmar asistencia</span>
+    </div>
+
+    <h2 class="rsvp__title reveal d2">¿Contamos contigo?</h2>
+    <p class="rsvp__text reveal d3">
+      "Haznos saber si podremos contar<br>
+      contigo en este día tan especial"
+    </p>
+
+    <a href="#" class="btn-pill btn-pill--solid reveal d4">
+      Llena el formulario
+    </a>
+
+    <p class="rsvp__deadline reveal d5">Fecha límite: 01 de enero, 2027</p>
+  </section>
+
+
+  <!-- ══════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════ -->
+  <footer class="footer">
+    <img class="footer__lily-r"
+         src="10_DEMO_invitacion_Miguel y Camila_files/9c5ee6a05d682887b1ad6bf78c04835b.png"
+         alt="" aria-hidden="true" />
+    <img class="footer__lily-l"
+         src="10_DEMO_invitacion_Miguel y Camila_files/dd37223e46b0d6fc4c12432a5782661f.png"
+         alt="" aria-hidden="true" />
+    <p class="footer__names">Sofía &amp; Alejandro</p>
+    <div class="footer__sep">
+      <span class="footer__sep-line"></span>
+      <span class="footer__sep-diamond"></span>
+      <span class="footer__sep-line"></span>
+    </div>
+    <p class="footer__date">14 · 02 · 2027</p>
+  </footer>
+
+</div><!-- /page -->
+
+<script>
+  /* ── Scroll reveal ── */
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('up'); io.unobserve(e.target); } });
+  }, { threshold: 0.10 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  /* ── Countdown ── */
+  const BODA = new Date('2027-02-14T17:00:00');
+  function tick() {
+    const diff = BODA - new Date();
+    if (diff <= 0) {
+      document.getElementById('cdDays').textContent = '¡Hoy!';
+      ['cdHours','cdMins','cdSecs'].forEach(id => document.getElementById(id).textContent = '00');
+      return;
+    }
+    const d = Math.floor(diff / 86400000);
+    const h = Math.floor((diff % 86400000) / 3600000);
+    const m = Math.floor((diff % 3600000) / 60000);
+    const s = Math.floor((diff % 60000) / 1000);
+    document.getElementById('cdDays').textContent  = String(d).padStart(3,'0');
+    document.getElementById('cdHours').textContent = String(h).padStart(2,'0');
+    document.getElementById('cdMins').textContent  = String(m).padStart(2,'0');
+    document.getElementById('cdSecs').textContent  = String(s).padStart(2,'0');
+  }
+  tick();
+  setInterval(tick, 1000);
+
+  /* ── Music player ── */
+  const btn = document.getElementById('musicBtn');
+  const aud = document.getElementById('weddingAudio');
+  btn.addEventListener('click', () => {
+    if (aud.paused) { aud.play().then(() => btn.classList.add('on')).catch(() => {}); }
+    else            { aud.pause(); btn.classList.remove('on'); }
+  });
+  aud.addEventListener('pause', () => btn.classList.remove('on'));
+  aud.addEventListener('play',  () => btn.classList.add('on'));
+</script>
+</body>
+</html>
