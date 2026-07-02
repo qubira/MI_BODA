@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Acompáñanos a celebrar nuestro matrimonio — 14 de Febrero 2027" />
+  <meta name="description" content="Sofía &amp; Alejandro · 14 de Febrero 2027" />
   <title>Sofía &amp; Alejandro · 14·02·2027</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -11,22 +11,27 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@200;300;400&display=swap" rel="stylesheet" />
 
   <style>
+    /* ══════════════════════════════════════════════
+       RESET + VARIABLES
+    ══════════════════════════════════════════════ */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:    #FFFFFF;
-      --cream: #EBE7D7;
-      --dark:  #0A0A0A;
-      --gray:  #928F85;
-      --ease:  cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      --CDN:   "https://amoreaestudio.my.canva.site/04-demo-invitacion-alejandra-mario/_assets/media/";
+      --bg:     #FEFEFE;
+      --cream:  #EBE7D7;
+      --dark:   #0A0A0A;
+      --gray:   #928F85;
+      --gold:   #C9A96E;
+      --ease:   cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      --spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+      --LOCAL:  "04.Demo_invitacion_Alejandra & Mario_files/";
     }
 
     html { scroll-behavior: smooth; }
 
     body {
       font-family: 'Cormorant Garamond', Georgia, serif;
-      background: #d8d4cd;
+      background: #ccc9c2;
       color: var(--dark);
       overflow-x: hidden;
     }
@@ -37,84 +42,228 @@
       background: var(--bg);
       position: relative;
       overflow: hidden;
-      box-shadow: 0 0 90px rgba(0,0,0,0.18);
+      box-shadow: 0 0 120px rgba(0,0,0,0.22);
     }
 
-    /* Texture overlay on entire page */
-    .page__texture {
+    /* ── Page texture ── */
+    .page::before {
+      content: '';
       position: fixed;
       top: 0; left: 50%;
       transform: translateX(-50%);
-      width: 420px;
-      height: 100%;
-      background: url("https://amoreaestudio.my.canva.site/04-demo-invitacion-alejandra-mario/_assets/media/c130d11aed9a7ec657067c93a7373309.png") center / cover;
-      opacity: 0.22;
+      width: 420px; height: 100%;
+      background: url("04.Demo_invitacion_Alejandra & Mario_files/c130d11aed9a7ec657067c93a7373309.png") center/cover;
+      opacity: 0.18;
       pointer-events: none;
       z-index: 0;
     }
 
-    /* ── Reveal ── */
-    .reveal {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.95s var(--ease), transform 0.95s var(--ease);
+
+    /* ══════════════════════════════════════════════
+       ANIMATION KEYFRAMES
+    ══════════════════════════════════════════════ */
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(36px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
-    .reveal.up { opacity: 1; transform: translateY(0); }
-    .d1 { transition-delay: 0.12s; }
-    .d2 { transition-delay: 0.28s; }
-    .d3 { transition-delay: 0.44s; }
-    .d4 { transition-delay: 0.60s; }
-    .d5 { transition-delay: 0.76s; }
+
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeLeft {
+      from { opacity: 0; transform: translateX(44px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+
+    @keyframes fadeRight {
+      from { opacity: 0; transform: translateX(-44px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+
+    @keyframes scaleReveal {
+      from { opacity: 0; transform: scale(0.80) translateY(20px); }
+      to   { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    @keyframes blurReveal {
+      from { opacity: 0; filter: blur(18px); transform: scale(0.94); }
+      to   { opacity: 1; filter: blur(0px);  transform: scale(1); }
+    }
+
+    /* Hero names letter-spacing unfold */
+    @keyframes nameUnfold {
+      from { opacity: 0; letter-spacing: 0.35em; transform: translateY(22px); }
+      to   { opacity: 1; letter-spacing: normal; transform: translateY(0); }
+    }
+
+    /* Botanical float drift */
+    @keyframes floatDrift {
+      0%,100% { transform: translateY(0px) rotate(0deg); }
+      30%     { transform: translateY(-14px) rotate(0.8deg); }
+      65%     { transform: translateY(-7px) rotate(-0.5deg); }
+    }
+
+    @keyframes floatDriftMirror {
+      0%,100% { transform: translateY(0px) rotate(0deg) scaleX(-1); }
+      30%     { transform: translateY(-10px) rotate(-0.8deg) scaleX(-1); }
+      65%     { transform: translateY(-5px) rotate(0.5deg) scaleX(-1); }
+    }
+
+    /* Hero overlay pulse */
+    @keyframes heroPulse {
+      0%,100% { opacity: 0.72; }
+      50%     { opacity: 0.58; }
+    }
+
+    /* Scroll indicator bounce */
+    @keyframes scrollBounce {
+      0%,100% { transform: translateY(0); opacity: 0.30; }
+      50%     { transform: translateY(9px); opacity: 0.90; }
+    }
+
+    /* Line grow */
+    @keyframes lineGrow {
+      from { transform: scaleX(0); }
+      to   { transform: scaleX(1); }
+    }
+
+    /* Rotating conic gradient for portrait border */
+    @keyframes spinGradient {
+      to { --angle: 360deg; }
+    }
+    @property --angle {
+      syntax: '<angle>';
+      initial-value: 0deg;
+      inherits: false;
+    }
+
+    /* Monogram breathing glow */
+    @keyframes monoBreathe {
+      0%,100% {
+        color: #EBE7D7;
+        text-shadow:
+          2px 2px 2px rgba(241,239,224,0.86),
+          -1px -1px 1px rgba(146,143,133,0.53);
+      }
+      50% {
+        color: #F5F2EA;
+        text-shadow:
+          3px 3px 12px rgba(241,239,224,0.55),
+          0 0 28px rgba(235,231,215,0.28);
+      }
+    }
+
+    /* Gold shimmer on buttons */
+    @keyframes shimmer {
+      0%   { background-position: -200% center; }
+      100% { background-position: 200% center; }
+    }
+
+    /* Countdown number flip */
+    @keyframes numFlip {
+      0%   { transform: rotateX(0deg);   opacity: 1; }
+      40%  { transform: rotateX(-90deg); opacity: 0; }
+      60%  { transform: rotateX(90deg);  opacity: 0; }
+      100% { transform: rotateX(0deg);   opacity: 1; }
+    }
+
+    /* Dot pulse */
+    @keyframes dotPulse {
+      0%,100% { transform: scale(1); opacity: 0.55; }
+      50%     { transform: scale(1.18); opacity: 0.85; }
+    }
 
 
-    /* ══════════════════════════════════════
-       1. HERO — dark photo editorial
-    ══════════════════════════════════════ */
+    /* ══════════════════════════════════════════════
+       SCROLL REVEAL SYSTEM
+    ══════════════════════════════════════════════ */
+    .rv { opacity: 0; }
+    .rv.up-fade  { animation: fadeUp     0.95s var(--ease) both; }
+    .rv.up-scale { animation: scaleReveal 1.00s var(--ease) both; }
+    .rv.up-blur  { animation: blurReveal  1.10s var(--ease) both; }
+    .rv.from-l   { animation: fadeRight   0.90s var(--ease) both; }
+    .rv.from-r   { animation: fadeLeft    0.90s var(--ease) both; }
+    .rv.name     { animation: nameUnfold  1.20s var(--ease) both; }
+
+    .rv.d1 { animation-delay: 0.10s; }
+    .rv.d2 { animation-delay: 0.24s; }
+    .rv.d3 { animation-delay: 0.40s; }
+    .rv.d4 { animation-delay: 0.58s; }
+    .rv.d5 { animation-delay: 0.76s; }
+    .rv.d6 { animation-delay: 0.94s; }
+
+
+    /* ══════════════════════════════════════════════
+       1. HERO
+    ══════════════════════════════════════════════ */
     .hero {
       position: relative;
       height: 100svh;
-      min-height: 580px;
+      min-height: 600px;
       overflow: hidden;
       z-index: 1;
     }
 
+    /* Parallax photo (moved by JS) */
     .hero__photo {
       position: absolute;
-      inset: 0;
+      inset: -12% 0;
       width: 100%;
-      height: 100%;
+      height: 124%;
       object-fit: cover;
-      object-position: center top;
-      opacity: 0.58;
+      object-position: center 20%;
+      opacity: 0.62;
+      will-change: transform;
+      transition: none;
     }
 
-    /* Dark gradient overlay — heavier bottom for text legibility */
     .hero__overlay {
       position: absolute;
       inset: 0;
       background:
         linear-gradient(
-          to bottom,
-          rgba(0,0,0,0.38) 0%,
-          rgba(0,0,0,0.05) 35%,
-          rgba(0,0,0,0.05) 60%,
-          rgba(0,0,0,0.72) 100%
+          170deg,
+          rgba(0,0,0,0.18) 0%,
+          rgba(0,0,0,0.02) 38%,
+          rgba(0,0,0,0.02) 55%,
+          rgba(0,0,0,0.78) 100%
         );
+      animation: heroPulse 7s ease-in-out infinite;
       z-index: 1;
     }
 
-    /* Small design element — date ornament near bottom of photo */
-    .hero__ornament {
+    /* Floating botanical — top right */
+    .hero__floral-tr {
       position: absolute;
-      bottom: 128px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 110px;
-      z-index: 2;
+      top: -22px;
+      right: -20px;
+      width: 200px;
+      z-index: 3;
       pointer-events: none;
-      filter: invert(1) brightness(2);
-      opacity: 0.55;
+      animation: floatDrift 8s ease-in-out infinite;
+      filter: drop-shadow(0 6px 18px rgba(0,0,0,0.15));
+      opacity: 0;
+      transition: opacity 1s ease 0.5s;
     }
+    .hero__floral-tr.loaded { opacity: 0.88; }
+
+    /* Floating botanical — bottom left */
+    .hero__floral-bl {
+      position: absolute;
+      bottom: -16px;
+      left: -18px;
+      width: 155px;
+      z-index: 3;
+      pointer-events: none;
+      animation: floatDriftMirror 9.5s ease-in-out 1.2s infinite;
+      filter: drop-shadow(0 4px 12px rgba(0,0,0,0.12));
+      opacity: 0;
+      transition: opacity 1s ease 0.8s;
+    }
+    .hero__floral-bl.loaded { opacity: 0.72; }
 
     .hero__content {
       position: absolute;
@@ -122,30 +271,34 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 0 32px 54px;
-      z-index: 3;
+      padding: 0 32px 60px;
+      z-index: 4;
       text-align: center;
     }
 
     .hero__eyebrow {
       font-family: 'Montserrat', sans-serif;
-      font-size: 8px;
+      font-size: 7.5px;
       font-weight: 200;
-      letter-spacing: 0.55em;
+      letter-spacing: 0.60em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.60);
+      color: rgba(255,255,255,0.55);
       margin-bottom: 12px;
+      opacity: 0;
+      animation: fadeDown 1s var(--ease) 0.4s both;
     }
 
     .hero__names {
       font-family: 'Playfair Display', serif;
       font-style: italic;
-      font-size: 50px;
+      font-size: 52px;
       font-weight: 400;
       color: #FFFFFF;
       line-height: 1;
       margin-bottom: 16px;
-      text-shadow: 0 2px 22px rgba(0,0,0,0.32);
+      text-shadow: 0 3px 24px rgba(0,0,0,0.35);
+      opacity: 0;
+      animation: nameUnfold 1.4s var(--ease) 0.7s both;
     }
 
     .hero__sep {
@@ -155,14 +308,20 @@
       margin-bottom: 12px;
     }
     .hero__sep-line {
-      width: 40px;
       height: 1px;
-      background: rgba(255,255,255,0.40);
+      background: rgba(255,255,255,0.45);
+      transform-origin: center;
+      opacity: 0;
+      animation: lineGrow 0.8s var(--ease) 1.4s both;
     }
+    .hero__sep-line:first-child  { width: 44px; }
+    .hero__sep-line:last-child   { width: 44px; }
     .hero__sep-dot {
       width: 3px; height: 3px;
       border-radius: 50%;
-      background: rgba(255,255,255,0.65);
+      background: rgba(255,255,255,0.70);
+      opacity: 0;
+      animation: fadeUp 0.6s ease 1.6s both;
     }
 
     .hero__date {
@@ -170,44 +329,55 @@
       font-size: 10px;
       font-weight: 200;
       letter-spacing: 0.38em;
-      color: rgba(255,255,255,0.68);
+      color: rgba(255,255,255,0.62);
+      opacity: 0;
+      animation: fadeUp 0.9s var(--ease) 1.7s both;
+    }
+
+    /* Ornament element */
+    .hero__ornament {
+      position: absolute;
+      bottom: 130px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 105px;
+      z-index: 4;
+      pointer-events: none;
+      filter: invert(1) brightness(2);
+      opacity: 0;
+      animation: fadeUp 1s ease 1.9s both;
     }
 
     /* Scroll indicator */
     .hero__scroll {
       position: absolute;
-      bottom: 22px;
-      left: 50%;
+      bottom: 18px; left: 50%;
       transform: translateX(-50%);
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 6px;
-      opacity: 0.30;
-      z-index: 3;
+      gap: 5px;
+      z-index: 4;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 2.2s both;
     }
     .hero__scroll span {
       font-family: 'Montserrat', sans-serif;
-      font-size: 7px;
-      letter-spacing: 0.32em;
+      font-size: 6.5px;
+      letter-spacing: 0.35em;
       text-transform: uppercase;
-      color: white;
+      color: rgba(255,255,255,0.40);
     }
     .hero__scroll-bar {
-      width: 1px;
-      height: 26px;
-      background: white;
-      animation: heroScroll 2.4s ease-in-out infinite;
-    }
-    @keyframes heroScroll {
-      0%,100% { transform: scaleY(1); opacity: 0.3; }
-      50% { transform: scaleY(0.3); opacity: 1; }
+      width: 1px; height: 28px;
+      background: rgba(255,255,255,0.35);
+      animation: scrollBounce 2.6s ease-in-out infinite;
     }
 
 
-    /* ══════════════════════════════════════
-       2. OPENER BOTANICAL — large floral
-    ══════════════════════════════════════ */
+    /* ══════════════════════════════════════════════
+       2. BOTANICAL OPENER
+    ══════════════════════════════════════════════ */
     .botanical-open {
       position: relative;
       z-index: 1;
@@ -219,76 +389,100 @@
     .botanical-open__img {
       width: 100%;
       display: block;
+      animation: floatDrift 10s ease-in-out infinite;
+      will-change: transform;
     }
 
-    /* Small ornamental dot over botanical */
     .botanical-open__dot {
       position: absolute;
-      width: 52px;
+      width: 48px;
       left: 50%;
       transform: translateX(-50%);
-      top: 12px;
-      z-index: 2;
+      top: 14px;
       pointer-events: none;
+      animation: dotPulse 3.5s ease-in-out infinite;
     }
 
 
-    /* ══════════════════════════════════════
-       3. PORTRAIT + CEREMONY
-    ══════════════════════════════════════ */
+    /* ══════════════════════════════════════════════
+       3. CEREMONY + PORTRAIT
+    ══════════════════════════════════════════════ */
     .ceremony {
       background: var(--bg);
       text-align: center;
-      padding: 16px 32px 64px;
+      padding: 24px 32px 72px;
       position: relative;
       z-index: 1;
     }
 
-    /* Oval couple portrait */
-    .portrait-wrap {
+    /* Portrait with animated conic border */
+    .portrait-outer {
+      width: 168px;
+      height: 230px;
+      margin: 0 auto 40px;
       position: relative;
-      width: 150px;
-      height: 210px;
-      margin: 0 auto 36px;
+      border-radius: 50% / 45%;
+      padding: 3px;
+      background:
+        conic-gradient(from var(--angle),
+          rgba(201,169,110,0.0),
+          rgba(201,169,110,0.9),
+          rgba(235,231,215,1.0),
+          rgba(201,169,110,0.9),
+          rgba(201,169,110,0.0)
+        );
+      animation: spinGradient 5s linear infinite;
     }
 
-    .portrait-frame {
-      position: absolute;
-      inset: 0;
+    .portrait-inner {
       width: 100%;
       height: 100%;
+      border-radius: 50% / 45%;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .portrait-photo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      transition: transform 0.6s var(--ease);
+    }
+    .portrait-outer:hover .portrait-photo {
+      transform: scale(1.05);
+    }
+
+    /* Frame overlay PNG */
+    .portrait-frame {
+      position: absolute;
+      inset: -3px;
+      width: calc(100% + 6px);
+      height: calc(100% + 6px);
       object-fit: contain;
       z-index: 2;
       pointer-events: none;
     }
 
-    .portrait-photo {
+    /* Left floral decoration */
+    .ceremony__floral-l {
       position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      width: 86%;
-      height: 94%;
-      object-fit: cover;
-      clip-path: ellipse(50% 48% at 50% 50%);
-      z-index: 1;
-    }
-
-    /* Floral decoration left of portrait section */
-    .ceremony__left-floral {
-      position: absolute;
-      left: -16px;
-      top: -10px;
-      width: 140px;
-      z-index: 0;
+      left: -14px;
+      top: 30px;
+      width: 130px;
       pointer-events: none;
-      opacity: 0.75;
+      opacity: 0;
+      animation: floatDrift 11s ease-in-out 0.5s infinite;
+      transition: opacity 0.8s ease;
     }
+    .ceremony__floral-l.loaded { opacity: 0.72; }
 
     .ceremony__tag {
       font-family: 'Montserrat', sans-serif;
       font-size: 7.5px;
       font-weight: 300;
-      letter-spacing: 0.46em;
+      letter-spacing: 0.48em;
       text-transform: uppercase;
       color: var(--gray);
       display: block;
@@ -296,11 +490,13 @@
     }
 
     .ceremony__icon {
-      width: 65px;
+      width: 62px;
       display: block;
       margin: 0 auto 14px;
-      opacity: 0.85;
+      opacity: 0.82;
+      transition: transform 0.4s var(--spring);
     }
+    .ceremony__icon:hover { transform: scale(1.12); }
 
     .ceremony__time {
       font-family: 'Cormorant Garamond', serif;
@@ -313,7 +509,7 @@
 
     .ceremony__venue {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 24px;
+      font-size: 26px;
       font-weight: 400;
       color: var(--dark);
       margin-bottom: 8px;
@@ -325,15 +521,15 @@
       font-style: italic;
       font-weight: 300;
       color: var(--gray);
-      line-height: 1.72;
-      margin-bottom: 6px;
+      line-height: 1.75;
+      margin-bottom: 4px;
     }
 
-    /* Ornamental dot between venue and button */
     .ceremony__dot {
-      width: 42px;
+      width: 40px;
       display: block;
-      margin: 16px auto 18px;
+      margin: 14px auto 16px;
+      animation: dotPulse 4s ease-in-out infinite;
     }
 
     /* Pill button */
@@ -341,46 +537,75 @@
       display: inline-flex;
       align-items: center;
       gap: 7px;
+      position: relative;
+      overflow: hidden;
       border: 1px solid var(--dark);
       border-radius: 100px;
-      padding: 9px 22px;
+      padding: 10px 24px;
       font-family: 'Montserrat', sans-serif;
       font-size: 8.5px;
       font-weight: 300;
-      letter-spacing: 0.24em;
+      letter-spacing: 0.26em;
       text-transform: uppercase;
       text-decoration: none;
       color: var(--dark);
-      transition: background 0.32s var(--ease), color 0.32s var(--ease), transform 0.28s var(--ease);
+      transition:
+        color 0.38s var(--ease),
+        border-color 0.38s var(--ease),
+        transform 0.30s var(--spring),
+        box-shadow 0.38s ease;
     }
-    .btn-pill:hover {
+    .btn-pill::before {
+      content: '';
+      position: absolute;
+      inset: 0;
       background: var(--dark);
-      color: var(--bg);
-      transform: translateY(-1px);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.38s var(--ease);
+      z-index: 0;
     }
-    .btn-pill--inv {
-      background: var(--dark);
-      color: var(--bg);
-    }
-    .btn-pill--inv:hover {
-      background: #333;
-    }
+    .btn-pill span,
+    .btn-pill svg { position: relative; z-index: 1; }
+    .btn-pill:hover { color: var(--bg); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.18); }
+    .btn-pill:hover::before { transform: scaleX(1); }
 
-    /* Floral strip below ceremony */
+    /* Filled button */
+    .btn-pill--filled {
+      background: var(--dark);
+      color: var(--bg);
+    }
+    .btn-pill--filled::before { background: #333; }
+    .btn-pill--filled:hover { color: var(--bg); }
+
+    /* Gold shimmer button */
+    .btn-pill--gold {
+      background: linear-gradient(105deg, #c9a96e 0%, #e8d5a3 30%, #c9a96e 50%, #b8963c 70%, #c9a96e 100%);
+      background-size: 200% auto;
+      border: none;
+      color: #fff;
+      font-weight: 400;
+      animation: shimmer 4s linear infinite;
+    }
+    .btn-pill--gold::before { background: rgba(255,255,255,0.15); }
+    .btn-pill--gold:hover { color: #fff; box-shadow: 0 8px 28px rgba(201,169,110,0.45); }
+
+    /* Floral bottom of ceremony */
     .ceremony__floral-bot {
       width: 100%;
       display: block;
-      margin-top: 48px;
+      margin-top: 52px;
       line-height: 0;
+      animation: floatDrift 12s ease-in-out 1s infinite;
     }
 
 
-    /* ══════════════════════════════════════
-       4. COUNTDOWN — dark
-    ══════════════════════════════════════ */
+    /* ══════════════════════════════════════════════
+       4. COUNTDOWN
+    ══════════════════════════════════════════════ */
     .countdown {
       background: var(--dark);
-      padding: 56px 28px 48px;
+      padding: 64px 24px 52px;
       text-align: center;
       position: relative;
       z-index: 1;
@@ -389,19 +614,31 @@
 
     .countdown::before {
       content: '';
-      position: absolute;
-      inset: 0;
-      background: url("https://amoreaestudio.my.canva.site/04-demo-invitacion-alejandra-mario/_assets/media/99e192160d24778dedb87631347b7185.jpg") center / cover;
-      opacity: 0.07;
+      position: absolute; inset: 0;
+      background: url("04.Demo_invitacion_Alejandra & Mario_files/99e192160d24778dedb87631347b7185.jpg") center/cover;
+      opacity: 0.06;
     }
 
-    .countdown__floral-tr {
+    /* Subtle radial glow */
+    .countdown::after {
+      content: '';
       position: absolute;
-      top: -10px; right: -18px;
-      width: 140px;
-      opacity: 0.08;
-      transform: rotate(10deg);
-      filter: invert(1) brightness(10);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(201,169,110,0.08) 0%, transparent 70%);
+      pointer-events: none;
+      animation: heroPulse 5s ease-in-out infinite;
+    }
+
+    /* Ghost botanical */
+    .countdown__ghost {
+      position: absolute;
+      top: -10px; right: -16px;
+      width: 150px;
+      opacity: 0.07;
+      filter: invert(1) brightness(20) saturate(0);
+      animation: floatDrift 13s ease-in-out infinite;
       pointer-events: none;
     }
 
@@ -417,28 +654,29 @@
 
     .countdown__big {
       font-family: 'Playfair Display', serif;
-      font-size: 96px;
+      font-size: 100px;
       font-weight: 400;
       color: white;
       line-height: 1;
       letter-spacing: -5px;
       position: relative; z-index: 1;
+      transition: transform 0.3s var(--spring);
     }
+    .countdown__big.flip { animation: numFlip 0.45s ease; }
 
     .countdown__days-lbl {
       font-family: 'Montserrat', sans-serif;
       font-size: 8px;
       font-weight: 200;
-      letter-spacing: 0.50em;
+      letter-spacing: 0.52em;
       text-transform: uppercase;
-      color: rgba(235,231,215,0.60);
+      color: rgba(235,231,215,0.55);
       position: relative; z-index: 1;
       margin-bottom: 32px;
     }
 
     .countdown__rule {
-      width: 1px;
-      height: 20px;
+      width: 1px; height: 22px;
       background: rgba(255,255,255,0.12);
       margin: 0 auto 18px;
       position: relative; z-index: 1;
@@ -448,25 +686,31 @@
       display: flex;
       justify-content: center;
       position: relative; z-index: 1;
-      margin-bottom: 24px;
+      margin-bottom: 26px;
+      gap: 0;
     }
-    .countdown__cell { flex: 1; max-width: 88px; }
+
+    .countdown__cell { flex: 1; max-width: 90px; position: relative; }
     .countdown__cell + .countdown__cell { border-left: 1px solid rgba(255,255,255,0.08); }
+
     .countdown__num {
       display: block;
       font-family: 'Playfair Display', serif;
-      font-size: 36px;
+      font-size: 38px;
       color: white;
       line-height: 1;
+      transition: transform 0.25s var(--spring), opacity 0.25s ease;
     }
+    .countdown__num.flip { animation: numFlip 0.4s ease; }
+
     .countdown__lbl {
       display: block;
       font-family: 'Montserrat', sans-serif;
       font-size: 6.5px;
       font-weight: 200;
-      letter-spacing: 0.22em;
+      letter-spacing: 0.24em;
       text-transform: uppercase;
-      color: rgba(235,231,215,0.35);
+      color: rgba(235,231,215,0.32);
       margin-top: 6px;
     }
 
@@ -474,15 +718,15 @@
       font-family: 'Montserrat', sans-serif;
       font-size: 9.5px;
       font-weight: 200;
-      letter-spacing: 0.34em;
-      color: rgba(235,231,215,0.48);
+      letter-spacing: 0.36em;
+      color: rgba(235,231,215,0.45);
       position: relative; z-index: 1;
     }
 
 
-    /* ══════════════════════════════════════
+    /* ══════════════════════════════════════════════
        5. MID BOTANICAL
-    ══════════════════════════════════════ */
+    ══════════════════════════════════════════════ */
     .botanical-mid {
       background: var(--bg);
       position: relative;
@@ -493,65 +737,85 @@
     .botanical-mid__img {
       width: 100%;
       display: block;
+      animation: floatDrift 11s ease-in-out 2s infinite;
     }
 
     .botanical-mid__img--flip {
-      transform: scaleX(-1);
+      animation: floatDriftMirror 13s ease-in-out 0.5s infinite;
     }
 
 
-    /* ══════════════════════════════════════
-       6. LISTA DE REGALOS
-    ══════════════════════════════════════ */
+    /* ══════════════════════════════════════════════
+       6. REGALOS
+    ══════════════════════════════════════════════ */
     .gifts {
       background: var(--bg);
       text-align: center;
-      padding: 52px 36px 60px;
+      padding: 58px 36px 68px;
       position: relative;
       z-index: 1;
+    }
+
+    /* Decorative horizontal line with dot */
+    .h-rule {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 0 auto 20px;
+      max-width: 200px;
+    }
+    .h-rule__line {
+      flex: 1; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(0,0,0,0.15), transparent);
+    }
+    .h-rule__dot {
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: rgba(0,0,0,0.20);
     }
 
     .section-tag {
       font-family: 'Montserrat', sans-serif;
       font-size: 7.5px;
       font-weight: 300;
-      letter-spacing: 0.46em;
+      letter-spacing: 0.48em;
       text-transform: uppercase;
       color: var(--gray);
       display: block;
-      margin-bottom: 18px;
+      margin-bottom: 16px;
     }
 
     .gifts__title {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 28px;
+      font-size: 30px;
       font-style: italic;
       font-weight: 400;
       color: var(--dark);
-      margin-bottom: 12px;
+      margin-bottom: 14px;
     }
 
     .gifts__text {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 15.5px;
+      font-size: 16px;
       font-style: italic;
       font-weight: 300;
       color: var(--gray);
-      line-height: 1.78;
+      line-height: 1.80;
       margin-bottom: 28px;
     }
 
     .gifts__floral {
-      width: 72px;
+      width: 66px;
       display: block;
-      margin: 24px auto 0;
-      opacity: 0.55;
+      margin: 26px auto 0;
+      opacity: 0.50;
+      animation: dotPulse 5s ease-in-out infinite;
     }
 
 
-    /* ══════════════════════════════════════
+    /* ══════════════════════════════════════════════
        7. RSVP
-    ══════════════════════════════════════ */
+    ══════════════════════════════════════════════ */
     .rsvp {
       background: var(--bg);
       position: relative;
@@ -566,53 +830,54 @@
     }
 
     .rsvp__content {
-      padding: 0 32px 80px;
+      padding: 8px 32px 88px;
       text-align: center;
     }
 
     .rsvp__dot {
-      width: 54px;
+      width: 52px;
       display: block;
-      margin: 0 auto 20px;
+      margin: 0 auto 22px;
+      animation: dotPulse 3.8s ease-in-out 1s infinite;
     }
 
     .rsvp__title {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 26px;
+      font-size: 27px;
       font-weight: 400;
       letter-spacing: 0.06em;
       text-transform: uppercase;
       color: var(--dark);
-      margin-bottom: 16px;
+      margin-bottom: 18px;
     }
 
     .rsvp__text {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 16px;
+      font-size: 16.5px;
       font-style: italic;
       font-weight: 300;
       color: var(--gray);
-      line-height: 1.80;
-      margin-bottom: 30px;
+      line-height: 1.82;
+      margin-bottom: 32px;
     }
 
     .rsvp__deadline {
       font-family: 'Montserrat', sans-serif;
-      font-size: 9px;
+      font-size: 8.5px;
       font-weight: 200;
       letter-spacing: 0.22em;
-      color: var(--gray);
+      color: rgba(0,0,0,0.30);
       margin-top: 16px;
     }
 
 
-    /* ══════════════════════════════════════
+    /* ══════════════════════════════════════════════
        8. FOOTER — monogram
-    ══════════════════════════════════════ */
+    ══════════════════════════════════════════════ */
     .footer {
       background: var(--bg);
       text-align: center;
-      padding: 20px 28px 52px;
+      padding: 20px 28px 54px;
       position: relative;
       z-index: 1;
       overflow: hidden;
@@ -620,8 +885,8 @@
 
     .footer__arch-wrap {
       position: relative;
-      height: 130px;
-      margin-bottom: 6px;
+      height: 140px;
+      margin-bottom: 0;
     }
 
     .footer__arch {
@@ -629,22 +894,21 @@
       bottom: 0;
       left: 50%;
       transform: translateX(-50%);
-      width: 96px;
+      width: 100px;
       pointer-events: none;
+      transition: transform 0.5s var(--ease);
     }
+    .footer__arch:hover { transform: translateX(-50%) scale(1.06); }
 
-    /* Monogram — the "MA" from the original → "SA" for Sofía & Alejandro */
     .footer__monogram {
       font-family: 'Playfair Display', serif;
       font-style: italic;
-      font-size: 88px;
+      font-size: 90px;
       color: var(--cream);
       line-height: 1;
       letter-spacing: -4px;
       position: relative; z-index: 1;
-      text-shadow:
-        2.2px 1.9px 2px rgba(241,239,224,0.86),
-        -0.8px -0.8px 1px rgba(146,143,133,0.53);
+      animation: monoBreathe 5s ease-in-out infinite;
     }
 
     .footer__rule {
@@ -652,16 +916,16 @@
       align-items: center;
       gap: 12px;
       max-width: 180px;
-      margin: 10px auto;
+      margin: 12px auto;
     }
-    .footer__rule-line { flex: 1; height: 1px; background: rgba(0,0,0,0.12); }
-    .footer__rule-dot { width: 3px; height: 3px; border-radius: 50%; background: rgba(0,0,0,0.25); }
+    .footer__rule-line { flex: 1; height: 1px; background: rgba(0,0,0,0.10); }
+    .footer__rule-dot  { width: 3px; height: 3px; border-radius: 50%; background: rgba(0,0,0,0.22); }
 
     .footer__date {
       font-family: 'Montserrat', sans-serif;
       font-size: 9px;
       font-weight: 200;
-      letter-spacing: 0.34em;
+      letter-spacing: 0.36em;
       color: var(--gray);
       position: relative; z-index: 1;
     }
@@ -669,31 +933,38 @@
 </head>
 <body>
 <div class="page">
-  <div class="page__texture" aria-hidden="true"></div>
 
   <!-- ══════════════════════════════════════
        1. HERO
   ══════════════════════════════════════ -->
-  <section class="hero">
-    <img class="hero__photo"
+  <section class="hero" id="hero">
+
+    <img class="hero__photo" id="heroPhoto"
          src="https://amoreaestudio.my.canva.site/04-demo-invitacion-alejandra-mario/_assets/media/063830ea9cd07515acd4f090b5c888c9.jpg"
          alt="Sofía y Alejandro" />
     <div class="hero__overlay"></div>
 
-    <!-- Date ornament element -->
+    <!-- Floating botanicals -->
+    <img class="hero__floral-tr" id="heroFloralTR"
+         src="04.Demo_invitacion_Alejandra & Mario_files/eb92d4d7e2b3bf9ae7c16104ae2a4857.png"
+         alt="" aria-hidden="true" />
+    <img class="hero__floral-bl" id="heroFloralBL"
+         src="04.Demo_invitacion_Alejandra & Mario_files/ef35d0dd421eed8a4f8c4fb9f56c94af.png"
+         alt="" aria-hidden="true" />
+
     <img class="hero__ornament"
-         src="https://amoreaestudio.my.canva.site/04-demo-invitacion-alejandra-mario/_assets/media/9c416e1332aff95354e01a8e6a7e8da0.png"
+         src="04.Demo_invitacion_Alejandra & Mario_files/9c416e1332aff95354e01a8e6a7e8da0.png"
          alt="" aria-hidden="true" />
 
     <div class="hero__content">
-      <span class="hero__eyebrow reveal">Nos casamos</span>
-      <h1 class="hero__names reveal d1">Sofía &amp; Alejandro</h1>
-      <div class="hero__sep reveal d2">
+      <span class="hero__eyebrow">Nos casamos</span>
+      <h1 class="hero__names">Sofía &amp; Alejandro</h1>
+      <div class="hero__sep">
         <span class="hero__sep-line"></span>
         <span class="hero__sep-dot"></span>
         <span class="hero__sep-line"></span>
       </div>
-      <p class="hero__date reveal d2">14 · Febrero · 2027</p>
+      <p class="hero__date">14 · Febrero · 2027</p>
     </div>
 
     <div class="hero__scroll">
@@ -704,14 +975,14 @@
 
 
   <!-- ══════════════════════════════════════
-       2. OPENER BOTANICAL
+       2. BOTANICAL OPENER
   ══════════════════════════════════════ -->
   <div class="botanical-open">
     <img class="botanical-open__img"
          src="https://amoreaestudio.my.canva.site/04-demo-invitacion-alejandra-mario/_assets/media/aa8bf058ec21af3f21a63a29d4bf3a21.png"
          alt="" aria-hidden="true" />
     <img class="botanical-open__dot"
-         src="https://amoreaestudio.my.canva.site/04-demo-invitacion-alejandra-mario/_assets/media/251e3a9d56b10befdf76030a725e7f70.png"
+         src="04.Demo_invitacion_Alejandra & Mario_files/251e3a9d56b10befdf76030a725e7f70.png"
          alt="" aria-hidden="true" />
   </div>
 
@@ -721,66 +992,68 @@
   ══════════════════════════════════════ -->
   <section class="ceremony">
 
-    <!-- Oval couple portrait -->
-    <div class="portrait-wrap reveal">
-      <img class="portrait-photo"
-           src="https://amoreaestudio.my.canva.site/04-demo-invitacion-alejandra-mario/_assets/media/063830ea9cd07515acd4f090b5c888c9.jpg"
-           alt="Sofía y Alejandro" />
+    <!-- Left floral -->
+    <img class="ceremony__floral-l" id="ceremonyFloral"
+         src="04.Demo_invitacion_Alejandra & Mario_files/ef35d0dd421eed8a4f8c4fb9f56c94af.png"
+         alt="" aria-hidden="true" />
+
+    <!-- Animated oval portrait -->
+    <div class="portrait-outer rv up-scale">
+      <div class="portrait-inner">
+        <img class="portrait-photo"
+             src="04.Demo_invitacion_Alejandra & Mario_files/733322373ac37eee32c666e392646bf1.jpg"
+             alt="Sofía y Alejandro" />
+      </div>
       <img class="portrait-frame"
-           src="https://amoreaestudio.my.canva.site/04-demo-invitacion-alejandra-mario/_assets/media/0e6a55ae69afa66c00fc9ed14d3a43c9.png"
+           src="04.Demo_invitacion_Alejandra & Mario_files/0e6a55ae69afa66c00fc9ed14d3a43c9.png"
            alt="" aria-hidden="true" />
     </div>
 
-    <!-- Left floral decoration -->
-    <img class="ceremony__left-floral"
-         src="https://amoreaestudio.my.canva.site/04-demo-invitacion-alejandra-mario/_assets/media/ef35d0dd421eed8a4f8c4fb9f56c94af.png"
-         alt="" aria-hidden="true" />
+    <span class="ceremony__tag rv up-fade d1">Ceremonia</span>
 
-    <span class="ceremony__tag reveal d1">Ceremonia</span>
-
-    <img class="ceremony__icon reveal d2"
-         src="https://amoreaestudio.my.canva.site/04-demo-invitacion-alejandra-mario/_assets/media/42b661d8eafdbc35824c3a479ad529af.png"
+    <img class="ceremony__icon rv up-scale d2"
+         src="04.Demo_invitacion_Alejandra & Mario_files/42b661d8eafdbc35824c3a479ad529af.png"
          alt="Iglesia" />
 
-    <p class="ceremony__time reveal d2">3:00 pm</p>
-    <h3 class="ceremony__venue reveal d3">Iglesia Tres Ave María</h3>
-    <p class="ceremony__addr reveal d3">Av. de la Paz 450,<br>Polanco, CDMX</p>
+    <p class="ceremony__time rv up-fade d2">3:00 pm</p>
+    <h3 class="ceremony__venue rv up-fade d3">Iglesia Tres Ave María</h3>
+    <p class="ceremony__addr rv up-fade d3">Av. de la Paz 450,<br>Polanco, CDMX</p>
 
-    <img class="ceremony__dot reveal d3"
-         src="https://amoreaestudio.my.canva.site/04-demo-invitacion-alejandra-mario/_assets/media/251e3a9d56b10befdf76030a725e7f70.png"
+    <img class="ceremony__dot rv up-scale d3"
+         src="04.Demo_invitacion_Alejandra & Mario_files/251e3a9d56b10befdf76030a725e7f70.png"
          alt="" aria-hidden="true" />
 
     <a href="https://maps.google.com/?q=Polanco+CDMX"
        target="_blank" rel="noopener"
-       class="btn-pill reveal d4">
+       class="btn-pill rv up-fade d4">
       <svg width="8" height="11" viewBox="0 0 10 13" fill="none">
         <path d="M5 0C2.24 0 0 2.24 0 5c0 3.75 5 8 5 8s5-4.25 5-8c0-2.76-2.24-5-5-5z" fill="currentColor"/>
         <circle cx="5" cy="5" r="1.5" fill="white"/>
       </svg>
-      Ubicación
+      <span>Ver ubicación</span>
     </a>
 
-    <!-- Floral strip below ceremony info -->
-    <img class="ceremony__floral-bot reveal"
-         src="https://amoreaestudio.my.canva.site/04-demo-invitacion-alejandra-mario/_assets/media/eb92d4d7e2b3bf9ae7c16104ae2a4857.png"
+    <!-- Botanical strip below -->
+    <img class="ceremony__floral-bot rv up-fade d5"
+         src="04.Demo_invitacion_Alejandra & Mario_files/eb92d4d7e2b3bf9ae7c16104ae2a4857.png"
          alt="" aria-hidden="true" />
   </section>
 
 
   <!-- ══════════════════════════════════════
-       4. COUNTDOWN — dark
+       4. COUNTDOWN
   ══════════════════════════════════════ -->
   <section class="countdown">
-    <img class="countdown__floral-tr"
-         src="https://amoreaestudio.my.canva.site/04-demo-invitacion-alejandra-mario/_assets/media/aa8bf058ec21af3f21a63a29d4bf3a21.png"
+    <img class="countdown__ghost"
+         src="04.Demo_invitacion_Alejandra & Mario_files/eb92d4d7e2b3bf9ae7c16104ae2a4857.png"
          alt="" aria-hidden="true" />
 
-    <p class="countdown__intro reveal">Para nuestro gran día</p>
-    <div class="countdown__big reveal d1" id="cdDays">000</div>
-    <p class="countdown__days-lbl reveal d2">días</p>
-    <div class="countdown__rule reveal d2"></div>
+    <p class="countdown__intro rv up-fade">Para nuestro gran día</p>
+    <div class="countdown__big rv up-scale d1" id="cdDays">000</div>
+    <p class="countdown__days-lbl rv up-fade d2">días</p>
+    <div class="countdown__rule rv up-fade d2"></div>
 
-    <div class="countdown__hms reveal d3">
+    <div class="countdown__hms rv up-fade d3">
       <div class="countdown__cell">
         <span class="countdown__num" id="cdH">00</span>
         <span class="countdown__lbl">horas</span>
@@ -795,7 +1068,7 @@
       </div>
     </div>
 
-    <p class="countdown__date reveal d4">14 · FEBRERO · 2027</p>
+    <p class="countdown__date rv up-fade d4">14 · FEBRERO · 2027</p>
   </section>
 
 
@@ -803,30 +1076,36 @@
        5. MID BOTANICAL
   ══════════════════════════════════════ -->
   <div class="botanical-mid">
-    <img class="botanical-mid__img"
-         src="https://amoreaestudio.my.canva.site/04-demo-invitacion-alejandra-mario/_assets/media/eb92d4d7e2b3bf9ae7c16104ae2a4857.png"
+    <img class="botanical-mid__img rv up-fade"
+         src="04.Demo_invitacion_Alejandra & Mario_files/eb92d4d7e2b3bf9ae7c16104ae2a4857.png"
          alt="" aria-hidden="true" />
-    <img class="botanical-mid__img botanical-mid__img--flip"
+    <img class="botanical-mid__img botanical-mid__img--flip rv up-fade d2"
          src="https://amoreaestudio.my.canva.site/04-demo-invitacion-alejandra-mario/_assets/media/aa8bf058ec21af3f21a63a29d4bf3a21.png"
          alt="" aria-hidden="true" />
   </div>
 
 
   <!-- ══════════════════════════════════════
-       6. LISTA DE REGALOS
+       6. REGALOS
   ══════════════════════════════════════ -->
   <section class="gifts">
-    <span class="section-tag reveal">Lista de regalos</span>
-    <h3 class="gifts__title reveal d1">Para nuestro nido</h3>
-    <p class="gifts__text reveal d2">
+    <div class="h-rule rv up-fade">
+      <span class="h-rule__line"></span>
+      <span class="h-rule__dot"></span>
+      <span class="h-rule__line"></span>
+    </div>
+    <span class="section-tag rv up-fade d1">Lista de regalos</span>
+    <h3 class="gifts__title rv up-fade d2">Para nuestro nido</h3>
+    <p class="gifts__text rv up-fade d3">
       Tu presencia es nuestro mayor regalo.<br>
       Si deseas obsequiarnos algo especial,<br>
       aquí encontrarás nuestra lista.
     </p>
-    <a href="#" class="btn-pill reveal d3">Ver lista</a>
-
-    <img class="gifts__floral reveal d4"
-         src="https://amoreaestudio.my.canva.site/04-demo-invitacion-alejandra-mario/_assets/media/251e3a9d56b10befdf76030a725e7f70.png"
+    <a href="#" class="btn-pill btn-pill--gold rv up-scale d4">
+      <span>Ver lista de regalos</span>
+    </a>
+    <img class="gifts__floral rv up-scale d5"
+         src="04.Demo_invitacion_Alejandra & Mario_files/251e3a9d56b10befdf76030a725e7f70.png"
          alt="" aria-hidden="true" />
   </section>
 
@@ -836,28 +1115,27 @@
   ══════════════════════════════════════ -->
   <section class="rsvp">
 
-    <!-- Large floral — RSVP header -->
-    <img class="rsvp__floral-top reveal"
+    <img class="rsvp__floral-top rv up-fade"
          src="https://amoreaestudio.my.canva.site/04-demo-invitacion-alejandra-mario/_assets/media/ce4dd63379080cb012df28d8c6482191.png"
          alt="" aria-hidden="true" />
 
     <div class="rsvp__content">
-      <img class="rsvp__dot reveal"
-           src="https://amoreaestudio.my.canva.site/04-demo-invitacion-alejandra-mario/_assets/media/251e3a9d56b10befdf76030a725e7f70.png"
+      <img class="rsvp__dot rv up-scale"
+           src="04.Demo_invitacion_Alejandra & Mario_files/251e3a9d56b10befdf76030a725e7f70.png"
            alt="" aria-hidden="true" />
 
-      <h2 class="rsvp__title reveal d1">Confirmar asistencia</h2>
+      <h2 class="rsvp__title rv up-fade d1">Confirmar asistencia</h2>
 
-      <p class="rsvp__text reveal d2">
+      <p class="rsvp__text rv up-fade d2">
         "Haznos saber si podremos contar<br>
         contigo en este día tan especial"
       </p>
 
-      <a href="#" class="btn-pill btn-pill--inv reveal d3">
-        Llenar formulario
+      <a href="#" class="btn-pill btn-pill--filled rv up-scale d3">
+        <span>Llenar formulario</span>
       </a>
 
-      <p class="rsvp__deadline reveal d4">Fecha límite: 01 de enero, 2027</p>
+      <p class="rsvp__deadline rv up-fade d4">Fecha límite: 01 de enero, 2027</p>
     </div>
   </section>
 
@@ -867,48 +1145,114 @@
   ══════════════════════════════════════ -->
   <footer class="footer">
     <div class="footer__arch-wrap">
-      <img class="footer__arch reveal"
-           src="https://amoreaestudio.my.canva.site/04-demo-invitacion-alejandra-mario/_assets/media/a1fb1647108e46844cfc4ad3158fd049.png"
+      <img class="footer__arch rv up-fade"
+           src="04.Demo_invitacion_Alejandra & Mario_files/a1fb1647108e46844cfc4ad3158fd049.png"
            alt="" aria-hidden="true" />
     </div>
-    <div class="footer__monogram reveal d1">SA</div>
-    <div class="footer__rule reveal d2">
+    <div class="footer__monogram rv up-blur d1">SA</div>
+    <div class="footer__rule rv up-fade d2">
       <span class="footer__rule-line"></span>
       <span class="footer__rule-dot"></span>
       <span class="footer__rule-line"></span>
     </div>
-    <p class="footer__date reveal d2">14 · 02 · 2027</p>
+    <p class="footer__date rv up-fade d3">14 · 02 · 2027</p>
   </footer>
 
 </div><!-- /page -->
 
-<script>
-  /* ── Scroll reveal ── */
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('up'); io.unobserve(e.target); } });
-  }, { threshold: 0.10 });
-  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-  /* ── Countdown ── */
-  const BODA = new Date('2027-02-14T17:00:00');
-  function tick() {
-    const diff = BODA - new Date();
-    if (diff <= 0) {
-      document.getElementById('cdDays').textContent = '¡Hoy!';
-      ['cdH','cdM','cdS'].forEach(id => document.getElementById(id).textContent = '00');
-      return;
+<script>
+/* ──────────────────────────────────────────
+   SCROLL REVEAL
+──────────────────────────────────────────── */
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.remove('rv');  // triggers animation
+      io.unobserve(e.target);
     }
-    const d = Math.floor(diff / 86400000);
-    const h = Math.floor((diff % 86400000) / 3600000);
-    const m = Math.floor((diff % 3600000) / 60000);
-    const s = Math.floor((diff % 60000) / 1000);
-    document.getElementById('cdDays').textContent  = String(d).padStart(3,'0');
-    document.getElementById('cdH').textContent     = String(h).padStart(2,'0');
-    document.getElementById('cdM').textContent     = String(m).padStart(2,'0');
-    document.getElementById('cdS').textContent     = String(s).padStart(2,'0');
+  });
+}, { threshold: 0.12 });
+document.querySelectorAll('.rv').forEach(el => io.observe(el));
+
+
+/* ──────────────────────────────────────────
+   HERO PARALLAX
+──────────────────────────────────────────── */
+const heroPhoto = document.getElementById('heroPhoto');
+let ticking = false;
+window.addEventListener('scroll', () => {
+  if (!ticking) {
+    requestAnimationFrame(() => {
+      const y = window.scrollY;
+      if (heroPhoto) {
+        heroPhoto.style.transform = `translateY(${y * 0.38}px)`;
+      }
+      ticking = false;
+    });
+    ticking = true;
   }
-  tick();
-  setInterval(tick, 1000);
+}, { passive: true });
+
+
+/* ──────────────────────────────────────────
+   SHOW HERO BOTANICALS ON LOAD
+──────────────────────────────────────────── */
+window.addEventListener('load', () => {
+  document.getElementById('heroFloralTR')?.classList.add('loaded');
+  document.getElementById('heroFloralBL')?.classList.add('loaded');
+  document.getElementById('ceremonyFloral')?.classList.add('loaded');
+});
+
+
+/* ──────────────────────────────────────────
+   COUNTDOWN (with flip animation)
+──────────────────────────────────────────── */
+const BODA = new Date('2027-02-14T17:00:00');
+
+let prevD = '', prevH = '', prevM = '', prevS = '';
+
+function setFlip(el, val) {
+  if (!el) return;
+  if (el.textContent !== val) {
+    el.classList.remove('flip');
+    void el.offsetWidth; // reflow
+    el.classList.add('flip');
+    el.textContent = val;
+    setTimeout(() => el.classList.remove('flip'), 450);
+  }
+}
+
+function tick() {
+  const diff = BODA - new Date();
+  if (diff <= 0) {
+    document.getElementById('cdDays').textContent = '¡Hoy!';
+    ['cdH','cdM','cdS'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.textContent = '00';
+    });
+    return;
+  }
+  const d = String(Math.floor(diff / 86400000)).padStart(3, '0');
+  const h = String(Math.floor((diff % 86400000) / 3600000)).padStart(2, '0');
+  const m = String(Math.floor((diff % 3600000) / 60000)).padStart(2, '0');
+  const s = String(Math.floor((diff % 60000) / 1000)).padStart(2, '0');
+
+  const dEl = document.getElementById('cdDays');
+  if (dEl && dEl.textContent !== d) {
+    dEl.classList.remove('flip');
+    void dEl.offsetWidth;
+    dEl.classList.add('flip');
+    dEl.textContent = d;
+    setTimeout(() => dEl.classList.remove('flip'), 500);
+  }
+  setFlip(document.getElementById('cdH'), h);
+  setFlip(document.getElementById('cdM'), m);
+  setFlip(document.getElementById('cdS'), s);
+}
+
+tick();
+setInterval(tick, 1000);
 </script>
 </body>
 </html>
