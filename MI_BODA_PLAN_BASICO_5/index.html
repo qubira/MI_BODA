@@ -658,30 +658,39 @@
     /* ════════════════════════════
        10. RSVP
     ════════════════════════════ */
-    .rsvp-wrap {
-      position: relative; z-index: 1;
-      padding: 0 24px 0;
-    }
-    .rsvp-card { padding: 34px 30px 42px; text-align: center; }
 
-    .rsvp-bottom {
-      position: relative; z-index: 1;
-      display: flex; flex-direction: column;
-      align-items: center;
-      margin-top: -8px;
+    /* Stacking scene: card (z:2) on top of envelope (z:1), seal (z:3) at junction.
+       NO z-index on .rsvp-scene so children form their own stacking contexts. */
+    .rsvp-scene {
+      position: relative;
+      margin: 0 24px;
+      padding-bottom: 172px; /* visible envelope height below card */
     }
-    .rsvp-bottom__envelope {
-      width: 88%; display: block;
-      filter: drop-shadow(0 4px 18px rgba(0,0,0,0.11));
+    .rsvp-card {
+      position: relative;
+      z-index: 2;             /* on top of envelope */
+      padding: 36px 28px 44px;
+      text-align: center;
     }
-    .rsvp-bottom__seal {
+    /* Envelope: pinned to bottom, slides behind card */
+    .rsvp-env {
       position: absolute;
-      bottom: 42px; left: 50%;
+      bottom: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 96%;
+      z-index: 1;             /* behind card */
+      filter: drop-shadow(0 6px 22px rgba(0,0,0,0.11));
+    }
+    /* Seal: centered on the card-envelope junction line */
+    .rsvp-seal {
+      position: absolute;
+      bottom: 135px;          /* = padding-bottom − half-seal = 172 − 35 − 2 */
+      left: 50%;
       transform: translateX(-50%);
       width: 70px;
-      filter: drop-shadow(0 3px 10px rgba(0,0,0,0.17));
+      z-index: 3;             /* above both card and envelope */
+      filter: drop-shadow(0 3px 10px rgba(0,0,0,0.18));
       animation: sealPulse 7s ease-in-out 1.5s infinite;
-      z-index: 3;
     }
 
     .spacer { height: 34px; position: relative; z-index: 1; }
@@ -935,8 +944,11 @@
 
 
   <!-- ══════════════════ 10. RSVP ══════════════════ -->
-  <div class="rsvp-wrap">
-    <div class="rsvp-card card rv up">
+  <!-- Scene: card on top (z:2), envelope behind (z:1), seal at junction (z:3) -->
+  <div class="rsvp-scene rv up">
+
+    <!-- White card — front layer -->
+    <div class="rsvp-card card">
       <h2 class="card-heading rv up d1">Confirmar Asistencia</h2>
       <div class="h-rule rv up d1" style="max-width:150px; margin: 0 auto;">
         <span class="h-rule__line"></span>
@@ -949,16 +961,17 @@
       </p>
       <a href="#" class="btn rv up d3"><span>Llena el formulario</span></a>
     </div>
-  </div>
 
-  <!-- Sobre + sello al pie -->
-  <div class="rsvp-bottom rv env d2">
-    <img class="rsvp-bottom__envelope"
-         src="04.Demo_invitacion_Alejandra & Mario_files/285ff6afcade344c8664da9fece19334.png"
+    <!-- Full envelope — behind card, shows below it -->
+    <img class="rsvp-env rv env d2"
+         src="04.Demo_invitacion_Alejandra & Mario_files/a1fb1647108e46844cfc4ad3158fd049.png"
          alt="" aria-hidden="true" />
-    <img class="rsvp-bottom__seal"
+
+    <!-- Wax seal — at card/envelope junction -->
+    <img class="rsvp-seal"
          src="04.Demo_invitacion_Alejandra & Mario_files/7a60f2179183c0a48dcf0fe4676b064e.png"
          alt="" aria-hidden="true" />
+
   </div>
 
   <div class="spacer"></div>
