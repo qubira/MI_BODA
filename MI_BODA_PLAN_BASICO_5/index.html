@@ -20,7 +20,7 @@
       --card:  #FFFFFF;
       --dark:  #1A1817;
       --gray:  #7A7770;
-      --taupe: #C4BAA8;
+      --taupe: #C8BEB0;
       --ease:  cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
 
@@ -28,7 +28,7 @@
 
     body {
       font-family: 'Montserrat', sans-serif;
-      background: #C8C5BE;
+      background: #B0ADA7;
       color: var(--dark);
       overflow-x: hidden;
     }
@@ -41,7 +41,7 @@
       overflow: hidden;
     }
 
-    /* Full-page texture overlay */
+    /* Page texture */
     .page::before {
       content: '';
       position: fixed;
@@ -49,7 +49,7 @@
       transform: translateX(-50%);
       width: 420px; height: 100%;
       background: url("04.Demo_invitacion_Alejandra & Mario_files/c130d11aed9a7ec657067c93a7373309.png") center/cover;
-      opacity: 0.28;
+      opacity: 0.22;
       pointer-events: none;
       z-index: 0;
     }
@@ -59,46 +59,63 @@
        KEYFRAMES
     ════════════════════════════ */
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(30px); }
+      from { opacity: 0; transform: translateY(28px); }
       to   { opacity: 1; transform: translateY(0); }
     }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to   { opacity: 1; }
-    }
+    @keyframes fadeIn  { from { opacity: 0; } to { opacity: 1; } }
     @keyframes scaleIn {
-      from { opacity: 0; transform: scale(0.84); }
+      from { opacity: 0; transform: scale(0.86); }
       to   { opacity: 1; transform: scale(1); }
     }
-    @keyframes slideLeft {
-      from { opacity: 0; transform: translateX(32px); }
+    @keyframes slideL {
+      from { opacity: 0; transform: translateX(30px); }
       to   { opacity: 1; transform: translateX(0); }
     }
-    @keyframes slideRight {
-      from { opacity: 0; transform: translateX(-32px); }
+    @keyframes slideR {
+      from { opacity: 0; transform: translateX(-30px); }
       to   { opacity: 1; transform: translateX(0); }
     }
-    @keyframes sealPulse {
-      0%,100% { transform: scale(1) rotate(-2deg); }
-      50%     { transform: scale(1.04) rotate(2deg); }
-    }
-    @keyframes cdFlip {
-      0%   { transform: rotateX(0);     opacity: 1; }
-      45%  { transform: rotateX(-90deg); opacity: 0; }
-      55%  { transform: rotateX(90deg);  opacity: 0; }
-      100% { transform: rotateX(0);     opacity: 1; }
-    }
-    @keyframes floatUp {
-      0%,100% { transform: translateY(0px); }
-      50%     { transform: translateY(-8px); }
-    }
-    @keyframes envelopeSlide {
-      from { opacity: 0; transform: translateY(40px) rotate(1deg); }
+    @keyframes envSlide {
+      from { opacity: 0; transform: translateY(36px) rotate(1.5deg); }
       to   { opacity: 1; transform: translateY(0) rotate(0deg); }
     }
+
+    /* Hero entrance */
+    @keyframes heroNameSlide {
+      from { opacity: 0; transform: translateY(22px); letter-spacing: 0.06em; }
+      to   { opacity: 1; transform: translateY(0);    letter-spacing: normal; }
+    }
+    @keyframes heroFadeScale {
+      from { opacity: 0; transform: scale(0.90); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+    @keyframes heroPan {
+      from { transform: scale(1.08) translateY(0px); }
+      to   { transform: scale(1.00) translateY(-16px); }
+    }
+
+    /* Continuous */
+    @keyframes sealPulse {
+      0%,100% { transform: scale(1) rotate(-2deg); }
+      50%     { transform: scale(1.05) rotate(2deg); }
+    }
+    @keyframes floatY {
+      0%,100% { transform: translateY(0px); }
+      50%     { transform: translateY(-7px); }
+    }
     @keyframes noteFloat {
-      0%,100% { transform: translateY(0) rotate(-6deg); opacity: 0.30; }
-      50%     { transform: translateY(-5px) rotate(6deg); opacity: 0.55; }
+      0%,100% { transform: translateY(0) rotate(-5deg); opacity: 0.28; }
+      50%     { transform: translateY(-5px) rotate(5deg); opacity: 0.52; }
+    }
+    @keyframes cdFlip {
+      0%   { transform: rotateX(0);    opacity: 1; }
+      44%  { transform: rotateX(-90deg); opacity: 0; }
+      56%  { transform: rotateX(90deg);  opacity: 0; }
+      100% { transform: rotateX(0);    opacity: 1; }
+    }
+    @keyframes scrollBounce {
+      0%,100% { transform: translateX(-50%) translateY(0);   opacity: 0.35; }
+      50%     { transform: translateX(-50%) translateY(9px); opacity: 0.80; }
     }
 
 
@@ -106,42 +123,42 @@
        SCROLL REVEAL
     ════════════════════════════ */
     .rv { opacity: 0; }
-    .rv.up   { animation: fadeUp    0.85s var(--ease) both; }
-    .rv.in   { animation: fadeIn    0.80s ease both; }
-    .rv.sc   { animation: scaleIn   0.90s var(--ease) both; }
-    .rv.sl   { animation: slideLeft 0.80s var(--ease) both; }
-    .rv.sr   { animation: slideRight 0.80s var(--ease) both; }
-    .rv.env  { animation: envelopeSlide 0.95s var(--ease) both; }
+    .rv.up  { animation: fadeUp  0.82s var(--ease) both; }
+    .rv.in  { animation: fadeIn  0.78s ease both; }
+    .rv.sc  { animation: scaleIn 0.88s var(--ease) both; }
+    .rv.sl  { animation: slideL  0.78s var(--ease) both; }
+    .rv.sr  { animation: slideR  0.78s var(--ease) both; }
+    .rv.env { animation: envSlide 0.92s var(--ease) both; }
 
-    .rv.d1 { animation-delay: 0.10s; }
-    .rv.d2 { animation-delay: 0.22s; }
-    .rv.d3 { animation-delay: 0.36s; }
-    .rv.d4 { animation-delay: 0.52s; }
-    .rv.d5 { animation-delay: 0.70s; }
-    .rv.d6 { animation-delay: 0.90s; }
+    .rv.d1 { animation-delay: 0.08s; }
+    .rv.d2 { animation-delay: 0.20s; }
+    .rv.d3 { animation-delay: 0.34s; }
+    .rv.d4 { animation-delay: 0.50s; }
+    .rv.d5 { animation-delay: 0.68s; }
+    .rv.d6 { animation-delay: 0.88s; }
 
 
     /* ════════════════════════════
-       SHARED COMPONENTS
+       SHARED
     ════════════════════════════ */
     .card {
       background: var(--card);
-      border-radius: 3px;
-      box-shadow: 0 3px 18px rgba(0,0,0,0.10), 0 1px 4px rgba(0,0,0,0.06);
-      position: relative;
-      z-index: 2;
+      border-radius: 2px;
+      box-shadow:
+        0 2px 12px rgba(0,0,0,0.08),
+        0 6px 24px rgba(0,0,0,0.06),
+        0 0 0 0.5px rgba(0,0,0,0.04);
     }
 
-    /* Pill button */
     .btn {
       display: inline-block;
-      border: 1px solid var(--dark);
+      border: 1px solid rgba(26,24,23,0.55);
       border-radius: 100px;
-      padding: 7px 22px;
+      padding: 8px 24px;
       font-family: 'Montserrat', sans-serif;
-      font-size: 9px;
+      font-size: 8.5px;
       font-weight: 300;
-      letter-spacing: 0.20em;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
       text-decoration: none;
       color: var(--dark);
@@ -149,7 +166,7 @@
       cursor: pointer;
       position: relative;
       overflow: hidden;
-      transition: color 0.32s, box-shadow 0.28s, transform 0.24s;
+      transition: color 0.30s, border-color 0.30s, box-shadow 0.28s, transform 0.22s;
     }
     .btn::before {
       content: '';
@@ -157,264 +174,320 @@
       background: var(--dark);
       transform: scaleX(0);
       transform-origin: left;
-      transition: transform 0.32s var(--ease);
+      transition: transform 0.30s var(--ease);
     }
     .btn span { position: relative; z-index: 1; }
-    .btn:hover { color: #fff; transform: translateY(-1px); box-shadow: 0 6px 18px rgba(0,0,0,0.14); }
+    .btn:hover { color: #fff; border-color: var(--dark); transform: translateY(-1px); box-shadow: 0 6px 16px rgba(0,0,0,0.14); }
     .btn:hover::before { transform: scaleX(1); }
 
-    /* Divider */
     .h-rule {
-      display: flex; align-items: center; gap: 8px;
+      display: flex; align-items: center; gap: 10px;
       margin: 0 auto;
     }
-    .h-rule__line { flex: 1; height: 1px; background: rgba(0,0,0,0.10); }
-    .h-rule__dot  { width: 3px; height: 3px; border-radius: 50%; background: rgba(0,0,0,0.18); }
+    .h-rule__line { flex: 1; height: 1px; background: rgba(0,0,0,0.09); }
+    .h-rule__dot  { width: 3px; height: 3px; border-radius: 50%; background: rgba(0,0,0,0.16); }
 
 
     /* ════════════════════════════
-       1. MUSIC PLAYER
+       0. HERO
     ════════════════════════════ */
-    .music {
+    .hero {
       position: relative;
+      height: 100svh;
+      min-height: 580px;
+      overflow: hidden;
       z-index: 1;
-      text-align: center;
-      padding: 44px 32px 28px;
     }
 
-    .music__label {
-      font-size: 9px;
-      font-weight: 200;
-      letter-spacing: 0.22em;
-      color: var(--gray);
-      margin-bottom: 16px;
-      font-style: italic;
+    .hero__photo {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center 30%;
+      animation: heroPan 14s ease-in-out alternate infinite;
+      will-change: transform;
     }
 
-    .music__notes {
-      display: flex; align-items: center; justify-content: center; gap: 14px;
-      margin-bottom: 16px;
+    .hero__overlay {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(
+          to bottom,
+          rgba(0,0,0,0.52) 0%,
+          rgba(0,0,0,0.28) 40%,
+          rgba(0,0,0,0.40) 65%,
+          rgba(0,0,0,0.72) 100%
+        );
+      z-index: 1;
     }
-    .music__note {
-      font-size: 16px;
-      color: rgba(0,0,0,0.20);
-    }
-    .music__note:nth-child(1) { animation: noteFloat 3.2s ease-in-out infinite; }
-    .music__note:nth-child(2) { font-size: 20px; animation: noteFloat 3.2s ease-in-out 0.6s infinite; }
-    .music__note:nth-child(3) { animation: noteFloat 3.2s ease-in-out 1.2s infinite; }
 
-    .music__player-wrap {
-      position: relative;
-      width: 220px;
-      margin: 0 auto;
-      cursor: pointer;
-    }
-    .music__player-img {
-      width: 100%;
-      display: block;
-      filter: drop-shadow(0 2px 8px rgba(0,0,0,0.10));
-      transition: transform 0.3s ease;
-    }
-    .music__player-wrap:hover .music__player-img { transform: scale(1.02); }
-    .music__tap {
+    .hero__content {
       position: absolute;
       inset: 0;
       z-index: 2;
-    }
-
-
-    /* ════════════════════════════
-       2. WAX SEAL DIVIDER
-    ════════════════════════════ */
-    .seal-divider {
-      position: relative;
-      z-index: 1;
-      text-align: center;
-      padding: 8px 0 28px;
-    }
-    .seal-divider__seal {
-      width: 74px;
-      animation: sealPulse 6s ease-in-out infinite;
-      filter: drop-shadow(0 3px 10px rgba(0,0,0,0.16));
-    }
-
-
-    /* ════════════════════════════
-       3. INVITATION CARD
-    ════════════════════════════ */
-    .invite-wrap {
-      position: relative;
-      z-index: 1;
-      padding: 0 24px 36px;
-    }
-    .invite-card {
-      padding: 36px 28px 32px;
-      text-align: center;
-    }
-
-    .invite-card__tag {
-      font-size: 8px;
-      font-weight: 300;
-      letter-spacing: 0.30em;
-      text-transform: uppercase;
-      color: var(--gray);
-      margin-bottom: 22px;
-      display: block;
-    }
-
-    .parents {
-      display: grid;
-      grid-template-columns: 1fr 1px 1fr;
-      margin-bottom: 24px;
-    }
-    .parents__divider { background: rgba(0,0,0,0.10); margin: 4px 0; }
-    .parents__col { padding: 0 12px; }
-    .parents__name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 13px;
-      font-style: italic;
-      font-weight: 300;
-      color: var(--dark);
-      line-height: 1.65;
-    }
-
-    .invite-card__honor {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 13.5px;
-      font-weight: 300;
-      color: var(--gray);
-      line-height: 1.70;
-      margin-bottom: 14px;
-    }
-
-    .invite-card__names {
-      font-family: 'Great Vibes', cursive;
-      font-size: 50px;
-      color: var(--dark);
-      line-height: 1.10;
-      margin-bottom: 18px;
-    }
-    .invite-card__amp {
-      display: block;
-      font-size: 36px;
-      line-height: 1;
-      margin: 2px 0;
-    }
-
-    .invite-card__date {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 13px;
-      font-weight: 200;
-      letter-spacing: 0.28em;
-      color: var(--dark);
-      margin-top: 6px;
-    }
-
-
-    /* ════════════════════════════
-       4. CEREMONY + RECEPTION
-    ════════════════════════════ */
-    .ceremony-wrap {
-      position: relative;
-      z-index: 1;
-      padding: 0 24px 28px;
-    }
-
-    .ceremony-envelope {
-      position: absolute;
-      top: -18px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 86%;
-      z-index: 1;
-      pointer-events: none;
-      filter: drop-shadow(0 6px 16px rgba(0,0,0,0.10));
-    }
-
-    .ceremony-card {
-      position: relative;
-      z-index: 2;
-      padding: 26px 24px 22px;
-      text-align: center;
-      margin-bottom: 22px;
-    }
-
-    .ceremony-card__heading {
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-      color: var(--dark);
-      margin-bottom: 6px;
-    }
-
-    .ceremony-card__time {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 13.5px;
-      font-style: italic;
-      font-weight: 300;
-      color: var(--gray);
-      margin-bottom: 14px;
-    }
-
-    .ceremony-card__church {
-      width: 168px;
-      display: block;
-      margin: 0 auto 18px;
-      opacity: 0.90;
-      transition: transform 0.4s ease;
-    }
-    .ceremony-card__church:hover { transform: scale(1.03); }
-
-    /* Reception oval */
-    .reception-section {
-      position: relative;
-      z-index: 1;
-      padding: 0 24px 28px;
-      display: flex;
-      justify-content: center;
-    }
-    .reception-oval {
-      position: relative;
-      width: 240px;
-    }
-    .reception-oval__bg {
-      width: 100%;
-      display: block;
-    }
-    .reception-oval__content {
-      position: absolute;
-      inset: 0;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 24px 20px 28px;
+      text-align: center;
+      padding: 48px 28px 80px;
+      gap: 0;
+    }
+
+    .hero__name {
+      font-family: 'Great Vibes', cursive;
+      font-size: 72px;
+      color: #FFFFFF;
+      line-height: 1.05;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.40);
+      opacity: 0;
+      animation: heroNameSlide 1.2s var(--ease) 0.3s both;
+    }
+    .hero__name--2 {
+      animation-delay: 0.55s;
+    }
+
+    .hero__amp {
+      font-family: 'Great Vibes', cursive;
+      font-size: 44px;
+      color: rgba(255,255,255,0.82);
+      line-height: 1;
+      margin: -4px 0;
+      opacity: 0;
+      animation: fadeIn 0.8s ease 0.85s both;
+    }
+
+    .hero__tag-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      margin-top: 20px;
+      opacity: 0;
+      animation: fadeUp 0.90s var(--ease) 1.10s both;
+    }
+
+    .hero__se-casan {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.52em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.70);
+    }
+
+    .hero__date {
+      font-size: 12px;
+      font-weight: 200;
+      letter-spacing: 0.32em;
+      color: rgba(255,255,255,0.62);
+      margin-top: 4px;
+    }
+
+    .hero__mono {
+      position: absolute;
+      bottom: 36px;
+      left: 0; right: 0;
+      text-align: center;
+      z-index: 2;
+      font-family: 'Great Vibes', cursive;
+      font-size: 72px;
+      color: rgba(255,255,255,0.82);
+      text-shadow: 0 2px 20px rgba(0,0,0,0.40);
+      opacity: 0;
+      animation: heroFadeScale 1s var(--ease) 1.50s both;
+    }
+
+    /* Scroll arrow */
+    .hero__scroll {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      animation: scrollBounce 2.4s ease-in-out infinite;
+    }
+    .hero__scroll-line {
+      width: 1px; height: 26px;
+      background: rgba(255,255,255,0.40);
+    }
+
+
+    /* ════════════════════════════
+       1. MUSIC
+    ════════════════════════════ */
+    .music {
+      position: relative; z-index: 1;
+      text-align: center;
+      padding: 46px 32px 30px;
+    }
+    .music__label {
+      font-size: 8.5px;
+      font-weight: 200;
+      letter-spacing: 0.24em;
+      color: var(--gray);
+      margin-bottom: 18px;
+      font-style: italic;
+    }
+    .music__notes {
+      display: flex; align-items: center; justify-content: center; gap: 14px;
+      margin-bottom: 16px;
+    }
+    .music__note { font-size: 16px; color: rgba(0,0,0,0.18); }
+    .music__note:nth-child(1) { animation: noteFloat 3.4s ease-in-out infinite; }
+    .music__note:nth-child(2) { font-size: 22px; animation: noteFloat 3.4s ease-in-out 0.7s infinite; }
+    .music__note:nth-child(3) { animation: noteFloat 3.4s ease-in-out 1.4s infinite; }
+    .music__player-wrap {
+      width: 210px; margin: 0 auto;
+      cursor: pointer; position: relative;
+    }
+    .music__player-img {
+      width: 100%; display: block;
+      filter: drop-shadow(0 2px 8px rgba(0,0,0,0.10));
+      transition: transform 0.3s ease;
+    }
+    .music__player-wrap:hover .music__player-img { transform: scale(1.02); }
+    .music__tap { position: absolute; inset: 0; z-index: 2; }
+
+
+    /* ════════════════════════════
+       2. SELLO LACRE
+    ════════════════════════════ */
+    .seal-div {
+      position: relative; z-index: 1;
+      text-align: center;
+      padding: 4px 0 26px;
+    }
+    .seal-div__img {
+      width: 72px;
+      animation: sealPulse 6s ease-in-out infinite;
+      filter: drop-shadow(0 3px 10px rgba(0,0,0,0.15));
+    }
+
+
+    /* ════════════════════════════
+       3. TARJETA INVITACIÓN
+    ════════════════════════════ */
+    .invite-wrap {
+      position: relative; z-index: 1;
+      padding: 0 24px 36px;
+    }
+    .invite-card {
+      padding: 38px 30px 34px;
       text-align: center;
     }
-    .reception-oval__heading {
-      font-size: 9.5px;
-      font-weight: 600;
-      letter-spacing: 0.26em;
+    .invite-card__tag {
+      font-size: 7.5px;
+      font-weight: 300;
+      letter-spacing: 0.34em;
       text-transform: uppercase;
-      color: var(--dark);
-      margin-bottom: 4px;
+      color: var(--gray);
+      display: block; margin-bottom: 24px;
+    }
+    .parents {
+      display: grid;
+      grid-template-columns: 1fr 1px 1fr;
+      margin-bottom: 26px;
+    }
+    .parents__div { background: rgba(0,0,0,0.09); margin: 4px 0; }
+    .parents__col { padding: 0 12px; }
+    .parents__name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 13px; font-style: italic; font-weight: 300;
+      color: var(--dark); line-height: 1.68;
+    }
+    .invite-card__honor {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 14px; font-weight: 300;
+      color: var(--gray); line-height: 1.72;
+      margin-bottom: 16px;
+    }
+    .invite-card__names {
+      font-family: 'Great Vibes', cursive;
+      font-size: 52px; color: var(--dark);
+      line-height: 1.08; margin-bottom: 20px;
+    }
+    .invite-card__amp {
+      display: block; font-size: 38px; line-height: 1; margin: 2px 0;
+    }
+    .invite-card__date {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 12.5px; font-weight: 200;
+      letter-spacing: 0.30em; color: var(--dark);
+      margin-top: 8px;
+    }
+
+
+    /* ════════════════════════════
+       4. CEREMONIA
+    ════════════════════════════ */
+    .ceremony-wrap {
+      position: relative; z-index: 1;
+      padding: 0 24px 28px;
+    }
+    .ceremony-envelope {
+      position: absolute;
+      top: -20px; left: 50%;
+      transform: translateX(-50%);
+      width: 88%; z-index: 1;
+      pointer-events: none;
+      filter: drop-shadow(0 6px 18px rgba(0,0,0,0.09));
+    }
+    .ceremony-card {
+      position: relative; z-index: 2;
+      padding: 28px 26px 24px;
+      text-align: center;
+    }
+    .ceremony-card__head {
+      font-size: 9.5px; font-weight: 600;
+      letter-spacing: 0.30em; text-transform: uppercase;
+      color: var(--dark); margin-bottom: 7px;
+    }
+    .ceremony-card__time {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 14px; font-style: italic; font-weight: 300;
+      color: var(--gray); margin-bottom: 16px;
+    }
+    .ceremony-card__church {
+      width: 164px; display: block;
+      margin: 0 auto 20px;
+      opacity: 0.88;
+      transition: transform 0.4s ease;
+    }
+    .ceremony-card__church:hover { transform: scale(1.03); }
+
+    /* Recepción oval */
+    .reception-wrap {
+      position: relative; z-index: 1;
+      padding: 4px 24px 28px;
+      display: flex; justify-content: center;
+    }
+    .reception-oval { position: relative; width: 240px; }
+    .reception-oval__bg { width: 100%; display: block; }
+    .reception-oval__inner {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 24px 20px 30px; text-align: center;
+    }
+    .reception-oval__head {
+      font-size: 9px; font-weight: 600;
+      letter-spacing: 0.28em; text-transform: uppercase;
+      color: var(--dark); margin-bottom: 4px;
     }
     .reception-oval__time {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 11.5px;
-      font-style: italic;
-      font-weight: 300;
-      color: var(--gray);
-      margin-bottom: 8px;
+      font-size: 11.5px; font-style: italic; font-weight: 300;
+      color: var(--gray); margin-bottom: 9px;
     }
     .reception-oval__arch {
-      width: 88px;
-      height: 62px;
-      display: block;
-      margin: 0 auto 10px;
-      object-fit: cover;
-      object-position: 50% 0%;
+      width: 86px; height: 60px; display: block;
+      margin: 0 auto 11px;
+      object-fit: cover; object-position: 50% 0%;
     }
 
 
@@ -422,64 +495,49 @@
        5. COUNTDOWN
     ════════════════════════════ */
     .countdown {
-      position: relative;
-      z-index: 1;
+      position: relative; z-index: 1;
       text-align: center;
-      padding: 46px 24px 48px;
-      background: var(--bg);
+      padding: 52px 24px 56px;
     }
-
     .countdown__title {
-      font-size: 36px;
-      font-weight: 200;
-      letter-spacing: 0.46em;
-      text-transform: uppercase;
-      color: var(--dark);
-      margin-bottom: 22px;
+      font-size: 32px; font-weight: 200;
+      letter-spacing: 0.50em; text-transform: uppercase;
+      color: var(--dark); margin-bottom: 26px;
     }
-
     .countdown__row {
-      display: flex;
-      align-items: flex-start;
+      display: flex; align-items: flex-start;
       justify-content: center;
     }
-
     .countdown__cell {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      width: 88px;
+      display: flex; flex-direction: column;
+      align-items: center; width: 86px;
     }
     .countdown__cell + .countdown__cell { border-left: 1px solid var(--taupe); }
-
     .countdown__num {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 58px;
-      font-weight: 300;
-      color: var(--dark);
-      line-height: 1;
-      display: block;
+      font-size: 60px; font-weight: 300;
+      color: var(--dark); line-height: 1; display: block;
     }
     .countdown__num.flip { animation: cdFlip 0.42s ease; }
-
     .countdown__lbl {
-      font-size: 7px;
-      font-weight: 300;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--gray);
-      margin-top: 6px;
+      font-size: 6.5px; font-weight: 300;
+      letter-spacing: 0.24em; text-transform: uppercase;
+      color: var(--gray); margin-top: 7px;
     }
-
     .countdown__sep {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 44px;
-      font-weight: 300;
-      color: rgba(0,0,0,0.16);
-      padding: 0 2px;
-      margin-top: -4px;
-      user-select: none;
-      align-self: flex-start;
+      font-size: 46px; font-weight: 300;
+      color: rgba(0,0,0,0.14);
+      padding: 0 2px; margin-top: -4px;
+      user-select: none; align-self: flex-start;
+    }
+
+    /* Thin section divider */
+    .section-rule {
+      position: relative; z-index: 1;
+      margin: 0 48px;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--taupe), transparent);
     }
 
 
@@ -487,77 +545,52 @@
        6. DRESS CODE
     ════════════════════════════ */
     .dresscode {
-      position: relative;
-      z-index: 1;
-      padding: 20px 24px 36px;
+      position: relative; z-index: 1;
+      padding: 24px 24px 38px;
     }
-
     .dresscode__badge {
-      position: relative;
-      z-index: 3;
+      position: relative; z-index: 3;
       background: var(--card);
-      border-radius: 3px;
-      box-shadow: 0 3px 14px rgba(0,0,0,0.10);
-      padding: 14px 16px;
+      border-radius: 2px;
+      box-shadow: 0 2px 14px rgba(0,0,0,0.09);
+      padding: 14px 17px;
       max-width: 190px;
-      margin-left: 16px;
-      margin-bottom: -22px;
+      margin-left: 14px; margin-bottom: -24px;
     }
     .dresscode__badge-head {
-      font-size: 9px;
-      font-weight: 600;
-      letter-spacing: 0.20em;
-      text-transform: uppercase;
-      color: var(--dark);
-      display: block;
-      margin-bottom: 6px;
+      font-size: 8.5px; font-weight: 600;
+      letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--dark); display: block; margin-bottom: 6px;
     }
     .dresscode__badge-text {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 13px;
-      font-style: italic;
-      font-weight: 300;
-      color: var(--gray);
-      line-height: 1.60;
+      font-size: 13px; font-style: italic; font-weight: 300;
+      color: var(--gray); line-height: 1.62;
     }
-
     .dresscode__oval-wrap {
-      position: relative;
-      z-index: 2;
-      display: flex;
-      justify-content: flex-end;
-      margin-right: 16px;
-      margin-bottom: -28px;
+      position: relative; z-index: 2;
+      display: flex; justify-content: flex-end;
+      margin-right: 14px; margin-bottom: -30px;
     }
     .dresscode__oval {
-      position: relative;
-      width: 150px;
-      filter: drop-shadow(0 3px 10px rgba(0,0,0,0.10));
+      position: relative; width: 148px;
+      filter: drop-shadow(0 3px 8px rgba(0,0,0,0.08));
     }
     .dresscode__oval-bg { width: 100%; display: block; }
     .dresscode__oval-text {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
     }
     .dresscode__script {
       font-family: 'Great Vibes', cursive;
-      font-size: 34px;
-      color: var(--dark);
-      line-height: 1.1;
-      text-align: center;
+      font-size: 33px; color: var(--dark);
+      line-height: 1.1; text-align: center;
     }
-
-    .dresscode__illustration {
-      position: relative;
-      z-index: 1;
-      width: 100%;
-      max-width: 340px;
-      display: block;
-      margin: 0 auto;
-      filter: drop-shadow(0 2px 6px rgba(0,0,0,0.06));
+    .dresscode__illus {
+      position: relative; z-index: 1;
+      width: 100%; max-width: 330px;
+      display: block; margin: 0 auto;
+      filter: drop-shadow(0 2px 6px rgba(0,0,0,0.05));
     }
 
 
@@ -565,18 +598,13 @@
        7. QUOTE
     ════════════════════════════ */
     .quote {
-      position: relative;
-      z-index: 1;
-      padding: 32px 36px 44px;
-      text-align: center;
+      position: relative; z-index: 1;
+      padding: 36px 40px 48px; text-align: center;
     }
     .quote__text {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 17px;
-      font-style: italic;
-      font-weight: 300;
-      color: var(--gray);
-      line-height: 1.82;
+      font-size: 17.5px; font-style: italic; font-weight: 300;
+      color: var(--gray); line-height: 1.84;
     }
 
 
@@ -584,31 +612,22 @@
        8. GIFTS
     ════════════════════════════ */
     .gifts-wrap {
-      position: relative;
-      z-index: 1;
-      padding: 0 24px 24px;
+      position: relative; z-index: 1;
+      padding: 0 24px 22px;
     }
     .gifts-card {
-      padding: 34px 28px;
-      text-align: center;
+      padding: 36px 30px; text-align: center;
     }
-    .gifts-card__heading {
-      font-size: 24px;
-      font-weight: 200;
-      letter-spacing: 0.38em;
-      text-transform: uppercase;
-      color: var(--dark);
-      margin-bottom: 14px;
+    .card-heading {
+      font-size: 22px; font-weight: 200;
+      letter-spacing: 0.40em; text-transform: uppercase;
+      color: var(--dark); margin-bottom: 14px;
     }
-    .gifts-card__text {
+    .card-body {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 15px;
-      font-style: italic;
-      font-weight: 300;
-      color: var(--gray);
-      line-height: 1.80;
-      margin-bottom: 24px;
-      margin-top: 16px;
+      font-size: 15px; font-style: italic; font-weight: 300;
+      color: var(--gray); line-height: 1.82;
+      margin: 16px 0 26px;
     }
 
 
@@ -616,48 +635,22 @@
        9. HOSPEDAJE
     ════════════════════════════ */
     .lodging-wrap {
-      position: relative;
-      z-index: 1;
-      padding: 0 24px 24px;
+      position: relative; z-index: 1;
+      padding: 0 24px 22px;
     }
-    .lodging-card {
-      padding: 34px 28px;
-      text-align: center;
-    }
-    .lodging-card__heading {
-      font-size: 24px;
-      font-weight: 200;
-      letter-spacing: 0.38em;
-      text-transform: uppercase;
-      color: var(--dark);
-      margin-bottom: 14px;
-    }
-    .lodging-card__text {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 15px;
-      font-style: italic;
-      font-weight: 300;
-      color: var(--gray);
-      line-height: 1.80;
-      margin-top: 16px;
-      margin-bottom: 28px;
-    }
-
+    .lodging-card { padding: 36px 30px; text-align: center; }
     .hotel { margin-bottom: 24px; }
     .hotel:last-child { margin-bottom: 0; }
     .hotel__name {
       font-family: 'Great Vibes', cursive;
-      font-size: 42px;
-      color: var(--dark);
-      display: block;
-      margin-bottom: 12px;
-      animation: floatUp 4.5s ease-in-out infinite;
+      font-size: 42px; color: var(--dark);
+      display: block; margin-bottom: 13px;
+      animation: floatY 4.5s ease-in-out infinite;
     }
-    .hotel:nth-child(2) .hotel__name { animation-delay: 1.8s; }
-
-    .hotel__rule {
+    .hotel:nth-child(odd) .hotel__name { animation-delay: 1.8s; }
+    .hotel__sep {
       height: 1px;
-      background: rgba(0,0,0,0.08);
+      background: rgba(0,0,0,0.07);
       margin: 24px 0;
     }
 
@@ -666,67 +659,64 @@
        10. RSVP
     ════════════════════════════ */
     .rsvp-wrap {
-      position: relative;
-      z-index: 1;
+      position: relative; z-index: 1;
       padding: 0 24px 0;
     }
-    .rsvp-card {
-      padding: 32px 28px 40px;
-      text-align: center;
-      position: relative;
-      z-index: 2;
-    }
-    .rsvp-card__heading {
-      font-size: 20px;
-      font-weight: 200;
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-      color: var(--dark);
-      margin-bottom: 14px;
-    }
-    .rsvp-card__text {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 15px;
-      font-style: italic;
-      font-weight: 300;
-      color: var(--gray);
-      line-height: 1.80;
-      margin-bottom: 24px;
-      margin-top: 16px;
-    }
+    .rsvp-card { padding: 34px 30px 42px; text-align: center; }
 
-    /* Bottom envelope + seal */
     .rsvp-bottom {
-      position: relative;
-      z-index: 1;
-      display: flex;
-      flex-direction: column;
+      position: relative; z-index: 1;
+      display: flex; flex-direction: column;
       align-items: center;
-      margin-top: -10px;
+      margin-top: -8px;
     }
     .rsvp-bottom__envelope {
-      width: 88%;
-      display: block;
-      filter: drop-shadow(0 4px 16px rgba(0,0,0,0.12));
+      width: 88%; display: block;
+      filter: drop-shadow(0 4px 18px rgba(0,0,0,0.11));
     }
     .rsvp-bottom__seal {
       position: absolute;
-      bottom: 44px;
-      left: 50%;
+      bottom: 42px; left: 50%;
       transform: translateX(-50%);
-      width: 72px;
-      filter: drop-shadow(0 3px 10px rgba(0,0,0,0.18));
+      width: 70px;
+      filter: drop-shadow(0 3px 10px rgba(0,0,0,0.17));
       animation: sealPulse 7s ease-in-out 1.5s infinite;
       z-index: 3;
     }
 
-    .spacer { height: 32px; position: relative; z-index: 1; }
+    .spacer { height: 34px; position: relative; z-index: 1; }
   </style>
 </head>
 <body>
 <div class="page">
 
-  <!-- 1. MUSIC PLAYER -->
+  <!-- ══════════════════ 0. HERO ══════════════════ -->
+  <section class="hero">
+    <img class="hero__photo"
+         src="04.Demo_invitacion_Alejandra & Mario_files/733322373ac37eee32c666e392646bf1.jpg"
+         alt="Sofía y Alejandro" />
+    <div class="hero__overlay"></div>
+
+    <div class="hero__content">
+      <span class="hero__name">Sofía</span>
+      <span class="hero__amp">&amp;</span>
+      <span class="hero__name hero__name--2">Alejandro</span>
+
+      <div class="hero__tag-wrap">
+        <span class="hero__se-casan">Se Casan</span>
+        <span class="hero__date">14 · 02 · 2027</span>
+      </div>
+    </div>
+
+    <div class="hero__mono">SA</div>
+
+    <div class="hero__scroll" aria-hidden="true">
+      <div class="hero__scroll-line"></div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════ 1. MUSIC ══════════════════ -->
   <section class="music rv in">
     <p class="music__label">Dale play para escuchar nuestra canción</p>
     <div class="music__notes">
@@ -737,45 +727,44 @@
     <div class="music__player-wrap">
       <img class="music__player-img"
            src="04.Demo_invitacion_Alejandra & Mario_files/9c416e1332aff95354e01a8e6a7e8da0.png"
-           alt="Reproductor de música" />
+           alt="Reproductor" />
       <div class="music__tap" id="musicTap"></div>
     </div>
     <audio id="audioEl" loop preload="none"></audio>
   </section>
 
 
-  <!-- 2. SELLO LACRE -->
-  <div class="seal-divider rv sc">
-    <img class="seal-divider__seal"
+  <!-- ══════════════════ 2. SELLO ══════════════════ -->
+  <div class="seal-div rv sc d1">
+    <img class="seal-div__img"
          src="04.Demo_invitacion_Alejandra & Mario_files/7a60f2179183c0a48dcf0fe4676b064e.png"
-         alt="Sello de lacre botánico" />
+         alt="" aria-hidden="true" />
   </div>
 
 
-  <!-- 3. TARJETA INVITACIÓN -->
+  <!-- ══════════════════ 3. INVITACIÓN ══════════════════ -->
   <div class="invite-wrap">
     <div class="invite-card card rv up">
-
       <span class="invite-card__tag rv up d1">En compañía de nuestros padres</span>
 
       <div class="parents rv up d2">
         <div class="parents__col">
           <p class="parents__name">Marco Meza &amp;<br>Fiorella Oregon</p>
         </div>
-        <div class="parents__divider"></div>
+        <div class="parents__div"></div>
         <div class="parents__col">
           <p class="parents__name">Rubén García &amp;<br>Josefina Ruiz</p>
         </div>
       </div>
 
-      <div class="h-rule rv up d2" style="max-width:180px; margin-bottom:18px;">
+      <div class="h-rule rv up d2" style="max-width:180px; margin-bottom:20px;">
         <span class="h-rule__line"></span>
         <span class="h-rule__dot"></span>
         <span class="h-rule__line"></span>
       </div>
 
       <p class="invite-card__honor rv up d3">
-        Tenemos el honor de invitarte a<br>la boda de:
+        Tenemos el honor de invitarte<br>a la boda de:
       </p>
 
       <h1 class="invite-card__names rv sc d4">
@@ -784,56 +773,58 @@
         Alejandro Meza
       </h1>
 
-      <div class="h-rule rv up d5" style="max-width:160px; margin: 10px auto 14px;">
+      <div class="h-rule rv up d5" style="max-width:160px; margin: 10px auto 15px;">
         <span class="h-rule__line"></span>
         <span class="h-rule__dot"></span>
         <span class="h-rule__line"></span>
       </div>
 
-      <p class="invite-card__date rv up d5">14.02.2027</p>
+      <p class="invite-card__date rv up d5">14 · 02 · 2027</p>
     </div>
   </div>
 
 
-  <!-- 4. CEREMONIA -->
+  <!-- ══════════════════ 4. CEREMONIA ══════════════════ -->
   <div class="ceremony-wrap">
     <img class="ceremony-envelope rv env d1"
          src="04.Demo_invitacion_Alejandra & Mario_files/a1fb1647108e46844cfc4ad3158fd049.png"
          alt="" aria-hidden="true" />
 
     <div class="ceremony-card card rv up d2">
-      <p class="ceremony-card__heading">Ceremonia Religiosa</p>
-      <p class="ceremony-card__time">3:00 pm &nbsp;|&nbsp; Iglesia Tres Ave María</p>
+      <p class="ceremony-card__head">Ceremonia Religiosa</p>
+      <p class="ceremony-card__time">3:00 pm &nbsp;&middot;&nbsp; Iglesia Tres Ave María</p>
       <img class="ceremony-card__church rv sc d3"
            src="04.Demo_invitacion_Alejandra & Mario_files/42b661d8eafdbc35824c3a479ad529af.png"
            alt="Iglesia" />
-      <a href="https://maps.google.com/?q=Iglesia+Polanco+CDMX"
+      <a href="https://maps.google.com/?q=Polanco+CDMX"
          target="_blank" rel="noopener"
          class="btn rv up d4"><span>Ubicación</span></a>
     </div>
   </div>
 
-  <!-- 4b. RECEPCIÓN OVAL -->
-  <div class="reception-section">
+  <!-- Recepción oval -->
+  <div class="reception-wrap">
     <div class="reception-oval rv sc">
       <img class="reception-oval__bg"
            src="04.Demo_invitacion_Alejandra & Mario_files/5f3a281cc98ed118beeab6410191ffd5.png"
            alt="" aria-hidden="true" />
-      <div class="reception-oval__content">
-        <p class="reception-oval__heading rv up d1">Recepción</p>
-        <p class="reception-oval__time rv up d2">5:00 pm &nbsp;|&nbsp; Salón de Eventos ANA</p>
+      <div class="reception-oval__inner">
+        <p class="reception-oval__head rv up d1">Recepción</p>
+        <p class="reception-oval__time rv up d2">5:00 pm &nbsp;&middot;&nbsp; Salón de Eventos ANA</p>
         <img class="reception-oval__arch rv sc d3"
              src="04.Demo_invitacion_Alejandra & Mario_files/a382490e6027a3182fd5265838961524.png"
-             alt="Salón de eventos" />
-        <a href="https://maps.google.com/?q=Salon+Eventos+CDMX"
+             alt="" aria-hidden="true" />
+        <a href="https://maps.google.com/?q=CDMX"
            target="_blank" rel="noopener"
            class="btn rv up d4"><span>Ubicación</span></a>
       </div>
     </div>
   </div>
 
+  <div class="section-rule rv in"></div>
 
-  <!-- 5. CUENTA REGRESIVA -->
+
+  <!-- ══════════════════ 5. CUENTA REGRESIVA ══════════════════ -->
   <section class="countdown">
     <p class="countdown__title rv up">Faltan</p>
     <div class="countdown__row rv up d1">
@@ -854,8 +845,10 @@
     </div>
   </section>
 
+  <div class="section-rule rv in"></div>
 
-  <!-- 6. DRESS CODE -->
+
+  <!-- ══════════════════ 6. DRESS CODE ══════════════════ -->
   <section class="dresscode">
     <div class="dresscode__badge rv sr">
       <span class="dresscode__badge-head">Formal de Noche</span>
@@ -875,13 +868,13 @@
       </div>
     </div>
 
-    <img class="dresscode__illustration rv up d2"
+    <img class="dresscode__illus rv up d2"
          src="04.Demo_invitacion_Alejandra & Mario_files/6dc933056950a718c81e7465066d556b.png"
          alt="Vestido largo y traje formal" />
   </section>
 
 
-  <!-- 7. FRASE -->
+  <!-- ══════════════════ 7. FRASE ══════════════════ -->
   <section class="quote">
     <p class="quote__text rv up">
       Nos encontramos, nos elegimos<br>
@@ -890,17 +883,19 @@
     </p>
   </section>
 
+  <div class="section-rule rv in"></div>
 
-  <!-- 8. REGALOS -->
+
+  <!-- ══════════════════ 8. REGALOS ══════════════════ -->
   <div class="gifts-wrap">
     <div class="gifts-card card rv up">
-      <h2 class="gifts-card__heading rv up d1">Regalos</h2>
-      <div class="h-rule rv up d1" style="max-width:160px; margin: 0 auto;">
+      <h2 class="card-heading rv up d1">Regalos</h2>
+      <div class="h-rule rv up d1" style="max-width:150px; margin: 0 auto;">
         <span class="h-rule__line"></span>
         <span class="h-rule__dot"></span>
         <span class="h-rule__line"></span>
       </div>
-      <p class="gifts-card__text rv up d2">
+      <p class="card-body rv up d2">
         Su compañía es lo más importante.<br>
         Si desean hacernos un obsequio,<br>
         lo recibiremos con mucho cariño.
@@ -910,18 +905,18 @@
   </div>
 
 
-  <!-- 9. HOSPEDAJE -->
+  <!-- ══════════════════ 9. HOSPEDAJE ══════════════════ -->
   <div class="lodging-wrap">
     <div class="lodging-card card rv up">
-      <h2 class="lodging-card__heading rv up d1">Hospedaje</h2>
-      <div class="h-rule rv up d1" style="max-width:160px; margin: 0 auto;">
+      <h2 class="card-heading rv up d1">Hospedaje</h2>
+      <div class="h-rule rv up d1" style="max-width:150px; margin: 0 auto;">
         <span class="h-rule__line"></span>
         <span class="h-rule__dot"></span>
         <span class="h-rule__line"></span>
       </div>
-      <p class="lodging-card__text rv up d2">
-        Para su comodidad, sugerimos<br>
-        dos opciones cercanas a la recepción.
+      <p class="card-body rv up d2">
+        Para su comodidad, sugerimos dos<br>
+        opciones cercanas a la recepción.
       </p>
 
       <div class="hotel rv sc d3">
@@ -929,7 +924,7 @@
         <a href="#" class="btn"><span>Link aquí</span></a>
       </div>
 
-      <div class="hotel__rule rv up d3"></div>
+      <div class="hotel__sep rv up d3"></div>
 
       <div class="hotel rv sc d4">
         <span class="hotel__name">Hotel Decamerón</span>
@@ -939,16 +934,16 @@
   </div>
 
 
-  <!-- 10. RSVP -->
+  <!-- ══════════════════ 10. RSVP ══════════════════ -->
   <div class="rsvp-wrap">
     <div class="rsvp-card card rv up">
-      <h2 class="rsvp-card__heading rv up d1">Confirmar Asistencia</h2>
-      <div class="h-rule rv up d1" style="max-width:160px; margin: 0 auto;">
+      <h2 class="card-heading rv up d1">Confirmar Asistencia</h2>
+      <div class="h-rule rv up d1" style="max-width:150px; margin: 0 auto;">
         <span class="h-rule__line"></span>
         <span class="h-rule__dot"></span>
         <span class="h-rule__line"></span>
       </div>
-      <p class="rsvp-card__text rv up d2">
+      <p class="card-body rv up d2">
         "Haznos saber si podremos contar<br>
         contigo en este día tan especial"
       </p>
@@ -956,7 +951,7 @@
     </div>
   </div>
 
-  <!-- Envelope abierto + sello -->
+  <!-- Sobre + sello al pie -->
   <div class="rsvp-bottom rv env d2">
     <img class="rsvp-bottom__envelope"
          src="04.Demo_invitacion_Alejandra & Mario_files/285ff6afcade344c8664da9fece19334.png"
@@ -967,40 +962,34 @@
   </div>
 
   <div class="spacer"></div>
-
-</div><!-- /page -->
+</div>
 
 
 <script>
 /* ── Scroll Reveal ── */
-const io = new IntersectionObserver((entries) => {
+const io = new IntersectionObserver(entries => {
   entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.classList.remove('rv');
-      io.unobserve(e.target);
-    }
+    if (e.isIntersecting) { e.target.classList.remove('rv'); io.unobserve(e.target); }
   });
 }, { threshold: 0.10 });
 document.querySelectorAll('.rv').forEach(el => io.observe(el));
 
 
-/* ── Music Player toggle ── */
-const audio   = document.getElementById('audioEl');
-const tapZone = document.getElementById('musicTap');
-let playing   = false;
-if (tapZone) {
-  tapZone.addEventListener('click', () => {
-    if (!audio.src) return;
-    playing ? audio.pause() : audio.play().catch(() => {});
-    playing = !playing;
-  });
-}
+/* ── Music ── */
+const audio = document.getElementById('audioEl');
+const tap   = document.getElementById('musicTap');
+let playing = false;
+tap && tap.addEventListener('click', () => {
+  if (!audio.src) return;
+  playing ? audio.pause() : audio.play().catch(() => {});
+  playing = !playing;
+});
 
 
-/* ── Countdown (días / horas / minutos) ── */
+/* ── Countdown ── */
 const BODA = new Date('2027-02-14T17:00:00');
 
-function setFlip(id, val) {
+function flip(id, val) {
   const el = document.getElementById(id);
   if (!el || el.textContent === val) return;
   el.classList.remove('flip');
@@ -1011,16 +1000,11 @@ function setFlip(id, val) {
 }
 
 function tick() {
-  const diff = BODA - new Date();
-  if (diff <= 0) {
-    setFlip('cdDays', '0');
-    setFlip('cdH', '00');
-    setFlip('cdM', '00');
-    return;
-  }
-  setFlip('cdDays', String(Math.floor(diff / 86400000)));
-  setFlip('cdH',    String(Math.floor((diff % 86400000) / 3600000)).padStart(2,'0'));
-  setFlip('cdM',    String(Math.floor((diff % 3600000)  / 60000)).padStart(2,'0'));
+  const d = BODA - new Date();
+  if (d <= 0) { flip('cdDays','0'); flip('cdH','00'); flip('cdM','00'); return; }
+  flip('cdDays', String(Math.floor(d / 86400000)));
+  flip('cdH',    String(Math.floor((d % 86400000) / 3600000)).padStart(2,'0'));
+  flip('cdM',    String(Math.floor((d % 3600000)  / 60000)).padStart(2,'0'));
 }
 tick();
 setInterval(tick, 30000);
