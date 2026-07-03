@@ -1,0 +1,1304 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5">
+<title>Valentina &amp; Marco — Villa del Balbianello · 12 Septiembre 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+
+:root{
+  --navy:    #1a5276;
+  --navy2:   #0c2340;
+  --mid:     #2e6da4;
+  --gold:    #c4a35a;
+  --gold2:   #a8863e;
+  --bg:      #f8fbfd;
+  --bg2:     #f0f6fa;
+  --text:    #0c2340;
+  --muted:   #5a7a94;
+  --border:  rgba(26,82,118,.15);
+  --card:    #ffffff;
+}
+
+body{
+  font-family:'Cormorant Garamond',serif;
+  background:var(--bg);
+  color:var(--text);
+  overflow-x:hidden;
+}
+
+/* ── scroll reveal ── */
+.rv  {opacity:0;transform:translateY(28px);transition:.75s ease}
+.rv-l{opacity:0;transform:translateX(-28px);transition:.75s ease}
+.rv-r{opacity:0;transform:translateX(28px);transition:.75s ease}
+.rv-s{opacity:0;transform:scale(.94);transition:.75s ease}
+.rv.in,.rv-l.in,.rv-r.in,.rv-s.in{opacity:1;transform:none}
+
+/* ════════════════════════════
+   HERO
+════════════════════════════ */
+.hero{
+  position:relative;
+  height:100svh;
+  min-height:600px;
+  max-height:900px;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+}
+
+.hero__bg{
+  position:absolute;
+  inset:-10%;
+  z-index:0;
+  overflow:hidden;
+}
+
+.hero__bg-img{
+  width:120%;
+  height:120%;
+  object-fit:cover;
+  object-position:center 30%;
+  animation:cinematicDrift 32s ease-in-out infinite alternate;
+  transform-origin:center center;
+}
+
+@keyframes cinematicDrift{
+  0%  {transform:scale(1.18) translateX(-2%) translateY(0)}
+  50% {transform:scale(1.13) translateX(0) translateY(-1.5%)}
+  100%{transform:scale(1.2)  translateX(2%) translateY(-2%)}
+}
+
+/* blue overlay + gradient */
+.hero__overlay{
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(12,35,64,.50) 0%,
+      rgba(26,82,118,.38) 40%,
+      rgba(12,35,64,.72) 100%
+    );
+  z-index:1;
+}
+
+/* shimmer effect */
+.hero__shimmer{
+  position:absolute;
+  inset:0;
+  background:radial-gradient(ellipse 80% 40% at 50% 60%, rgba(46,109,164,.15) 0%, transparent 70%);
+  z-index:2;
+  animation:shimmerPulse 8s ease-in-out infinite alternate;
+  pointer-events:none;
+}
+@keyframes shimmerPulse{
+  0%  {opacity:.4}
+  100%{opacity:1}
+}
+
+/* petals container */
+.hero__petals{
+  position:absolute;
+  inset:0;
+  z-index:3;
+  pointer-events:none;
+  overflow:hidden;
+}
+
+.petal{
+  position:absolute;
+  top:-10%;
+  border-radius:150% 0 150% 0 / 100% 0 100% 0;
+  pointer-events:none;
+  will-change:transform,opacity;
+  animation:petalFall linear forwards;
+}
+@keyframes petalFall{
+  0%  {transform:translateY(0) translateX(0) rotate(0deg) scale(1);opacity:0}
+  5%  {opacity:.9}
+  85% {opacity:.7}
+  100%{transform:translateY(110vh) translateX(var(--drift,40px)) rotate(var(--spin,540deg)) scale(.7);opacity:0}
+}
+
+/* hero content */
+.hero__content{
+  position:relative;
+  z-index:10;
+  padding:20px 24px;
+  color:#fff;
+  max-width:420px;
+  width:100%;
+}
+
+.hero__pretitle{
+  font-family:'Montserrat',sans-serif;
+  font-size:.62rem;
+  font-weight:500;
+  letter-spacing:.32em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.85);
+  margin-bottom:16px;
+}
+
+.hero__names{
+  font-family:'Great Vibes',cursive;
+  font-size:3.8rem;
+  line-height:1.1;
+  color:#fff;
+  text-shadow:0 2px 20px rgba(0,0,0,.3);
+  margin-bottom:16px;
+}
+
+.hero__date{
+  font-family:'Cormorant Garamond',serif;
+  font-size:.92rem;
+  font-weight:300;
+  letter-spacing:.1em;
+  color:rgba(255,255,255,.9);
+  margin-bottom:6px;
+}
+
+.hero__venue{
+  font-family:'Cormorant Garamond',serif;
+  font-size:.85rem;
+  font-style:italic;
+  color:rgba(255,255,255,.75);
+  margin-bottom:28px;
+}
+
+.hero__btn{
+  display:inline-block;
+  padding:13px 36px;
+  border:1.5px solid rgba(255,255,255,.7);
+  color:#fff;
+  font-family:'Montserrat',sans-serif;
+  font-size:.6rem;
+  font-weight:500;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  text-decoration:none;
+  border-radius:50px;
+  background:rgba(255,255,255,.08);
+  backdrop-filter:blur(4px);
+  cursor:pointer;
+  transition:background .25s,border-color .25s;
+}
+.hero__btn:hover{background:rgba(255,255,255,.18);border-color:#fff}
+
+.hero__scroll{
+  position:absolute;
+  bottom:28px;
+  left:50%;
+  transform:translateX(-50%);
+  z-index:10;
+  color:rgba(255,255,255,.7);
+  animation:bounceDown 2s ease-in-out infinite;
+  cursor:pointer;
+}
+.hero__scroll svg{width:22px;height:22px}
+@keyframes bounceDown{
+  0%,100%{transform:translateX(-50%) translateY(0)}
+  50%{transform:translateX(-50%) translateY(6px)}
+}
+
+/* ════════════════════════════
+   SECTION HELPERS
+════════════════════════════ */
+.sec{padding:56px 24px}
+.sec--light{background:var(--bg2)}
+.sec--white{background:var(--card)}
+
+.sec__cross{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:18px 0 0;
+  color:var(--border);
+}
+.sec__cross svg{width:18px;height:18px;color:var(--muted);opacity:.4}
+
+.sec__heading{
+  font-family:'Great Vibes',cursive;
+  font-size:2.4rem;
+  color:var(--navy);
+  text-align:center;
+  margin-bottom:6px;
+}
+
+.sec__sub{
+  font-family:'Cormorant Garamond',serif;
+  font-size:.88rem;
+  font-style:italic;
+  color:var(--muted);
+  text-align:center;
+  margin-bottom:32px;
+}
+
+/* ════════════════════════════
+   DETAILS INTRO
+════════════════════════════ */
+.details-intro{
+  padding:52px 24px 48px;
+  text-align:center;
+  background:var(--bg2);
+}
+
+.details-intro .sec__heading{
+  font-size:2.6rem;
+  margin-bottom:8px;
+}
+
+/* ════════════════════════════
+   LOCATION
+════════════════════════════ */
+.location{
+  padding:40px 20px 48px;
+  background:var(--card);
+}
+
+.location__card{
+  max-width:380px;
+  margin:0 auto;
+  border-radius:16px;
+  overflow:hidden;
+  box-shadow:0 4px 24px rgba(26,82,118,.1);
+  border:1px solid var(--border);
+}
+
+.location__photo{
+  width:100%;
+  height:200px;
+  object-fit:cover;
+  object-position:center 40%;
+  display:block;
+}
+
+.location__body{
+  padding:24px 20px;
+}
+
+.location__name{
+  font-family:'Playfair Display',serif;
+  font-size:1.15rem;
+  font-weight:600;
+  color:var(--text);
+  margin-bottom:16px;
+}
+
+.location__row{
+  display:flex;
+  align-items:flex-start;
+  gap:10px;
+  margin-bottom:10px;
+}
+
+.location__icon{
+  flex-shrink:0;
+  width:18px;
+  height:18px;
+  color:var(--navy);
+  margin-top:1px;
+}
+
+.location__info{
+  font-family:'Cormorant Garamond',serif;
+  font-size:.88rem;
+  color:var(--muted);
+  line-height:1.4;
+}
+
+.btn-primary{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  width:100%;
+  padding:13px 20px;
+  background:var(--navy);
+  color:#fff;
+  font-family:'Montserrat',sans-serif;
+  font-size:.6rem;
+  font-weight:500;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  border-radius:50px;
+  border:none;
+  cursor:pointer;
+  text-decoration:none;
+  margin-top:16px;
+  transition:background .2s;
+}
+.btn-primary:hover{background:var(--navy2)}
+
+.btn-secondary{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  width:100%;
+  padding:12px 20px;
+  background:transparent;
+  color:var(--navy);
+  font-family:'Montserrat',sans-serif;
+  font-size:.6rem;
+  font-weight:500;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  border-radius:50px;
+  border:1.5px solid var(--border);
+  cursor:pointer;
+  text-decoration:none;
+  margin-top:10px;
+  transition:background .2s,border-color .2s;
+}
+.btn-secondary:hover{background:var(--bg2);border-color:var(--navy)}
+
+.btn-icon{width:14px;height:14px}
+
+/* ════════════════════════════
+   PROGRAM
+════════════════════════════ */
+.program{
+  padding:48px 24px;
+  background:var(--bg2);
+}
+
+.timeline{
+  position:relative;
+  max-width:380px;
+  margin:0 auto;
+  padding-left:52px;
+}
+
+.timeline::before{
+  content:'';
+  position:absolute;
+  left:18px;
+  top:20px;
+  bottom:20px;
+  width:1.5px;
+  background:linear-gradient(to bottom, var(--border) 0%, rgba(26,82,118,.12) 100%);
+}
+
+.tl-item{
+  position:relative;
+  margin-bottom:32px;
+}
+.tl-item:last-child{margin-bottom:0}
+
+.tl-item__icon{
+  position:absolute;
+  left:-52px;
+  top:0;
+  width:36px;
+  height:36px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:1rem;
+  flex-shrink:0;
+  border:2px solid var(--card);
+  box-shadow:0 2px 8px rgba(0,0,0,.1);
+}
+
+.tl-item__icon--olive{background:#4a6741;color:#fff}
+.tl-item__icon--gold {background:var(--gold);color:#fff}
+
+.tl-item__time{
+  display:inline-block;
+  background:var(--navy);
+  color:#fff;
+  font-family:'Montserrat',sans-serif;
+  font-size:.56rem;
+  font-weight:500;
+  letter-spacing:.1em;
+  padding:3px 10px;
+  border-radius:20px;
+  margin-bottom:6px;
+}
+
+.tl-item__title{
+  font-family:'Playfair Display',serif;
+  font-size:1rem;
+  font-weight:500;
+  color:var(--text);
+  margin-bottom:4px;
+}
+
+.tl-item__desc{
+  font-family:'Cormorant Garamond',serif;
+  font-size:.85rem;
+  font-style:italic;
+  color:var(--muted);
+  line-height:1.55;
+}
+
+/* ════════════════════════════
+   ACCOMMODATION
+════════════════════════════ */
+.accommodation{
+  padding:48px 24px;
+  background:var(--card);
+}
+
+.hotel-list{
+  max-width:380px;
+  margin:0 auto;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+.hotel-card{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  padding:16px;
+  border-radius:12px;
+  border:1px solid var(--border);
+  background:var(--bg2);
+  transition:box-shadow .2s;
+}
+.hotel-card:hover{box-shadow:0 4px 16px rgba(26,82,118,.08)}
+
+.hotel-card__icon{
+  width:40px;
+  height:40px;
+  border-radius:10px;
+  background:rgba(26,82,118,.1);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-shrink:0;
+  color:var(--navy);
+}
+
+.hotel-card__name{
+  font-family:'Playfair Display',serif;
+  font-size:.92rem;
+  font-weight:500;
+  color:var(--text);
+  margin-bottom:2px;
+}
+
+.hotel-card__type{
+  font-family:'Cormorant Garamond',serif;
+  font-size:.78rem;
+  font-style:italic;
+  color:var(--muted);
+}
+
+/* ════════════════════════════
+   FAQ
+════════════════════════════ */
+.faq{
+  padding:48px 24px;
+  background:var(--bg2);
+}
+
+.faq-list{
+  max-width:380px;
+  margin:0 auto;
+  display:flex;
+  flex-direction:column;
+  gap:0;
+  border:1px solid var(--border);
+  border-radius:12px;
+  overflow:hidden;
+  background:var(--card);
+}
+
+.faq-item{
+  border-bottom:1px solid var(--border);
+}
+.faq-item:last-child{border-bottom:none}
+
+.faq-item__header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:18px 20px;
+  cursor:pointer;
+  user-select:none;
+  gap:12px;
+  transition:background .15s;
+}
+.faq-item__header:hover{background:var(--bg2)}
+
+.faq-item__q{
+  font-family:'Cormorant Garamond',serif;
+  font-size:.92rem;
+  color:var(--text);
+  line-height:1.4;
+}
+
+.faq-item__arrow{
+  flex-shrink:0;
+  width:18px;
+  height:18px;
+  color:var(--navy);
+  transition:transform .3s ease;
+}
+
+.faq-item.open .faq-item__arrow{transform:rotate(180deg)}
+
+.faq-item__body{
+  max-height:0;
+  overflow:hidden;
+  transition:max-height .35s ease,padding .3s ease;
+  padding:0 20px;
+}
+.faq-item.open .faq-item__body{
+  max-height:300px;
+  padding-bottom:18px;
+}
+
+.faq-item__a{
+  font-family:'Cormorant Garamond',serif;
+  font-size:.88rem;
+  font-style:italic;
+  color:var(--muted);
+  line-height:1.65;
+}
+
+/* ════════════════════════════
+   GIFTS
+════════════════════════════ */
+.gifts{
+  padding:48px 24px;
+  background:var(--card);
+  text-align:center;
+}
+
+.gifts__icon{
+  width:48px;
+  height:48px;
+  margin:0 auto 12px;
+  color:var(--navy);
+}
+
+.gifts__msg{
+  font-family:'Cormorant Garamond',serif;
+  font-size:.92rem;
+  font-style:italic;
+  color:var(--muted);
+  max-width:320px;
+  margin:0 auto 24px;
+  line-height:1.7;
+}
+
+.gifts__card{
+  max-width:340px;
+  margin:0 auto;
+  background:var(--bg2);
+  border-radius:12px;
+  border:1px solid var(--border);
+  padding:20px;
+  text-align:left;
+}
+
+.gifts__field{
+  margin-bottom:16px;
+}
+
+.gifts__field-lbl{
+  font-family:'Montserrat',sans-serif;
+  font-size:.52rem;
+  font-weight:600;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:var(--muted);
+  display:block;
+  margin-bottom:4px;
+}
+
+.gifts__field-val{
+  font-family:'Cormorant Garamond',serif;
+  font-size:.92rem;
+  color:var(--text);
+}
+
+.gifts__iban-wrap{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:10px 12px;
+  margin-top:12px;
+}
+
+.gifts__iban{
+  font-family:'Montserrat',sans-serif;
+  font-size:.68rem;
+  letter-spacing:.04em;
+  color:var(--text);
+  flex:1;
+  word-break:break-all;
+}
+
+.btn-copy{
+  flex-shrink:0;
+  display:flex;
+  align-items:center;
+  gap:5px;
+  padding:8px 14px;
+  background:var(--navy);
+  color:#fff;
+  font-family:'Montserrat',sans-serif;
+  font-size:.56rem;
+  font-weight:500;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+  transition:background .2s;
+  white-space:nowrap;
+}
+.btn-copy:hover{background:var(--navy2)}
+.btn-copy.copied{background:#2e7d32}
+
+.gifts__note{
+  font-family:'Cormorant Garamond',serif;
+  font-size:.74rem;
+  font-style:italic;
+  color:var(--muted);
+  margin-top:10px;
+  display:block;
+}
+
+/* ════════════════════════════
+   RSVP
+════════════════════════════ */
+.rsvp{
+  padding:48px 24px;
+  background:var(--bg2);
+  text-align:center;
+}
+
+.rsvp__form{
+  max-width:360px;
+  margin:0 auto;
+  background:var(--card);
+  border-radius:16px;
+  padding:28px 22px;
+  border:1px solid var(--border);
+  box-shadow:0 4px 20px rgba(26,82,118,.07);
+  text-align:left;
+}
+
+.rsvp__field-lbl{
+  font-family:'Montserrat',sans-serif;
+  font-size:.56rem;
+  font-weight:600;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--muted);
+  display:block;
+  margin-bottom:5px;
+  margin-top:14px;
+}
+
+.rsvp__input{
+  width:100%;
+  border:1px solid var(--border);
+  border-radius:8px;
+  background:var(--bg2);
+  padding:10px 12px;
+  font-family:'Cormorant Garamond',serif;
+  font-size:.92rem;
+  color:var(--text);
+  outline:none;
+  transition:border-color .2s;
+}
+.rsvp__input:focus{border-color:var(--navy)}
+
+.rsvp__question{
+  font-family:'Cormorant Garamond',serif;
+  font-size:.9rem;
+  font-style:italic;
+  color:var(--muted);
+  display:block;
+  text-align:center;
+  margin:18px 0 12px;
+  line-height:1.5;
+}
+
+.rsvp__opts{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  margin-bottom:18px;
+}
+
+.rsvp__opt{
+  padding:11px 14px;
+  border:1.5px solid var(--border);
+  border-radius:8px;
+  background:var(--bg2);
+  font-family:'Cormorant Garamond',serif;
+  font-size:.88rem;
+  color:var(--muted);
+  cursor:pointer;
+  text-align:center;
+  transition:all .2s;
+}
+.rsvp__opt:hover,.rsvp__opt.sel{
+  background:var(--navy);
+  color:#fff;
+  border-color:var(--navy);
+}
+
+.rsvp__submit{
+  width:100%;
+  padding:13px;
+  background:var(--navy);
+  color:#fff;
+  font-family:'Montserrat',sans-serif;
+  font-size:.62rem;
+  font-weight:500;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  border:none;
+  border-radius:50px;
+  cursor:pointer;
+  transition:background .2s;
+}
+.rsvp__submit:hover{background:var(--navy2)}
+
+.rsvp__deadline{
+  font-family:'Cormorant Garamond',serif;
+  font-size:.76rem;
+  font-style:italic;
+  color:var(--muted);
+  text-align:center;
+  margin-top:12px;
+  line-height:1.5;
+  display:block;
+}
+
+/* ════════════════════════════
+   FOOTER
+════════════════════════════ */
+.footer{
+  padding:40px 24px 52px;
+  background:var(--card);
+  text-align:center;
+  border-top:1px solid var(--border);
+}
+
+.footer__top{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  font-family:'Montserrat',sans-serif;
+  font-size:.56rem;
+  font-weight:500;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:var(--muted);
+  margin-bottom:28px;
+  cursor:pointer;
+  text-decoration:none;
+  transition:color .2s;
+}
+.footer__top:hover{color:var(--navy)}
+.footer__top svg{width:14px;height:14px}
+
+.footer__cross{
+  color:var(--border);
+  margin-bottom:24px;
+  font-size:1.1rem;
+  letter-spacing:.2em;
+}
+
+.footer__names{
+  font-family:'Great Vibes',cursive;
+  font-size:2.4rem;
+  color:var(--navy);
+  margin-bottom:6px;
+}
+
+.footer__date{
+  font-family:'Cormorant Garamond',serif;
+  font-size:.82rem;
+  letter-spacing:.1em;
+  color:var(--muted);
+  margin-bottom:20px;
+}
+
+.footer__made{
+  font-family:'Cormorant Garamond',serif;
+  font-size:.78rem;
+  font-style:italic;
+  color:var(--muted);
+  opacity:.7;
+}
+
+.footer__made a{
+  color:var(--gold2);
+  text-decoration:none;
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════ HERO ═══════════ -->
+<section class="hero" id="inicio">
+  <div class="hero__bg">
+    <img class="hero__bg-img"
+         src="Como — Plantilla de Invitación de Boda _ Pressed Love_files/venue-photo-bf5e24a3.jpeg"
+         alt="Villa del Balbianello, Lago Como">
+  </div>
+  <div class="hero__overlay"></div>
+  <div class="hero__shimmer"></div>
+  <div class="hero__petals" id="petalsContainer"></div>
+
+  <div class="hero__content">
+    <p class="hero__pretitle">We're getting married</p>
+    <h1 class="hero__names">Valentina &amp; Marco</h1>
+    <p class="hero__date">Saturday, September 12, 2026</p>
+    <p class="hero__venue">Villa del Balbianello</p>
+    <a class="hero__btn" href="#detalles">Save the Date</a>
+  </div>
+
+  <a class="hero__scroll" href="#detalles" aria-label="Ver detalles">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="6 9 12 15 18 9"/>
+    </svg>
+  </a>
+</section>
+
+<!-- ═══════════ DETAILS INTRO ═══════════ -->
+<section class="details-intro" id="detalles">
+  <div class="sec__cross">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+    </svg>
+  </div>
+  <h2 class="sec__heading rv" style="margin-top:20px">Details of the Day</h2>
+  <p class="sec__sub rv" style="transition-delay:.1s">Everything you need to know about our special day</p>
+</section>
+
+<!-- ═══════════ LOCATION ═══════════ -->
+<section class="location">
+  <div class="location__card rv-s">
+    <img class="location__photo"
+         src="Como — Plantilla de Invitación de Boda _ Pressed Love_files/venue-photo-bf5e24a3.jpeg"
+         alt="Villa del Balbianello">
+    <div class="location__body">
+      <h3 class="location__name">Location</h3>
+      <p style="font-family:'Great Vibes',cursive;font-size:1.4rem;color:var(--navy);margin-bottom:16px">Villa del Balbianello</p>
+
+      <div class="location__row">
+        <svg class="location__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/>
+        </svg>
+        <span class="location__info">Lenno, Lake Como, Italy</span>
+      </div>
+
+      <div class="location__row">
+        <svg class="location__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+        </svg>
+        <span class="location__info">Saturday, September 12, 2026</span>
+      </div>
+
+      <div class="location__row">
+        <svg class="location__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+        </svg>
+        <span class="location__info">From 4:00 PM</span>
+      </div>
+
+      <a class="btn-primary" href="https://www.google.com/maps/search/?api=1&query=Villa+del+Balbianello+Lake+Como+Italy" target="_blank">
+        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/>
+        </svg>
+        How to get there
+      </a>
+      <button class="btn-secondary" onclick="addToCalendar()">
+        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+        </svg>
+        Add to Calendar
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ PROGRAM OF THE DAY ═══════════ -->
+<section class="program sec--light">
+  <div class="sec__cross">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+    </svg>
+  </div>
+  <h2 class="sec__heading rv" style="margin-top:20px">Program of the Day</h2>
+  <p class="sec__sub rv" style="transition-delay:.1s">Join us through every moment of our celebration</p>
+
+  <div class="timeline">
+    <div class="tl-item rv" style="transition-delay:.05s">
+      <div class="tl-item__icon tl-item__icon--olive">⛵</div>
+      <span class="tl-item__time">15:00</span>
+      <p class="tl-item__title">Guest Arrival by Boat</p>
+      <p class="tl-item__desc">A scenic boat ride across the lake to the villa</p>
+    </div>
+
+    <div class="tl-item rv" style="transition-delay:.12s">
+      <div class="tl-item__icon tl-item__icon--gold">⛪</div>
+      <span class="tl-item__time">16:00</span>
+      <p class="tl-item__title">Ceremony on the Terrace</p>
+      <p class="tl-item__desc">Exchange vows overlooking the breathtaking lake panorama</p>
+    </div>
+
+    <div class="tl-item rv" style="transition-delay:.2s">
+      <div class="tl-item__icon tl-item__icon--olive">🍾</div>
+      <span class="tl-item__time">17:30</span>
+      <p class="tl-item__title">Aperitivo in the Gardens</p>
+      <p class="tl-item__desc">Prosecco, bruschetta, and Italian delicacies among the cypress trees</p>
+    </div>
+
+    <div class="tl-item rv" style="transition-delay:.28s">
+      <div class="tl-item__icon tl-item__icon--gold">🍽️</div>
+      <span class="tl-item__time">19:30</span>
+      <p class="tl-item__title">Dinner Under the Stars</p>
+      <p class="tl-item__desc">A candlelit Italian feast in the villa's grand loggia</p>
+    </div>
+
+    <div class="tl-item rv" style="transition-delay:.36s">
+      <div class="tl-item__icon tl-item__icon--olive">🎶</div>
+      <span class="tl-item__time">22:00</span>
+      <p class="tl-item__title">Dancing by the Lake</p>
+      <p class="tl-item__desc">Live music and dancing as the lake shimmers in the moonlight</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ ACCOMMODATION ═══════════ -->
+<section class="accommodation">
+  <div class="sec__cross">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+    </svg>
+  </div>
+  <h2 class="sec__heading rv" style="margin-top:20px">Accommodation</h2>
+  <p class="sec__sub rv" style="transition-delay:.1s">We've compiled some options for you to stay nearby</p>
+
+  <div class="hotel-list">
+    <div class="hotel-card rv" style="transition-delay:.08s">
+      <div class="hotel-card__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/><rect x="13" y="13" width="4" height="8" rx="1"/>
+        </svg>
+      </div>
+      <div>
+        <p class="hotel-card__name">Grand Hotel Tremezzo</p>
+        <p class="hotel-card__type">Nearby hotel</p>
+      </div>
+    </div>
+
+    <div class="hotel-card rv" style="transition-delay:.16s">
+      <div class="hotel-card__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/><rect x="13" y="13" width="4" height="8" rx="1"/>
+        </svg>
+      </div>
+      <div>
+        <p class="hotel-card__name">Villa d'Este</p>
+        <p class="hotel-card__type">Nearby hotel</p>
+      </div>
+    </div>
+
+    <div class="hotel-card rv" style="transition-delay:.24s">
+      <div class="hotel-card__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/><rect x="13" y="13" width="4" height="8" rx="1"/>
+        </svg>
+      </div>
+      <div>
+        <p class="hotel-card__name">Hotel Bellagio</p>
+        <p class="hotel-card__type">Nearby hotel</p>
+      </div>
+    </div>
+
+    <div class="hotel-card rv" style="transition-delay:.32s">
+      <div class="hotel-card__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/><rect x="13" y="13" width="4" height="8" rx="1"/>
+        </svg>
+      </div>
+      <div>
+        <p class="hotel-card__name">Il Sereno Lago di Como</p>
+        <p class="hotel-card__type">Nearby hotel</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ FAQ ═══════════ -->
+<section class="faq sec--light">
+  <div class="sec__cross">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+    </svg>
+  </div>
+  <h2 class="sec__heading rv" style="margin-top:20px">Frequently Asked Questions</h2>
+  <p class="sec__sub rv" style="transition-delay:.1s;margin-bottom:24px">Everything you might want to know</p>
+
+  <div class="faq-list rv" style="transition-delay:.15s">
+    <div class="faq-item">
+      <div class="faq-item__header" onclick="toggleFaq(this)">
+        <span class="faq-item__q">How do we get to the villa?</span>
+        <svg class="faq-item__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+      </div>
+      <div class="faq-item__body">
+        <p class="faq-item__a">A private boat will depart from Lenno pier at 2:30 PM. We recommend arriving in Lenno by car or train. Detailed directions will be sent closer to the date.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-item__header" onclick="toggleFaq(this)">
+        <span class="faq-item__q">What should we wear?</span>
+        <svg class="faq-item__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+      </div>
+      <div class="faq-item__body">
+        <p class="faq-item__a">Black tie optional. Think elegant summer — long dresses, light suits, and comfortable shoes for garden paths. The ceremony is outdoors, so bring a light wrap for the evening breeze.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-item__header" onclick="toggleFaq(this)">
+        <span class="faq-item__q">What about the weather?</span>
+        <svg class="faq-item__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+      </div>
+      <div class="faq-item__body">
+        <p class="faq-item__a">September on Lake Como is typically warm and sunny (22–26°C). We have a stunning indoor backup space in the villa should the weather surprise us.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-item__header" onclick="toggleFaq(this)">
+        <span class="faq-item__q">Can children attend?</span>
+        <svg class="faq-item__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+      </div>
+      <div class="faq-item__body">
+        <p class="faq-item__a">We love your little ones! Children are warmly welcome. We'll have a dedicated kids' area with activities and a babysitter available during dinner.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ GIFTS ═══════════ -->
+<section class="gifts">
+  <div class="sec__cross">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+    </svg>
+  </div>
+  <svg class="gifts__icon rv-s" style="margin-top:20px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+    <path d="M20 12v10H4V12"/><rect x="2" y="7" width="20" height="5" rx="1"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/>
+  </svg>
+  <h2 class="sec__heading rv" style="transition-delay:.05s">Gifts</h2>
+  <p class="gifts__msg rv" style="transition-delay:.1s">Your presence at our celebration on Lake Como is the greatest gift we could ask for. For those who wish to contribute, a gift towards our honeymoon along the Amalfi Coast would bring us immense joy.</p>
+
+  <div class="gifts__card rv" style="transition-delay:.15s">
+    <div class="gifts__field">
+      <span class="gifts__field-lbl">Bank</span>
+      <span class="gifts__field-val">Banca Intesa Sanpaolo</span>
+    </div>
+    <div class="gifts__field">
+      <span class="gifts__field-lbl">Account Holder</span>
+      <span class="gifts__field-val">Valentina &amp; Marco</span>
+    </div>
+    <div class="gifts__field" style="margin-bottom:0">
+      <span class="gifts__field-lbl">Bank Account</span>
+    </div>
+    <div class="gifts__iban-wrap">
+      <span class="gifts__iban">IT00 0000 0000 0000 0000 0000 000</span>
+      <button class="btn-copy" id="copyBtn" onclick="copyIban()">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+        </svg>
+        Copy
+      </button>
+    </div>
+    <span class="gifts__note">* Please include your name as reference so we know who to thank!</span>
+  </div>
+</section>
+
+<!-- ═══════════ RSVP ═══════════ -->
+<section class="rsvp">
+  <div class="sec__cross">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+    </svg>
+  </div>
+  <h2 class="sec__heading rv" style="margin-top:20px">Confirm Your Attendance</h2>
+  <p class="sec__sub rv" style="transition-delay:.1s;margin-bottom:24px">Please let us know if you can make it</p>
+
+  <form class="rsvp__form rv-s" style="transition-delay:.15s" onsubmit="submitRsvp(event)">
+    <label class="rsvp__field-lbl" for="rsvp-name">Your Name</label>
+    <input class="rsvp__input" id="rsvp-name" type="text" placeholder="Full name">
+
+    <label class="rsvp__field-lbl" for="rsvp-email">Email</label>
+    <input class="rsvp__input" id="rsvp-email" type="email" placeholder="your@email.com">
+
+    <span class="rsvp__question">Will you be joining us at Villa del Balbianello?</span>
+
+    <div class="rsvp__opts">
+      <button type="button" class="rsvp__opt" onclick="selectOpt(this)">Yes, I'll be there! 🎉</button>
+      <button type="button" class="rsvp__opt" onclick="selectOpt(this)">Sadly, I can't make it</button>
+    </div>
+
+    <button type="submit" class="rsvp__submit">Confirm Attendance</button>
+    <span class="rsvp__deadline">We'd appreciate your reply by July 30, 2026</span>
+  </form>
+</section>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer class="footer">
+  <a href="#inicio" class="footer__top">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <polyline points="18 15 12 9 6 15"/>
+    </svg>
+    Back to top
+  </a>
+
+  <div class="footer__cross">✦</div>
+
+  <p class="footer__names">Valentina &amp; Marco</p>
+  <p class="footer__date">September 12, 2026</p>
+  <p class="footer__made">♥ Made by <a href="#">Pressed Love</a></p>
+</footer>
+
+<script>
+/* ── Scroll Reveal ── */
+const rvEls = document.querySelectorAll('.rv,.rv-l,.rv-r,.rv-s');
+const rvObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); rvObs.unobserve(e.target); } });
+},{ threshold:.1 });
+rvEls.forEach(el => rvObs.observe(el));
+
+/* ── Falling Petals ── */
+(function initPetals(){
+  const container = document.getElementById('petalsContainer');
+  const colors = ['#f8c6d4','#f0b3c2','#fdd5df','#e8a0b8','#fce4ec','#f9c2d0'];
+  let petalCount = 0;
+
+  function spawnPetal(){
+    if(petalCount > 80) return;
+    const p = document.createElement('div');
+    p.className = 'petal';
+
+    const w = 8 + Math.random()*10;
+    const h = 5 + Math.random()*7;
+    const dur = 4 + Math.random()*5;
+    const delay = Math.random()*2;
+    const drift = (Math.random()-.5)*120;
+    const spin = (Math.random()>.5?1:-1) * (360 + Math.random()*360) + 'deg';
+
+    p.style.cssText = `
+      left:${Math.random()*105}vw;
+      width:${w}px;
+      height:${h}px;
+      background:${colors[Math.floor(Math.random()*colors.length)]};
+      opacity:${.6+Math.random()*.4};
+      animation-duration:${dur}s;
+      animation-delay:${delay}s;
+      --drift:${drift}px;
+      --spin:${spin};
+      transform:rotate(${Math.random()*360}deg);
+    `;
+
+    container.appendChild(p);
+    petalCount++;
+
+    setTimeout(() => {
+      p.remove();
+      petalCount--;
+    }, (dur + delay) * 1000 + 100);
+  }
+
+  // Spawn burst at start
+  for(let i=0;i<20;i++){
+    setTimeout(spawnPetal, i * 100);
+  }
+
+  // Continuous spawning
+  setInterval(spawnPetal, 220);
+})();
+
+/* ── FAQ Accordion ── */
+function toggleFaq(header){
+  const item = header.closest('.faq-item');
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+  if(!isOpen) item.classList.add('open');
+}
+
+/* ── Copy IBAN ── */
+function copyIban(){
+  const iban = 'IT00 0000 0000 0000 0000 0000 000';
+  const btn = document.getElementById('copyBtn');
+  navigator.clipboard.writeText(iban).then(() => {
+    btn.classList.add('copied');
+    btn.innerHTML = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Copied`;
+    setTimeout(()=>{
+      btn.classList.remove('copied');
+      btn.innerHTML = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy`;
+    }, 2500);
+  }).catch(()=>{
+    btn.textContent = 'IT00 0000...';
+  });
+}
+
+/* ── RSVP ── */
+function selectOpt(btn){
+  document.querySelectorAll('.rsvp__opt').forEach(b => b.classList.remove('sel'));
+  btn.classList.add('sel');
+}
+
+function submitRsvp(e){
+  e.preventDefault();
+  const name  = document.getElementById('rsvp-name').value.trim();
+  const email = document.getElementById('rsvp-email').value.trim();
+  const sel   = document.querySelector('.rsvp__opt.sel');
+  if(!name)  { alert('Por favor escribe tu nombre.'); return; }
+  if(!email) { alert('Por favor escribe tu email.'); return; }
+  if(!sel)   { alert('Por favor selecciona una opción de asistencia.'); return; }
+  alert(`¡Gracias, ${name}! Tu respuesta ha sido registrada. ♥`);
+}
+
+/* ── Add to Calendar ── */
+function addToCalendar(){
+  const start = '20260912T160000';
+  const end   = '20260913T000000';
+  const title = encodeURIComponent('Boda Valentina & Marco');
+  const loc   = encodeURIComponent('Villa del Balbianello, Lenno, Lake Como, Italy');
+  window.open(`https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${start}/${end}&location=${loc}`, '_blank');
+}
+</script>
+</body>
+</html>
