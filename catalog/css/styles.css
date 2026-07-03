@@ -51,6 +51,10 @@ ul{list-style:none}
 
 /* ── NAV DROPDOWN (submenús de planes) ── */
 .nav__item--dropdown{position:relative}
+@media(min-width:961px){
+  /* Puente invisible: evita que el submenú se cierre al mover el mouse desde el link hacia la lista */
+  .nav__item--dropdown{padding-bottom:22px;margin-bottom:-22px}
+}
 .nav__drop-trigger{display:inline-flex;align-items:center;gap:6px;cursor:pointer}
 .nav__caret{font-size:.5rem;transition:transform .3s var(--ease)}
 .nav__item--dropdown:hover .nav__caret,.nav__item--dropdown:focus-within .nav__caret{transform:rotate(180deg)}
@@ -380,6 +384,9 @@ ul{list-style:none}
     right:0;
     left:auto;
     width:260px;
+    max-height:calc(100vh - var(--nav-h) - 24px);
+    overflow-y:auto;
+    -webkit-overflow-scrolling:touch;
     background:#0c0c0c;
     border:1px solid rgba(201,160,84,.28);
     border-radius:14px;
@@ -419,25 +426,31 @@ ul{list-style:none}
   .nav__link--special{color:var(--special)!important}
   .nav__link--special:hover{color:#c4b5fd!important;background:rgba(167,139,250,.1)!important}
 
-  /* Submenús de planes: en móvil quedan siempre expandidos dentro del panel */
-  .nav__caret{display:none}
+  /* Submenús de planes: acordeón — colapsados hasta que se presiona la categoría */
+  .nav__drop-trigger{display:flex!important;align-items:center;justify-content:space-between}
   .nav__dropdown{
     position:static;
     opacity:1;pointer-events:auto;
     transform:none;
-    max-height:none;
+    max-height:0;
+    overflow:hidden;
     background:transparent;
     border:none;
     box-shadow:none;
-    padding:0 0 6px 10px;
+    padding:0 0 0 10px;
+    transition:max-height .35s ease;
   }
   .nav__dropdown::before{display:none}
   .nav__dropdown a{
     font-size:.62rem;
     padding:9px 14px;
     color:rgba(240,232,216,.5)!important;
+    white-space:normal;
+    line-height:1.4;
   }
   .nav__dropdown li+li{border-top:none}
+  .nav__item--dropdown.open .nav__caret{transform:rotate(180deg)}
+  .nav__item--dropdown.open .nav__dropdown{max-height:640px;padding-bottom:6px}
 
   /* Flecha apuntando al botón */
   .nav__menu::before{

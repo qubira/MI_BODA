@@ -21,6 +21,7 @@ document.body.appendChild(backdrop);
 function closeNav() {
   toggle.classList.remove('open');
   menu.classList.remove('open');
+  menu.querySelectorAll('.nav__item--dropdown.open').forEach(li => li.classList.remove('open'));
   backdrop.style.opacity = '0';
   backdrop.style.pointerEvents = 'none';
 }
@@ -33,7 +34,24 @@ toggle.addEventListener('click', (e) => {
   backdrop.style.pointerEvents = opening ? 'auto' : 'none';
 });
 backdrop.addEventListener('click', closeNav);
-menu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeNav));
+
+/* Submenús de planes: en escritorio el link navega normal (el hover ya muestra la lista);
+   en móvil, tocar la categoría abre/cierra su acordeón en vez de navegar de una vez. */
+const isMobileNav = () => window.matchMedia('(max-width: 960px)').matches;
+menu.querySelectorAll('.nav__item--dropdown').forEach(item => {
+  const trigger = item.querySelector('.nav__drop-trigger');
+  trigger.addEventListener('click', (e) => {
+    if (!isMobileNav()) return;
+    e.preventDefault();
+    e.stopImmediatePropagation(); // evita que el listener de scroll suave también navegue
+    const isOpen = item.classList.contains('open');
+    menu.querySelectorAll('.nav__item--dropdown.open').forEach(other => other.classList.remove('open'));
+    item.classList.toggle('open', !isOpen);
+  });
+});
+menu.querySelectorAll('a').forEach(a => {
+  if (!a.classList.contains('nav__drop-trigger')) a.addEventListener('click', closeNav);
+});
 
 scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
