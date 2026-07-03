@@ -31,9 +31,45 @@
       </a>
       <ul class="nav__menu" id="navMenu">
         <li><a href="#planes">Planes</a></li>
-        <li><a href="#basico">Básico</a></li>
-        <li><a href="#plus">Plus</a></li>
-        <li><a href="#exclusivo">Exclusivo</a></li>
+        <li class="nav__item nav__item--dropdown">
+          <a href="#basico" class="nav__drop-trigger"
+            >Básico <i class="fa-solid fa-chevron-down nav__caret"></i
+          ></a>
+          <ul class="nav__dropdown">
+            <li><a href="#basico-1">01 · Rosa &amp; Blanco</a></li>
+            <li><a href="#basico-2">02 · Verde &amp; Oro</a></li>
+            <li><a href="#basico-3">03 · Azul &amp; Plata</a></li>
+            <li><a href="#basico-4">04 · Verde Oscuro</a></li>
+            <li><a href="#basico-5">05 · Editorial Crema</a></li>
+            <li><a href="#basico-6">06 · Lino &amp; Calas</a></li>
+            <li><a href="#basico-7">07 · Borgoña &amp; Calas</a></li>
+            <li><a href="#basico-8">08 · Olivo &amp; Encaje</a></li>
+            <li><a href="#basico-9">09 · Azul Toile Navy</a></li>
+            <li><a href="#basico-10">10 · Negro &amp; Oro Formal</a></li>
+            <li><a href="#basico-11">11 · Lino Dorado &amp; Pintura</a></li>
+            <li><a href="#basico-12">12 · Lago Como · Villa</a></li>
+          </ul>
+        </li>
+        <li class="nav__item nav__item--dropdown">
+          <a href="#plus" class="nav__drop-trigger"
+            >Plus <i class="fa-solid fa-chevron-down nav__caret"></i
+          ></a>
+          <ul class="nav__dropdown">
+            <li><a href="#plus-1">01 · Ivory &amp; Champagne</a></li>
+            <li><a href="#plus-2">02 · Borgoña &amp; Nude</a></li>
+            <li><a href="#plus-3">03 · Lavanda &amp; Sage</a></li>
+          </ul>
+        </li>
+        <li class="nav__item nav__item--dropdown">
+          <a href="#exclusivo" class="nav__drop-trigger"
+            >Exclusivo <i class="fa-solid fa-chevron-down nav__caret"></i
+          ></a>
+          <ul class="nav__dropdown">
+            <li><a href="#exclusivo-1">01 · Belle Époque</a></li>
+            <li><a href="#exclusivo-2">02 · Jardin Secret</a></li>
+            <li><a href="#exclusivo-3">03 · Noir Élégant</a></li>
+          </ul>
+        </li>
         <li>
           <a href="#personalizado" class="nav__link--special"
             >✦ Personalizado</a
@@ -348,7 +384,7 @@
           <p class="section__sub">Tres estilos — escoge el que habla de ti</p>
         </div>
         <div class="designs-grid">
-          <div class="design-card reveal" style="--stag: 1">
+          <div class="design-card reveal" id="basico-1" style="--stag: 1">
             <div class="design-card__preview">
               <div class="mock-site">
                 <div class="ms-nav ms-nav--pink">
@@ -405,7 +441,7 @@
               </div>
             </div>
           </div>
-          <div class="design-card reveal" style="--stag: 2">
+          <div class="design-card reveal" id="basico-2" style="--stag: 2">
             <div class="design-card__preview">
               <div class="mock-site">
                 <div class="ms-nav ms-nav--green">
@@ -459,7 +495,7 @@
               </div>
             </div>
           </div>
-          <div class="design-card reveal" style="--stag: 3">
+          <div class="design-card reveal" id="basico-3" style="--stag: 3">
             <div class="design-card__preview">
               <div class="mock-site">
                 <div class="ms-nav ms-nav--blue">
@@ -515,7 +551,7 @@
           </div>
 
           <!-- BASICO 4 -->
-          <div class="design-card reveal" style="--stag: 4">
+          <div class="design-card reveal" id="basico-4" style="--stag: 4">
             <div class="design-card__preview" style="background: #faf8f2">
               <!-- Preview con imagen real del sobre + calas -->
               <div
@@ -713,7 +749,7 @@
             </div>
           </div>
           <!-- BASICO 5 -->
-          <div class="design-card reveal" style="--stag: 5">
+          <div class="design-card reveal" id="basico-5" style="--stag: 5">
             <div class="design-card__preview" style="background: #fefefe">
               <div style="width:100%;height:100%;position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding-bottom:0;background:#fefefe;">
                 <!-- Hero foto oscura -->
@@ -768,7 +804,7 @@
           </div>
 
           <!-- BASICO 6 -->
-          <div class="design-card reveal" style="--stag: 6">
+          <div class="design-card reveal" id="basico-6" style="--stag: 6">
             <div class="design-card__preview" style="background:#EAE4DA;">
               <div style="width:100%;height:100%;position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:14px 10px 10px;background:#EAE4DA;background-image:url('../MI_BODA_PLAN_BASICO_6/13_DEMO_invitacion_Diana y Charles_files/238a90b59d1ed9fc61d826db63392625.png');background-size:160px auto;">
                 <!-- Cala top-right -->
@@ -837,7 +873,7 @@
           </div>
 
           <!-- BASICO 7 -->
-          <div class="design-card reveal" style="--stag: 7">
+          <div class="design-card reveal" id="basico-7" style="--stag: 7">
             <div class="design-card__preview" style="background:#FDFBF7;">
               <div style="width:100%;height:100%;position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding-bottom:0;background:#FDFBF7;">
                 <!-- Lirio top-right -->
@@ -899,7 +935,7 @@
           </div>
 
           <!-- BASICO-8: Romina & Federico — Olivo y Encaje -->
-          <div class="design-card reveal" style="--stag: 8">
+          <div class="design-card reveal" id="basico-8" style="--stag: 8">
             <div class="design-card__preview" style="background:#FFFDF7;">
               <div style="width:100%;height:100%;position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:10px 8px 8px;background:#FFFDF7;">
                 <!-- Calla lily top-right -->
@@ -965,7 +1001,7 @@
           </div>
 
           <!-- BASICO-12: Valentina & Marco — Lago Como (Pressed Love style) -->
-          <div class="design-card reveal" style="--stag: 12">
+          <div class="design-card reveal" id="basico-12" style="--stag: 12">
             <div class="design-card__preview" style="background:#0c2340;">
               <div style="width:100%;height:100%;position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:0;">
                 <!-- Hero photo bg -->
@@ -1023,7 +1059,7 @@
           </div>
 
           <!-- BASICO-11: Jess & Ramiro — Lino Dorado & Pintura -->
-          <div class="design-card reveal" style="--stag: 11">
+          <div class="design-card reveal" id="basico-11" style="--stag: 11">
             <div class="design-card__preview" style="background:#f0ece3;">
               <div style="width:100%;height:100%;position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;padding:10px 8px 8px;background:#f0ece3;">
                 <!-- Linen texture -->
@@ -1079,7 +1115,7 @@
           </div>
 
           <!-- BASICO-10: Ignacio & Isabella — Negro & Oro -->
-          <div class="design-card reveal" style="--stag: 10">
+          <div class="design-card reveal" id="basico-10" style="--stag: 10">
             <div class="design-card__preview" style="background:#FFFFFF;">
               <div style="width:100%;height:100%;position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding-bottom:0;background:#FFFFFF;">
                 <!-- Hero photo -->
@@ -1129,7 +1165,7 @@
           </div>
 
           <!-- BASICO-9: Juliana & Ethan — Azul Toile Navy -->
-          <div class="design-card reveal" style="--stag: 9">
+          <div class="design-card reveal" id="basico-9" style="--stag: 9">
             <div class="design-card__preview" style="background:#FFFFFF;">
               <div style="width:100%;height:100%;position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;padding:10px 8px 8px;background:#fff;">
                 <!-- Toile pattern background -->
@@ -1213,7 +1249,7 @@
           </p>
         </div>
         <div class="designs-grid">
-          <div class="design-card design-card--plus reveal" style="--stag: 1">
+          <div class="design-card design-card--plus reveal" id="plus-1" style="--stag: 1">
             <div class="design-card__preview">
               <div class="mock-site">
                 <div class="ms-nav ms-nav--champagne">
@@ -1273,7 +1309,7 @@
               </div>
             </div>
           </div>
-          <div class="design-card design-card--plus reveal" style="--stag: 2">
+          <div class="design-card design-card--plus reveal" id="plus-2" style="--stag: 2">
             <div class="design-card__preview">
               <div class="mock-site">
                 <div class="ms-nav ms-nav--burgundy">
@@ -1333,7 +1369,7 @@
               </div>
             </div>
           </div>
-          <div class="design-card design-card--plus reveal" style="--stag: 3">
+          <div class="design-card design-card--plus reveal" id="plus-3" style="--stag: 3">
             <div class="design-card__preview">
               <div class="mock-site">
                 <div class="ms-nav ms-nav--lavender">
@@ -1418,6 +1454,7 @@
         <div class="designs-grid">
           <div
             class="design-card design-card--exclusivo reveal"
+            id="exclusivo-1"
             style="--stag: 1"
           >
             <div class="design-card__preview">
@@ -1484,6 +1521,7 @@
           </div>
           <div
             class="design-card design-card--exclusivo reveal"
+            id="exclusivo-2"
             style="--stag: 2"
           >
             <div class="design-card__preview">
@@ -1550,6 +1588,7 @@
           </div>
           <div
             class="design-card design-card--exclusivo design-card--noir reveal"
+            id="exclusivo-3"
             style="--stag: 3"
           >
             <div class="design-card__preview">
