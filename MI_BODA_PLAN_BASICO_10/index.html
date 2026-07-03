@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ignacio & Isabella — Se Casan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400;1,600&family=Cormorant+SC:wght@300;400;600&family=Sacramento&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+/* ─── TOKENS ─────────────────────────────── */
+:root {
+  --bg:     #FFFFFF;
+  --ink:    #1a1a18;
+  --ink2:   #111110;
+  --gray:   #767672;
+  --gold:   #C8A96A;
+  --cream:  #FDFBF7;
+  --ff-script: 'Sacramento', cursive;
+  --ff-disp:   'Cormorant SC', serif;
+  --ff-serif:  'Cormorant Garamond', serif;
+  --ff-sans:   'Montserrat', sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; scroll-behavior: smooth; }
+body {
+  background: #e0e0e0;
+  font-family: var(--ff-sans);
+  color: var(--ink);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+.invite {
+  width: 100%;
+  max-width: 420px;
+  overflow: hidden;
+  box-shadow: 0 0 80px rgba(0,0,0,.25);
+  background: var(--bg);
+  animation: pageIn .9s cubic-bezier(.16,1,.3,1) both;
+}
+
+/* ══════════════════════════════════════════
+   KEYFRAMES
+══════════════════════════════════════════ */
+@keyframes pageIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes floatY {
+  0%,100% { transform: translateY(0); }
+  50%     { transform: translateY(-8px); }
+}
+@keyframes sealDrop {
+  from { transform: scale(0) rotate(-25deg); opacity: 0; }
+  60%  { transform: scale(1.1) rotate(4deg); opacity: 1; }
+  to   { transform: scale(1) rotate(0); }
+}
+@keyframes flipNum {
+  0%   { transform: perspective(400px) rotateX(0deg); }
+  45%  { transform: perspective(400px) rotateX(-92deg); }
+  55%  { transform: perspective(400px) rotateX(92deg); }
+  100% { transform: perspective(400px) rotateX(0deg); }
+}
+@keyframes noteUp {
+  0%   { opacity: 0; transform: translateY(0); }
+  30%  { opacity: 1; }
+  100% { opacity: 0; transform: translateY(-28px) rotate(8deg); }
+}
+@keyframes shimmer {
+  0%,100% { opacity: .65; }
+  50%     { opacity: 1; }
+}
+
+/* ─── SCROLL REVEAL ──────────────────────── */
+.rv, .rv-l, .rv-r, .rv-s {
+  opacity: 0; will-change: opacity, transform;
+}
+.rv   { transform: translateY(28px); transition: opacity .8s ease, transform .8s cubic-bezier(.16,1,.3,1); }
+.rv-l { transform: translateX(-32px); transition: opacity .8s ease, transform .8s cubic-bezier(.16,1,.3,1); }
+.rv-r { transform: translateX(32px);  transition: opacity .8s ease, transform .8s cubic-bezier(.16,1,.3,1); }
+.rv-s { transform: scale(.88);        transition: opacity .7s ease, transform .7s cubic-bezier(.34,1.56,.64,1); }
+.rv.vis,.rv-l.vis,.rv-r.vis,.rv-s.vis { opacity:1; transform:none; }
+.d1{transition-delay:.06s} .d2{transition-delay:.18s} .d3{transition-delay:.3s}
+.d4{transition-delay:.44s} .d5{transition-delay:.6s}  .d6{transition-delay:.78s}
+
+/* ══════════════════════════════════════════
+   HERO — B&W PHOTO + NAMES
+══════════════════════════════════════════ */
+.hero {
+  position: relative;
+  height: 100svh;
+  min-height: 480px;
+  overflow: hidden;
+}
+.hero__photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+  display: block;
+  filter: brightness(.72) contrast(1.05);
+}
+.hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom,
+    rgba(0,0,0,.1) 0%,
+    rgba(0,0,0,.15) 50%,
+    rgba(0,0,0,.5) 100%
+  );
+}
+.hero__text {
+  position: absolute;
+  bottom: 10%;
+  left: 0; right: 0;
+  text-align: center;
+  padding: 0 24px;
+  animation: pageIn 1.1s cubic-bezier(.16,1,.3,1) .25s both;
+}
+.hero__names {
+  font-family: var(--ff-script);
+  font-size: 4rem;
+  color: #fff;
+  line-height: 1;
+  display: block;
+  text-shadow: 0 1px 3px rgba(0,0,0,.3), 0 0 30px rgba(0,0,0,.15);
+  letter-spacing: .02em;
+  -webkit-text-stroke: .3px rgba(255,255,255,.4);
+}
+.hero__amp {
+  font-family: var(--ff-script);
+  font-size: 3rem;
+  color: rgba(255,255,255,.85);
+  display: block;
+  margin: -4px 0;
+  text-shadow: 0 1px 3px rgba(0,0,0,.3);
+}
+.hero__scroll-hint {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  animation: floatY 2.5s ease-in-out infinite;
+}
+.hero__scroll-line {
+  width: 1px;
+  height: 32px;
+  background: rgba(255,255,255,.6);
+}
+.hero__scroll-text {
+  font-family: var(--ff-sans);
+  font-size: .4rem;
+  font-weight: 300;
+  letter-spacing: .26em;
+  color: rgba(255,255,255,.6);
+  text-transform: uppercase;
+}
+
+/* ══════════════════════════════════════════
+   MÚSICA
+══════════════════════════════════════════ */
+.music {
+  padding: 32px 24px 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  position: relative;
+  background: var(--bg);
+}
+.music__label {
+  font-family: var(--ff-sans);
+  font-size: .48rem;
+  font-weight: 400;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--gray);
+  text-align: center;
+}
+.music__player-img {
+  width: 80%;
+  max-width: 280px;
+  display: block;
+  cursor: pointer;
+  transition: transform .3s cubic-bezier(.34,1.56,.64,1), filter .3s;
+  filter: drop-shadow(0 2px 10px rgba(0,0,0,.1));
+}
+.music__player-img:hover { transform: scale(1.03); filter: drop-shadow(0 4px 18px rgba(0,0,0,.2)); }
+.music__notes {
+  position: absolute; top: 18px; right: 24px;
+  pointer-events: none;
+}
+.m-note {
+  font-size: .9rem;
+  color: var(--gray);
+  opacity: 0;
+  animation: noteUp 3.4s ease-in-out infinite;
+  position: absolute; right: 0;
+}
+.m-note:nth-child(2) { animation-delay: 1.2s; right: 14px; }
+.m-note:nth-child(3) { animation-delay: 2.4s; right: 7px; }
+
+/* ══════════════════════════════════════════
+   INVITATION CARD — ENVELOPE + FORMAL CARD
+══════════════════════════════════════════ */
+.invcard {
+  padding: 0 20px 44px;
+  position: relative;
+  background: var(--bg);
+}
+.invcard__env-wrap {
+  position: relative;
+  width: 78%;
+  max-width: 280px;
+  margin: 0 auto 20px;
+  z-index: 1;
+}
+.invcard__env {
+  width: 100%;
+  display: block;
+  filter: drop-shadow(0 8px 24px rgba(0,0,0,.25));
+  transition: transform .4s cubic-bezier(.16,1,.3,1);
+}
+.invcard__env-wrap:hover .invcard__env { transform: translateY(-3px); }
+.invcard__seal {
+  position: absolute;
+  bottom: -18px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 56px;
+  filter: drop-shadow(0 3px 8px rgba(0,0,0,.18));
+  animation: sealDrop .8s cubic-bezier(.34,1.4,.64,1) .4s both;
+  transition: transform .3s cubic-bezier(.34,1.56,.64,1);
+}
+.invcard__seal:hover { transform: translateX(-50%) scale(1.12) rotate(10deg); }
+
+/* Formal white card with double border */
+.invcard__card {
+  position: relative;
+  border: 1px solid var(--ink);
+  background: var(--bg);
+  padding: 28px 22px 26px;
+  box-shadow: 0 4px 28px rgba(0,0,0,.1);
+  text-align: center;
+}
+.invcard__card::before {
+  content: '';
+  position: absolute;
+  inset: 5px;
+  border: .5px solid var(--ink);
+  pointer-events: none;
+}
+.invcard__card::after {
+  content: '';
+  position: absolute;
+  inset: 9px;
+  border: .25px solid rgba(0,0,0,.15);
+  pointer-events: none;
+}
+.invcard__padres-label {
+  font-family: var(--ff-sans);
+  font-size: .44rem;
+  font-weight: 500;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--gray);
+  margin-bottom: 8px;
+}
+.invcard__padres-row {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+.invcard__padre {
+  font-family: var(--ff-serif);
+  font-size: .72rem;
+  font-style: italic;
+  font-weight: 300;
+  color: var(--ink);
+  line-height: 1.6;
+  flex: 1;
+}
+.invcard__div {
+  width: .5px;
+  background: rgba(0,0,0,.15);
+  align-self: stretch;
+  flex-shrink: 0;
+}
+.invcard__honor {
+  font-family: var(--ff-sans);
+  font-size: .46rem;
+  font-weight: 500;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--gray);
+  margin: 0 0 10px;
+  line-height: 1.8;
+}
+.invcard__names {
+  font-family: var(--ff-script);
+  font-size: 1.8rem;
+  color: var(--ink);
+  display: block;
+  line-height: 1.2;
+  letter-spacing: .02em;
+}
+.invcard__amp {
+  font-family: var(--ff-script);
+  font-size: 1.4rem;
+  color: var(--gray);
+  display: block;
+  line-height: 1;
+  margin: 2px 0;
+}
+.invcard__date {
+  font-family: var(--ff-sans);
+  font-size: .5rem;
+  font-weight: 400;
+  letter-spacing: .18em;
+  color: var(--gray);
+  text-transform: uppercase;
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: .5px solid rgba(0,0,0,.12);
+}
+
+/* ══════════════════════════════════════════
+   ITINERARY CARD
+══════════════════════════════════════════ */
+.quote-strip {
+  padding: 24px 28px;
+  text-align: center;
+  background: var(--bg);
+}
+.quote-strip p {
+  font-family: var(--ff-sans);
+  font-size: .5rem;
+  font-weight: 400;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--gray);
+  line-height: 2;
+}
+
+.itinerary {
+  padding: 0 18px 44px;
+  background: var(--bg);
+}
+.itinerary__card {
+  position: relative;
+  background: var(--bg);
+  border: .5px solid rgba(0,0,0,.12);
+  padding: 14px 22px 28px;
+  box-shadow: 0 4px 24px rgba(0,0,0,.09);
+}
+.itinerary__seal-wrap {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: -4px;
+}
+.itinerary__seal {
+  width: 54px;
+  filter: drop-shadow(0 3px 8px rgba(0,0,0,.14));
+  animation: sealDrop .7s cubic-bezier(.34,1.4,.64,1) both;
+  transition: transform .3s cubic-bezier(.34,1.56,.64,1);
+}
+.itinerary__seal:hover { transform: scale(1.1) rotate(8deg); }
+.itinerary__title {
+  font-family: var(--ff-script);
+  font-size: 2.6rem;
+  color: var(--ink);
+  text-align: center;
+  margin-bottom: 16px;
+  display: block;
+  line-height: 1.1;
+}
+.itin-event { padding: 14px 0; text-align: center; position: relative; }
+.itin-event + .itin-event { border-top: .5px solid rgba(0,0,0,.1); }
+.itin-event__heading {
+  font-family: var(--ff-sans);
+  font-size: .56rem;
+  font-weight: 600;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+.itin-event__illus {
+  width: 60px;
+  display: block;
+  margin: 0 auto 8px;
+  filter: drop-shadow(0 1px 4px rgba(0,0,0,.08));
+  transition: transform .4s cubic-bezier(.34,1.4,.64,1);
+}
+.itin-event__illus:hover { transform: scale(1.08) rotate(-3deg); }
+.itin-event__time {
+  font-family: var(--ff-serif);
+  font-size: .72rem;
+  font-style: italic;
+  color: var(--gray);
+  line-height: 1.6;
+  display: block;
+  margin-bottom: 10px;
+}
+.itin-event__btn {
+  display: inline-block;
+  padding: 7px 24px;
+  border: 1px solid var(--ink);
+  font-family: var(--ff-sans);
+  font-size: .46rem;
+  font-weight: 500;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--ink);
+  text-decoration: none;
+  transition: background .25s, color .25s, transform .2s cubic-bezier(.34,1.56,.64,1);
+}
+.itin-event__btn:hover { background: var(--ink); color: #fff; transform: scale(1.04); }
+
+/* Dark monogram circle bottom-right */
+.itin-monogram {
+  position: absolute;
+  bottom: -28px;
+  right: 14px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px rgba(0,0,0,.3);
+  z-index: 2;
+  animation: sealDrop .8s cubic-bezier(.34,1.4,.64,1) .5s both;
+  transition: transform .3s cubic-bezier(.34,1.56,.64,1);
+}
+.itin-monogram:hover { transform: scale(1.1) rotate(-8deg); }
+.itin-monogram span {
+  font-family: var(--ff-script);
+  font-size: 1.8rem;
+  color: #fff;
+  line-height: 1;
+  letter-spacing: .02em;
+}
+
+/* ══════════════════════════════════════════
+   DRESS CODE
+══════════════════════════════════════════ */
+.dresscode {
+  padding: 60px 20px 36px;
+  position: relative;
+  overflow: hidden;
+  background: var(--bg);
+}
+.dresscode__callas {
+  position: absolute;
+  left: -16px;
+  top: 10%;
+  width: 140px;
+  pointer-events: none;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,.1));
+  opacity: .9;
+  animation: floatY 9s ease-in-out infinite;
+}
+.dresscode__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  padding-left: 60px;
+}
+.dresscode__badge-wrap {
+  position: relative;
+  width: 110px;
+  transition: transform .4s cubic-bezier(.34,1.4,.64,1);
+  cursor: default;
+}
+.dresscode__badge-wrap:hover { transform: scale(1.06) rotate(5deg); }
+.dresscode__badge-img {
+  width: 100%;
+  display: block;
+  filter: drop-shadow(0 6px 18px rgba(0,0,0,.35));
+}
+.dresscode__badge-text {
+  position: absolute;
+  top: 22%;
+  left: 0; right: 0;
+  text-align: center;
+}
+.dresscode__badge-d {
+  font-family: var(--ff-script);
+  font-size: 1.8rem;
+  color: #fff;
+  display: block;
+  line-height: .9;
+}
+.dresscode__badge-rest {
+  font-family: var(--ff-sans);
+  font-size: .38rem;
+  font-weight: 400;
+  letter-spacing: .18em;
+  color: rgba(255,255,255,.85);
+  text-transform: uppercase;
+}
+.dresscode__swatches {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+.swatch {
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  box-shadow: 0 1px 4px rgba(0,0,0,.15), inset 0 0 0 1px rgba(255,255,255,.2);
+  transition: transform .25s cubic-bezier(.34,1.56,.64,1);
+  cursor: default;
+}
+.swatch:hover { transform: scale(1.2); }
+.s1 { background: #5d624e; }
+.s2 { background: #fffbee; border: 1px solid rgba(0,0,0,.12); }
+.s3 { background: #d7cfb7; }
+.s4 { background: #000000; }
+.dresscode__text {
+  text-align: center;
+}
+.dresscode__formal {
+  font-family: var(--ff-sans);
+  font-size: .5rem;
+  font-weight: 500;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--ink);
+  line-height: 1.9;
+  margin-bottom: 10px;
+}
+.dresscode__btn {
+  display: inline-block;
+  padding: 7px 24px;
+  border: 1px solid var(--ink);
+  font-family: var(--ff-sans);
+  font-size: .46rem;
+  font-weight: 500;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--ink);
+  text-decoration: none;
+  transition: background .25s, color .25s, transform .2s cubic-bezier(.34,1.56,.64,1);
+}
+.dresscode__btn:hover { background: var(--ink); color: #fff; transform: scale(1.04); }
+
+/* ══════════════════════════════════════════
+   PHOTO DIVIDER (RING)
+══════════════════════════════════════════ */
+.photo-divider {
+  width: 100%;
+  aspect-ratio: 3/4;
+  overflow: hidden;
+  position: relative;
+}
+.photo-divider__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+  display: block;
+  filter: brightness(.82) contrast(1.05);
+  transition: transform 8s ease;
+}
+.photo-divider:hover .photo-divider__img { transform: scale(1.03); }
+
+/* ══════════════════════════════════════════
+   REGALOS
+══════════════════════════════════════════ */
+.regalos {
+  padding: 40px 20px 36px;
+  background: var(--bg);
+}
+.regalos__heading {
+  font-family: var(--ff-script);
+  font-size: 3rem;
+  color: var(--ink);
+  text-align: center;
+  display: block;
+  margin-bottom: 18px;
+  line-height: 1.1;
+  transition: transform .4s cubic-bezier(.34,1.56,.64,1);
+  cursor: default;
+}
+.regalos__heading:hover { transform: scale(1.03); }
+.regalos__card {
+  border: .5px solid rgba(0,0,0,.15);
+  padding: 22px 22px 18px;
+  text-align: center;
+  margin-bottom: 18px;
+  box-shadow: 0 2px 14px rgba(0,0,0,.07);
+  position: relative;
+}
+.regalos__text {
+  font-family: var(--ff-serif);
+  font-size: .95rem;
+  font-weight: 300;
+  color: var(--gray);
+  line-height: 1.8;
+  margin-bottom: 14px;
+}
+.regalos__btn {
+  display: inline-block;
+  padding: 8px 24px;
+  border: 1px solid var(--ink);
+  font-family: var(--ff-sans);
+  font-size: .46rem;
+  font-weight: 500;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--ink);
+  text-decoration: none;
+  transition: background .25s, color .25s, transform .2s cubic-bezier(.34,1.56,.64,1);
+}
+.regalos__btn:hover { background: var(--ink); color: #fff; transform: scale(1.04); }
+
+/* Mesa de regalos small card */
+.regalos__mini-wrap {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 0 6px;
+}
+.regalos__seal-mini {
+  width: 44px;
+  flex-shrink: 0;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,.14));
+  animation: shimmer 3s ease-in-out infinite;
+  transition: transform .3s cubic-bezier(.34,1.56,.64,1);
+}
+.regalos__seal-mini:hover { transform: scale(1.15) rotate(12deg); }
+.regalos__mesa-card {
+  border: .5px solid rgba(0,0,0,.15);
+  padding: 11px 14px;
+  flex: 1;
+}
+.regalos__mesa-label {
+  font-family: var(--ff-sans);
+  font-size: .44rem;
+  font-weight: 600;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--ink);
+  display: block;
+  margin-bottom: 5px;
+}
+.regalos__mesa-info {
+  font-family: var(--ff-serif);
+  font-size: .8rem;
+  font-style: italic;
+  color: var(--gray);
+  line-height: 1.5;
+}
+
+/* ══════════════════════════════════════════
+   COUNTDOWN
+══════════════════════════════════════════ */
+.countdown {
+  padding: 32px 20px 44px;
+  text-align: center;
+  background: var(--bg);
+}
+.countdown__faltan {
+  font-family: var(--ff-script);
+  font-size: 3rem;
+  color: var(--ink);
+  display: block;
+  margin-bottom: 16px;
+  line-height: 1.1;
+}
+.countdown__grid {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 6px;
+}
+.flip-unit { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.flip-card { perspective: 500px; width: 74px; height: 78px; }
+.flip-inner { position: relative; width: 100%; height: 100%; transform-style: preserve-3d; }
+.flip-face {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  border: .5px solid rgba(0,0,0,.1);
+  background: var(--bg);
+  backface-visibility: hidden;
+}
+.flip-face span {
+  font-family: var(--ff-serif);
+  font-size: 2.4rem;
+  font-weight: 300;
+  color: var(--ink);
+  letter-spacing: .04em;
+}
+.flip-face.back { transform: rotateX(180deg); }
+.flip-card.animating { animation: flipNum .52s cubic-bezier(.36,.07,.19,.97) both; }
+.flip-unit__label {
+  font-family: var(--ff-sans);
+  font-size: .44rem;
+  font-weight: 400;
+  letter-spacing: .26em;
+  color: var(--gray);
+  text-transform: uppercase;
+}
+.countdown__sep {
+  font-family: var(--ff-serif);
+  font-size: 2.4rem;
+  color: var(--ink);
+  opacity: .25;
+  line-height: 78px;
+}
+.countdown__sublabel {
+  font-family: var(--ff-sans);
+  font-size: .5rem;
+  font-weight: 300;
+  letter-spacing: .3em;
+  color: var(--gray);
+  text-transform: uppercase;
+  margin-top: 20px;
+  display: block;
+}
+
+/* ══════════════════════════════════════════
+   RSVP — WHITE CARD ON BLACK ENVELOPE
+══════════════════════════════════════════ */
+.rsvp { background: var(--bg); padding-bottom: 0; }
+.rsvp__header {
+  text-align: center;
+  padding: 0 24px 20px;
+}
+.rsvp__title {
+  font-family: var(--ff-sans);
+  font-size: .6rem;
+  font-weight: 600;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: var(--ink);
+  display: block;
+  margin-bottom: 4px;
+}
+
+/* Scene */
+.rsvp-scene { position: relative; padding: 0 14px 160px; }
+.rsvp-card {
+  position: relative;
+  z-index: 2;
+  background: var(--bg);
+  border: .5px solid rgba(0,0,0,.1);
+  padding: 28px 22px 28px;
+  box-shadow: 0 -2px 18px rgba(0,0,0,.06);
+  margin: 0 6px;
+}
+.rsvp-card::before {
+  content: '';
+  position: absolute;
+  inset: 5px;
+  border: .25px solid rgba(0,0,0,.08);
+  pointer-events: none;
+}
+.rsvp-env {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  z-index: 1;
+  padding: 0 8px;
+}
+.rsvp-env img {
+  width: 100%;
+  display: block;
+  filter: drop-shadow(0 8px 24px rgba(0,0,0,.35));
+}
+.rsvp__form { display: flex; flex-direction: column; gap: 14px; }
+.rsvp__label {
+  font-family: var(--ff-sans);
+  font-size: .48rem;
+  font-weight: 500;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--gray);
+  display: block;
+  margin-bottom: 5px;
+}
+.rsvp__input {
+  width: 100%;
+  padding: 12px 13px;
+  border: .5px solid rgba(0,0,0,.25);
+  background: #FDFCFB;
+  font-family: var(--ff-serif);
+  font-size: .95rem;
+  color: var(--ink);
+  outline: none;
+  transition: border-color .25s, box-shadow .25s;
+}
+.rsvp__input:focus { border-color: var(--ink); box-shadow: 0 0 0 3px rgba(0,0,0,.05); }
+.rsvp__question {
+  font-family: var(--ff-sans);
+  font-size: .5rem;
+  font-weight: 300;
+  letter-spacing: .14em;
+  color: var(--gray);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.rsvp__options { display: flex; flex-direction: column; gap: 8px; }
+.rsvp__option {
+  width: 100%;
+  padding: 13px;
+  border: .5px solid rgba(0,0,0,.2);
+  background: #FDFCFB;
+  font-family: var(--ff-sans);
+  font-size: .5rem;
+  font-weight: 300;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--gray);
+  cursor: pointer;
+  text-align: center;
+  transition: border-color .2s, color .2s, background .2s, transform .18s;
+}
+.rsvp__option:hover { transform: translateX(2px); }
+.rsvp__option.selected { border-color: var(--ink); background: rgba(0,0,0,.04); color: var(--ink); }
+.rsvp__submit {
+  width: 100%;
+  padding: 14px;
+  background: var(--ink);
+  color: #fff;
+  border: none;
+  font-family: var(--ff-sans);
+  font-size: .54rem;
+  font-weight: 500;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background .3s, transform .25s cubic-bezier(.34,1.56,.64,1), box-shadow .3s;
+  box-shadow: 0 4px 16px rgba(0,0,0,.25);
+}
+.rsvp__submit:hover { background: #000; transform: scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,.35); }
+.rsvp__note {
+  font-family: var(--ff-sans);
+  font-size: .42rem;
+  font-weight: 300;
+  letter-spacing: .08em;
+  color: var(--gray);
+  text-align: center;
+  line-height: 1.7;
+}
+.rsvp__confirm { display: none; text-align: center; padding: 10px 0; }
+.rsvp__confirm.show { display: block; animation: sealDrop .7s cubic-bezier(.34,1.4,.64,1) both; }
+.rsvp__confirm-script { font-family: var(--ff-script); font-size: 2.6rem; color: var(--ink); display: block; }
+.rsvp__confirm-text { font-family: var(--ff-serif); font-size: .9rem; font-style: italic; color: var(--gray); }
+
+/* ══════════════════════════════════════════
+   FOOTER
+══════════════════════════════════════════ */
+.footer {
+  padding: 32px 32px 44px;
+  text-align: center;
+  border-top: .5px solid rgba(0,0,0,.12);
+  background: var(--bg);
+}
+.footer__text {
+  font-family: var(--ff-sans);
+  font-size: .5rem;
+  font-weight: 300;
+  letter-spacing: .22em;
+  color: var(--gray);
+  text-transform: uppercase;
+  line-height: 2.2;
+}
+</style>
+</head>
+<body>
+<div class="invite">
+
+  <!-- ─── HERO ──────────────────────────────── -->
+  <section class="hero">
+    <img class="hero__photo"
+         src="17_DEMO_invitacion_Ignacio & Isabella_files/eaf61684255b451c069d528cb10c82d8.jpg"
+         alt="Ignacio & Isabella" />
+    <div class="hero__overlay"></div>
+    <div class="hero__text">
+      <span class="hero__names">Ignacio</span>
+      <span class="hero__amp">&amp;</span>
+      <span class="hero__names">Isabella</span>
+    </div>
+    <div class="hero__scroll-hint">
+      <div class="hero__scroll-line"></div>
+      <span class="hero__scroll-text">Scroll</span>
+    </div>
+  </section>
+
+  <!-- ─── MÚSICA ───────────────────────────── -->
+  <section class="music rv d1">
+    <span class="music__label">Dale play para escuchar nuestra canción</span>
+    <img class="music__player-img"
+         src="17_DEMO_invitacion_Ignacio & Isabella_files/7cac6cd4c180928625b2da864d9e4040.png"
+         alt="Reproductor" id="playBtn" />
+    <div class="music__notes">
+      <span class="m-note">♪</span>
+      <span class="m-note">♫</span>
+      <span class="m-note">♩</span>
+    </div>
+  </section>
+
+  <!-- ─── SOBRE + TARJETA INVITACIÓN ─────────── -->
+  <section class="invcard rv d1">
+    <!-- Sobre negro cerrado con sello -->
+    <div class="invcard__env-wrap rv-s d2">
+      <img class="invcard__env"
+           src="17_DEMO_invitacion_Ignacio & Isabella_files/3fe84dbfcdee3652138a9f3e7f7f5aad.png"
+           alt="Sobre" />
+      <img class="invcard__seal"
+           src="17_DEMO_invitacion_Ignacio & Isabella_files/0faf30a289413746481bf8fa9002c52c.png"
+           alt="Sello" />
+    </div>
+
+    <!-- Formal invitation card -->
+    <div class="invcard__card rv d3">
+      <p class="invcard__padres-label">En compañía de nuestros padres</p>
+      <div class="invcard__padres-row">
+        <p class="invcard__padre">Marco Meza &amp;<br/>Fiorella Oregon</p>
+        <div class="invcard__div"></div>
+        <p class="invcard__padre">Rubén García &amp;<br/>Josefina Ruiz</p>
+      </div>
+      <p class="invcard__honor">
+        Tenemos el honor de<br/>invitarte a la boda de
+      </p>
+      <span class="invcard__names">Ignacio Garcia</span>
+      <span class="invcard__amp">&amp;</span>
+      <span class="invcard__names">Isabella Meza</span>
+      <p class="invcard__date">24 Agosto 2026 &nbsp;|&nbsp; 2:00 pm</p>
+    </div>
+  </section>
+
+  <!-- ─── ITINERARIO ───────────────────────── -->
+  <section class="quote-strip rv d1">
+    <p>Nos encontramos, nos elegimos y hoy<br/>queremos compartir con ustedes<br/>nuestra felicidad...</p>
+  </section>
+
+  <section class="itinerary rv d1">
+    <div class="itinerary__card">
+      <div class="itinerary__seal-wrap">
+        <img class="itinerary__seal"
+             src="17_DEMO_invitacion_Ignacio & Isabella_files/0faf30a289413746481bf8fa9002c52c.png"
+             alt="Sello" />
+      </div>
+      <span class="itinerary__title rv d2">Itinerario</span>
+
+      <!-- CEREMONIA -->
+      <div class="itin-event rv d2">
+        <p class="itin-event__heading">Ceremonia Religiosa</p>
+        <img class="itin-event__illus"
+             src="17_DEMO_invitacion_Ignacio & Isabella_files/2acae30df4a5f9b974b134169169de6c.png"
+             alt="Iglesia" />
+        <span class="itin-event__time">3:00 pm &nbsp;|&nbsp; Iglesia Tres Ave María</span>
+        <a class="itin-event__btn rv d3" href="#" target="_blank">Ubicación</a>
+      </div>
+
+      <!-- COCTEL -->
+      <div class="itin-event rv d3">
+        <p class="itin-event__heading">Cóctel</p>
+        <img class="itin-event__illus"
+             src="17_DEMO_invitacion_Ignacio & Isabella_files/0b7384bd5a9bf696cafda2440d98171c.png"
+             alt="Cóctel" />
+        <span class="itin-event__time">3:00 pm &nbsp;|&nbsp; Iglesia Tres Ave María</span>
+      </div>
+
+      <!-- RECEPCIÓN -->
+      <div class="itin-event rv d4">
+        <p class="itin-event__heading">Recepción</p>
+        <!-- Dancing couple CSS icon -->
+        <div style="font-size:2rem;margin:4px 0 8px;color:var(--ink);opacity:.55;letter-spacing:.1em;">♥</div>
+        <span class="itin-event__time">5:00 pm &nbsp;|&nbsp; Salón de eventos ANA</span>
+        <a class="itin-event__btn rv d5" href="#" target="_blank">Ubicación</a>
+      </div>
+
+      <!-- Monogram circle -->
+      <div class="itin-monogram"><span>a</span></div>
+    </div>
+  </section>
+
+  <!-- ─── DRESS CODE ───────────────────────── -->
+  <section class="dresscode rv d1">
+    <img class="dresscode__callas rv-l d2"
+         src="17_DEMO_invitacion_Ignacio & Isabella_files/aec2bdc7ffeca7825299cdd76f0ea5c6.png"
+         alt="" />
+
+    <div class="dresscode__content">
+      <div class="dresscode__badge-wrap rv-s d2">
+        <img class="dresscode__badge-img"
+             src="17_DEMO_invitacion_Ignacio & Isabella_files/d1e9101a779150ab0dc1a4e4b98ff4ad.png"
+             alt="" />
+        <div class="dresscode__badge-text">
+          <span class="dresscode__badge-d">D</span>
+          <span class="dresscode__badge-rest">ress Code</span>
+        </div>
+      </div>
+
+      <div class="dresscode__swatches rv d3">
+        <div class="swatch s1" title="Olivo"></div>
+        <div class="swatch s2" title="Crema"></div>
+        <div class="swatch s3" title="Taupe"></div>
+        <div class="swatch s4" title="Negro"></div>
+      </div>
+
+      <div class="dresscode__text rv d3">
+        <p class="dresscode__formal">
+          Formal de noche.<br/>
+          Caballeros con traje,<br/>
+          damas con vestido largo
+        </p>
+        <a class="dresscode__btn" href="#" target="_blank">Inspiración</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── QUOTE ────────────────────────────── -->
+  <section class="quote-strip rv d1">
+    <p>Nos encontramos, nos elegimos y hoy<br/>queremos compartir con ustedes<br/>nuestra felicidad...</p>
+  </section>
+
+  <!-- ─── PHOTO DIVIDER (RING) ─────────────── -->
+  <div class="photo-divider">
+    <img class="photo-divider__img"
+         src="17_DEMO_invitacion_Ignacio & Isabella_files/a27dd873885be7be063b551273aec30e.jpg"
+         alt="" />
+  </div>
+
+  <!-- ─── REGALOS ──────────────────────────── -->
+  <section class="regalos rv d1">
+    <span class="regalos__heading">Regalos</span>
+
+    <div class="regalos__card rv d2">
+      <p class="regalos__text">
+        Su compañía es lo más importante.<br/>
+        Si desean hacernos un obsequio,<br/>
+        lo recibiremos con mucho cariño.
+      </p>
+      <a class="regalos__btn rv d3" href="#" target="_blank">Lista de Regalos</a>
+    </div>
+
+    <div class="regalos__mini-wrap rv d3">
+      <img class="regalos__seal-mini"
+           src="17_DEMO_invitacion_Ignacio & Isabella_files/0faf30a289413746481bf8fa9002c52c.png"
+           alt="Sello" />
+      <div class="regalos__mesa-card">
+        <span class="regalos__mesa-label">Mesa de Regalos</span>
+        <p class="regalos__mesa-info">Liverpool<br/>222 530 526</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── COUNTDOWN ────────────────────────── -->
+  <section class="countdown rv d1">
+    <span class="countdown__faltan">Faltan</span>
+    <div class="countdown__grid">
+      <div class="flip-unit">
+        <div class="flip-card" id="fc-d">
+          <div class="flip-inner">
+            <div class="flip-face front"><span id="cd-d">000</span></div>
+            <div class="flip-face back"><span>000</span></div>
+          </div>
+        </div>
+        <p class="flip-unit__label">Días</p>
+      </div>
+      <span class="countdown__sep">:</span>
+      <div class="flip-unit">
+        <div class="flip-card" id="fc-h">
+          <div class="flip-inner">
+            <div class="flip-face front"><span id="cd-h">00</span></div>
+            <div class="flip-face back"><span>00</span></div>
+          </div>
+        </div>
+        <p class="flip-unit__label">Horas</p>
+      </div>
+      <span class="countdown__sep">:</span>
+      <div class="flip-unit">
+        <div class="flip-card" id="fc-m">
+          <div class="flip-inner">
+            <div class="flip-face front"><span id="cd-m">00</span></div>
+            <div class="flip-face back"><span>00</span></div>
+          </div>
+        </div>
+        <p class="flip-unit__label">Minutos</p>
+      </div>
+    </div>
+    <span class="countdown__sublabel rv d2">Para nuestro gran día</span>
+  </section>
+
+  <!-- ─── RSVP ─────────────────────────────── -->
+  <section class="rsvp rv d1">
+    <div class="rsvp__header">
+      <span class="rsvp__title">Confirmación de asistencia</span>
+    </div>
+    <div class="rsvp-scene rv d2">
+      <div class="rsvp-card">
+        <div id="rsvp-form-wrap">
+          <form class="rsvp__form" id="rsvp-form">
+            <div>
+              <label class="rsvp__label">Tu nombre:</label>
+              <input class="rsvp__input" type="text" placeholder="Escribe tu nombre" required />
+            </div>
+            <div>
+              <p class="rsvp__question">¿Podrás acompañarnos en nuestro gran día?</p>
+              <div class="rsvp__options">
+                <button type="button" class="rsvp__option" id="opt-si">Sí, ahí estaré</button>
+                <button type="button" class="rsvp__option" id="opt-no">No podré asistir, pero los llevo en mi corazón</button>
+              </div>
+            </div>
+            <button class="rsvp__submit" type="submit">Click aquí para confirmar</button>
+            <p class="rsvp__note">
+              No se compartirá el nombre de tu perfil de Canva.<br/>Bianca recibirá tu confirmación.
+            </p>
+          </form>
+          <div class="rsvp__confirm" id="rsvp-confirm">
+            <span class="rsvp__confirm-script">¡Gracias!</span>
+            <p class="rsvp__confirm-text">Tu respuesta fue registrada con cariño.</p>
+          </div>
+        </div>
+      </div>
+      <div class="rsvp-env">
+        <img src="17_DEMO_invitacion_Ignacio & Isabella_files/72dc2e131a2a8d6797de9053774462b5.png" alt="" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ───────────────────────────── -->
+  <footer class="footer rv d1">
+    <p class="footer__text">
+      Con mucho cariño,<br/>
+      agradeceremos nos confirme su asistencia<br/>
+      antes del 31 de Marzo
+    </p>
+  </footer>
+
+</div>
+<script>
+/* ── Scroll reveal ── */
+const rvEls = document.querySelectorAll('.rv,.rv-l,.rv-r,.rv-s');
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('vis'); io.unobserve(e.target); } });
+}, { threshold: .1 });
+rvEls.forEach(el => io.observe(el));
+
+/* ── Countdown flip ── */
+const TARGET = new Date('2026-08-24T14:00:00');
+let prev = { d:'', h:'', m:'' };
+function setFlip(cardId, spanId, val) {
+  const span = document.getElementById(spanId);
+  if (!span || span.textContent === val) return;
+  const card = document.getElementById(cardId);
+  card.classList.remove('animating');
+  void card.offsetWidth;
+  card.classList.add('animating');
+  setTimeout(() => span.textContent = val, 260);
+  card.addEventListener('animationend', () => card.classList.remove('animating'), { once: true });
+}
+function tick() {
+  const diff = TARGET - new Date();
+  if (diff <= 0) return;
+  const d = String(Math.floor(diff / 86400000)).padStart(3,'0');
+  const h = String(Math.floor((diff % 86400000) / 3600000)).padStart(2,'0');
+  const m = String(Math.floor((diff % 3600000) / 60000)).padStart(2,'0');
+  if (d !== prev.d) { setFlip('fc-d','cd-d',d); prev.d = d; }
+  if (h !== prev.h) { setFlip('fc-h','cd-h',h); prev.h = h; }
+  if (m !== prev.m) { setFlip('fc-m','cd-m',m); prev.m = m; }
+}
+tick(); setInterval(tick, 30000);
+
+/* ── RSVP options ── */
+['opt-si','opt-no'].forEach(id => {
+  document.getElementById(id).addEventListener('click', function() {
+    document.querySelectorAll('.rsvp__option').forEach(b => b.classList.remove('selected'));
+    this.classList.add('selected');
+  });
+});
+
+/* ── RSVP submit ── */
+document.getElementById('rsvp-form').addEventListener('submit', e => {
+  e.preventDefault();
+  const f = document.getElementById('rsvp-form');
+  f.style.transition = 'opacity .4s, transform .4s';
+  f.style.opacity = '0'; f.style.transform = 'translateY(-10px)';
+  setTimeout(() => { f.style.display = 'none'; document.getElementById('rsvp-confirm').classList.add('show'); }, 400);
+});
+</script>
+</body>
+</html>
