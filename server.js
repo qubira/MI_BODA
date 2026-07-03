@@ -26,6 +26,7 @@ const projects = [
   { slug: 'basico-6',   dir: 'MI_BODA_PLAN_BASICO_6', admin: false },
   { slug: 'basico-7',   dir: 'MI_BODA_PLAN_BASICO_7', admin: false },
   { slug: 'basico-8',   dir: 'MI_BODA_PLAN_BASICO_8', admin: false },
+  { slug: 'basico-9',   dir: 'MI_BODA_PLAN_BASICO_9', admin: false },
 ];
 
 projects.forEach(({ slug, dir, admin }) => {
