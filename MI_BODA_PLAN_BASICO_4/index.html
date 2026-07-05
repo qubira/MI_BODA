@@ -310,228 +310,6 @@
         }
       }
 
-      /* ══════════════════════════════════════
-       2. MÚSICA
-    ══════════════════════════════════════ */
-      .music {
-        background: var(--wh);
-        text-align: center;
-        padding: 44px 32px;
-        position: relative;
-        z-index: 1;
-      }
-      .music::before,
-      .music::after {
-        content: "";
-        display: block;
-        height: 1px;
-        background: linear-gradient(
-          90deg,
-          transparent,
-          var(--crd),
-          var(--crd),
-          transparent
-        );
-      }
-      .music::before {
-        margin-bottom: 44px;
-      }
-      .music::after {
-        margin-top: 44px;
-      }
-
-      .music__label {
-        font-family: "Cormorant Garamond", serif;
-        font-size: 16px;
-        font-style: italic;
-        font-weight: 300;
-        color: var(--txl);
-        margin-bottom: 20px;
-        line-height: 1.5;
-      }
-
-      .music__wrap {
-        position: relative;
-        width: 200px;
-        margin: 0 auto;
-      }
-      .music__img {
-        width: 100%;
-        display: block;
-        opacity: 0.35;
-        pointer-events: none;
-      }
-      .music__btn {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 56px;
-        height: 56px;
-        border-radius: 50%;
-        background: var(--gm);
-        border: none;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: var(--wh);
-        box-shadow: 0 6px 24px rgba(58, 100, 48, 0.4);
-        transition:
-          background 0.35s,
-          transform 0.35s var(--ease),
-          box-shadow 0.35s;
-      }
-      .music__btn:hover {
-        background: var(--gd);
-        transform: translate(-50%, -50%) scale(1.08);
-        box-shadow: 0 10px 32px rgba(36, 61, 24, 0.45);
-      }
-      .ico-play {
-        width: 0;
-        height: 0;
-        border-style: solid;
-        border-width: 10px 0 10px 17px;
-        border-color: transparent transparent transparent currentColor;
-        margin-left: 4px;
-      }
-      .ico-pause {
-        display: none;
-        gap: 4px;
-      }
-      .ico-pause span {
-        display: block;
-        width: 4px;
-        height: 16px;
-        background: currentColor;
-        border-radius: 2px;
-      }
-      .music__btn.on .ico-play {
-        display: none;
-      }
-      .music__btn.on .ico-pause {
-        display: flex;
-      }
-
-      /* ══════════════════════════════════════
-       3. PADRES
-    ══════════════════════════════════════ */
-      .parents {
-        background: var(--cr);
-        text-align: center;
-        padding: 72px 28px;
-        position: relative;
-        z-index: 1;
-      }
-
-      .parents__tag {
-        font-family: "Montserrat", sans-serif;
-        font-size: 8px;
-        font-weight: 300;
-        letter-spacing: 0.44em;
-        text-transform: uppercase;
-        color: var(--gs);
-        display: block;
-        margin-bottom: 28px;
-      }
-
-      .parents__card {
-        background: url("10_DEMO_invitacion_Miguel y Camila_files/71fd24ed7e1f18821e7476ebcb60b079.png")
-          center / cover;
-        border: 1px solid rgba(196, 163, 90, 0.38);
-        padding: 34px 30px;
-        max-width: 305px;
-        margin: 0 auto;
-        position: relative;
-        box-shadow:
-          0 2px 8px rgba(0, 0, 0, 0.05),
-          inset 0 0 0 6px rgba(255, 255, 255, 0.5);
-      }
-      /* Cuatro esquinas doradas */
-      .parents__card::before,
-      .parents__card::after {
-        content: "";
-        position: absolute;
-        width: 20px;
-        height: 20px;
-      }
-      .parents__card::before {
-        top: -6px;
-        left: -6px;
-        border-top: 2px solid var(--gold);
-        border-left: 2px solid var(--gold);
-      }
-      .parents__card::after {
-        bottom: -6px;
-        right: -6px;
-        border-bottom: 2px solid var(--gold);
-        border-right: 2px solid var(--gold);
-      }
-      .parents__card-inner {
-        position: relative;
-      }
-      .parents__card-inner::before {
-        content: "";
-        position: absolute;
-        top: -40px;
-        right: -36px;
-        width: 20px;
-        height: 20px;
-        border-top: 2px solid var(--gold);
-        border-right: 2px solid var(--gold);
-      }
-      .parents__card-inner::after {
-        content: "";
-        position: absolute;
-        bottom: -40px;
-        left: -36px;
-        width: 20px;
-        height: 20px;
-        border-bottom: 2px solid var(--gold);
-        border-left: 2px solid var(--gold);
-      }
-
-      .parents__side {
-        margin-bottom: 14px;
-      }
-      .parents__side:last-child {
-        margin-bottom: 0;
-      }
-
-      .parents__role {
-        font-family: "Montserrat", sans-serif;
-        font-size: 7.5px;
-        font-weight: 300;
-        letter-spacing: 0.34em;
-        text-transform: uppercase;
-        color: var(--gs);
-        display: block;
-        margin-bottom: 7px;
-      }
-      .parents__name {
-        font-family: "Cormorant Garamond", serif;
-        font-size: 17px;
-        font-weight: 300;
-        color: var(--tx);
-        line-height: 1.6;
-      }
-      .parents__sep {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        margin: 14px auto;
-      }
-      .parents__sep-line {
-        flex: 1;
-        height: 1px;
-        background: var(--glow);
-      }
-      .parents__sep-dot {
-        width: 4px;
-        height: 4px;
-        background: var(--gold);
-        border-radius: 50%;
-      }
 
       /* ══════════════════════════════════════
        4. COUNTDOWN
@@ -886,14 +664,6 @@
         line-height: 1.78;
         margin-bottom: 34px;
       }
-      .rsvp__deadline {
-        font-family: "Montserrat", sans-serif;
-        font-size: 9px;
-        font-weight: 300;
-        letter-spacing: 0.2em;
-        color: var(--txl);
-        margin-top: 18px;
-      }
 
       /* ══════════════════════════════════════
        FOOTER
@@ -1034,6 +804,88 @@
           transform: translateX(-50%) translateY(7px);
         }
       }
+
+      /* ══════════════════════════════════════
+       WHATSAPP
+    ══════════════════════════════════════ */
+      .whatsapp {
+        background: var(--cr);
+        text-align: center;
+        padding: 60px 32px;
+        position: relative;
+        z-index: 1;
+      }
+      .whatsapp__text {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 17px;
+        font-style: italic;
+        font-weight: 300;
+        color: var(--txl);
+        line-height: 1.72;
+        margin-bottom: 28px;
+      }
+      .btn-pill--wa {
+        background: #25d366;
+        border-color: #25d366;
+        color: #fff;
+      }
+      .btn-pill--wa:hover {
+        background: #1ebe5b;
+        border-color: #1ebe5b;
+        color: #fff;
+      }
+
+      /* ══════════════════════════════════════
+       PROVERBIO
+    ══════════════════════════════════════ */
+      .proverbio {
+        background: var(--gd);
+        text-align: center;
+        padding: 76px 44px;
+        position: relative;
+        z-index: 1;
+        overflow: hidden;
+      }
+      .proverbio::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: url("10_DEMO_invitacion_Miguel y Camila_files/6d16bb92693f371c7db9ee9efb9d8ece.png")
+          center / cover;
+        opacity: 0.06;
+      }
+      .proverbio__mark {
+        font-family: "Great Vibes", cursive;
+        font-size: 80px;
+        color: var(--gold);
+        line-height: 0.6;
+        display: block;
+        margin-bottom: 16px;
+        position: relative;
+        z-index: 1;
+        opacity: 0.55;
+      }
+      .proverbio__text {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 19px;
+        font-style: italic;
+        font-weight: 300;
+        color: rgba(255, 255, 255, 0.88);
+        line-height: 1.78;
+        margin-bottom: 22px;
+        position: relative;
+        z-index: 1;
+      }
+      .proverbio__attr {
+        font-family: "Montserrat", sans-serif;
+        font-size: 8.5px;
+        font-weight: 300;
+        letter-spacing: 0.32em;
+        text-transform: uppercase;
+        color: var(--gl);
+        position: relative;
+        z-index: 1;
+      }
     </style>
   </head>
   <body>
@@ -1113,57 +965,6 @@
         </div>
       </section>
 
-
-      <!-- ══════════════════════════════════════
-       3. PADRES
-  ══════════════════════════════════════ -->
-      <section class="parents">
-        <div class="b-div reveal" style="margin-bottom: 32px">
-          <span class="b-div__line"></span>
-          <img
-            class="b-div__lily"
-            src="10_DEMO_invitacion_Miguel y Camila_files/9c5ee6a05d682887b1ad6bf78c04835b.png"
-            alt=""
-            aria-hidden="true"
-          />
-          <span class="b-div__line"></span>
-        </div>
-
-        <p class="parents__tag reveal">En compañía de nuestros padres</p>
-
-        <div class="parents__card reveal d1">
-          <div class="parents__card-inner">
-            <div class="parents__side">
-              <span class="parents__role">Padres de la novia</span>
-              <div class="parents__name">
-                Marco Moreno &amp;<br />Elena García de Moreno
-              </div>
-            </div>
-            <div class="parents__sep">
-              <span class="parents__sep-line"></span>
-              <span class="parents__sep-dot"></span>
-              <span class="parents__sep-line"></span>
-            </div>
-            <div class="parents__side">
-              <span class="parents__role">Padres del novio</span>
-              <div class="parents__name">
-                Rubén García &amp;<br />Carmen López de García
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="b-div reveal d2" style="margin-top: 32px">
-          <span class="b-div__line"></span>
-          <img
-            class="b-div__lily"
-            src="10_DEMO_invitacion_Miguel y Camila_files/9c5ee6a05d682887b1ad6bf78c04835b.png"
-            alt=""
-            aria-hidden="true"
-          />
-          <span class="b-div__line"></span>
-        </div>
-      </section>
 
       <!-- ══════════════════════════════════════
        4. COUNTDOWN
@@ -1301,6 +1102,25 @@
       </section>
 
       <!-- ══════════════════════════════════════
+       WHATSAPP
+  ══════════════════════════════════════ -->
+      <section class="whatsapp">
+        <p class="whatsapp__text reveal">¿Tienes alguna duda?<br />Escríbenos directamente por WhatsApp</p>
+        <a
+          href="https://wa.me/51999999999"
+          target="_blank"
+          rel="noopener"
+          class="btn-pill btn-pill--wa reveal d1"
+        >
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+            <path d="M12 0C5.373 0 0 5.373 0 12c0 2.122.552 4.116 1.516 5.849L0 24l6.335-1.494A11.93 11.93 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.8 9.8 0 01-5.003-1.368l-.36-.214-3.72.877.9-3.617-.234-.372A9.797 9.797 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182c5.43 0 9.818 4.388 9.818 9.818 0 5.43-4.388 9.818-9.818 9.818z"/>
+          </svg>
+          Enviar mensaje
+        </a>
+      </section>
+
+      <!-- ══════════════════════════════════════
        6. DRESS CODE
   ══════════════════════════════════════ -->
       <section class="dresscode">
@@ -1345,6 +1165,17 @@
       </section>
 
       <!-- ══════════════════════════════════════
+       PROVERBIO
+  ══════════════════════════════════════ -->
+      <section class="proverbio">
+        <span class="proverbio__mark reveal">"</span>
+        <p class="proverbio__text reveal d1">
+          El amor no consiste en mirarse<br />el uno al otro, sino en mirar<br />juntos en la misma dirección.
+        </p>
+        <span class="proverbio__attr reveal d2">— Antoine de Saint-Exupéry</span>
+      </section>
+
+      <!-- ══════════════════════════════════════
        8. RSVP
   ══════════════════════════════════════ -->
       <section class="rsvp">
@@ -1375,11 +1206,6 @@
           contigo en este día tan especial"
         </p>
 
-        <a href="#" class="btn-pill btn-pill--solid reveal d4">
-          Llena el formulario
-        </a>
-
-        <p class="rsvp__deadline reveal d5">Fecha límite: 01 de enero, 2027</p>
       </section>
 
       <!-- ══════════════════════════════════════
@@ -1473,22 +1299,6 @@
       tick();
       setInterval(tick, 1000);
 
-      /* ── Music player ── */
-      const btn = document.getElementById("musicBtn");
-      const aud = document.getElementById("weddingAudio");
-      btn.addEventListener("click", () => {
-        if (aud.paused) {
-          aud
-            .play()
-            .then(() => btn.classList.add("on"))
-            .catch(() => {});
-        } else {
-          aud.pause();
-          btn.classList.remove("on");
-        }
-      });
-      aud.addEventListener("pause", () => btn.classList.remove("on"));
-      aud.addEventListener("play", () => btn.classList.add("on"));
     </script>
   </body>
 </html>
