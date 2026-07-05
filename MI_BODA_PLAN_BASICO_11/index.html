@@ -170,10 +170,12 @@ section,footer{position:relative;z-index:1}
   margin:-60px auto 0;
   width:100%;
   background:url('18_DEMO_invitacion_Jess y Ramiro_files/61aba3c7148417498c340a71abf2edbd.png') center/100% 100% no-repeat;
-  padding:48px 26px 38px;
+  padding:54px 38px 44px;
   text-align:center;
   z-index:5;
   filter:drop-shadow(0 10px 28px rgba(0,0,0,.17));
+  animation:cardEmerge 1.6s cubic-bezier(0.22,1,0.36,1) both;
+  animation-delay:.7s;
 }
 
 .hero__seal{
@@ -189,30 +191,31 @@ section,footer{position:relative;z-index:1}
 
 .hero__honor{
   font-family:'Cormorant Garamond',serif;
-  font-size:.74rem;
+  font-size:.72rem;
   font-weight:300;
-  letter-spacing:.08em;
+  letter-spacing:.06em;
   color:var(--taupe);
-  line-height:1.95;
-  margin-bottom:14px;
+  line-height:1.85;
+  margin-bottom:12px;
   font-style:italic;
 }
 
 .hero__invite{
   font-family:'Montserrat',sans-serif;
-  font-size:.52rem;
-  letter-spacing:.22em;
+  font-size:.5rem;
+  letter-spacing:.16em;
   color:var(--taupe2);
   text-transform:uppercase;
-  margin-bottom:18px;
+  margin-bottom:16px;
 }
 
 .hero__names{
   font-family:'Sacramento',cursive;
-  font-size:3rem;
+  font-size:2.7rem;
   color:var(--gold);
-  line-height:1.18;
+  line-height:1.22;
   margin-bottom:18px;
+  word-break:break-word;
 }
 
 .hero__amp{
@@ -831,9 +834,16 @@ section,footer{position:relative;z-index:1}
   width:100%;
   z-index:5;
   background:url('18_DEMO_invitacion_Jess y Ramiro_files/61aba3c7148417498c340a71abf2edbd.png') center/100% 100% no-repeat;
-  padding:40px 22px 34px;
+  padding:44px 36px 38px;
   text-align:center;
   filter:drop-shadow(0 6px 20px rgba(0,0,0,.12));
+  transform:translateY(110px);
+  opacity:0;
+  transition:transform 1.6s cubic-bezier(0.22,1,0.36,1),opacity .9s ease;
+}
+.rsvp__card.emerged{
+  transform:translateY(0);
+  opacity:1;
 }
 
 .rsvp__title{
@@ -1009,6 +1019,12 @@ section,footer{position:relative;z-index:1}
   from{opacity:0;transform:translateY(20px)}
   to  {opacity:1;transform:none}
 }
+
+@keyframes cardEmerge{
+  0%  {transform:translateY(130px);opacity:0}
+  35% {opacity:1}
+  100%{transform:translateY(0);opacity:1}
+}
 </style>
 </head>
 <body>
@@ -1019,7 +1035,7 @@ section,footer{position:relative;z-index:1}
   <div class="hero__painting"></div>
   <div class="hero__scene">
     <img class="hero__env" src="18_DEMO_invitacion_Jess y Ramiro_files/9c563d2582595ad9735b7e03759e9911.png" alt="Sobre abierto">
-    <div class="hero__card rv-s" style="transition-delay:.35s">
+    <div class="hero__card">
       <img class="hero__seal" src="18_DEMO_invitacion_Jess y Ramiro_files/c541cf1655a8dd481cdd325a0cff763d.png" alt="Sello">
       <p class="hero__honor">
         En compañía de nuestros padres<br>
@@ -1213,7 +1229,7 @@ section,footer{position:relative;z-index:1}
       </div>
       <img class="rsvp__env-img" src="18_DEMO_invitacion_Jess y Ramiro_files/9c563d2582595ad9735b7e03759e9911.png" alt="Sobre abierto">
     </div>
-    <div class="rsvp__card rv-s" style="transition-delay:.22s">
+    <div class="rsvp__card">
       <span class="rsvp__title">Confirmación</span>
       <div class="rsvp__rule"></div>
       <label class="rsvp__field-lbl">Tu nombre</label>
@@ -1286,6 +1302,20 @@ function tick() {
 
 tick();
 setInterval(tick, 30000);
+
+/* ── RSVP card emerge ── */
+(function(){
+  const env  = document.querySelector('.rsvp__env-wrap');
+  const card = document.querySelector('.rsvp__card');
+  if (!env || !card) return;
+  const obs = new IntersectionObserver(entries => {
+    if (entries[0].isIntersecting) {
+      setTimeout(() => card.classList.add('emerged'), 350);
+      obs.unobserve(env);
+    }
+  }, { threshold: .35 });
+  obs.observe(env);
+})();
 
 /* ── RSVP ── */
 function pickOpt(btn) {
