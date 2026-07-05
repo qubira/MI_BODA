@@ -6,14 +6,15 @@
 <title>Jess & Ramiro – Boda 23 Julio 2027</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Sacramento&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Cormorant+SC:wght@300;400;500&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Sacramento&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Cormorant+SC:wght@300;400;500&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 
 :root{
   --linen:   #f0ece3;
-  --linen2:  #e6e1d6;
+  --linen2:  #e8e4da;
+  --parchment:#f7f4ed;
   --gold:    #c4a076;
   --gold2:   #a88054;
   --ink:     #2a2010;
@@ -37,25 +38,79 @@ body{
   overflow-x:hidden;
 }
 
-/* linen texture overlay on entire page */
+/* linen texture overlay */
 .page::before{
   content:'';
   position:fixed;
   inset:0;
   background:url('18_DEMO_invitacion_Jess y Ramiro_files/6932410780dfb2e5190c1d98867d71cd.png') center/cover;
-  opacity:.14;
+  opacity:.11;
   pointer-events:none;
   z-index:0;
 }
 
-section{position:relative;z-index:1}
+section,footer{position:relative;z-index:1}
 
 /* ── scroll reveal ── */
-.rv  {opacity:0;transform:translateY(28px);transition:.75s ease}
-.rv-l{opacity:0;transform:translateX(-28px);transition:.75s ease}
-.rv-r{opacity:0;transform:translateX(28px);transition:.75s ease}
-.rv-s{opacity:0;transform:scale(.93);transition:.75s ease}
+.rv  {opacity:0;transform:translateY(30px);transition:.82s ease}
+.rv-l{opacity:0;transform:translateX(-32px);transition:.82s ease}
+.rv-r{opacity:0;transform:translateX(32px);transition:.82s ease}
+.rv-s{opacity:0;transform:scale(.94);transition:.82s ease}
 .rv.in,.rv-l.in,.rv-r.in,.rv-s.in{opacity:1;transform:none}
+
+/* ════════════════════════════
+   SISTEMA DE CABECERA DE SECCIÓN
+════════════════════════════ */
+.s-over{
+  font-family:'Montserrat',sans-serif;
+  font-size:.52rem;
+  letter-spacing:.3em;
+  color:var(--taupe2);
+  text-transform:uppercase;
+  display:block;
+  margin-bottom:7px;
+}
+
+.s-title{
+  font-family:'Sacramento',cursive;
+  font-size:3rem;
+  color:var(--gold);
+  display:block;
+  line-height:1.15;
+  margin-bottom:4px;
+}
+
+.s-rule{
+  width:44px;
+  height:1px;
+  background:var(--gold);
+  opacity:.45;
+  margin:0 auto 26px;
+}
+
+/* ════════════════════════════
+   DIVISOR ORNAMENTAL
+════════════════════════════ */
+.ornament-div{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:14px;
+  padding:14px 32px;
+  color:var(--gold);
+  font-size:.85rem;
+  position:relative;
+  z-index:1;
+  background:var(--linen);
+  letter-spacing:.05em;
+}
+
+.ornament-div span{
+  flex:1;
+  height:1px;
+  background:linear-gradient(to right,transparent,rgba(196,160,118,.5),transparent);
+  display:block;
+}
 
 /* ════════════════════════════
    HERO
@@ -63,6 +118,10 @@ section{position:relative;z-index:1}
 .hero{
   position:relative;
   overflow:hidden;
+  min-height:100svh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
 
 .hero__painting{
@@ -70,6 +129,9 @@ section{position:relative;z-index:1}
   inset:0;
   background:url('18_DEMO_invitacion_Jess y Ramiro_files/1bb7074dcd7b883eb752ac8802dc20c8.png') center/cover no-repeat;
   z-index:0;
+  animation:cinematicDrift 22s ease-in-out infinite;
+  transform-origin:center center;
+  will-change:transform;
 }
 
 .hero__painting::after{
@@ -77,10 +139,10 @@ section{position:relative;z-index:1}
   position:absolute;
   inset:0;
   background:linear-gradient(
-    to bottom,
-    rgba(245,241,233,.28) 0%,
-    rgba(245,241,233,.22) 50%,
-    rgba(245,241,233,.60) 100%
+    175deg,
+    rgba(240,235,225,.15) 0%,
+    rgba(240,235,225,.08) 45%,
+    rgba(240,235,225,.62) 100%
   );
 }
 
@@ -90,16 +152,17 @@ section{position:relative;z-index:1}
   width:100%;
   max-width:320px;
   margin:0 auto;
-  padding:40px 12px 32px;
+  padding:28px 12px 36px;
   display:flex;
   flex-direction:column;
   align-items:center;
+  animation:pageIn 1s ease both;
 }
 
 .hero__env{
   width:100%;
   display:block;
-  filter:drop-shadow(0 8px 24px rgba(0,0,0,.18));
+  filter:drop-shadow(0 12px 36px rgba(0,0,0,.24));
 }
 
 .hero__card{
@@ -107,54 +170,54 @@ section{position:relative;z-index:1}
   margin:-60px auto 0;
   width:100%;
   background:url('18_DEMO_invitacion_Jess y Ramiro_files/61aba3c7148417498c340a71abf2edbd.png') center/100% 100% no-repeat;
-  padding:40px 22px 32px;
+  padding:48px 26px 38px;
   text-align:center;
   z-index:5;
-  filter:drop-shadow(0 6px 18px rgba(0,0,0,.12));
+  filter:drop-shadow(0 10px 28px rgba(0,0,0,.17));
 }
 
 .hero__seal{
   position:absolute;
-  top:-26px;
+  top:-30px;
   left:50%;
   transform:translateX(-50%);
-  width:54px;
-  height:54px;
+  width:62px;
+  height:62px;
   object-fit:contain;
-  filter:drop-shadow(0 2px 5px rgba(0,0,0,.16));
+  filter:drop-shadow(0 3px 8px rgba(0,0,0,.2));
 }
 
 .hero__honor{
   font-family:'Cormorant Garamond',serif;
-  font-size:.69rem;
+  font-size:.74rem;
   font-weight:300;
-  letter-spacing:.1em;
+  letter-spacing:.08em;
   color:var(--taupe);
-  line-height:1.85;
-  margin-bottom:10px;
+  line-height:1.95;
+  margin-bottom:14px;
   font-style:italic;
 }
 
 .hero__invite{
   font-family:'Montserrat',sans-serif;
-  font-size:.56rem;
-  letter-spacing:.2em;
+  font-size:.52rem;
+  letter-spacing:.22em;
   color:var(--taupe2);
   text-transform:uppercase;
-  margin-bottom:14px;
+  margin-bottom:18px;
 }
 
 .hero__names{
   font-family:'Sacramento',cursive;
-  font-size:2.4rem;
+  font-size:3rem;
   color:var(--gold);
   line-height:1.18;
-  margin-bottom:14px;
+  margin-bottom:18px;
 }
 
 .hero__amp{
   display:block;
-  font-size:1.8rem;
+  font-size:2.1rem;
   line-height:1.1;
   color:var(--gold2);
   margin:.1em 0;
@@ -164,14 +227,14 @@ section{position:relative;z-index:1}
   width:56px;
   height:1px;
   background:var(--gold);
-  margin:0 auto 12px;
-  opacity:.55;
+  margin:0 auto 15px;
+  opacity:.5;
 }
 
 .hero__date{
   font-family:'Cormorant SC',serif;
-  font-size:.7rem;
-  letter-spacing:.2em;
+  font-size:.73rem;
+  letter-spacing:.24em;
   color:var(--taupe);
   text-transform:uppercase;
 }
@@ -180,70 +243,76 @@ section{position:relative;z-index:1}
    MÚSICA
 ════════════════════════════ */
 .music{
-  padding:40px 24px 32px;
+  padding:40px 24px 40px;
   text-align:center;
-}
-
-.music__label{
-  font-family:'Montserrat',sans-serif;
-  font-size:.56rem;
-  letter-spacing:.22em;
-  color:var(--taupe);
-  text-transform:uppercase;
-  margin-bottom:18px;
+  background:var(--parchment);
 }
 
 .music__player{
-  background:var(--cream);
-  border-radius:10px;
-  padding:22px 20px 18px;
-  box-shadow:0 2px 16px rgba(0,0,0,.07);
+  background:url('18_DEMO_invitacion_Jess y Ramiro_files/61aba3c7148417498c340a71abf2edbd.png') center/100% 100% no-repeat;
+  padding:34px 24px 28px;
+  min-height:190px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+}
+
+.music__overline{
+  font-family:'Montserrat',sans-serif;
+  font-size:.51rem;
+  letter-spacing:.22em;
+  color:var(--taupe2);
+  text-transform:uppercase;
+  margin-bottom:10px;
+  display:block;
 }
 
 .music__song{
   font-family:'Sacramento',cursive;
-  font-size:1.75rem;
+  font-size:2.3rem;
   color:var(--gold2);
-  margin-bottom:3px;
   display:block;
+  margin-bottom:2px;
 }
 
 .music__artist{
   font-family:'Cormorant Garamond',serif;
-  font-size:.8rem;
+  font-size:.88rem;
   letter-spacing:.1em;
   color:var(--taupe);
-  margin-bottom:16px;
   font-style:italic;
+  margin-bottom:20px;
 }
 
 .music__controls{
   width:100%;
-  max-width:210px;
+  max-width:195px;
   display:block;
   margin:0 auto;
-  opacity:.82;
+  opacity:.8;
   cursor:pointer;
 }
 
 /* ════════════════════════════
-   BOTANICA decorativa
+   BOTANICA
 ════════════════════════════ */
 .botanical{
   position:relative;
   z-index:1;
-  height:90px;
+  height:100px;
   overflow:hidden;
   display:flex;
   align-items:flex-end;
+  background:var(--linen);
 }
 
 .botanical--right{justify-content:flex-end}
 .botanical--left {justify-content:flex-start}
 
 .botanical img{
-  height:100px;
-  opacity:.18;
+  height:120px;
+  opacity:.22;
   mix-blend-mode:multiply;
   pointer-events:none;
   user-select:none;
@@ -255,190 +324,217 @@ section{position:relative;z-index:1}
    ITINERARIO
 ════════════════════════════ */
 .itinerary{
-  padding:8px 20px 24px;
+  padding:8px 20px 32px;
   text-align:center;
+  background:var(--linen);
 }
 
 .itinerary__env{
-  width:56%;
-  max-width:200px;
+  width:50%;
+  max-width:185px;
   display:block;
-  margin:0 auto 28px;
-  filter:drop-shadow(0 4px 12px rgba(0,0,0,.12));
+  margin:0 auto 30px;
+  filter:drop-shadow(0 5px 16px rgba(0,0,0,.15));
 }
 
 .itin-cards{
   display:flex;
   flex-direction:column;
-  gap:18px;
+  gap:20px;
 }
 
 .itin-card{
   background:url('18_DEMO_invitacion_Jess y Ramiro_files/61aba3c7148417498c340a71abf2edbd.png') center/100% 100% no-repeat;
-  padding:28px 22px 24px;
+  padding:34px 26px 28px;
   text-align:center;
-  min-height:210px;
+  min-height:230px;
   display:flex;
   flex-direction:column;
   align-items:center;
   justify-content:center;
+  position:relative;
+}
+
+.itin-card::before{
+  content:'';
+  position:absolute;
+  top:16px;left:0;right:0;
+  height:1px;
+  background:linear-gradient(to right,transparent,rgba(196,160,118,.45),transparent);
+}
+
+.itin-card::after{
+  content:'';
+  position:absolute;
+  bottom:16px;left:0;right:0;
+  height:1px;
+  background:linear-gradient(to right,transparent,rgba(196,160,118,.45),transparent);
+}
+
+.itin-card__num{
+  font-family:'Cormorant SC',serif;
+  font-size:.62rem;
+  letter-spacing:.32em;
+  color:var(--taupe2);
+  text-transform:uppercase;
+  margin-bottom:5px;
+  display:block;
 }
 
 .itin-card__title{
   font-family:'Sacramento',cursive;
-  font-size:2rem;
+  font-size:2.5rem;
   color:var(--gold);
   display:block;
-  margin-bottom:8px;
+  margin-bottom:10px;
+}
+
+.itin-card__rule{
+  width:32px;
+  height:1px;
+  background:var(--gold);
+  opacity:.4;
+  margin:0 auto 14px;
 }
 
 .itin-card__place{
   font-family:'Cormorant Garamond',serif;
-  font-size:.95rem;
+  font-size:1rem;
   font-weight:500;
   color:var(--ink);
-  margin-bottom:3px;
+  margin-bottom:4px;
   letter-spacing:.03em;
 }
 
 .itin-card__addr{
   font-family:'Cormorant Garamond',serif;
-  font-size:.8rem;
+  font-size:.83rem;
   font-style:italic;
   color:var(--taupe);
-  margin-bottom:10px;
-  line-height:1.55;
+  margin-bottom:12px;
+  line-height:1.6;
 }
 
 .itin-card__time{
   font-family:'Montserrat',sans-serif;
-  font-size:.62rem;
-  letter-spacing:.16em;
+  font-size:.6rem;
+  letter-spacing:.2em;
   color:var(--taupe);
   text-transform:uppercase;
-  margin-bottom:14px;
+  margin-bottom:18px;
 }
 
 .btn-loc{
   display:inline-block;
-  padding:7px 24px;
+  padding:9px 28px;
   border:1px solid var(--gold);
   color:var(--gold2);
   font-family:'Montserrat',sans-serif;
-  font-size:.6rem;
-  letter-spacing:.14em;
+  font-size:.58rem;
+  letter-spacing:.16em;
   text-transform:uppercase;
   text-decoration:none;
   border-radius:2px;
   background:transparent;
   cursor:pointer;
-  transition:background .2s,color .2s;
+  transition:background .25s,color .25s;
 }
 .btn-loc:hover{background:var(--gold);color:#fff}
 
 .itinerary__quote{
   font-family:'Cormorant Garamond',serif;
-  font-size:.9rem;
+  font-size:1rem;
   font-style:italic;
   color:var(--taupe);
-  line-height:1.75;
-  padding:24px 16px 4px;
-  text-align:center;
+  line-height:1.85;
+  padding:28px 20px 4px;
 }
 
 /* ════════════════════════════
    CANCIÓN FAVORITA
 ════════════════════════════ */
 .song{
-  padding:24px 24px 32px;
+  padding:40px 24px 40px;
   text-align:center;
+  background:var(--parchment);
 }
 
 .song__seal{
-  width:62px;
+  width:66px;
   display:block;
-  margin:0 auto 16px;
-  filter:drop-shadow(0 2px 5px rgba(0,0,0,.12));
+  margin:0 auto 20px;
+  filter:drop-shadow(0 3px 7px rgba(0,0,0,.14));
 }
 
 .song__card{
-  background:var(--cream);
-  border-radius:6px;
-  padding:26px 20px 22px;
-  box-shadow:0 2px 14px rgba(0,0,0,.06);
-  border:1px solid rgba(196,160,118,.2);
+  background:url('18_DEMO_invitacion_Jess y Ramiro_files/61aba3c7148417498c340a71abf2edbd.png') center/100% 100% no-repeat;
+  padding:36px 24px 30px;
+  min-height:200px;
 }
 
 .song__question{
   font-family:'Cormorant Garamond',serif;
-  font-size:1rem;
+  font-size:1.05rem;
   font-style:italic;
   color:var(--taupe);
-  margin-bottom:18px;
-  line-height:1.6;
+  margin-bottom:22px;
+  line-height:1.7;
   display:block;
 }
 
 .song__input{
   width:100%;
   border:none;
-  border-bottom:1px solid var(--taupe2);
+  border-bottom:1px solid rgba(196,160,118,.5);
   background:transparent;
-  padding:8px 4px;
+  padding:9px 4px;
   font-family:'Cormorant Garamond',serif;
-  font-size:.92rem;
+  font-size:.95rem;
   color:var(--ink);
   outline:none;
   text-align:center;
-  margin-bottom:18px;
+  margin-bottom:22px;
 }
 .song__input::placeholder{color:var(--taupe2);font-style:italic}
 
 .btn-send{
   display:inline-block;
-  padding:10px 38px;
+  padding:11px 40px;
   background:var(--taupe);
   color:#fff;
   font-family:'Montserrat',sans-serif;
-  font-size:.62rem;
-  letter-spacing:.18em;
+  font-size:.58rem;
+  letter-spacing:.2em;
   text-transform:uppercase;
   border:none;
   border-radius:2px;
   cursor:pointer;
-  transition:background .2s;
+  transition:background .25s;
 }
-.btn-send:hover{background:var(--taupe2)}
+.btn-send:hover{background:var(--gold2)}
 
 .song__note{
   font-family:'Cormorant Garamond',serif;
-  font-size:.72rem;
+  font-size:.75rem;
   font-style:italic;
   color:var(--taupe2);
-  margin-top:12px;
-  line-height:1.55;
+  margin-top:14px;
+  line-height:1.65;
 }
 
 /* ════════════════════════════
    REGALOS
 ════════════════════════════ */
 .regalos{
-  padding:20px 24px 28px;
+  padding:40px 24px 40px;
   text-align:center;
-}
-
-.section-title{
-  font-family:'Sacramento',cursive;
-  font-size:2.6rem;
-  color:var(--gold);
-  margin-bottom:6px;
-  display:block;
+  background:var(--linen);
 }
 
 .regalos__card{
   background:url('18_DEMO_invitacion_Jess y Ramiro_files/61aba3c7148417498c340a71abf2edbd.png') center/100% 100% no-repeat;
-  padding:28px 22px 24px;
-  margin-bottom:18px;
+  padding:32px 24px 28px;
+  margin-bottom:22px;
   min-height:160px;
   display:flex;
   align-items:center;
@@ -447,127 +543,140 @@ section{position:relative;z-index:1}
 
 .regalos__text{
   font-family:'Cormorant Garamond',serif;
-  font-size:.9rem;
+  font-size:.97rem;
   color:var(--taupe);
-  line-height:1.75;
+  line-height:1.9;
 }
 
 .regalos__mini{
   background:url('18_DEMO_invitacion_Jess y Ramiro_files/9cef04e6ab9ca261ba1f9d33bee535c4.png') center/100% 100% no-repeat;
-  padding:18px 22px;
-  max-width:260px;
-  margin:0 auto 18px;
+  padding:22px 26px;
+  max-width:272px;
+  margin:0 auto 22px;
   text-align:center;
 }
 
 .regalos__mini-title{
   font-family:'Sacramento',cursive;
-  font-size:1.45rem;
+  font-size:1.7rem;
   color:var(--gold);
   display:block;
-  margin-bottom:4px;
+  margin-bottom:5px;
 }
 
 .regalos__mini-store{
   font-family:'Montserrat',sans-serif;
-  font-size:.65rem;
-  letter-spacing:.12em;
+  font-size:.64rem;
+  letter-spacing:.16em;
   color:var(--ink);
   text-transform:uppercase;
   display:block;
-  margin-bottom:2px;
+  margin-bottom:3px;
 }
 
 .regalos__mini-num{
   font-family:'Cormorant Garamond',serif;
-  font-size:.85rem;
+  font-size:.92rem;
   color:var(--taupe);
   display:block;
 }
 
 .regalos__quote{
   font-family:'Cormorant Garamond',serif;
-  font-size:.85rem;
+  font-size:.93rem;
   font-style:italic;
   color:var(--taupe);
-  line-height:1.75;
-  padding:4px 8px;
+  line-height:1.9;
+  padding:12px 18px;
+  border-left:2px solid rgba(196,160,118,.45);
+  margin:4px 18px 0;
+  text-align:left;
 }
 
 /* ════════════════════════════
    DRESS CODE
 ════════════════════════════ */
 .dresscode{
-  padding:24px 24px 36px;
+  padding:40px 24px 44px;
   text-align:center;
+  background:var(--parchment);
+}
+
+.dresscode__card{
+  background:var(--cream);
+  border:1px solid rgba(196,160,118,.28);
+  border-radius:4px;
+  padding:32px 22px 26px;
+  margin-top:6px;
+  box-shadow:0 2px 22px rgba(0,0,0,.05);
 }
 
 .dresscode__seal{
-  width:58px;
+  width:62px;
   display:block;
-  margin:0 auto 10px;
-  filter:drop-shadow(0 2px 5px rgba(0,0,0,.12));
+  margin:0 auto 14px;
+  filter:drop-shadow(0 2px 6px rgba(0,0,0,.13));
 }
 
 .dresscode__sub{
   font-family:'Montserrat',sans-serif;
-  font-size:.58rem;
-  letter-spacing:.2em;
+  font-size:.56rem;
+  letter-spacing:.22em;
   color:var(--taupe);
   text-transform:uppercase;
-  margin-bottom:5px;
+  margin-bottom:7px;
 }
 
 .dresscode__type{
   font-family:'Cormorant SC',serif;
-  font-size:.92rem;
-  letter-spacing:.2em;
+  font-size:1.02rem;
+  letter-spacing:.24em;
   color:var(--ink);
-  margin-bottom:6px;
+  margin-bottom:8px;
 }
 
 .dresscode__desc{
   font-family:'Cormorant Garamond',serif;
-  font-size:.82rem;
+  font-size:.87rem;
   font-style:italic;
   color:var(--taupe);
-  margin-bottom:22px;
-  line-height:1.5;
+  margin-bottom:26px;
+  line-height:1.65;
 }
 
 .dresscode__swatches{
   display:flex;
   justify-content:center;
-  gap:18px;
-  margin-bottom:14px;
+  gap:24px;
+  margin-bottom:18px;
 }
 
 .swatch{
   display:flex;
   flex-direction:column;
   align-items:center;
-  gap:6px;
+  gap:9px;
 }
 
 .swatch__dot{
-  width:50px;
-  height:50px;
+  width:58px;
+  height:58px;
   border-radius:50%;
   border:1px solid rgba(0,0,0,.09);
-  box-shadow:0 2px 8px rgba(0,0,0,.1);
+  box-shadow:0 3px 12px rgba(0,0,0,.13);
 }
 
 .swatch__name{
   font-family:'Montserrat',sans-serif;
-  font-size:.52rem;
-  letter-spacing:.1em;
+  font-size:.51rem;
+  letter-spacing:.13em;
   color:var(--taupe);
   text-transform:uppercase;
 }
 
 .dresscode__note{
   font-family:'Cormorant Garamond',serif;
-  font-size:.78rem;
+  font-size:.79rem;
   font-style:italic;
   color:var(--taupe2);
 }
@@ -576,49 +685,65 @@ section{position:relative;z-index:1}
    COUNTDOWN
 ════════════════════════════ */
 .countdown{
-  padding:40px 24px 40px;
+  padding:52px 24px 52px;
   text-align:center;
   position:relative;
   overflow:hidden;
+  background:var(--linen);
 }
 
 .countdown__bg{
   position:absolute;
   inset:0;
   background:url('18_DEMO_invitacion_Jess y Ramiro_files/6932410780dfb2e5190c1d98867d71cd.png') center/cover;
-  opacity:.35;
+  opacity:.28;
+}
+
+.countdown__painting{
+  position:absolute;
+  inset:0;
+  background:url('18_DEMO_invitacion_Jess y Ramiro_files/1bb7074dcd7b883eb752ac8802dc20c8.png') center/cover;
+  opacity:.07;
 }
 
 .countdown__overlay{
   position:absolute;
   inset:0;
-  background:rgba(240,236,228,.78);
+  background:rgba(240,236,228,.86);
 }
 
-.countdown>*:not(.countdown__bg):not(.countdown__overlay){
+.countdown>*:not(.countdown__bg):not(.countdown__painting):not(.countdown__overlay){
   position:relative;
   z-index:1;
 }
 
-.countdown__faltan{
+.countdown__label{
   font-family:'Montserrat',sans-serif;
-  font-size:1.5rem;
-  font-weight:500;
-  letter-spacing:.32em;
-  color:var(--ink);
+  font-size:.52rem;
+  font-weight:300;
+  letter-spacing:.42em;
+  color:var(--taupe);
   text-transform:uppercase;
-  margin-bottom:20px;
+  margin-bottom:30px;
 }
 
 .countdown__row{
   display:flex;
   justify-content:center;
-  align-items:flex-start;
-  gap:8px;
-  margin-bottom:10px;
+  align-items:center;
+  gap:6px;
+  margin-bottom:30px;
 }
 
-.cd-block{text-align:center;min-width:72px}
+.cd-block{
+  text-align:center;
+  background:var(--cream);
+  border:1px solid rgba(196,160,118,.24);
+  border-radius:6px;
+  padding:16px 10px 12px;
+  min-width:76px;
+  box-shadow:0 2px 14px rgba(0,0,0,.07);
+}
 
 .cd-num{
   font-family:'Cormorant SC',serif;
@@ -633,38 +758,37 @@ section{position:relative;z-index:1}
 
 .cd-label{
   font-family:'Montserrat',sans-serif;
-  font-size:.5rem;
-  letter-spacing:.2em;
+  font-size:.47rem;
+  letter-spacing:.24em;
   color:var(--taupe);
   text-transform:uppercase;
-  margin-top:4px;
+  margin-top:6px;
   display:block;
 }
 
 .cd-sep{
   font-family:'Cormorant SC',serif;
-  font-size:2.8rem;
+  font-size:2.6rem;
   color:var(--gold);
   opacity:.45;
   line-height:1;
-  padding-top:2px;
+  padding-bottom:8px;
 }
 
-.countdown__gran-dia{
-  font-family:'Montserrat',sans-serif;
-  font-size:.58rem;
-  letter-spacing:.22em;
-  color:var(--taupe);
-  text-transform:uppercase;
+.countdown__sub{
+  font-family:'Sacramento',cursive;
+  font-size:2rem;
+  color:var(--gold2);
 }
 
 /* ════════════════════════════
    RSVP
 ════════════════════════════ */
 .rsvp{
-  padding:32px 20px 48px;
+  padding:44px 20px 54px;
   text-align:center;
   position:relative;
+  background:var(--parchment);
 }
 
 .rsvp-scene{
@@ -672,7 +796,6 @@ section{position:relative;z-index:1}
   width:100%;
   max-width:340px;
   margin:0 auto;
-  overflow:visible;
 }
 
 .rsvp__env-wrap{
@@ -708,123 +831,172 @@ section{position:relative;z-index:1}
   width:100%;
   z-index:5;
   background:url('18_DEMO_invitacion_Jess y Ramiro_files/61aba3c7148417498c340a71abf2edbd.png') center/100% 100% no-repeat;
-  padding:36px 20px 28px;
+  padding:40px 22px 34px;
   text-align:center;
-  filter:drop-shadow(0 4px 16px rgba(0,0,0,.1));
+  filter:drop-shadow(0 6px 20px rgba(0,0,0,.12));
 }
 
 .rsvp__title{
   font-family:'Sacramento',cursive;
-  font-size:1.9rem;
+  font-size:2.3rem;
   color:var(--gold);
   display:block;
-  margin-bottom:16px;
+  margin-bottom:6px;
+}
+
+.rsvp__rule{
+  width:36px;
+  height:1px;
+  background:var(--gold);
+  opacity:.4;
+  margin:0 auto 22px;
 }
 
 .rsvp__field-lbl{
   font-family:'Montserrat',sans-serif;
-  font-size:.56rem;
-  letter-spacing:.14em;
+  font-size:.54rem;
+  letter-spacing:.16em;
   color:var(--taupe);
   text-transform:uppercase;
   display:block;
   text-align:left;
   margin-bottom:4px;
-  margin-top:10px;
+  margin-top:12px;
 }
 
 .rsvp__input{
   width:100%;
   border:none;
-  border-bottom:1px solid var(--taupe2);
+  border-bottom:1px solid rgba(196,160,118,.5);
   background:transparent;
-  padding:6px 2px;
+  padding:8px 2px;
   font-family:'Cormorant Garamond',serif;
-  font-size:.92rem;
+  font-size:.97rem;
   color:var(--ink);
   outline:none;
-  margin-bottom:14px;
+  margin-bottom:18px;
 }
 
 .rsvp__question{
   font-family:'Cormorant Garamond',serif;
-  font-size:.82rem;
+  font-size:.87rem;
   font-style:italic;
   color:var(--taupe);
   display:block;
-  margin-bottom:12px;
-  line-height:1.5;
+  margin-bottom:14px;
+  line-height:1.6;
 }
 
 .rsvp__opts{
   display:flex;
   flex-direction:column;
-  gap:8px;
-  margin-bottom:16px;
+  gap:9px;
+  margin-bottom:20px;
 }
 
 .rsvp__opt{
-  padding:9px 10px;
-  border:1px solid var(--taupe2);
+  padding:11px 12px;
+  border:1px solid rgba(196,160,118,.45);
   background:transparent;
   font-family:'Cormorant Garamond',serif;
-  font-size:.8rem;
+  font-size:.84rem;
   color:var(--taupe);
   border-radius:2px;
   cursor:pointer;
-  transition:background .2s,color .2s;
-  text-align:center;
-  line-height:1.4;
+  transition:background .25s,color .25s,border-color .25s;
+  line-height:1.5;
 }
 .rsvp__opt:hover,.rsvp__opt.sel{background:var(--taupe);color:#fff;border-color:var(--taupe)}
 
 .rsvp__deadline{
   font-family:'Cormorant Garamond',serif;
-  font-size:.72rem;
+  font-size:.74rem;
   font-style:italic;
   color:var(--taupe2);
-  margin-top:12px;
-  line-height:1.55;
+  margin-top:15px;
+  line-height:1.65;
 }
 
 /* ════════════════════════════
    FOOTER
 ════════════════════════════ */
 .footer{
-  margin-top:0;
-  padding:36px 24px 48px;
+  padding:52px 24px 56px;
   text-align:center;
-  background:var(--linen2);
-  position:relative;
-  z-index:1;
   border-top:1px solid rgba(196,160,118,.25);
+  background:var(--linen);
+  overflow:hidden;
+}
+
+.footer__botanical{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  margin:-20px -24px 24px;
+  height:80px;
+  overflow:hidden;
+}
+
+.footer__botanical img{
+  height:90px;
+  opacity:.18;
+  mix-blend-mode:multiply;
+}
+
+.footer__botanical img:last-child{transform:scaleX(-1)}
+
+.footer__seal{
+  width:58px;
+  display:block;
+  margin:0 auto 20px;
+  opacity:.72;
+  filter:drop-shadow(0 2px 6px rgba(0,0,0,.12));
+}
+
+.footer__quote{
+  font-family:'Cormorant Garamond',serif;
+  font-size:.97rem;
+  font-style:italic;
+  color:var(--taupe);
+  line-height:1.85;
+  margin-bottom:26px;
+  padding:0 12px;
 }
 
 .footer__names{
   font-family:'Sacramento',cursive;
-  font-size:2.1rem;
+  font-size:2.5rem;
   color:var(--gold);
-  margin-bottom:6px;
+  margin-bottom:8px;
+}
+
+.footer__line{
+  width:44px;
+  height:1px;
+  background:var(--gold);
+  margin:0 auto 12px;
+  opacity:.45;
 }
 
 .footer__date{
   font-family:'Cormorant SC',serif;
   font-size:.68rem;
-  letter-spacing:.2em;
+  letter-spacing:.24em;
   color:var(--taupe);
   text-transform:uppercase;
-  margin-bottom:16px;
 }
 
-.footer__line{
-  width:40px;
-  height:1px;
-  background:var(--gold);
-  margin:0 auto;
-  opacity:.45;
+/* ════════════════════════════
+   ANIMACIONES
+════════════════════════════ */
+@keyframes cinematicDrift{
+  0%  {transform:scale(1)    translate(0,0)}
+  25% {transform:scale(1.06) translate(-1%,.6%)}
+  50% {transform:scale(1.09) translate(.6%,-1%)}
+  75% {transform:scale(1.06) translate(1.2%,.4%)}
+  100%{transform:scale(1)    translate(0,0)}
 }
 
-/* ── flip animation ── */
 @keyframes flipNum{
   0%  {transform:rotateX(0);opacity:1}
   45% {transform:rotateX(-90deg);opacity:0}
@@ -833,12 +1005,10 @@ section{position:relative;z-index:1}
 }
 .flip{animation:flipNum .4s ease}
 
-/* ── hero entrance ── */
 @keyframes pageIn{
-  from{opacity:0;transform:translateY(16px)}
+  from{opacity:0;transform:translateY(20px)}
   to  {opacity:1;transform:none}
 }
-.hero__scene{animation:pageIn .95s ease both}
 </style>
 </head>
 <body>
@@ -868,17 +1038,23 @@ section{position:relative;z-index:1}
   </div>
 </section>
 
+<!-- divisor ornamental -->
+<div class="ornament-div rv"><span></span>✦<span></span></div>
+
 <!-- ═══════════ MÚSICA ═══════════ -->
 <section class="music">
-  <p class="music__label rv">Dale play para escuchar nuestra canción</p>
-  <div class="music__player rv" style="transition-delay:.15s">
+  <span class="s-over rv">Nuestra canción</span>
+  <span class="s-title rv" style="transition-delay:.07s">Música</span>
+  <div class="s-rule rv" style="transition-delay:.13s"></div>
+  <div class="music__player rv" style="transition-delay:.2s">
+    <span class="music__overline">Dale play para escuchar</span>
     <span class="music__song">Can't Help Falling in Love</span>
     <span class="music__artist">Elvis Presley</span>
     <img class="music__controls" src="18_DEMO_invitacion_Jess y Ramiro_files/dbd0709d2de6099fb01a0f219acaf0ac.png" alt="Controles">
   </div>
 </section>
 
-<!-- decoración botánica derecha -->
+<!-- botánica derecha -->
 <div class="botanical botanical--right rv" style="transition-delay:.1s">
   <img src="18_DEMO_invitacion_Jess y Ramiro_files/d79862c347a8eb16a1d9f6cce76a09c3.png" alt="">
 </div>
@@ -886,31 +1062,38 @@ section{position:relative;z-index:1}
 <!-- ═══════════ ITINERARIO ═══════════ -->
 <section class="itinerary">
   <img class="itinerary__env rv-s" src="18_DEMO_invitacion_Jess y Ramiro_files/7f38c60cf6796d066a72216fa479a487.png" alt="Sobre">
-
+  <span class="s-over rv" style="transition-delay:.05s">El gran día</span>
+  <span class="s-title rv" style="transition-delay:.1s">Programa</span>
+  <div class="s-rule rv" style="transition-delay:.16s"></div>
   <div class="itin-cards">
-    <div class="itin-card rv" style="transition-delay:.1s">
+    <div class="itin-card rv" style="transition-delay:.12s">
+      <span class="itin-card__num">I</span>
       <span class="itin-card__title">Ceremonia</span>
+      <div class="itin-card__rule"></div>
       <p class="itin-card__place">Capilla Nuestra Señora del Carmen</p>
       <p class="itin-card__addr">Calle 15 #25-30, Bogotá</p>
-      <p class="itin-card__time">Hora: 16:30</p>
-      <a class="btn-loc" href="https://maps.google.com" target="_blank">Ubicación</a>
+      <p class="itin-card__time">16:30 hrs</p>
+      <a class="btn-loc" href="https://maps.google.com" target="_blank">Ver Ubicación</a>
     </div>
-
-    <div class="itin-card rv" style="transition-delay:.22s">
+    <div class="itin-card rv" style="transition-delay:.24s">
+      <span class="itin-card__num">II</span>
       <span class="itin-card__title">Recepción</span>
+      <div class="itin-card__rule"></div>
       <p class="itin-card__place">Salón de Eventos ANA</p>
       <p class="itin-card__addr">Av. El Dorado #68-12, Bogotá</p>
-      <p class="itin-card__time">Hora: 19:00</p>
-      <a class="btn-loc" href="https://maps.google.com" target="_blank">Ubicación</a>
+      <p class="itin-card__time">19:00 hrs</p>
+      <a class="btn-loc" href="https://maps.google.com" target="_blank">Ver Ubicación</a>
     </div>
   </div>
-
-  <p class="itinerary__quote rv" style="transition-delay:.3s">
+  <p class="itinerary__quote rv" style="transition-delay:.32s">
     "El mejor capítulo de nuestra historia<br>está por comenzar."
   </p>
 </section>
 
-<!-- decoración botánica izquierda -->
+<!-- divisor ornamental -->
+<div class="ornament-div rv"><span></span>✦<span></span></div>
+
+<!-- botánica izquierda -->
 <div class="botanical botanical--left rv" style="transition-delay:.1s">
   <img src="18_DEMO_invitacion_Jess y Ramiro_files/d79862c347a8eb16a1d9f6cce76a09c3.png" alt="">
 </div>
@@ -918,7 +1101,10 @@ section{position:relative;z-index:1}
 <!-- ═══════════ CANCIÓN FAVORITA ═══════════ -->
 <section class="song">
   <img class="song__seal rv-s" src="18_DEMO_invitacion_Jess y Ramiro_files/c541cf1655a8dd481cdd325a0cff763d.png" alt="Sello">
-  <div class="song__card rv" style="transition-delay:.15s">
+  <span class="s-over rv" style="transition-delay:.05s">Tu sugerencia</span>
+  <span class="s-title rv" style="transition-delay:.1s">¿Tu Canción?</span>
+  <div class="s-rule rv" style="transition-delay:.16s"></div>
+  <div class="song__card rv" style="transition-delay:.22s">
     <span class="song__question">¿Qué canción no puede faltar<br>en nuestra celebración?</span>
     <input class="song__input" type="text" placeholder="Escribe aquí tu canción favorita…">
     <button class="btn-send">Enviar</button>
@@ -926,60 +1112,73 @@ section{position:relative;z-index:1}
   </div>
 </section>
 
+<!-- divisor ornamental -->
+<div class="ornament-div rv"><span></span>✦<span></span></div>
+
 <!-- ═══════════ REGALOS ═══════════ -->
 <section class="regalos">
-  <span class="section-title rv">Regalos</span>
-
-  <div class="regalos__card rv" style="transition-delay:.1s">
+  <span class="s-over rv">Con mucho cariño</span>
+  <span class="s-title rv" style="transition-delay:.07s">Regalos</span>
+  <div class="s-rule rv" style="transition-delay:.13s"></div>
+  <div class="regalos__card rv" style="transition-delay:.2s">
     <p class="regalos__text">
       Su compañía es lo más importante.<br>
       Si desean hacernos un obsequio,<br>
       lo recibiremos con mucho cariño.
     </p>
   </div>
-
-  <div class="regalos__mini rv" style="transition-delay:.2s">
+  <div class="regalos__mini rv" style="transition-delay:.28s">
     <span class="regalos__mini-title">Mesa de Regalos</span>
     <span class="regalos__mini-store">Liverpool</span>
     <span class="regalos__mini-num">222 550 526</span>
   </div>
-
-  <p class="regalos__quote rv" style="transition-delay:.28s">
+  <blockquote class="regalos__quote rv" style="transition-delay:.35s">
     "Nos encontramos, nos elegimos<br>
     y hoy queremos compartir<br>
     nuestra felicidad con ustedes."
-  </p>
+  </blockquote>
 </section>
+
+<!-- divisor ornamental -->
+<div class="ornament-div rv"><span></span>✦<span></span></div>
 
 <!-- ═══════════ DRESS CODE ═══════════ -->
 <section class="dresscode">
-  <img class="dresscode__seal rv-s" src="18_DEMO_invitacion_Jess y Ramiro_files/c541cf1655a8dd481cdd325a0cff763d.png" alt="Sello">
-  <span class="section-title rv" style="transition-delay:.05s">Dress Code</span>
-  <p class="dresscode__sub rv" style="transition-delay:.1s">Vestimenta recomendada</p>
-  <p class="dresscode__type rv" style="transition-delay:.14s">Formal</p>
-  <p class="dresscode__desc rv" style="transition-delay:.18s">Caballeros con traje · Damas con vestido largo</p>
-  <div class="dresscode__swatches rv" style="transition-delay:.22s">
-    <div class="swatch">
-      <div class="swatch__dot" style="background:#5d624e"></div>
-      <span class="swatch__name">Olivo</span>
+  <span class="s-over rv">Vestimenta</span>
+  <span class="s-title rv" style="transition-delay:.06s">Dress Code</span>
+  <div class="s-rule rv" style="transition-delay:.12s"></div>
+  <div class="dresscode__card rv" style="transition-delay:.18s">
+    <img class="dresscode__seal" src="18_DEMO_invitacion_Jess y Ramiro_files/c541cf1655a8dd481cdd325a0cff763d.png" alt="Sello">
+    <p class="dresscode__sub">Vestimenta recomendada</p>
+    <p class="dresscode__type">Formal</p>
+    <p class="dresscode__desc">Caballeros con traje · Damas con vestido largo</p>
+    <div class="dresscode__swatches">
+      <div class="swatch">
+        <div class="swatch__dot" style="background:#5d624e"></div>
+        <span class="swatch__name">Olivo</span>
+      </div>
+      <div class="swatch">
+        <div class="swatch__dot" style="background:#fffbee;border-color:#d8d4cb"></div>
+        <span class="swatch__name">Crema</span>
+      </div>
+      <div class="swatch">
+        <div class="swatch__dot" style="background:#1a1a18"></div>
+        <span class="swatch__name">Negro</span>
+      </div>
     </div>
-    <div class="swatch">
-      <div class="swatch__dot" style="background:#fffbee;border-color:#d8d4cb"></div>
-      <span class="swatch__name">Crema</span>
-    </div>
-    <div class="swatch">
-      <div class="swatch__dot" style="background:#1a1a18"></div>
-      <span class="swatch__name">Negro</span>
-    </div>
+    <p class="dresscode__note">* Color blanco reservado para la novia</p>
   </div>
-  <p class="dresscode__note rv" style="transition-delay:.28s">* Color blanco reservado para la novia</p>
 </section>
 
-<!-- ═══════════ COUNTDOWN ═══════════ -->
+<!-- divisor ornamental -->
+<div class="ornament-div rv"><span></span>✦<span></span></div>
+
+<!-- ═══════════ CUENTA REGRESIVA ═══════════ -->
 <section class="countdown">
   <div class="countdown__bg"></div>
+  <div class="countdown__painting"></div>
   <div class="countdown__overlay"></div>
-  <p class="countdown__faltan rv">Faltan</p>
+  <p class="countdown__label rv">Faltan</p>
   <div class="countdown__row rv" style="transition-delay:.1s">
     <div class="cd-block">
       <span class="cd-num" id="cd-days"><span>365</span></span>
@@ -996,22 +1195,27 @@ section{position:relative;z-index:1}
       <span class="cd-label">Minutos</span>
     </div>
   </div>
-  <p class="countdown__gran-dia rv" style="transition-delay:.18s">Para nuestro gran día</p>
+  <p class="countdown__sub rv" style="transition-delay:.18s">Para nuestro gran día</p>
 </section>
+
+<!-- divisor ornamental -->
+<div class="ornament-div rv"><span></span>✦<span></span></div>
 
 <!-- ═══════════ RSVP ═══════════ -->
 <section class="rsvp">
+  <span class="s-over rv">Asistencia</span>
+  <span class="s-title rv" style="transition-delay:.07s">¿Nos Acompañas?</span>
+  <div class="s-rule rv" style="transition-delay:.13s"></div>
   <div class="rsvp-scene">
-    <!-- Sobre abierto con pintura de paisaje -->
     <div class="rsvp__env-wrap">
       <div class="rsvp__env-bg">
         <div class="rsvp__painting"></div>
       </div>
       <img class="rsvp__env-img" src="18_DEMO_invitacion_Jess y Ramiro_files/9c563d2582595ad9735b7e03759e9911.png" alt="Sobre abierto">
     </div>
-    <!-- Tarjeta de confirmación -->
-    <div class="rsvp__card rv-s" style="transition-delay:.2s">
+    <div class="rsvp__card rv-s" style="transition-delay:.22s">
       <span class="rsvp__title">Confirmación</span>
+      <div class="rsvp__rule"></div>
       <label class="rsvp__field-lbl">Tu nombre</label>
       <input class="rsvp__input" type="text" placeholder="Nombre completo">
       <span class="rsvp__question">¿Podrás acompañarnos en nuestro gran día?</span>
@@ -1019,7 +1223,7 @@ section{position:relative;z-index:1}
         <button class="rsvp__opt" onclick="pickOpt(this)">¡Sí, ahí estaré!</button>
         <button class="rsvp__opt" onclick="pickOpt(this)">No podré asistir, pero los llevo en mi corazón</button>
       </div>
-      <button class="btn-send" onclick="sendRsvp()">Enviar</button>
+      <button class="btn-send" onclick="sendRsvp()">Enviar confirmación</button>
       <p class="rsvp__deadline">Con mucho cariño, agradecemos confirmes tu asistencia antes del 31 de Marzo</p>
     </div>
   </div>
@@ -1027,12 +1231,20 @@ section{position:relative;z-index:1}
 
 <!-- ═══════════ FOOTER ═══════════ -->
 <footer class="footer">
+  <div class="footer__botanical">
+    <img src="18_DEMO_invitacion_Jess y Ramiro_files/d79862c347a8eb16a1d9f6cce76a09c3.png" alt="">
+    <img src="18_DEMO_invitacion_Jess y Ramiro_files/d79862c347a8eb16a1d9f6cce76a09c3.png" alt="">
+  </div>
+  <img class="footer__seal" src="18_DEMO_invitacion_Jess y Ramiro_files/c541cf1655a8dd481cdd325a0cff763d.png" alt="">
+  <p class="footer__quote">
+    "Con amor, gratitud y mucha emoción,<br>los esperamos en nuestro gran día."
+  </p>
   <p class="footer__names">Jess & Ramiro</p>
-  <p class="footer__date">23 · Julio · 2027</p>
   <div class="footer__line"></div>
+  <p class="footer__date">23 · Julio · 2027</p>
 </footer>
 
-</div><!-- /.page -->
+</div>
 <script>
 /* ── Scroll Reveal ── */
 const rvEls = document.querySelectorAll('.rv,.rv-l,.rv-r,.rv-s');
