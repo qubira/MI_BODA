@@ -857,11 +857,77 @@
       color: rgba(255,255,255,0.34);
       position: relative; z-index: 1;
     }
+
+    /* ══════════════════════════════════════
+       VIDEO INTRO
+    ══════════════════════════════════════ */
+    .video-intro {
+      position: relative;
+      width: 100%;
+      height: 100svh;
+      overflow: hidden;
+      background: #111;
+      z-index: 1;
+    }
+
+    .video-intro__video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+    }
+
+    .video-intro__scroll {
+      position: absolute;
+      bottom: 36px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      z-index: 2;
+      animation: vidScrollBounce 2.2s ease-in-out infinite;
+    }
+
+    .video-intro__scroll-text {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 9px;
+      letter-spacing: .32em;
+      color: rgba(255,255,255,.75);
+      text-transform: uppercase;
+    }
+
+    .video-intro__scroll-line {
+      width: 1px;
+      height: 34px;
+      background: linear-gradient(to bottom, rgba(255,255,255,.8), transparent);
+    }
+
+    @keyframes vidScrollBounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50%       { transform: translateX(-50%) translateY(7px); }
+    }
   </style>
 </head>
 <body>
 <div class="page">
   <div class="page__texture" aria-hidden="true"></div>
+
+  <!-- ══════════════════════════════════════
+       0. VIDEO INTRO
+  ══════════════════════════════════════ -->
+  <section class="video-intro">
+    <video class="video-intro__video" autoplay muted playsinline>
+      <source src="video/Brown and White Modern Wedding Invitation Mobile Video.mp4" type="video/mp4">
+    </video>
+    <div class="video-intro__scroll">
+      <span class="video-intro__scroll-text">Desliza</span>
+      <div class="video-intro__scroll-line"></div>
+    </div>
+  </section>
 
   <!-- ══════════════════════════════════════
        1. HERO
