@@ -185,6 +185,67 @@ body{
 .sec--light{background:var(--bg2)}
 .sec--white{background:var(--card)}
 
+/* ── Countdown ── */
+.cd12{
+  padding:56px 24px;
+  text-align:center;
+  background:var(--bg2);
+}
+.cd12__faltan{
+  font-family:'Great Vibes',cursive;
+  font-size:2.4rem;
+  color:var(--navy);
+  margin-bottom:28px;
+}
+.cd12__grid{
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+  gap:6px;
+  flex-wrap:wrap;
+}
+.cd12__unit{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:10px;
+}
+.cd12__num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:3rem;
+  font-weight:300;
+  color:var(--navy);
+  line-height:1;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:14px 18px;
+  min-width:68px;
+  text-align:center;
+  box-shadow:0 2px 12px rgba(26,82,118,.08);
+}
+.cd12__lbl{
+  font-family:'Montserrat',sans-serif;
+  font-size:.44rem;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--muted);
+}
+.cd12__sep{
+  font-family:'Cormorant Garamond',serif;
+  font-size:2.4rem;
+  font-weight:300;
+  color:var(--gold);
+  line-height:1;
+  padding-top:14px;
+}
+.cd12__sub{
+  margin-top:28px;
+  font-size:1.05rem;
+  font-style:italic;
+  color:var(--muted);
+}
+
 .sec__cross{
   display:flex;
   align-items:center;
@@ -934,52 +995,31 @@ body{
   </div>
 </section>
 
-<!-- ═══════════ PROGRAM OF THE DAY ═══════════ -->
-<section class="program sec--light">
-  <div class="sec__cross">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-      <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
-    </svg>
-  </div>
-  <h2 class="sec__heading rv" style="margin-top:20px">Program of the Day</h2>
-  <p class="sec__sub rv" style="transition-delay:.1s">Join us through every moment of our celebration</p>
-
-  <div class="timeline">
-    <div class="tl-item rv" style="transition-delay:.05s">
-      <div class="tl-item__icon tl-item__icon--olive">⛵</div>
-      <span class="tl-item__time">15:00</span>
-      <p class="tl-item__title">Guest Arrival by Boat</p>
-      <p class="tl-item__desc">A scenic boat ride across the lake to the villa</p>
+<!-- ═══════════ COUNTDOWN ═══════════ -->
+<section class="cd12 rv">
+  <p class="cd12__faltan rv">Faltan</p>
+  <div class="cd12__grid rv" style="transition-delay:.1s">
+    <div class="cd12__unit">
+      <span class="cd12__num" id="cd-d">000</span>
+      <span class="cd12__lbl">Días</span>
     </div>
-
-    <div class="tl-item rv" style="transition-delay:.12s">
-      <div class="tl-item__icon tl-item__icon--gold">⛪</div>
-      <span class="tl-item__time">16:00</span>
-      <p class="tl-item__title">Ceremony on the Terrace</p>
-      <p class="tl-item__desc">Exchange vows overlooking the breathtaking lake panorama</p>
+    <span class="cd12__sep">:</span>
+    <div class="cd12__unit">
+      <span class="cd12__num" id="cd-h">00</span>
+      <span class="cd12__lbl">Horas</span>
     </div>
-
-    <div class="tl-item rv" style="transition-delay:.2s">
-      <div class="tl-item__icon tl-item__icon--olive">🍾</div>
-      <span class="tl-item__time">17:30</span>
-      <p class="tl-item__title">Aperitivo in the Gardens</p>
-      <p class="tl-item__desc">Prosecco, bruschetta, and Italian delicacies among the cypress trees</p>
+    <span class="cd12__sep">:</span>
+    <div class="cd12__unit">
+      <span class="cd12__num" id="cd-m">00</span>
+      <span class="cd12__lbl">Minutos</span>
     </div>
-
-    <div class="tl-item rv" style="transition-delay:.28s">
-      <div class="tl-item__icon tl-item__icon--gold">🍽️</div>
-      <span class="tl-item__time">19:30</span>
-      <p class="tl-item__title">Dinner Under the Stars</p>
-      <p class="tl-item__desc">A candlelit Italian feast in the villa's grand loggia</p>
-    </div>
-
-    <div class="tl-item rv" style="transition-delay:.36s">
-      <div class="tl-item__icon tl-item__icon--olive">🎶</div>
-      <span class="tl-item__time">22:00</span>
-      <p class="tl-item__title">Dancing by the Lake</p>
-      <p class="tl-item__desc">Live music and dancing as the lake shimmers in the moonlight</p>
+    <span class="cd12__sep">:</span>
+    <div class="cd12__unit">
+      <span class="cd12__num" id="cd-s">00</span>
+      <span class="cd12__lbl">Segundos</span>
     </div>
   </div>
+  <p class="cd12__sub rv" style="transition-delay:.2s">Para nuestro gran día</p>
 </section>
 
 <!-- ═══════════ ACCOMMODATION ═══════════ -->
@@ -1244,6 +1284,21 @@ function addToCalendar(){
   const loc   = encodeURIComponent('Villa del Balbianello, Lenno, Lake Como, Italy');
   window.open(`https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${start}/${end}&location=${loc}`, '_blank');
 }
+
+/* ── Countdown ── */
+(function(){
+  const TARGET = new Date('2026-09-12T16:00:00');
+  function tick(){
+    const diff = TARGET - new Date();
+    if(diff <= 0) return;
+    document.getElementById('cd-d').textContent = String(Math.floor(diff/86400000)).padStart(3,'0');
+    document.getElementById('cd-h').textContent = String(Math.floor((diff%86400000)/3600000)).padStart(2,'0');
+    document.getElementById('cd-m').textContent = String(Math.floor((diff%3600000)/60000)).padStart(2,'0');
+    document.getElementById('cd-s').textContent = String(Math.floor((diff%60000)/1000)).padStart(2,'0');
+  }
+  tick();
+  setInterval(tick,1000);
+})();
 </script>
 <script>
 (function(){
