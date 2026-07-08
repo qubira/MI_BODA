@@ -1363,20 +1363,10 @@ section { position: relative; }
     <span class="countdown__label">Faltan</span>
     <div class="countdown__grid">
       <div class="flip-unit">
-        <div class="flip-card" id="fc-days">
-          <div class="flip-inner">
-            <div class="flip-face front"><span id="cd-days">000</span></div>
-            <div class="flip-face back"><span>000</span></div>
-          </div>
-        </div>
-        <p class="flip-unit__label">Días</p>
-      </div>
-      <span class="countdown__sep">:</span>
-      <div class="flip-unit">
         <div class="flip-card" id="fc-hours">
           <div class="flip-inner">
-            <div class="flip-face front"><span id="cd-hours">00</span></div>
-            <div class="flip-face back"><span>00</span></div>
+            <div class="flip-face front"><span id="cd-hours">0000</span></div>
+            <div class="flip-face back"><span>0000</span></div>
           </div>
         </div>
         <p class="flip-unit__label">Horas</p>
@@ -1390,6 +1380,16 @@ section { position: relative; }
           </div>
         </div>
         <p class="flip-unit__label">Minutos</p>
+      </div>
+      <span class="countdown__sep">:</span>
+      <div class="flip-unit">
+        <div class="flip-card" id="fc-secs">
+          <div class="flip-inner">
+            <div class="flip-face front"><span id="cd-secs">00</span></div>
+            <div class="flip-face back"><span>00</span></div>
+          </div>
+        </div>
+        <p class="flip-unit__label">Segundos</p>
       </div>
     </div>
   </section>
@@ -1528,7 +1528,7 @@ const io = new IntersectionObserver(entries => {
 allReveal.forEach(el => io.observe(el));
 
 /* ── Countdown with 3D flip ── */
-let prev = { d: '', h: '', m: '' };
+let prev = { h: '', m: '', s: '' };
 
 function setFlip(cardId, spanId, val) {
   const span = document.getElementById(spanId);
@@ -1546,15 +1546,15 @@ function updateCountdown() {
   const target = new Date('2027-02-14T17:00:00');
   const diff = target - new Date();
   if (diff <= 0) return;
-  const days  = String(Math.floor(diff / 86400000)).padStart(3, '0');
-  const hours = String(Math.floor((diff % 86400000) / 3600000)).padStart(2, '0');
+  const hours = String(Math.floor(diff / 3600000)).padStart(4, '0');
   const mins  = String(Math.floor((diff % 3600000) / 60000)).padStart(2, '0');
-  if (days  !== prev.d) { setFlip('fc-days',  'cd-days',  days);  prev.d = days; }
+  const secs  = String(Math.floor((diff % 60000) / 1000)).padStart(2, '0');
   if (hours !== prev.h) { setFlip('fc-hours', 'cd-hours', hours); prev.h = hours; }
   if (mins  !== prev.m) { setFlip('fc-mins',  'cd-mins',  mins);  prev.m = mins; }
+  if (secs  !== prev.s) { setFlip('fc-secs',  'cd-secs',  secs);  prev.s = secs; }
 }
 updateCountdown();
-setInterval(updateCountdown, 30000);
+setInterval(updateCountdown, 1000);
 
 /* ── Parallax on bouquet ── */
 const bouquet = document.getElementById('parallaxBouquet');

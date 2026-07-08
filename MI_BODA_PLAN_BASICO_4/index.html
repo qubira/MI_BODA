@@ -984,12 +984,8 @@
         />
 
         <p class="countdown__intro reveal">Para nuestro gran día</p>
-        <div class="countdown__big reveal d1" id="cdDays">000</div>
-        <p class="countdown__dias reveal d2">días</p>
 
-        <div class="countdown__rule reveal d2"></div>
-
-        <div class="countdown__hms reveal d3">
+        <div class="countdown__hms reveal d1">
           <div class="countdown__cell">
             <span class="countdown__num" id="cdHours">00</span>
             <span class="countdown__lbl">horas</span>
@@ -1269,32 +1265,17 @@
       function tick() {
         const diff = BODA - new Date();
         if (diff <= 0) {
-          document.getElementById("cdDays").textContent = "¡Hoy!";
           ["cdHours", "cdMins", "cdSecs"].forEach(
             (id) => (document.getElementById(id).textContent = "00"),
           );
           return;
         }
-        const d = Math.floor(diff / 86400000);
-        const h = Math.floor((diff % 86400000) / 3600000);
+        const h = Math.floor(diff / 3600000);
         const m = Math.floor((diff % 3600000) / 60000);
         const s = Math.floor((diff % 60000) / 1000);
-        document.getElementById("cdDays").textContent = String(d).padStart(
-          3,
-          "0",
-        );
-        document.getElementById("cdHours").textContent = String(h).padStart(
-          2,
-          "0",
-        );
-        document.getElementById("cdMins").textContent = String(m).padStart(
-          2,
-          "0",
-        );
-        document.getElementById("cdSecs").textContent = String(s).padStart(
-          2,
-          "0",
-        );
+        document.getElementById("cdHours").textContent = String(h).padStart(4, "0");
+        document.getElementById("cdMins").textContent = String(m).padStart(2, "0");
+        document.getElementById("cdSecs").textContent = String(s).padStart(2, "0");
       }
       tick();
       setInterval(tick, 1000);
