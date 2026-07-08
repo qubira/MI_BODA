@@ -1454,7 +1454,12 @@
         <p class="countdown__label rv">Faltan</p>
         <div class="countdown__row rv" style="transition-delay: 0.1s">
           <div class="cd-block">
-            <span class="cd-num" id="cd-hours"><span>0000</span></span>
+            <span class="cd-num" id="cd-days"><span>365</span></span>
+            <span class="cd-label">Días</span>
+          </div>
+          <span class="cd-sep">:</span>
+          <div class="cd-block">
+            <span class="cd-num" id="cd-hours"><span>00</span></span>
             <span class="cd-label">Horas</span>
           </div>
           <span class="cd-sep">:</span>
@@ -1570,13 +1575,13 @@
       /* ── Countdown ── */
       const TARGET = new Date("2027-07-23T16:30:00");
 
-      function pad2(n, len) {
-        return String(n).padStart(len || 2, "0");
+      function pad2(n) {
+        return String(n).padStart(2, "0");
       }
 
-      function setDigit(id, val, len) {
+      function setDigit(id, val) {
         const el = document.getElementById(id).querySelector("span");
-        const str = pad2(val, len);
+        const str = pad2(val);
         if (el.textContent !== str) {
           el.classList.remove("flip");
           void el.offsetWidth;
@@ -1588,14 +1593,16 @@
       function tick() {
         const diff = TARGET - new Date();
         if (diff <= 0) {
-          setDigit("cd-hours", 0, 4);
+          setDigit("cd-days", 0);
+          setDigit("cd-hours", 0);
           setDigit("cd-mins", 0);
           setDigit("cd-secs", 0);
           return;
         }
-        setDigit("cd-hours", Math.floor(diff / 3600000), 4);
-        setDigit("cd-mins", Math.floor((diff % 3600000) / 60000));
-        setDigit("cd-secs", Math.floor((diff % 60000) / 1000));
+        setDigit("cd-days",  Math.floor(diff / 86400000));
+        setDigit("cd-hours", Math.floor((diff % 86400000) / 3600000));
+        setDigit("cd-mins",  Math.floor((diff % 3600000) / 60000));
+        setDigit("cd-secs",  Math.floor((diff % 60000) / 1000));
       }
 
       tick();

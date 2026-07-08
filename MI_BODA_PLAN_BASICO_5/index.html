@@ -823,7 +823,12 @@
     <p class="countdown__title rv up">Faltan</p>
     <div class="countdown__row rv up d1">
       <div class="countdown__cell">
-        <span class="countdown__num" id="cdH">0000</span>
+        <span class="countdown__num" id="cdDays">000</span>
+        <span class="countdown__lbl">Días</span>
+      </div>
+      <span class="countdown__sep">:</span>
+      <div class="countdown__cell">
+        <span class="countdown__num" id="cdH">00</span>
         <span class="countdown__lbl">Horas</span>
       </div>
       <span class="countdown__sep">:</span>
@@ -999,10 +1004,11 @@ function flip(id, val) {
 
 function tick() {
   const d = BODA - new Date();
-  if (d <= 0) { flip('cdH','0000'); flip('cdM','00'); flip('cdS','00'); return; }
-  flip('cdH', String(Math.floor(d / 3600000)).padStart(4,'0'));
-  flip('cdM', String(Math.floor((d % 3600000) / 60000)).padStart(2,'0'));
-  flip('cdS', String(Math.floor((d % 60000)   / 1000)).padStart(2,'0'));
+  if (d <= 0) { flip('cdDays','0'); flip('cdH','00'); flip('cdM','00'); flip('cdS','00'); return; }
+  flip('cdDays', String(Math.floor(d / 86400000)));
+  flip('cdH',    String(Math.floor((d % 86400000) / 3600000)).padStart(2,'0'));
+  flip('cdM',    String(Math.floor((d % 3600000)  / 60000)).padStart(2,'0'));
+  flip('cdS',    String(Math.floor((d % 60000)    / 1000)).padStart(2,'0'));
 }
 tick();
 setInterval(tick, 1000);

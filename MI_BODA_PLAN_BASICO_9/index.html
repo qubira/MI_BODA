@@ -917,10 +917,20 @@ body {
     <span class="countdown__label">Faltan</span>
     <div class="countdown__grid">
       <div class="flip-unit">
+        <div class="flip-card" id="fc-d">
+          <div class="flip-inner">
+            <div class="flip-face front"><span id="cd-d">000</span></div>
+            <div class="flip-face back"><span>000</span></div>
+          </div>
+        </div>
+        <p class="flip-unit__label">Días</p>
+      </div>
+      <span class="countdown__sep">:</span>
+      <div class="flip-unit">
         <div class="flip-card" id="fc-h">
           <div class="flip-inner">
-            <div class="flip-face front"><span id="cd-h">0000</span></div>
-            <div class="flip-face back"><span>0000</span></div>
+            <div class="flip-face front"><span id="cd-h">00</span></div>
+            <div class="flip-face back"><span>00</span></div>
           </div>
         </div>
         <p class="flip-unit__label">Horas</p>
@@ -1011,7 +1021,7 @@ rvEls.forEach(el => io.observe(el));
 
 /* ── Countdown flip ── */
 const TARGET = new Date('2026-06-20T15:30:00');
-let prev = { h:'', m:'', s:'' };
+let prev = { d:'', h:'', m:'', s:'' };
 function setFlip(cardId, spanId, val) {
   const span = document.getElementById(spanId);
   if (!span || span.textContent === val) return;
@@ -1025,9 +1035,11 @@ function setFlip(cardId, spanId, val) {
 function tick() {
   const diff = TARGET - new Date();
   if (diff <= 0) return;
-  const h = String(Math.floor(diff / 3600000)).padStart(4,'0');
+  const d = String(Math.floor(diff / 86400000)).padStart(3,'0');
+  const h = String(Math.floor((diff % 86400000) / 3600000)).padStart(2,'0');
   const m = String(Math.floor((diff % 3600000) / 60000)).padStart(2,'0');
   const s = String(Math.floor((diff % 60000) / 1000)).padStart(2,'0');
+  if (d !== prev.d) { setFlip('fc-d','cd-d',d); prev.d = d; }
   if (h !== prev.h) { setFlip('fc-h','cd-h',h); prev.h = h; }
   if (m !== prev.m) { setFlip('fc-m','cd-m',m); prev.m = m; }
   if (s !== prev.s) { setFlip('fc-s','cd-s',s); prev.s = s; }

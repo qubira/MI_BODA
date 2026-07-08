@@ -1160,7 +1160,16 @@ body {
       <div class="flip-unit">
         <div class="flip-card">
           <div class="flip-inner">
-            <div class="flip-face"><span id="cd-hours">0000</span></div>
+            <div class="flip-face"><span id="cd-days">000</span></div>
+          </div>
+        </div>
+        <p class="flip-unit__label">Días</p>
+      </div>
+      <span class="countdown__sep">:</span>
+      <div class="flip-unit">
+        <div class="flip-card">
+          <div class="flip-inner">
+            <div class="flip-face"><span id="cd-hours">00</span></div>
           </div>
         </div>
         <p class="flip-unit__label">Horas</p>
@@ -1290,10 +1299,12 @@ function updateCD() {
   const target = new Date('2027-02-14T17:00:00');
   const diff = target - new Date();
   if (diff <= 0) return;
-  const hours = Math.floor(diff / 3600000);
+  const days  = Math.floor(diff / 86400000);
+  const hours = Math.floor((diff % 86400000) / 3600000);
   const mins  = Math.floor((diff % 3600000) / 60000);
   const secs  = Math.floor((diff % 60000) / 1000);
-  document.getElementById('cd-hours').textContent = String(hours).padStart(4,'0');
+  document.getElementById('cd-days').textContent  = String(days).padStart(3,'0');
+  document.getElementById('cd-hours').textContent = String(hours).padStart(2,'0');
   document.getElementById('cd-mins').textContent  = String(mins).padStart(2,'0');
   document.getElementById('cd-secs').textContent  = String(secs).padStart(2,'0');
 }
