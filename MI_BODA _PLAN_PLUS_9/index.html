@@ -381,6 +381,36 @@ body {
 }
 
 /* ══════════════════════════════════════════
+   GALERÍA DE FOTOS
+══════════════════════════════════════════ */
+.gallery { padding: 36px 16px 44px; background: var(--warm); }
+.gallery__title {
+  font-family: var(--ff-script);
+  font-size: 2.4rem;
+  color: var(--navy);
+  text-align: center;
+  margin-bottom: 20px;
+}
+.gallery__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+}
+.gallery__img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 3px;
+  display: block;
+  transition: transform .3s ease, opacity .3s ease;
+}
+.gallery__img:hover { transform: scale(1.03); opacity: .92; }
+.gallery__img--wide {
+  grid-column: 1 / -1;
+  height: 210px;
+}
+
+/* ══════════════════════════════════════════
    DRESS CODE
 ══════════════════════════════════════════ */
 .dresscode {
@@ -868,7 +898,7 @@ body {
   <div class="vi__veil"></div>
   <div class="vi__text">
     <p class="vi__names">Juliana &amp; Ethan</p>
-    <p class="vi__date">20 · 06 · 2026</p>
+    <p class="vi__date">20 · 06 · 2027</p>
   </div>
   <div class="vi__scroll">
     <span class="vi__scroll-word">Desliza</span>
@@ -901,7 +931,7 @@ body {
         <span class="hero__name">Ethan Meza</span>
         <p class="hero__location">
           Ciudad de México, México<br/>
-          20 · 06 · 2026
+          20 · 06 · 2027
         </p>
       </div>
     </div>
@@ -944,6 +974,21 @@ body {
         <a class="venue__btn rv d4" href="#" target="_blank">Ubicación</a>
         <p class="venue__hour rv d4">Hora: 16:30</p>
       </div>
+    </div>
+  </section>
+
+  <!-- ─── GALERÍA DE FOTOS ────────────────── -->
+  <section class="gallery rv d1">
+    <p class="gallery__title">Nuestra Historia</p>
+    <div class="gallery__grid">
+      <img class="gallery__img gallery__img--wide rv d2" src="img/53853-boda.jpg" alt="Nuestra boda" loading="lazy" />
+      <img class="gallery__img rv d2" src="img/mujer-abraza-al-hombre-sostiene-ramo-peonias-blancas-al-aire-libre-vista-frontal-detalles_8353-10966.avif" alt="La novia" loading="lazy" />
+      <img class="gallery__img rv d3" src="img/novio-que-pone-anillo-dedo-novia_1157-338.avif" alt="El anillo" loading="lazy" />
+      <img class="gallery__img rv d3" src="img/aa.jpg" alt="Momentos" loading="lazy" />
+      <img class="gallery__img rv d2" src="img/q.jpg" alt="Amor" loading="lazy" />
+      <img class="gallery__img rv d3" src="img/s.jpg" alt="Juntos" loading="lazy" />
+      <img class="gallery__img rv d2" src="img/x.jpg" alt="Nuestra canción" loading="lazy" />
+      <img class="gallery__img rv d3" src="img/z.jpg" alt="Detalles" loading="lazy" />
     </div>
   </section>
 
@@ -1043,7 +1088,7 @@ body {
         <div style="text-align:center;margin-bottom:28px">
           <p style="font-family:'Montserrat',sans-serif;font-size:.5rem;letter-spacing:.25em;text-transform:uppercase;color:#bbb;margin-bottom:8px">Confirmación</p>
           <h2 style="font-size:2rem;margin-bottom:8px">¿Contamos contigo?</h2>
-          <p style="font-family:'Montserrat',sans-serif;font-size:.72rem;color:#888">Por favor responde antes del <strong>15 de Junio de 2026</strong></p>
+          <p style="font-family:'Montserrat',sans-serif;font-size:.72rem;color:#888">Por favor responde antes del <strong>15 de Junio de 2027</strong></p>
         </div>
         <div class="rsvp-steps">
           <div class="rsvp-sdot s-active" id="rsvpDot1"><div class="rsvp-sdot__num">1</div><small>Info</small></div>
@@ -1179,7 +1224,7 @@ const io = new IntersectionObserver(entries => {
 rvEls.forEach(el => io.observe(el));
 
 /* ── Countdown flip ── */
-const TARGET = new Date('2026-06-20T15:30:00');
+const TARGET = new Date('2027-06-20T15:30:00');
 let prev = { d:'', h:'', m:'', s:'' };
 function setFlip(cardId, spanId, val) {
   const span = document.getElementById(spanId);
@@ -1222,12 +1267,7 @@ document.getElementById('rsvp-form').addEventListener('submit', e => {
   setTimeout(() => { f.style.display = 'none'; document.getElementById('rsvp-confirm').classList.add('show'); }, 400);
 });
 
-/* ── Music button ── */
-let playing = false;
-document.getElementById('playBtn').addEventListener('click', function() {
-  playing = !playing;
-  this.textContent = playing ? '⏸' : '▶';
-});
+/* ── Music button (handled by main.js initMusic) ── */
 </script>
 <script>
 (function(){
