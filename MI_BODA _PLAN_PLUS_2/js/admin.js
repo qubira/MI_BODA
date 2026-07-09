@@ -3,7 +3,7 @@
 /* ===== CONSTANTS ===== */
 const ADMIN_USER    = 'admin';
 const ADMIN_PASS    = 'boda2026';
-const DB_KEY        = 'boda_rsvp_guests';
+const DB_KEY        = 'plus2_rsvps';
 const CRONO_KEY     = 'boda_cronograma';
 const MESAS_KEY     = 'boda_mesas_config';
 const PLAN_KEY      = 'boda_floor_plan';

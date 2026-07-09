@@ -474,7 +474,7 @@ function saveGuest(g) { const a = getGuests(); a.push(g); localStorage.setItem(D
       if (isNaN(d)) d = null;
     }
   } catch(e) {}
-  if (!d) d = new Date('2026-02-14T12:00:00');
+  if (!d) d = new Date('2027-02-14T12:00:00');
 
   const day       = d.getDate();
   const month     = d.getMonth();
@@ -509,7 +509,7 @@ function saveGuest(g) { const a = getGuests(); a.push(g); localStorage.setItem(D
         if (!isNaN(d)) return d.getTime();
       }
     } catch(e) {}
-    return new Date('2026-02-14T18:00:00').getTime();
+    return new Date('2027-02-14T18:00:00').getTime();
   }
   const target = getTargetTime();
 
