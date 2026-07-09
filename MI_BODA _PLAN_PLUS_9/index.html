@@ -796,6 +796,152 @@ body {
   line-height: 2;
 }
 
+/* ══ AGENDA ════════════════════════════ */
+.agenda {
+  padding: 44px 20px 40px;
+  background: var(--warm);
+}
+.agenda__title {
+  font-family: var(--ff-script);
+  font-size: 2.2rem;
+  color: var(--navy);
+  text-align: center;
+  display: block;
+  margin-bottom: 4px;
+}
+.agenda__sub {
+  font-family: var(--ff-sans);
+  font-size: .48rem;
+  font-weight: 300;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: var(--gray);
+  text-align: center;
+  margin-bottom: 22px;
+}
+.agenda__divider {
+  width: 40px;
+  height: 1px;
+  background: var(--navy);
+  opacity: .2;
+  margin: 0 auto 22px;
+}
+.agenda__list {
+  list-style: none;
+  position: relative;
+  padding-left: 18px;
+}
+.agenda__list::before {
+  content: '';
+  position: absolute;
+  left: 5px;
+  top: 12px;
+  bottom: 12px;
+  width: 1px;
+  background: rgba(50,58,67,.18);
+}
+.agenda__item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 9px 0;
+}
+.agenda__dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--blue);
+  flex-shrink: 0;
+  margin-top: 4px;
+  position: relative;
+  left: -5px;
+}
+.agenda__time {
+  font-family: var(--ff-sans);
+  font-size: .46rem;
+  font-weight: 600;
+  letter-spacing: .1em;
+  color: var(--blue);
+  white-space: nowrap;
+  padding-top: 1px;
+  margin-left: -4px;
+}
+.agenda__info h4 {
+  font-family: var(--ff-serif);
+  font-size: .95rem;
+  color: var(--navy);
+  font-weight: 400;
+}
+.agenda__info p {
+  font-family: var(--ff-sans);
+  font-size: .44rem;
+  color: var(--gray);
+  letter-spacing: .06em;
+}
+
+/* ══ CITA BÍBLICA ══════════════════════ */
+.biblica {
+  padding: 44px 32px;
+  text-align: center;
+  background: var(--navy);
+}
+.biblica__cross {
+  font-size: 1.5rem;
+  color: var(--blue);
+  display: block;
+  margin-bottom: 16px;
+}
+.biblica__text {
+  font-family: var(--ff-serif);
+  font-size: 1rem;
+  font-style: italic;
+  color: rgba(255,255,255,.9);
+  line-height: 1.9;
+  margin-bottom: 12px;
+}
+.biblica__ref {
+  font-family: var(--ff-sans);
+  font-size: .44rem;
+  font-weight: 500;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--blue);
+}
+
+/* ══ REGALOS ACCOUNTS ══════════════════ */
+.regalos__accounts {
+  margin: 18px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.regalos__account {
+  background: var(--warm);
+  border-left: 3px solid var(--navy);
+  padding: 10px 14px;
+}
+.regalos__acc-bank {
+  font-family: var(--ff-sans);
+  font-size: .46rem;
+  font-weight: 600;
+  letter-spacing: .14em;
+  color: var(--navy);
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+.regalos__acc-num {
+  font-family: var(--ff-serif);
+  font-size: .95rem;
+  color: var(--navy);
+}
+.regalos__acc-label {
+  font-family: var(--ff-sans);
+  font-size: .42rem;
+  color: var(--gray);
+  letter-spacing: .06em;
+  margin-top: 2px;
+}
+
 /* ── VIDEO INTRO ─────────────────────── */
 .vi{position:relative;width:100%;height:100svh;overflow:hidden;background:#0a0a0a;z-index:1}
 .vi__video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center}
@@ -977,6 +1123,50 @@ body {
     </div>
   </section>
 
+  <!-- ─── AGENDA ─────────────────────────── -->
+  <section class="agenda rv d1">
+    <span class="agenda__title rv d1">Agenda del Día</span>
+    <p class="agenda__sub rv d2">20 de Junio · 2027 · Ciudad de México</p>
+    <div class="agenda__divider"></div>
+    <ul class="agenda__list">
+      <li class="agenda__item rv d1">
+        <span class="agenda__dot"></span>
+        <span class="agenda__time">13:30</span>
+        <div class="agenda__info"><h4>Llegada de invitados</h4><p>Bienvenida con aperitivos</p></div>
+      </li>
+      <li class="agenda__item rv d2">
+        <span class="agenda__dot"></span>
+        <span class="agenda__time">15:30</span>
+        <div class="agenda__info"><h4>Ceremonia religiosa</h4><p>Iglesia Santa María</p></div>
+      </li>
+      <li class="agenda__item rv d3">
+        <span class="agenda__dot"></span>
+        <span class="agenda__time">16:30</span>
+        <div class="agenda__info"><h4>Cóctel y fotos</h4><p>Jardín del salón</p></div>
+      </li>
+      <li class="agenda__item rv d4">
+        <span class="agenda__dot"></span>
+        <span class="agenda__time">18:00</span>
+        <div class="agenda__info"><h4>Recepción y cena</h4><p>Salón de Eventos ANA</p></div>
+      </li>
+      <li class="agenda__item rv d5">
+        <span class="agenda__dot"></span>
+        <span class="agenda__time">20:00</span>
+        <div class="agenda__info"><h4>Vals nupcial &amp; brindis</h4><p>Apertura de la pista</p></div>
+      </li>
+      <li class="agenda__item rv d6">
+        <span class="agenda__dot"></span>
+        <span class="agenda__time">21:00</span>
+        <div class="agenda__info"><h4>Fiesta y baile</h4><p>¡A disfrutar la noche!</p></div>
+      </li>
+      <li class="agenda__item rv d1">
+        <span class="agenda__dot"></span>
+        <span class="agenda__time">23:30</span>
+        <div class="agenda__info"><h4>Cierre de la velada</h4><p>Momento para recordar siempre</p></div>
+      </li>
+    </ul>
+  </section>
+
   <!-- ─── GALERÍA DE FOTOS ────────────────── -->
   <section class="gallery rv d1">
     <p class="gallery__title">Nuestra Historia</p>
@@ -1013,6 +1203,19 @@ body {
          alt="Dress code" />
   </section>
 
+  <!-- ─── CITA BÍBLICA ────────────────────── -->
+  <section class="biblica">
+    <span class="biblica__cross rv d1">✝</span>
+    <p class="biblica__text rv d2">
+      "El amor es paciente, es bondadoso.<br/>
+      El amor no envidia, no presume,<br/>
+      no se envanece. Todo lo soporta,<br/>
+      todo lo cree, todo lo espera,<br/>
+      todo lo aguanta. El amor no pasa nunca."
+    </p>
+    <span class="biblica__ref rv d3">— 1 Corintios 13:4-8</span>
+  </section>
+
   <!-- ─── REGALOS ──────────────────────────── -->
   <section class="regalos rv d1">
     <div class="regalos__seal-wrap">
@@ -1026,6 +1229,18 @@ body {
         importante. Si desean hacernos un obsequio, lo recibiremos con
         mucho cariño.
       </p>
+      <div class="regalos__accounts rv d3">
+        <div class="regalos__account">
+          <p class="regalos__acc-bank">BBVA Bancomer — Cuenta</p>
+          <p class="regalos__acc-num">4152 3143 8765 4321</p>
+          <p class="regalos__acc-label">A nombre de Juliana García</p>
+        </div>
+        <div class="regalos__account">
+          <p class="regalos__acc-bank">CoDi / Transferencia</p>
+          <p class="regalos__acc-num">+52 55 8765 4321</p>
+          <p class="regalos__acc-label">A nombre de Ethan Meza</p>
+        </div>
+      </div>
     </div>
     <div class="regalos__circle-wrap rv-s d3">
       <div class="regalos__circle">

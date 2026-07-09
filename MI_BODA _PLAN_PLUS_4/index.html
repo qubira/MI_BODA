@@ -967,6 +967,30 @@
       .music-title { flex:1; font-family:'Montserrat',sans-serif; font-size:9.5px; letter-spacing:.07em; color:rgba(255,255,255,.82); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
       .music-btn { background:none; border:none; cursor:pointer; color:rgba(255,255,255,.65); font-size:14px; padding:4px 5px; line-height:1; transition:color .2s; }
       .music-btn:hover { color:var(--gold); }
+
+      /* ══ CRONOGRAMA ══ */
+      .agenda { padding:40px 20px 44px; background:var(--gd); }
+      .agenda__title { font-family:'Great Vibes',cursive; font-size:2.6rem; color:var(--gl); text-align:center; margin-bottom:28px; }
+      .agenda__list { list-style:none; position:relative; padding-left:0; }
+      .agenda__list::before { content:''; position:absolute; left:56px; top:0; bottom:0; width:1px; background:rgba(176,201,168,.25); }
+      .agenda__item { display:flex; align-items:flex-start; gap:12px; padding:10px 0; }
+      .agenda__time { font-family:'Montserrat',sans-serif; font-size:.58rem; letter-spacing:.12em; color:var(--gl); min-width:46px; padding-top:3px; text-align:right; flex-shrink:0; }
+      .agenda__dot { width:9px; height:9px; border-radius:50%; background:var(--gold); flex-shrink:0; margin-top:4px; box-shadow:0 0 0 3px rgba(196,163,90,.22); }
+      .agenda__info h4 { font-family:'Cormorant Garamond',serif; font-size:1rem; font-weight:600; color:#fff; margin-bottom:2px; }
+      .agenda__info p { font-family:'Montserrat',sans-serif; font-size:.6rem; color:rgba(176,201,168,.72); }
+
+      /* ══ CITA BÍBLICA ══ */
+      .biblica { padding:44px 28px; background:var(--gm); text-align:center; position:relative; }
+      .biblica__cross { font-size:1.4rem; color:var(--gl); display:block; margin-bottom:14px; }
+      .biblica__text { font-family:'Cormorant Garamond',serif; font-size:1.15rem; font-style:italic; color:#fff; line-height:1.75; margin-bottom:14px; }
+      .biblica__ref { font-family:'Montserrat',sans-serif; font-size:.58rem; letter-spacing:.2em; text-transform:uppercase; color:var(--gl); }
+
+      /* ══ REGALOS mejorado ══ */
+      .gifts__accounts { margin-top:18px; display:flex; flex-direction:column; gap:10px; }
+      .gifts__account { background:rgba(58,100,48,.55); border:1px solid rgba(176,201,168,.2); border-radius:8px; padding:12px 16px; }
+      .gifts__account-bank { font-family:'Montserrat',sans-serif; font-size:.58rem; letter-spacing:.12em; text-transform:uppercase; color:var(--gl); margin-bottom:4px; }
+      .gifts__account-num { font-family:'Cormorant Garamond',serif; font-size:1.05rem; color:#fff; letter-spacing:.04em; }
+      .gifts__account-label { font-family:'Montserrat',sans-serif; font-size:.56rem; color:rgba(176,201,168,.65); margin-top:3px; }
     </style>
   </head>
   <body>
@@ -1183,6 +1207,24 @@
       </section>
 
       <!-- ══════════════════════════════════════
+       CRONOGRAMA
+  ══════════════════════════════════════ -->
+      <section class="agenda">
+        <h2 class="agenda__title reveal">Agenda del Día</h2>
+        <ul class="agenda__list">
+          <li class="agenda__item reveal d1"><span class="agenda__time">11:00</span><span class="agenda__dot"></span><div class="agenda__info"><h4>Llegada de invitados</h4><p>Jardín principal · Bienvenida con cóctel</p></div></li>
+          <li class="agenda__item reveal d2"><span class="agenda__time">12:00</span><span class="agenda__dot"></span><div class="agenda__info"><h4>Ceremonia religiosa</h4><p>Parroquia Virgen del Pilar</p></div></li>
+          <li class="agenda__item reveal d2"><span class="agenda__time">13:00</span><span class="agenda__dot"></span><div class="agenda__info"><h4>Sesión de fotos</h4><p>Jardín y salones principales</p></div></li>
+          <li class="agenda__item reveal d3"><span class="agenda__time">14:00</span><span class="agenda__dot"></span><div class="agenda__info"><h4>Cocktail & aperitivos</h4><p>Terraza principal</p></div></li>
+          <li class="agenda__item reveal d3"><span class="agenda__time">15:30</span><span class="agenda__dot"></span><div class="agenda__info"><h4>Banquete nupcial</h4><p>Club Villa de Lima · Salón Imperial</p></div></li>
+          <li class="agenda__item reveal d4"><span class="agenda__time">17:00</span><span class="agenda__dot"></span><div class="agenda__info"><h4>Corte del pastel & brindis</h4><p>Salón principal</p></div></li>
+          <li class="agenda__item reveal d4"><span class="agenda__time">17:30</span><span class="agenda__dot"></span><div class="agenda__info"><h4>Primer baile</h4><p>"A Thousand Years" – Christina Perri</p></div></li>
+          <li class="agenda__item reveal d4"><span class="agenda__time">18:00</span><span class="agenda__dot"></span><div class="agenda__info"><h4>Fiesta & baile libre</h4><p>Pista central · Música especial</p></div></li>
+          <li class="agenda__item reveal d4"><span class="agenda__time">23:00</span><span class="agenda__dot"></span><div class="agenda__info"><h4>Despedida de los novios</h4><p>Pétalos y mariposas en la salida</p></div></li>
+        </ul>
+      </section>
+
+      <!-- ══════════════════════════════════════
        WHATSAPP
   ══════════════════════════════════════ -->
       <section class="whatsapp">
@@ -1235,14 +1277,25 @@
           aria-hidden="true"
         />
 
-        <span class="section-tag reveal d1">Lista de regalos</span>
-        <h3 class="gifts__title reveal d2">Para nuestro nido</h3>
+        <span class="section-tag reveal d1">Detalle de regalo</span>
+        <h3 class="gifts__title reveal d2">Con amor para nuestro nido</h3>
         <p class="gifts__text reveal d3">
           Tu presencia es nuestro mayor regalo.<br />
           Si deseas obsequiarnos algo especial,<br />
-          aquí encontrarás nuestra lista.
+          aquí están nuestros datos para transferencia.
         </p>
-        <a href="#" class="btn-pill reveal d4">Ver lista de regalos</a>
+        <div class="gifts__accounts reveal d4">
+          <div class="gifts__account">
+            <p class="gifts__account-bank">BCP — Sofía Ramírez</p>
+            <p class="gifts__account-num">310 — 2158746 — 0 — 34</p>
+            <p class="gifts__account-label">Cuenta de Ahorros en Soles</p>
+          </div>
+          <div class="gifts__account">
+            <p class="gifts__account-bank">Yape / Plin</p>
+            <p class="gifts__account-num">+51 987 654 321</p>
+            <p class="gifts__account-label">A nombre de Sofía Ramírez</p>
+          </div>
+        </div>
       </section>
 
       <!-- ══════════════════════════════════════
@@ -1254,6 +1307,15 @@
           El amor no consiste en mirarse<br />el uno al otro, sino en mirar<br />juntos en la misma dirección.
         </p>
         <span class="proverbio__attr reveal d2">— Antoine de Saint-Exupéry</span>
+      </section>
+
+      <!-- ══════════════════════════════════════
+       CITA BÍBLICA
+  ══════════════════════════════════════ -->
+      <section class="biblica">
+        <span class="biblica__cross reveal">✝</span>
+        <p class="biblica__text reveal d1">"El amor es paciente, es bondadoso. El amor no es envidioso ni jactancioso, no se comporta con rudeza, no es egoísta, no se enoja fácilmente, no guarda rencor. Todo lo disculpa, todo lo cree, todo lo espera, todo lo soporta. El amor jamás se extingue."</p>
+        <span class="biblica__ref reveal d2">— 1 Corintios 13:4-8</span>
       </section>
 
       <!-- ══════════════════════════════════════

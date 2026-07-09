@@ -1332,6 +1332,15 @@ section { position: relative; }
 .music-title{flex:1;font-family:'Montserrat',sans-serif;font-size:9.5px;letter-spacing:.07em;color:rgba(255,255,255,.82);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .music-btn{background:none;border:none;cursor:pointer;color:rgba(255,255,255,.65);font-size:14px;padding:4px 5px;line-height:1;transition:color .2s}
 .music-btn:hover{color:#C4A96A}
+
+/* ══ CITA BÍBLICA ══ */
+.biblica{padding:48px 28px;background:var(--cream);text-align:center;}
+.biblica__cross{font-size:1.4rem;color:var(--olive);display:block;margin-bottom:14px;}
+.biblica__text{font-family:var(--ff-serif);font-size:1.18rem;font-style:italic;color:var(--dark);line-height:1.8;margin-bottom:14px;}
+.biblica__ref{font-family:var(--ff-sans);font-size:.55rem;letter-spacing:.22em;text-transform:uppercase;color:var(--olive);}
+
+/* ══ REGALOS — etiqueta adicional ══ */
+.gifts__label{font-family:var(--ff-sans);font-size:.55rem;color:var(--gray);margin-top:3px;letter-spacing:.06em;}
 </style>
 </head>
 <body>
@@ -1484,6 +1493,26 @@ section { position: relative; }
 
   <div class="section-gap"></div>
 
+  <!-- ─── CRONOGRAMA ──────────────────────── -->
+  <section class="itinerary reveal d1">
+    <div class="itinerary__card">
+      <p class="itinerary__heading">Agenda</p>
+      <h2 class="itinerary__title">Nuestro Gran Día</h2>
+      <div class="itinerary__divider"></div>
+      <ul class="itinerary__list">
+        <li class="itinerary__item"><div class="itinerary__icon">💐</div><div class="itinerary__info"><p class="itinerary__event">Llegada de invitados</p><p class="itinerary__detail">Jardín principal · Bienvenida con cóctel</p></div><span class="itinerary__time">11:00</span></li>
+        <li class="itinerary__item"><div class="itinerary__icon">💍</div><div class="itinerary__info"><p class="itinerary__event">Ceremonia</p><p class="itinerary__detail">Parroquia · Duración aprox. 40 min</p></div><span class="itinerary__time">12:00</span></li>
+        <li class="itinerary__item"><div class="itinerary__icon">📸</div><div class="itinerary__info"><p class="itinerary__event">Sesión de fotos</p><p class="itinerary__detail">Jardín y salones</p></div><span class="itinerary__time">13:00</span></li>
+        <li class="itinerary__item"><div class="itinerary__icon">🥂</div><div class="itinerary__info"><p class="itinerary__event">Cocktail & aperitivos</p><p class="itinerary__detail">Terraza principal</p></div><span class="itinerary__time">14:00</span></li>
+        <li class="itinerary__item"><div class="itinerary__icon">🍽️</div><div class="itinerary__info"><p class="itinerary__event">Banquete nupcial</p><p class="itinerary__detail">Salón principal · 5 tiempos</p></div><span class="itinerary__time">15:30</span></li>
+        <li class="itinerary__item"><div class="itinerary__icon">🎂</div><div class="itinerary__info"><p class="itinerary__event">Corte del pastel & brindis</p><p class="itinerary__detail">Con champán</p></div><span class="itinerary__time">17:00</span></li>
+        <li class="itinerary__item"><div class="itinerary__icon">💃</div><div class="itinerary__info"><p class="itinerary__event">Primer baile</p><p class="itinerary__detail">"A Thousand Years" – Christina Perri</p></div><span class="itinerary__time">17:30</span></li>
+        <li class="itinerary__item"><div class="itinerary__icon">🎵</div><div class="itinerary__info"><p class="itinerary__event">Fiesta & baile libre</p><p class="itinerary__detail">Pista central</p></div><span class="itinerary__time">18:00</span></li>
+        <li class="itinerary__item"><div class="itinerary__icon">🌙</div><div class="itinerary__info"><p class="itinerary__event">Despedida de los novios</p><p class="itinerary__detail">Pétalos y mariposas en la salida</p></div><span class="itinerary__time">23:00</span></li>
+      </ul>
+    </div>
+  </section>
+
   <!-- ─── DRESS CODE ───────────────────────── -->
   <section class="dresscode reveal d1">
     <div class="dresscode__badge-wrap reveal-rot d2">
@@ -1520,14 +1549,22 @@ section { position: relative; }
       <div class="gifts__account">
         <p class="gifts__bank">Bancolombia — Ahorros</p>
         <p class="gifts__num">425 · 123456 · 78</p>
+        <p class="gifts__label">A nombre de Sofía García</p>
       </div>
       <div class="gifts__account">
         <p class="gifts__bank">Nequi</p>
         <p class="gifts__num">+57 300 123 4567</p>
+        <p class="gifts__label">A nombre de Alejandro Meza</p>
       </div>
     </div>
   </section>
 
+  <!-- ─── CITA BÍBLICA ─────────────────────── -->
+  <section class="biblica">
+    <span class="biblica__cross reveal d1">✝</span>
+    <p class="biblica__text reveal d2">"El amor es paciente, es bondadoso. El amor no es envidioso ni jactancioso, no se comporta con rudeza, no es egoísta, no se enoja fácilmente, no guarda rencor. Todo lo disculpa, todo lo cree, todo lo espera, todo lo soporta. El amor jamás se extingue."</p>
+    <span class="biblica__ref reveal d3">— 1 Corintios 13:4-8</span>
+  </section>
 
       <!-- RSVP -->
       <section class="rsvp-section" id="rsvp">

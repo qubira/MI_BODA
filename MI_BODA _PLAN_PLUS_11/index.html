@@ -1260,6 +1260,70 @@
         }
       }
 
+/* ══ CITA BÍBLICA ══════════════════════ */
+.biblica {
+  padding: 48px 32px;
+  text-align: center;
+  background: var(--ink);
+}
+.biblica__cross {
+  font-size: 1.5rem;
+  color: var(--gold);
+  display: block;
+  margin-bottom: 16px;
+}
+.biblica__text {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1rem;
+  font-style: italic;
+  color: rgba(255,255,255,.9);
+  line-height: 1.9;
+  margin-bottom: 12px;
+}
+.biblica__ref {
+  font-family: "Montserrat", sans-serif;
+  font-size: .44rem;
+  font-weight: 500;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+/* ══ REGALOS ACCOUNTS ══════════════════ */
+.regalos__accounts {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 18px 0 0;
+  text-align: center;
+}
+.regalos__account {
+  border: 1px solid rgba(196,160,118,.35);
+  padding: 12px 18px;
+  background: var(--parchment);
+}
+.regalos__acc-bank {
+  font-family: "Montserrat", sans-serif;
+  font-size: .46rem;
+  font-weight: 500;
+  letter-spacing: .16em;
+  color: var(--gold2);
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.regalos__acc-num {
+  font-family: "Cormorant Garamond", serif;
+  font-size: .95rem;
+  color: var(--ink);
+}
+.regalos__acc-label {
+  font-family: "Montserrat", sans-serif;
+  font-size: .42rem;
+  color: var(--taupe);
+  letter-spacing: .08em;
+  margin-top: 2px;
+}
+
 /* ── VIDEO INTRO ─────────────────────── */
 .vi{position:relative;width:100%;height:100svh;overflow:hidden;background:#0a0a0a;z-index:1}
 .vi__video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center}
@@ -1424,6 +1488,46 @@
         />
       </div>
 
+      <!-- ═══════════ ITINERARIO ═══════════ -->
+      <section class="itinerary">
+        <img class="itinerary__env rv-s"
+             src="18_DEMO_invitacion_Jess y Ramiro_files/9c563d2582595ad9735b7e03759e9911.png"
+             alt="" />
+        <div class="itin-cards">
+          <div class="itin-card rv">
+            <span class="itin-card__num">01</span>
+            <span class="itin-card__title">Llegada</span>
+            <div class="itin-card__rule"></div>
+            <p class="itin-card__place">Bienvenida con aperitivos</p>
+            <p class="itin-card__time">2:30 pm</p>
+          </div>
+          <div class="itin-card rv">
+            <span class="itin-card__num">02</span>
+            <span class="itin-card__title">Ceremonia</span>
+            <div class="itin-card__rule"></div>
+            <p class="itin-card__place">Iglesia local</p>
+            <p class="itin-card__addr">Sábado · 23 de Julio · 2027</p>
+            <p class="itin-card__time">3:00 pm</p>
+            <a class="btn-loc" href="#" target="_blank">Ubicación</a>
+          </div>
+          <div class="itin-card rv">
+            <span class="itin-card__num">03</span>
+            <span class="itin-card__title">Recepción</span>
+            <div class="itin-card__rule"></div>
+            <p class="itin-card__place">Cóctel · Cena · Baile</p>
+            <p class="itin-card__time">5:00 pm – medianoche</p>
+            <a class="btn-loc" href="#" target="_blank">Ubicación</a>
+          </div>
+        </div>
+        <p class="itinerary__quote rv">
+          "Queremos que cada momento de este día<br/>
+          quede grabado en tu corazón."
+        </p>
+      </section>
+
+      <!-- ornamental divider -->
+      <div class="ornament-div rv"><span></span>✦<span></span></div>
+
       <!-- ═══════════ CANCIÓN FAVORITA ═══════════ -->
       <section class="song">
         <img
@@ -1472,11 +1576,40 @@
           <span class="regalos__mini-store">Liverpool</span>
           <span class="regalos__mini-num">222 550 526</span>
         </div>
-        <blockquote class="regalos__quote rv" style="transition-delay: 0.35s">
+        <div class="regalos__accounts rv" style="transition-delay: 0.4s">
+          <div class="regalos__account">
+            <p class="regalos__acc-bank">Bancolombia — Ahorros</p>
+            <p class="regalos__acc-num">425 · 567890 · 12</p>
+            <p class="regalos__acc-label">A nombre de Jess Gutiérrez</p>
+          </div>
+          <div class="regalos__account">
+            <p class="regalos__acc-bank">Nequi / Daviplata</p>
+            <p class="regalos__acc-num">+57 314 567 8901</p>
+            <p class="regalos__acc-label">A nombre de Ramiro Caicedo</p>
+          </div>
+        </div>
+
+        <blockquote class="regalos__quote rv" style="transition-delay: 0.48s">
           "Nos encontramos, nos elegimos<br />
           y hoy queremos compartir<br />
           nuestra felicidad con ustedes."
         </blockquote>
+      </section>
+
+      <!-- divisor ornamental -->
+      <div class="ornament-div rv"><span></span>✦<span></span></div>
+
+      <!-- ═══════════ CITA BÍBLICA ═══════════ -->
+      <section class="biblica">
+        <span class="biblica__cross rv">✝</span>
+        <p class="biblica__text rv" style="transition-delay:.12s">
+          "El amor es paciente, es bondadoso.<br/>
+          El amor no envidia, no presume,<br/>
+          no se envanece. Todo lo soporta,<br/>
+          todo lo cree, todo lo espera,<br/>
+          todo lo aguanta. El amor no pasa nunca."
+        </p>
+        <span class="biblica__ref rv" style="transition-delay:.22s">— 1 Corintios 13:4-8</span>
       </section>
 
       <!-- divisor ornamental -->

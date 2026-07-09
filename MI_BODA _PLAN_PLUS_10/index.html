@@ -878,6 +878,70 @@ body {
   line-height: 2.2;
 }
 
+/* ══ CITA BÍBLICA ══════════════════════ */
+.biblica {
+  padding: 48px 32px;
+  text-align: center;
+  background: var(--ink);
+}
+.biblica__cross {
+  font-size: 1.5rem;
+  color: var(--gold);
+  display: block;
+  margin-bottom: 16px;
+}
+.biblica__text {
+  font-family: var(--ff-serif);
+  font-size: 1rem;
+  font-style: italic;
+  color: rgba(255,255,255,.9);
+  line-height: 1.9;
+  margin-bottom: 12px;
+}
+.biblica__ref {
+  font-family: var(--ff-sans);
+  font-size: .44rem;
+  font-weight: 500;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+/* ══ REGALOS ACCOUNTS ══════════════════ */
+.regalos__accounts {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 14px;
+  text-align: left;
+}
+.regalos__account {
+  border: .5px solid rgba(0,0,0,.12);
+  padding: 10px 14px;
+  background: var(--cream);
+}
+.regalos__acc-bank {
+  font-family: var(--ff-sans);
+  font-size: .44rem;
+  font-weight: 600;
+  letter-spacing: .15em;
+  color: var(--ink);
+  text-transform: uppercase;
+  margin-bottom: 3px;
+}
+.regalos__acc-num {
+  font-family: var(--ff-serif);
+  font-size: .9rem;
+  color: var(--ink);
+}
+.regalos__acc-label {
+  font-family: var(--ff-sans);
+  font-size: .4rem;
+  color: var(--gray);
+  letter-spacing: .06em;
+  margin-top: 2px;
+}
+
 /* ── VIDEO INTRO ─────────────────────── */
 .vi{position:relative;width:100%;height:100svh;overflow:hidden;background:#0a0a0a;z-index:1}
 .vi__video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center}
@@ -1072,6 +1136,42 @@ body {
     </div>
   </section>
 
+  <!-- ─── ITINERARIO ──────────────────────── -->
+  <section class="itinerary rv d1">
+    <div class="itinerary__card">
+      <div class="itinerary__seal-wrap">
+        <img class="itinerary__seal" src="17_DEMO_invitacion_Ignacio & Isabella_files/0faf30a289413746481bf8fa9002c52c.png" alt="" />
+      </div>
+      <span class="itinerary__title">Agenda del Día</span>
+      <div class="itin-event rv d1">
+        <h3 class="itin-event__heading">Llegada de Invitados</h3>
+        <span class="itin-event__time">1:30 pm · Bienvenida con aperitivos</span>
+      </div>
+      <div class="itin-event rv d2">
+        <h3 class="itin-event__heading">Ceremonia</h3>
+        <span class="itin-event__time">2:00 pm · Iglesia local</span>
+        <a class="itin-event__btn" href="#" target="_blank">Ubicación</a>
+      </div>
+      <div class="itin-event rv d3">
+        <h3 class="itin-event__heading">Cóctel de Bienvenida</h3>
+        <span class="itin-event__time">4:00 pm · Jardín del salón</span>
+      </div>
+      <div class="itin-event rv d4">
+        <h3 class="itin-event__heading">Recepción y Cena</h3>
+        <span class="itin-event__time">6:00 pm · Salón principal</span>
+      </div>
+      <div class="itin-event rv d5">
+        <h3 class="itin-event__heading">Vals Nupcial &amp; Brindis</h3>
+        <span class="itin-event__time">8:00 pm · Apertura de la pista</span>
+      </div>
+      <div class="itin-event rv d6">
+        <h3 class="itin-event__heading">Fiesta y Baile</h3>
+        <span class="itin-event__time">9:00 pm · ¡Hasta el amanecer!</span>
+      </div>
+      <div class="itin-monogram"><span>II</span></div>
+    </div>
+  </section>
+
   <!-- ─── QUOTE ────────────────────────────── -->
   <section class="quote-strip rv d1">
     <p>Nos encontramos, nos elegimos y hoy<br/>queremos compartir con ustedes<br/>nuestra felicidad...</p>
@@ -1084,6 +1184,19 @@ body {
          alt="" />
   </div>
 
+  <!-- ─── CITA BÍBLICA ────────────────────── -->
+  <section class="biblica">
+    <span class="biblica__cross rv d1">✝</span>
+    <p class="biblica__text rv d2">
+      "El amor es paciente, es bondadoso.<br/>
+      El amor no envidia, no presume,<br/>
+      no se envanece. Todo lo soporta,<br/>
+      todo lo cree, todo lo espera,<br/>
+      todo lo aguanta. El amor no pasa nunca."
+    </p>
+    <span class="biblica__ref rv d3">— 1 Corintios 13:4-8</span>
+  </section>
+
   <!-- ─── REGALOS ──────────────────────────── -->
   <section class="regalos rv d1">
     <span class="regalos__heading">Regalos</span>
@@ -1094,7 +1207,18 @@ body {
         Si desean hacernos un obsequio,<br/>
         lo recibiremos con mucho cariño.
       </p>
-      <a class="regalos__btn rv d3" href="#" target="_blank">Lista de Regalos</a>
+      <div class="regalos__accounts">
+        <div class="regalos__account">
+          <p class="regalos__acc-bank">Banamex — Cuenta Débito</p>
+          <p class="regalos__acc-num">5204 1659 8765 4321</p>
+          <p class="regalos__acc-label">A nombre de Isabella Meza</p>
+        </div>
+        <div class="regalos__account">
+          <p class="regalos__acc-bank">SPEI / Transferencia</p>
+          <p class="regalos__acc-num">CLABE 002180 77654321009</p>
+          <p class="regalos__acc-label">A nombre de Ignacio García</p>
+        </div>
+      </div>
     </div>
 
     <div class="regalos__mini-wrap rv d3">

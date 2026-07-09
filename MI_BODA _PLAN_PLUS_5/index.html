@@ -774,6 +774,30 @@
 .music-title{flex:1;font-family:'Montserrat',sans-serif;font-size:9.5px;letter-spacing:.07em;color:rgba(255,255,255,.82);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .music-btn{background:none;border:none;cursor:pointer;color:rgba(255,255,255,.65);font-size:14px;padding:4px 5px;line-height:1;transition:color .2s}
 .music-btn:hover{color:#C8BEB0}
+
+/* ══ CRONOGRAMA ══ */
+.agenda{padding:38px 20px 44px;background:#1A1817;}
+.agenda__title{font-family:'Great Vibes',cursive;font-size:2.5rem;color:#C8BEB0;text-align:center;margin-bottom:26px;}
+.agenda__list{list-style:none;position:relative;}
+.agenda__list::before{content:'';position:absolute;left:54px;top:0;bottom:0;width:1px;background:rgba(200,190,176,.2);}
+.agenda__item{display:flex;align-items:flex-start;gap:12px;padding:10px 0;}
+.agenda__time{font-family:'Montserrat',sans-serif;font-size:.56rem;letter-spacing:.12em;color:#C8BEB0;min-width:44px;padding-top:3px;text-align:right;flex-shrink:0;}
+.agenda__dot{width:8px;height:8px;border-radius:50%;background:#C8BEB0;flex-shrink:0;margin-top:5px;box-shadow:0 0 0 3px rgba(200,190,176,.15);}
+.agenda__info h4{font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:600;color:#fff;margin-bottom:2px;}
+.agenda__info p{font-family:'Montserrat',sans-serif;font-size:.58rem;color:rgba(200,190,176,.7);}
+
+/* ══ CITA BÍBLICA ══ */
+.biblica{padding:44px 28px;background:var(--bg);text-align:center;}
+.biblica__cross{font-size:1.3rem;color:var(--taupe);display:block;margin-bottom:12px;}
+.biblica__text{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-style:italic;color:var(--dark);line-height:1.75;margin-bottom:12px;}
+.biblica__ref{font-family:'Montserrat',sans-serif;font-size:.56rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gray);}
+
+/* ══ REGALOS mejorado ══ */
+.gifts__accounts{margin-top:16px;display:flex;flex-direction:column;gap:10px;}
+.gifts__account{background:#fff;border:1px solid rgba(200,190,176,.4);border-radius:8px;padding:12px 16px;text-align:left;}
+.gifts__account-bank{font-family:'Montserrat',sans-serif;font-size:.56rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gray);margin-bottom:4px;}
+.gifts__account-num{font-family:'Cormorant Garamond',serif;font-size:1.05rem;color:var(--dark);letter-spacing:.03em;}
+.gifts__account-label{font-family:'Montserrat',sans-serif;font-size:.55rem;color:var(--gray);margin-top:2px;}
   </style>
 </head>
 <body>
@@ -926,6 +950,22 @@
   <div class="section-rule rv in"></div>
 
 
+  <!-- ══════════════════ CRONOGRAMA ══════════════════ -->
+  <section class="agenda">
+    <h2 class="agenda__title rv up">Agenda del Día</h2>
+    <ul class="agenda__list">
+      <li class="agenda__item rv up d1"><span class="agenda__time">11:00</span><span class="agenda__dot"></span><div class="agenda__info"><h4>Llegada de invitados</h4><p>Bienvenida con cóctel</p></div></li>
+      <li class="agenda__item rv up d1"><span class="agenda__time">12:00</span><span class="agenda__dot"></span><div class="agenda__info"><h4>Ceremonia</h4><p>Parroquia · Duración aprox. 40 min</p></div></li>
+      <li class="agenda__item rv up d2"><span class="agenda__time">13:00</span><span class="agenda__dot"></span><div class="agenda__info"><h4>Sesión de fotos</h4><p>Jardín y salones</p></div></li>
+      <li class="agenda__item rv up d2"><span class="agenda__time">14:00</span><span class="agenda__dot"></span><div class="agenda__info"><h4>Cocktail & aperitivos</h4><p>Terraza principal</p></div></li>
+      <li class="agenda__item rv up d3"><span class="agenda__time">15:30</span><span class="agenda__dot"></span><div class="agenda__info"><h4>Banquete nupcial</h4><p>Salón principal · 5 tiempos</p></div></li>
+      <li class="agenda__item rv up d3"><span class="agenda__time">17:00</span><span class="agenda__dot"></span><div class="agenda__info"><h4>Corte del pastel & brindis</h4><p>Con champán</p></div></li>
+      <li class="agenda__item rv up d4"><span class="agenda__time">17:30</span><span class="agenda__dot"></span><div class="agenda__info"><h4>Primer baile</h4><p>"A Thousand Years" – Christina Perri</p></div></li>
+      <li class="agenda__item rv up d4"><span class="agenda__time">18:00</span><span class="agenda__dot"></span><div class="agenda__info"><h4>Fiesta & baile</h4><p>Pista central</p></div></li>
+      <li class="agenda__item rv up d4"><span class="agenda__time">23:00</span><span class="agenda__dot"></span><div class="agenda__info"><h4>Despedida de los novios</h4><p>Pétalos en la salida</p></div></li>
+    </ul>
+  </section>
+
   <!-- ══════════════════ 6. DRESS CODE ══════════════════ -->
   <section class="dresscode">
     <div class="dresscode__badge rv sr">
@@ -974,14 +1014,32 @@
         <span class="h-rule__line"></span>
       </div>
       <p class="card-body rv up d2">
-        Su compañía es lo más importante.<br>
-        Si desean hacernos un obsequio,<br>
-        lo recibiremos con mucho cariño.
+        Su compañía es nuestro mayor regalo.<br>
+        Si desean obsequiarnos algo especial,<br>
+        aquí están nuestros datos.
       </p>
-      <a href="#" class="btn rv up d3"><span>Lista de regalos</span></a>
+      <div class="gifts__accounts rv up d3">
+        <div class="gifts__account">
+          <p class="gifts__account-bank">BCP — Sofía Ramírez</p>
+          <p class="gifts__account-num">310 — 2158746 — 0 — 34</p>
+          <p class="gifts__account-label">Cuenta de Ahorros en Soles</p>
+        </div>
+        <div class="gifts__account">
+          <p class="gifts__account-bank">Yape / Plin</p>
+          <p class="gifts__account-num">+51 987 654 321</p>
+          <p class="gifts__account-label">A nombre de Sofía Ramírez</p>
+        </div>
+      </div>
     </div>
   </div>
 
+
+  <!-- ══════════════════ CITA BÍBLICA ══════════════════ -->
+  <section class="biblica">
+    <span class="biblica__cross rv up">✝</span>
+    <p class="biblica__text rv up d1">"El amor es paciente, es bondadoso. El amor no es envidioso ni jactancioso, no se comporta con rudeza, no es egoísta, no se enoja fácilmente, no guarda rencor. Todo lo disculpa, todo lo cree, todo lo espera, todo lo soporta. El amor jamás se extingue."</p>
+    <span class="biblica__ref rv up d2">— 1 Corintios 13:4-8</span>
+  </section>
 
   <!-- ══════════════════ 9. HOSPEDAJE ══════════════════ -->
   <div class="lodging-wrap">

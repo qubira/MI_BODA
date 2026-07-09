@@ -998,6 +998,44 @@ body {
   margin-top: 10px;
 }
 
+/* ══ CITA BÍBLICA ══════════════════════ */
+.biblica {
+  padding: 44px 32px;
+  text-align: center;
+  background: var(--burg);
+}
+.biblica__cross {
+  font-size: 1.6rem;
+  color: var(--gold);
+  display: block;
+  margin-bottom: 14px;
+}
+.biblica__text {
+  font-family: var(--ff-serif);
+  font-size: 1rem;
+  font-style: italic;
+  color: rgba(255,255,255,.92);
+  line-height: 1.85;
+  margin-bottom: 10px;
+}
+.biblica__ref {
+  font-family: var(--ff-sans);
+  font-size: .46rem;
+  font-weight: 500;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+/* ══ GIFTS LABEL ══════════════════════ */
+.gifts__label {
+  font-family: var(--ff-sans);
+  font-size: .44rem;
+  color: var(--gray);
+  letter-spacing: .08em;
+  margin-top: 3px;
+}
+
 /* ── VIDEO INTRO ─────────────────────── */
 .vi{position:relative;width:100%;height:100svh;overflow:hidden;background:#0a0a0a;z-index:1}
 .vi__video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center}
@@ -1162,6 +1200,61 @@ body {
 
   <div class="sep" style="margin-top:24px;"></div>
 
+  <!-- ─── ITINERARIO ──────────────────────── -->
+  <section class="itinerary reveal d1">
+    <img class="itinerary__lily" src="14_DEMO_invitacion_Natalia & Gabriel_files/e0f60cdb76de8f76026c8aa51fc37cfe.png" alt="" />
+    <div class="itinerary__card">
+      <div class="itinerary__heading-wrap">
+        <span class="itinerary__I">I</span>
+        <span class="itinerary__rest">tinerario del Día</span>
+      </div>
+      <div class="itinerary__divider"></div>
+      <ul class="itinerary__list">
+        <li class="itinerary__item reveal d1">
+          <span class="itinerary__dot"></span>
+          <span class="itinerary__time">04:30 PM</span>
+          <span class="itinerary__event-name">Llegada de invitados</span>
+        </li>
+        <li class="itinerary__item reveal d2">
+          <span class="itinerary__dot"></span>
+          <span class="itinerary__time">05:00 PM</span>
+          <span class="itinerary__event-name">Ceremonia religiosa</span>
+        </li>
+        <li class="itinerary__item reveal d3">
+          <span class="itinerary__dot"></span>
+          <span class="itinerary__time">06:30 PM</span>
+          <span class="itinerary__event-name">Cóctel de bienvenida</span>
+        </li>
+        <li class="itinerary__item reveal d4">
+          <span class="itinerary__dot"></span>
+          <span class="itinerary__time">07:30 PM</span>
+          <span class="itinerary__event-name">Recepción y banquete</span>
+        </li>
+        <li class="itinerary__item reveal d5">
+          <span class="itinerary__dot"></span>
+          <span class="itinerary__time">09:00 PM</span>
+          <span class="itinerary__event-name">Vals nupcial &amp; brindis</span>
+        </li>
+        <li class="itinerary__item reveal d6">
+          <span class="itinerary__dot"></span>
+          <span class="itinerary__time">09:30 PM</span>
+          <span class="itinerary__event-name">Fiesta y baile</span>
+        </li>
+        <li class="itinerary__item reveal d1">
+          <span class="itinerary__dot"></span>
+          <span class="itinerary__time">11:00 PM</span>
+          <span class="itinerary__event-name">Corte del pastel</span>
+        </li>
+        <li class="itinerary__item reveal d2">
+          <span class="itinerary__dot"></span>
+          <span class="itinerary__time">01:00 AM</span>
+          <span class="itinerary__event-name">Cierre de la noche</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="sep"></div>
 
   <!-- ─── DRESS CODE ───────────────────────── -->
   <section class="dresscode reveal d2" style="padding:0 24px 40px;">
@@ -1200,6 +1293,19 @@ body {
     </p>
   </section>
 
+  <!-- ─── CITA BÍBLICA ────────────────────── -->
+  <section class="biblica">
+    <span class="biblica__cross reveal d1">✝</span>
+    <p class="biblica__text reveal d2">
+      "El amor es paciente, es bondadoso.<br/>
+      El amor no envidia, no presume,<br/>
+      no se envanece. Todo lo soporta,<br/>
+      todo lo cree, todo lo espera,<br/>
+      todo lo aguanta. El amor no pasa nunca."
+    </p>
+    <span class="biblica__ref reveal d3">— 1 Corintios 13:4-8</span>
+  </section>
+
   <div class="sep"></div>
 
   <!-- ─── REGALOS ──────────────────────────── -->
@@ -1213,12 +1319,14 @@ body {
         </p>
         <div class="gifts__accounts">
           <div class="gifts__account">
-            <p class="gifts__bank">Bancolombia — Ahorros</p>
+            <p class="gifts__bank">Bancolombia — Cuenta Ahorros</p>
             <p class="gifts__num">425 · 123456 · 78</p>
+            <p class="gifts__label">A nombre de Sofía García</p>
           </div>
           <div class="gifts__account">
-            <p class="gifts__bank">Nequi</p>
+            <p class="gifts__bank">Nequi / Daviplata</p>
             <p class="gifts__num">+57 300 123 4567</p>
+            <p class="gifts__label">A nombre de Alejandro Meza</p>
           </div>
         </div>
       </div>
@@ -1435,27 +1543,6 @@ function updateCD() {
 updateCD();
 setInterval(updateCD, 1000);
 
-/* ── Música (play toggle) ── */
-let playing = false;
-document.getElementById('btnPlay').addEventListener('click', () => {
-  playing = !playing;
-  document.getElementById('btnPlay').textContent = playing ? '⏸' : '▶';
-});
-
-/* ── Radio labels ── */
-document.querySelectorAll('.rsvp__radio-lbl input').forEach(r => {
-  r.addEventListener('change', () => {
-    document.querySelectorAll('.rsvp__radio-lbl').forEach(l => l.classList.remove('selected'));
-    r.closest('.rsvp__radio-lbl').classList.add('selected');
-  });
-});
-
-/* ── RSVP submit ── */
-document.getElementById('rsvp-form').addEventListener('submit', e => {
-  e.preventDefault();
-  document.getElementById('rsvp-form').style.display = 'none';
-  document.getElementById('rsvp-confirm').classList.add('show');
-});
 </script>
 <script>
 (function(){

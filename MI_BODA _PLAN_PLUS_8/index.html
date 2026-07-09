@@ -974,6 +974,161 @@ body {
   text-transform: uppercase;
 }
 
+/* ══ CRONOGRAMA ════════════════════════ */
+.agenda {
+  padding: 44px 20px 40px;
+  background: var(--warm);
+}
+.agenda__heading {
+  font-family: var(--ff-disp);
+  font-size: 2rem;
+  font-weight: 400;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--dark);
+  text-align: center;
+  margin-bottom: 6px;
+}
+.agenda__sub {
+  font-family: var(--ff-serif);
+  font-size: .85rem;
+  font-style: italic;
+  color: var(--gray);
+  text-align: center;
+  margin-bottom: 24px;
+}
+.agenda__divider {
+  width: 40px;
+  height: 1px;
+  background: var(--olive);
+  opacity: .35;
+  margin: 0 auto 24px;
+}
+.agenda__list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  position: relative;
+  padding-left: 20px;
+}
+.agenda__list::before {
+  content: '';
+  position: absolute;
+  left: 7px;
+  top: 10px;
+  bottom: 10px;
+  width: 1px;
+  background: rgba(93,98,78,.2);
+}
+.agenda__item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 10px 0;
+  position: relative;
+}
+.agenda__dot {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: var(--card);
+  border: 2px solid var(--olive);
+  flex-shrink: 0;
+  margin-top: 2px;
+  position: relative;
+  left: -7px;
+}
+.agenda__time {
+  font-family: var(--ff-sans);
+  font-size: .48rem;
+  font-weight: 600;
+  letter-spacing: .12em;
+  color: var(--olive);
+  text-transform: uppercase;
+  white-space: nowrap;
+  padding-top: 1px;
+  margin-left: -6px;
+}
+.agenda__info h4 {
+  font-family: var(--ff-serif);
+  font-size: .95rem;
+  color: var(--dark);
+  font-weight: 400;
+  margin-bottom: 2px;
+}
+.agenda__info p {
+  font-family: var(--ff-sans);
+  font-size: .46rem;
+  color: var(--gray);
+  letter-spacing: .06em;
+}
+
+/* ══ CITA BÍBLICA ══════════════════════ */
+.biblica {
+  padding: 44px 32px;
+  text-align: center;
+  background: var(--olive);
+}
+.biblica__cross {
+  font-size: 1.5rem;
+  color: var(--taupe);
+  display: block;
+  margin-bottom: 16px;
+}
+.biblica__text {
+  font-family: var(--ff-serif);
+  font-size: 1rem;
+  font-style: italic;
+  color: rgba(255,253,247,.92);
+  line-height: 1.9;
+  margin-bottom: 12px;
+}
+.biblica__ref {
+  font-family: var(--ff-sans);
+  font-size: .44rem;
+  font-weight: 500;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--taupe);
+}
+
+/* ══ REGALOS ACCOUNTS ══════════════════ */
+.regalos__accounts {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-align: left;
+}
+.regalos__account {
+  background: rgba(255,253,247,.12);
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 4px;
+  padding: 12px 16px;
+}
+.regalos__acc-bank {
+  font-family: var(--ff-sans);
+  font-size: .46rem;
+  font-weight: 600;
+  letter-spacing: .16em;
+  color: var(--taupe);
+  text-transform: uppercase;
+  margin-bottom: 3px;
+}
+.regalos__acc-num {
+  font-family: var(--ff-serif);
+  font-size: .95rem;
+  color: rgba(255,253,247,.95);
+}
+.regalos__acc-label {
+  font-family: var(--ff-sans);
+  font-size: .42rem;
+  color: rgba(255,253,247,.55);
+  letter-spacing: .08em;
+  margin-top: 2px;
+}
+
 /* ── VIDEO INTRO ─────────────────────── */
 .vi{position:relative;width:100%;height:100svh;overflow:hidden;background:#0a0a0a;z-index:1}
 .vi__video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center}
@@ -1162,6 +1317,71 @@ body {
     </div>
   </section>
 
+  <!-- ─── AGENDA ─────────────────────────── -->
+  <section class="agenda rv d1">
+    <h2 class="agenda__heading rv d1">Agenda del Día</h2>
+    <p class="agenda__sub rv d2">Sábado, 5 de Octubre 2026</p>
+    <div class="agenda__divider"></div>
+    <ul class="agenda__list">
+      <li class="agenda__item rv d1">
+        <span class="agenda__dot"></span>
+        <span class="agenda__time">13:30</span>
+        <div class="agenda__info">
+          <h4>Llegada de invitados</h4>
+          <p>Bienvenida con aperitivos</p>
+        </div>
+      </li>
+      <li class="agenda__item rv d2">
+        <span class="agenda__dot"></span>
+        <span class="agenda__time">15:00</span>
+        <div class="agenda__info">
+          <h4>Ceremonia religiosa</h4>
+          <p>Iglesia Santa María</p>
+        </div>
+      </li>
+      <li class="agenda__item rv d3">
+        <span class="agenda__dot"></span>
+        <span class="agenda__time">16:30</span>
+        <div class="agenda__info">
+          <h4>Cóctel y fotos</h4>
+          <p>Jardín de la hacienda</p>
+        </div>
+      </li>
+      <li class="agenda__item rv d4">
+        <span class="agenda__dot"></span>
+        <span class="agenda__time">18:00</span>
+        <div class="agenda__info">
+          <h4>Recepción y cena</h4>
+          <p>Salón de Eventos ANA</p>
+        </div>
+      </li>
+      <li class="agenda__item rv d5">
+        <span class="agenda__dot"></span>
+        <span class="agenda__time">20:00</span>
+        <div class="agenda__info">
+          <h4>Vals nupcial &amp; brindis</h4>
+          <p>Apertura de la pista</p>
+        </div>
+      </li>
+      <li class="agenda__item rv d6">
+        <span class="agenda__dot"></span>
+        <span class="agenda__time">21:00</span>
+        <div class="agenda__info">
+          <h4>Fiesta y baile</h4>
+          <p>¡A disfrutar la noche!</p>
+        </div>
+      </li>
+      <li class="agenda__item rv d1">
+        <span class="agenda__dot"></span>
+        <span class="agenda__time">23:00</span>
+        <div class="agenda__info">
+          <h4>Corte del pastel</h4>
+          <p>Momento dulce para cerrar</p>
+        </div>
+      </li>
+    </ul>
+  </section>
+
   <!-- ─── REGALOS ──────────────────────────── -->
   <section class="regalos rv d1">
     <div class="regalos__deco">
@@ -1176,6 +1396,18 @@ body {
         Si desean hacernos un obsequio,<br/>
         lo recibiremos con mucho cariño.
       </p>
+      <div class="regalos__accounts">
+        <div class="regalos__account">
+          <p class="regalos__acc-bank">BBVA — Cuenta Débito</p>
+          <p class="regalos__acc-num">4152 3143 8765 4321</p>
+          <p class="regalos__acc-label">A nombre de Romina Álvarez</p>
+        </div>
+        <div class="regalos__account">
+          <p class="regalos__acc-bank">CoDi / Transferencia</p>
+          <p class="regalos__acc-num">+52 55 1234 5678</p>
+          <p class="regalos__acc-label">A nombre de Federico Morales</p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -1191,6 +1423,19 @@ body {
       <div class="swatch taupe" title="Taupe"></div>
       <div class="swatch black" title="Negro"></div>
     </div>
+  </section>
+
+  <!-- ─── CITA BÍBLICA ────────────────────── -->
+  <section class="biblica">
+    <span class="biblica__cross rv d1">✝</span>
+    <p class="biblica__text rv d2">
+      "El amor es paciente, es bondadoso.<br/>
+      El amor no envidia, no presume,<br/>
+      no se envanece. Todo lo soporta,<br/>
+      todo lo cree, todo lo espera,<br/>
+      todo lo aguanta. El amor no pasa nunca."
+    </p>
+    <span class="biblica__ref rv d3">— 1 Corintios 13:4-8</span>
   </section>
 
   <!-- ─── COUNTDOWN ────────────────────────── -->
@@ -1408,35 +1653,6 @@ function tick() {
 tick();
 setInterval(tick, 1000);
 
-/* ── RSVP option buttons ── */
-document.getElementById('opt-yes').addEventListener('click', function() {
-  document.querySelectorAll('.rsvp__option').forEach(b => b.classList.remove('selected'));
-  this.classList.add('selected');
-});
-document.getElementById('opt-no').addEventListener('click', function() {
-  document.querySelectorAll('.rsvp__option').forEach(b => b.classList.remove('selected'));
-  this.classList.add('selected');
-});
-
-/* ── RSVP submit ── */
-document.getElementById('rsvp-form').addEventListener('submit', e => {
-  e.preventDefault();
-  const form = document.getElementById('rsvp-form');
-  form.style.transition = 'opacity .4s, transform .4s';
-  form.style.opacity = '0';
-  form.style.transform = 'translateY(-10px)';
-  setTimeout(() => {
-    form.style.display = 'none';
-    document.getElementById('rsvp-confirm').classList.add('show');
-  }, 400);
-});
-
-/* ── Music play button ── */
-let playing = false;
-document.getElementById('playBtn').addEventListener('click', function() {
-  playing = !playing;
-  this.textContent = playing ? '⏸' : '▶';
-});
 </script>
 <script>
 (function(){

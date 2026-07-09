@@ -883,6 +883,64 @@ body{
   text-decoration:none;
 }
 
+/* ══ SCHEDULE SECTION ══════════════════ */
+.schedule {
+  padding: 56px 24px;
+  background: var(--card);
+}
+
+/* ══ LITERARY QUOTE ════════════════════ */
+.literary {
+  padding: 56px 32px;
+  text-align: center;
+  background: var(--navy);
+  position: relative;
+  overflow: hidden;
+}
+.literary::before {
+  content: '\201C';
+  position: absolute;
+  top: -20px;
+  left: 16px;
+  font-family: 'Playfair Display', serif;
+  font-size: 12rem;
+  color: rgba(255,255,255,.04);
+  line-height: 1;
+  pointer-events: none;
+}
+.literary__pre {
+  font-family: 'Montserrat', sans-serif;
+  font-size: .44rem;
+  font-weight: 500;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 18px;
+  display: block;
+}
+.literary__quote {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  font-style: italic;
+  color: rgba(255,255,255,.92);
+  line-height: 1.85;
+  margin-bottom: 18px;
+}
+.literary__sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: .85rem;
+  font-style: italic;
+  color: rgba(255,255,255,.5);
+  margin-bottom: 6px;
+}
+.literary__ref {
+  font-family: 'Montserrat', sans-serif;
+  font-size: .44rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
 /* ── VIDEO INTRO ─────────────────────── */
 .vi{position:relative;width:100%;height:100svh;overflow:hidden;background:#0a0a0a;z-index:1}
 .vi__video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center}
@@ -1073,6 +1131,56 @@ body{
   </div>
 </section>
 
+<!-- ═══════════ SCHEDULE ═══════════ -->
+<section class="schedule sec--white">
+  <div class="sec__cross">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+    </svg>
+  </div>
+  <h2 class="sec__heading rv" style="margin-top:20px">Schedule</h2>
+  <p class="sec__sub rv" style="transition-delay:.08s;margin-bottom:32px">Saturday · September 12, 2026</p>
+
+  <div class="timeline rv" style="transition-delay:.15s">
+    <div class="tl-item">
+      <div class="tl-item__icon tl-item__icon--olive">⚓</div>
+      <span class="tl-item__time">2:30 PM</span>
+      <p class="tl-item__title">Boat Departure</p>
+      <p class="tl-item__desc">Private boat from Lenno pier — meet at the dock</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-item__icon tl-item__icon--gold">💐</div>
+      <span class="tl-item__time">3:30 PM</span>
+      <p class="tl-item__title">Arrival &amp; Welcome</p>
+      <p class="tl-item__desc">Arrive at Villa del Balbianello · Prosecco &amp; canapés in the garden</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-item__icon tl-item__icon--olive">💍</div>
+      <span class="tl-item__time">4:30 PM</span>
+      <p class="tl-item__title">Ceremony</p>
+      <p class="tl-item__desc">Civil ceremony with lake views — please be seated by 4:15</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-item__icon tl-item__icon--gold">🥂</div>
+      <span class="tl-item__time">5:15 PM</span>
+      <p class="tl-item__title">Cocktail Hour</p>
+      <p class="tl-item__desc">Terrace aperitivo · photos with the couple</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-item__icon tl-item__icon--olive">🍽️</div>
+      <span class="tl-item__time">7:00 PM</span>
+      <p class="tl-item__title">Dinner</p>
+      <p class="tl-item__desc">Five-course lakeside dinner with live music</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-item__icon tl-item__icon--gold">🎶</div>
+      <span class="tl-item__time">9:30 PM</span>
+      <p class="tl-item__title">First Dance &amp; Party</p>
+      <p class="tl-item__desc">Dancing until the boats take us home under the stars</p>
+    </div>
+  </div>
+</section>
+
 <!-- ═══════════ COUNTDOWN ═══════════ -->
 <section class="cd12 rv">
   <p class="cd12__faltan rv">Faltan</p>
@@ -1100,6 +1208,18 @@ body{
   <p class="cd12__sub rv" style="transition-delay:.2s">Para nuestro gran día</p>
 </section>
 
+
+<!-- ═══════════ LITERARY QUOTE ═══════════ -->
+<section class="literary">
+  <span class="literary__pre rv">Lake Como · 12 September 2026</span>
+  <p class="literary__quote rv" style="transition-delay:.1s">
+    "Non esiste felicità pari<br/>a quella di essere amati<br/>e di amare a propria volta."
+  </p>
+  <p class="literary__sub rv" style="transition-delay:.18s">
+    "There is no happiness equal to being loved<br/>and to love in return."
+  </p>
+  <span class="literary__ref rv" style="transition-delay:.26s">— Alessandro Manzoni · I Promessi Sposi</span>
+</section>
 
 <!-- ═══════════ FAQ ═══════════ -->
 <section class="faq sec--light">
