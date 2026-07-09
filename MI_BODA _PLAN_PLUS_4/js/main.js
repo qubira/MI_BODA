@@ -219,7 +219,7 @@ function markSteps(active) {
   }
 
   if (music.localFile && music.localFile.trim()) {
-    startPlayer('music/' + music.localFile.trim(), music.title || music.localFile.replace(/\.[^.]+$/, ''));
+    startPlayer('audio/' + music.localFile.trim(), music.title || music.localFile.replace(/\.[^.]+$/, ''));
     return;
   }
 
