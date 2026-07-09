@@ -30,6 +30,15 @@ const projects = [
   { slug: 'basico-10',  dir: 'MI_BODA_PLAN_BASICO_10', admin: false },
   { slug: 'basico-11',  dir: 'MI_BODA_PLAN_BASICO_11', admin: false },
   { slug: 'basico-12',  dir: 'MI_BODA_PLAN_BASICO_12', admin: false },
+  { slug: 'plus-4',    dir: 'MI_BODA _PLAN_PLUS_4',   admin: true  },
+  { slug: 'plus-5',    dir: 'MI_BODA _PLAN_PLUS_5',   admin: true  },
+  { slug: 'plus-6',    dir: 'MI_BODA _PLAN_PLUS_6',   admin: true  },
+  { slug: 'plus-7',    dir: 'MI_BODA _PLAN_PLUS_7',   admin: true  },
+  { slug: 'plus-8',    dir: 'MI_BODA _PLAN_PLUS_8',   admin: true  },
+  { slug: 'plus-9',    dir: 'MI_BODA _PLAN_PLUS_9',   admin: true  },
+  { slug: 'plus-10',   dir: 'MI_BODA _PLAN_PLUS_10',  admin: true  },
+  { slug: 'plus-11',   dir: 'MI_BODA _PLAN_PLUS_11',  admin: true  },
+  { slug: 'plus-12',   dir: 'MI_BODA _PLAN_PLUS_12',  admin: true  },
 ];
 
 projects.forEach(({ slug, dir, admin }) => {
