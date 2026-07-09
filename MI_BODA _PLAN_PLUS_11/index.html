@@ -1323,6 +1323,10 @@
   letter-spacing: .08em;
   margin-top: 2px;
 }
+.regalos__wish-items { list-style: none; margin-top: 8px; }
+.regalos__wish-items li { font-family: "Cormorant Garamond", serif; font-size: .88rem; font-style: italic; color: var(--ink); padding: 3px 0; border-bottom: 1px solid rgba(42,32,16,.1); }
+.regalos__wish-items li:last-child { border-bottom: none; }
+.regalos__wish-items li::before { content: '·'; margin-right: 7px; color: var(--gold); font-style: normal; }
 
 /* ── VIDEO INTRO ─────────────────────── */
 .vi{position:relative;width:100%;height:100svh;overflow:hidden;background:#0a0a0a;z-index:1}
@@ -1578,14 +1582,31 @@
         </div>
         <div class="regalos__accounts rv" style="transition-delay: 0.4s">
           <div class="regalos__account">
-            <p class="regalos__acc-bank">Bancolombia — Ahorros</p>
-            <p class="regalos__acc-num">425 · 567890 · 12</p>
-            <p class="regalos__acc-label">A nombre de Jess Gutiérrez</p>
+            <p class="regalos__acc-bank">🍳 Cocina &amp; Electrodomésticos</p>
+            <ul class="regalos__wish-items">
+              <li>Cafetera espresso automática</li>
+              <li>Batidora de pie profesional</li>
+              <li>Robot de cocina multifunción</li>
+              <li>Juego de ollas y sartenes antiadherentes</li>
+              <li>Licuadora de alto rendimiento</li>
+            </ul>
           </div>
           <div class="regalos__account">
-            <p class="regalos__acc-bank">Nequi / Daviplata</p>
-            <p class="regalos__acc-num">+57 314 567 8901</p>
-            <p class="regalos__acc-label">A nombre de Ramiro Caicedo</p>
+            <p class="regalos__acc-bank">🏠 Hogar &amp; Decoración</p>
+            <ul class="regalos__wish-items">
+              <li>Ropa de cama de algodón premium</li>
+              <li>Set de toallas de baño (6 piezas)</li>
+              <li>Juego de vajilla de porcelana</li>
+              <li>Cuadros y decoración para el hogar</li>
+            </ul>
+          </div>
+          <div class="regalos__account">
+            <p class="regalos__acc-bank">⚡ Tecnología</p>
+            <ul class="regalos__wish-items">
+              <li>Smart TV 55"</li>
+              <li>Aspiradora robot</li>
+              <li>Bocina Bluetooth para el hogar</li>
+            </ul>
           </div>
         </div>
 

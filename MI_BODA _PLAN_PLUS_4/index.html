@@ -988,9 +988,11 @@
       /* ══ REGALOS mejorado ══ */
       .gifts__accounts { margin-top:18px; display:flex; flex-direction:column; gap:10px; }
       .gifts__account { background:rgba(58,100,48,.55); border:1px solid rgba(176,201,168,.2); border-radius:8px; padding:12px 16px; }
-      .gifts__account-bank { font-family:'Montserrat',sans-serif; font-size:.58rem; letter-spacing:.12em; text-transform:uppercase; color:var(--gl); margin-bottom:4px; }
-      .gifts__account-num { font-family:'Cormorant Garamond',serif; font-size:1.05rem; color:#fff; letter-spacing:.04em; }
-      .gifts__account-label { font-family:'Montserrat',sans-serif; font-size:.56rem; color:rgba(176,201,168,.65); margin-top:3px; }
+      .gifts__account-bank { font-family:'Montserrat',sans-serif; font-size:.58rem; letter-spacing:.12em; text-transform:uppercase; color:var(--gl); margin-bottom:8px; display:flex; align-items:center; gap:6px; }
+      .gifts__wish-items { list-style:none; }
+      .gifts__wish-items li { font-family:'Cormorant Garamond',serif; font-size:.82rem; font-style:italic; color:rgba(255,255,255,.88); padding:3px 0; border-bottom:1px solid rgba(176,201,168,.12); }
+      .gifts__wish-items li:last-child { border-bottom:none; }
+      .gifts__wish-items li::before { content:'·'; margin-right:7px; color:var(--gl); font-style:normal; }
     </style>
   </head>
   <body>
@@ -1282,18 +1284,35 @@
         <p class="gifts__text reveal d3">
           Tu presencia es nuestro mayor regalo.<br />
           Si deseas obsequiarnos algo especial,<br />
-          aquí están nuestros datos para transferencia.
+          aquí tienes algunas ideas que nos encantarían.
         </p>
         <div class="gifts__accounts reveal d4">
           <div class="gifts__account">
-            <p class="gifts__account-bank">BCP — Sofía Ramírez</p>
-            <p class="gifts__account-num">310 — 2158746 — 0 — 34</p>
-            <p class="gifts__account-label">Cuenta de Ahorros en Soles</p>
+            <p class="gifts__account-bank">🍳 Cocina & Electrodomésticos</p>
+            <ul class="gifts__wish-items">
+              <li>Cafetera espresso automática</li>
+              <li>Batidora de pie profesional</li>
+              <li>Robot de cocina multifunción</li>
+              <li>Juego de ollas y sartenes antiadherentes</li>
+              <li>Licuadora de alto rendimiento</li>
+            </ul>
           </div>
           <div class="gifts__account">
-            <p class="gifts__account-bank">Yape / Plin</p>
-            <p class="gifts__account-num">+51 987 654 321</p>
-            <p class="gifts__account-label">A nombre de Sofía Ramírez</p>
+            <p class="gifts__account-bank">🏠 Hogar & Decoración</p>
+            <ul class="gifts__wish-items">
+              <li>Ropa de cama de algodón premium (queen)</li>
+              <li>Set de toallas de baño (6 piezas)</li>
+              <li>Juego de vajilla de porcelana (12 pzas)</li>
+              <li>Cuadros y decoración para el hogar</li>
+            </ul>
+          </div>
+          <div class="gifts__account">
+            <p class="gifts__account-bank">⚡ Tecnología</p>
+            <ul class="gifts__wish-items">
+              <li>Smart TV 55"</li>
+              <li>Aspiradora robot</li>
+              <li>Bocina Bluetooth para el hogar</li>
+            </ul>
           </div>
         </div>
       </section>

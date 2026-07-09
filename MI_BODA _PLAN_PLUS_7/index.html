@@ -1035,6 +1035,10 @@ body {
   letter-spacing: .08em;
   margin-top: 3px;
 }
+.gifts__wish-items { list-style: none; margin-top: 8px; }
+.gifts__wish-items li { font-family: var(--ff-serif); font-size: .9rem; font-style: italic; color: var(--dark); padding: 3px 0; border-bottom: 1px solid rgba(97,17,40,.08); }
+.gifts__wish-items li:last-child { border-bottom: none; }
+.gifts__wish-items li::before { content: '·'; margin-right: 7px; color: var(--gold); font-style: normal; }
 
 /* ── VIDEO INTRO ─────────────────────── */
 .vi{position:relative;width:100%;height:100svh;overflow:hidden;background:#0a0a0a;z-index:1}
@@ -1313,20 +1317,37 @@ body {
     <div class="gifts__wrap">
       <div class="gifts__card">
         <p class="gifts__text">
-          Su compañía es lo más importante.<br/>
-          Si desean hacernos un obsequio,<br/>
-          lo recibiremos con mucho cariño.
+          Su compañía es nuestro mayor regalo.<br/>
+          Si desean obsequiarnos algo especial,<br/>
+          aquí algunas ideas que nos encantarían:
         </p>
         <div class="gifts__accounts">
           <div class="gifts__account">
-            <p class="gifts__bank">Bancolombia — Cuenta Ahorros</p>
-            <p class="gifts__num">425 · 123456 · 78</p>
-            <p class="gifts__label">A nombre de Sofía García</p>
+            <p class="gifts__bank">🍳 Cocina & Electrodomésticos</p>
+            <ul class="gifts__wish-items">
+              <li>Cafetera espresso automática</li>
+              <li>Batidora de pie profesional</li>
+              <li>Robot de cocina multifunción</li>
+              <li>Juego de ollas y sartenes</li>
+              <li>Licuadora de alto rendimiento</li>
+            </ul>
           </div>
           <div class="gifts__account">
-            <p class="gifts__bank">Nequi / Daviplata</p>
-            <p class="gifts__num">+57 300 123 4567</p>
-            <p class="gifts__label">A nombre de Alejandro Meza</p>
+            <p class="gifts__bank">🏠 Hogar & Decoración</p>
+            <ul class="gifts__wish-items">
+              <li>Ropa de cama de algodón premium</li>
+              <li>Set de toallas de baño (6 piezas)</li>
+              <li>Juego de vajilla de porcelana</li>
+              <li>Cuadros y decoración para el hogar</li>
+            </ul>
+          </div>
+          <div class="gifts__account">
+            <p class="gifts__bank">⚡ Tecnología</p>
+            <ul class="gifts__wish-items">
+              <li>Smart TV 55"</li>
+              <li>Aspiradora robot</li>
+              <li>Bocina Bluetooth para el hogar</li>
+            </ul>
           </div>
         </div>
       </div>

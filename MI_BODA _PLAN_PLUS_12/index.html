@@ -636,6 +636,10 @@ body{
   padding:20px;
   text-align:left;
 }
+.gifts__wish-items { list-style: none; margin-top: 8px; }
+.gifts__wish-items li { font-family:'Cormorant Garamond',serif; font-size:.88rem; font-style:italic; color:var(--text); padding:3px 0; border-bottom:1px solid rgba(12,35,64,.1); }
+.gifts__wish-items li:last-child { border-bottom: none; }
+.gifts__wish-items li::before { content:'·'; margin-right:7px; color:var(--gold); font-style:normal; }
 
 .gifts__field{
   margin-bottom:16px;
@@ -1293,30 +1297,36 @@ body{
     <path d="M20 12v10H4V12"/><rect x="2" y="7" width="20" height="5" rx="1"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/>
   </svg>
   <h2 class="sec__heading rv" style="transition-delay:.05s">Gifts</h2>
-  <p class="gifts__msg rv" style="transition-delay:.1s">Your presence at our celebration on Lake Como is the greatest gift we could ask for. For those who wish to contribute, a gift towards our honeymoon along the Amalfi Coast would bring us immense joy.</p>
+  <p class="gifts__msg rv" style="transition-delay:.1s">Your presence at our celebration on Lake Como is the greatest gift we could ask for. If you'd like to give us something, here are a few ideas we'd truly love.</p>
 
-  <div class="gifts__card rv" style="transition-delay:.15s">
+  <div class="gifts__card rv" style="transition-delay:.15s;max-width:400px">
     <div class="gifts__field">
-      <span class="gifts__field-lbl">Bank</span>
-      <span class="gifts__field-val">Banca Intesa Sanpaolo</span>
+      <span class="gifts__field-lbl">🍳 Kitchen &amp; Appliances</span>
+      <ul class="gifts__wish-items">
+        <li>Automatic espresso machine</li>
+        <li>Professional stand mixer</li>
+        <li>Multi-function food processor</li>
+        <li>Non-stick cookware set</li>
+        <li>High-performance blender</li>
+      </ul>
     </div>
     <div class="gifts__field">
-      <span class="gifts__field-lbl">Account Holder</span>
-      <span class="gifts__field-val">Valentina &amp; Marco</span>
+      <span class="gifts__field-lbl">🏠 Home &amp; Décor</span>
+      <ul class="gifts__wish-items">
+        <li>Premium cotton bed linen set</li>
+        <li>Bath towel set (6 pieces)</li>
+        <li>Porcelain dinnerware collection</li>
+        <li>Art prints and home décor</li>
+      </ul>
     </div>
     <div class="gifts__field" style="margin-bottom:0">
-      <span class="gifts__field-lbl">Bank Account</span>
+      <span class="gifts__field-lbl">⚡ Technology</span>
+      <ul class="gifts__wish-items">
+        <li>55" Smart TV</li>
+        <li>Robot vacuum cleaner</li>
+        <li>Home Bluetooth speaker</li>
+      </ul>
     </div>
-    <div class="gifts__iban-wrap">
-      <span class="gifts__iban">IT00 0000 0000 0000 0000 0000 000</span>
-      <button class="btn-copy" id="copyBtn" onclick="copyIban()">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
-        </svg>
-        Copy
-      </button>
-    </div>
-    <span class="gifts__note">* Please include your name as reference so we know who to thank!</span>
   </div>
 </section>
 

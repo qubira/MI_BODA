@@ -941,6 +941,10 @@ body {
   letter-spacing: .06em;
   margin-top: 2px;
 }
+.regalos__wish-items { list-style: none; margin-top: 8px; }
+.regalos__wish-items li { font-family: var(--ff-serif); font-size: .88rem; font-style: italic; color: var(--navy); padding: 3px 0; border-bottom: 1px solid rgba(50,58,67,.1); }
+.regalos__wish-items li:last-child { border-bottom: none; }
+.regalos__wish-items li::before { content: '·'; margin-right: 7px; color: var(--blue); font-style: normal; }
 
 /* ── VIDEO INTRO ─────────────────────── */
 .vi{position:relative;width:100%;height:100svh;overflow:hidden;background:#0a0a0a;z-index:1}
@@ -1231,14 +1235,31 @@ body {
       </p>
       <div class="regalos__accounts rv d3">
         <div class="regalos__account">
-          <p class="regalos__acc-bank">BBVA Bancomer — Cuenta</p>
-          <p class="regalos__acc-num">4152 3143 8765 4321</p>
-          <p class="regalos__acc-label">A nombre de Juliana García</p>
+          <p class="regalos__acc-bank">🍳 Cocina &amp; Electrodomésticos</p>
+          <ul class="regalos__wish-items">
+            <li>Cafetera espresso automática</li>
+            <li>Batidora de pie profesional</li>
+            <li>Robot de cocina multifunción</li>
+            <li>Juego de ollas y sartenes antiadherentes</li>
+            <li>Licuadora de alto rendimiento</li>
+          </ul>
         </div>
         <div class="regalos__account">
-          <p class="regalos__acc-bank">CoDi / Transferencia</p>
-          <p class="regalos__acc-num">+52 55 8765 4321</p>
-          <p class="regalos__acc-label">A nombre de Ethan Meza</p>
+          <p class="regalos__acc-bank">🏠 Hogar &amp; Decoración</p>
+          <ul class="regalos__wish-items">
+            <li>Ropa de cama de algodón premium</li>
+            <li>Set de toallas de baño (6 piezas)</li>
+            <li>Juego de vajilla de porcelana</li>
+            <li>Cuadros y decoración para el hogar</li>
+          </ul>
+        </div>
+        <div class="regalos__account">
+          <p class="regalos__acc-bank">⚡ Tecnología</p>
+          <ul class="regalos__wish-items">
+            <li>Smart TV 55"</li>
+            <li>Aspiradora robot</li>
+            <li>Bocina Bluetooth para el hogar</li>
+          </ul>
         </div>
       </div>
     </div>
