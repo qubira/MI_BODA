@@ -140,6 +140,7 @@ function saveGuest(g) { const a = getGuests(); a.push(g); localStorage.setItem(D
 /* ===== PÉTALOS DE ROSA SVG ===== */
 (function initPetals() {
   const container = document.getElementById('petalsContainer');
+  if (!container) return;
   const isMobile  = window.matchMedia('(max-width:768px)').matches;
   const count     = isMobile ? 24 : 48;
   const NS        = 'http://www.w3.org/2000/svg';
