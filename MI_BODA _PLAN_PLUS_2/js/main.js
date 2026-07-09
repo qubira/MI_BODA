@@ -5,7 +5,7 @@
 
 'use strict';
 
-const DB_KEY = 'boda_rsvp_guests';
+const DB_KEY = 'plus2_rsvps';
 function getGuests()  { try { return JSON.parse(localStorage.getItem(DB_KEY)) || []; } catch { return []; } }
 function saveGuest(g) { const a = getGuests(); a.push(g); localStorage.setItem(DB_KEY, JSON.stringify(a)); }
 
@@ -411,7 +411,7 @@ function saveGuest(g) { const a = getGuests(); a.push(g); localStorage.setItem(D
   // Hashtags (elimina espacios de los nombres para el hashtag)
   const brideSlug = bride.replace(/\s+/g, '');
   const groomSlug = groom.replace(/\s+/g, '');
-  const yr = cfg.date ? cfg.date.split('-')[0] : '2026';
+  const yr = cfg.date ? cfg.date.split('-')[0] : '2027';
   const hashtag = `#${brideSlug}Y${groomSlug}${yr}`;
 
   const elHeroHashtag   = document.getElementById('heroHashtag');
@@ -1037,7 +1037,7 @@ function validate(fieldId, errId, rules) {
     if (isYes) {
       const qrEl = document.getElementById('successQR');
       qrEl.innerHTML = '';
-      qrEl.appendChild(makeQR(`BODA2026-${guest.id}-${guest.nombre}`));
+      qrEl.appendChild(makeQR(`BODA2027-${guest.id}-${guest.nombre}`));
       document.getElementById('qrNote').style.display = '';
       spawnConfetti();
     } else {
