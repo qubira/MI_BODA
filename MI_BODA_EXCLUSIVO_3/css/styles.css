@@ -988,6 +988,27 @@ input, select, textarea { cursor: text; }
 .galeria-section { overflow: hidden; background: var(--black); }
 .galeria-section .section__header { padding: 0 28px; }
 
+/* ============================================================
+   DECORACIÓN & AMBIENTACIÓN
+   ============================================================ */
+.ambient-section { overflow: hidden; background: var(--dark); }
+.ambient-section .section__header { padding: 0 28px; }
+.ambient-cat {
+  padding: 8px 0 4px;
+}
+.ambient-cat__title {
+  font-family: var(--font-display);
+  font-size: .72rem; letter-spacing: .25em;
+  text-transform: uppercase; color: var(--gold);
+  display: flex; align-items: center; gap: 10px;
+  padding: 0 40px;
+  margin-bottom: 4px;
+}
+.ambient-cat__title::after {
+  content: ''; flex: 1; height: 1px;
+  background: linear-gradient(90deg, rgba(201,160,84,.4), transparent);
+}
+
 .galeria__strip {
   display: flex; gap: 12px;
   overflow-x: auto; overflow-y: hidden;
