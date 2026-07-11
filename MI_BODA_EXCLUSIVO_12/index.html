@@ -1,0 +1,1622 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5">
+<title>Valentina &amp; Marco — Villa del Balbianello · 12 Septiembre 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+
+:root{
+  --navy:    #1a5276;
+  --navy2:   #0c2340;
+  --mid:     #2e6da4;
+  --gold:    #c4a35a;
+  --gold2:   #a8863e;
+  --bg:      #f8fbfd;
+  --bg2:     #f0f6fa;
+  --text:    #0c2340;
+  --muted:   #5a7a94;
+  --border:  rgba(26,82,118,.15);
+  --card:    #ffffff;
+}
+
+body{
+  font-family:'Cormorant Garamond',serif;
+  background:var(--bg);
+  color:var(--text);
+  overflow-x:hidden;
+}
+
+/* ── scroll reveal ── */
+.rv  {opacity:0;transform:translateY(28px);transition:.75s ease}
+.rv-l{opacity:0;transform:translateX(-28px);transition:.75s ease}
+.rv-r{opacity:0;transform:translateX(28px);transition:.75s ease}
+.rv-s{opacity:0;transform:scale(.94);transition:.75s ease}
+.rv.in,.rv-l.in,.rv-r.in,.rv-s.in{opacity:1;transform:none}
+
+/* ════════════════════════════
+   HERO
+════════════════════════════ */
+.hero{
+  position:relative;
+  height:100svh;
+  min-height:580px;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+}
+
+/* VIDEO de fondo */
+.hero__video{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center center;
+  z-index:0;
+}
+
+/* overlay oscuro */
+.hero__overlay{
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(12,35,64,.48) 0%,
+      rgba(26,82,118,.32) 45%,
+      rgba(12,35,64,.70) 100%
+    );
+  z-index:1;
+}
+
+/* hero content */
+.hero__content{
+  position:relative;
+  z-index:10;
+  padding:20px 24px;
+  color:#fff;
+  max-width:540px;
+  width:100%;
+}
+
+/* ── Responsive desktop ── */
+@media(min-width:768px){
+  .hero__names{font-size:5.5rem!important}
+  .hero__pretitle{font-size:.72rem!important}
+  .hero__date{font-size:1.05rem!important}
+  .hero__venue{font-size:1rem!important}
+  .sec__heading{font-size:3rem!important}
+  .location__card,.timeline,.hotel-list,.faq-list,
+  .gifts__card,.rsvp__form{max-width:560px!important}
+  .rsvp__form{max-width:520px!important}
+  .gifts__msg{max-width:480px!important}
+  .tl-item__title{font-size:1.15rem!important}
+  .tl-item__desc{font-size:.95rem!important}
+  .hotel-card__name{font-size:1rem!important}
+  .faq-item__q{font-size:1rem!important}
+  .location__name{font-size:1.35rem!important}
+}
+
+.hero__pretitle{
+  font-family:'Montserrat',sans-serif;
+  font-size:.62rem;
+  font-weight:500;
+  letter-spacing:.32em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.85);
+  margin-bottom:16px;
+}
+
+.hero__names{
+  font-family:'Great Vibes',cursive;
+  font-size:3.8rem;
+  line-height:1.1;
+  color:#fff;
+  text-shadow:0 2px 20px rgba(0,0,0,.3);
+  margin-bottom:16px;
+}
+
+.hero__date{
+  font-family:'Cormorant Garamond',serif;
+  font-size:.92rem;
+  font-weight:300;
+  letter-spacing:.1em;
+  color:rgba(255,255,255,.9);
+  margin-bottom:6px;
+}
+
+.hero__venue{
+  font-family:'Cormorant Garamond',serif;
+  font-size:.85rem;
+  font-style:italic;
+  color:rgba(255,255,255,.75);
+  margin-bottom:28px;
+}
+
+.hero__btn{
+  display:inline-block;
+  padding:13px 36px;
+  border:1.5px solid rgba(255,255,255,.7);
+  color:#fff;
+  font-family:'Montserrat',sans-serif;
+  font-size:.6rem;
+  font-weight:500;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  text-decoration:none;
+  border-radius:50px;
+  background:rgba(255,255,255,.08);
+  backdrop-filter:blur(4px);
+  cursor:pointer;
+  transition:background .25s,border-color .25s;
+}
+.hero__btn:hover{background:rgba(255,255,255,.18);border-color:#fff}
+
+.hero__scroll{
+  position:absolute;
+  bottom:28px;
+  left:50%;
+  transform:translateX(-50%);
+  z-index:10;
+  color:rgba(255,255,255,.7);
+  animation:bounceDown 2s ease-in-out infinite;
+  cursor:pointer;
+}
+.hero__scroll svg{width:22px;height:22px}
+@keyframes bounceDown{
+  0%,100%{transform:translateX(-50%) translateY(0)}
+  50%{transform:translateX(-50%) translateY(6px)}
+}
+
+/* ════════════════════════════
+   SECTION HELPERS
+════════════════════════════ */
+.sec{padding:56px 24px}
+.sec--light{background:var(--bg2)}
+.sec--white{background:var(--card)}
+
+/* ── Countdown ── */
+.cd12{
+  padding:56px 24px;
+  text-align:center;
+  background:var(--bg2);
+}
+.cd12__faltan{
+  font-family:'Great Vibes',cursive;
+  font-size:2.4rem;
+  color:var(--navy);
+  margin-bottom:28px;
+}
+.cd12__grid{
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+  gap:6px;
+  flex-wrap:wrap;
+}
+.cd12__unit{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:10px;
+}
+.cd12__num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:3rem;
+  font-weight:300;
+  color:var(--navy);
+  line-height:1;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:14px 18px;
+  min-width:68px;
+  text-align:center;
+  box-shadow:0 2px 12px rgba(26,82,118,.08);
+}
+.cd12__lbl{
+  font-family:'Montserrat',sans-serif;
+  font-size:.44rem;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--muted);
+}
+.cd12__sep{
+  font-family:'Cormorant Garamond',serif;
+  font-size:2.4rem;
+  font-weight:300;
+  color:var(--gold);
+  line-height:1;
+  padding-top:14px;
+}
+.cd12__sub{
+  margin-top:28px;
+  font-size:1.05rem;
+  font-style:italic;
+  color:var(--muted);
+}
+
+.sec__cross{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:18px 0 0;
+  color:var(--border);
+}
+.sec__cross svg{width:18px;height:18px;color:var(--muted);opacity:.4}
+
+.sec__heading{
+  font-family:'Great Vibes',cursive;
+  font-size:2.4rem;
+  color:var(--navy);
+  text-align:center;
+  margin-bottom:6px;
+}
+
+.sec__sub{
+  font-family:'Cormorant Garamond',serif;
+  font-size:.88rem;
+  font-style:italic;
+  color:var(--muted);
+  text-align:center;
+  margin-bottom:32px;
+}
+
+/* ════════════════════════════
+   DETAILS INTRO
+════════════════════════════ */
+.details-intro{
+  padding:52px 24px 48px;
+  text-align:center;
+  background:var(--bg2);
+}
+
+.details-intro .sec__heading{
+  font-size:2.6rem;
+  margin-bottom:8px;
+}
+
+/* ════════════════════════════
+   LOCATION
+════════════════════════════ */
+.location{
+  padding:40px 20px 48px;
+  background:var(--card);
+}
+
+.location__card{
+  max-width:380px;
+  margin:0 auto;
+  border-radius:16px;
+  overflow:hidden;
+  box-shadow:0 4px 24px rgba(26,82,118,.1);
+  border:1px solid var(--border);
+}
+
+.location__photo{
+  width:100%;
+  height:200px;
+  object-fit:cover;
+  object-position:center 40%;
+  display:block;
+}
+
+.location__body{
+  padding:24px 20px;
+}
+
+.location__name{
+  font-family:'Playfair Display',serif;
+  font-size:1.15rem;
+  font-weight:600;
+  color:var(--text);
+  margin-bottom:16px;
+}
+
+.location__row{
+  display:flex;
+  align-items:flex-start;
+  gap:10px;
+  margin-bottom:10px;
+}
+
+.location__icon{
+  flex-shrink:0;
+  width:18px;
+  height:18px;
+  color:var(--navy);
+  margin-top:1px;
+}
+
+.location__info{
+  font-family:'Cormorant Garamond',serif;
+  font-size:.88rem;
+  color:var(--muted);
+  line-height:1.4;
+}
+
+.btn-primary{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  width:100%;
+  padding:13px 20px;
+  background:var(--navy);
+  color:#fff;
+  font-family:'Montserrat',sans-serif;
+  font-size:.6rem;
+  font-weight:500;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  border-radius:50px;
+  border:none;
+  cursor:pointer;
+  text-decoration:none;
+  margin-top:16px;
+  transition:background .2s;
+}
+.btn-primary:hover{background:var(--navy2)}
+
+.btn-secondary{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  width:100%;
+  padding:12px 20px;
+  background:transparent;
+  color:var(--navy);
+  font-family:'Montserrat',sans-serif;
+  font-size:.6rem;
+  font-weight:500;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  border-radius:50px;
+  border:1.5px solid var(--border);
+  cursor:pointer;
+  text-decoration:none;
+  margin-top:10px;
+  transition:background .2s,border-color .2s;
+}
+.btn-secondary:hover{background:var(--bg2);border-color:var(--navy)}
+
+.btn-icon{width:14px;height:14px}
+
+/* ════════════════════════════
+   PROGRAM
+════════════════════════════ */
+.program{
+  padding:48px 24px;
+  background:var(--bg2);
+}
+
+.timeline{
+  position:relative;
+  max-width:380px;
+  margin:0 auto;
+  padding-left:52px;
+}
+
+.timeline::before{
+  content:'';
+  position:absolute;
+  left:18px;
+  top:20px;
+  bottom:20px;
+  width:1.5px;
+  background:linear-gradient(to bottom, var(--border) 0%, rgba(26,82,118,.12) 100%);
+}
+
+.tl-item{
+  position:relative;
+  margin-bottom:32px;
+}
+.tl-item:last-child{margin-bottom:0}
+
+.tl-item__icon{
+  position:absolute;
+  left:-52px;
+  top:0;
+  width:36px;
+  height:36px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:1rem;
+  flex-shrink:0;
+  border:2px solid var(--card);
+  box-shadow:0 2px 8px rgba(0,0,0,.1);
+}
+
+.tl-item__icon--olive{background:#4a6741;color:#fff}
+.tl-item__icon--gold {background:var(--gold);color:#fff}
+
+.tl-item__time{
+  display:inline-block;
+  background:var(--navy);
+  color:#fff;
+  font-family:'Montserrat',sans-serif;
+  font-size:.56rem;
+  font-weight:500;
+  letter-spacing:.1em;
+  padding:3px 10px;
+  border-radius:20px;
+  margin-bottom:6px;
+}
+
+.tl-item__title{
+  font-family:'Playfair Display',serif;
+  font-size:1rem;
+  font-weight:500;
+  color:var(--text);
+  margin-bottom:4px;
+}
+
+.tl-item__desc{
+  font-family:'Cormorant Garamond',serif;
+  font-size:.85rem;
+  font-style:italic;
+  color:var(--muted);
+  line-height:1.55;
+}
+
+/* ════════════════════════════
+   ACCOMMODATION
+════════════════════════════ */
+.accommodation{
+  padding:48px 24px;
+  background:var(--card);
+}
+
+.hotel-list{
+  max-width:380px;
+  margin:0 auto;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+.hotel-card{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  padding:16px;
+  border-radius:12px;
+  border:1px solid var(--border);
+  background:var(--bg2);
+  transition:box-shadow .2s;
+}
+.hotel-card:hover{box-shadow:0 4px 16px rgba(26,82,118,.08)}
+
+.hotel-card__icon{
+  width:40px;
+  height:40px;
+  border-radius:10px;
+  background:rgba(26,82,118,.1);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-shrink:0;
+  color:var(--navy);
+}
+
+.hotel-card__name{
+  font-family:'Playfair Display',serif;
+  font-size:.92rem;
+  font-weight:500;
+  color:var(--text);
+  margin-bottom:2px;
+}
+
+.hotel-card__type{
+  font-family:'Cormorant Garamond',serif;
+  font-size:.78rem;
+  font-style:italic;
+  color:var(--muted);
+}
+
+/* ════════════════════════════
+   FAQ
+════════════════════════════ */
+.faq{
+  padding:48px 24px;
+  background:var(--bg2);
+}
+
+.faq-list{
+  max-width:380px;
+  margin:0 auto;
+  display:flex;
+  flex-direction:column;
+  gap:0;
+  border:1px solid var(--border);
+  border-radius:12px;
+  overflow:hidden;
+  background:var(--card);
+}
+
+.faq-item{
+  border-bottom:1px solid var(--border);
+}
+.faq-item:last-child{border-bottom:none}
+
+.faq-item__header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:18px 20px;
+  cursor:pointer;
+  user-select:none;
+  gap:12px;
+  transition:background .15s;
+}
+.faq-item__header:hover{background:var(--bg2)}
+
+.faq-item__q{
+  font-family:'Cormorant Garamond',serif;
+  font-size:.92rem;
+  color:var(--text);
+  line-height:1.4;
+}
+
+.faq-item__arrow{
+  flex-shrink:0;
+  width:18px;
+  height:18px;
+  color:var(--navy);
+  transition:transform .3s ease;
+}
+
+.faq-item.open .faq-item__arrow{transform:rotate(180deg)}
+
+.faq-item__body{
+  max-height:0;
+  overflow:hidden;
+  transition:max-height .35s ease,padding .3s ease;
+  padding:0 20px;
+}
+.faq-item.open .faq-item__body{
+  max-height:300px;
+  padding-bottom:18px;
+}
+
+.faq-item__a{
+  font-family:'Cormorant Garamond',serif;
+  font-size:.88rem;
+  font-style:italic;
+  color:var(--muted);
+  line-height:1.65;
+}
+
+/* ════════════════════════════
+   GIFTS
+════════════════════════════ */
+.gifts{
+  padding:48px 24px;
+  background:var(--card);
+  text-align:center;
+}
+
+.gifts__icon{
+  width:48px;
+  height:48px;
+  margin:0 auto 12px;
+  color:var(--navy);
+}
+
+.gifts__msg{
+  font-family:'Cormorant Garamond',serif;
+  font-size:.92rem;
+  font-style:italic;
+  color:var(--muted);
+  max-width:320px;
+  margin:0 auto 24px;
+  line-height:1.7;
+}
+
+.gifts__card{
+  max-width:340px;
+  margin:0 auto;
+  background:var(--bg2);
+  border-radius:12px;
+  border:1px solid var(--border);
+  padding:20px;
+  text-align:left;
+}
+.gifts__wish-items { list-style: none; margin-top: 8px; }
+.gifts__wish-items li { font-family:'Cormorant Garamond',serif; font-size:.88rem; font-style:italic; color:var(--text); padding:3px 0; border-bottom:1px solid rgba(12,35,64,.1); }
+.gifts__wish-items li:last-child { border-bottom: none; }
+.gifts__wish-items li::before { content:'·'; margin-right:7px; color:var(--gold); font-style:normal; }
+
+.gifts__field{
+  margin-bottom:16px;
+}
+
+.gifts__field-lbl{
+  font-family:'Montserrat',sans-serif;
+  font-size:.52rem;
+  font-weight:600;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:var(--muted);
+  display:block;
+  margin-bottom:4px;
+}
+
+.gifts__field-val{
+  font-family:'Cormorant Garamond',serif;
+  font-size:.92rem;
+  color:var(--text);
+}
+
+.gifts__iban-wrap{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:10px 12px;
+  margin-top:12px;
+}
+
+.gifts__iban{
+  font-family:'Montserrat',sans-serif;
+  font-size:.68rem;
+  letter-spacing:.04em;
+  color:var(--text);
+  flex:1;
+  word-break:break-all;
+}
+
+.btn-copy{
+  flex-shrink:0;
+  display:flex;
+  align-items:center;
+  gap:5px;
+  padding:8px 14px;
+  background:var(--navy);
+  color:#fff;
+  font-family:'Montserrat',sans-serif;
+  font-size:.56rem;
+  font-weight:500;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+  transition:background .2s;
+  white-space:nowrap;
+}
+.btn-copy:hover{background:var(--navy2)}
+.btn-copy.copied{background:#2e7d32}
+
+.gifts__note{
+  font-family:'Cormorant Garamond',serif;
+  font-size:.74rem;
+  font-style:italic;
+  color:var(--muted);
+  margin-top:10px;
+  display:block;
+}
+
+/* ════════════════════════════
+   RSVP
+════════════════════════════ */
+.rsvp{
+  padding:48px 24px;
+  background:var(--bg2);
+  text-align:center;
+}
+
+.rsvp__form{
+  max-width:360px;
+  margin:0 auto;
+  background:var(--card);
+  border-radius:16px;
+  padding:28px 22px;
+  border:1px solid var(--border);
+  box-shadow:0 4px 20px rgba(26,82,118,.07);
+  text-align:left;
+}
+
+.rsvp__field-lbl{
+  font-family:'Montserrat',sans-serif;
+  font-size:.56rem;
+  font-weight:600;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--muted);
+  display:block;
+  margin-bottom:5px;
+  margin-top:14px;
+}
+
+.rsvp__input{
+  width:100%;
+  border:1px solid var(--border);
+  border-radius:8px;
+  background:var(--bg2);
+  padding:10px 12px;
+  font-family:'Cormorant Garamond',serif;
+  font-size:.92rem;
+  color:var(--text);
+  outline:none;
+  transition:border-color .2s;
+}
+.rsvp__input:focus{border-color:var(--navy)}
+
+.rsvp__question{
+  font-family:'Cormorant Garamond',serif;
+  font-size:.9rem;
+  font-style:italic;
+  color:var(--muted);
+  display:block;
+  text-align:center;
+  margin:18px 0 12px;
+  line-height:1.5;
+}
+
+.rsvp__opts{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  margin-bottom:18px;
+}
+
+.rsvp__opt{
+  padding:11px 14px;
+  border:1.5px solid var(--border);
+  border-radius:8px;
+  background:var(--bg2);
+  font-family:'Cormorant Garamond',serif;
+  font-size:.88rem;
+  color:var(--muted);
+  cursor:pointer;
+  text-align:center;
+  transition:all .2s;
+}
+.rsvp__opt:hover,.rsvp__opt.sel{
+  background:var(--navy);
+  color:#fff;
+  border-color:var(--navy);
+}
+
+.rsvp__submit{
+  width:100%;
+  padding:13px;
+  background:var(--navy);
+  color:#fff;
+  font-family:'Montserrat',sans-serif;
+  font-size:.62rem;
+  font-weight:500;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  border:none;
+  border-radius:50px;
+  cursor:pointer;
+  transition:background .2s;
+}
+.rsvp__submit:hover{background:var(--navy2)}
+
+.rsvp__deadline{
+  font-family:'Cormorant Garamond',serif;
+  font-size:.76rem;
+  font-style:italic;
+  color:var(--muted);
+  text-align:center;
+  margin-top:12px;
+  line-height:1.5;
+  display:block;
+}
+
+/* ════════════════════════════
+   FOOTER
+════════════════════════════ */
+.footer{
+  padding:40px 24px 52px;
+  background:var(--card);
+  text-align:center;
+  border-top:1px solid var(--border);
+}
+
+.footer__top{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  font-family:'Montserrat',sans-serif;
+  font-size:.56rem;
+  font-weight:500;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:var(--muted);
+  margin-bottom:28px;
+  cursor:pointer;
+  text-decoration:none;
+  transition:color .2s;
+}
+.footer__top:hover{color:var(--navy)}
+.footer__top svg{width:14px;height:14px}
+
+.footer__cross{
+  color:var(--border);
+  margin-bottom:24px;
+  font-size:1.1rem;
+  letter-spacing:.2em;
+}
+
+.footer__names{
+  font-family:'Great Vibes',cursive;
+  font-size:2.4rem;
+  color:var(--navy);
+  margin-bottom:6px;
+}
+
+.footer__date{
+  font-family:'Cormorant Garamond',serif;
+  font-size:.82rem;
+  letter-spacing:.1em;
+  color:var(--muted);
+  margin-bottom:20px;
+}
+
+.footer__made{
+  font-family:'Cormorant Garamond',serif;
+  font-size:.78rem;
+  font-style:italic;
+  color:var(--muted);
+  opacity:.7;
+}
+
+.footer__made a{
+  color:var(--gold2);
+  text-decoration:none;
+}
+
+/* ══ SCHEDULE SECTION ══════════════════ */
+.schedule {
+  padding: 56px 24px;
+  background: var(--card);
+}
+
+/* ══ LITERARY QUOTE ════════════════════ */
+.literary {
+  padding: 56px 32px;
+  text-align: center;
+  background: var(--navy);
+  position: relative;
+  overflow: hidden;
+}
+.literary::before {
+  content: '\201C';
+  position: absolute;
+  top: -20px;
+  left: 16px;
+  font-family: 'Playfair Display', serif;
+  font-size: 12rem;
+  color: rgba(255,255,255,.04);
+  line-height: 1;
+  pointer-events: none;
+}
+.literary__pre {
+  font-family: 'Montserrat', sans-serif;
+  font-size: .44rem;
+  font-weight: 500;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 18px;
+  display: block;
+}
+.literary__quote {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  font-style: italic;
+  color: rgba(255,255,255,.92);
+  line-height: 1.85;
+  margin-bottom: 18px;
+}
+.literary__sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: .85rem;
+  font-style: italic;
+  color: rgba(255,255,255,.5);
+  margin-bottom: 6px;
+}
+.literary__ref {
+  font-family: 'Montserrat', sans-serif;
+  font-size: .44rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+/* ── VIDEO INTRO ─────────────────────── */
+.vi{position:relative;width:100%;height:100svh;overflow:hidden;background:#0a0a0a;z-index:1}
+.vi__video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center}
+.vi__veil{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.15) 0%,rgba(0,0,0,.04) 35%,rgba(0,0,0,.55) 100%);z-index:2;pointer-events:none}
+.vi__text{position:absolute;bottom:88px;left:0;right:0;z-index:3;text-align:center;padding:0 28px;opacity:0;animation:viIn 1.3s cubic-bezier(.16,1,.3,1) .5s forwards}
+.vi__names{font-family:'Great Vibes',cursive;font-size:2.6rem;color:rgba(255,255,255,.95);line-height:1.1;text-shadow:0 2px 28px rgba(0,0,0,.55);margin-bottom:10px}
+.vi__date{font-family:'Montserrat',sans-serif;font-size:.5rem;font-weight:300;letter-spacing:.44em;text-transform:uppercase;color:rgba(255,255,255,.58)}
+.vi__scroll{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);z-index:3;display:flex;flex-direction:column;align-items:center;gap:7px;opacity:0;animation:viIn 1.2s cubic-bezier(.16,1,.3,1) .95s forwards}
+.vi__scroll-word{font-family:'Montserrat',sans-serif;font-size:.42rem;font-weight:300;letter-spacing:.38em;text-transform:uppercase;color:rgba(255,255,255,.48)}
+.vi__scroll-line{width:1px;height:34px;background:linear-gradient(to bottom,rgba(255,255,255,.72),transparent);animation:viPulse 2.1s ease-in-out infinite}
+@keyframes viIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes viPulse{0%,100%{opacity:.7;transform:scaleY(1)}50%{opacity:1;transform:scaleY(.28)}}
+/* ══ RSVP FORM ══ */
+.rsvp-section{padding:40px 20px 48px;background:#fff;position:relative}
+.rsvp-steps{display:flex;align-items:center;justify-content:center;max-width:270px;margin:0 auto 24px}
+.rsvp-sdot{display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center}
+.rsvp-sdot__num{width:28px;height:28px;border-radius:50%;background:#f5f5f5;border:2px solid #ccc;display:flex;align-items:center;justify-content:center;font-family:'Montserrat',sans-serif;font-size:11px;font-weight:600;color:#888;transition:background .3s,border-color .3s,color .3s}
+.rsvp-sdot small{font-family:'Montserrat',sans-serif;font-size:8.5px;letter-spacing:.08em;text-transform:uppercase;color:#888}
+.rsvp-sdot.s-active .rsvp-sdot__num{background:#1a5276;border-color:#1a5276;color:#fff}
+.rsvp-sdot.s-done   .rsvp-sdot__num{background:#c4a35a;border-color:#c4a35a;color:#fff}
+.rsvp-sline{flex:1;height:1px;background:#ddd;margin-bottom:22px;max-width:50px}
+.rsvp-step{display:none}
+.rsvp-step.s-on{display:block;animation:rsvpStepIn .3s ease}
+@keyframes rsvpStepIn{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:none}}
+.rfg{margin-bottom:12px}
+.rfg>label{display:block;font-family:'Montserrat',sans-serif;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:#888;margin-bottom:5px}
+.rfg>label .req{color:#c4a35a}
+.rfg-2col{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.fi-w{position:relative}
+.fi-w i.fi-ic{position:absolute;left:11px;top:50%;transform:translateY(-50%);color:#bbb;font-size:12px;pointer-events:none}
+.fi-w input,.fi-w select{width:100%;padding:9px 12px 9px 32px;border:1.5px solid #c0d0da;border-radius:8px;font-size:15px;color:#222;background:#fff;outline:none;transition:border-color .2s;-webkit-appearance:none;font-family:inherit}
+.fi-w input::placeholder{color:#bbb}
+.fi-w input:focus,.fi-w select:focus{border-color:#1a5276}
+.fi-w input.err,.fi-w select.err{border-color:#c0392b}
+.ferr{display:block;font-family:'Montserrat',sans-serif;font-size:9.5px;color:#c0392b;margin-top:2px;min-height:13px}
+.rsvp-cards{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:4px 0 0}
+.rsvp-card{border:2px solid #c0d0da;border-radius:12px;padding:14px 10px;cursor:pointer;text-align:center;background:#fff;transition:border-color .25s,background .25s,transform .2s}
+.rsvp-card:hover{transform:translateY(-2px);border-color:#1a5276}
+.rsvp-card input{display:none}
+.rsvp-card__icon{font-size:28px;display:block;margin-bottom:6px}
+.rsvp-card__lbl{font-family:'Montserrat',sans-serif;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:#888}
+.rsvp-card.rc-yes{border-color:#1a5276;background:#f0f6f8}
+.rsvp-card.rc-no{border-color:#c0392b;background:#fdf0f0}
+.rsvp-card.rc-dim{opacity:.4}
+.menu-opts{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.menu-opt{border:1.5px solid #c0d0da;border-radius:10px;padding:10px 8px;cursor:pointer;text-align:center;background:#fff;transition:border-color .2s,background .2s}
+.menu-opt input{display:none}
+.menu-opt__ic{font-size:22px;display:block;margin-bottom:4px}
+.menu-opt__nm{font-family:'Montserrat',sans-serif;font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:#888}
+.menu-opt.mo-sel{border-color:#c4a35a;background:#fdf8ee}
+.rfg textarea{width:100%;padding:10px 12px;border:1.5px solid #c0d0da;border-radius:8px;font-size:15px;color:#222;background:#fff;resize:vertical;min-height:80px;outline:none;transition:border-color .2s;font-family:inherit}
+.rfg textarea:focus{border-color:#1a5276}
+.rbtn-row{display:flex;gap:10px;margin-top:20px;justify-content:center}
+.rbtn{font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:.16em;text-transform:uppercase;padding:12px 22px;border-radius:8px;border:none;cursor:pointer;transition:background .2s,transform .15s}
+.rbtn:hover{transform:translateY(-1px)}
+.rbtn-primary{background:#1a5276;color:#fff}
+.rbtn-primary:hover{background:#0c2340}
+.rbtn-ghost{background:transparent;color:#888;border:1.5px solid #ddd}
+.rbtn-ghost:hover{background:#f5f5f5}
+.rsvp-ok{text-align:center;padding:10px 0 8px}
+.rsvp-ok__confetti{height:70px;position:relative;overflow:hidden}
+.confetti-piece{position:absolute;width:7px;height:7px;animation:cfFall 1.8s ease-in forwards}
+@keyframes cfFall{0%{transform:translateY(-10px) rotate(0deg);opacity:1}100%{transform:translateY(90px) rotate(540deg);opacity:0}}
+.rsvp-ok__icon{font-size:44px;display:block;margin-bottom:10px}
+.rsvp-ok__title{font-size:2.4rem;color:#1a5276;margin-bottom:8px;font-family:'Great Vibes',cursive}
+.rsvp-ok__msg{font-size:1rem;color:#777;line-height:1.55;margin-bottom:18px;font-family:inherit}
+.rsvp-ok__qr{display:flex;justify-content:center;margin-bottom:8px}
+.rsvp-ok__qr img{border-radius:8px;border:2px solid #ddd}
+.rsvp-ok__qrnote{font-family:'Montserrat',sans-serif;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:#bbb;margin-bottom:16px}
+.admin-link{display:block;margin:12px auto 0;width:fit-content;font-family:'Montserrat',sans-serif;font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;color:#bbb;text-decoration:none;padding:5px 12px;border:1px solid rgba(0,0,0,.1);border-radius:20px;transition:color .2s,border-color .2s}
+.admin-link:hover{color:#c4a35a;border-color:#c4a35a}
+.toast-notif{position:fixed;bottom:88px;left:50%;transform:translateX(-50%) translateY(16px);background:#1a5276;color:#fff;font-family:'Montserrat',sans-serif;font-size:10.5px;letter-spacing:.07em;padding:10px 22px;border-radius:24px;opacity:0;transition:opacity .3s,transform .3s;z-index:6000;pointer-events:none;white-space:nowrap}
+.toast-notif.t-show{opacity:1;transform:translateX(-50%) translateY(0)}
+/* ══ MUSIC PLAYER ══ */
+.music-player{position:fixed;bottom:18px;left:50%;transform:translateX(-50%) translateY(90px);width:min(340px,calc(100vw - 32px));background:rgba(12,35,64,.96);backdrop-filter:blur(14px);border-radius:14px;border:1px solid rgba(255,255,255,.1);padding:11px 14px;display:flex;align-items:center;gap:10px;z-index:4500;box-shadow:0 8px 28px rgba(0,0,0,.4);transition:transform .45s cubic-bezier(.175,.885,.32,1.275),opacity .4s;opacity:0;pointer-events:none}
+.music-player.mp-on{transform:translateX(-50%) translateY(0);opacity:1;pointer-events:all}
+.music-eq{display:flex;align-items:flex-end;gap:2px;height:16px;flex-shrink:0}
+.music-eq span{display:block;width:3px;background:#c4a35a;border-radius:2px;min-height:3px}
+.music-eq.eq-play span:nth-child(1){animation:meq1 .55s ease infinite alternate}
+.music-eq.eq-play span:nth-child(2){animation:meq2 .75s ease infinite alternate}
+.music-eq.eq-play span:nth-child(3){animation:meq3 .45s ease infinite alternate}
+.music-eq.eq-play span:nth-child(4){animation:meq4 .65s ease infinite alternate}
+@keyframes meq1{from{height:3px}to{height:16px}}
+@keyframes meq2{from{height:10px}to{height:5px}}
+@keyframes meq3{from{height:7px}to{height:14px}}
+@keyframes meq4{from{height:13px}to{height:3px}}
+.music-title{flex:1;font-family:'Montserrat',sans-serif;font-size:9.5px;letter-spacing:.07em;color:rgba(255,255,255,.82);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.music-btn{background:none;border:none;cursor:pointer;color:rgba(255,255,255,.65);font-size:14px;padding:4px 5px;line-height:1;transition:color .2s}
+.music-btn:hover{color:#c4a35a}
+/* ══ OUR STORY ══ */
+.historia{background:var(--bg2);padding:72px 0 64px;position:relative;z-index:1;overflow:hidden;}
+.historia__header{text-align:center;padding:0 28px;margin-bottom:48px;}
+.historia__eyebrow{font-family:'Montserrat',sans-serif;font-size:8.5px;font-weight:300;letter-spacing:.5em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:10px;}
+.historia__title{font-family:'Great Vibes',cursive;font-size:clamp(2.4rem,10vw,3.2rem);color:var(--text);line-height:1;margin-bottom:12px;}
+.historia__subtitle{font-family:'Cormorant Garamond',serif;font-size:15px;font-style:italic;color:var(--muted);}
+.historia__timeline{position:relative;padding:0 28px;}
+.historia__timeline::before{content:'';position:absolute;left:50%;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,transparent,#c4a35a 20%,#c4a35a 80%,transparent);transform:translateX(-50%);opacity:.5;pointer-events:none;}
+.historia__chapter{display:flex;flex-direction:column;align-items:center;padding:8px 0 40px;position:relative;text-align:center;}
+.historia__marker{width:11px;height:11px;background:var(--gold);transform:rotate(45deg);flex-shrink:0;margin-bottom:22px;box-shadow:0 0 0 5px rgba(196,163,90,.2),0 0 0 11px rgba(196,163,90,.08);position:relative;z-index:2;animation:markerPulse12 3s ease-in-out infinite;}
+@keyframes markerPulse12{0%,100%{box-shadow:0 0 0 5px rgba(196,163,90,.2),0 0 0 11px rgba(196,163,90,.08)}50%{box-shadow:0 0 0 7px rgba(196,163,90,.32),0 0 0 14px rgba(196,163,90,.12)}}
+.historia__chapter-num{font-family:'Montserrat',sans-serif;font-size:8px;font-weight:500;letter-spacing:.36em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:16px;}
+.historia__photo-wrap{background:#fff;padding:8px 8px 28px;box-shadow:0 8px 32px rgba(0,0,0,.11),0 2px 8px rgba(0,0,0,.05);margin-bottom:22px;transition:transform .5s ease,box-shadow .5s ease;width:min(220px,72vw);}
+.historia__chapter:nth-child(odd) .historia__photo-wrap{transform:rotate(-2.2deg);}
+.historia__chapter:nth-child(even) .historia__photo-wrap{transform:rotate(1.8deg);}
+.historia__chapter:hover .historia__photo-wrap{transform:rotate(0deg) scale(1.04)!important;box-shadow:0 18px 52px rgba(0,0,0,.16);}
+.historia__photo{width:100%;height:200px;object-fit:cover;display:block;}
+.historia__chapter-title{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:600;color:var(--text);margin-bottom:10px;}
+.historia__chapter-text{font-family:'Cormorant Garamond',serif;font-size:.95rem;font-style:italic;color:var(--muted);line-height:1.82;max-width:300px;margin:0 auto;}
+.historia__divider{width:38px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:0 auto 10px;}
+</style>
+</head>
+<body>
+
+<!-- ── VIDEO INTRO ── -->
+<section class="vi">
+  <video class="vi__video" autoplay muted playsinline loop>
+    <source src="video/Download (online-video-cutter.com).mp4" type="video/mp4">
+  </video>
+  <div class="vi__veil"></div>
+  <div class="vi__text">
+    <p class="vi__names">Valentina &amp; Marco</p>
+    <p class="vi__date">12 · 09 · 2026</p>
+  </div>
+  <div class="vi__scroll">
+    <span class="vi__scroll-word">Desliza</span>
+    <span class="vi__scroll-line"></span>
+  </div>
+</section>
+
+<!-- ═══════════ HERO ═══════════ -->
+<section class="hero" id="inicio">
+  <video class="hero__video" autoplay muted loop playsinline
+         poster="Como — Plantilla de Invitación de Boda _ Pressed Love_files/venue-photo-bf5e24a3.jpeg">
+    <source src="video/Download (online-video-cutter.com).mp4" type="video/mp4">
+  </video>
+  <div class="hero__overlay"></div>
+
+  <div class="hero__content">
+    <p class="hero__pretitle">We're getting married</p>
+    <h1 class="hero__names">Valentina &amp; Marco</h1>
+    <p class="hero__date">Saturday, September 12, 2026</p>
+    <p class="hero__venue">Villa del Balbianello</p>
+    <a class="hero__btn" href="#detalles">Save the Date</a>
+  </div>
+
+  <a class="hero__scroll" href="#detalles" aria-label="Ver detalles">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="6 9 12 15 18 9"/>
+    </svg>
+  </a>
+</section>
+
+<!-- ═══════════ DETAILS INTRO ═══════════ -->
+<section class="details-intro" id="detalles">
+  <div class="sec__cross">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+    </svg>
+  </div>
+  <h2 class="sec__heading rv" style="margin-top:20px">Details of the Day</h2>
+  <p class="sec__sub rv" style="transition-delay:.1s">Everything you need to know about our special day</p>
+</section>
+
+<!-- ═══════════ LOCATION ═══════════ -->
+<section class="location">
+  <div class="location__card rv-s">
+    <img class="location__photo"
+         src="Como — Plantilla de Invitación de Boda _ Pressed Love_files/venue-photo-bf5e24a3.jpeg"
+         alt="Villa del Balbianello">
+    <div class="location__body">
+      <h3 class="location__name">Location</h3>
+      <p style="font-family:'Great Vibes',cursive;font-size:1.4rem;color:var(--navy);margin-bottom:16px">Villa del Balbianello</p>
+
+      <div class="location__row">
+        <svg class="location__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/>
+        </svg>
+        <span class="location__info">Lenno, Lake Como, Italy</span>
+      </div>
+
+      <div class="location__row">
+        <svg class="location__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+        </svg>
+        <span class="location__info">Saturday, September 12, 2026</span>
+      </div>
+
+      <div class="location__row">
+        <svg class="location__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+        </svg>
+        <span class="location__info">From 4:00 PM</span>
+      </div>
+
+      <a class="btn-primary" href="https://www.google.com/maps/search/?api=1&query=Villa+del+Balbianello+Lake+Como+Italy" target="_blank">
+        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/>
+        </svg>
+        How to get there
+      </a>
+      <button class="btn-secondary" onclick="addToCalendar()">
+        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+        </svg>
+        Add to Calendar
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ OUR STORY ═══════════ -->
+<section class="historia">
+  <div class="historia__header">
+    <span class="historia__eyebrow rv">Our Story</span>
+    <h2 class="historia__title rv d1">The road to "I do"</h2>
+    <p class="historia__subtitle rv d2">Three chapters of an eternal love</p>
+  </div>
+  <div class="historia__timeline">
+    <div class="historia__chapter rv d1">
+      <div class="historia__marker"></div>
+      <span class="historia__chapter-num">Chapter I</span>
+      <div class="historia__photo-wrap">
+        <img class="historia__photo" src="img/aa.jpg" alt="The first meeting" loading="lazy"/>
+      </div>
+      <h3 class="historia__chapter-title">The First Meeting</h3>
+      <p class="historia__chapter-text">It all began on a special evening when our eyes first met. Something magical and inexplicable drew us together from that very instant, as if destiny had been writing our story all along.</p>
+    </div>
+    <div class="historia__divider rv"></div>
+    <div class="historia__chapter rv d2">
+      <div class="historia__marker"></div>
+      <span class="historia__chapter-num">Chapter II</span>
+      <div class="historia__photo-wrap">
+        <img class="historia__photo" src="img/mujer-abraza-al-hombre-sostiene-ramo-peonias-blancas-al-aire-libre-vista-frontal-detalles_8353-10966.avif" alt="Our love story" loading="lazy"/>
+      </div>
+      <h3 class="historia__chapter-title">Growing Together</h3>
+      <p class="historia__chapter-text">Every shared adventure, every laugh and every moment of support wove the bonds of a love that grew stronger with time. We learned that true love means choosing each other every single day.</p>
+    </div>
+    <div class="historia__divider rv"></div>
+    <div class="historia__chapter rv d3">
+      <div class="historia__marker"></div>
+      <span class="historia__chapter-num">Chapter III</span>
+      <div class="historia__photo-wrap">
+        <img class="historia__photo" src="img/novio-que-pone-anillo-dedo-novia_1157-338.avif" alt="The proposal" loading="lazy"/>
+      </div>
+      <h3 class="historia__chapter-title">The Big Yes</h3>
+      <p class="historia__chapter-text">With heart in hand and the stars as witnesses, the most awaited moment finally arrived. A promise made with eternal love: to share every chapter of life, together forever.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ SCHEDULE ═══════════ -->
+<section class="schedule sec--white">
+  <div class="sec__cross">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+    </svg>
+  </div>
+  <h2 class="sec__heading rv" style="margin-top:20px">Schedule</h2>
+  <p class="sec__sub rv" style="transition-delay:.08s;margin-bottom:32px">Saturday · September 12, 2026</p>
+
+  <div class="timeline rv" style="transition-delay:.15s">
+    <div class="tl-item">
+      <div class="tl-item__icon tl-item__icon--olive">⚓</div>
+      <span class="tl-item__time">2:30 PM</span>
+      <p class="tl-item__title">Boat Departure</p>
+      <p class="tl-item__desc">Private boat from Lenno pier — meet at the dock</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-item__icon tl-item__icon--gold">💐</div>
+      <span class="tl-item__time">3:30 PM</span>
+      <p class="tl-item__title">Arrival &amp; Welcome</p>
+      <p class="tl-item__desc">Arrive at Villa del Balbianello · Prosecco &amp; canapés in the garden</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-item__icon tl-item__icon--olive">💍</div>
+      <span class="tl-item__time">4:30 PM</span>
+      <p class="tl-item__title">Ceremony</p>
+      <p class="tl-item__desc">Civil ceremony with lake views — please be seated by 4:15</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-item__icon tl-item__icon--gold">🥂</div>
+      <span class="tl-item__time">5:15 PM</span>
+      <p class="tl-item__title">Cocktail Hour</p>
+      <p class="tl-item__desc">Terrace aperitivo · photos with the couple</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-item__icon tl-item__icon--olive">🍽️</div>
+      <span class="tl-item__time">7:00 PM</span>
+      <p class="tl-item__title">Dinner</p>
+      <p class="tl-item__desc">Five-course lakeside dinner with live music</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-item__icon tl-item__icon--gold">🎶</div>
+      <span class="tl-item__time">9:30 PM</span>
+      <p class="tl-item__title">First Dance &amp; Party</p>
+      <p class="tl-item__desc">Dancing until the boats take us home under the stars</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ COUNTDOWN ═══════════ -->
+<section class="cd12 rv">
+  <p class="cd12__faltan rv">Faltan</p>
+  <div class="cd12__grid rv" style="transition-delay:.1s">
+    <div class="cd12__unit">
+      <span class="cd12__num" id="cd-d">000</span>
+      <span class="cd12__lbl">Días</span>
+    </div>
+    <span class="cd12__sep">:</span>
+    <div class="cd12__unit">
+      <span class="cd12__num" id="cd-h">00</span>
+      <span class="cd12__lbl">Horas</span>
+    </div>
+    <span class="cd12__sep">:</span>
+    <div class="cd12__unit">
+      <span class="cd12__num" id="cd-m">00</span>
+      <span class="cd12__lbl">Minutos</span>
+    </div>
+    <span class="cd12__sep">:</span>
+    <div class="cd12__unit">
+      <span class="cd12__num" id="cd-s">00</span>
+      <span class="cd12__lbl">Segundos</span>
+    </div>
+  </div>
+  <p class="cd12__sub rv" style="transition-delay:.2s">Para nuestro gran día</p>
+</section>
+
+
+<!-- ═══════════ LITERARY QUOTE ═══════════ -->
+<section class="literary">
+  <span class="literary__pre rv">Lake Como · 12 September 2026</span>
+  <p class="literary__quote rv" style="transition-delay:.1s">
+    "Non esiste felicità pari<br/>a quella di essere amati<br/>e di amare a propria volta."
+  </p>
+  <p class="literary__sub rv" style="transition-delay:.18s">
+    "There is no happiness equal to being loved<br/>and to love in return."
+  </p>
+  <span class="literary__ref rv" style="transition-delay:.26s">— Alessandro Manzoni · I Promessi Sposi</span>
+</section>
+
+<!-- ═══════════ FAQ ═══════════ -->
+<section class="faq sec--light">
+  <div class="sec__cross">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+    </svg>
+  </div>
+  <h2 class="sec__heading rv" style="margin-top:20px">Frequently Asked Questions</h2>
+  <p class="sec__sub rv" style="transition-delay:.1s;margin-bottom:24px">Everything you might want to know</p>
+
+  <div class="faq-list rv" style="transition-delay:.15s">
+    <div class="faq-item">
+      <div class="faq-item__header" onclick="toggleFaq(this)">
+        <span class="faq-item__q">How do we get to the villa?</span>
+        <svg class="faq-item__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+      </div>
+      <div class="faq-item__body">
+        <p class="faq-item__a">A private boat will depart from Lenno pier at 2:30 PM. We recommend arriving in Lenno by car or train. Detailed directions will be sent closer to the date.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-item__header" onclick="toggleFaq(this)">
+        <span class="faq-item__q">What should we wear?</span>
+        <svg class="faq-item__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+      </div>
+      <div class="faq-item__body">
+        <p class="faq-item__a">Black tie optional. Think elegant summer — long dresses, light suits, and comfortable shoes for garden paths. The ceremony is outdoors, so bring a light wrap for the evening breeze.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-item__header" onclick="toggleFaq(this)">
+        <span class="faq-item__q">What about the weather?</span>
+        <svg class="faq-item__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+      </div>
+      <div class="faq-item__body">
+        <p class="faq-item__a">September on Lake Como is typically warm and sunny (22–26°C). We have a stunning indoor backup space in the villa should the weather surprise us.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-item__header" onclick="toggleFaq(this)">
+        <span class="faq-item__q">Can children attend?</span>
+        <svg class="faq-item__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+      </div>
+      <div class="faq-item__body">
+        <p class="faq-item__a">We love your little ones! Children are warmly welcome. We'll have a dedicated kids' area with activities and a babysitter available during dinner.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ GIFTS ═══════════ -->
+<section class="gifts">
+  <div class="sec__cross">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+    </svg>
+  </div>
+  <svg class="gifts__icon rv-s" style="margin-top:20px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+    <path d="M20 12v10H4V12"/><rect x="2" y="7" width="20" height="5" rx="1"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/>
+  </svg>
+  <h2 class="sec__heading rv" style="transition-delay:.05s">Gifts</h2>
+  <p class="gifts__msg rv" style="transition-delay:.1s">Your presence at our celebration on Lake Como is the greatest gift we could ask for. If you'd like to give us something, here are a few ideas we'd truly love.</p>
+
+  <div class="gifts__card rv" style="transition-delay:.15s;max-width:400px">
+    <div class="gifts__field">
+      <span class="gifts__field-lbl">🍳 Kitchen &amp; Appliances</span>
+      <ul class="gifts__wish-items">
+        <li>Automatic espresso machine</li>
+        <li>Professional stand mixer</li>
+        <li>Multi-function food processor</li>
+        <li>Non-stick cookware set</li>
+        <li>High-performance blender</li>
+      </ul>
+    </div>
+    <div class="gifts__field">
+      <span class="gifts__field-lbl">🏠 Home &amp; Décor</span>
+      <ul class="gifts__wish-items">
+        <li>Premium cotton bed linen set</li>
+        <li>Bath towel set (6 pieces)</li>
+        <li>Porcelain dinnerware collection</li>
+        <li>Art prints and home décor</li>
+      </ul>
+    </div>
+    <div class="gifts__field" style="margin-bottom:0">
+      <span class="gifts__field-lbl">⚡ Technology</span>
+      <ul class="gifts__wish-items">
+        <li>55" Smart TV</li>
+        <li>Robot vacuum cleaner</li>
+        <li>Home Bluetooth speaker</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+
+<!-- RSVP -->
+<section class="rsvp-section" id="rsvp">
+  <div style="text-align:center;margin-bottom:28px">
+    <p style="font-family:'Montserrat',sans-serif;font-size:.5rem;letter-spacing:.25em;text-transform:uppercase;color:#bbb;margin-bottom:8px">Confirmación</p>
+    <h2 style="font-size:2rem;margin-bottom:8px">¿Contamos contigo?</h2>
+    <p style="font-family:'Montserrat',sans-serif;font-size:.72rem;color:#888">Por favor responde antes del <strong>30 de Agosto de 2026</strong></p>
+  </div>
+  <div class="rsvp-steps">
+    <div class="rsvp-sdot s-active" id="rsvpDot1"><div class="rsvp-sdot__num">1</div><small>Info</small></div>
+    <div class="rsvp-sline"></div>
+    <div class="rsvp-sdot" id="rsvpDot2"><div class="rsvp-sdot__num">2</div><small>Detalles</small></div>
+    <div class="rsvp-sline"></div>
+    <div class="rsvp-sdot" id="rsvpDot3"><div class="rsvp-sdot__num">3</div><small>Listo</small></div>
+  </div>
+  <form id="rsvpForm" novalidate>
+    <div class="rsvp-step s-on" id="rsvpStep1">
+      <div class="rfg">
+        <label for="rNombre">Nombre completo <span class="req">*</span></label>
+        <div class="fi-w"><i class="fa-solid fa-user fi-ic"></i><input type="text" id="rNombre" name="nombre" placeholder="Ej. María García" autocomplete="name" required/></div>
+        <span class="ferr" id="errNombre"></span>
+      </div>
+      <div class="rfg-2col">
+        <div class="rfg">
+          <label for="rCorreo">Correo <span class="req">*</span></label>
+          <div class="fi-w"><i class="fa-regular fa-envelope fi-ic"></i><input type="email" id="rCorreo" name="correo" placeholder="tu@correo.com" autocomplete="email" required/></div>
+          <span class="ferr" id="errCorreo"></span>
+        </div>
+        <div class="rfg">
+          <label for="rTel">Teléfono</label>
+          <div class="fi-w"><i class="fa-solid fa-phone fi-ic"></i><input type="tel" id="rTel" name="telefono" placeholder="+52 55 0000 0000" autocomplete="tel"/></div>
+        </div>
+      </div>
+      <div class="rfg">
+        <label for="rAcomp">Acompañantes <span class="req">*</span></label>
+        <div class="fi-w"><i class="fa-solid fa-users fi-ic"></i>
+          <select id="rAcomp" name="acompanantes" required>
+            <option value="">Selecciona…</option>
+            <option value="0">Vendré solo(a)</option>
+            <option value="1">+ 1 acompañante</option>
+            <option value="2">+ 2 acompañantes</option>
+            <option value="3">+ 3 acompañantes</option>
+            <option value="4">+ 4 acompañantes</option>
+          </select>
+        </div>
+        <span class="ferr" id="errAcomp"></span>
+      </div>
+      <div class="rfg">
+        <label>¿Confirmas tu asistencia? <span class="req">*</span></label>
+        <div class="rsvp-cards">
+          <label class="rsvp-card" id="rcYes"><input type="radio" name="asistencia" value="si"/><span class="rsvp-card__icon">💚</span><span class="rsvp-card__lbl">Sí asistiré</span></label>
+          <label class="rsvp-card" id="rcNo"><input type="radio" name="asistencia" value="no"/><span class="rsvp-card__icon">💔</span><span class="rsvp-card__lbl">No podré ir</span></label>
+        </div>
+        <span class="ferr" id="errAsist"></span>
+      </div>
+      <div class="rbtn-row">
+        <button type="button" class="rbtn rbtn-primary" id="rsvpNext1">Siguiente <i class="fa-solid fa-arrow-right"></i></button>
+      </div>
+    </div>
+    <div class="rsvp-step" id="rsvpStep2si">
+      <div class="rfg">
+        <label>Preferencia de menú</label>
+        <div class="menu-opts">
+          <label class="menu-opt"><input type="radio" name="menu" value="carne"/><span class="menu-opt__ic">🥩</span><span class="menu-opt__nm">Carne</span></label>
+          <label class="menu-opt"><input type="radio" name="menu" value="pollo"/><span class="menu-opt__ic">🍗</span><span class="menu-opt__nm">Pollo</span></label>
+          <label class="menu-opt"><input type="radio" name="menu" value="pescado"/><span class="menu-opt__ic">🐟</span><span class="menu-opt__nm">Pescado</span></label>
+          <label class="menu-opt"><input type="radio" name="menu" value="vegano"/><span class="menu-opt__ic">🥦</span><span class="menu-opt__nm">Vegano</span></label>
+        </div>
+      </div>
+      <div class="rfg">
+        <label for="rRestr">Restricciones alimenticias</label>
+        <div class="fi-w"><input type="text" id="rRestr" name="restricciones" placeholder="Alergias, dieta especial…" style="padding-left:12px"/></div>
+      </div>
+      <div class="rfg">
+        <label for="rMsg">Mensaje para los novios (opcional)</label>
+        <textarea id="rMsg" name="mensaje" placeholder="Un deseo especial…"></textarea>
+      </div>
+      <div class="rbtn-row">
+        <button type="button" class="rbtn rbtn-ghost" id="rsvpPrev2si"><i class="fa-solid fa-arrow-left"></i> Volver</button>
+        <button type="submit" class="rbtn rbtn-primary">Confirmar ✓</button>
+      </div>
+    </div>
+    <div class="rsvp-step" id="rsvpStep2no">
+      <p style="font-size:1rem;color:#888;margin-bottom:18px;text-align:center;line-height:1.5;font-family:inherit">Lo entendemos. Si cambias de opinión, avísanos.</p>
+      <div class="rfg">
+        <label for="rMsgNo">Mensaje para los novios (opcional)</label>
+        <textarea id="rMsgNo" name="mensaje_no" placeholder="Tus buenos deseos nos alegran…"></textarea>
+      </div>
+      <div class="rbtn-row">
+        <button type="button" class="rbtn rbtn-ghost" id="rsvpPrev2no"><i class="fa-solid fa-arrow-left"></i> Volver</button>
+        <button type="submit" class="rbtn rbtn-primary">Enviar respuesta</button>
+      </div>
+    </div>
+    <div class="rsvp-step" id="rsvpSuccess">
+      <div class="rsvp-ok">
+        <div class="rsvp-ok__confetti" id="rsvpConfetti"></div>
+        <span class="rsvp-ok__icon">💍</span>
+        <h3 class="rsvp-ok__title" id="rsvpOkTitle">¡Gracias!</h3>
+        <p class="rsvp-ok__msg" id="rsvpOkMsg"></p>
+        <div class="rsvp-ok__qr" id="rsvpQR"></div>
+        <p class="rsvp-ok__qrnote" id="rsvpQRNote">Guarda este código — es tu pase de entrada</p>
+        <div class="rbtn-row">
+          <button type="button" class="rbtn rbtn-ghost" id="rsvpReset">Responder de nuevo</button>
+        </div>
+      </div>
+    </div>
+  </form>
+  <a class="admin-link" href="admin.html">Panel Admin 🔐</a>
+</section>
+
+<!-- Music Player -->
+<div class="music-player" id="musicPlayer">
+  <div class="music-eq" id="musicEq">
+    <span style="height:10px"></span><span style="height:14px"></span>
+    <span style="height:6px"></span><span style="height:12px"></span>
+  </div>
+  <span class="music-title" id="musicTitle">A Thousand Years</span>
+  <button class="music-btn" id="musicPlay" title="Reproducir"><i class="fa-solid fa-play" id="musicPlayIc"></i></button>
+  <button class="music-btn" id="musicVol" title="Silenciar"><i class="fa-solid fa-volume-high" id="musicVolIc"></i></button>
+  <button class="music-btn" id="musicClose" title="Cerrar"><i class="fa-solid fa-xmark"></i></button>
+</div>
+<div class="toast-notif" id="toastNotif"></div>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer class="footer">
+  <a href="#inicio" class="footer__top">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <polyline points="18 15 12 9 6 15"/>
+    </svg>
+    Back to top
+  </a>
+
+  <div class="footer__cross">✦</div>
+
+  <p class="footer__names">Valentina &amp; Marco</p>
+  <p class="footer__date">September 12, 2026</p>
+  <p class="footer__made">♥ Made by <a href="#">Pressed Love</a></p>
+</footer>
+
+<script>
+/* ── Scroll Reveal ── */
+const rvEls = document.querySelectorAll('.rv,.rv-l,.rv-r,.rv-s');
+const rvObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); rvObs.unobserve(e.target); } });
+},{ threshold:.1 });
+rvEls.forEach(el => rvObs.observe(el));
+
+/* ── FAQ Accordion ── */
+function toggleFaq(header){
+  const item = header.closest('.faq-item');
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+  if(!isOpen) item.classList.add('open');
+}
+
+/* ── Copy IBAN ── */
+function copyIban(){
+  const iban = 'IT00 0000 0000 0000 0000 0000 000';
+  const btn = document.getElementById('copyBtn');
+  navigator.clipboard.writeText(iban).then(() => {
+    btn.classList.add('copied');
+    btn.innerHTML = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Copied`;
+    setTimeout(()=>{
+      btn.classList.remove('copied');
+      btn.innerHTML = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy`;
+    }, 2500);
+  }).catch(()=>{
+    btn.textContent = 'IT00 0000...';
+  });
+}
+
+/* ── RSVP ── */
+function selectOpt(btn){
+  document.querySelectorAll('.rsvp__opt').forEach(b => b.classList.remove('sel'));
+  btn.classList.add('sel');
+}
+
+function submitRsvp(e){
+  e.preventDefault();
+  const name  = document.getElementById('rsvp-name').value.trim();
+  const email = document.getElementById('rsvp-email').value.trim();
+  const sel   = document.querySelector('.rsvp__opt.sel');
+  if(!name)  { alert('Por favor escribe tu nombre.'); return; }
+  if(!email) { alert('Por favor escribe tu email.'); return; }
+  if(!sel)   { alert('Por favor selecciona una opción de asistencia.'); return; }
+  alert(`¡Gracias, ${name}! Tu respuesta ha sido registrada. ♥`);
+}
+
+/* ── Add to Calendar ── */
+function addToCalendar(){
+  const start = '20260912T160000';
+  const end   = '20260913T000000';
+  const title = encodeURIComponent('Boda Valentina & Marco');
+  const loc   = encodeURIComponent('Villa del Balbianello, Lenno, Lake Como, Italy');
+  window.open(`https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${start}/${end}&location=${loc}`, '_blank');
+}
+
+/* ── Countdown ── */
+(function(){
+  const TARGET = new Date('2026-09-12T16:00:00');
+  function tick(){
+    const diff = TARGET - new Date();
+    if(diff <= 0) return;
+    document.getElementById('cd-d').textContent = String(Math.floor(diff/86400000)).padStart(3,'0');
+    document.getElementById('cd-h').textContent = String(Math.floor((diff%86400000)/3600000)).padStart(2,'0');
+    document.getElementById('cd-m').textContent = String(Math.floor((diff%3600000)/60000)).padStart(2,'0');
+    document.getElementById('cd-s').textContent = String(Math.floor((diff%60000)/1000)).padStart(2,'0');
+  }
+  tick();
+  setInterval(tick,1000);
+})();
+</script>
+<script>
+(function(){
+  var v=document.querySelector('.vi__video');
+  if(!v)return;
+  v.muted=true;
+  var p=v.play();
+  if(p!==undefined)p.catch(function(){v.muted=true;v.play();});
+  var vi=document.querySelector('.vi');
+  window.addEventListener('scroll',function(){
+    var r=Math.min(window.scrollY/(window.innerHeight*.65),1);
+    vi.style.opacity=1-r*.85;
+    vi.style.transform='translateY(-'+(r*20)+'px)';
+  },{passive:true});
+})();
+</script>
+<script src="js/main.js"></script>
+</body>
+</html>
