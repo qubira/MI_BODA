@@ -164,6 +164,10 @@
           <a href="#" class="sidebar__link active" data-view="guests">
             <i class="fa-solid fa-users"></i> Invitados
           </a>
+          <a href="#" class="sidebar__link" data-view="invitados">
+            <i class="fa-solid fa-user-check"></i>
+            <span>Lista Exclusiva</span>
+          </a>
           <p class="sidebar__nav-group">Evento</p>
           <a href="#" class="sidebar__link" data-view="mesas">
             <i class="fa-solid fa-chair"></i> Mesas
@@ -325,6 +329,49 @@
             </div>
           </div>
           <div class="table-footer" id="tableFooter"></div>
+        </section>
+
+        <!-- ===== VIEW: LISTA EXCLUSIVA ===== -->
+        <section class="view" id="view-invitados">
+          <div class="view-header">
+            <h2 class="view-title">Lista Exclusiva</h2>
+            <p class="view-sub">Invitados autorizados para verificación por nombre</p>
+          </div>
+          <div class="card" style="margin-bottom:18px">
+            <div class="card-header"><i class="fa-solid fa-user-plus"></i> Agregar invitado</div>
+            <div class="card-body">
+              <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end">
+                <div class="form-group" style="flex:1;min-width:160px">
+                  <label class="form-label">Nombre completo</label>
+                  <input type="text" id="glName" class="form-control" placeholder="Ej. María García"/>
+                </div>
+                <div class="form-group" style="flex:0 0 130px">
+                  <label class="form-label">Acompañantes</label>
+                  <input type="number" id="glComp" class="form-control" min="0" max="10" value="0"/>
+                </div>
+                <button class="btn btn-primary" id="glAdd" style="height:38px;white-space:nowrap"><i class="fa-solid fa-plus"></i> Agregar</button>
+              </div>
+              <p id="glErr" style="color:#e74c3c;font-size:.8rem;margin-top:6px;min-height:1em"></p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+              <span><i class="fa-solid fa-list"></i> Invitados (<span id="glCount">0</span>)</span>
+              <input type="search" id="glSearch" class="form-control" placeholder="Buscar…" style="width:200px"/>
+            </div>
+            <div class="card-body" style="padding:0">
+              <div style="overflow-x:auto">
+                <table class="guests-table" id="glTable">
+                  <thead><tr><th>#</th><th>Nombre</th><th style="text-align:center">Acomp.</th><th>Acciones</th></tr></thead>
+                  <tbody id="glBody"></tbody>
+                </table>
+              </div>
+              <div class="empty-state" id="glEmpty" style="display:none">
+                <i class="fa-solid fa-users-slash"></i>
+                <p>Sin invitados registrados</p>
+              </div>
+            </div>
+          </div>
         </section>
 
         <!-- ===== VIEW: CRONOGRAMA ===== -->
@@ -1305,5 +1352,88 @@
 
     <div class="admin-toast" id="adminToast"></div>
     <script src="js/admin.js"></script>
+    <script>
+(function initGuestList() {
+  const GL_KEY = 'boda_guest_list';
+  function load() { try { return JSON.parse(localStorage.getItem(GL_KEY)) || []; } catch { return []; } }
+  function save(a) { localStorage.setItem(GL_KEY, JSON.stringify(a)); }
+  function norm(n) {
+    return (n||'').toLowerCase()
+      .normalize('NFD').replace(/[̀-ͯ]/g,'')
+      .replace(/[^a-z\s]/g,'').trim().replace(/\s+/g,' ');
+  }
+  function renderGL(filter) {
+    const list = load();
+    const q = norm(filter||'');
+    const filtered = q ? list.filter(g => norm(g.name).includes(q)) : list;
+    const body  = document.getElementById('glBody');
+    const empty = document.getElementById('glEmpty');
+    const count = document.getElementById('glCount');
+    if (!body) return;
+    if (count) count.textContent = list.length;
+    if (!filtered.length) {
+      body.innerHTML = '';
+      if (empty) empty.style.display = '';
+      return;
+    }
+    if (empty) empty.style.display = 'none';
+    body.innerHTML = filtered.map(function(g, i) {
+      return '<tr><td>' + (i+1) + '</td><td>' + g.name + '</td>' +
+        '<td style="text-align:center">' + (g.companions||0) + '</td>' +
+        '<td><button class="btn btn-sm btn-secondary" onclick="glEdit(\'' + g.id + '\')"><i class="fa-solid fa-pen"></i></button> ' +
+        '<button class="btn btn-sm btn-danger" onclick="glDelete(\'' + g.id + '\')"><i class="fa-solid fa-trash"></i></button></td></tr>';
+    }).join('');
+  }
+  window.glDelete = function(id) {
+    if (!confirm('¿Eliminar este invitado?')) return;
+    save(load().filter(function(g) { return g.id !== id; }));
+    renderGL(document.getElementById('glSearch') ? document.getElementById('glSearch').value : '');
+  };
+  window.glEdit = function(id) {
+    const g = load().find(function(g) { return g.id === id; });
+    if (!g) return;
+    const nameEl = document.getElementById('glName');
+    const compEl = document.getElementById('glComp');
+    const addBtn = document.getElementById('glAdd');
+    if (nameEl) nameEl.value = g.name;
+    if (compEl) compEl.value = g.companions || 0;
+    if (addBtn) { addBtn.innerHTML = '<i class="fa-solid fa-save"></i> Guardar'; addBtn.dataset.edit = id; }
+  };
+  var addBtn = document.getElementById('glAdd');
+  if (addBtn) addBtn.addEventListener('click', function() {
+    var nameEl = document.getElementById('glName');
+    var compEl = document.getElementById('glComp');
+    var errEl  = document.getElementById('glErr');
+    var name = (nameEl ? nameEl.value : '').trim();
+    var companions = parseInt(compEl ? compEl.value : 0) || 0;
+    if (name.length < 2) { if (errEl) errEl.textContent = 'El nombre debe tener al menos 2 caracteres.'; return; }
+    if (errEl) errEl.textContent = '';
+    var list = load();
+    var eid = this.dataset.edit;
+    if (eid) {
+      list = list.map(function(g) { return g.id === eid ? { id:g.id, name:name, companions:companions } : g; });
+      this.innerHTML = '<i class="fa-solid fa-plus"></i> Agregar';
+      delete this.dataset.edit;
+    } else {
+      if (list.find(function(g) { return norm(g.name) === norm(name); })) {
+        if (errEl) errEl.textContent = 'Ya existe un invitado con ese nombre.'; return;
+      }
+      list.push({ id: 'gl-' + Date.now(), name: name, companions: companions });
+    }
+    save(list);
+    if (nameEl) nameEl.value = '';
+    if (compEl) compEl.value = 0;
+    renderGL(document.getElementById('glSearch') ? document.getElementById('glSearch').value : '');
+  });
+  var searchEl = document.getElementById('glSearch');
+  if (searchEl) searchEl.addEventListener('input', function() { renderGL(this.value); });
+  /* refresh when the tab is activated */
+  document.addEventListener('click', function(e) {
+    var link = e.target.closest('[data-view="invitados"]');
+    if (link) { setTimeout(function() { renderGL(searchEl ? searchEl.value : ''); }, 50); }
+  });
+  renderGL();
+})();
+    </script>
   </body>
 </html>

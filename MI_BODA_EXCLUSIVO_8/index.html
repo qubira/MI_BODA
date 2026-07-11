@@ -1580,91 +1580,36 @@ body {
           <h2 style="font-size:2rem;margin-bottom:8px">¿Contamos contigo?</h2>
           <p style="font-family:'Montserrat',sans-serif;font-size:.72rem;color:#888">Por favor responde antes del <strong>30 de Septiembre de 2026</strong></p>
         </div>
-        <div class="rsvp-steps">
-          <div class="rsvp-sdot s-active" id="rsvpDot1"><div class="rsvp-sdot__num">1</div><small>Info</small></div>
-          <div class="rsvp-sline"></div>
-          <div class="rsvp-sdot" id="rsvpDot2"><div class="rsvp-sdot__num">2</div><small>Detalles</small></div>
-          <div class="rsvp-sline"></div>
-          <div class="rsvp-sdot" id="rsvpDot3"><div class="rsvp-sdot__num">3</div><small>Listo</small></div>
-        </div>
         <form id="rsvpForm" novalidate>
+          <!-- Verificación por nombre -->
           <div class="rsvp-step s-on" id="rsvpStep1">
+            <p style="font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--txl);text-align:center;margin-bottom:20px;line-height:1.5">
+              Esta invitación es exclusiva para ti.<br/>Ingresa tu nombre para acceder.
+            </p>
             <div class="rfg">
-              <label for="rNombre">Nombre completo <span class="req">*</span></label>
-              <div class="fi-w"><i class="fa-solid fa-user fi-ic"></i><input type="text" id="rNombre" name="nombre" placeholder="Ej. María García" autocomplete="name" required/></div>
+              <label for="rNombre">Tu nombre completo</label>
+              <div class="fi-w"><i class="fa-solid fa-user fi-ic"></i><input type="text" id="rNombre" placeholder="Ej. María García" autocomplete="name"/></div>
               <span class="ferr" id="errNombre"></span>
             </div>
-            <div class="rfg-2col">
-              <div class="rfg">
-                <label for="rCorreo">Correo <span class="req">*</span></label>
-                <div class="fi-w"><i class="fa-regular fa-envelope fi-ic"></i><input type="email" id="rCorreo" name="correo" placeholder="tu@correo.com" autocomplete="email" required/></div>
-                <span class="ferr" id="errCorreo"></span>
-              </div>
-              <div class="rfg">
-                <label for="rTel">Teléfono</label>
-                <div class="fi-w"><i class="fa-solid fa-phone fi-ic"></i><input type="tel" id="rTel" name="telefono" placeholder="+52 55 0000 0000" autocomplete="tel"/></div>
-              </div>
-            </div>
-            <div class="rfg">
-              <label for="rAcomp">Acompañantes <span class="req">*</span></label>
-              <div class="fi-w"><i class="fa-solid fa-users fi-ic"></i>
-                <select id="rAcomp" name="acompanantes" required>
-                  <option value="">Selecciona…</option>
-                  <option value="0">Vendré solo(a)</option>
-                  <option value="1">+ 1 acompañante</option>
-                  <option value="2">+ 2 acompañantes</option>
-                  <option value="3">+ 3 acompañantes</option>
-                  <option value="4">+ 4 acompañantes</option>
-                </select>
-              </div>
-              <span class="ferr" id="errAcomp"></span>
-            </div>
-            <div class="rfg">
-              <label>¿Confirmas tu asistencia? <span class="req">*</span></label>
-              <div class="rsvp-cards">
-                <label class="rsvp-card" id="rcYes"><input type="radio" name="asistencia" value="si"/><span class="rsvp-card__icon">💚</span><span class="rsvp-card__lbl">Sí asistiré</span></label>
-                <label class="rsvp-card" id="rcNo"><input type="radio" name="asistencia" value="no"/><span class="rsvp-card__icon">💔</span><span class="rsvp-card__lbl">No podré ir</span></label>
-              </div>
-              <span class="ferr" id="errAsist"></span>
-            </div>
             <div class="rbtn-row">
-              <button type="button" class="rbtn rbtn-primary" id="rsvpNext1">Siguiente <i class="fa-solid fa-arrow-right"></i></button>
+              <button type="button" class="rbtn rbtn-primary" id="rsvpVerify">Verificar <i class="fa-solid fa-magnifying-glass"></i></button>
             </div>
           </div>
-          <div class="rsvp-step" id="rsvpStep2si">
-            <div class="rfg">
-              <label>Preferencia de menú</label>
-              <div class="menu-opts">
-                <label class="menu-opt"><input type="radio" name="menu" value="carne"/><span class="menu-opt__ic">🥩</span><span class="menu-opt__nm">Carne</span></label>
-                <label class="menu-opt"><input type="radio" name="menu" value="pollo"/><span class="menu-opt__ic">🍗</span><span class="menu-opt__nm">Pollo</span></label>
-                <label class="menu-opt"><input type="radio" name="menu" value="pescado"/><span class="menu-opt__ic">🐟</span><span class="menu-opt__nm">Pescado</span></label>
-                <label class="menu-opt"><input type="radio" name="menu" value="vegano"/><span class="menu-opt__ic">🥦</span><span class="menu-opt__nm">Vegano</span></label>
-              </div>
+
+          <!-- Confirmación de asistencia -->
+          <div class="rsvp-step" id="rsvpStepConfirm">
+            <div style="background:var(--crd);border-radius:12px;padding:20px;margin-bottom:18px;text-align:center;border:1px solid var(--gl)">
+              <p style="font-family:'Great Vibes',cursive;font-size:1.6rem;color:var(--gd);margin-bottom:6px" id="rsvpGreeting">¡Hola!</p>
+              <p style="font-family:'Cormorant Garamond',serif;font-size:.95rem;color:var(--txl);line-height:1.5" id="rsvpCompMsg"></p>
             </div>
-            <div class="rfg">
-              <label for="rRestr">Restricciones alimenticias</label>
-              <div class="fi-w"><input type="text" id="rRestr" name="restricciones" placeholder="Alergias, dieta especial…" style="padding-left:12px"/></div>
-            </div>
-            <div class="rfg">
-              <label for="rMsg">Mensaje para los novios (opcional)</label>
-              <textarea id="rMsg" name="mensaje" placeholder="Un deseo especial…"></textarea>
-            </div>
-            <div class="rbtn-row">
-              <button type="button" class="rbtn rbtn-ghost" id="rsvpPrev2si"><i class="fa-solid fa-arrow-left"></i> Volver</button>
-              <button type="submit" class="rbtn rbtn-primary">Confirmar ✓</button>
+            <label style="display:block;font-family:'Montserrat',sans-serif;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--txl);margin-bottom:10px">¿Confirmas tu asistencia?</label>
+            <div class="rsvp-cards">
+              <button type="button" class="rsvp-card" id="rsvpBtnYes"><span class="rsvp-card__icon">💚</span><span class="rsvp-card__lbl">Sí asistiré</span></button>
+              <button type="button" class="rsvp-card" id="rsvpBtnNo"><span class="rsvp-card__icon">💔</span><span class="rsvp-card__lbl">No podré ir</span></button>
             </div>
           </div>
-          <div class="rsvp-step" id="rsvpStep2no">
-            <p style="font-size:1rem;color:#888;margin-bottom:18px;text-align:center;line-height:1.5;font-family:inherit">Lo entendemos. Si cambias de opinión, avísanos.</p>
-            <div class="rfg">
-              <label for="rMsgNo">Mensaje para los novios (opcional)</label>
-              <textarea id="rMsgNo" name="mensaje_no" placeholder="Tus buenos deseos nos alegran…"></textarea>
-            </div>
-            <div class="rbtn-row">
-              <button type="button" class="rbtn rbtn-ghost" id="rsvpPrev2no"><i class="fa-solid fa-arrow-left"></i> Volver</button>
-              <button type="submit" class="rbtn rbtn-primary">Enviar respuesta</button>
-            </div>
-          </div>
+
+          <!-- Éxito -->
           <div class="rsvp-step" id="rsvpSuccess">
             <div class="rsvp-ok">
               <div class="rsvp-ok__confetti" id="rsvpConfetti"></div>

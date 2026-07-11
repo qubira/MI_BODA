@@ -164,6 +164,10 @@
           <a href="#" class="sidebar__link active" data-view="guests">
             <i class="fa-solid fa-users"></i> Invitados
           </a>
+          <a href="#" class="sidebar__link" data-view="invitados">
+            <i class="fa-solid fa-user-check"></i>
+            <span>Lista Exclusiva</span>
+          </a>
           <p class="sidebar__nav-group">Evento</p>
           <a href="#" class="sidebar__link" data-view="mesas">
             <i class="fa-solid fa-chair"></i> Mesas
@@ -325,6 +329,42 @@
             </div>
           </div>
           <div class="table-footer" id="tableFooter"></div>
+        </section>
+
+        <section class="view" id="view-invitados">
+          <div style="padding:28px 24px 0">
+            <h2 style="font-size:1.3rem;margin-bottom:6px">Lista de Invitados Exclusivos</h2>
+            <p style="font-size:.82rem;color:var(--muted,#888);margin-bottom:24px">Registra aquí los invitados y su número de acompañantes autorizados. Los invitados deben ingresar su nombre exactamente como está registrado aquí.</p>
+            <div style="background:var(--surface,#fff);border-radius:12px;padding:20px;margin-bottom:20px;border:1px solid var(--border,#e0e0e0)">
+              <h3 style="font-size:.9rem;margin-bottom:14px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted,#888)">Agregar Invitado</h3>
+              <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end">
+                <div style="flex:1;min-width:180px">
+                  <label style="display:block;font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;margin-bottom:4px;color:var(--muted,#888)">Nombre completo</label>
+                  <input type="text" id="glName" placeholder="Ej. María García" style="width:100%;padding:9px 12px;border:1px solid var(--border,#ddd);border-radius:8px;font-size:.85rem;background:var(--input-bg,#fff);color:var(--text,#222)"/>
+                </div>
+                <div style="width:140px">
+                  <label style="display:block;font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;margin-bottom:4px;color:var(--muted,#888)">Acompañantes</label>
+                  <select id="glComp" style="width:100%;padding:9px 12px;border:1px solid var(--border,#ddd);border-radius:8px;font-size:.85rem;background:var(--input-bg,#fff);color:var(--text,#222)">
+                    <option value="0">0 (solo/a)</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                  </select>
+                </div>
+                <button id="glAddBtn" style="padding:9px 22px;background:#3a6430;color:#fff;border:none;border-radius:8px;font-size:.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;white-space:nowrap">+ Agregar</button>
+              </div>
+              <p id="glAddErr" style="color:#c0392b;font-size:.75rem;margin-top:8px;display:none"></p>
+            </div>
+            <div style="background:var(--surface,#fff);border-radius:12px;padding:20px;border:1px solid var(--border,#e0e0e0)">
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px">
+                <h3 id="glCount" style="font-size:.9rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted,#888)">Invitados: 0</h3>
+                <input type="text" id="glSearch" placeholder="Buscar…" style="padding:7px 12px;border:1px solid var(--border,#ddd);border-radius:8px;font-size:.8rem;width:180px;background:var(--input-bg,#fff);color:var(--text,#222)"/>
+              </div>
+              <div id="glList" style="display:flex;flex-direction:column;gap:8px"></div>
+            </div>
+          </div>
         </section>
 
         <!-- ===== VIEW: CRONOGRAMA ===== -->
@@ -1305,5 +1345,55 @@
 
     <div class="admin-toast" id="adminToast"></div>
     <script src="js/admin.js"></script>
+    <script>
+/* ── LISTA EXCLUSIVA ── */
+(function initGuestList() {
+  const GL_KEY = 'boda_guest_list';
+  function loadGL()  { try { return JSON.parse(localStorage.getItem(GL_KEY)) || []; } catch { return []; } }
+  function saveGL(a) { localStorage.setItem(GL_KEY, JSON.stringify(a)); }
+
+  function renderGL(filter) {
+    const list = loadGL();
+    const cEl = document.getElementById('glCount');
+    if (cEl) cEl.textContent = `Invitados: ${list.length}`;
+    const box = document.getElementById('glList');
+    if (!box) return;
+    const q = (filter||'').toLowerCase().trim();
+    const shown = q ? list.filter(g => g.name.toLowerCase().includes(q)) : list;
+    if (!shown.length) { box.innerHTML='<p style="color:var(--muted,#888);font-size:.85rem;text-align:center;padding:20px">No hay invitados. Agrega el primero arriba.</p>'; return; }
+    box.innerHTML = shown.map(g => `<div style="display:flex;align-items:center;gap:10px;padding:10px 14px;background:var(--row-bg,#f9f9f9);border-radius:8px;border:1px solid var(--border,#e8e8e8)"><div style="flex:1;font-size:.88rem;font-weight:600">${g.name}</div><div style="font-size:.78rem;color:var(--muted,#888);white-space:nowrap">${parseInt(g.companions)||0} acomp.</div><button onclick="glEdit('${g.id}')" style="padding:5px 12px;background:transparent;border:1px solid var(--border,#ddd);border-radius:6px;font-size:.72rem;cursor:pointer;color:var(--text,#333)">Editar</button><button onclick="glDelete('${g.id}')" style="padding:5px 12px;background:#c0392b22;border:1px solid #c0392b55;border-radius:6px;font-size:.72rem;cursor:pointer;color:#c0392b">Eliminar</button></div>`).join('');
+  }
+
+  window.glDelete = function(id) { const a=loadGL().filter(g=>String(g.id)!==String(id)); saveGL(a); renderGL(document.getElementById('glSearch')?.value); };
+  window.glEdit = function(id) {
+    const a=loadGL(); const g=a.find(x=>String(x.id)===String(id)); if(!g)return;
+    const n=prompt('Nombre completo:',g.name); if(n===null)return;
+    const c=prompt('Acompañantes (0-5):',g.companions||0); if(c===null)return;
+    g.name=n.trim()||g.name; g.companions=Math.max(0,Math.min(5,parseInt(c)||0));
+    saveGL(a); renderGL(document.getElementById('glSearch')?.value);
+  };
+
+  const addBtn=document.getElementById('glAddBtn');
+  if(addBtn){
+    addBtn.addEventListener('click',function(){
+      const nEl=document.getElementById('glName'); const cEl=document.getElementById('glComp'); const eEl=document.getElementById('glAddErr');
+      const name=(nEl.value||'').trim();
+      if(name.length<2){eEl.textContent='Ingresa el nombre completo.';eEl.style.display='';return;}
+      eEl.style.display='none';
+      const a=loadGL(); a.push({id:Date.now(),name:name,companions:parseInt(cEl.value)||0}); saveGL(a);
+      nEl.value=''; cEl.value='0'; renderGL();
+    });
+    document.getElementById('glName')?.addEventListener('keydown',e=>{if(e.key==='Enter')addBtn.click();});
+  }
+  const sEl=document.getElementById('glSearch');
+  if(sEl) sEl.addEventListener('input',()=>renderGL(sEl.value));
+
+  // Re-render when this view becomes active
+  document.addEventListener('click', function(e) {
+    if(e.target.closest('[data-view="invitados"]')) setTimeout(()=>renderGL(),50);
+  });
+  renderGL();
+})();
+    </script>
   </body>
 </html>

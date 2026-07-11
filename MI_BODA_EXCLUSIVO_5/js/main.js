@@ -69,135 +69,99 @@ function spawnConfetti() {
   }
 }
 
-function markSteps(active) {
-  [1,2,3].forEach(n => {
-    const d = document.getElementById('rsvpDot' + n);
-    if (!d) return;
-    d.classList.toggle('s-active', n === active);
-    d.classList.toggle('s-done',   n < active);
-  });
-}
+const GUEST_LIST_KEY = 'boda_guest_list';
+function getGuestList() { try { return JSON.parse(localStorage.getItem(GUEST_LIST_KEY)) || []; } catch { return []; } }
 
+/* ── RSVP — verificación por nombre ── */
 (function initRSVP() {
-  const form = document.getElementById('rsvpForm');
+  const form  = document.getElementById('rsvpForm');
   if (!form) return;
-  const s1 = document.getElementById('rsvpStep1');
-  const s2si = document.getElementById('rsvpStep2si');
-  const s2no = document.getElementById('rsvpStep2no');
-  const sok  = document.getElementById('rsvpSuccess');
 
-  function show(el) {
-    [s1,s2si,s2no,sok].forEach(s => s.classList.remove('s-on'));
-    el.classList.add('s-on');
-    const rsvpEl = document.getElementById('rsvp');
-    if (rsvpEl) rsvpEl.scrollIntoView({behavior:'smooth',block:'start'});
+  const s1    = document.getElementById('rsvpStep1');
+  const sConf = document.getElementById('rsvpStepConfirm');
+  const sok   = document.getElementById('rsvpSuccess');
+  let   found = null;
+
+  function norm(n) {
+    return (n||'').toLowerCase()
+      .normalize('NFD').replace(/[̀-ͯ]/g,'')
+      .replace(/[^a-z\s]/g,'').trim().replace(/\s+/g,' ');
   }
 
-  function fieldErr(id, errId, msg) {
-    const f = document.getElementById(id);
-    const e = document.getElementById(errId);
-    if (f) f.classList.toggle('err', !!msg);
-    if (e) e.textContent = msg || '';
-    return !msg;
+  function findGuest(input) {
+    return getGuestList().find(g => norm(g.name) === norm(input)) || null;
   }
 
-  function validateStep1() {
-    const nombre = document.getElementById('rNombre').value.trim();
-    const correo = document.getElementById('rCorreo').value.trim();
-    const acomp  = document.getElementById('rAcomp').value;
-    const asist  = form.querySelector('[name="asistencia"]:checked');
-    let ok = true;
-    ok = fieldErr('rNombre','errNombre', nombre.length < 2 ? 'Mínimo 2 caracteres.' : '') && ok;
-    ok = fieldErr('rCorreo','errCorreo', !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correo) ? 'Correo inválido.' : '') && ok;
-    ok = fieldErr('rAcomp','errAcomp', !acomp ? 'Selecciona una opción.' : '') && ok;
-    const errA = document.getElementById('errAsist');
-    if (!asist) { if (errA) errA.textContent = 'Selecciona una opción.'; ok = false; }
-    else         { if (errA) errA.textContent = ''; }
-    return { ok, asistencia: asist ? asist.value : null };
+  function showStep(el) {
+    [s1,sConf,sok].forEach(s => s && s.classList.remove('s-on'));
+    if (el) el.classList.add('s-on');
+    const sec = document.getElementById('rsvp');
+    if (sec) sec.scrollIntoView({ behavior:'smooth', block:'start' });
   }
 
-  document.getElementById('rsvpNext1').addEventListener('click', () => {
-    const { ok, asistencia } = validateStep1();
-    if (!ok) return;
-    markSteps(2);
-    show(asistencia === 'si' ? s2si : s2no);
+  document.getElementById('rsvpVerify').addEventListener('click', function() {
+    const input = (document.getElementById('rNombre').value||'').trim();
+    const err   = document.getElementById('errNombre');
+    if (input.length < 2) { if(err) err.textContent='Ingresa tu nombre completo.'; return; }
+    if (err) err.textContent = '';
+    found = findGuest(input);
+    if (!found) {
+      if (err) err.textContent = 'Nombre no encontrado. Verifica cómo está escrito o contacta a los novios.';
+      return;
+    }
+    document.getElementById('rsvpGreeting').textContent = `¡Hola, ${found.name}!`;
+    const c = parseInt(found.companions)||0;
+    document.getElementById('rsvpCompMsg').textContent =
+      c === 0 ? 'Tu invitación es personal (sin acompañantes).'
+      : c === 1 ? 'Puedes traer 1 acompañante.'
+      : `Puedes traer hasta ${c} acompañantes.`;
+    showStep(sConf);
   });
 
-  document.getElementById('rsvpPrev2si').addEventListener('click', () => { markSteps(1); show(s1); });
-  document.getElementById('rsvpPrev2no').addEventListener('click', () => { markSteps(1); show(s1); });
-
-  form.addEventListener('submit', e => {
-    e.preventDefault();
-    const asist = form.querySelector('[name="asistencia"]:checked');
-    if (!asist) return;
-    const isYes = asist.value === 'si';
-    const guest = {
-      id: Date.now(),
-      nombre: document.getElementById('rNombre').value.trim(),
-      correo: document.getElementById('rCorreo').value.trim(),
-      telefono: document.getElementById('rTel').value.trim(),
-      acompanantes: parseInt(document.getElementById('rAcomp').value) || 0,
-      asistencia: asist.value,
-      estado: isYes ? 'confirmado' : 'rechazado',
-      menu: isYes ? ((form.querySelector('[name="menu"]:checked') || {}).value || '') : '',
-      restricciones: isYes ? (document.getElementById('rRestr').value || '') : '',
-      mensaje: isYes ? (document.getElementById('rMsg').value || '') : (document.getElementById('rMsgNo').value || ''),
-      fecha_confirmacion: new Date().toISOString(),
-    };
-    saveGuest(guest);
-    markSteps(3); show(sok);
+  function confirmAttend(asist) {
+    if (!found) return;
+    const isYes = asist === 'si';
+    const rec = { id:Date.now(), nombre:found.name, companions:found.companions||0,
+                  asistencia:asist, estado:isYes?'confirmado':'rechazado',
+                  fecha_confirmacion:new Date().toISOString() };
+    saveGuest(rec);
+    showStep(sok);
     document.getElementById('rsvpOkTitle').textContent = isYes ? '¡Gracias por confirmar!' : 'Gracias por avisarnos';
     document.getElementById('rsvpOkMsg').textContent = isYes
-      ? `¡${guest.nombre}, te esperamos el 14 de Febrero de 2027!`
-      : `${guest.nombre}, lamentamos que no puedas estar — tus buenos deseos nos alegran.`;
-    const qrEl = document.getElementById('rsvpQR');
+      ? `Te esperamos con todo el amor, ${found.name}.`
+      : `${found.name}, lamentamos que no puedas estar — tus buenos deseos nos alegran.`;
+    const qrEl   = document.getElementById('rsvpQR');
     const qrNote = document.getElementById('rsvpQRNote');
     if (isYes) {
-      qrEl.innerHTML = ''; qrEl.appendChild(makeQR(`${DB_KEY}-${guest.id}-${guest.nombre}`));
-      if (qrNote) qrNote.style.display = '';
+      qrEl.innerHTML=''; qrEl.appendChild(makeQR(`EXCL-${rec.id}-${found.name}`));
+      if(qrNote) qrNote.style.display='';
       spawnConfetti();
     } else {
-      qrEl.style.display = 'none';
-      if (qrNote) qrNote.style.display = 'none';
+      qrEl.style.display='none';
+      if(qrNote) qrNote.style.display='none';
     }
     toast('✓ Respuesta enviada correctamente');
+  }
+
+  document.getElementById('rsvpBtnYes').addEventListener('click', () => confirmAttend('si'));
+  document.getElementById('rsvpBtnNo').addEventListener('click',  () => confirmAttend('no'));
+
+  document.getElementById('rsvpReset').addEventListener('click', function() {
+    found = null;
+    document.getElementById('rNombre').value='';
+    const err=document.getElementById('errNombre'); if(err) err.textContent='';
+    const qrEl=document.getElementById('rsvpQR'); if(qrEl){qrEl.innerHTML='';qrEl.style.display='';}
+    const qrNote=document.getElementById('rsvpQRNote'); if(qrNote) qrNote.style.display='';
+    showStep(s1);
   });
 
-  document.getElementById('rsvpReset').addEventListener('click', () => {
-    form.reset();
-    const qrEl = document.getElementById('rsvpQR');
-    if (qrEl) { qrEl.innerHTML = ''; qrEl.style.display = ''; }
-    const qrNote = document.getElementById('rsvpQRNote');
-    if (qrNote) qrNote.style.display = '';
-    markSteps(1); show(s1);
-  });
-
-  form.querySelectorAll('[name="asistencia"]').forEach(radio => {
-    radio.addEventListener('change', () => {
-      const cYes = document.getElementById('rcYes');
-      const cNo  = document.getElementById('rcNo');
-      cYes.classList.remove('rc-yes','rc-no','rc-dim');
-      cNo.classList.remove('rc-yes','rc-no','rc-dim');
-      if (radio.value === 'si') { cYes.classList.add('rc-yes'); cNo.classList.add('rc-dim'); }
-      else                       { cNo.classList.add('rc-no');  cYes.classList.add('rc-dim'); }
-      const errA = document.getElementById('errAsist');
-      if (errA) errA.textContent = '';
-    });
-  });
-
-  form.querySelectorAll('[name="menu"]').forEach(radio => {
-    radio.addEventListener('change', () => {
-      form.querySelectorAll('.menu-opt').forEach(m => m.classList.remove('mo-sel'));
-      if (radio.checked) radio.closest('.menu-opt').classList.add('mo-sel');
-    });
-  });
-
-  const nombreInp = document.getElementById('rNombre');
-  if (nombreInp) {
-    nombreInp.addEventListener('blur', function() {
+  const nEl = document.getElementById('rNombre');
+  if (nEl) {
+    nEl.addEventListener('blur', function() {
       this.value = this.value.replace(/\s+/g,' ').trim()
-        .replace(/\S+/g, w => w[0].toUpperCase() + w.slice(1).toLowerCase());
+        .replace(/\S+/g, w => w[0].toUpperCase()+w.slice(1).toLowerCase());
     });
+    nEl.addEventListener('keydown', e => { if(e.key==='Enter'){e.preventDefault();document.getElementById('rsvpVerify').click();} });
   }
 })();
 
