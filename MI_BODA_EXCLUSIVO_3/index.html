@@ -24,16 +24,18 @@
   <body>
     <!-- ===== INTRO CURTAIN ===== -->
     <div id="introOverlay" class="intro-overlay">
-      <!-- Dos paneles que se abren -->
-      <div class="intro-panel intro-panel--l"></div>
-      <div class="intro-panel intro-panel--r"></div>
+      <!-- Anillos concéntricos -->
+      <div class="intro-ring intro-ring--1"></div>
+      <div class="intro-ring intro-ring--2"></div>
+      <div class="intro-ring intro-ring--3"></div>
+      <div class="intro-ring intro-ring--4"></div>
       <!-- Partículas de fondo -->
       <div class="intro-particles" aria-hidden="true">
-        <span></span><span></span><span></span><span></span> <span></span
-        ><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span>
       </div>
       <!-- Contenido central -->
-      <div class="intro-content">
+      <div class="intro-scene">
         <div class="intro-monogram" aria-hidden="true">
           <span id="introMonoBride">S</span
           ><span class="intro-monogram__amp">&amp;</span
@@ -41,7 +43,9 @@
         </div>
         <p class="intro-eyebrow">Te invitamos a celebrar</p>
         <div class="intro-sep">
-          <span></span><i class="fa-solid fa-heart"></i><span></span>
+          <span class="intro-sep__line"></span>
+          <i class="fa-solid fa-heart"></i>
+          <span class="intro-sep__line"></span>
         </div>
         <h1 class="intro-names">
           <span id="introCardBride">Sofía</span>
@@ -49,7 +53,9 @@
           <span id="introCardGroom">Alejandro</span>
         </h1>
         <div class="intro-sep">
-          <span></span><i class="fa-solid fa-star"></i><span></span>
+          <span class="intro-sep__line"></span>
+          <i class="fa-solid fa-star"></i>
+          <span class="intro-sep__line"></span>
         </div>
         <p class="intro-date" id="introCardDate">14 · 02 · 2027</p>
         <p class="intro-cta" id="introHint">
@@ -104,53 +110,40 @@
       <div class="hero__overlay"></div>
       <div class="hero__vignette"></div>
 
-      <!-- Decoraciones flotantes SVG -->
-      <div class="hero__deco hero__deco--ring-l" aria-hidden="true">
-        <svg viewBox="0 0 120 120" fill="none">
-          <circle
-            cx="60"
-            cy="60"
-            r="55"
-            stroke="rgba(201,169,110,.4)"
-            stroke-width="1.5"
-          />
-          <circle
-            cx="60"
-            cy="60"
-            r="45"
-            stroke="rgba(201,169,110,.25)"
-            stroke-width="1"
-          />
-          <circle cx="60" cy="60" r="8" fill="rgba(201,169,110,.5)" />
+      <!-- Ornamentos de esquina -->
+      <div class="hero__corner hero__corner--tl" aria-hidden="true">
+        <svg viewBox="0 0 80 80" fill="none">
+          <path d="M0 80 L0 0 L80 0" stroke="rgba(201,169,110,.7)" stroke-width="1.5" fill="none"/>
+          <path d="M0 60 L0 0 L60 0" stroke="rgba(201,169,110,.3)" stroke-width="1" fill="none"/>
         </svg>
       </div>
-      <div class="hero__deco hero__deco--ring-r" aria-hidden="true">
+      <div class="hero__corner hero__corner--tr" aria-hidden="true">
         <svg viewBox="0 0 80 80" fill="none">
-          <circle
-            cx="40"
-            cy="40"
-            r="36"
-            stroke="rgba(255,255,255,.2)"
-            stroke-width="1"
-          />
-          <circle
-            cx="40"
-            cy="40"
-            r="28"
-            stroke="rgba(201,169,110,.3)"
-            stroke-width="1"
-          />
+          <path d="M0 80 L0 0 L80 0" stroke="rgba(201,169,110,.7)" stroke-width="1.5" fill="none"/>
+          <path d="M0 60 L0 0 L60 0" stroke="rgba(201,169,110,.3)" stroke-width="1" fill="none"/>
+        </svg>
+      </div>
+      <div class="hero__corner hero__corner--bl" aria-hidden="true">
+        <svg viewBox="0 0 80 80" fill="none">
+          <path d="M0 80 L0 0 L80 0" stroke="rgba(201,169,110,.7)" stroke-width="1.5" fill="none"/>
+          <path d="M0 60 L0 0 L60 0" stroke="rgba(201,169,110,.3)" stroke-width="1" fill="none"/>
+        </svg>
+      </div>
+      <div class="hero__corner hero__corner--br" aria-hidden="true">
+        <svg viewBox="0 0 80 80" fill="none">
+          <path d="M0 80 L0 0 L80 0" stroke="rgba(201,169,110,.7)" stroke-width="1.5" fill="none"/>
+          <path d="M0 60 L0 0 L60 0" stroke="rgba(201,169,110,.3)" stroke-width="1" fill="none"/>
         </svg>
       </div>
 
       <div class="hero__content">
         <!-- Fecha superior -->
         <div class="hero__eyebrow">
-          <span class="hero__line-deco"></span>
+          <span class="hero__eyebrow-line"></span>
           <span class="hero__eyebrow-text" id="heroBodaDate"
             >Domingo · 14 · Febrero · 2027</span
           >
-          <span class="hero__line-deco"></span>
+          <span class="hero__eyebrow-line"></span>
         </div>
 
         <p class="hero__pre">Con toda la alegría de nuestros corazones</p>
@@ -180,30 +173,22 @@
         <!-- Countdown -->
         <div class="countdown" id="countdown">
           <div class="countdown__unit">
-            <div class="countdown__circle">
-              <span class="countdown__num" id="cd-days">00</span>
-            </div>
+            <span class="countdown__num" id="cd-days">00</span>
             <span class="countdown__label">Días</span>
           </div>
           <div class="countdown__sep"><i class="fa-solid fa-heart"></i></div>
           <div class="countdown__unit">
-            <div class="countdown__circle">
-              <span class="countdown__num" id="cd-hours">00</span>
-            </div>
+            <span class="countdown__num" id="cd-hours">00</span>
             <span class="countdown__label">Horas</span>
           </div>
           <div class="countdown__sep"><i class="fa-solid fa-heart"></i></div>
           <div class="countdown__unit">
-            <div class="countdown__circle">
-              <span class="countdown__num" id="cd-minutes">00</span>
-            </div>
+            <span class="countdown__num" id="cd-minutes">00</span>
             <span class="countdown__label">Minutos</span>
           </div>
           <div class="countdown__sep"><i class="fa-solid fa-heart"></i></div>
           <div class="countdown__unit">
-            <div class="countdown__circle">
-              <span class="countdown__num" id="cd-seconds">00</span>
-            </div>
+            <span class="countdown__num" id="cd-seconds">00</span>
             <span class="countdown__label">Segundos</span>
           </div>
         </div>
@@ -220,10 +205,8 @@
 
       <!-- Scroll indicator animado -->
       <div class="hero__scroll-indicator">
+        <div class="scroll-line"></div>
         <span class="scroll-text">Desliza</span>
-        <div class="scroll-mouse">
-          <div class="scroll-wheel"></div>
-        </div>
       </div>
     </section>
 

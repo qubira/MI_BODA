@@ -351,10 +351,10 @@ input, select, textarea { cursor: text; }
 }
 .hero__eyebrow-line {
   flex: 1; max-width: 80px; height: 1px;
-  background: linear-gradient(90deg, transparent, var(--gold-border));
+  background: linear-gradient(90deg, transparent, rgba(201,160,84,.8));
 }
 .hero__eyebrow-line:last-child {
-  background: linear-gradient(90deg, var(--gold-border), transparent);
+  background: linear-gradient(90deg, rgba(201,160,84,.8), transparent);
 }
 .hero__eyebrow-text {
   font-family: var(--font-display);
@@ -365,14 +365,14 @@ input, select, textarea { cursor: text; }
 .hero__pre {
   font-family: var(--font-serif);
   font-size: .95rem; font-style: italic;
-  color: rgba(240,232,216,.55); letter-spacing: .05em;
+  color: rgba(240,232,216,.88); letter-spacing: .05em;
   margin-bottom: 16px;
 }
 .hero__names {
   font-family: var(--font-script);
   font-size: clamp(3.8rem, 10vw, 7.5rem);
-  color: var(--cream); line-height: 1.1;
-  text-shadow: 0 4px 40px rgba(201,160,84,.15);
+  color: #ffffff; line-height: 1.1;
+  text-shadow: 0 2px 20px rgba(0,0,0,.9), 0 0 60px rgba(201,160,84,.5);
   margin-bottom: 12px;
 }
 .hero__and {
@@ -387,14 +387,14 @@ input, select, textarea { cursor: text; }
 }
 .ornament-line {
   width: 60px; height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(201,160,84,.4), transparent);
+  background: linear-gradient(90deg, transparent, rgba(201,160,84,.75), transparent);
 }
 .ornament-diamond, .ornament-ring { color: var(--gold); font-size: .7rem; }
-.ornament-dot { color: rgba(201,160,84,.4); font-size: .5rem; }
+.ornament-dot { color: rgba(201,160,84,.65); font-size: .5rem; }
 .hero__invite {
   font-family: var(--font-serif);
   font-size: 1.05rem; line-height: 1.8;
-  color: rgba(240,232,216,.65); margin-bottom: 32px;
+  color: rgba(240,232,216,.88); margin-bottom: 32px;
 }
 .hero__invite em { color: var(--gold-pale); font-style: italic; }
 
@@ -470,7 +470,7 @@ input, select, textarea { cursor: text; }
 }
 .btn--ghost {
   background: transparent;
-  border-color: rgba(240,232,216,.25);
+  border-color: rgba(240,232,216,.65);
   color: var(--cream);
 }
 .btn--ghost:hover {
