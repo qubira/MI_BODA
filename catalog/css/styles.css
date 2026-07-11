@@ -106,16 +106,18 @@ ul{list-style:none}
 .ms-nav--pink{background:#F9E4E4}.ms-nav--green{background:#E8F0E8}.ms-nav--blue{background:#E8EEF8}
 .ms-nav--champagne{background:#F0E8D0}.ms-nav--burgundy{background:#3A1818}.ms-nav--lavender{background:#E8E0F0}
 .ms-nav--navy{background:#0A1428}.ms-nav--sky{background:#0A1A28}.ms-nav--noir{background:#080808}
+.ms-nav--forest{background:#243d18}.ms-nav--lino{background:#EAE4DA}.ms-nav--burg2{background:#4a0d1f}.ms-nav--warm-olive{background:#FFFDF7}.ms-nav--marine{background:#273039}.ms-nav--ivory{background:#FDFBF7}.ms-nav--sable{background:#f0ece3}.ms-nav--como{background:#0c2340}
 .ms-nav__logo{width:20px;height:6px;border-radius:2px;background:rgba(255,255,255,.2)}
-.ms-nav--pink .ms-nav__logo,.ms-nav--green .ms-nav__logo,.ms-nav--blue .ms-nav__logo,.ms-nav--champagne .ms-nav__logo,.ms-nav--lavender .ms-nav__logo{background:rgba(0,0,0,.2)}
+.ms-nav--pink .ms-nav__logo,.ms-nav--green .ms-nav__logo,.ms-nav--blue .ms-nav__logo,.ms-nav--champagne .ms-nav__logo,.ms-nav--lavender .ms-nav__logo,.ms-nav--lino .ms-nav__logo,.ms-nav--warm-olive .ms-nav__logo,.ms-nav--sable .ms-nav__logo{background:rgba(0,0,0,.2)}
 .ms-nav__links{display:flex;gap:4px}
 .ms-nav__links span{width:14px;height:4px;border-radius:1px;background:rgba(255,255,255,.15)}
-.ms-nav--pink .ms-nav__links span,.ms-nav--green .ms-nav__links span,.ms-nav--blue .ms-nav__links span,.ms-nav--champagne .ms-nav__links span,.ms-nav--lavender .ms-nav__links span{background:rgba(0,0,0,.15)}
+.ms-nav--pink .ms-nav__links span,.ms-nav--green .ms-nav__links span,.ms-nav--blue .ms-nav__links span,.ms-nav--champagne .ms-nav__links span,.ms-nav--lavender .ms-nav__links span,.ms-nav--lino .ms-nav__links span,.ms-nav--warm-olive .ms-nav__links span,.ms-nav--sable .ms-nav__links span{background:rgba(0,0,0,.15)}
 
 .ms-hero{flex:1;display:flex;align-items:center;padding:10px 10px 8px;min-height:90px}
 .ms-hero--pink{background:linear-gradient(135deg,#F8EEE8,#EFD5D0)}.ms-hero--green{background:linear-gradient(135deg,#E8F0E8,#8AAA88)}.ms-hero--blue{background:linear-gradient(135deg,#E8EEF8,#7090C0)}
 .ms-hero--champagne{background:linear-gradient(135deg,#F5EDD8,#C9A054)}.ms-hero--burgundy{background:linear-gradient(135deg,#2A0A0A,#6A2828)}.ms-hero--lavender{background:linear-gradient(135deg,#EAE0F5,#9070B0)}
 .ms-hero--navy{background:linear-gradient(135deg,#0A1428,#1A3060)}.ms-hero--sky{background:linear-gradient(135deg,#0A1A28,#3060A0)}.ms-hero--noir{background:linear-gradient(135deg,#050505,#1C1C1C)}
+.ms-hero--forest{background:linear-gradient(135deg,#243d18,#3a6430)}.ms-hero--lino{background:linear-gradient(135deg,#EAE4DA,#6B6750)}.ms-hero--burg2{background:linear-gradient(135deg,#3a0b16,#611128)}.ms-hero--warm-olive{background:linear-gradient(135deg,#F5F2EB,#5D624E)}.ms-hero--marine{background:linear-gradient(135deg,#273039,#4a6fa5)}.ms-hero--ivory{background:linear-gradient(135deg,#1A1818,#3a3836)}.ms-hero--sable{background:linear-gradient(135deg,#f0ece3,#c4a076)}.ms-hero--como{background:linear-gradient(135deg,#0c2340,#1a5276)}
 .ms-hero__text{display:flex;flex-direction:column;gap:5px;width:100%}
 
 .ms-line{height:6px;border-radius:2px;background:rgba(255,255,255,.6)}
@@ -144,6 +146,14 @@ ul{list-style:none}
 .ms-card--navy{background:rgba(201,160,84,.12);border:1px solid rgba(201,160,84,.2)}
 .ms-card--sky{background:rgba(48,128,192,.25);border:1px solid rgba(48,128,192,.3)}
 .ms-card--noir{background:rgba(201,160,84,.08);border:1px solid rgba(201,160,84,.15)}
+.ms-card--forest{background:rgba(196,163,90,.15);border:1px solid rgba(196,163,90,.25)}
+.ms-card--lino{background:rgba(107,103,80,.15);border:1px solid rgba(107,103,80,.25)}
+.ms-card--burg2{background:rgba(201,169,106,.15);border:1px solid rgba(201,169,106,.25)}
+.ms-card--warm-olive{background:rgba(93,98,78,.2);border:1px solid rgba(93,98,78,.3)}
+.ms-card--marine{background:rgba(74,111,165,.25);border:1px solid rgba(74,111,165,.3)}
+.ms-card--ivory{background:rgba(201,160,84,.1);border:1px solid rgba(201,160,84,.18)}
+.ms-card--sable{background:rgba(196,160,118,.2);border:1px solid rgba(196,160,118,.3)}
+.ms-card--como{background:rgba(196,163,90,.12);border:1px solid rgba(196,163,90,.2)}
 
 /* ── BUTTONS ── */
 .btn{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;border-radius:5px;font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;font-weight:600;cursor:pointer;border:1px solid;transition:all .35s var(--ease)}
