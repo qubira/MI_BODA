@@ -1204,6 +1204,18 @@ body {
 .rsvp-ok__qrnote{font-family:'Montserrat',sans-serif;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:#bbb;margin-bottom:16px}
 .admin-link{display:block;margin:12px auto 0;width:fit-content;font-family:'Montserrat',sans-serif;font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;color:#bbb;text-decoration:none;padding:5px 12px;border:1px solid rgba(0,0,0,.1);border-radius:20px;transition:color .2s,border-color .2s}
 .admin-link:hover{color:#B8A882;border-color:#B8A882}
+/* ── Galería de fotos ── */
+.galeria{padding:52px 0;background:var(--cream);}
+.galeria__title{font-family:var(--ff-disp);font-size:1.3rem;letter-spacing:.1em;color:var(--dark);text-align:center;margin-bottom:6px;}
+.galeria__sub{font-family:var(--ff-serif);font-size:.9rem;font-style:italic;color:var(--olive);text-align:center;margin-bottom:28px;}
+.galeria__strip{display:flex;gap:10px;overflow-x:auto;padding:4px 24px 28px;scroll-snap-type:x mandatory;scroll-behavior:smooth;cursor:grab;scrollbar-width:thin;scrollbar-color:var(--olive) var(--taupe);}
+.galeria__strip::-webkit-scrollbar{height:3px;}
+.galeria__strip::-webkit-scrollbar-track{background:var(--taupe);}
+.galeria__strip::-webkit-scrollbar-thumb{background:var(--olive);border-radius:2px;}
+.galeria__strip.dragging{cursor:grabbing;scroll-behavior:auto;}
+.strip-foto{flex:0 0 220px;height:300px;border-radius:8px;overflow:hidden;scroll-snap-align:start;box-shadow:0 4px 18px rgba(0,0,0,.12);}
+.strip-foto img{width:100%;height:100%;object-fit:cover;transition:transform .7s ease;}
+.strip-foto:hover img{transform:scale(1.06);}
 .toast-notif{position:fixed;bottom:88px;left:50%;transform:translateX(-50%) translateY(16px);background:#5D624E;color:#fff;font-family:'Montserrat',sans-serif;font-size:10.5px;letter-spacing:.07em;padding:10px 22px;border-radius:24px;opacity:0;transition:opacity .3s,transform .3s;z-index:6000;pointer-events:none;white-space:nowrap}
 .toast-notif.t-show{opacity:1;transform:translateX(-50%) translateY(0)}
 /* ══ MUSIC PLAYER ══ */
@@ -1245,9 +1257,6 @@ body {
 
   <!-- ─── HERO / ENVELOPE ──────────────────── -->
   <section class="hero">
-    <img class="hero__shadow" src="16_DEMO_invitacion_Fedrico & Romina_files/8e8d0087abaa06351f487895f3af78ed.png" alt="" />
-    <img class="hero__calla-l" src="16_DEMO_invitacion_Fedrico & Romina_files/9c5ee6a05d682887b1ad6bf78c04835b.png" alt="" />
-    <img class="hero__calla-r" src="16_DEMO_invitacion_Fedrico & Romina_files/008edbadd56b352c0afa72c942b5eed6.png" alt="" />
 
     <div class="hero__env-wrap">
       <div class="hero__env">
@@ -1386,11 +1395,26 @@ body {
     </ul>
   </section>
 
+  <!-- ─── GALERÍA DE FOTOS ─────────────────── -->
+  <section class="galeria rv d1">
+    <h2 class="galeria__title rv d1">Nosotros</h2>
+    <p class="galeria__sub rv d2">Algunos momentos que atesoramos…</p>
+    <div class="galeria__strip" id="galeriaStrip">
+      <div class="strip-foto rv d1"><img src="img/53853-boda.jpg" alt="Romina & Federico" loading="lazy" /></div>
+      <div class="strip-foto rv d2"><img src="img/mujer-abraza-al-hombre-sostiene-ramo-peonias-blancas-al-aire-libre-vista-frontal-detalles_8353-10966.avif" alt="" loading="lazy" /></div>
+      <div class="strip-foto rv d3"><img src="img/novio-que-pone-anillo-dedo-novia_1157-338.avif" alt="" loading="lazy" /></div>
+      <div class="strip-foto rv d4"><img src="img/aa.jpg" alt="" loading="lazy" /></div>
+      <div class="strip-foto rv d1"><img src="img/q.jpg" alt="" loading="lazy" /></div>
+      <div class="strip-foto rv d2"><img src="img/s.jpg" alt="" loading="lazy" /></div>
+      <div class="strip-foto rv d3"><img src="img/x.jpg" alt="" loading="lazy" /></div>
+      <div class="strip-foto rv d4"><img src="img/z.jpg" alt="" loading="lazy" /></div>
+    </div>
+  </section>
+
   <!-- ─── REGALOS ──────────────────────────── -->
   <section class="regalos rv d1">
     <div class="regalos__deco">
       <div class="regalos__env"></div>
-      <img class="regalos__calla" src="16_DEMO_invitacion_Fedrico & Romina_files/008edbadd56b352c0afa72c942b5eed6.png" alt="" />
     </div>
     <div class="regalos__card rv d2">
       <h2 class="regalos__title">Regalos</h2>
@@ -1631,7 +1655,6 @@ body {
 
   <!-- ─── FOOTER ───────────────────────────── -->
   <footer class="footer rv d1">
-    <img class="footer__bouquet" src="16_DEMO_invitacion_Fedrico & Romina_files/e0f60cdb76de8f76026c8aa51fc37cfe.png" alt="" />
     <span class="footer__script">Con amor, Romina &amp; Federico</span>
     <p class="footer__text">Sábado · 5 de Octubre 2026 · México</p>
   </footer>
@@ -1674,6 +1697,16 @@ function tick() {
 tick();
 setInterval(tick, 1000);
 
+/* ── Gallery drag scroll ── */
+(function(){
+  var s=document.getElementById('galeriaStrip');
+  if(!s)return;
+  var down=false,sx,sl;
+  s.addEventListener('mousedown',function(e){down=true;s.classList.add('dragging');sx=e.pageX-s.offsetLeft;sl=s.scrollLeft;});
+  s.addEventListener('mouseleave',function(){down=false;s.classList.remove('dragging');});
+  s.addEventListener('mouseup',function(){down=false;s.classList.remove('dragging');});
+  s.addEventListener('mousemove',function(e){if(!down)return;e.preventDefault();var x=e.pageX-s.offsetLeft;s.scrollLeft=sl-(x-sx)*1.8;});
+})();
 </script>
 <script>
 (function(){
