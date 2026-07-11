@@ -508,10 +508,54 @@ input, select, textarea { cursor: text; }
 .hero {
   position: relative;
   min-height: 100vh;
-  display: grid;
-  grid-template-columns: minmax(320px, 1fr) minmax(320px, 1fr);
-  background: linear-gradient(155deg, var(--cream) 0%, var(--blush) 55%, var(--gold-pale) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--navy);
   overflow: hidden;
+}
+
+/* Overlay y viñeta sobre las imágenes de fondo */
+.hero__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    to bottom,
+    rgba(15, 30, 62, .72) 0%,
+    rgba(15, 30, 62, .50) 45%,
+    rgba(15, 30, 62, .80) 100%
+  );
+}
+.hero__vignette {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: radial-gradient(ellipse at center, transparent 45%, rgba(0, 0, 0, .38) 100%);
+}
+
+/* Decoraciones flotantes */
+.hero__deco {
+  position: absolute;
+  z-index: 2;
+  pointer-events: none;
+  opacity: .45;
+}
+.hero__deco--ring-l { top: 12%; left: -60px; width: 220px; }
+.hero__deco--ring-r { bottom: 12%; right: -40px; width: 160px; }
+
+/* Contenido central */
+.hero__content {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 140px clamp(20px, 6vw, 80px) 100px;
+  width: 100%;
+  max-width: 900px;
 }
 
 .hero__text {
@@ -519,19 +563,15 @@ input, select, textarea { cursor: text; }
   z-index: 3;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
-  text-align: left;
-  padding: 150px clamp(24px, 5vw, 40px) 80px clamp(28px, 7vw, 96px);
+  text-align: center;
+  padding: 140px clamp(20px, 6vw, 80px) 100px;
+  width: 100%;
+  max-width: 900px;
 }
 
-.hero__photo-wrap { position: relative; overflow: visible; min-height: 380px; }
-.hero__photo-wrap::before {
-  content: ''; position: absolute; top: -18%; right: -18%; width: 70%; height: 70%;
-  border-radius: 50%;
-  background: radial-gradient(circle, var(--gold-light) 0%, transparent 72%);
-  opacity: .8; pointer-events: none;
-}
+.hero__photo-wrap { display: none; }
 
 /* Capas de fondo con parallax */
 .hero__bg {
@@ -542,8 +582,8 @@ input, select, textarea { cursor: text; }
   will-change: transform;
   transition: transform .1s linear;
 }
-.hero__bg--1 { opacity: 1; z-index: 0; }
-.hero__bg--2 { opacity: 1; z-index: 0; }
+.hero__bg--1 { opacity: 1;   z-index: 0; }
+.hero__bg--2 { opacity: .28; z-index: 0; mix-blend-mode: luminosity; }
 
 .hero__photo-main {
   position: absolute; inset: 64px 60px 64px 20px;
@@ -564,6 +604,7 @@ input, select, textarea { cursor: text; }
 .hero__eyebrow {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 14px;
   margin-bottom: 22px;
   animation: fadeUp .8s ease both .1s;
@@ -571,13 +612,13 @@ input, select, textarea { cursor: text; }
 .hero__line-deco {
   width: 44px;
   height: 1px;
-  background: var(--gold);
+  background: var(--gold-light);
 }
 .hero__eyebrow-text {
   font-size: .7rem;
   letter-spacing: .26em;
   text-transform: uppercase;
-  color: var(--gold-dark);
+  color: var(--gold-light);
   font-weight: 600;
   white-space: nowrap;
 }
@@ -585,7 +626,7 @@ input, select, textarea { cursor: text; }
 .hero__pre {
   font-family: var(--font-serif);
   font-size: 1.05rem;
-  color: var(--text-light);
+  color: rgba(255, 255, 255, .75);
   font-style: italic;
   margin-bottom: 10px;
   letter-spacing: .02em;
@@ -606,14 +647,15 @@ input, select, textarea { cursor: text; }
   font-style: italic;
   font-weight: 700;
   font-size: clamp(2.4rem, 6.2vw, 4.4rem);
-  color: var(--navy);
+  color: #ffffff;
   line-height: 1;
   display: inline-block;
+  text-shadow: 0 2px 20px rgba(0,0,0,.35);
 }
 .hero__and {
   font-family: var(--font-script);
   font-size: clamp(1.5rem, 3.4vw, 2.4rem);
-  color: var(--gold-dark);
+  color: var(--gold-light);
   display: inline-block;
   animation: heartbeat 2s ease-in-out infinite;
 }
@@ -622,24 +664,26 @@ input, select, textarea { cursor: text; }
 .hero__ornament {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 10px;
   margin: 20px 0 18px;
   animation: fadeUp .8s ease both .4s;
 }
 .ornament-line { width: 50px; height: 1px; background: var(--gold-light); }
-.ornament-diamond, .ornament-dot { color: var(--gold-dark); font-size: .6rem; }
-.ornament-heart { color: var(--gold); font-size: .9rem; animation: heartbeat 1.8s ease-in-out infinite; }
+.ornament-diamond, .ornament-dot { color: var(--gold-light); font-size: .6rem; }
+.ornament-heart { color: var(--gold-light); font-size: .9rem; animation: heartbeat 1.8s ease-in-out infinite; }
 
 .hero__invite {
   font-family: var(--font-serif);
   font-size: clamp(1rem, 1.8vw, 1.18rem);
-  color: var(--charcoal);
-  margin-bottom: 32px;
+  color: rgba(255, 255, 255, .82);
+  margin: 0 auto 32px;
   line-height: 1.8;
-  max-width: 460px;
+  max-width: 520px;
+  text-align: center;
   animation: fadeUp .8s ease both .5s;
 }
-.hero__invite em { color: var(--gold-dark); font-style: italic; }
+.hero__invite em { color: var(--gold-light); font-style: italic; }
 
 /* Countdown rediseñado */
 .countdown {
@@ -668,8 +712,8 @@ input, select, textarea { cursor: text; }
   position: absolute;
   inset: 6px;
   border-radius: 50%;
-  background: var(--white);
-  box-shadow: var(--shadow);
+  background: rgba(255,255,255,.12);
+  box-shadow: 0 0 0 0 transparent;
 }
 @keyframes circleGlow {
   0%, 100% { box-shadow: 0 0 0 0 rgba(111,168,220,0); border-color: var(--gold); }
@@ -685,13 +729,13 @@ input, select, textarea { cursor: text; }
   font-family: var(--font-serif);
   font-size: 1.8rem;
   font-weight: 500;
-  color: var(--navy);
+  color: #ffffff;
 }
 .countdown__label {
   font-size: .62rem;
   letter-spacing: .14em;
   text-transform: uppercase;
-  color: var(--gold-dark);
+  color: var(--gold-light);
   font-weight: 600;
 }
 .countdown__sep {
@@ -706,6 +750,7 @@ input, select, textarea { cursor: text; }
   display: flex;
   gap: 16px;
   flex-wrap: wrap;
+  justify-content: center;
   animation: fadeUp .8s ease both .7s;
 }
 
@@ -713,7 +758,8 @@ input, select, textarea { cursor: text; }
 .hero__scroll-indicator {
   position: absolute;
   bottom: 28px;
-  left: clamp(28px, 7vw, 96px);
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 4;
   pointer-events: none;
   display: flex;
