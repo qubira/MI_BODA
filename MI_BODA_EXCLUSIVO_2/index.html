@@ -24,34 +24,51 @@
   <body>
     <!-- ===== INTRO CURTAIN ===== -->
     <div id="introOverlay" class="intro-overlay">
-      <!-- Dos paneles que se abren -->
-      <div class="intro-panel intro-panel--l"></div>
-      <div class="intro-panel intro-panel--r"></div>
-      <!-- Partículas de fondo -->
+
+      <!-- Fotos de fondo (izq: pareja · der: ramo) -->
+      <div class="intro-photo intro-photo--l"
+           style="background-image:url('img/53853-boda.jpg')"></div>
+      <div class="intro-photo intro-photo--r"
+           style="background-image:url('img/mujer-abraza-al-hombre-sostiene-ramo-peonias-blancas-al-aire-libre-vista-frontal-detalles_8353-10966.avif')"></div>
+      <div class="intro-photo-overlay"></div>
+
+      <!-- Partículas flotantes -->
       <div class="intro-particles" aria-hidden="true">
-        <span></span><span></span><span></span><span></span> <span></span
-        ><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span>
       </div>
-      <!-- Contenido central -->
-      <div class="intro-content">
-        <div class="intro-monogram" aria-hidden="true">
-          <span id="introMonoBride">S</span
-          ><span class="intro-monogram__amp">&amp;</span
-          ><span id="introMonoGroom">A</span>
-        </div>
+
+      <!-- Escena central -->
+      <div class="intro-scene">
         <p class="intro-eyebrow">Te invitamos a celebrar</p>
-        <div class="intro-sep">
-          <span></span><i class="fa-solid fa-heart"></i><span></span>
+
+        <!-- Sobre animado con carta interior -->
+        <div class="envelope">
+          <div class="envelope__body">
+            <div class="envelope__letter">
+              <div class="intro-monogram" aria-hidden="true">
+                <span id="introMonoBride">S</span
+                ><span class="intro-monogram__amp">&amp;</span
+                ><span id="introMonoGroom">A</span>
+              </div>
+              <div class="intro-sep">
+                <span></span><i class="fa-solid fa-heart"></i><span></span>
+              </div>
+              <h1 class="intro-names">
+                <span id="introCardBride">Sofía</span>
+                <em>&amp;</em>
+                <span id="introCardGroom">Alejandro</span>
+              </h1>
+              <div class="intro-sep">
+                <span></span><i class="fa-solid fa-star"></i><span></span>
+              </div>
+              <p class="intro-date" id="introCardDate">14 · 02 · 2027</p>
+            </div>
+          </div>
+          <div class="envelope__flap"></div>
+          <div class="envelope__seal"><i class="fa-solid fa-heart"></i></div>
         </div>
-        <h1 class="intro-names">
-          <span id="introCardBride">Sofía</span>
-          <em>&amp;</em>
-          <span id="introCardGroom">Alejandro</span>
-        </h1>
-        <div class="intro-sep">
-          <span></span><i class="fa-solid fa-star"></i><span></span>
-        </div>
-        <p class="intro-date" id="introCardDate">14 · 02 · 2027</p>
+
         <p class="intro-cta" id="introHint">
           <span class="intro-cta__dot"></span>
           Toca para abrir tu invitación

@@ -235,7 +235,7 @@ input, select, textarea { cursor: text; }
 .intro-overlay.opening .envelope__flap { transform: rotateX(178deg); }
 
 .envelope__seal {
-  position: absolute; top: 38%; left: 50%; transform: translate(-50%,-50%);
+  position: absolute; top: 52%; left: 50%; transform: translate(-50%,-50%); z-index: 3;
   width: 46px; height: 46px; border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
   background: radial-gradient(circle at 35% 30%, var(--gold-dark), var(--navy-light) 120%);
