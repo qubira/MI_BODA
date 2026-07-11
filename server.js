@@ -39,6 +39,15 @@ const projects = [
   { slug: 'plus-10',   dir: 'MI_BODA _PLAN_PLUS_10',  admin: true  },
   { slug: 'plus-11',   dir: 'MI_BODA _PLAN_PLUS_11',  admin: true  },
   { slug: 'plus-12',   dir: 'MI_BODA _PLAN_PLUS_12',  admin: true  },
+  { slug: 'exclusivo-4',  dir: 'MI_BODA_EXCLUSIVO_4',  admin: true  },
+  { slug: 'exclusivo-5',  dir: 'MI_BODA_EXCLUSIVO_5',  admin: true  },
+  { slug: 'exclusivo-6',  dir: 'MI_BODA_EXCLUSIVO_6',  admin: true  },
+  { slug: 'exclusivo-7',  dir: 'MI_BODA_EXCLUSIVO_7',  admin: true  },
+  { slug: 'exclusivo-8',  dir: 'MI_BODA_EXCLUSIVO_8',  admin: true  },
+  { slug: 'exclusivo-9',  dir: 'MI_BODA_EXCLUSIVO_9',  admin: true  },
+  { slug: 'exclusivo-10', dir: 'MI_BODA_EXCLUSIVO_10', admin: true  },
+  { slug: 'exclusivo-11', dir: 'MI_BODA_EXCLUSIVO_11', admin: true  },
+  { slug: 'exclusivo-12', dir: 'MI_BODA_EXCLUSIVO_12', admin: true  },
 ];
 
 projects.forEach(({ slug, dir, admin }) => {
