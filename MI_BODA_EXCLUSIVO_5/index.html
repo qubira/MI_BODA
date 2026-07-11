@@ -820,6 +820,9 @@
 .historia__chapter-title{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:600;color:var(--dark);margin-bottom:10px;}
 .historia__chapter-text{font-family:'Cormorant Garamond',serif;font-size:.95rem;font-style:italic;color:var(--gray);line-height:1.82;max-width:300px;margin:0 auto;}
 .historia__divider{width:38px;height:1px;background:linear-gradient(90deg,transparent,var(--taupe),transparent);margin:0 auto 10px;}
+.admin-fab{position:fixed;bottom:22px;right:22px;z-index:9999;display:flex;align-items:center;gap:7px;padding:11px 20px;border-radius:30px;background:rgba(10,10,10,.82);color:#fff;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;box-shadow:0 4px 18px rgba(0,0,0,.45);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.18);transition:transform .25s,box-shadow .25s;font-family:sans-serif;}
+.admin-fab:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,0,0,.5);}
+.admin-fab svg{flex-shrink:0;}
   </style>
 </head>
 <body>
@@ -952,6 +955,7 @@
     <div class="ceremony-card card rv up d2">
       <p class="ceremony-card__head">Ceremonia Religiosa</p>
       <p class="ceremony-card__time">3:00 pm &nbsp;&middot;&nbsp; Iglesia Tres Ave María</p>
+      <div style="width:100%;height:180px;border-radius:8px;overflow:hidden;margin:12px 0;background-image:url('img/altar.png');background-size:cover;background-position:center;"></div>
       <img class="ceremony-card__church rv sc d3"
            src="04.Demo_invitacion_Alejandra & Mario_files/42b661d8eafdbc35824c3a479ad529af.png"
            alt="Iglesia" />
@@ -970,6 +974,7 @@
       <div class="reception-oval__inner">
         <p class="reception-oval__head rv up d1">Recepción</p>
         <p class="reception-oval__time rv up d2">5:00 pm &nbsp;&middot;&nbsp; Salón de Eventos ANA</p>
+        <div style="width:100%;height:180px;border-radius:8px;overflow:hidden;margin:12px 0;background-image:url('img/mesa_novios.png');background-size:cover;background-position:center;"></div>
         <img class="reception-oval__arch rv sc d3"
              src="04.Demo_invitacion_Alejandra & Mario_files/a382490e6027a3182fd5265838961524.png"
              alt="" aria-hidden="true" />
@@ -1082,6 +1087,7 @@
       </p>
       <div class="gifts__accounts rv up d3">
         <div class="gifts__account">
+          <div style="width:100%;height:140px;border-radius:8px;overflow:hidden;margin-bottom:12px;background-image:url('img/decoracion_lugar_de_regalos.png');background-size:cover;background-position:center;"></div>
           <p class="gifts__account-bank">🍳 Cocina & Electrodomésticos</p>
           <ul class="gifts__wish-items">
             <li>Cafetera espresso automática</li>
@@ -1319,5 +1325,9 @@ tick();
 setInterval(tick, 1000);
 </script>
 <script src="js/main.js"></script>
+<a href="admin.html" class="admin-fab" aria-label="Panel Admin">
+  <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1C8.676 1 6 3.676 6 7v2H4v14h16V9h-2V7c0-3.324-2.676-6-6-6zm0 2c2.276 0 4 1.724 4 4v2H8V7c0-2.276 1.724-4 4-4zm0 10c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2z"/></svg>
+  Admin
+</a>
 </body>
 </html>

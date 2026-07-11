@@ -1437,6 +1437,9 @@
 .historia__chapter-title{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:600;color:var(--ink);margin-bottom:10px;}
 .historia__chapter-text{font-family:'Cormorant Garamond',serif;font-size:.95rem;font-style:italic;color:var(--taupe);line-height:1.82;max-width:300px;margin:0 auto;}
 .historia__divider{width:38px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:0 auto 10px;}
+.admin-fab{position:fixed;bottom:22px;right:22px;z-index:9999;display:flex;align-items:center;gap:7px;padding:11px 20px;border-radius:30px;background:rgba(10,10,10,.82);color:#fff;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;box-shadow:0 4px 18px rgba(0,0,0,.45);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.18);transition:transform .25s,box-shadow .25s;font-family:sans-serif;}
+.admin-fab:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,0,0,.5);}
+.admin-fab svg{flex-shrink:0;}
     </style>
   </head>
   <body>
@@ -1552,6 +1555,36 @@
         </div>
       </section>
 
+<!-- ── VENUE ── -->
+<section class="venue" style="background:var(--linen,#f0ece3);padding:60px 0;">
+  <div style="max-width:680px;margin:0 auto;padding:0 28px;text-align:center;">
+    <p style="font-family:'Sacramento',cursive;font-size:2.2rem;color:var(--gold,#c4a076);margin-bottom:4px;">El Lugar</p>
+    <h2 style="font-family:'Cormorant SC',serif;font-size:1.6rem;font-weight:400;letter-spacing:.08em;color:var(--ink,#2a2010);margin-bottom:32px;">Ceremonia &amp; Recepción</h2>
+    <div style="display:flex;flex-wrap:wrap;gap:20px;justify-content:center;">
+      <div style="flex:1;min-width:260px;max-width:300px;background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,.06);">
+        <div style="height:190px;background-image:url('img/altar.png');background-size:cover;background-position:center;"></div>
+        <div style="padding:20px;">
+          <p style="font-family:'Cormorant SC',serif;font-size:.65rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold,#c4a076);margin-bottom:6px;">Ceremonia</p>
+          <h3 style="font-family:'Cormorant SC',serif;font-size:1.15rem;font-weight:400;color:var(--ink,#2a2010);margin-bottom:6px;">Parroquia Santa María</h3>
+          <p style="font-size:.82rem;color:#888;margin-bottom:4px;">Av. Principal 123, Lima</p>
+          <p style="font-size:.82rem;color:#888;margin-bottom:14px;">5:00 PM</p>
+          <a href="https://maps.google.com/?q=Casa+Hacienda+Mamacona,+Lurin,+Lima" target="_blank" rel="noopener" style="display:inline-block;padding:8px 18px;border:1px solid var(--gold,#c4a076);border-radius:30px;color:var(--gold2,#a88054);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;">Ubicación</a>
+        </div>
+      </div>
+      <div style="flex:1;min-width:260px;max-width:300px;background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,.06);">
+        <div style="height:190px;background-image:url('img/mesa_novios.png');background-size:cover;background-position:center;"></div>
+        <div style="padding:20px;">
+          <p style="font-family:'Cormorant SC',serif;font-size:.65rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold,#c4a076);margin-bottom:6px;">Recepción</p>
+          <h3 style="font-family:'Cormorant SC',serif;font-size:1.15rem;font-weight:400;color:var(--ink,#2a2010);margin-bottom:6px;">Casa Hacienda Mamacona</h3>
+          <p style="font-size:.82rem;color:#888;margin-bottom:4px;">Av. Mamacona s/n, Lurín, Lima</p>
+          <p style="font-size:.82rem;color:#888;margin-bottom:14px;">7:30 PM</p>
+          <a href="https://maps.google.com/?q=Casa+Hacienda+Mamacona,+Lurin,+Lima" target="_blank" rel="noopener" style="display:inline-block;padding:8px 18px;border:1px solid var(--gold,#c4a076);border-radius:30px;color:var(--gold2,#a88054);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;">Ubicación</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
       <!-- ═══════════ ITINERARIO ═══════════ -->
       <section class="itinerary">
         <img class="itinerary__env rv-s"
@@ -1628,6 +1661,7 @@
         <span class="s-over rv">Con mucho cariño</span>
         <span class="s-title rv" style="transition-delay: 0.07s">Regalos</span>
         <div class="s-rule rv" style="transition-delay: 0.13s"></div>
+        <div style="width:100%;max-width:480px;margin:0 auto 24px;height:190px;border-radius:10px;overflow:hidden;background-image:url('img/decoracion_lugar_de_regalos.png');background-size:cover;background-position:center;"></div>
         <div class="regalos__card rv" style="transition-delay: 0.2s">
           <p class="regalos__text">
             Su compañía es lo más importante.<br />
@@ -2028,5 +2062,9 @@
 })();
 </script>
   <script src="js/main.js"></script>
+<a href="admin.html" class="admin-fab" aria-label="Panel Admin">
+  <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1C8.676 1 6 3.676 6 7v2H4v14h16V9h-2V7c0-3.324-2.676-6-6-6zm0 2c2.276 0 4 1.724 4 4v2H8V7c0-2.276 1.724-4 4-4zm0 10c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2z"/></svg>
+  Admin
+</a>
   </body>
 </html>

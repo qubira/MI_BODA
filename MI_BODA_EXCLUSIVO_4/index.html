@@ -1025,6 +1025,9 @@
       .hero__rule-line { animation:shimmerRule 2.8s ease-in-out infinite; }
       @keyframes fadeInUp { from{opacity:0;transform:translateY(22px)} to{opacity:1;transform:translateY(0)} }
       .hero__scroll { animation:fadeInUp 1.4s .9s both; }
+.admin-fab{position:fixed;bottom:22px;right:22px;z-index:9999;display:flex;align-items:center;gap:7px;padding:11px 20px;border-radius:30px;background:rgba(10,10,10,.82);color:#fff;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;box-shadow:0 4px 18px rgba(0,0,0,.45);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.18);transition:transform .25s,box-shadow .25s;font-family:sans-serif;}
+.admin-fab:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,0,0,.5);}
+.admin-fab svg{flex-shrink:0;}
     </style>
   </head>
   <body>
@@ -1204,11 +1207,7 @@
           3:00 pm · Domingo, 14 de Febrero 2027
         </p>
 
-        <img
-          class="event__illustration reveal d2"
-          src="10_DEMO_invitacion_Miguel y Camila_files/76284a780b5f6c7ef0211842001d1f9b.png"
-          alt="Iglesia de la ceremonia"
-        />
+        <div class="event__photo" style="width:100%;height:200px;border-radius:12px;overflow:hidden;margin:16px 0;background-image:url('img/altar.png');background-size:cover;background-position:center;"></div>
 
         <h3 class="event__venue reveal d3">Parroquia Virgen del Pilar</h3>
         <p class="event__addr reveal d3">
@@ -1260,6 +1259,8 @@
         <p class="event__time reveal d1">
           7:00 pm · Domingo, 14 de Febrero 2027
         </p>
+
+        <div class="event__photo" style="width:100%;height:200px;border-radius:12px;overflow:hidden;margin:16px 0;background-image:url('img/mesa_novios.png');background-size:cover;background-position:center;"></div>
 
         <img
           class="event__bouquet reveal d2"
@@ -1369,6 +1370,7 @@
         </p>
         <div class="gifts__accounts reveal d4">
           <div class="gifts__account">
+            <div style="width:100%;height:140px;border-radius:8px;overflow:hidden;margin-bottom:12px;background-image:url('img/decoracion_lugar_de_regalos.png');background-size:cover;background-position:center;"></div>
             <p class="gifts__account-bank">🍳 Cocina & Electrodomésticos</p>
             <ul class="gifts__wish-items">
               <li>Cafetera espresso automática</li>
@@ -1640,5 +1642,9 @@
       setInterval(tick, 1000);
 
     </script>
+<a href="admin.html" class="admin-fab" aria-label="Panel Admin">
+  <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1C8.676 1 6 3.676 6 7v2H4v14h16V9h-2V7c0-3.324-2.676-6-6-6zm0 2c2.276 0 4 1.724 4 4v2H8V7c0-2.276 1.724-4 4-4zm0 10c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2z"/></svg>
+  Admin
+</a>
   </body>
 </html>
