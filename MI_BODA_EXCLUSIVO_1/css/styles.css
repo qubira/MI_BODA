@@ -1802,7 +1802,7 @@ input, select, textarea { cursor: text; }
 .guest-found-card__icon{font-size:1.8rem;color:#4CAF50;flex-shrink:0;margin-top:1px}
 .guest-found-card__name{font-family:var(--font-display,'Cinzel'),serif;font-size:1.05rem;color:#7ed68a;font-weight:600;margin:0 0 10px}
 .guest-found-card__details{display:flex;flex-wrap:wrap;gap:8px}
-.guest-found-card__details span{font-size:.78rem;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:4px 12px;color:var(--cream,#f5edd8)}
+.guest-found-card__details span{font-size:.78rem;background:rgba(76,175,80,.1);border:1px solid rgba(76,175,80,.3);border-radius:20px;padding:4px 12px;color:var(--text,#2E2E40)}
 .guest-found-card__details .honor-badge{border-color:rgba(201,169,110,.5);background:rgba(201,169,110,.12);color:var(--gold-light,#e8c98a)}
 .guest-not-found{display:flex;align-items:flex-start;gap:12px;background:rgba(231,76,60,.08);border:1px solid rgba(231,76,60,.3);border-radius:14px;padding:16px 18px;margin:16px 0 20px;font-size:.86rem;color:#e57373;line-height:1.5}
 .guest-not-found i{font-size:1.3rem;flex-shrink:0;margin-top:2px}
