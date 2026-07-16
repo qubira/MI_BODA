@@ -1226,6 +1226,57 @@ textarea:focus { outline: none; border-color: var(--gold); }
 .sorry-box img { width: 80px; height: 80px; object-fit: cover; border-radius: 50%; border: 2px solid var(--gold-border); flex-shrink: 0; }
 .sorry-box p { font-family: var(--font-serif); font-style: italic; color: var(--text-muted); }
 
+/* ============================================================
+   RSVP — verificación por nombre (nuevo patrón)
+   ============================================================ */
+.rsvp-step { display: none; position: relative; z-index: 1; }
+.rsvp-step.s-on { display: block; animation: stepIn .3s ease; }
+
+.rfg { margin-bottom: 16px; }
+.rfg label {
+  display: block; font-family: var(--font-display);
+  font-size: .6rem; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--text-muted); margin-bottom: 8px;
+}
+.fi-w { position: relative; }
+.fi-ic {
+  position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+  color: var(--gold); font-size: .85rem; pointer-events: none;
+}
+.fi-w input {
+  width: 100%; padding: 12px 14px 12px 40px;
+  background: rgba(8,8,8,.6); border: 1px solid var(--gold-border);
+  border-radius: var(--radius); color: var(--text);
+  font-family: var(--font-sans); font-size: .9rem;
+  transition: border-color var(--transition), background var(--transition);
+}
+.fi-w input:focus { outline: none; border-color: var(--gold); background: rgba(201,160,84,.05); }
+
+.rbtn-row { display: flex; gap: 10px; margin-top: 20px; justify-content: center; }
+.rbtn {
+  font-family: var(--font-display); font-size: .65rem;
+  letter-spacing: .16em; text-transform: uppercase;
+  padding: 12px 28px; border-radius: var(--radius);
+  border: none; cursor: pointer;
+  transition: background var(--transition), transform .15s;
+}
+.rbtn:hover { transform: translateY(-1px); }
+.rbtn-primary { background: var(--gold); color: #080808; }
+.rbtn-primary:hover { opacity: .9; }
+.rbtn-outline { background: transparent; color: var(--gold); border: 1px solid var(--gold-border); }
+.rbtn-outline:hover { background: var(--gold-dim); }
+
+.rsvp-ok { text-align: center; padding: 10px 0 8px; }
+.rsvp-ok__icon { font-size: 3rem; color: var(--gold); display: block; margin-bottom: 12px; }
+.rsvp-ok__title { font-family: var(--font-script); font-size: 2.4rem; color: var(--cream); margin-bottom: 8px; }
+.rsvp-ok__msg { font-family: var(--font-serif); font-size: 1rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 20px; }
+.rsvp-qr { display: flex; justify-content: center; margin-bottom: 8px; }
+.rsvp-qr img { border-radius: 8px; border: 2px solid var(--gold-border); }
+.rsvp-qr-note { font-family: var(--font-display); font-size: .62rem; letter-spacing: .12em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 20px; }
+.rsvp-confetti { height: 60px; position: relative; overflow: hidden; }
+.confetti-piece { position: absolute; width: 7px; height: 7px; animation: cfFall 1.8s ease-in forwards; }
+@keyframes cfFall { 0% { transform: translateY(-10px) rotate(0deg); opacity: 1; } 100% { transform: translateY(70px) rotate(540deg); opacity: 0; } }
+
 /* Success */
 .success-step { text-align: center; }
 .success-anim { position: relative; width: 100px; height: 100px; margin: 0 auto 24px; }

@@ -390,7 +390,8 @@ function saveGuest(g) { const a = getGuests(); a.push(g); localStorage.setItem(D
 
   /* 2) Intenta cargar archivo subido en IndexedDB; si no hay, usa URL */
   openAudioDB(function(err, db) {
-    if (err) { if (music.url) startPlayer(null, null); return; }
+    var localFallback = function() { startPlayer('music/Christina Perri - A Thousand Years.mp3', 'A Thousand Years - Christina Perri'); };
+    if (err) { if (music.url) startPlayer(null, null); else localFallback(); return; }
     var tx  = db.transaction('tracks', 'readonly');
     var req = tx.objectStore('tracks').get('main');
     req.onsuccess = function(e) {
@@ -401,9 +402,11 @@ function saveGuest(g) { const a = getGuests(); a.push(g); localStorage.setItem(D
         startPlayer(blobUrl, rec.title || music.title || 'Música de la boda');
       } else if (music.url) {
         startPlayer(null, null);
+      } else {
+        localFallback();
       }
     };
-    req.onerror = function() { if (music.url) startPlayer(null, null); };
+    req.onerror = function() { if (music.url) startPlayer(null, null); else localFallback(); };
   });
 
   function startPlayer(blobUrl, fileTitle) {
