@@ -1064,7 +1064,18 @@ input, select, textarea { cursor: text; }
 /* ============================================================
    GALERÍA DE FOTOS
    ============================================================ */
-.galeria-section { background: var(--cream); }
+.galeria-section { background: var(--cream); padding-bottom: 64px; }
+
+/* ── Filmstrip ── */
+.filmstrip { overflow: hidden; width: 100%; padding: 28px 0 20px; }
+.filmstrip__track { display: flex; gap: 14px; width: max-content; animation: filmScroll 36s linear infinite; }
+.filmstrip:hover .filmstrip__track { animation-play-state: paused; }
+.filmstrip__item { flex: 0 0 auto; width: 220px; height: 290px; border-radius: 10px; overflow: hidden; box-shadow: 0 6px 20px rgba(0,0,0,.14); }
+.filmstrip__item img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; display: block; }
+.filmstrip__item:hover img { transform: scale(1.06); }
+@keyframes filmScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* ── Masonry ── */
 .masonry-gallery { columns: 3; column-gap: 16px; }
 .mg-item {
   position: relative;
@@ -1080,12 +1091,12 @@ input, select, textarea { cursor: text; }
   object-fit: cover;
   transition: transform .6s cubic-bezier(.4,0,.2,1), filter .4s ease, opacity .4s ease;
   display: block;
-  filter: blur(1.5px) brightness(.88);
-  opacity: .82;
+  filter: blur(1px) brightness(.9);
+  opacity: .85;
 }
 .mg-item:hover img { transform: scale(1.06); filter: blur(0) brightness(1); opacity: 1; }
-.mg-item--tall img { min-height: 480px; }
-.mg-item img { min-height: 200px; max-height: 360px; }
+.mg-item--tall img { min-height: 420px; }
+.mg-item img { min-height: 200px; max-height: 340px; }
 
 /* ============================================================
    SUGERENCIA DE REGALOS
