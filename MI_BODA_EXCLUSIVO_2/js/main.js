@@ -867,7 +867,10 @@ function getGuestList() { try { return JSON.parse(localStorage.getItem(GUEST_LIS
     if (err) err.textContent = '';
     found = findGuest(`${nom} ${ape}`);
     if (!found) {
-      if (err) err.textContent = 'Nombre no encontrado. Verifica cómo está escrito o contacta a los novios.';
+      const lista = getGuestList();
+      if (err) err.textContent = lista.length === 0
+        ? 'La lista de invitados aún no está configurada. Contacta a los novios para activar tu acceso.'
+        : 'Nombre no encontrado. Verifica que esté escrito exactamente como te lo indicaron, o contacta a los novios.';
       return;
     }
     document.getElementById('rsvpGreeting').textContent = `¡Hola, ${found.name}!`;
