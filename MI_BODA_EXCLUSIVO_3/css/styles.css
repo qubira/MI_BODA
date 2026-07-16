@@ -471,13 +471,25 @@ input, select, textarea { cursor: text; }
   transform: translateY(-2px); box-shadow: 0 8px 24px rgba(201,160,84,.35);
 }
 .btn--ghost {
-  background: transparent;
-  border-color: rgba(240,232,216,.65);
-  color: var(--cream);
+  background: rgba(240,232,216,.07);
+  border-color: rgba(240,232,216,.85);
+  color: #F0E8D8;
+  text-shadow: 0 1px 4px rgba(0,0,0,.6);
 }
 .btn--ghost:hover {
+  background: rgba(201,160,84,.1);
   border-color: var(--gold); color: var(--gold);
   transform: translateY(-2px);
+}
+[data-theme="light"] .btn--ghost {
+  background: rgba(44,34,23,.06);
+  border-color: rgba(44,34,23,.55);
+  color: #2C2217;
+  text-shadow: none;
+}
+[data-theme="light"] .btn--ghost:hover {
+  background: rgba(201,160,84,.12);
+  border-color: var(--gold); color: var(--gold);
 }
 .btn--outline {
   background: transparent;
