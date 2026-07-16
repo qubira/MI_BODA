@@ -1028,6 +1028,64 @@
 .admin-fab{position:fixed;bottom:22px;right:22px;z-index:9999;display:flex;align-items:center;gap:7px;padding:11px 20px;border-radius:30px;background:rgba(10,10,10,.82);color:#fff;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;box-shadow:0 4px 18px rgba(0,0,0,.45);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.18);transition:transform .25s,box-shadow .25s;font-family:sans-serif;}
 .admin-fab:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,0,0,.5);}
 .admin-fab svg{flex-shrink:0;}
+
+      /* ══ GALERÍA CINE DORADO ══ */
+      .galeria { padding: 0 0 40px; background: var(--cr); overflow: hidden; }
+      .galeria__header { padding: 32px 24px 20px; text-align: center; }
+      .galeria__tag { display: inline-block; font-family: 'Montserrat', sans-serif; font-size: .58rem; letter-spacing: .22em; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+      .galeria__title { font-family: 'Great Vibes', cursive; font-size: 2.4rem; color: var(--gd); line-height: 1.1; margin-bottom: 6px; }
+      .galeria__sub { font-family: 'Cormorant Garamond', serif; font-size: .9rem; color: var(--txl); }
+
+      /* Cintas en movimiento */
+      .cine-ribbons { display: flex; flex-direction: column; gap: 8px; padding: 0 0 28px; }
+      .cine-row { overflow: hidden; width: 100%; }
+      .cine-track { display: flex; gap: 6px; width: max-content; }
+      .cine-row--fwd .cine-track { animation: cineFwd 28s linear infinite; }
+      .cine-row--rev .cine-track { animation: cineRev 34s linear infinite; }
+      .cine-row:hover .cine-track { animation-play-state: paused; }
+      @keyframes cineFwd { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+      @keyframes cineRev { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+      .cine-frame {
+        flex: 0 0 auto; width: 155px; height: 205px;
+        border-radius: 6px; overflow: hidden;
+        border: 1px solid rgba(196,163,90,.35);
+        box-shadow: 0 3px 14px rgba(0,0,0,.12);
+        position: relative;
+      }
+      .cine-frame::after {
+        content: ''; position: absolute; inset: 0;
+        background: linear-gradient(135deg, rgba(196,163,90,.12) 0%, transparent 55%);
+        pointer-events: none;
+      }
+      .cine-frame img { width: 100%; height: 100%; object-fit: cover; transition: transform .7s ease; }
+      .cine-frame:hover img { transform: scale(1.1); }
+
+      /* Bento mosaico */
+      .bento-grid {
+        display: grid;
+        grid-template-columns: 1.3fr 1fr 1fr;
+        grid-template-rows: 160px 160px;
+        gap: 8px;
+        padding: 0 16px;
+      }
+      .bento-item {
+        overflow: hidden; border-radius: 8px;
+        position: relative;
+        border: 1px solid rgba(196,163,90,.35);
+        box-shadow: 0 2px 12px rgba(0,0,0,.1);
+        transition: border-color .3s, box-shadow .3s;
+      }
+      .bento-item--tall { grid-row: 1 / 3; }
+      .bento-item--wide { grid-column: 2 / 4; }
+      .bento-item img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s ease; }
+      .bento-item:hover { border-color: var(--gold); box-shadow: 0 0 16px rgba(196,163,90,.3); }
+      .bento-item:hover img { transform: scale(1.06); }
+      .bento-item::after {
+        content: ''; position: absolute; inset: 0;
+        background: linear-gradient(to top, rgba(26,26,26,.35) 0%, transparent 55%);
+        opacity: 0; transition: opacity .35s;
+      }
+      .bento-item:hover::after { opacity: 1; }
     </style>
   </head>
   <body>
@@ -1195,6 +1253,69 @@
             <p class="historia__chapter-text">Con el corazón en la mano y las estrellas de testigos, llegó el momento más esperado. Una promesa hecha con amor eterno: compartir la vida entera, juntos para siempre.</p>
           </div>
 
+        </div>
+      </section>
+
+      <!-- ══════════════════════════════════════
+       GALERÍA DE MOMENTOS
+  ══════════════════════════════════════ -->
+      <section class="galeria">
+        <div class="galeria__header reveal">
+          <span class="galeria__tag">Momentos</span>
+          <h2 class="galeria__title">Nuestra Galería</h2>
+          <p class="galeria__sub">Algunos instantes que atesoramos.</p>
+        </div>
+
+        <!-- Cintas dobles en movimiento -->
+        <div class="cine-ribbons">
+          <div class="cine-row cine-row--fwd">
+            <div class="cine-track">
+              <div class="cine-frame"><img src="img/z.jpg" alt="" loading="lazy"></div>
+              <div class="cine-frame"><img src="img/53853-boda.jpg" alt="" loading="lazy"></div>
+              <div class="cine-frame"><img src="img/aa.jpg" alt="" loading="lazy"></div>
+              <div class="cine-frame"><img src="img/q.jpg" alt="" loading="lazy"></div>
+              <div class="cine-frame"><img src="img/s.jpg" alt="" loading="lazy"></div>
+              <div class="cine-frame"><img src="img/x.jpg" alt="" loading="lazy"></div>
+              <div class="cine-frame"><img src="img/z.jpg" alt="" loading="lazy"></div>
+              <div class="cine-frame"><img src="img/53853-boda.jpg" alt="" loading="lazy"></div>
+              <div class="cine-frame"><img src="img/aa.jpg" alt="" loading="lazy"></div>
+              <div class="cine-frame"><img src="img/q.jpg" alt="" loading="lazy"></div>
+              <div class="cine-frame"><img src="img/s.jpg" alt="" loading="lazy"></div>
+              <div class="cine-frame"><img src="img/x.jpg" alt="" loading="lazy"></div>
+            </div>
+          </div>
+          <div class="cine-row cine-row--rev">
+            <div class="cine-track">
+              <div class="cine-frame"><img src="img/x.jpg" alt="" loading="lazy"></div>
+              <div class="cine-frame"><img src="img/s.jpg" alt="" loading="lazy"></div>
+              <div class="cine-frame"><img src="img/q.jpg" alt="" loading="lazy"></div>
+              <div class="cine-frame"><img src="img/aa.jpg" alt="" loading="lazy"></div>
+              <div class="cine-frame"><img src="img/53853-boda.jpg" alt="" loading="lazy"></div>
+              <div class="cine-frame"><img src="img/z.jpg" alt="" loading="lazy"></div>
+              <div class="cine-frame"><img src="img/x.jpg" alt="" loading="lazy"></div>
+              <div class="cine-frame"><img src="img/s.jpg" alt="" loading="lazy"></div>
+              <div class="cine-frame"><img src="img/q.jpg" alt="" loading="lazy"></div>
+              <div class="cine-frame"><img src="img/aa.jpg" alt="" loading="lazy"></div>
+              <div class="cine-frame"><img src="img/53853-boda.jpg" alt="" loading="lazy"></div>
+              <div class="cine-frame"><img src="img/z.jpg" alt="" loading="lazy"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mosaico bento -->
+        <div class="bento-grid reveal">
+          <div class="bento-item bento-item--tall">
+            <img src="img/53853-boda.jpg" alt="Nuestra boda" loading="lazy">
+          </div>
+          <div class="bento-item">
+            <img src="img/z.jpg" alt="" loading="lazy">
+          </div>
+          <div class="bento-item">
+            <img src="img/x.jpg" alt="" loading="lazy">
+          </div>
+          <div class="bento-item bento-item--wide">
+            <img src="img/aa.jpg" alt="" loading="lazy">
+          </div>
         </div>
       </section>
 
