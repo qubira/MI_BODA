@@ -830,8 +830,7 @@ function validate(fieldId, errId, rules) {
   return !msg;
 }
 
-const GUEST_LIST_KEY = 'boda_guest_list';
-function getGuestList() { try { return JSON.parse(localStorage.getItem(GUEST_LIST_KEY)) || []; } catch { return []; } }
+function getGuestList() { return getGuests(); }
 
 /* ===== RSVP — verificación por nombre + apellido ===== */
 (function initRSVP() {
@@ -849,7 +848,7 @@ function getGuestList() { try { return JSON.parse(localStorage.getItem(GUEST_LIS
       .replace(/[^a-z\s]/g,'').trim().replace(/\s+/g,' ');
   }
   function findGuest(input) {
-    return getGuestList().find(g => norm(g.name) === norm(input)) || null;
+    return getGuestList().find(g => norm((g.nombre||'')+' '+(g.apellido||'')) === norm(input)) || null;
   }
   function showStep(el) {
     [s1,sConf,sok].forEach(s => s && s.classList.remove('active'));
@@ -867,26 +866,17 @@ function getGuestList() { try { return JSON.parse(localStorage.getItem(GUEST_LIS
     if (err) err.textContent = '';
     found = findGuest(`${nom} ${ape}`);
     if (!found) {
-      const lista = getGuestList();
-      if (err) err.textContent = lista.length === 0
-        ? 'La lista de invitados aún no está configurada. Contacta a los novios para activar tu acceso.'
-        : 'Nombre no encontrado. Verifica que esté escrito exactamente como te lo indicaron, o contacta a los novios.';
+      if (err) err.textContent = 'Nombre no encontrado. Verifica que nombre y apellido estén escritos exactamente como aparecen en tu invitación.';
       return;
     }
-    document.getElementById('rsvpGreeting').textContent = `¡Hola, ${found.name}!`;
-    const c = parseInt(found.companions)||0;
+    document.getElementById('rsvpGreeting').textContent = `¡Hola, ${found.nombre}!`;
+    const c = parseInt(found.acompanantes)||0;
     document.getElementById('rsvpCompMsg').textContent =
       c === 0 ? 'Tu invitación es personal (sin acompañantes).'
       : c === 1 ? 'Puedes traer 1 acompañante.'
       : `Puedes traer hasta ${c} acompañantes.`;
     const giftRow = document.getElementById('rsvpGiftRow');
-    const giftMsg = document.getElementById('rsvpGiftMsg');
-    if (found.giftType && found.giftType.trim()) {
-      if (giftMsg) giftMsg.textContent = found.giftType;
-      if (giftRow) giftRow.style.display = 'flex';
-    } else {
-      if (giftRow) giftRow.style.display = 'none';
-    }
+    if (giftRow) giftRow.style.display = 'none';
     showStep(sConf);
   });
 
@@ -895,8 +885,8 @@ function getGuestList() { try { return JSON.parse(localStorage.getItem(GUEST_LIS
     const isYes = asist === 'si';
     const rec = {
       id: Date.now(),
-      nombre: found.name,
-      companions: found.companions||0,
+      nombre: (found.nombre||'')+' '+(found.apellido||''),
+      companions: parseInt(found.acompanantes)||0,
       asistencia: asist,
       estado: isYes ? 'confirmado' : 'rechazado',
       fecha_confirmacion: new Date().toISOString()
@@ -905,13 +895,13 @@ function getGuestList() { try { return JSON.parse(localStorage.getItem(GUEST_LIS
     showStep(sok);
     document.getElementById('successTitle').textContent = isYes ? '¡Gracias por confirmar!' : 'Gracias por avisarnos';
     document.getElementById('successMsg').textContent = isYes
-      ? `Te esperamos con todo el amor, ${found.name}.`
-      : `${found.name}, lamentamos que no puedas estar — tus buenos deseos nos alegran.`;
+      ? `Te esperamos con todo el amor, ${found.nombre}.`
+      : `${found.nombre}, lamentamos que no puedas estar — tus buenos deseos nos alegran.`;
     const qrEl   = document.getElementById('successQR');
     const qrNote = document.getElementById('qrNote');
     if (isYes) {
       qrEl.innerHTML = ''; qrEl.style.display = '';
-      qrEl.appendChild(makeQR(`EXCL2-${rec.id}-${found.name}`));
+      qrEl.appendChild(makeQR(`EXCL2-${rec.id}-${rec.nombre}`));
       if (qrNote) qrNote.style.display = '';
       spawnConfetti();
     } else {

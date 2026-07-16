@@ -36,8 +36,7 @@ function makeQR(text) {
   return c;
 }
 function spawnConfetti(){const box=document.getElementById('rsvpConfetti');if(!box)return;box.innerHTML='';const colors=['#1a5276','#c4a35a','#fff','#f0ece3','#d0c8b8'];for(let i=0;i<28;i++){const p=document.createElement('div');p.className='confetti-piece';p.style.cssText=`left:${Math.random()*100}%;background:${colors[Math.floor(Math.random()*colors.length)]};animation-delay:${Math.random()*.7}s;animation-duration:${1.4+Math.random()*.6}s;border-radius:${Math.random()>.5?'50%':'2px'};`;box.appendChild(p);}}
-const GUEST_LIST_KEY = 'boda_guest_list';
-function getGuestList() { try { return JSON.parse(localStorage.getItem(GUEST_LIST_KEY)) || []; } catch { return []; } }
+function getGuestList() { return getGuests(); }
 
 /* ── RSVP — verificación por nombre ── */
 (function initRSVP() {
@@ -53,7 +52,7 @@ function getGuestList() { try { return JSON.parse(localStorage.getItem(GUEST_LIS
       .replace(/[^a-z\s]/g,'').trim().replace(/\s+/g,' ');
   }
   function findGuest(input) {
-    return getGuestList().find(g => norm(g.name) === norm(input)) || null;
+    return getGuestList().find(g => norm((g.nombre||'')+' '+(g.apellido||'')) === norm(input)) || null;
   }
   function showStep(el) {
     [s1,sConf,sok].forEach(s => s && s.classList.remove('s-on'));
@@ -71,8 +70,8 @@ function getGuestList() { try { return JSON.parse(localStorage.getItem(GUEST_LIS
       if (err) err.textContent = 'Nombre no encontrado. Verifica cómo está escrito o contacta a los novios.';
       return;
     }
-    document.getElementById('rsvpGreeting').textContent = '¡Hola, ' + found.name + '!';
-    const c = parseInt(found.companions)||0;
+    document.getElementById('rsvpGreeting').textContent = '¡Hola, ' + found.nombre + '!';
+    const c = parseInt(found.acompanantes)||0;
     document.getElementById('rsvpCompMsg').textContent =
       c === 0 ? 'Tu invitación es personal (sin acompañantes).'
       : c === 1 ? 'Puedes traer 1 acompañante.'
@@ -82,19 +81,19 @@ function getGuestList() { try { return JSON.parse(localStorage.getItem(GUEST_LIS
   function confirmAttend(asist) {
     if (!found) return;
     const isYes = asist === 'si';
-    const rec = { id:Date.now(), nombre:found.name, companions:found.companions||0,
+    const rec = { id:Date.now(), nombre:(found.nombre||'')+' '+(found.apellido||''), companions:parseInt(found.acompanantes)||0,
                   asistencia:asist, estado:isYes?'confirmado':'rechazado',
                   fecha_confirmacion:new Date().toISOString() };
     saveGuest(rec);
     showStep(sok);
     document.getElementById('rsvpOkTitle').textContent = isYes ? '¡Gracias por confirmar!' : 'Gracias por avisarnos';
     document.getElementById('rsvpOkMsg').textContent = isYes
-      ? 'Te esperamos con todo el amor, ' + found.name + '.'
-      : found.name + ', lamentamos que no puedas estar — tus buenos deseos nos alegran.';
+      ? 'Te esperamos con todo el amor, ' + found.nombre + '.'
+      : found.nombre + ', lamentamos que no puedas estar — tus buenos deseos nos alegran.';
     const qrEl   = document.getElementById('rsvpQR');
     const qrNote = document.getElementById('rsvpQRNote');
     if (isYes) {
-      qrEl.innerHTML=''; qrEl.appendChild(makeQR('EXCL-' + rec.id + '-' + found.name));
+      qrEl.innerHTML=''; qrEl.appendChild(makeQR('EXCL-' + rec.id + '-' + (found.nombre||'')));
       if(qrNote) qrNote.style.display='';
       spawnConfetti();
     } else {
