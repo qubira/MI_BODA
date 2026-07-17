@@ -1152,6 +1152,90 @@ body {
 .admin-fab{position:fixed;bottom:22px;right:22px;z-index:9999;display:flex;align-items:center;gap:7px;padding:11px 20px;border-radius:30px;background:rgba(10,10,10,.82);color:#fff;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;box-shadow:0 4px 18px rgba(0,0,0,.45);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.18);transition:transform .25s,box-shadow .25s;font-family:sans-serif;}
 .admin-fab:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,0,0,.5);}
 .admin-fab svg{flex-shrink:0;}
+
+/* ─── GALERÍA RETRATOS OVALADOS ──────────── */
+.galeria { padding: 44px 24px 52px; }
+.galeria__head { text-align: center; margin-bottom: 36px; }
+.galeria__rule {
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 18px;
+}
+.galeria__rule::before,
+.galeria__rule::after {
+  content: ''; flex: 1; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--burg), transparent);
+  opacity: .5;
+}
+.galeria__rule span {
+  font-family: var(--ff-sans);
+  font-size: .48rem; letter-spacing: .3em;
+  text-transform: uppercase; color: var(--burg);
+  white-space: nowrap;
+}
+.galeria__title {
+  font-family: var(--ff-script);
+  font-size: 2.6rem; color: var(--dark);
+  line-height: 1.1; margin-bottom: 8px;
+}
+.galeria__sub {
+  font-family: var(--ff-serif);
+  font-size: .9rem; font-style: italic;
+  color: var(--gray); line-height: 1.6;
+}
+.galeria__rule-bot {
+  display: flex; align-items: center; justify-content: center;
+  gap: 8px; margin-top: 16px;
+}
+.galeria__rule-bot::before,
+.galeria__rule-bot::after {
+  content: ''; width: 40px; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold));
+}
+.galeria__rule-bot::after {
+  background: linear-gradient(90deg, var(--gold), transparent);
+}
+.galeria__rule-bot i { color: var(--burg); font-size: .7rem; }
+
+/* Grid de retratos ovalados */
+.portrait-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px 12px;
+  max-width: 320px;
+  margin: 0 auto;
+}
+.portrait-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+.portrait-item:nth-child(even) { margin-top: 32px; }
+.portrait-oval {
+  width: 136px;
+  height: 178px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid var(--burg);
+  box-shadow:
+    0 0 0 5px var(--bg),
+    0 0 0 8px rgba(201,169,106,.5),
+    0 8px 28px rgba(97,17,40,.22);
+  transition: transform .45s ease, box-shadow .45s ease;
+}
+.portrait-oval:hover {
+  transform: scale(1.06);
+  box-shadow:
+    0 0 0 5px var(--bg),
+    0 0 0 8px rgba(201,169,106,.85),
+    0 14px 38px rgba(97,17,40,.32);
+}
+.portrait-oval img { width: 100%; height: 100%; object-fit: cover; }
+.portrait-lbl {
+  font-family: var(--ff-sans);
+  font-size: .44rem; letter-spacing: .22em;
+  text-transform: uppercase; color: var(--gold);
+}
 </style>
 </head>
 <body>
@@ -1348,6 +1432,43 @@ body {
           <svg class="swatch-drop" viewBox="0 0 35 48"><path d="M35 31.7125C35 39.4188 27.165 48 17.5 48C7.835 48 0 39.4188 0 31.7125C0 11.0106 17.5 0 17.5 0C17.5 0 35 10.4524 35 31.7125Z" fill="#ffd6d6"/></svg>
           <svg class="swatch-drop" viewBox="0 0 35 48"><path d="M35 31.7125C35 39.4188 27.165 48 17.5 48C7.835 48 0 39.4188 0 31.7125C0 11.0106 17.5 0 17.5 0C17.5 0 35 10.4524 35 31.7125Z" fill="#ffeb99"/></svg>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── GALERÍA RETRATOS ─────────────────── -->
+  <section class="galeria reveal d1">
+    <div class="galeria__head">
+      <div class="galeria__rule"><span>Nuestra Galería</span></div>
+      <h2 class="galeria__title">Momentos Eternos</h2>
+      <p class="galeria__sub">Instantes que atesoramos antes de este gran día.</p>
+      <div class="galeria__rule-bot"><i class="fa-solid fa-heart"></i></div>
+    </div>
+
+    <div class="portrait-grid">
+      <div class="portrait-item">
+        <div class="portrait-oval">
+          <img src="img/53853-boda.jpg" alt="" loading="lazy">
+        </div>
+        <span class="portrait-lbl">♥ Nosotros</span>
+      </div>
+      <div class="portrait-item">
+        <div class="portrait-oval">
+          <img src="img/z.jpg" alt="" loading="lazy">
+        </div>
+        <span class="portrait-lbl">♥ Juntos</span>
+      </div>
+      <div class="portrait-item">
+        <div class="portrait-oval">
+          <img src="img/aa.jpg" alt="" loading="lazy">
+        </div>
+        <span class="portrait-lbl">♥ Amor</span>
+      </div>
+      <div class="portrait-item">
+        <div class="portrait-oval">
+          <img src="img/x.jpg" alt="" loading="lazy">
+        </div>
+        <span class="portrait-lbl">♥ Siempre</span>
       </div>
     </div>
   </section>
