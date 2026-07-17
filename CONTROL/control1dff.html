@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Panel Monitoreo · Mi Boda</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#07070f;--surface:#111120;--card:#181830;--border:#252545;
+  --text:#e8e8ff;--muted:#6868a0;--accent:#a78bfa;
+  --green:#34d399;--gold:#fbbf24;--purple:#a78bfa;--red:#f87171;
+  --basico:#34d399;--plus:#fbbf24;--exclusivo:#a78bfa;
+}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;font-size:13px;min-height:100vh}
+
+/* Header */
+.hdr{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;
+  background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100}
+.hdr-title{font-size:15px;font-weight:700;letter-spacing:.04em;color:var(--accent)}
+.hdr-title span{color:var(--muted);font-weight:400}
+.hdr-actions{display:flex;gap:8px;align-items:center}
+.btn{display:inline-flex;align-items:center;gap:5px;padding:6px 14px;border-radius:8px;
+  border:1px solid var(--border);background:var(--card);color:var(--text);cursor:pointer;
+  font-size:12px;font-family:inherit;transition:.15s}
+.btn:hover{background:var(--border)}
+.btn-danger{border-color:#7f2020;color:var(--red)}
+.btn-danger:hover{background:#3a0e0e}
+.btn-export{border-color:#2a4a2a;color:var(--green)}
+.btn-export:hover{background:#0d2a0d}
+.refresh-dot{width:7px;height:7px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+#refresh-label{color:var(--muted);font-size:11px}
+
+/* Layout */
+.main{padding:20px 24px;max-width:1800px;margin:0 auto}
+
+/* Stats row */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-bottom:20px}
+.stat-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px 18px}
+.stat-val{font-size:28px;font-weight:700;line-height:1;margin-bottom:4px}
+.stat-lbl{color:var(--muted);font-size:11px;letter-spacing:.06em;text-transform:uppercase}
+.c-green{color:var(--green)}.c-gold{color:var(--gold)}.c-purple{color:var(--purple)}.c-red{color:var(--red)}
+
+/* Chart section */
+.section-title{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.charts{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px}
+.chart-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px 18px}
+.bar-row{display:flex;align-items:center;gap:10px;margin-bottom:7px}
+.bar-label{width:100px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:11px;color:var(--muted);flex-shrink:0}
+.bar-track{flex:1;background:var(--surface);border-radius:4px;height:14px;overflow:hidden}
+.bar-fill{height:100%;border-radius:4px;transition:width .4s ease;min-width:4px}
+.bar-num{font-size:11px;color:var(--text);width:28px;text-align:right;flex-shrink:0}
+.flag-row{display:flex;align-items:center;gap:8px;margin-bottom:6px;font-size:12px}
+.flag-row .flag{font-size:16px;width:22px}
+.flag-cnt{color:var(--muted);margin-left:auto}
+
+/* Filters */
+.filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px;align-items:center}
+.filters input,.filters select{
+  background:var(--card);border:1px solid var(--border);color:var(--text);
+  padding:7px 12px;border-radius:8px;font-size:12px;font-family:inherit;outline:none}
+.filters input:focus,.filters select:focus{border-color:var(--accent)}
+.filters select option{background:var(--surface)}
+.filter-clear{color:var(--muted);cursor:pointer;font-size:11px;text-decoration:underline}
+.filter-clear:hover{color:var(--text)}
+
+/* Table */
+.table-wrap{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden}
+.table-scroll{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:12px;white-space:nowrap}
+thead th{
+  background:var(--surface);padding:10px 12px;text-align:left;
+  color:var(--muted);font-size:10px;letter-spacing:.08em;text-transform:uppercase;
+  border-bottom:1px solid var(--border);cursor:pointer;user-select:none;position:sticky;top:0}
+thead th:hover{color:var(--text)}
+thead th.sorted{color:var(--accent)}
+thead th .sort-icon{opacity:.4;margin-left:3px}
+thead th.sorted .sort-icon{opacity:1}
+tbody tr{border-bottom:1px solid var(--border);transition:.1s}
+tbody tr:hover{background:rgba(167,139,250,.05)}
+tbody tr:last-child{border-bottom:none}
+td{padding:9px 12px;color:var(--text);max-width:200px;overflow:hidden;text-overflow:ellipsis}
+td.num{color:var(--muted)}
+td.plan-cell .badge{
+  display:inline-block;padding:2px 8px;border-radius:20px;font-size:10px;
+  font-weight:600;letter-spacing:.04em}
+.badge-basico{background:rgba(52,211,153,.12);color:var(--basico)}
+.badge-plus{background:rgba(251,191,36,.12);color:var(--gold)}
+.badge-exclusivo{background:rgba(167,139,250,.12);color:var(--purple)}
+.gps-icon{color:var(--green);font-size:10px}
+.ip-icon{color:var(--muted);font-size:10px}
+td.coords{font-family:monospace;font-size:11px;color:var(--muted)}
+.empty-row td{text-align:center;padding:40px;color:var(--muted)}
+.ua-tooltip{position:relative;cursor:help}
+.ua-tooltip:hover::after{
+  content:attr(data-ua);position:absolute;left:0;top:120%;z-index:200;
+  background:#1e1e3a;border:1px solid var(--border);border-radius:6px;
+  padding:6px 10px;max-width:340px;white-space:normal;font-size:10px;
+  color:var(--muted);pointer-events:none;line-height:1.5}
+
+/* Pagination */
+.pagination{display:flex;align-items:center;justify-content:space-between;
+  padding:12px 16px;border-top:1px solid var(--border);background:var(--surface)}
+.page-info{color:var(--muted);font-size:11px}
+.page-btns{display:flex;gap:6px}
+.page-btn{background:var(--card);border:1px solid var(--border);color:var(--text);
+  padding:4px 10px;border-radius:6px;cursor:pointer;font-size:11px}
+.page-btn:hover{background:var(--border)}
+.page-btn.active{background:var(--accent);border-color:var(--accent);color:#000}
+.page-btn:disabled{opacity:.35;cursor:default}
+
+/* Auth overlay */
+#auth-overlay{
+  position:fixed;inset:0;background:var(--bg);z-index:9999;
+  display:flex;align-items:center;justify-content:center;flex-direction:column;gap:16px}
+.auth-card{background:var(--card);border:1px solid var(--border);border-radius:16px;
+  padding:32px 36px;text-align:center;min-width:280px}
+.auth-title{font-size:16px;font-weight:700;color:var(--accent);margin-bottom:8px}
+.auth-sub{color:var(--muted);font-size:12px;margin-bottom:20px}
+.auth-input{
+  width:100%;background:var(--surface);border:1px solid var(--border);
+  color:var(--text);padding:10px 14px;border-radius:8px;font-size:14px;
+  font-family:inherit;outline:none;margin-bottom:12px;letter-spacing:.1em}
+.auth-input:focus{border-color:var(--accent)}
+.auth-btn{width:100%;background:var(--accent);color:#000;border:none;
+  padding:10px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer}
+.auth-err{color:var(--red);font-size:11px;margin-top:6px}
+
+@media(max-width:768px){
+  .charts{grid-template-columns:1fr}
+  .hdr{flex-wrap:wrap;gap:8px}
+  .main{padding:14px}
+}
+</style>
+</head>
+<body>
+
+<!-- Auth overlay -->
+<div id="auth-overlay">
+  <div class="auth-card">
+    <div class="auth-title">🔐 Panel de Monitoreo</div>
+    <div class="auth-sub">Mi Boda · Acceso restringido</div>
+    <input id="auth-input" class="auth-input" type="password" placeholder="Clave de acceso" autocomplete="off">
+    <button class="auth-btn" onclick="checkAuth()">Entrar</button>
+    <div class="auth-err" id="auth-err"></div>
+  </div>
+</div>
+
+<!-- Main UI (hidden until auth) -->
+<div id="app" style="display:none">
+
+  <header class="hdr">
+    <div class="hdr-title">📊 PANEL MONITOREO <span>· Mi Boda</span></div>
+    <div class="hdr-actions">
+      <span class="refresh-dot"></span>
+      <span id="refresh-label">Actualizando…</span>
+      <button class="btn btn-export" onclick="exportCSV()">⬇ Exportar CSV</button>
+      <button class="btn btn-danger" onclick="clearVisits()">🗑 Limpiar</button>
+    </div>
+  </header>
+
+  <div class="main">
+
+    <!-- Stats -->
+    <div class="stats" id="stats">
+      <div class="stat-card"><div class="stat-val c-green" id="s-total">—</div><div class="stat-lbl">Total visitas</div></div>
+      <div class="stat-card"><div class="stat-val c-purple" id="s-unique">—</div><div class="stat-lbl">IPs únicas</div></div>
+      <div class="stat-card"><div class="stat-val c-gold" id="s-paises">—</div><div class="stat-lbl">Países</div></div>
+      <div class="stat-card"><div class="stat-val c-green" id="s-basico">—</div><div class="stat-lbl">Visitas Básico</div></div>
+      <div class="stat-card"><div class="stat-val c-gold" id="s-plus">—</div><div class="stat-lbl">Visitas Plus</div></div>
+      <div class="stat-card"><div class="stat-val c-purple" id="s-excl">—</div><div class="stat-lbl">Visitas Exclusivo</div></div>
+      <div class="stat-card"><div class="stat-val c-green" id="s-gps">—</div><div class="stat-lbl">Con GPS exacto</div></div>
+      <div class="stat-card"><div class="stat-val" id="s-top">—</div><div class="stat-lbl">Plan más visto</div></div>
+    </div>
+
+    <!-- Charts -->
+    <div class="charts">
+      <div class="chart-card">
+        <div class="section-title">Visitas por plan</div>
+        <div id="chart-planes"></div>
+      </div>
+      <div class="chart-card">
+        <div class="section-title">Top países</div>
+        <div id="chart-paises"></div>
+      </div>
+    </div>
+
+    <!-- Filters -->
+    <div class="filters">
+      <select id="f-plan" onchange="applyFilters()">
+        <option value="">Todos los planes</option>
+        <optgroup label="Básico">
+          <option value="basico-1">Básico 1</option><option value="basico-2">Básico 2</option>
+          <option value="basico-3">Básico 3</option><option value="basico-4">Básico 4</option>
+          <option value="basico-5">Básico 5</option><option value="basico-6">Básico 6</option>
+          <option value="basico-7">Básico 7</option><option value="basico-8">Básico 8</option>
+          <option value="basico-9">Básico 9</option><option value="basico-10">Básico 10</option>
+          <option value="basico-11">Básico 11</option><option value="basico-12">Básico 12</option>
+        </optgroup>
+        <optgroup label="Plus">
+          <option value="plus-1">Plus 1</option><option value="plus-2">Plus 2</option>
+          <option value="plus-3">Plus 3</option><option value="plus-4">Plus 4</option>
+          <option value="plus-5">Plus 5</option><option value="plus-6">Plus 6</option>
+          <option value="plus-7">Plus 7</option><option value="plus-8">Plus 8</option>
+          <option value="plus-9">Plus 9</option><option value="plus-10">Plus 10</option>
+          <option value="plus-11">Plus 11</option><option value="plus-12">Plus 12</option>
+        </optgroup>
+        <optgroup label="Exclusivo">
+          <option value="exclusivo-1">Exclusivo 1</option><option value="exclusivo-2">Exclusivo 2</option>
+          <option value="exclusivo-3">Exclusivo 3</option><option value="exclusivo-4">Exclusivo 4</option>
+          <option value="exclusivo-5">Exclusivo 5</option><option value="exclusivo-6">Exclusivo 6</option>
+          <option value="exclusivo-7">Exclusivo 7</option><option value="exclusivo-8">Exclusivo 8</option>
+          <option value="exclusivo-9">Exclusivo 9</option><option value="exclusivo-10">Exclusivo 10</option>
+          <option value="exclusivo-11">Exclusivo 11</option><option value="exclusivo-12">Exclusivo 12</option>
+        </optgroup>
+      </select>
+      <input id="f-ip" type="text" placeholder="🔍 Buscar IP…" oninput="applyFilters()" style="width:160px">
+      <input id="f-pais" type="text" placeholder="🌍 País…" oninput="applyFilters()" style="width:140px">
+      <input id="f-desde" type="date" onchange="applyFilters()">
+      <input id="f-hasta" type="date" onchange="applyFilters()">
+      <span class="filter-clear" onclick="clearFilters()">✕ Limpiar filtros</span>
+      <span style="color:var(--muted);margin-left:auto;font-size:11px" id="count-label"></span>
+    </div>
+
+    <!-- Table -->
+    <div class="table-wrap">
+      <div class="table-scroll">
+        <table id="visits-table">
+          <thead>
+            <tr>
+              <th onclick="sortBy('id')">#<span class="sort-icon">↕</span></th>
+              <th onclick="sortBy('fecha')">Fecha y hora<span class="sort-icon">↕</span></th>
+              <th onclick="sortBy('plan')">Plan (Origen)<span class="sort-icon">↕</span></th>
+              <th>Latitud</th>
+              <th>Longitud</th>
+              <th>Precisión</th>
+              <th onclick="sortBy('ip')">IP<span class="sort-icon">↕</span></th>
+              <th onclick="sortBy('pais')">País<span class="sort-icon">↕</span></th>
+              <th onclick="sortBy('ciudad')">Ubicación aprox.<span class="sort-icon">↕</span></th>
+              <th>Dispositivo</th>
+              <th>OS / Navegador</th>
+              <th>GPU</th>
+              <th onclick="sortBy('isp')">ISP / Operador<span class="sort-icon">↕</span></th>
+              <th>Tipo conexión</th>
+              <th>Referrer</th>
+            </tr>
+          </thead>
+          <tbody id="visits-body"></tbody>
+        </table>
+      </div>
+      <div class="pagination">
+        <span class="page-info" id="page-info"></span>
+        <div class="page-btns" id="page-btns"></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+/* ── Config ──────────────────────────────────────────────────── */
+const PAGE_SIZE = 50;
+let ADMIN_KEY = '';
+
+/* ── State ───────────────────────────────────────────────────── */
+let allVisits = [];
+let filtered  = [];
+let sortCol   = 'id';
+let sortAsc   = false;
+let page      = 1;
+let refreshTimer, countdown;
+
+/* ── Auth ────────────────────────────────────────────────────── */
+function checkAuth() {
+  const val = document.getElementById('auth-input').value.trim();
+  if (!val) return;
+  ADMIN_KEY = val;
+  fetch('/api/visits?key=' + encodeURIComponent(ADMIN_KEY))
+    .then(r => {
+      if (r.status === 403) throw new Error('wrong');
+      return r.json();
+    })
+    .then(() => {
+      document.getElementById('auth-overlay').style.display = 'none';
+      document.getElementById('app').style.display = 'block';
+      sessionStorage.setItem('mb_key', ADMIN_KEY);
+      startApp();
+    })
+    .catch(() => {
+      document.getElementById('auth-err').textContent = 'Clave incorrecta';
+      document.getElementById('auth-input').value = '';
+    });
+}
+document.getElementById('auth-input').addEventListener('keydown', e => {
+  if (e.key === 'Enter') checkAuth();
+});
+
+/* Auto-login if key in sessionStorage */
+const savedKey = sessionStorage.getItem('mb_key');
+if (savedKey) {
+  ADMIN_KEY = savedKey;
+  fetch('/api/visits?key=' + encodeURIComponent(ADMIN_KEY))
+    .then(r => r.ok ? r.json() : Promise.reject())
+    .then(() => {
+      document.getElementById('auth-overlay').style.display = 'none';
+      document.getElementById('app').style.display = 'block';
+      startApp();
+    })
+    .catch(() => sessionStorage.removeItem('mb_key'));
+}
+
+/* ── Helpers ─────────────────────────────────────────────────── */
+function flag(code) {
+  if (!code || code.length !== 2) return '🌍';
+  try {
+    return String.fromCodePoint(...[...code.toUpperCase()].map(c => 0x1F1E6 + c.charCodeAt(0) - 65));
+  } catch { return '🌍'; }
+}
+
+function fmtDate(iso) {
+  if (!iso) return '—';
+  const d = new Date(iso);
+  return d.toLocaleDateString('es', {day:'2-digit',month:'2-digit',year:'2-digit'})
+       + ' ' + d.toLocaleTimeString('es', {hour:'2-digit',minute:'2-digit',second:'2-digit'});
+}
+
+function planBadge(plan) {
+  if (!plan) return '—';
+  const cls = plan.startsWith('basico') ? 'basico'
+            : plan.startsWith('plus')   ? 'plus'
+            : plan.startsWith('exclusivo') ? 'exclusivo' : 'basico';
+  return `<span class="badge badge-${cls}">${plan.toUpperCase()}</span>`;
+}
+
+function truncate(s, n=26) {
+  if (!s) return '—';
+  return s.length > n ? s.slice(0,n)+'…' : s;
+}
+
+/* ── Load data ───────────────────────────────────────────────── */
+async function loadData() {
+  try {
+    const r = await fetch('/api/visits?key=' + encodeURIComponent(ADMIN_KEY));
+    if (!r.ok) return;
+    allVisits = await r.json();
+    applyFilters();
+    updateStats();
+    updateCharts();
+    resetCountdown();
+    document.getElementById('refresh-label').textContent = 'Actualizado ' + new Date().toLocaleTimeString('es',{hour:'2-digit',minute:'2-digit'});
+  } catch (e) {}
+}
+
+function startApp() {
+  loadData();
+  clearInterval(refreshTimer);
+  refreshTimer = setInterval(loadData, 30000);
+}
+
+function resetCountdown() {
+  clearInterval(countdown);
+  let s = 30;
+  countdown = setInterval(() => {
+    s--;
+    if (s <= 0) { s = 30; }
+    document.getElementById('refresh-label').textContent = `Próx. refresco: ${s}s`;
+  }, 1000);
+}
+
+/* ── Stats ───────────────────────────────────────────────────── */
+function updateStats() {
+  const v = allVisits;
+  const ips = new Set(v.map(x => x.ip || x.ip_real).filter(Boolean));
+  const paises = new Set(v.map(x => x.pais).filter(Boolean));
+  const counts = { basico:0, plus:0, excl:0 };
+  const planCount = {};
+  v.forEach(x => {
+    const p = x.plan || '';
+    planCount[p] = (planCount[p] || 0) + 1;
+    if (p.startsWith('basico')) counts.basico++;
+    else if (p.startsWith('plus')) counts.plus++;
+    else if (p.startsWith('exclusivo')) counts.excl++;
+  });
+  const topPlan = Object.entries(planCount).sort((a,b)=>b[1]-a[1])[0];
+  const gpsCount = v.filter(x => x.lat_gps !== null).length;
+
+  document.getElementById('s-total').textContent  = v.length;
+  document.getElementById('s-unique').textContent = ips.size;
+  document.getElementById('s-paises').textContent = paises.size;
+  document.getElementById('s-basico').textContent = counts.basico;
+  document.getElementById('s-plus').textContent   = counts.plus;
+  document.getElementById('s-excl').textContent   = counts.excl;
+  document.getElementById('s-gps').textContent    = gpsCount;
+  document.getElementById('s-top').textContent    = topPlan ? topPlan[0].toUpperCase() : '—';
+}
+
+/* ── Charts ──────────────────────────────────────────────────── */
+function updateCharts() {
+  /* Planes */
+  const planCount = {};
+  allVisits.forEach(x => { const p = x.plan || '?'; planCount[p] = (planCount[p]||0)+1; });
+  const sorted = Object.entries(planCount).sort((a,b)=>b[1]-a[1]);
+  const maxP = sorted[0]?.[1] || 1;
+
+  const planeHtml = sorted.slice(0,15).map(([plan,cnt]) => {
+    const cls = plan.startsWith('basico') ? 'basico' : plan.startsWith('plus') ? 'plus' : 'exclusivo';
+    const color = cls === 'basico' ? '#34d399' : cls === 'plus' ? '#fbbf24' : '#a78bfa';
+    const pct = Math.round(cnt / maxP * 100);
+    return `<div class="bar-row">
+      <div class="bar-label">${plan}</div>
+      <div class="bar-track"><div class="bar-fill" style="width:${pct}%;background:${color}"></div></div>
+      <div class="bar-num">${cnt}</div>
+    </div>`;
+  }).join('');
+  document.getElementById('chart-planes').innerHTML = planeHtml || '<div style="color:var(--muted);font-size:12px">Sin datos aún</div>';
+
+  /* Países */
+  const paisCount = {};
+  allVisits.forEach(x => {
+    if (x.pais) paisCount[x.pais + '|' + (x.pais_cod||'')] = (paisCount[x.pais + '|' + (x.pais_cod||'')] || 0) + 1;
+  });
+  const sortedP = Object.entries(paisCount).sort((a,b)=>b[1]-a[1]);
+  const paisHtml = sortedP.slice(0,10).map(([key,cnt]) => {
+    const [pais, cod] = key.split('|');
+    return `<div class="flag-row">
+      <span class="flag">${flag(cod)}</span>
+      <span>${pais}</span>
+      <span class="flag-cnt">${cnt}</span>
+    </div>`;
+  }).join('');
+  document.getElementById('chart-paises').innerHTML = paisHtml || '<div style="color:var(--muted);font-size:12px">Sin datos aún</div>';
+}
+
+/* ── Filters ─────────────────────────────────────────────────── */
+function applyFilters() {
+  const fPlan  = document.getElementById('f-plan').value;
+  const fIp    = document.getElementById('f-ip').value.toLowerCase();
+  const fPais  = document.getElementById('f-pais').value.toLowerCase();
+  const fDesde = document.getElementById('f-desde').value;
+  const fHasta = document.getElementById('f-hasta').value;
+
+  filtered = allVisits.filter(v => {
+    if (fPlan  && v.plan !== fPlan) return false;
+    if (fIp    && !(v.ip||v.ip_real||'').toLowerCase().includes(fIp)) return false;
+    if (fPais  && !(v.pais||'').toLowerCase().includes(fPais)) return false;
+    if (fDesde && new Date(v.fecha) < new Date(fDesde)) return false;
+    if (fHasta && new Date(v.fecha) > new Date(fHasta + 'T23:59:59')) return false;
+    return true;
+  });
+
+  page = 1;
+  document.getElementById('count-label').textContent =
+    filtered.length !== allVisits.length ? `${filtered.length} de ${allVisits.length}` : `${allVisits.length} registros`;
+  renderTable();
+}
+
+function clearFilters() {
+  document.getElementById('f-plan').value = '';
+  document.getElementById('f-ip').value = '';
+  document.getElementById('f-pais').value = '';
+  document.getElementById('f-desde').value = '';
+  document.getElementById('f-hasta').value = '';
+  applyFilters();
+}
+
+/* ── Sort ────────────────────────────────────────────────────── */
+function sortBy(col) {
+  if (sortCol === col) sortAsc = !sortAsc;
+  else { sortCol = col; sortAsc = false; }
+  document.querySelectorAll('thead th').forEach(th => th.classList.remove('sorted'));
+  event.target.closest('th').classList.add('sorted');
+  renderTable();
+}
+
+/* ── Table ───────────────────────────────────────────────────── */
+function renderTable() {
+  const sorted = [...filtered].sort((a, b) => {
+    let va = a[sortCol] ?? '', vb = b[sortCol] ?? '';
+    if (sortCol === 'id') { va = +va; vb = +vb; }
+    if (sortCol === 'fecha') { va = new Date(va); vb = new Date(vb); }
+    if (va < vb) return sortAsc ? -1 :  1;
+    if (va > vb) return sortAsc ?  1 : -1;
+    return 0;
+  });
+
+  const total = sorted.length;
+  const pages = Math.max(1, Math.ceil(total / PAGE_SIZE));
+  page = Math.min(page, pages);
+  const slice = sorted.slice((page-1)*PAGE_SIZE, page*PAGE_SIZE);
+
+  const tbody = document.getElementById('visits-body');
+  if (!slice.length) {
+    tbody.innerHTML = '<tr class="empty-row"><td colspan="15">Sin visitas registradas todavía</td></tr>';
+  } else {
+    tbody.innerHTML = slice.map((v, i) => {
+      const rowNum = (page-1)*PAGE_SIZE + i + 1;
+      const hasGPS = v.lat_gps !== null;
+      const lat = hasGPS ? v.lat_gps : v.lat_ip;
+      const lon = hasGPS ? v.lon_gps : v.lon_ip;
+      const precLabel = hasGPS
+        ? `<span class="gps-icon">📍</span> ${v.precision_gps ?? '?'} m`
+        : `<span class="ip-icon">IP</span>`;
+      const ip = v.ip || v.ip_real || '—';
+      const pais = v.pais ? `${flag(v.pais_cod)} ${v.pais}` : '—';
+      const ubicacion = [v.ciudad, v.region].filter(Boolean).join(', ') || '—';
+      const dispositivo = v.dispositivo || '—';
+      const osBrowser = [v.os, v.navegador].filter(Boolean).join(' · ') || '—';
+      const gpu = truncate(v.gpu, 28);
+      const isp = truncate(v.isp, 28);
+      const conn = v.conexion || '—';
+      const ref = truncate(v.referrer, 26);
+
+      return `<tr>
+        <td class="num">${rowNum}</td>
+        <td>${fmtDate(v.fecha)}</td>
+        <td class="plan-cell">${planBadge(v.plan)}</td>
+        <td class="coords">${lat != null ? (+lat).toFixed(5) : '—'}</td>
+        <td class="coords">${lon != null ? (+lon).toFixed(5) : '—'}</td>
+        <td>${precLabel}</td>
+        <td><code style="font-size:11px;color:var(--accent)">${ip}</code></td>
+        <td>${pais}</td>
+        <td title="${v.ciudad||''}, ${v.region||''}">${truncate(ubicacion,24)}</td>
+        <td class="ua-tooltip" data-ua="${(v.ua_raw||'').replace(/"/g,"'")}">${dispositivo}</td>
+        <td>${osBrowser}</td>
+        <td title="${v.gpu||''}">${gpu || '—'}</td>
+        <td title="${v.isp||''}">${isp || '—'}</td>
+        <td>${conn}</td>
+        <td title="${v.referrer||''}">${ref || '—'}</td>
+      </tr>`;
+    }).join('');
+  }
+
+  /* Pagination */
+  document.getElementById('page-info').textContent =
+    `Página ${page} de ${pages} · ${total} resultados`;
+
+  const btns = document.getElementById('page-btns');
+  let btnHtml = `<button class="page-btn" onclick="goPage(${page-1})" ${page===1?'disabled':''}>‹</button>`;
+  const start = Math.max(1, page-2), end = Math.min(pages, page+2);
+  if (start > 1) btnHtml += `<button class="page-btn" onclick="goPage(1)">1</button>${start>2?'<span style="color:var(--muted);padding:0 4px">…</span>':''}`;
+  for (let p2=start; p2<=end; p2++)
+    btnHtml += `<button class="page-btn ${p2===page?'active':''}" onclick="goPage(${p2})">${p2}</button>`;
+  if (end < pages) btnHtml += `${end<pages-1?'<span style="color:var(--muted);padding:0 4px">…</span>':''}<button class="page-btn" onclick="goPage(${pages})">${pages}</button>`;
+  btnHtml += `<button class="page-btn" onclick="goPage(${page+1})" ${page===pages?'disabled':''}>›</button>`;
+  btns.innerHTML = btnHtml;
+}
+
+function goPage(p) {
+  const pages = Math.ceil(filtered.length / PAGE_SIZE);
+  if (p < 1 || p > pages) return;
+  page = p;
+  renderTable();
+  document.querySelector('.table-wrap').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+/* ── Export CSV ──────────────────────────────────────────────── */
+function exportCSV() {
+  const cols = ['#','fecha','plan','lat','lon','precision','ip','pais','ciudad','region',
+                 'dispositivo','os','navegador','gpu','isp','conexion','referrer','ua_raw'];
+  const rows = [cols.join(',')];
+  filtered.forEach((v, i) => {
+    const hasGPS = v.lat_gps !== null;
+    const row = [
+      i+1,
+      v.fecha || '',
+      v.plan || '',
+      hasGPS ? v.lat_gps : (v.lat_ip||''),
+      hasGPS ? v.lon_gps : (v.lon_ip||''),
+      hasGPS ? (v.precision_gps||'')+'m GPS' : 'IP',
+      v.ip || v.ip_real || '',
+      v.pais || '',
+      v.ciudad || '',
+      v.region || '',
+      v.dispositivo || '',
+      v.os || '',
+      v.navegador || '',
+      v.gpu || '',
+      v.isp || '',
+      v.conexion || '',
+      v.referrer || '',
+      (v.ua_raw||'').replace(/,/g,' '),
+    ].map(x => `"${String(x).replace(/"/g,'""')}"`);
+    rows.push(row.join(','));
+  });
+  const blob = new Blob([rows.join('\n')], {type:'text/csv;charset=utf-8'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = 'visitas_miboda_' + new Date().toISOString().slice(0,10) + '.csv';
+  a.click(); URL.revokeObjectURL(url);
+}
+
+/* ── Clear ───────────────────────────────────────────────────── */
+async function clearVisits() {
+  if (!confirm('¿Borrar todos los registros?')) return;
+  await fetch('/api/visits?key=' + encodeURIComponent(ADMIN_KEY), { method:'DELETE' });
+  loadData();
+}
+</script>
+</body>
+</html>
