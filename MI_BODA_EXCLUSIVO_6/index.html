@@ -1368,6 +1368,58 @@ section { position: relative; }
 .admin-fab{position:fixed;bottom:22px;right:22px;z-index:9999;display:flex;align-items:center;gap:7px;padding:11px 20px;border-radius:30px;background:rgba(10,10,10,.82);color:#fff;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;box-shadow:0 4px 18px rgba(0,0,0,.45);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.18);transition:transform .25s,box-shadow .25s;font-family:sans-serif;}
 .admin-fab:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,0,0,.5);}
 .admin-fab svg{flex-shrink:0;}
+
+/* ─── GALERÍA MARCO DORADO ─────────────────────── */
+.galeria { padding: 40px 0 48px; overflow: hidden; }
+.galeria__head { text-align: center; padding: 0 24px 28px; }
+.galeria__eyebrow {
+  display: block;
+  font-family: var(--ff-sans);
+  font-size: .52rem; letter-spacing: .3em;
+  text-transform: uppercase; color: var(--gold);
+  margin-bottom: 10px;
+}
+.galeria__title {
+  font-family: var(--ff-script);
+  font-size: 2.6rem; color: var(--dark);
+  line-height: 1.1; margin-bottom: 6px;
+}
+.galeria__sub {
+  font-family: var(--ff-serif);
+  font-size: .9rem; font-style: italic;
+  color: var(--gray); line-height: 1.6;
+}
+.galeria__divider {
+  width: 60px; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  margin: 16px auto 0;
+}
+
+/* Muro de marcos */
+.gallery-wall {
+  column-count: 2;
+  column-gap: 10px;
+  padding: 0 16px;
+}
+.gw-frame {
+  break-inside: avoid;
+  margin-bottom: 10px;
+  background: var(--cream);
+  border: 2px solid var(--gold);
+  padding: 7px;
+  box-shadow: 0 4px 22px rgba(0,0,0,.13), 0 1px 4px rgba(0,0,0,.07);
+  transition: transform .4s ease, box-shadow .4s ease;
+}
+.gw-frame:nth-child(6n+1) { transform: rotate(-1.8deg); }
+.gw-frame:nth-child(6n+2) { transform: rotate( 1.4deg); }
+.gw-frame:nth-child(6n+3) { transform: rotate(-0.7deg); }
+.gw-frame:nth-child(6n+4) { transform: rotate( 2.0deg); }
+.gw-frame:nth-child(6n+5) { transform: rotate(-1.2deg); }
+.gw-frame:nth-child(6n+6) { transform: rotate( 0.5deg); }
+.gw-frame:hover { transform: rotate(0deg) scale(1.04) !important; box-shadow: 0 12px 36px rgba(0,0,0,.20); }
+.gw-frame:nth-child(odd)  img { height: 190px; }
+.gw-frame:nth-child(even) img { height: 140px; }
+.gw-frame img { width: 100%; display: block; object-fit: cover; }
 </style>
 </head>
 <body>
@@ -1598,6 +1650,26 @@ section { position: relative; }
         Damas: vestido largo o cocktail.<br/>
         <em>Evitar el color blanco, por favor.</em>
       </p>
+    </div>
+  </section>
+
+  <div class="section-gap"></div>
+
+  <!-- ─── GALERÍA MARCO DORADO ───────────────── -->
+  <section class="galeria reveal d1">
+    <div class="galeria__head">
+      <span class="galeria__eyebrow">Galería</span>
+      <h2 class="galeria__title">Nuestra Historia en Imágenes</h2>
+      <p class="galeria__sub">Momentos que atesoramos antes de este gran día.</p>
+      <div class="galeria__divider"></div>
+    </div>
+    <div class="gallery-wall">
+      <div class="gw-frame"><img src="img/53853-boda.jpg" alt="" loading="lazy"></div>
+      <div class="gw-frame"><img src="img/z.jpg" alt="" loading="lazy"></div>
+      <div class="gw-frame"><img src="img/aa.jpg" alt="" loading="lazy"></div>
+      <div class="gw-frame"><img src="img/x.jpg" alt="" loading="lazy"></div>
+      <div class="gw-frame"><img src="img/q.jpg" alt="" loading="lazy"></div>
+      <div class="gw-frame"><img src="img/s.jpg" alt="" loading="lazy"></div>
     </div>
   </section>
 
