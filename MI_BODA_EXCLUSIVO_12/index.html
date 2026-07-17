@@ -1057,6 +1057,111 @@ body{
 .admin-fab{position:fixed;bottom:22px;right:22px;z-index:9999;display:flex;align-items:center;gap:7px;padding:11px 20px;border-radius:30px;background:rgba(10,10,10,.82);color:#fff;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;box-shadow:0 4px 18px rgba(0,0,0,.45);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.18);transition:transform .25s,box-shadow .25s;font-family:sans-serif;}
 .admin-fab:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,0,0,.5);}
 .admin-fab svg{flex-shrink:0;}
+
+/* ── Stagger delays (d1/d2/d3) ───────────── */
+.rv.d1,.rv-l.d1,.rv-r.d1,.rv-s.d1{transition-delay:.08s}
+.rv.d2,.rv-l.d2,.rv-r.d2,.rv-s.d2{transition-delay:.18s}
+.rv.d3,.rv-l.d3,.rv-r.d3,.rv-s.d3{transition-delay:.30s}
+
+/* ── HISTORIA MAGAZINE FEATURE ───────────── */
+.story-feature { overflow: hidden; }
+.story-spread {
+  position: relative; height: 290px;
+  background-size: cover; background-position: center;
+  display: flex; align-items: flex-end;
+  overflow: hidden;
+}
+.story-spread + .story-spread { border-top: 1px solid rgba(196,163,90,.28); }
+.story-spread::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(160deg, rgba(12,35,64,.12) 0%, rgba(12,35,64,.88) 100%);
+}
+.story-spread__body {
+  position: relative; z-index: 1;
+  padding: 24px 28px 30px; width: 100%;
+}
+.story-spread__num {
+  font-family: 'Montserrat', sans-serif; font-size: .42rem;
+  letter-spacing: .4em; text-transform: uppercase;
+  color: var(--gold); display: block; margin-bottom: 8px;
+}
+.story-spread__title {
+  font-family: 'Playfair Display', serif; font-size: 1.55rem;
+  color: #fff; margin-bottom: 10px; line-height: 1.2;
+}
+.story-spread__text {
+  font-family: 'Cormorant Garamond', serif; font-size: .93rem;
+  font-style: italic; color: rgba(255,255,255,.82); line-height: 1.72;
+}
+
+/* ── GALLERIA COMO ───────────────────────── */
+.galleria { background: var(--navy2); padding: 64px 0; }
+.galleria__head { text-align: center; padding: 0 28px 44px; }
+.galleria__script {
+  font-family: 'Great Vibes', cursive; font-size: 2.9rem;
+  color: var(--gold); display: block; margin-bottom: 2px; line-height: 1.2;
+}
+.galleria__rule { width: 42px; height: 1px; background: var(--gold); opacity: .5; margin: 14px auto; }
+.galleria__sub {
+  font-family: 'Montserrat', sans-serif; font-size: .43rem;
+  letter-spacing: .35em; text-transform: uppercase;
+  color: rgba(255,255,255,.38);
+}
+.como-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 148px 148px 148px 148px 210px;
+  gap: 5px; padding: 0 16px;
+}
+.como-cell {
+  overflow: hidden; position: relative;
+  border: 1px solid rgba(196,163,90,.18);
+  transition: border-color .35s;
+}
+.como-cell:hover { border-color: var(--gold); z-index: 1; }
+.como-cell img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  filter: brightness(.82) saturate(.88);
+  transition: filter .5s, transform .6s;
+}
+.como-cell:hover img { filter: brightness(1.04) saturate(1.08); transform: scale(1.07); }
+.como-cell:nth-child(1) { grid-row: 1 / 3; }
+.como-cell:nth-child(5) { grid-row: 3 / 5; }
+.como-cell:nth-child(7) { grid-column: 1 / 3; }
+
+/* ── SCHEDULE ELEGANT ────────────────────── */
+.ev-list { display: flex; flex-direction: column; }
+.ev-item {
+  display: grid; grid-template-columns: 68px 16px 1fr;
+  column-gap: 14px; padding: 15px 0;
+  border-bottom: 1px solid rgba(26,82,118,.07);
+  align-items: start;
+}
+.ev-item:last-child { border-bottom: none; }
+.ev-time {
+  font-family: 'Cormorant Garamond', serif; font-size: 1rem;
+  font-style: italic; color: var(--gold); line-height: 1.3;
+  text-align: right; padding-top: 3px;
+}
+.ev-dot { display: flex; flex-direction: column; align-items: center; padding-top: 5px; }
+.ev-dot::before {
+  content: ''; width: 7px; height: 7px;
+  border: 1.5px solid var(--gold); transform: rotate(45deg); flex-shrink: 0;
+}
+.ev-dot::after {
+  content: ''; width: 1px; flex: 1; min-height: 28px;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+  opacity: .3; margin-top: 5px;
+}
+.ev-item:last-child .ev-dot::after { display: none; }
+.ev-title {
+  font-family: 'Playfair Display', serif; font-size: 1rem;
+  font-weight: 500; color: var(--navy2); margin-bottom: 3px;
+}
+.ev-desc {
+  font-family: 'Cormorant Garamond', serif; font-size: .88rem;
+  font-style: italic; color: var(--muted); line-height: 1.6;
+}
 </style>
 </head>
 <body>
@@ -1164,39 +1269,49 @@ body{
 <section class="historia">
   <div class="historia__header">
     <span class="historia__eyebrow rv">Our Story</span>
-    <h2 class="historia__title rv d1">The road to "I do"</h2>
-    <p class="historia__subtitle rv d2">Three chapters of an eternal love</p>
+    <h2 class="historia__title rv" style="transition-delay:.07s">The road to "I do"</h2>
+    <p class="historia__subtitle rv" style="transition-delay:.14s">Three chapters of an eternal love</p>
   </div>
-  <div class="historia__timeline">
-    <div class="historia__chapter rv d1">
-      <div class="historia__marker"></div>
-      <span class="historia__chapter-num">Chapter I</span>
-      <div class="historia__photo-wrap">
-        <img class="historia__photo" src="img/aa.jpg" alt="The first meeting" loading="lazy"/>
+  <div class="story-feature rv" style="transition-delay:.2s">
+    <div class="story-spread" style="background-image:url('img/aa.jpg')">
+      <div class="story-spread__body">
+        <span class="story-spread__num">Chapter I</span>
+        <h3 class="story-spread__title">The First Meeting</h3>
+        <p class="story-spread__text">It all began on a special evening when our eyes first met. Something magical drew us together, as if destiny had been writing our story all along.</p>
       </div>
-      <h3 class="historia__chapter-title">The First Meeting</h3>
-      <p class="historia__chapter-text">It all began on a special evening when our eyes first met. Something magical and inexplicable drew us together from that very instant, as if destiny had been writing our story all along.</p>
     </div>
-    <div class="historia__divider rv"></div>
-    <div class="historia__chapter rv d2">
-      <div class="historia__marker"></div>
-      <span class="historia__chapter-num">Chapter II</span>
-      <div class="historia__photo-wrap">
-        <img class="historia__photo" src="img/mujer-abraza-al-hombre-sostiene-ramo-peonias-blancas-al-aire-libre-vista-frontal-detalles_8353-10966.avif" alt="Our love story" loading="lazy"/>
+    <div class="story-spread" style="background-image:url('img/mujer-abraza-al-hombre-sostiene-ramo-peonias-blancas-al-aire-libre-vista-frontal-detalles_8353-10966.avif')">
+      <div class="story-spread__body">
+        <span class="story-spread__num">Chapter II</span>
+        <h3 class="story-spread__title">Growing Together</h3>
+        <p class="story-spread__text">Every shared adventure wove the bonds of a love that grew stronger with time. We learned that true love means choosing each other every single day.</p>
       </div>
-      <h3 class="historia__chapter-title">Growing Together</h3>
-      <p class="historia__chapter-text">Every shared adventure, every laugh and every moment of support wove the bonds of a love that grew stronger with time. We learned that true love means choosing each other every single day.</p>
     </div>
-    <div class="historia__divider rv"></div>
-    <div class="historia__chapter rv d3">
-      <div class="historia__marker"></div>
-      <span class="historia__chapter-num">Chapter III</span>
-      <div class="historia__photo-wrap">
-        <img class="historia__photo" src="img/novio-que-pone-anillo-dedo-novia_1157-338.avif" alt="The proposal" loading="lazy"/>
+    <div class="story-spread" style="background-image:url('img/novio-que-pone-anillo-dedo-novia_1157-338.avif')">
+      <div class="story-spread__body">
+        <span class="story-spread__num">Chapter III</span>
+        <h3 class="story-spread__title">The Big Yes</h3>
+        <p class="story-spread__text">With heart in hand and the stars as witnesses, the most awaited moment finally arrived — a promise of eternal love, together forever.</p>
       </div>
-      <h3 class="historia__chapter-title">The Big Yes</h3>
-      <p class="historia__chapter-text">With heart in hand and the stars as witnesses, the most awaited moment finally arrived. A promise made with eternal love: to share every chapter of life, together forever.</p>
     </div>
+  </div>
+</section>
+
+<!-- ═══════════ GALLERIA ═══════════ -->
+<section class="galleria rv">
+  <div class="galleria__head">
+    <span class="galleria__script">Our Gallery</span>
+    <div class="galleria__rule"></div>
+    <span class="galleria__sub">Moments we treasure</span>
+  </div>
+  <div class="como-grid">
+    <div class="como-cell"><img src="img/53853-boda.jpg" alt="" loading="lazy"></div>
+    <div class="como-cell"><img src="img/z.jpg" alt="" loading="lazy"></div>
+    <div class="como-cell"><img src="img/aa.jpg" alt="" loading="lazy"></div>
+    <div class="como-cell"><img src="img/q.jpg" alt="" loading="lazy"></div>
+    <div class="como-cell"><img src="img/s.jpg" alt="" loading="lazy"></div>
+    <div class="como-cell"><img src="img/x.jpg" alt="" loading="lazy"></div>
+    <div class="como-cell"><img src="img/mujer-abraza-al-hombre-sostiene-ramo-peonias-blancas-al-aire-libre-vista-frontal-detalles_8353-10966.avif" alt="" loading="lazy"></div>
   </div>
 </section>
 
@@ -1210,42 +1325,54 @@ body{
   <h2 class="sec__heading rv" style="margin-top:20px">Schedule</h2>
   <p class="sec__sub rv" style="transition-delay:.08s;margin-bottom:32px">Saturday · September 12, 2026</p>
 
-  <div class="timeline rv" style="transition-delay:.15s">
-    <div class="tl-item">
-      <div class="tl-item__icon tl-item__icon--olive">⚓</div>
-      <span class="tl-item__time">2:30 PM</span>
-      <p class="tl-item__title">Boat Departure</p>
-      <p class="tl-item__desc">Private boat from Lenno pier — meet at the dock</p>
+  <div class="ev-list rv" style="transition-delay:.15s">
+    <div class="ev-item">
+      <span class="ev-time">2:30 PM</span>
+      <div class="ev-dot"></div>
+      <div>
+        <p class="ev-title">Boat Departure</p>
+        <p class="ev-desc">Private boat from Lenno pier — meet at the dock</p>
+      </div>
     </div>
-    <div class="tl-item">
-      <div class="tl-item__icon tl-item__icon--gold">💐</div>
-      <span class="tl-item__time">3:30 PM</span>
-      <p class="tl-item__title">Arrival &amp; Welcome</p>
-      <p class="tl-item__desc">Arrive at Villa del Balbianello · Prosecco &amp; canapés in the garden</p>
+    <div class="ev-item">
+      <span class="ev-time">3:30 PM</span>
+      <div class="ev-dot"></div>
+      <div>
+        <p class="ev-title">Arrival &amp; Welcome</p>
+        <p class="ev-desc">Arrive at Villa del Balbianello · Prosecco &amp; canapés in the garden</p>
+      </div>
     </div>
-    <div class="tl-item">
-      <div class="tl-item__icon tl-item__icon--olive">💍</div>
-      <span class="tl-item__time">4:30 PM</span>
-      <p class="tl-item__title">Ceremony</p>
-      <p class="tl-item__desc">Civil ceremony with lake views — please be seated by 4:15</p>
+    <div class="ev-item">
+      <span class="ev-time">4:30 PM</span>
+      <div class="ev-dot"></div>
+      <div>
+        <p class="ev-title">Ceremony</p>
+        <p class="ev-desc">Civil ceremony with lake views — please be seated by 4:15</p>
+      </div>
     </div>
-    <div class="tl-item">
-      <div class="tl-item__icon tl-item__icon--gold">🥂</div>
-      <span class="tl-item__time">5:15 PM</span>
-      <p class="tl-item__title">Cocktail Hour</p>
-      <p class="tl-item__desc">Terrace aperitivo · photos with the couple</p>
+    <div class="ev-item">
+      <span class="ev-time">5:15 PM</span>
+      <div class="ev-dot"></div>
+      <div>
+        <p class="ev-title">Cocktail Hour</p>
+        <p class="ev-desc">Terrace aperitivo · photos with the couple</p>
+      </div>
     </div>
-    <div class="tl-item">
-      <div class="tl-item__icon tl-item__icon--olive">🍽️</div>
-      <span class="tl-item__time">7:00 PM</span>
-      <p class="tl-item__title">Dinner</p>
-      <p class="tl-item__desc">Five-course lakeside dinner with live music</p>
+    <div class="ev-item">
+      <span class="ev-time">7:00 PM</span>
+      <div class="ev-dot"></div>
+      <div>
+        <p class="ev-title">Dinner</p>
+        <p class="ev-desc">Five-course lakeside dinner with live music</p>
+      </div>
     </div>
-    <div class="tl-item">
-      <div class="tl-item__icon tl-item__icon--gold">🎶</div>
-      <span class="tl-item__time">9:30 PM</span>
-      <p class="tl-item__title">First Dance &amp; Party</p>
-      <p class="tl-item__desc">Dancing until the boats take us home under the stars</p>
+    <div class="ev-item">
+      <span class="ev-time">9:30 PM</span>
+      <div class="ev-dot"></div>
+      <div>
+        <p class="ev-title">First Dance &amp; Party</p>
+        <p class="ev-desc">Dancing until the boats take us home under the stars</p>
+      </div>
     </div>
   </div>
 </section>
