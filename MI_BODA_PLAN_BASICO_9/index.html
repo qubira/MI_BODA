@@ -288,8 +288,17 @@ body {
 }
 .venue__pol {
   position: absolute;
-  width: 140px;
-  filter: drop-shadow(0 6px 16px rgba(0,0,0,.14));
+  width: 136px;
+  background: #fff;
+  padding: 6px 6px 24px;
+  box-sizing: border-box;
+  box-shadow: 0 8px 22px rgba(0,0,0,.18);
+}
+.venue__pol img {
+  width: 100%;
+  height: 106px;
+  object-fit: cover;
+  display: block;
 }
 .venue__pol:nth-child(1) {
   left: 50%;
@@ -834,8 +843,12 @@ body {
   <section class="venue rv d1">
     <!-- Fanned polaroid cards -->
     <div class="venue__polaroids">
-      <img class="venue__pol" src="Natalia y Gabriel_files/1c519e1a8da0a2175d0c4ffaec7d2f2c.png" alt="" />
-      <img class="venue__pol" src="Natalia y Gabriel_files/307066d615cffa49115b0e9f67e71f4d.png" alt="" />
+      <div class="venue__pol">
+        <img src="Natalia y Gabriel_files/2d52901e39dcf833d0b8027821c6db17.jpg" alt="" />
+      </div>
+      <div class="venue__pol">
+        <img src="Natalia y Gabriel_files/ebb185bfb0b2ec5fb952b7c81e48d1c7.jpg" alt="" />
+      </div>
     </div>
 
     <div class="venue__card">
