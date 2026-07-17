@@ -153,7 +153,7 @@ const projects = [
 projects.forEach(({ slug, dir, admin }) => {
   const root = path.join(__dirname, dir);
 
-  app.use(`/${slug}`, express.static(root));
+  app.use(`/${slug}`, express.static(root, { index: false }));
 
   const indexFile = path.join(root, 'index.html');
   app.get(`/${slug}`,  (req, res) => serveWithTracker(res, indexFile, slug));
