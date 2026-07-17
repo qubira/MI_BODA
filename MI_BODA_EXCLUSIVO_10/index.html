@@ -1058,6 +1058,86 @@ body {
 .admin-fab{position:fixed;bottom:22px;right:22px;z-index:9999;display:flex;align-items:center;gap:7px;padding:11px 20px;border-radius:30px;background:rgba(10,10,10,.82);color:#fff;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;box-shadow:0 4px 18px rgba(0,0,0,.45);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.18);transition:transform .25s,box-shadow .25s;font-family:sans-serif;}
 .admin-fab:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,0,0,.5);}
 .admin-fab svg{flex-shrink:0;}
+
+/* ─── HISTORIA EDITORIAL ─────────────────── */
+.historia { background: var(--cream); padding: 52px 0; }
+.historia__header { text-align: center; padding: 0 28px 36px; }
+.historia__eyebrow { font-family: var(--ff-sans); font-size: .44rem; letter-spacing: .3em; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 10px; }
+.historia__title { font-family: var(--ff-disp); font-size: 2.2rem; color: var(--ink); letter-spacing: .05em; margin-bottom: 6px; }
+.historia__subtitle { font-family: var(--ff-serif); font-size: .9rem; font-style: italic; color: var(--gray); }
+.historia__chapters { border-top: 1px solid rgba(200,169,106,.22); }
+.chapter-row {
+  display: flex; align-items: center; gap: 20px;
+  padding: 28px; border-bottom: 1px solid rgba(200,169,106,.22);
+}
+.chapter-row--rev { flex-direction: row-reverse; }
+.chapter-photo {
+  flex: 0 0 118px; width: 118px; height: 118px;
+  border: 1px solid var(--gold); overflow: hidden; flex-shrink: 0;
+}
+.chapter-photo img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .6s ease; }
+.chapter-row:hover .chapter-photo img { transform: scale(1.08); }
+.chapter-body { flex: 1; }
+.chapter-num { font-family: var(--ff-sans); font-size: .4rem; letter-spacing: .28em; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 6px; }
+.chapter-title { font-family: var(--ff-disp); font-size: 1.1rem; letter-spacing: .04em; color: var(--ink); margin-bottom: 8px; line-height: 1.2; }
+.chapter-text { font-family: var(--ff-serif); font-size: .82rem; font-style: italic; color: var(--gray); line-height: 1.72; }
+
+/* ─── GALERÍA EDITORIAL ──────────────────── */
+.galeria { padding: 52px 0 56px; background: var(--cream); }
+.galeria__head { text-align: center; padding: 0 28px 40px; }
+.galeria__script { font-family: var(--ff-script); font-size: 2.6rem; color: var(--gold); display: block; margin-bottom: 4px; line-height: 1.2; }
+.galeria__sub { font-family: var(--ff-sans); font-size: .43rem; letter-spacing: .3em; text-transform: uppercase; color: var(--gray); }
+.gal-film {
+  background: var(--ink2); overflow: hidden;
+  border-top: 2px solid var(--gold); border-bottom: 2px solid var(--gold);
+  padding: 6px 0; display: flex; flex-direction: column; gap: 6px;
+}
+.gal-ribbon { overflow: hidden; width: 100%; }
+.gal-track { display: flex; gap: 5px; width: max-content; padding: 3px 0; }
+.gal-ribbon--fwd .gal-track { animation: galFwd 32s linear infinite; }
+.gal-ribbon--rev .gal-track { animation: galRev 38s linear infinite; }
+.gal-film:hover .gal-track { animation-play-state: paused; }
+@keyframes galFwd { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes galRev { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+.gal-frame {
+  flex: 0 0 auto; width: 192px; height: 148px;
+  overflow: hidden; border: 1px solid rgba(200,169,106,.2);
+  transition: border-color .3s;
+}
+.gal-frame:hover { border-color: var(--gold); }
+.gal-frame img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  filter: brightness(.84) saturate(.88);
+  transition: filter .4s, transform .5s;
+}
+.gal-frame:hover img { filter: brightness(1.04) saturate(1.1); transform: scale(1.08); }
+
+/* ─── DRESSCODE PANEL INSPIRACIÓN ────────── */
+.dresscode__inspo-wrap {
+  overflow: hidden; max-height: 0; opacity: 0;
+  transition: max-height .5s cubic-bezier(.4,0,.2,1), opacity .4s ease;
+}
+.dresscode__inspo-wrap.open { max-height: 640px; opacity: 1; }
+.dresscode__inspo { margin-top: 16px; border-top: 1px solid var(--gold); padding-top: 20px; }
+.inspo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.inspo-col { text-align: center; }
+.inspo-col__icon { font-size: 1.8rem; display: block; margin-bottom: 6px; }
+.inspo-col__title { font-family: var(--ff-disp); font-size: 1.05rem; letter-spacing: .06em; color: var(--ink); margin-bottom: 10px; }
+.inspo-col__list { list-style: none; padding: 0; margin: 0; text-align: left; }
+.inspo-col__list li {
+  font-family: var(--ff-serif); font-size: .78rem; font-style: italic;
+  color: var(--gray); padding: 4px 0;
+  border-bottom: 1px solid rgba(200,169,106,.15);
+}
+.inspo-col__list li:last-child { border-bottom: none; }
+.inspo-col__list li::before { content: '·'; color: var(--gold); margin-right: 5px; font-style: normal; }
+.dresscode__btn--toggle {
+  background: none; border: 1px solid var(--ink); cursor: pointer;
+  font-family: var(--ff-sans); font-size: .6rem; letter-spacing: .18em;
+  text-transform: uppercase; color: var(--ink); padding: 9px 20px;
+  transition: background .3s, color .3s; display: inline-block; margin-top: 14px;
+}
+.dresscode__btn--toggle:hover { background: var(--ink); color: #fff; }
 </style>
 </head>
 <body>
@@ -1158,7 +1238,35 @@ body {
           Caballeros con traje,<br/>
           damas con vestido largo
         </p>
-        <a class="dresscode__btn" href="#" target="_blank">Inspiración</a>
+        <button class="dresscode__btn dresscode__btn--toggle" onclick="toggleInspo(this)">Inspiración</button>
+        <div class="dresscode__inspo-wrap" id="dresscodeInspo">
+          <div class="dresscode__inspo">
+            <div class="inspo-grid">
+              <div class="inspo-col">
+                <span class="inspo-col__icon">👔</span>
+                <h4 class="inspo-col__title">Caballeros</h4>
+                <ul class="inspo-col__list">
+                  <li>Traje oscuro o smoking</li>
+                  <li>Camisa blanca o marfil</li>
+                  <li>Corbata o moño</li>
+                  <li>Zapatos de vestir</li>
+                  <li>Evitar: color blanco</li>
+                </ul>
+              </div>
+              <div class="inspo-col">
+                <span class="inspo-col__icon">👗</span>
+                <h4 class="inspo-col__title">Damas</h4>
+                <ul class="inspo-col__list">
+                  <li>Vestido largo o midi</li>
+                  <li>Tonos crema, olivo o taupe</li>
+                  <li>Conjunto elegante</li>
+                  <li>Tacones o sandalias</li>
+                  <li>Evitar: color blanco</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -1170,35 +1278,77 @@ body {
       <h2 class="historia__title rv d1">El camino al "Sí"</h2>
       <p class="historia__subtitle rv d2">Tres capítulos de un amor eterno</p>
     </div>
-    <div class="historia__timeline">
-      <div class="historia__chapter rv d1">
-        <div class="historia__marker"></div>
-        <span class="historia__chapter-num">Capítulo I</span>
-        <div class="historia__photo-wrap">
-          <img class="historia__photo" src="img/aa.jpg" alt="El primer encuentro" loading="lazy"/>
+    <div class="historia__chapters">
+      <!-- Capítulo I: foto izquierda -->
+      <div class="chapter-row rv d1">
+        <div class="chapter-photo">
+          <img src="img/aa.jpg" alt="El primer encuentro" loading="lazy"/>
         </div>
-        <h3 class="historia__chapter-title">El Primer Encuentro</h3>
-        <p class="historia__chapter-text">Todo comenzó una tarde especial cuando nuestras miradas se cruzaron por primera vez. Algo mágico nos unió desde ese instante, como si el destino llevara tiempo escribiendo nuestra historia.</p>
+        <div class="chapter-body">
+          <span class="chapter-num">Capítulo I</span>
+          <h3 class="chapter-title">El Primer Encuentro</h3>
+          <p class="chapter-text">Todo comenzó una tarde especial cuando nuestras miradas se cruzaron por primera vez. Algo mágico nos unió desde ese instante.</p>
+        </div>
       </div>
-      <div class="historia__divider rv"></div>
-      <div class="historia__chapter rv d2">
-        <div class="historia__marker"></div>
-        <span class="historia__chapter-num">Capítulo II</span>
-        <div class="historia__photo-wrap">
-          <img class="historia__photo" src="img/mujer-abraza-al-hombre-sostiene-ramo-peonias-blancas-al-aire-libre-vista-frontal-detalles_8353-10966.avif" alt="Nuestro amor" loading="lazy"/>
+      <!-- Capítulo II: foto derecha -->
+      <div class="chapter-row chapter-row--rev rv d2">
+        <div class="chapter-photo">
+          <img src="img/mujer-abraza-al-hombre-sostiene-ramo-peonias-blancas-al-aire-libre-vista-frontal-detalles_8353-10966.avif" alt="Nuestro amor" loading="lazy"/>
         </div>
-        <h3 class="historia__chapter-title">Crecer Juntos</h3>
-        <p class="historia__chapter-text">Cada aventura compartida, cada risa y cada momento de apoyo fue tejiendo los lazos de un amor que se fortaleció con el tiempo. Aprendimos que el verdadero amor es elegirse cada día.</p>
+        <div class="chapter-body">
+          <span class="chapter-num">Capítulo II</span>
+          <h3 class="chapter-title">Crecer Juntos</h3>
+          <p class="chapter-text">Cada aventura compartida fue tejiendo los lazos de un amor que se fortaleció con el tiempo. Aprendimos que el verdadero amor es elegirse cada día.</p>
+        </div>
       </div>
-      <div class="historia__divider rv"></div>
-      <div class="historia__chapter rv d3">
-        <div class="historia__marker"></div>
-        <span class="historia__chapter-num">Capítulo III</span>
-        <div class="historia__photo-wrap">
-          <img class="historia__photo" src="img/novio-que-pone-anillo-dedo-novia_1157-338.avif" alt="El compromiso" loading="lazy"/>
+      <!-- Capítulo III: foto izquierda -->
+      <div class="chapter-row rv d3">
+        <div class="chapter-photo">
+          <img src="img/novio-que-pone-anillo-dedo-novia_1157-338.avif" alt="El compromiso" loading="lazy"/>
         </div>
-        <h3 class="historia__chapter-title">El Gran Sí</h3>
-        <p class="historia__chapter-text">Con el corazón en la mano y las estrellas de testigos, llegó el momento más esperado. Una promesa hecha con amor eterno: compartir la vida entera, juntos para siempre.</p>
+        <div class="chapter-body">
+          <span class="chapter-num">Capítulo III</span>
+          <h3 class="chapter-title">El Gran Sí</h3>
+          <p class="chapter-text">Con el corazón en la mano, llegó el momento más esperado. Una promesa de amor eterno: compartir la vida entera, juntos para siempre.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── GALERÍA EDITORIAL ─────────────────── -->
+  <section class="galeria rv d1">
+    <div class="galeria__head">
+      <span class="galeria__script">Nuestra Galería</span>
+      <span class="galeria__sub">Momentos que atesoramos</span>
+    </div>
+    <div class="gal-film">
+      <!-- Cinta 1: avanza -->
+      <div class="gal-ribbon gal-ribbon--fwd">
+        <div class="gal-track">
+          <div class="gal-frame"><img src="img/53853-boda.jpg" alt="" loading="lazy"></div>
+          <div class="gal-frame"><img src="img/z.jpg" alt="" loading="lazy"></div>
+          <div class="gal-frame"><img src="img/mujer-abraza-al-hombre-sostiene-ramo-peonias-blancas-al-aire-libre-vista-frontal-detalles_8353-10966.avif" alt="" loading="lazy"></div>
+          <div class="gal-frame"><img src="img/novio-que-pone-anillo-dedo-novia_1157-338.avif" alt="" loading="lazy"></div>
+          <!-- duplicados -->
+          <div class="gal-frame"><img src="img/53853-boda.jpg" alt="" loading="lazy"></div>
+          <div class="gal-frame"><img src="img/z.jpg" alt="" loading="lazy"></div>
+          <div class="gal-frame"><img src="img/mujer-abraza-al-hombre-sostiene-ramo-peonias-blancas-al-aire-libre-vista-frontal-detalles_8353-10966.avif" alt="" loading="lazy"></div>
+          <div class="gal-frame"><img src="img/novio-que-pone-anillo-dedo-novia_1157-338.avif" alt="" loading="lazy"></div>
+        </div>
+      </div>
+      <!-- Cinta 2: retrocede -->
+      <div class="gal-ribbon gal-ribbon--rev">
+        <div class="gal-track">
+          <div class="gal-frame"><img src="img/aa.jpg" alt="" loading="lazy"></div>
+          <div class="gal-frame"><img src="img/q.jpg" alt="" loading="lazy"></div>
+          <div class="gal-frame"><img src="img/s.jpg" alt="" loading="lazy"></div>
+          <div class="gal-frame"><img src="img/x.jpg" alt="" loading="lazy"></div>
+          <!-- duplicados -->
+          <div class="gal-frame"><img src="img/aa.jpg" alt="" loading="lazy"></div>
+          <div class="gal-frame"><img src="img/q.jpg" alt="" loading="lazy"></div>
+          <div class="gal-frame"><img src="img/s.jpg" alt="" loading="lazy"></div>
+          <div class="gal-frame"><img src="img/x.jpg" alt="" loading="lazy"></div>
+        </div>
       </div>
     </div>
   </section>
@@ -1217,7 +1367,7 @@ body {
           <h3 style="font-family:'Cormorant SC',serif;font-size:1.15rem;font-weight:400;color:var(--ink,#1a1a18);margin-bottom:6px;">Parroquia Santa María</h3>
           <p style="font-size:.82rem;color:#666;margin-bottom:4px;">Av. Principal 123, Lima</p>
           <p style="font-size:.82rem;color:#666;margin-bottom:14px;">5:00 PM</p>
-          <a href="https://maps.google.com/?q=Casa+Hacienda+Mamacona,+Lurin,+Lima" target="_blank" rel="noopener" style="display:inline-block;padding:8px 18px;border:1px solid var(--gold,#C8A96A);border-radius:30px;color:var(--gold,#C8A96A);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;">Ubicación</a>
+          <a href="https://maps.google.com/?q=Parroquia+Santa+Maria,+Lima,+Peru" target="_blank" rel="noopener" style="display:inline-block;padding:8px 18px;border:1px solid var(--gold,#C8A96A);border-radius:30px;color:var(--gold,#C8A96A);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;">Ubicación</a>
         </div>
       </div>
       <!-- Recepción -->
@@ -1474,6 +1624,13 @@ body {
 
 </div>
 <script>
+/* ── Inspiración dresscode panel ── */
+function toggleInspo(btn) {
+  const wrap = document.getElementById('dresscodeInspo');
+  const open = wrap.classList.toggle('open');
+  btn.textContent = open ? 'Cerrar' : 'Inspiración';
+}
+
 /* ── Scroll reveal ── */
 const rvEls = document.querySelectorAll('.rv,.rv-l,.rv-r,.rv-s');
 const io = new IntersectionObserver(entries => {
