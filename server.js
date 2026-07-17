@@ -1,42 +1,88 @@
 const express = require('express');
 const path    = require('path');
 const fs      = require('fs');
+const { Pool } = require('pg');
 
 const app      = express();
 const PORT     = process.env.PORT || 3000;
 const ADMIN_KEY = process.env.ADMIN_KEY || 'miboda2026admin';
 
+const DB_URL = process.env.DATABASE_URL ||
+  'postgresql://neondb_owner:npg_qmSGeP3VIY8p@ep-polished-meadow-awq79ayn-pooler.c-12.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require';
+
+const pool = new Pool({ connectionString: DB_URL });
+
 app.use(express.json());
 
-/* ── Visits store (in-memory) ─────────────────────────────────── */
-const visits = [];
-let visitCounter = 0;
+/* ── Visits API ───────────────────────────────────────────────── */
+app.post('/api/track', async (req, res) => {
+  try {
+    const b = req.body || {};
+    const forwarded = req.headers['x-forwarded-for'];
+    const ip_real = forwarded ? forwarded.split(',')[0].trim() : req.socket.remoteAddress;
 
-/* ── Tracker API ──────────────────────────────────────────────── */
-app.post('/api/track', (req, res) => {
-  const body = req.body || {};
-  // Capture real IP (behind Render.com proxy)
-  const forwarded = req.headers['x-forwarded-for'];
-  const ip_real = forwarded ? forwarded.split(',')[0].trim() : req.socket.remoteAddress;
-  visits.push({
-    id: ++visitCounter,
-    ip_real,
-    ...body,
-    _ts: Date.now(),
-  });
-  res.json({ ok: true });
+    await pool.query(
+      `INSERT INTO visitas
+        (ip_real, plan, fecha, ua_raw, dispositivo, os, navegador, gpu,
+         idioma, pantalla, zona, referrer, conexion, velocidad,
+         ip, pais, pais_cod, ciudad, region, isp,
+         lat_ip, lon_ip, lat_gps, lon_gps, precision_gps)
+       VALUES
+        ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,
+         $15,$16,$17,$18,$19,$20,$21,$22,$23,$24,$25)`,
+      [
+        ip_real,
+        b.plan        || null,
+        b.fecha       ? new Date(b.fecha) : new Date(),
+        b.ua_raw      || null,
+        b.dispositivo || null,
+        b.os          || null,
+        b.navegador   || null,
+        b.gpu         || null,
+        b.idioma      || null,
+        b.pantalla    || null,
+        b.zona        || null,
+        b.referrer    || null,
+        b.conexion    || null,
+        b.velocidad   || null,
+        b.ip          || null,
+        b.pais        || null,
+        b.pais_cod    || null,
+        b.ciudad      || null,
+        b.region      || null,
+        b.isp         || null,
+        b.lat_ip      != null ? +b.lat_ip  : null,
+        b.lon_ip      != null ? +b.lon_ip  : null,
+        b.lat_gps     != null ? +b.lat_gps : null,
+        b.lon_gps     != null ? +b.lon_gps : null,
+        b.precision_gps != null ? +b.precision_gps : null,
+      ]
+    );
+    res.json({ ok: true });
+  } catch (e) {
+    console.error('track error:', e.message);
+    res.status(500).json({ error: 'db error' });
+  }
 });
 
-app.get('/api/visits', (req, res) => {
+app.get('/api/visits', async (req, res) => {
   if (req.query.key !== ADMIN_KEY) return res.status(403).json({ error: 'forbidden' });
-  res.json(visits);
+  try {
+    const { rows } = await pool.query('SELECT * FROM visitas ORDER BY id DESC');
+    res.json(rows);
+  } catch (e) {
+    res.status(500).json({ error: 'db error' });
+  }
 });
 
-app.delete('/api/visits', (req, res) => {
+app.delete('/api/visits', async (req, res) => {
   if (req.query.key !== ADMIN_KEY) return res.status(403).json({ error: 'forbidden' });
-  visits.length = 0;
-  visitCounter = 0;
-  res.json({ ok: true });
+  try {
+    await pool.query('TRUNCATE TABLE visitas RESTART IDENTITY');
+    res.json({ ok: true });
+  } catch (e) {
+    res.status(500).json({ error: 'db error' });
+  }
 });
 
 /* ── Control panel & tracker script ──────────────────────────── */
@@ -107,15 +153,12 @@ const projects = [
 projects.forEach(({ slug, dir, admin }) => {
   const root = path.join(__dirname, dir);
 
-  /* Static assets (CSS, JS, images) under /<slug>/ */
   app.use(`/${slug}`, express.static(root));
 
-  /* index.html — inject tracker */
   const indexFile = path.join(root, 'index.html');
   app.get(`/${slug}`,  (req, res) => serveWithTracker(res, indexFile, slug));
   app.get(`/${slug}/`, (req, res) => serveWithTracker(res, indexFile, slug));
 
-  /* admin.html — no tracker needed on admin */
   if (admin) {
     app.get(`/${slug}/admin`,      (req, res) => res.sendFile(path.join(root, 'admin.html')));
     app.get(`/${slug}/admin.html`, (req, res) => res.sendFile(path.join(root, 'admin.html')));
