@@ -1481,6 +1481,39 @@
 .mural-item:nth-child(1) { grid-row: 1 / 3; }
 .mural-item:nth-child(5) { grid-row: 3 / 5; }
 .mural-item:nth-child(7) { grid-column: 1 / 3; }
+
+/* ─── HISTORIA STACKED CARDS ────────────── */
+.historia { will-change: filter, opacity, transform; }
+.hist-cards { display: flex; flex-direction: column; }
+.hist-card {
+  overflow: hidden; position: relative; background: #fff;
+  border-top: 1px solid rgba(196,160,118,.16);
+  transition: transform .4s ease, box-shadow .4s;
+}
+.hist-card:last-child { border-bottom: 1px solid rgba(196,160,118,.16); }
+.hist-card:hover { transform: translateY(-3px); box-shadow: 0 14px 44px rgba(42,32,16,.09); z-index: 1; }
+.hist-photo { width: 100%; height: 230px; overflow: hidden; position: relative; }
+.hist-photo img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .85s ease; }
+.hist-card:hover .hist-photo img { transform: scale(1.07); }
+.hist-photo::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 90px;
+  background: linear-gradient(to bottom, transparent, #fff);
+  pointer-events: none;
+}
+.hist-body { padding: 12px 28px 30px; }
+.hist-num {
+  font-family: 'Montserrat', sans-serif; font-size: 8px;
+  letter-spacing: .42em; text-transform: uppercase;
+  color: var(--gold); display: block; margin-bottom: 8px;
+}
+.hist-chapTitle {
+  font-family: 'Cormorant Garamond', serif; font-size: 1.55rem;
+  font-weight: 600; color: var(--ink); margin-bottom: 10px;
+}
+.hist-text {
+  font-family: 'Cormorant Garamond', serif; font-size: .93rem;
+  font-style: italic; color: var(--taupe); line-height: 1.78;
+}
     </style>
   </head>
   <body>
@@ -1560,38 +1593,39 @@
       <section class="historia">
         <div class="historia__header">
           <span class="historia__eyebrow rv-s">Nuestra Historia</span>
-          <h2 class="historia__title rv-s d1">El camino al "Sí"</h2>
-          <p class="historia__subtitle rv-s d2">Tres capítulos de un amor eterno</p>
+          <h2 class="historia__title rv-s" style="transition-delay:.07s">El camino al "Sí"</h2>
+          <p class="historia__subtitle rv-s" style="transition-delay:.14s">Tres capítulos de un amor eterno</p>
         </div>
-        <div class="historia__timeline">
-          <div class="historia__chapter rv-s d1">
-            <div class="historia__marker"></div>
-            <span class="historia__chapter-num">Capítulo I</span>
-            <div class="historia__photo-wrap">
-              <img class="historia__photo" src="img/aa.jpg" alt="El primer encuentro" loading="lazy"/>
+        <div class="hist-cards">
+          <div class="hist-card rv">
+            <div class="hist-photo">
+              <img src="img/aa.jpg" alt="El primer encuentro" loading="lazy"/>
             </div>
-            <h3 class="historia__chapter-title">El Primer Encuentro</h3>
-            <p class="historia__chapter-text">Todo comenzó una tarde especial cuando nuestras miradas se cruzaron por primera vez. Algo mágico nos unió desde ese instante, como si el destino llevara tiempo escribiendo nuestra historia.</p>
+            <div class="hist-body">
+              <span class="hist-num">Capítulo I</span>
+              <h3 class="hist-chapTitle">El Primer Encuentro</h3>
+              <p class="hist-text">Todo comenzó una tarde especial cuando nuestras miradas se cruzaron por primera vez. Algo mágico nos unió desde ese instante, como si el destino llevara tiempo escribiendo nuestra historia.</p>
+            </div>
           </div>
-          <div class="historia__divider rv-s"></div>
-          <div class="historia__chapter rv-s d2">
-            <div class="historia__marker"></div>
-            <span class="historia__chapter-num">Capítulo II</span>
-            <div class="historia__photo-wrap">
-              <img class="historia__photo" src="img/mujer-abraza-al-hombre-sostiene-ramo-peonias-blancas-al-aire-libre-vista-frontal-detalles_8353-10966.avif" alt="Nuestro amor" loading="lazy"/>
+          <div class="hist-card rv" style="transition-delay:.12s">
+            <div class="hist-photo">
+              <img src="img/mujer-abraza-al-hombre-sostiene-ramo-peonias-blancas-al-aire-libre-vista-frontal-detalles_8353-10966.avif" alt="Nuestro amor" loading="lazy"/>
             </div>
-            <h3 class="historia__chapter-title">Crecer Juntos</h3>
-            <p class="historia__chapter-text">Cada aventura compartida, cada risa y cada momento de apoyo fue tejiendo los lazos de un amor que se fortaleció con el tiempo. Aprendimos que el verdadero amor es elegirse cada día.</p>
+            <div class="hist-body">
+              <span class="hist-num">Capítulo II</span>
+              <h3 class="hist-chapTitle">Crecer Juntos</h3>
+              <p class="hist-text">Cada aventura compartida, cada risa y cada momento de apoyo fue tejiendo los lazos de un amor que se fortaleció con el tiempo. Aprendimos que el verdadero amor es elegirse cada día.</p>
+            </div>
           </div>
-          <div class="historia__divider rv-s"></div>
-          <div class="historia__chapter rv-s d3">
-            <div class="historia__marker"></div>
-            <span class="historia__chapter-num">Capítulo III</span>
-            <div class="historia__photo-wrap">
-              <img class="historia__photo" src="img/novio-que-pone-anillo-dedo-novia_1157-338.avif" alt="El compromiso" loading="lazy"/>
+          <div class="hist-card rv" style="transition-delay:.24s">
+            <div class="hist-photo">
+              <img src="img/novio-que-pone-anillo-dedo-novia_1157-338.avif" alt="El compromiso" loading="lazy"/>
             </div>
-            <h3 class="historia__chapter-title">El Gran Sí</h3>
-            <p class="historia__chapter-text">Con el corazón en la mano y las estrellas de testigos, llegó el momento más esperado. Una promesa hecha con amor eterno: compartir la vida entera, juntos para siempre.</p>
+            <div class="hist-body">
+              <span class="hist-num">Capítulo III</span>
+              <h3 class="hist-chapTitle">El Gran Sí</h3>
+              <p class="hist-text">Con el corazón en la mano y las estrellas de testigos, llegó el momento más esperado. Una promesa hecha con amor eterno: compartir la vida entera, juntos para siempre.</p>
+            </div>
           </div>
         </div>
       </section>
@@ -1959,7 +1993,27 @@
     </div>
     <script>
       /* ── Scroll Reveal ── */
-      /* ── Sugerencia de canción ── */
+      /* ── Historia scroll-blur al desplazarse ── */
+(function () {
+  var hist = document.querySelector('.historia');
+  if (!hist) return;
+  function applyBlur() {
+    var rect = hist.getBoundingClientRect();
+    var vh = window.innerHeight;
+    /* Empieza a difuminarse cuando el top del section sube por encima del viewport */
+    var progress = Math.max(0, Math.min(1, -rect.top / (vh * 0.55)));
+    var blur = (progress * 10).toFixed(1);
+    var opacity = (1 - progress * 0.5).toFixed(3);
+    var scale = (1 - progress * 0.025).toFixed(4);
+    hist.style.filter = 'blur(' + blur + 'px)';
+    hist.style.opacity = opacity;
+    hist.style.transform = 'scale(' + scale + ')';
+  }
+  window.addEventListener('scroll', applyBlur, { passive: true });
+  applyBlur();
+})();
+
+/* ── Sugerencia de canción ── */
 function sendSong() {
   const input = document.querySelector('.song__input');
   const val = (input.value || '').trim();
