@@ -117,9 +117,7 @@ body {
   position: absolute;
   top: 0; left: 0; right: 0;
   height: 62%;
-  background-image: url('Natalia y Gabriel_files/ccf67e2a3eacff9c2e0383db5f623dbe.png');
-  background-size: 220px auto;
-  background-repeat: repeat;
+  background-image: none;
   opacity: .12;
   pointer-events: none;
 }
@@ -1058,6 +1056,51 @@ body {
 .admin-fab{position:fixed;bottom:22px;right:22px;z-index:9999;display:flex;align-items:center;gap:7px;padding:11px 20px;border-radius:30px;background:rgba(10,10,10,.82);color:#fff;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;box-shadow:0 4px 18px rgba(0,0,0,.45);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.18);transition:transform .25s,box-shadow .25s;font-family:sans-serif;}
 .admin-fab:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,0,0,.5);}
 .admin-fab svg{flex-shrink:0;}
+
+/* ─── GALERÍA FILMSTRIP ──────────────────── */
+.gallery { padding: 0 0 52px; background: var(--warm); }
+.gallery__head { text-align: center; padding: 48px 24px 38px; }
+.gallery__eyebrow {
+  font-family: var(--ff-sans); font-size: .44rem;
+  letter-spacing: .3em; text-transform: uppercase;
+  color: var(--blue); display: block; margin-bottom: 12px;
+}
+.gallery__title {
+  font-family: var(--ff-disp); font-size: 2.2rem;
+  letter-spacing: .05em; color: var(--navy); margin: 0 0 6px;
+}
+.gallery__sub {
+  font-family: var(--ff-serif); font-size: .9rem;
+  font-style: italic; color: var(--gray);
+}
+.film-ribbons { display: flex; flex-direction: column; gap: 14px; overflow: hidden; }
+.film-row { overflow: hidden; width: 100%; }
+.film-track { display: flex; gap: 8px; width: max-content; }
+.film-row--fwd .film-track { animation: filmFwd 34s linear infinite; }
+.film-row--rev .film-track { animation: filmRev 40s linear infinite; }
+.film-row:hover .film-track { animation-play-state: paused; }
+@keyframes filmFwd { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes filmRev { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+.film-frame {
+  flex: 0 0 auto; width: 186px; height: 246px;
+  background: #fff; padding: 5px 5px 28px;
+  box-shadow: 0 2px 14px rgba(50,58,67,.1), 0 0 0 1px rgba(50,58,67,.07);
+  transition: transform .4s ease, box-shadow .4s;
+  position: relative;
+}
+.film-frame:hover {
+  transform: translateY(-9px) scale(1.05);
+  box-shadow: 0 16px 38px rgba(74,111,165,.24);
+  z-index: 1;
+}
+.film-frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.film-frame::after {
+  content: attr(data-caption);
+  position: absolute; bottom: 4px; left: 0; right: 0;
+  text-align: center;
+  font-family: var(--ff-sans); font-size: .38rem;
+  letter-spacing: .18em; text-transform: uppercase; color: var(--gray);
+}
 </style>
 </head>
 <body>
@@ -1083,18 +1126,8 @@ body {
   <section class="hero">
     <div class="hero__toile-bg"></div>
 
-    <img class="hero__env-open"
-         src="Natalia y Gabriel_files/5f41adfb7af6b95d77c4ec27f01c7b71.png"
-         alt="Sobre" />
-
-    <img class="hero__bouquet"
-         src="Natalia y Gabriel_files/6e57493b75a97e1aeaf869df111a0658.png"
-         alt="" />
 
     <div class="hero__card-wrap">
-      <img class="hero__card-frame"
-           src="Natalia y Gabriel_files/c134fc14be3bed92a7e28225af699d9e.png"
-           alt="Invitación" />
       <div class="hero__card-body">
         <p class="hero__pretext">
           Tenemos el honor de invitarte<br/>a la boda de
@@ -1155,8 +1188,8 @@ body {
   <section class="venue rv d1">
     <!-- Fanned polaroid cards -->
     <div class="venue__polaroids">
-      <img class="venue__pol" src="Natalia y Gabriel_files/1c519e1a8da0a2175d0c4ffaec7d2f2c.png" alt="" />
-      <img class="venue__pol" src="Natalia y Gabriel_files/307066d615cffa49115b0e9f67e71f4d.png" alt="" />
+      <img class="venue__pol" src="img/z.jpg" alt="" />
+      <img class="venue__pol" src="img/x.jpg" alt="" />
     </div>
 
     <div class="venue__card">
@@ -1237,17 +1270,42 @@ body {
   </section>
 
   <!-- ─── GALERÍA DE FOTOS ────────────────── -->
+  <!-- ─── GALERÍA FILMSTRIP ─────────────────── -->
   <section class="gallery rv d1">
-    <p class="gallery__title">Nuestra Historia</p>
-    <div class="gallery__grid">
-      <img class="gallery__img gallery__img--wide rv d2" src="img/53853-boda.jpg" alt="Nuestra boda" loading="lazy" />
-      <img class="gallery__img rv d2" src="img/mujer-abraza-al-hombre-sostiene-ramo-peonias-blancas-al-aire-libre-vista-frontal-detalles_8353-10966.avif" alt="La novia" loading="lazy" />
-      <img class="gallery__img rv d3" src="img/novio-que-pone-anillo-dedo-novia_1157-338.avif" alt="El anillo" loading="lazy" />
-      <img class="gallery__img rv d3" src="img/aa.jpg" alt="Momentos" loading="lazy" />
-      <img class="gallery__img rv d2" src="img/q.jpg" alt="Amor" loading="lazy" />
-      <img class="gallery__img rv d3" src="img/s.jpg" alt="Juntos" loading="lazy" />
-      <img class="gallery__img rv d2" src="img/x.jpg" alt="Nuestra canción" loading="lazy" />
-      <img class="gallery__img rv d3" src="img/z.jpg" alt="Detalles" loading="lazy" />
+    <div class="gallery__head">
+      <span class="gallery__eyebrow">Nuestra Galería</span>
+      <p class="gallery__title">Momentos Eternos</p>
+      <p class="gallery__sub">Cada imagen, un recuerdo que atesoramos.</p>
+    </div>
+    <div class="film-ribbons">
+      <!-- Cinta 1: avanza -->
+      <div class="film-row film-row--fwd">
+        <div class="film-track">
+          <div class="film-frame" data-caption="Nosotros"><img src="img/53853-boda.jpg" alt="" loading="lazy"></div>
+          <div class="film-frame" data-caption="Amor"><img src="img/z.jpg" alt="" loading="lazy"></div>
+          <div class="film-frame" data-caption="Juntos"><img src="img/aa.jpg" alt="" loading="lazy"></div>
+          <div class="film-frame" data-caption="Siempre"><img src="img/q.jpg" alt="" loading="lazy"></div>
+          <!-- duplicados para loop infinito -->
+          <div class="film-frame" data-caption="Nosotros"><img src="img/53853-boda.jpg" alt="" loading="lazy"></div>
+          <div class="film-frame" data-caption="Amor"><img src="img/z.jpg" alt="" loading="lazy"></div>
+          <div class="film-frame" data-caption="Juntos"><img src="img/aa.jpg" alt="" loading="lazy"></div>
+          <div class="film-frame" data-caption="Siempre"><img src="img/q.jpg" alt="" loading="lazy"></div>
+        </div>
+      </div>
+      <!-- Cinta 2: retrocede -->
+      <div class="film-row film-row--rev">
+        <div class="film-track">
+          <div class="film-frame" data-caption="Feliz"><img src="img/s.jpg" alt="" loading="lazy"></div>
+          <div class="film-frame" data-caption="Boda"><img src="img/x.jpg" alt="" loading="lazy"></div>
+          <div class="film-frame" data-caption="Flores"><img src="img/mujer-abraza-al-hombre-sostiene-ramo-peonias-blancas-al-aire-libre-vista-frontal-detalles_8353-10966.avif" alt="" loading="lazy"></div>
+          <div class="film-frame" data-caption="Anillos"><img src="img/novio-que-pone-anillo-dedo-novia_1157-338.avif" alt="" loading="lazy"></div>
+          <!-- duplicados para loop infinito -->
+          <div class="film-frame" data-caption="Feliz"><img src="img/s.jpg" alt="" loading="lazy"></div>
+          <div class="film-frame" data-caption="Boda"><img src="img/x.jpg" alt="" loading="lazy"></div>
+          <div class="film-frame" data-caption="Flores"><img src="img/mujer-abraza-al-hombre-sostiene-ramo-peonias-blancas-al-aire-libre-vista-frontal-detalles_8353-10966.avif" alt="" loading="lazy"></div>
+          <div class="film-frame" data-caption="Anillos"><img src="img/novio-que-pone-anillo-dedo-novia_1157-338.avif" alt="" loading="lazy"></div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -1258,18 +1316,12 @@ body {
       Caballeros con traje, damas<br/>con vestido largo
     </p>
     <div class="dresscode__badge-wrap rv-s d3">
-      <img class="dresscode__badge-img"
-           src="Natalia y Gabriel_files/4bc75fff3fef6cea7b21007246f8a168.png"
-           alt="" />
       <div class="dresscode__badge-text">
         <span class="badge-initial">D</span>
         <span class="badge-rest">ress</span>
         <span class="badge-rest">Code</span>
       </div>
     </div>
-    <img class="dresscode__illus rv d4"
-         src="Natalia y Gabriel_files/4bd043a95c6f879e5766501b3dd4b565.png"
-         alt="Dress code" />
   </section>
 
   <!-- ─── CITA BÍBLICA ────────────────────── -->
@@ -1287,11 +1339,6 @@ body {
 
   <!-- ─── REGALOS ──────────────────────────── -->
   <section class="regalos rv d1">
-    <div class="regalos__seal-wrap">
-      <img class="regalos__seal rv-s d2"
-           src="Natalia y Gabriel_files/4a446972ec4c445b5385c8275d0f6175.png"
-           alt="Sello" />
-    </div>
     <div class="regalos__text-block rv d2">
       <p class="regalos__text">
         <span class="regalos__initial">S</span>u compañía es lo más
