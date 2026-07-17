@@ -1993,21 +1993,19 @@
     </div>
     <script>
       /* ── Scroll Reveal ── */
-      /* ── Historia scroll-blur al desplazarse ── */
+      /* ── Historia reveal-blur: borroso abajo, se aclara al bajar hacia él ── */
 (function () {
   var hist = document.querySelector('.historia');
   if (!hist) return;
   function applyBlur() {
     var rect = hist.getBoundingClientRect();
     var vh = window.innerHeight;
-    /* Empieza a difuminarse cuando el top del section sube por encima del viewport */
-    var progress = Math.max(0, Math.min(1, -rect.top / (vh * 0.55)));
-    var blur = (progress * 10).toFixed(1);
-    var opacity = (1 - progress * 0.5).toFixed(3);
-    var scale = (1 - progress * 0.025).toFixed(4);
-    hist.style.filter = 'blur(' + blur + 'px)';
-    hist.style.opacity = opacity;
-    hist.style.transform = 'scale(' + scale + ')';
+    /* progress 1 = sección aún debajo del viewport (borrado total)
+       progress 0 = sección ya visible en el viewport (nítida)         */
+    var progress = Math.max(0, Math.min(1, rect.top / (vh * 0.8)));
+    hist.style.filter    = 'blur(' + (progress * 10).toFixed(1) + 'px)';
+    hist.style.opacity   = (1 - progress * 0.38).toFixed(3);
+    hist.style.transform = 'translateY(' + (progress * 14).toFixed(1) + 'px)';
   }
   window.addEventListener('scroll', applyBlur, { passive: true });
   applyBlur();
