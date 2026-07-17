@@ -545,6 +545,8 @@ body {
   display: inline-block;
   padding: 7px 24px;
   border: 1px solid var(--ink);
+  background: transparent;
+  cursor: pointer;
   font-family: var(--ff-sans);
   font-size: .46rem;
   font-weight: 500;
@@ -555,6 +557,137 @@ body {
   transition: background .25s, color .25s, transform .2s cubic-bezier(.34,1.56,.64,1);
 }
 .dresscode__btn:hover { background: var(--ink); color: #fff; transform: scale(1.04); }
+.dresscode__btn.open { background: var(--ink); color: #fff; }
+
+/* ── INSPIRACIÓN PANEL ───────────────────── */
+.inspo-wrap {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height .55s cubic-bezier(.4,0,.2,1), opacity .4s ease;
+  margin-top: 0;
+}
+.inspo-wrap.open {
+  max-height: 720px;
+  opacity: 1;
+  margin-top: 24px;
+}
+.inspo-panel {
+  background: var(--ink);
+  border-radius: 12px;
+  padding: 28px 22px 24px;
+  text-align: left;
+}
+.inspo-panel__title {
+  font-family: var(--ff-disp);
+  font-size: .75rem;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: var(--gold);
+  text-align: center;
+  display: block;
+  margin-bottom: 22px;
+}
+.inspo-rule {
+  width: 32px; height: 1px;
+  background: var(--gold);
+  opacity: .4;
+  margin: 0 auto 22px;
+}
+.inspo-cols {
+  display: flex;
+  gap: 0;
+}
+.inspo-col {
+  flex: 1;
+  padding: 0 14px;
+}
+.inspo-col + .inspo-col {
+  border-left: 1px solid rgba(255,255,255,.1);
+}
+.inspo-col__label {
+  font-family: var(--ff-sans);
+  font-size: .38rem;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: block;
+  margin-bottom: 14px;
+  text-align: center;
+}
+.inspo-list {
+  list-style: none;
+  padding: 0; margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+.inspo-list li {
+  font-family: var(--ff-serif);
+  font-size: .88rem;
+  font-style: italic;
+  color: rgba(255,255,255,.72);
+  line-height: 1.4;
+  padding-left: 14px;
+  position: relative;
+}
+.inspo-list li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: var(--gold);
+  font-style: normal;
+  font-size: .7rem;
+}
+.inspo-palette {
+  margin-top: 22px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255,255,255,.08);
+}
+.inspo-palette__label {
+  font-family: var(--ff-sans);
+  font-size: .35rem;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.3);
+  text-align: center;
+  display: block;
+  margin-bottom: 12px;
+}
+.inspo-swatches {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.inspo-swatch {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+.inspo-swatch__circle {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255,255,255,.15);
+}
+.inspo-swatch__name {
+  font-family: var(--ff-sans);
+  font-size: .3rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.3);
+  white-space: nowrap;
+}
+.inspo-note {
+  font-family: var(--ff-serif);
+  font-size: .82rem;
+  font-style: italic;
+  color: rgba(255,255,255,.3);
+  text-align: center;
+  line-height: 1.55;
+}
 
 /* ══════════════════════════════════════════
    PHOTO DIVIDER (RING)
@@ -1139,7 +1272,65 @@ body {
           Caballeros con traje,<br/>
           damas con vestido largo
         </p>
-        <a class="dresscode__btn" href="#" target="_blank">Inspiración</a>
+        <button class="dresscode__btn" onclick="toggleInspo(this)">Inspiración</button>
+      </div>
+
+      <!-- Panel expandible -->
+      <div class="inspo-wrap" id="dresscodeInspo">
+        <div class="inspo-panel">
+          <span class="inspo-panel__title">Guía de Vestimenta</span>
+          <div class="inspo-rule"></div>
+
+          <div class="inspo-cols">
+            <div class="inspo-col">
+              <span class="inspo-col__label">Caballeros</span>
+              <ul class="inspo-list">
+                <li>Traje oscuro o smoking</li>
+                <li>Camisa blanca o en tono claro</li>
+                <li>Corbata o pajarita elegante</li>
+                <li>Zapatos de vestir</li>
+                <li>Pañuelo de bolsillo opcional</li>
+              </ul>
+            </div>
+            <div class="inspo-col">
+              <span class="inspo-col__label">Damas</span>
+              <ul class="inspo-list">
+                <li>Vestido largo o de cóctel</li>
+                <li>Tacones o sandalias finas</li>
+                <li>Clutch o bolso de noche</li>
+                <li>Joyería discreta y elegante</li>
+                <li>Sin blanco ni beige pálido</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="inspo-palette">
+            <span class="inspo-palette__label">Paleta de colores sugerida</span>
+            <div class="inspo-swatches">
+              <div class="inspo-swatch">
+                <div class="inspo-swatch__circle" style="background:#5c6b4a"></div>
+                <span class="inspo-swatch__name">Olivo</span>
+              </div>
+              <div class="inspo-swatch">
+                <div class="inspo-swatch__circle" style="background:#fffbee;border-color:rgba(255,255,255,.35)"></div>
+                <span class="inspo-swatch__name">Crema</span>
+              </div>
+              <div class="inspo-swatch">
+                <div class="inspo-swatch__circle" style="background:#d7cfb7"></div>
+                <span class="inspo-swatch__name">Taupe</span>
+              </div>
+              <div class="inspo-swatch">
+                <div class="inspo-swatch__circle" style="background:#C8A96A"></div>
+                <span class="inspo-swatch__name">Dorado</span>
+              </div>
+              <div class="inspo-swatch">
+                <div class="inspo-swatch__circle" style="background:#1a1a18"></div>
+                <span class="inspo-swatch__name">Negro</span>
+              </div>
+            </div>
+            <p class="inspo-note">Tonos tierra y pasteles también bienvenidos.<br/>Evita el blanco, reservado para la novia.</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -1158,7 +1349,7 @@ body {
       <div class="itin-event rv d2">
         <h3 class="itin-event__heading">Ceremonia</h3>
         <span class="itin-event__time">2:00 pm · Iglesia local</span>
-        <a class="itin-event__btn" href="#" target="_blank">Ubicación</a>
+        <a class="itin-event__btn" href="https://maps.google.com/?q=Capilla+de+Los+Laureles" target="_blank" rel="noopener">Ubicación</a>
       </div>
       <div class="itin-event rv d3">
         <h3 class="itin-event__heading">Cóctel de Bienvenida</h3>
@@ -1505,6 +1696,14 @@ document.getElementById('rsvp-form').addEventListener('submit', e => {
 })();
 </script>
 <script src="js/main.js"></script>
+<script>
+function toggleInspo(btn) {
+  var wrap = document.getElementById('dresscodeInspo');
+  var open = wrap.classList.toggle('open');
+  btn.classList.toggle('open', open);
+  btn.textContent = open ? 'Cerrar' : 'Inspiración';
+}
+</script>
 <a href="admin.html" class="admin-fab" aria-label="Panel Admin">
   <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1C8.676 1 6 3.676 6 7v2H4v14h16V9h-2V7c0-3.324-2.676-6-6-6zm0 2c2.276 0 4 1.724 4 4v2H8V7c0-2.276 1.724-4 4-4zm0 10c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2z"/></svg>
   Admin
