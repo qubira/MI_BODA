@@ -1162,6 +1162,177 @@ body{
   font-family: 'Cormorant Garamond', serif; font-size: .88rem;
   font-style: italic; color: var(--muted); line-height: 1.6;
 }
+
+/* ── SECTION ORNAMENT ────────────────────── */
+.sec-orn {
+  display: flex; align-items: center; gap: 16px;
+  padding: 18px 40px; justify-content: center;
+}
+.sec-orn::before, .sec-orn::after {
+  content: ''; flex: 1; height: 1px;
+  background: linear-gradient(to right, transparent, rgba(196,163,90,.4), transparent);
+}
+.sec-orn__sym {
+  font-size: .55rem; letter-spacing: .4em;
+  color: var(--gold); opacity: .6;
+  font-family: 'Montserrat', sans-serif;
+}
+.sec-orn--dark { background: var(--navy2); }
+.sec-orn--dark::before, .sec-orn--dark::after {
+  background: linear-gradient(to right, transparent, rgba(196,163,90,.25), transparent);
+}
+
+/* ── DETAILS PILLARS ─────────────────────── */
+.details-pillars {
+  display: flex; justify-content: center;
+  margin: 36px 28px 0;
+  border: 1px solid rgba(196,163,90,.18); border-radius: 8px;
+  overflow: hidden;
+}
+.pillar {
+  flex: 1; text-align: center; padding: 22px 8px;
+  border-right: 1px solid rgba(196,163,90,.18);
+}
+.pillar:last-child { border-right: none; }
+.pillar__val {
+  font-family: 'Playfair Display', serif; font-size: .9rem;
+  color: var(--navy2); margin-bottom: 5px; line-height: 1.2;
+}
+.pillar__lbl {
+  font-family: 'Montserrat', sans-serif; font-size: .33rem;
+  letter-spacing: .2em; text-transform: uppercase; color: var(--gold);
+}
+
+/* ── TRAVEL SECTION ──────────────────────── */
+.travel { padding: 72px 28px 60px; background: var(--bg); }
+.travel-steps { display: flex; flex-direction: column; margin: 36px 0 32px; }
+.travel-step {
+  display: grid; grid-template-columns: 48px 1fr;
+  column-gap: 18px; padding: 20px 0;
+  border-bottom: 1px solid rgba(196,163,90,.12); align-items: start;
+}
+.travel-step:last-child { border-bottom: none; }
+.travel-step__num {
+  width: 48px; height: 48px;
+  border: 1px solid rgba(196,163,90,.4); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Playfair Display', serif; font-size: 1.1rem;
+  color: var(--gold); flex-shrink: 0; background: rgba(196,163,90,.06);
+}
+.travel-step__title {
+  font-family: 'Playfair Display', serif; font-size: 1rem;
+  color: var(--navy2); margin-bottom: 5px;
+}
+.travel-step__text {
+  font-family: 'Cormorant Garamond', serif; font-size: .9rem;
+  font-style: italic; color: var(--muted); line-height: 1.65;
+}
+.accom-card {
+  background: var(--navy2); border-radius: 10px; padding: 26px;
+}
+.accom-card__title {
+  font-family: 'Montserrat', sans-serif; font-size: .37rem;
+  letter-spacing: .3em; text-transform: uppercase;
+  color: rgba(255,255,255,.4); margin-bottom: 18px; display: block;
+}
+.accom-item {
+  display: flex; justify-content: space-between; align-items: baseline;
+  padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,.07);
+}
+.accom-item:last-child { border-bottom: none; }
+.accom-name {
+  font-family: 'Cormorant Garamond', serif; font-size: 1rem; color: #fff;
+}
+.accom-tag {
+  font-family: 'Montserrat', sans-serif; font-size: .36rem;
+  letter-spacing: .14em; color: var(--gold); opacity: .85;
+}
+
+/* ── DRESS CODE ──────────────────────────── */
+.dresscode { background: var(--navy2); padding: 72px 0 64px; text-align: center; }
+.dresscode .sec__heading { color: #fff; }
+.dresscode .sec__sub { color: rgba(255,255,255,.42); margin-bottom: 36px; }
+.dresscode .sec__cross svg { stroke: rgba(196,163,90,.35); }
+.dc-split {
+  display: flex; align-items: stretch;
+  margin: 0 28px 36px;
+  border: 1px solid rgba(196,163,90,.22); border-radius: 10px; overflow: hidden;
+}
+.dc-col { flex: 1; padding: 26px 18px; text-align: left; }
+.dc-col__label {
+  font-family: 'Montserrat', sans-serif; font-size: .37rem;
+  letter-spacing: .3em; text-transform: uppercase;
+  color: var(--gold); display: block; margin-bottom: 16px;
+}
+.dc-divider { width: 1px; background: rgba(196,163,90,.2); flex-shrink: 0; }
+.dc-list { list-style: none; padding: 0; margin: 0; }
+.dc-list li {
+  font-family: 'Cormorant Garamond', serif; font-size: .88rem;
+  color: rgba(255,255,255,.68); padding: 7px 0;
+  border-bottom: 1px solid rgba(255,255,255,.06);
+  font-style: italic; line-height: 1.4;
+  display: flex; align-items: baseline; gap: 8px;
+}
+.dc-list li:last-child { border-bottom: none; }
+.dc-list li::before { content: '—'; color: var(--gold); font-style: normal; flex-shrink: 0; font-size: .7rem; }
+.dc-palette { padding: 0 28px 4px; }
+.dc-palette__label {
+  font-family: 'Montserrat', sans-serif; font-size: .37rem;
+  letter-spacing: .25em; text-transform: uppercase;
+  color: rgba(255,255,255,.32); margin-bottom: 20px; display: block;
+}
+.dc-swatches { display: flex; gap: 16px; justify-content: center; margin-bottom: 32px; }
+.dc-swatch { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.dc-swatch__circle {
+  width: 50px; height: 50px; border-radius: 50%;
+  border: 2px solid rgba(255,255,255,.1);
+}
+.dc-swatch__name {
+  font-family: 'Montserrat', sans-serif; font-size: .32rem;
+  letter-spacing: .12em; text-transform: uppercase;
+  color: rgba(255,255,255,.35); white-space: nowrap;
+}
+.dc-note {
+  font-family: 'Cormorant Garamond', serif; font-size: .9rem;
+  font-style: italic; color: rgba(255,255,255,.35);
+  padding: 0 36px; line-height: 1.65;
+}
+
+/* ── ENHANCED FOOTER ─────────────────────── */
+.footer {
+  background: var(--navy2); padding: 60px 28px 36px; text-align: center;
+  border-top: 1px solid rgba(196,163,90,.18);
+}
+.footer__monogram {
+  font-family: 'Great Vibes', cursive; font-size: 3.2rem;
+  color: var(--gold); line-height: 1; margin-bottom: 6px; display: block;
+}
+.footer__rule { width: 36px; height: 1px; background: var(--gold); opacity: .4; margin: 18px auto; }
+.footer__info {
+  font-family: 'Montserrat', sans-serif; font-size: .38rem;
+  letter-spacing: .22em; text-transform: uppercase;
+  color: rgba(255,255,255,.32); margin-bottom: 6px;
+}
+.footer__venue {
+  font-family: 'Cormorant Garamond', serif; font-size: .92rem;
+  font-style: italic; color: rgba(255,255,255,.4); margin-bottom: 32px;
+}
+.footer__top {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: 'Montserrat', sans-serif; font-size: .36rem;
+  letter-spacing: .2em; text-transform: uppercase;
+  color: rgba(255,255,255,.28); text-decoration: none;
+  border: 1px solid rgba(255,255,255,.12); border-radius: 30px;
+  padding: 10px 20px; margin-bottom: 28px;
+  transition: color .3s, border-color .3s;
+}
+.footer__top:hover { color: var(--gold); border-color: rgba(196,163,90,.4); }
+.footer__top svg { width: 12px; height: 12px; }
+.footer__made {
+  font-family: 'Montserrat', sans-serif; font-size: .34rem;
+  letter-spacing: .1em; color: rgba(255,255,255,.2);
+}
+.footer__made a { color: rgba(196,163,90,.45); text-decoration: none; }
 </style>
 </head>
 <body>
@@ -1214,6 +1385,21 @@ body{
   </div>
   <h2 class="sec__heading rv" style="margin-top:20px">Details of the Day</h2>
   <p class="sec__sub rv" style="transition-delay:.1s">Everything you need to know about our special day</p>
+
+  <div class="details-pillars">
+    <div class="pillar rv d1">
+      <p class="pillar__val">Villa del<br>Balbianello</p>
+      <p class="pillar__lbl">Venue</p>
+    </div>
+    <div class="pillar rv d2">
+      <p class="pillar__val">Sept 12<br>2026</p>
+      <p class="pillar__lbl">Date</p>
+    </div>
+    <div class="pillar rv d3">
+      <p class="pillar__val">Lake Como<br>Italy</p>
+      <p class="pillar__lbl">Location</p>
+    </div>
+  </div>
 </section>
 
 <!-- ═══════════ LOCATION ═══════════ -->
@@ -1265,6 +1451,62 @@ body{
   </div>
 </section>
 
+<!-- ═══════════ TRAVEL ═══════════ -->
+<div class="sec-orn"><span class="sec-orn__sym">✦</span></div>
+<section class="travel">
+  <div class="sec__cross">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+    </svg>
+  </div>
+  <h2 class="sec__heading rv" style="margin-top:20px">Getting Here</h2>
+  <p class="sec__sub rv" style="transition-delay:.08s">Lake Como, Italy</p>
+
+  <div class="travel-steps">
+    <div class="travel-step rv d1">
+      <div class="travel-step__num">I</div>
+      <div>
+        <p class="travel-step__title">By Air</p>
+        <p class="travel-step__text">Fly into Milan Malpensa (MXP) or Linate (LIN) — both airports are approximately 1.5 hours from Lake Como. Direct flights available from most major European cities.</p>
+      </div>
+    </div>
+    <div class="travel-step rv d2">
+      <div class="travel-step__num">II</div>
+      <div>
+        <p class="travel-step__title">By Train</p>
+        <p class="travel-step__text">Take the train from Milano Centrale to Como San Giovanni, then a regional service along the lakeside to Lenno. Scenic and easy — about 2 hours total.</p>
+      </div>
+    </div>
+    <div class="travel-step rv d3">
+      <div class="travel-step__num">III</div>
+      <div>
+        <p class="travel-step__title">Private Boat to the Villa</p>
+        <p class="travel-step__text">Our private boat departs from Lenno pier at 2:30 PM sharp. Villa del Balbianello is only accessible by water — please arrive at the dock by 2:15 PM.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="accom-card rv">
+    <span class="accom-card__title">Recommended Stays</span>
+    <div class="accom-item">
+      <span class="accom-name">Grand Hotel Tremezzo</span>
+      <span class="accom-tag">5★ · 5 min</span>
+    </div>
+    <div class="accom-item">
+      <span class="accom-name">Villa d'Este</span>
+      <span class="accom-tag">5★ · Cernobbio</span>
+    </div>
+    <div class="accom-item">
+      <span class="accom-name">Hotel Bellagio</span>
+      <span class="accom-tag">4★ · Bellagio</span>
+    </div>
+    <div class="accom-item">
+      <span class="accom-name">Albergo Milano</span>
+      <span class="accom-tag">Boutique · Varenna</span>
+    </div>
+  </div>
+</section>
+
 <!-- ═══════════ OUR STORY ═══════════ -->
 <section class="historia">
   <div class="historia__header">
@@ -1297,6 +1539,7 @@ body{
   </div>
 </section>
 
+<div class="sec-orn"><span class="sec-orn__sym">✦</span></div>
 <!-- ═══════════ GALLERIA ═══════════ -->
 <section class="galleria rv">
   <div class="galleria__head">
@@ -1315,6 +1558,7 @@ body{
   </div>
 </section>
 
+<div class="sec-orn"><span class="sec-orn__sym">✦</span></div>
 <!-- ═══════════ SCHEDULE ═══════════ -->
 <section class="schedule sec--white">
   <div class="sec__cross">
@@ -1377,7 +1621,65 @@ body{
   </div>
 </section>
 
+<!-- ═══════════ DRESS CODE ═══════════ -->
+<section class="dresscode">
+  <div class="sec__cross">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+    </svg>
+  </div>
+  <h2 class="sec__heading rv" style="margin-top:20px">Dress Code</h2>
+  <p class="sec__sub rv" style="transition-delay:.08s">Black Tie Optional</p>
+
+  <div class="dc-split rv" style="transition-delay:.16s">
+    <div class="dc-col">
+      <span class="dc-col__label">Gentlemen</span>
+      <ul class="dc-list">
+        <li>Dark suit or tuxedo</li>
+        <li>White dress shirt</li>
+        <li>Formal tie or bow tie</li>
+        <li>Oxford or dress shoes</li>
+      </ul>
+    </div>
+    <div class="dc-divider"></div>
+    <div class="dc-col">
+      <span class="dc-col__label">Ladies</span>
+      <ul class="dc-list">
+        <li>Formal gown or cocktail dress</li>
+        <li>Elegant heels or flat sandals</li>
+        <li>Light wrap for the evening</li>
+        <li>No white, please</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="dc-palette rv" style="transition-delay:.24s">
+    <span class="dc-palette__label">Color Palette</span>
+    <div class="dc-swatches">
+      <div class="dc-swatch">
+        <div class="dc-swatch__circle" style="background:#1a5276"></div>
+        <span class="dc-swatch__name">Navy</span>
+      </div>
+      <div class="dc-swatch">
+        <div class="dc-swatch__circle" style="background:#f8f4ec;border-color:rgba(196,163,90,.3)"></div>
+        <span class="dc-swatch__name">Ivory</span>
+      </div>
+      <div class="dc-swatch">
+        <div class="dc-swatch__circle" style="background:#c4a35a"></div>
+        <span class="dc-swatch__name">Gold</span>
+      </div>
+      <div class="dc-swatch">
+        <div class="dc-swatch__circle" style="background:#d6c9a8;border-color:rgba(196,163,90,.2)"></div>
+        <span class="dc-swatch__name">Champagne</span>
+      </div>
+    </div>
+  </div>
+
+  <p class="dc-note rv" style="transition-delay:.3s">The ceremony is outdoors on garden paths — comfortable yet elegant shoes are encouraged. The lakeside evening can be cool; a light wrap is recommended.</p>
+</section>
+
 <!-- ═══════════ COUNTDOWN ═══════════ -->
+<div class="sec-orn sec-orn--dark"><span class="sec-orn__sym">✦</span></div>
 <section class="cd12 rv">
   <p class="cd12__faltan rv">Faltan</p>
   <div class="cd12__grid rv" style="transition-delay:.1s">
@@ -1592,6 +1894,12 @@ body{
 
 <!-- ═══════════ FOOTER ═══════════ -->
 <footer class="footer">
+  <span class="footer__monogram">V &amp; M</span>
+  <div class="footer__rule"></div>
+
+  <p class="footer__info">September 12, 2026</p>
+  <p class="footer__venue">Villa del Balbianello · Lake Como, Italy</p>
+
   <a href="#inicio" class="footer__top">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
       <polyline points="18 15 12 9 6 15"/>
@@ -1599,10 +1907,6 @@ body{
     Back to top
   </a>
 
-  <div class="footer__cross">✦</div>
-
-  <p class="footer__names">Valentina &amp; Marco</p>
-  <p class="footer__date">September 12, 2026</p>
   <p class="footer__made">♥ Made by <a href="#">Pressed Love</a></p>
 </footer>
 
