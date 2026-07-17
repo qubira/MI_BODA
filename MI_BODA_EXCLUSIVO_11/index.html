@@ -1440,6 +1440,47 @@
 .admin-fab{position:fixed;bottom:22px;right:22px;z-index:9999;display:flex;align-items:center;gap:7px;padding:11px 20px;border-radius:30px;background:rgba(10,10,10,.82);color:#fff;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;box-shadow:0 4px 18px rgba(0,0,0,.45);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.18);transition:transform .25s,box-shadow .25s;font-family:sans-serif;}
 .admin-fab:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,0,0,.5);}
 .admin-fab svg{flex-shrink:0;}
+
+/* ─── GALERÍA MURAL ──────────────────────── */
+.galeria { padding: 56px 0; background: var(--parchment); }
+.galeria__head { text-align: center; padding: 0 28px 40px; }
+.g-eyebrow {
+  font-family: var(--ff-sans); font-size: .44rem;
+  letter-spacing: .3em; text-transform: uppercase;
+  color: var(--gold); display: block; margin-bottom: 10px;
+}
+.g-title {
+  font-family: var(--ff-disp); font-size: 2.2rem;
+  letter-spacing: .05em; color: var(--ink); margin-bottom: 6px; line-height: 1.1;
+}
+.g-sub {
+  font-family: var(--ff-serif); font-size: .9rem;
+  font-style: italic; color: var(--taupe);
+}
+.mural {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 158px 158px 158px 158px 210px;
+  gap: 8px; padding: 0 20px;
+}
+.mural-item {
+  overflow: hidden; position: relative;
+  background: var(--parchment);
+  border: 1px solid rgba(196,160,118,.22);
+  padding: 5px;
+  transition: border-color .35s, box-shadow .35s, transform .35s;
+}
+.mural-item:hover {
+  border-color: var(--gold);
+  box-shadow: 0 8px 28px rgba(196,160,118,.22);
+  z-index: 1; transform: scale(1.01);
+}
+.mural-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .65s ease; }
+.mural-item:hover img { transform: scale(1.07); }
+/* Grid placements */
+.mural-item:nth-child(1) { grid-row: 1 / 3; }
+.mural-item:nth-child(5) { grid-row: 3 / 5; }
+.mural-item:nth-child(7) { grid-column: 1 / 3; }
     </style>
   </head>
   <body>
@@ -1555,6 +1596,24 @@
         </div>
       </section>
 
+<!-- ─── GALERÍA MURAL ────────────────────── -->
+<section class="galeria rv">
+  <div class="galeria__head">
+    <span class="g-eyebrow">Nuestra Galería</span>
+    <h2 class="g-title">Composición de Momentos</h2>
+    <p class="g-sub">Cada imagen cuenta un capítulo de nuestra historia</p>
+  </div>
+  <div class="mural">
+    <div class="mural-item"><img src="img/53853-boda.jpg" alt="" loading="lazy"></div>
+    <div class="mural-item"><img src="img/z.jpg" alt="" loading="lazy"></div>
+    <div class="mural-item"><img src="img/aa.jpg" alt="" loading="lazy"></div>
+    <div class="mural-item"><img src="img/q.jpg" alt="" loading="lazy"></div>
+    <div class="mural-item"><img src="img/s.jpg" alt="" loading="lazy"></div>
+    <div class="mural-item"><img src="img/x.jpg" alt="" loading="lazy"></div>
+    <div class="mural-item"><img src="img/mujer-abraza-al-hombre-sostiene-ramo-peonias-blancas-al-aire-libre-vista-frontal-detalles_8353-10966.avif" alt="" loading="lazy"></div>
+  </div>
+</section>
+
 <!-- ── VENUE ── -->
 <section class="venue" style="background:var(--linen,#f0ece3);padding:60px 0;">
   <div style="max-width:680px;margin:0 auto;padding:0 28px;text-align:center;">
@@ -1568,7 +1627,7 @@
           <h3 style="font-family:'Cormorant SC',serif;font-size:1.15rem;font-weight:400;color:var(--ink,#2a2010);margin-bottom:6px;">Parroquia Santa María</h3>
           <p style="font-size:.82rem;color:#888;margin-bottom:4px;">Av. Principal 123, Lima</p>
           <p style="font-size:.82rem;color:#888;margin-bottom:14px;">5:00 PM</p>
-          <a href="https://maps.google.com/?q=Casa+Hacienda+Mamacona,+Lurin,+Lima" target="_blank" rel="noopener" style="display:inline-block;padding:8px 18px;border:1px solid var(--gold,#c4a076);border-radius:30px;color:var(--gold2,#a88054);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;">Ubicación</a>
+          <a href="https://maps.google.com/?q=Parroquia+Santa+Maria,+Lima,+Peru" target="_blank" rel="noopener" style="display:inline-block;padding:8px 18px;border:1px solid var(--gold,#c4a076);border-radius:30px;color:var(--gold2,#a88054);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;">Ubicación</a>
         </div>
       </div>
       <div style="flex:1;min-width:260px;max-width:300px;background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,.06);">
@@ -1605,7 +1664,7 @@
             <p class="itin-card__place">Iglesia local</p>
             <p class="itin-card__addr">Sábado · 23 de Julio · 2027</p>
             <p class="itin-card__time">3:00 pm</p>
-            <a class="btn-loc" href="#" target="_blank">Ubicación</a>
+            <a class="btn-loc" href="https://maps.google.com/?q=Parroquia+Santa+Maria,+Lima,+Peru" target="_blank" rel="noopener">Ubicación</a>
           </div>
           <div class="itin-card rv">
             <span class="itin-card__num">03</span>
@@ -1613,7 +1672,7 @@
             <div class="itin-card__rule"></div>
             <p class="itin-card__place">Cóctel · Cena · Baile</p>
             <p class="itin-card__time">5:00 pm – medianoche</p>
-            <a class="btn-loc" href="#" target="_blank">Ubicación</a>
+            <a class="btn-loc" href="https://maps.google.com/?q=Casa+Hacienda+Mamacona,+Lurin,+Lima" target="_blank" rel="noopener">Ubicación</a>
           </div>
         </div>
         <p class="itinerary__quote rv">
@@ -1648,7 +1707,7 @@
             type="text"
             placeholder="Escribe aquí tu canción favorita…"
           />
-          <button class="btn-send">Enviar</button>
+          <button class="btn-send" onclick="sendSong()">Enviar</button>
           <p class="song__note">Tu sugerencia nos llegará con mucho amor.</p>
         </div>
       </section>
@@ -1900,7 +1959,33 @@
     </div>
     <script>
       /* ── Scroll Reveal ── */
-      const rvEls = document.querySelectorAll(".rv,.rv-l,.rv-r,.rv-s");
+      /* ── Sugerencia de canción ── */
+function sendSong() {
+  const input = document.querySelector('.song__input');
+  const val = (input.value || '').trim();
+  if (!val) {
+    input.style.borderBottomColor = 'var(--gold2,#a88054)';
+    input.focus();
+    const prev = input.placeholder;
+    input.placeholder = '¡Escribe una canción primero!';
+    setTimeout(() => { input.style.borderBottomColor = ''; input.placeholder = prev; }, 2500);
+    return;
+  }
+  const songs = JSON.parse(localStorage.getItem('boda_songs') || '[]');
+  songs.push({ song: val, ts: new Date().toISOString() });
+  localStorage.setItem('boda_songs', JSON.stringify(songs));
+  input.value = '';
+  const btn = document.querySelector('.btn-send');
+  const note = document.querySelector('.song__note');
+  btn.textContent = '✓ Enviada';
+  btn.disabled = true;
+  btn.style.cssText += ';background:var(--gold,#c4a076);color:var(--cream,#faf8f2);cursor:default;opacity:.85;';
+  note.textContent = '¡Gracias! Tu canción ya está en nuestra lista. 🎵';
+  note.style.color = 'var(--gold2,#a88054)';
+  if (typeof toast === 'function') toast('¡Tu canción fue enviada con amor! 🎵');
+}
+
+const rvEls = document.querySelectorAll(".rv,.rv-l,.rv-r,.rv-s");
       const observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((e) => {
