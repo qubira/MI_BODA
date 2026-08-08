@@ -3,170 +3,173 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Invitación de boda digital — Cristina & Fernando · 31 de enero 2027">
-  <title>Cristina & Fernando — Invitación de Boda</title>
+  <meta name="description" content="Invitación de boda — Cristina & Fernando · 31 de enero 2027">
+  <title>Cristina & Fernando · Invitación de Boda</title>
   <link rel="stylesheet" href="css/styles.css">
-  <!-- Preload fuentes críticas -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 </head>
 <body>
 
-<!-- ═══════════════════════════════════════════════════════
-     INTRO VIDEO
-     ═══════════════════════════════════════════════════════ -->
+<!-- ─── INTRO VIDEO ──────────────────────────────────────────── -->
 <section id="intro-video">
-  <video
-    id="intro-vid"
-    autoplay
-    muted
-    playsinline
-    poster="img/mujer-abraza-al-hombre-sostiene-ramo-peonias-blancas-al-aire-libre-vista-frontal-detalles_8353-10966.avif"
-  >
+  <video id="intro-vid" autoplay muted playsinline
+    poster="img/mujer-abraza-al-hombre-sostiene-ramo-peonias-blancas-al-aire-libre-vista-frontal-detalles_8353-10966.avif">
     <source src="video/Pink And Green Minimalist Wedding Invitation.mp4" type="video/mp4">
   </video>
   <button id="skip-btn">Saltar intro &rsaquo;</button>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════
-     MÚSICA DE FONDO
-     ═══════════════════════════════════════════════════════ -->
+<!-- ─── AUDIO ───────────────────────────────────────────────── -->
 <audio id="bg-music" loop preload="none">
   <source src="music/Christina Perri - A Thousand Years.mp3" type="audio/mpeg">
 </audio>
-
-<button id="music-btn" aria-label="Música" title="Play / Pause música">
-  <span class="waves"></span>
-  🎵
+<button id="music-btn" aria-label="Música">
+  <span class="waves"></span>🎵
 </button>
 
-<!-- ═══════════════════════════════════════════════════════
+<!-- ═══════════════════════════════════════════════════════════
      CONTENIDO PRINCIPAL
-     ═══════════════════════════════════════════════════════ -->
+     ═══════════════════════════════════════════════════════════ -->
 <main id="main-content" class="hidden">
 
-  <!-- ─────────────────────────────────────────────────────
-       4.1 HERO / PORTADA
-       ───────────────────────────────────────────────────── -->
+  <!-- ╔═══════════════════════════════════════════════════════
+       4.1  HERO / PORTADA
+       ═══════════════════════════════════════════════════════╗ -->
   <section class="hero">
-    <!-- Pétalos flotantes -->
     <div class="petals-wrap" id="petals-wrap"></div>
 
     <!-- Corona floral superior -->
-    <div class="reveal">
-      <img
-        class="hero-deco"
-        src="img/decoracion_corazon_de_flores.png"
-        alt="decoración floral"
-        style="opacity:.55; width:min(280px,80vw);"
-      >
-    </div>
+    <img class="hero-floral reveal"
+      src="img/decoracion_flores_5.png"
+      alt="decoración floral" loading="eager">
 
-    <p class="hero-label reveal delay-1">Cristina &amp; Fernando</p>
-    <p class="hero-label reveal delay-1" style="margin-top:-.4rem; font-style:italic;">
-      te damos la bienvenida a este día especial
-    </p>
-
-    <!-- Nombres en script -->
-    <div class="hero-names reveal delay-2">
-      Cristina<span class="y-conectora">y</span>Fernando
-    </div>
-
-    <!-- Foto de la pareja en hexágono -->
-    <div class="hero-photo-wrap reveal delay-3">
+    <!-- Foto hexágono -->
+    <div class="hero-photo-wrap reveal delay-1">
       <div class="hero-photo-ring"></div>
       <img
         src="img/mujer-abraza-al-hombre-sostiene-ramo-peonias-blancas-al-aire-libre-vista-frontal-detalles_8353-10966.avif"
-        alt="Cristina y Fernando"
-        loading="eager"
-      >
+        alt="Cristina y Fernando" loading="eager">
     </div>
 
-    <p class="hero-subtitle reveal delay-4">
-      estamos encantados de invitarte a la celebración de nuestro matrimonio
+    <!-- Nombres -->
+    <div class="hero-names reveal delay-2">
+      Cristina<span class="hero-y">y</span>Fernando
+    </div>
+
+    <p class="hero-subtitle reveal delay-3">
+      Estamos encantados de invitarte<br>a la celebración de nuestro matrimonio
     </p>
 
-    <!-- Corona floral inferior (espejada) -->
-    <div class="reveal" style="margin-top:1rem;">
-      <img
-        class="hero-deco bottom"
+    <!-- Corona floral inferior espejada -->
+    <img class="hero-floral flip reveal delay-4"
+      src="img/decoracion_flores_5.png"
+      alt="decoración floral" loading="lazy"
+      style="margin-top:.8rem; opacity:.7;">
+
+    <p class="hero-date reveal">· 31 · 01 · 2027 ·</p>
+  </section>
+
+  <!-- ╔═══════════════════════════════════════════════════════
+       ARCO / BIENVENIDA
+       ═══════════════════════════════════════════════════════╗ -->
+  <section class="arch-section">
+    <div class="arch-frame reveal">
+      <p class="arch-names">Cristina &amp; Fernando</p>
+      <p class="arch-bienvenida">
+        Te damos la bienvenida<br>a este día especial
+      </p>
+      <img class="arch-floral"
         src="img/decoracion_corazon_de_flores.png"
-        alt="decoración floral"
-        style="opacity:.45; width:min(220px,65vw);"
-      >
+        alt="flores" loading="lazy">
     </div>
-
-    <p class="hero-welcome reveal">· 31 · 01 · 2027 ·</p>
+    <div class="scroll-hint reveal delay-2">
+      <span>Desliza</span>
+    </div>
   </section>
 
-  <!-- ─────────────────────────────────────────────────────
-       4.2 CUENTA REGRESIVA
-       ───────────────────────────────────────────────────── -->
+  <!-- ╔═══════════════════════════════════════════════════════
+       4.2  CUENTA REGRESIVA
+       ═══════════════════════════════════════════════════════╗ -->
   <section class="countdown" id="countdown-section">
-    <div class="countdown-inner">
-      <span class="countdown-number" id="days-counter">0</span>
-      <p class="countdown-label">días para nuestro gran día</p>
-      <p class="countdown-fecha">Domingo, 31 de enero de 2027</p>
-    </div>
+    <p class="countdown-pre reveal">Para nuestro gran día</p>
+    <span class="countdown-number reveal delay-1" id="days-counter">0</span>
+    <p class="countdown-label reveal delay-2">Días</p>
+    <p class="countdown-fecha reveal delay-3">Domingo, 31 de enero de 2027</p>
   </section>
 
-  <!-- ─────────────────────────────────────────────────────
-       4.3 y 4.4 CEREMONIA & RECEPCIÓN
-       ───────────────────────────────────────────────────── -->
-  <section class="section">
-    <p class="section-tag reveal">Nuestro día especial</p>
-    <h2 class="section-title reveal">Nos casamos</h2>
-    <div class="divider reveal">✦ ✦ ✦</div>
+  <!-- ╔═══════════════════════════════════════════════════════
+       4.3  CEREMONIA
+       ═══════════════════════════════════════════════════════╗ -->
+  <section class="venue-section">
+    <!-- Mariposas decorativas -->
+    <span class="butterfly" style="top:12%;right:8%;animation-delay:0s">🌸</span>
+    <span class="butterfly" style="top:30%;right:15%;animation-delay:1.2s;font-size:.9rem">🌸</span>
+    <span class="butterfly" style="top:18%;left:10%;animation-delay:.6s;font-size:.8rem">🌸</span>
 
-    <div class="venue-grid">
-      <!-- Ceremonia -->
-      <div class="venue-card reveal">
-        <div class="venue-img-wrap">
-          <img src="img/altar.png" alt="Ceremonia religiosa" loading="lazy">
-        </div>
-        <h3 class="venue-name">Ceremonia</h3>
-        <p class="venue-info">Parroquia Virgen del Pilar<br>12:00 hrs</p>
-        <a
-          href="https://maps.google.com/?q=Parroquia+Virgen+del+Pilar"
-          target="_blank"
-          rel="noopener"
-          class="btn btn--olive"
-          id="link-ceremonia"
-        >📍 Ver ubicación</a>
-      </div>
+    <p class="section-tag reveal">Ceremonia religiosa</p>
+    <h2 class="section-title reveal">Ceremonia</h2>
 
-      <!-- Recepción -->
-      <div class="venue-card reveal delay-2">
-        <div class="venue-img-wrap">
-          <img src="img/mesa_novios.png" alt="Recepción" loading="lazy">
-        </div>
-        <h3 class="venue-name">Recepción</h3>
-        <p class="venue-info">Club Villa de Lima · Salón Imperial<br>15:30 hrs</p>
-        <a
-          href="https://maps.google.com/?q=Club+Villa+de+Lima"
-          target="_blank"
-          rel="noopener"
-          class="btn btn--gold"
-          id="link-recepcion"
-        >📍 Ver ubicación</a>
-      </div>
+    <div class="venue-img-wrap reveal delay-1" style="background:transparent;">
+      <img src="img/altar.png" alt="Ceremonia · Parroquia Virgen del Pilar" loading="lazy">
     </div>
+
+    <p class="section-body reveal delay-2">
+      Parroquia Virgen del Pilar<br>Hora: 12:00
+    </p>
+
+    <a href="https://maps.google.com/?q=Parroquia+Virgen+del+Pilar"
+       target="_blank" rel="noopener"
+       class="btn btn--dark reveal delay-3"
+       id="link-ceremonia">
+      📍 Ver ubicación
+    </a>
   </section>
 
-  <!-- ─────────────────────────────────────────────────────
-       4.5 AGENDA DEL DÍA
-       ───────────────────────────────────────────────────── -->
-  <section class="section agenda section-alt">
-    <p class="section-tag reveal">31 de enero 2027</p>
+  <!-- ╔═══════════════════════════════════════════════════════
+       4.4  RECEPCIÓN
+       ═══════════════════════════════════════════════════════╗ -->
+  <section class="venue-section" style="border-top:1px solid var(--beige);">
+    <!-- Mariposas decorativas -->
+    <span class="butterfly" style="top:15%;left:6%;animation-delay:.3s">🦋</span>
+    <span class="butterfly" style="top:40%;left:12%;animation-delay:1.5s;font-size:.85rem">🦋</span>
+
+    <p class="section-tag reveal">Celebración nupcial</p>
+    <h2 class="section-title reveal">Recepción</h2>
+
+    <div class="venue-img-wrap reveal delay-1" style="background:transparent;">
+      <img src="img/mesa_novios.png" alt="Recepción" loading="lazy">
+    </div>
+
+    <p class="section-body reveal delay-2">
+      Club Villa de Lima · Salón Imperial<br>Hora: 15:30
+    </p>
+
+    <a href="https://maps.google.com/?q=Club+Villa+de+Lima"
+       target="_blank" rel="noopener"
+       class="btn btn--mocha reveal delay-3"
+       id="link-recepcion">
+      📍 Ver ubicación
+    </a>
+
+    <!-- divisor floral entre venue y agenda -->
+    <img src="img/decoracion_camino_de_flores.png"
+         alt="" style="width:min(220px,65vw);margin:2.5rem auto 0;opacity:.45;"
+         class="reveal delay-4" loading="lazy">
+  </section>
+
+  <!-- ╔═══════════════════════════════════════════════════════
+       4.5  AGENDA DEL DÍA
+       ═══════════════════════════════════════════════════════╗ -->
+  <section class="section agenda" style="padding-top:3rem;">
+    <p class="section-tag reveal">31 de enero de 2027</p>
     <h2 class="section-title reveal">Agenda del Día</h2>
-    <div class="divider reveal">✦ ✦ ✦</div>
 
     <div class="timeline">
 
       <div class="timeline-item reveal">
         <div class="timeline-hora">11:00</div>
         <div class="timeline-content">
-          <div class="timeline-icon">🌸</div>
           <div class="timeline-actividad">Llegada de invitados</div>
           <div class="timeline-lugar">Jardín principal · Bienvenida con cóctel</div>
         </div>
@@ -175,7 +178,6 @@
       <div class="timeline-item reveal delay-1">
         <div class="timeline-hora">12:00</div>
         <div class="timeline-content">
-          <div class="timeline-icon">⛪</div>
           <div class="timeline-actividad">Ceremonia religiosa</div>
           <div class="timeline-lugar">Parroquia Virgen del Pilar</div>
         </div>
@@ -184,7 +186,6 @@
       <div class="timeline-item reveal delay-2">
         <div class="timeline-hora">13:00</div>
         <div class="timeline-content">
-          <div class="timeline-icon">📸</div>
           <div class="timeline-actividad">Sesión de fotos</div>
           <div class="timeline-lugar">Jardín y salones principales</div>
         </div>
@@ -193,7 +194,6 @@
       <div class="timeline-item reveal delay-1">
         <div class="timeline-hora">14:00</div>
         <div class="timeline-content">
-          <div class="timeline-icon">🥂</div>
           <div class="timeline-actividad">Cocktail &amp; aperitivos</div>
           <div class="timeline-lugar">Terraza principal</div>
         </div>
@@ -202,7 +202,6 @@
       <div class="timeline-item reveal delay-2">
         <div class="timeline-hora">15:30</div>
         <div class="timeline-content">
-          <div class="timeline-icon">🍽️</div>
           <div class="timeline-actividad">Banquete nupcial</div>
           <div class="timeline-lugar">Club Villa de Lima · Salón Imperial</div>
         </div>
@@ -211,7 +210,6 @@
       <div class="timeline-item reveal delay-1">
         <div class="timeline-hora">17:00</div>
         <div class="timeline-content">
-          <div class="timeline-icon">🎂</div>
           <div class="timeline-actividad">Corte del pastel &amp; brindis</div>
           <div class="timeline-lugar">Salón principal</div>
         </div>
@@ -220,7 +218,6 @@
       <div class="timeline-item reveal delay-2">
         <div class="timeline-hora">17:30</div>
         <div class="timeline-content">
-          <div class="timeline-icon">💃</div>
           <div class="timeline-actividad">Primer baile</div>
           <div class="timeline-lugar">"A Thousand Years" — Christina Perri</div>
         </div>
@@ -229,7 +226,6 @@
       <div class="timeline-item reveal delay-1">
         <div class="timeline-hora">18:00</div>
         <div class="timeline-content">
-          <div class="timeline-icon">🎶</div>
           <div class="timeline-actividad">Fiesta &amp; baile libre</div>
           <div class="timeline-lugar">Pista central · Música especial</div>
         </div>
@@ -238,133 +234,134 @@
       <div class="timeline-item reveal delay-2">
         <div class="timeline-hora">23:00</div>
         <div class="timeline-content">
-          <div class="timeline-icon">🦋</div>
           <div class="timeline-actividad">Despedida de los novios</div>
           <div class="timeline-lugar">Pétalos y mariposas en la salida</div>
         </div>
       </div>
 
-    </div>
+    </div><!-- /timeline -->
   </section>
 
-  <!-- ─────────────────────────────────────────────────────
-       4.6 CÓDIGO DE VESTIMENTA
-       ───────────────────────────────────────────────────── -->
-  <section class="section dresscode">
+  <!-- ╔═══════════════════════════════════════════════════════
+       4.6  CÓDIGO DE VESTIMENTA
+       ═══════════════════════════════════════════════════════╗ -->
+  <section class="section dresscode" style="border-top:1px solid var(--beige);">
     <p class="section-tag reveal">Para la ocasión</p>
     <h2 class="section-title reveal">Código de Vestimenta</h2>
-    <div class="divider reveal">✦ ✦ ✦</div>
 
-    <div class="dresscode-circle reveal">
-      <img src="img/novio-que-pone-anillo-dedo-novia_1157-338.avif" alt="Novios" loading="lazy">
+    <div class="dresscode-layout reveal delay-1">
+      <!-- Rosas decorativas -->
+      <img class="dresscode-floral"
+        src="img/decoracion_planta_4.png"
+        alt="decoración floral" loading="lazy">
+
+      <!-- Foto / silueta en círculo -->
+      <div class="dresscode-circle">
+        <img src="img/novio-que-pone-anillo-dedo-novia_1157-338.avif"
+             alt="Código de vestimenta" loading="lazy">
+      </div>
     </div>
-    <div class="dresscode-spec reveal delay-1">Formal / Elegante</div>
-    <p class="dresscode-note reveal delay-2">Por favor evitar blanco, marfil y colores tierra<br>para que los novios puedan lucir en su día especial.</p>
-    <br>
-    <img
-      src="img/decoracion_camino_de_flores.png"
-      alt="decoración"
-      style="max-width:min(340px,90%); margin:1.5rem auto 0; opacity:.4;"
-      class="reveal delay-3"
-      loading="lazy"
-    >
+
+    <div class="dresscode-badge reveal delay-2">Formal / Elegante</div>
+    <p class="dresscode-note reveal delay-3">
+      Por favor evitar blanco, marfil y colores tierra<br>
+      para que los novios puedan brillar en su día.
+    </p>
   </section>
 
-  <!-- ─────────────────────────────────────────────────────
-       4.7 DETALLE DE REGALO
-       ───────────────────────────────────────────────────── -->
-  <section class="section regalo section-alt">
+  <!-- ╔═══════════════════════════════════════════════════════
+       4.7  DETALLE DE REGALO
+       ═══════════════════════════════════════════════════════╗ -->
+  <section class="section regalo">
     <p class="section-tag reveal">Con amor para nuestro nido</p>
     <h2 class="section-title reveal">Detalle de Regalo</h2>
-    <div class="divider reveal">✦ ✦ ✦</div>
-
-    <p class="section-body reveal">
-      Tu presencia es nuestro mayor regalo. Si deseas obsequiarnos algo especial,
-      aquí tienes algunas ideas que nos encantarían.
+    <p class="section-body reveal delay-1">
+      Tu presencia es nuestro mayor regalo. Si deseas<br>
+      obsequiarnos algo especial, aquí tienes algunas ideas<br>
+      que nos encantarían.
     </p>
 
-    <div class="regalo-img-row reveal">
-      <img src="img/decoracion_lugar_de_regalos.png"   alt="regalo" loading="lazy">
-      <img src="img/decoracion_lugar_de_regalos_2.png" alt="regalo" loading="lazy">
-      <img src="img/decoracion_lugar_de_regalos_3.png" alt="regalo" loading="lazy">
-    </div>
+    <button class="btn btn--beige reveal delay-2" id="btn-regalo"
+      style="margin-bottom:1.5rem;">
+      🎁 Abrir aquí
+    </button>
 
-    <button class="btn btn--outline reveal delay-1" id="btn-regalo">🎁 Abrir aquí</button>
+    <div class="regalo-layout reveal delay-3">
+      <div class="regalo-imgs">
+        <img src="img/decoracion_lugar_de_regalos.png"   alt="regalo" loading="lazy">
+        <img src="img/decoracion_lugar_de_regalos_2.png" alt="regalo" loading="lazy">
+      </div>
+      <img class="regalo-vine"
+        src="img/decoracion_planta_3.png"
+        alt="decoración" loading="lazy">
+    </div>
   </section>
 
-  <!-- ─────────────────────────────────────────────────────
-       4.8 FRASE ROMÁNTICA
-       ───────────────────────────────────────────────────── -->
+  <!-- ╔═══════════════════════════════════════════════════════
+       4.8  FRASE ROMÁNTICA
+       ═══════════════════════════════════════════════════════╗ -->
   <section class="quote-section">
-    <div class="quote-inner">
-      <img
-        class="quote-img reveal"
-        src="img/decoracion_mosos.png"
-        alt="decoración"
-        loading="lazy"
-      >
-      <blockquote>
-        <p class="quote-text reveal delay-1">
-          "El amor no consiste en mirarse el uno al otro,<br>
-          sino en mirar juntos en la misma dirección."
-        </p>
-        <cite class="quote-author reveal delay-2">— Antoine de Saint-Exupéry</cite>
-      </blockquote>
+
+    <div class="quote-pill reveal">
+      <p class="quote-text">
+        "El amor no consiste en mirarse el uno al otro,<br>
+        sino en mirar juntos en la misma dirección."
+      </p>
+      <cite class="quote-author">— Antoine de Saint-Exupéry</cite>
     </div>
+
+    <!-- Copas de champán (decoración) -->
+    <img class="champagne-img reveal delay-1"
+      src="img/decoracion_fuente.png"
+      alt="brindis" loading="lazy"
+      style="width:min(100px,30vw); margin:1.2rem auto;">
+
+    <a href="#rsvp" class="btn btn--dark reveal delay-2">
+      Confirmar asistencia
+    </a>
   </section>
 
-  <!-- ─────────────────────────────────────────────────────
-       4.9 CONFIRMACIÓN DE ASISTENCIA (RSVP)
-       ───────────────────────────────────────────────────── -->
-  <section class="section rsvp">
+  <!-- ╔═══════════════════════════════════════════════════════
+       4.9  CONFIRMACIÓN DE ASISTENCIA (RSVP)
+       ═══════════════════════════════════════════════════════╗ -->
+  <section class="section rsvp" id="rsvp">
     <p class="section-tag reveal">Nos encantaría verte</p>
     <h2 class="section-title reveal">¿Contamos contigo?</h2>
-    <p class="section-body reveal" style="margin-bottom:2rem;">
-      Por favor responde antes del <strong>31 de enero de 2027</strong>
+    <p class="section-body reveal delay-1">
+      Por favor responde antes del 31 de enero de 2027
     </p>
 
-    <form class="rsvp-form reveal" id="rsvp-form" novalidate>
+    <!-- Divisor floral -->
+    <img class="rsvp-floral-divider reveal delay-1"
+      src="img/decoracion_corazon_de_flores.png"
+      alt="" loading="lazy"
+      style="width:min(90px,28vw); opacity:.55;">
+
+    <form class="rsvp-form reveal delay-2" id="rsvp-form" novalidate>
 
       <div class="form-group">
-        <label for="rsvp-nombre">Nombre completo *</label>
-        <input
-          type="text"
-          id="rsvp-nombre"
-          name="nombre"
-          placeholder="Tu nombre completo"
-          required
-          autocomplete="name"
-        >
+        <label for="rsvp-nombre">Nombre completo <span class="req">*</span></label>
+        <input type="text" id="rsvp-nombre" name="nombre"
+          placeholder="Tu nombre completo" required autocomplete="name">
       </div>
 
       <div class="form-group">
-        <label for="rsvp-correo">Correo electrónico *</label>
-        <input
-          type="email"
-          id="rsvp-correo"
-          name="correo"
-          placeholder="tu@correo.com"
-          required
-          autocomplete="email"
-        >
+        <label for="rsvp-correo">Correo <span class="req">*</span></label>
+        <input type="email" id="rsvp-correo" name="correo"
+          placeholder="tu@correo.com" required autocomplete="email">
       </div>
 
       <div class="form-group">
-        <label for="rsvp-telefono">Teléfono / WhatsApp</label>
-        <input
-          type="tel"
-          id="rsvp-telefono"
-          name="telefono"
-          placeholder="+51 999 999 999"
-          autocomplete="tel"
-        >
+        <label for="rsvp-telefono">Teléfono</label>
+        <input type="tel" id="rsvp-telefono" name="telefono"
+          placeholder="+51 999 999 999" autocomplete="tel">
       </div>
 
       <div class="form-group">
-        <label for="rsvp-acompanantes">¿Cuántos acompañantes traes? *</label>
+        <label for="rsvp-acompanantes">Acompañantes <span class="req">*</span></label>
         <select id="rsvp-acompanantes" name="acompanantes" required>
           <option value="" disabled selected>Seleccionar…</option>
-          <option value="0">Solo yo (0 acompañantes)</option>
+          <option value="0">Solo yo</option>
           <option value="1">1 acompañante</option>
           <option value="2">2 acompañantes</option>
           <option value="3">3 acompañantes</option>
@@ -373,14 +370,14 @@
         </select>
       </div>
 
-      <div class="asiste-group">
-        <label>¿Confirmas tu asistencia? *</label>
-        <div class="asiste-btns">
-          <input class="asiste-radio" type="radio" name="asiste" id="asiste-si" value="si">
-          <label class="asiste-label" for="asiste-si">💚 Sí asistiré</label>
-          <input class="asiste-radio" type="radio" name="asiste" id="asiste-no" value="no">
-          <label class="asiste-label" for="asiste-no">💔 No podré ir</label>
-        </div>
+      <div class="form-divider">¿Confirmas tu asistencia?</div>
+
+      <div class="asiste-btns">
+        <input class="asiste-radio" type="radio" name="asiste" id="asiste-si" value="si">
+        <label class="asiste-label" for="asiste-si">💚 Sí asistiré</label>
+
+        <input class="asiste-radio" type="radio" name="asiste" id="asiste-no" value="no">
+        <label class="asiste-label" for="asiste-no">❤️ No podré ir</label>
       </div>
 
       <button type="submit" class="btn-submit" id="rsvp-submit">
@@ -395,23 +392,17 @@
   <footer class="footer">
     <div class="footer-names">Cristina &amp; Fernando</div>
     <p class="footer-date">31 · 01 · 2027</p>
-    <div class="divider" style="margin-top:1rem;">✦</div>
+    <div class="divider" style="margin-top:.8rem;">✦</div>
   </footer>
 
-</main><!-- /main-content -->
+</main>
 
-
-<!-- ═══════════════════════════════════════════════════════
-     MODAL DE REGALO
-     ═══════════════════════════════════════════════════════ -->
-<div class="modal-backdrop" id="modal-regalo" role="dialog" aria-modal="true" aria-label="Detalle de regalo">
-  <div class="modal-box" style="position:relative;">
+<!-- ─── MODAL REGALO ─────────────────────────────────────────── -->
+<div class="modal-backdrop" id="modal-regalo" role="dialog" aria-modal="true">
+  <div class="modal-box">
     <button class="modal-close" id="modal-close" aria-label="Cerrar">&times;</button>
     <h3 class="modal-title">🎁 Nuestro nido</h3>
-    <p class="modal-body">
-      Si deseas hacernos un regalo especial, puedes hacerlo mediante transferencia bancaria
-      o a través de nuestra lista de regalos. ¡Te lo agradecemos de corazón!
-    </p>
+    <p class="modal-body">Si deseas hacernos un regalo, puedes hacerlo por transferencia bancaria.</p>
     <div class="modal-data">
       <strong>Titular:</strong> Cristina López / Fernando García<br>
       <strong>Banco:</strong> BCP / Interbank<br>
@@ -419,8 +410,9 @@
       <strong>CCI:</strong> 000 000 000000000000 00<br>
       <strong>Yape / Plin:</strong> +51 999 000 000
     </div>
-    <button class="btn btn--gold" onclick="document.getElementById('modal-regalo').classList.remove('open')">
-      Cerrar
+    <button class="btn btn--teal" style="width:100%;"
+      onclick="document.getElementById('modal-regalo').classList.remove('open')">
+      ¡Gracias! 💕
     </button>
   </div>
 </div>
