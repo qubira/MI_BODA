@@ -3,302 +3,603 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5">
-<title>Cristina &amp; Fernando — Invitación de Boda · 31 Enero 2027</title>
+<title>Cristina &amp; Fernando — 31 Enero 2027</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{background:#f0ebe3;overflow-x:hidden}
+body{background:#ede8e0;overflow-x:hidden;font-family:'Cormorant Garamond',serif;color:#2c2826}
 
+/* ─── WRAP ─── */
 .wrap{max-width:420px;margin:0 auto;background:#fff}
+@media(min-width:480px){.wrap{box-shadow:0 0 60px rgba(0,0,0,.12)}}
 
-/* ════ VIDEO INTRO ════ */
+/* ─── REVEAL ─── */
+.rv{opacity:0;transform:translateY(20px);transition:.65s ease}
+.rv.in{opacity:1;transform:none}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}
+
+/* ════════════════════════════════
+   VIDEO INTRO
+════════════════════════════════ */
 #intro{
-  position:fixed;inset:0;z-index:1000;
-  background:#1a1712;display:flex;align-items:center;justify-content:center;
-  transition:opacity .8s,visibility .8s;
+  position:fixed;inset:0;z-index:1000;background:#1a1510;
+  display:flex;align-items:center;justify-content:center;
+  transition:opacity .9s,visibility .9s;
 }
 #intro.out{opacity:0;visibility:hidden;pointer-events:none}
 #intro video{width:100%;height:100%;object-fit:cover}
-#skip-btn{
+#skip{
   position:absolute;bottom:28px;right:22px;
-  background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.45);
+  background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.4);
   color:#fff;padding:9px 22px;border-radius:30px;
-  font-family:'Montserrat',sans-serif;font-size:.6rem;
-  letter-spacing:.15em;text-transform:uppercase;
-  cursor:pointer;backdrop-filter:blur(6px);
+  font-family:'Montserrat',sans-serif;font-size:.58rem;
+  letter-spacing:.16em;text-transform:uppercase;cursor:pointer;
+  backdrop-filter:blur(6px);
 }
 
-/* ════ MÚSICA ════ */
+/* ════════════════════════════════
+   BOTÓN MÚSICA
+════════════════════════════════ */
 #mu-btn{
-  position:fixed;bottom:22px;right:22px;z-index:500;
-  width:46px;height:46px;border-radius:50%;
-  background:#5a7357;color:#fff;font-size:1.1rem;
+  position:fixed;bottom:22px;right:22px;z-index:600;
+  width:46px;height:46px;border-radius:50%;border:none;
+  background:#5a7357;color:#fff;font-size:1.1rem;cursor:pointer;
   display:flex;align-items:center;justify-content:center;
-  box-shadow:0 4px 20px rgba(0,0,0,.28);cursor:pointer;border:none;
-  transition:.2s;
+  box-shadow:0 4px 18px rgba(0,0,0,.28);transition:.2s;
 }
 #mu-btn:hover{background:#6b9e9b;transform:scale(1.07)}
-.mu-ring{
-  position:absolute;inset:-5px;border-radius:50%;
-  border:2px solid #5a7357;opacity:0;
-  animation:ringpulse 1.7s infinite;
+.ring{position:absolute;inset:-5px;border-radius:50%;border:2px solid #5a7357;opacity:0;animation:rp 1.7s infinite}
+#mu-btn.on .ring{opacity:1}
+@keyframes rp{0%{transform:scale(1);opacity:.65}100%{transform:scale(1.7);opacity:0}}
+
+/* ════════════════════════════════
+   ① HERO
+════════════════════════════════ */
+.hero{
+  background:#fff;
+  padding:0 0 44px;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
 }
-#mu-btn.on .mu-ring{opacity:1}
-@keyframes ringpulse{0%{transform:scale(1);opacity:.6}100%{transform:scale(1.65);opacity:0}}
-
-/* ════ SLIDES ════ */
-.slide{display:block;width:100%;line-height:0}
-
-/* ════ FRANJA DE BOTÓN ════ */
-.btn-strip{
-  display:flex;align-items:center;justify-content:center;
-  padding:20px 24px;
+.hero-flowers{
+  width:85%;max-width:320px;
+  display:block;margin:0 auto;
 }
-.btn-strip.dark-bg {background:#3a3630}
-.btn-strip.cream-bg{background:#f8f3ec}
-.btn-strip.olive-bg{background:#5a7357}
+.hero-fecha-top{
+  font-family:'Montserrat',sans-serif;
+  font-size:.54rem;letter-spacing:.42em;text-transform:uppercase;
+  color:#b8a98a;margin:10px 0 16px;
+}
+.hero-name{
+  font-family:'Great Vibes',cursive;
+  font-size:4rem;color:#2c2826;line-height:1;display:block;
+}
+.hero-y{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.1rem;font-style:italic;color:#b8a98a;
+  display:block;margin:4px 0;
+}
+.hero-divider{
+  width:1px;height:36px;background:linear-gradient(to bottom,transparent,#c9c0b5,transparent);
+  display:block;margin:14px auto;
+}
+.hero-info{
+  font-family:'Montserrat',sans-serif;
+  font-size:.56rem;letter-spacing:.3em;text-transform:uppercase;
+  color:#7a6e68;line-height:2;
+}
 
-.btn-pill{
+/* ════════════════════════════════
+   ② BIENVENIDA / ARCO
+════════════════════════════════ */
+.arch-sec{
+  background:#fdf7f0;
+  padding:48px 28px 52px;
+  text-align:center;
+  border-top:1px solid #ede4d8;border-bottom:1px solid #ede4d8;
+  position:relative;
+}
+.arch-box{
+  display:inline-block;
+  background:#fff;
+  border-radius:50% 50% 12px 12px / 38% 38% 12px 12px;
+  padding:36px 28px 30px;
+  max-width:300px;width:100%;
+  border:1px solid #ede4d8;
+  box-shadow:0 6px 30px rgba(0,0,0,.06);
+  position:relative;
+}
+.arch-butterfly{
+  position:absolute;top:-10px;right:12px;width:44px;
+}
+.arch-tag{
+  font-family:'Montserrat',sans-serif;font-size:.52rem;
+  letter-spacing:.38em;text-transform:uppercase;color:#c9a882;margin-bottom:12px;
+}
+.arch-names{
+  font-family:'Great Vibes',cursive;font-size:2.6rem;color:#2c2826;line-height:1.2;
+}
+.arch-line{
+  width:40px;height:1px;background:#c9a882;display:block;margin:12px auto;
+}
+.arch-msg{
+  font-family:'Montserrat',sans-serif;font-size:.54rem;
+  letter-spacing:.22em;text-transform:uppercase;color:#7a6e68;line-height:1.9;
+}
+.arch-flowers{
+  width:80%;max-width:240px;display:block;margin:20px auto 0;
+}
+
+/* ════════════════════════════════
+   ③ COUNTDOWN
+════════════════════════════════ */
+.cd-sec{
+  background:#fff;
+  padding:52px 28px;
+  text-align:center;
+  border-bottom:1px solid #ede4d8;
+}
+.cd-label{
+  font-family:'Montserrat',sans-serif;font-size:.54rem;
+  letter-spacing:.4em;text-transform:uppercase;color:#b8a98a;margin-bottom:14px;
+}
+.cd-num{
+  font-family:'Great Vibes',cursive;font-size:6rem;color:#2c2826;
+  line-height:.9;display:block;
+}
+.cd-sub{
+  font-family:'Montserrat',sans-serif;font-size:.56rem;
+  letter-spacing:.36em;text-transform:uppercase;color:#7a6e68;margin-top:10px;
+}
+.cd-date{
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:1.05rem;color:#c9a882;margin-top:8px;
+}
+
+/* ════════════════════════════════
+   SECCIÓN GENÉRICA
+════════════════════════════════ */
+.sec{padding:52px 28px;text-align:center}
+.sec.cream{background:#fdf7f0;border-top:1px solid #ede4d8;border-bottom:1px solid #ede4d8}
+.sec.white{background:#fff}
+.sec-tag{
+  display:block;font-family:'Montserrat',sans-serif;
+  font-size:.52rem;letter-spacing:.4em;text-transform:uppercase;
+  color:#6b9e9b;margin-bottom:8px;font-weight:500;
+}
+.sec-h{
+  font-family:'Great Vibes',cursive;font-size:2.6rem;color:#2c2826;
+  margin-bottom:10px;line-height:1.2;
+}
+.sec-body{
+  font-family:'Montserrat',sans-serif;font-size:.6rem;
+  letter-spacing:.14em;color:#7a6e68;line-height:2.2;
+  text-transform:uppercase;margin-bottom:20px;
+}
+.sec-body strong{color:#2c2826}
+.sec-img{display:block;margin:0 auto 22px}
+.div-img{display:block;margin:0 auto}
+
+/* ════════════════════════════════
+   BOTONES
+════════════════════════════════ */
+.btn{
   display:inline-flex;align-items:center;gap:7px;
   padding:13px 36px;border-radius:50px;
-  font-family:'Montserrat',sans-serif;font-size:.6rem;
+  font-family:'Montserrat',sans-serif;font-size:.58rem;
   font-weight:500;letter-spacing:.18em;text-transform:uppercase;
   text-decoration:none;cursor:pointer;border:none;
-  transition:opacity .2s,transform .2s;
-  line-height:1;
+  transition:opacity .2s,transform .15s;line-height:1;
 }
-.btn-pill:hover{opacity:.85;transform:translateY(-2px)}
-.pill-white {background:#fff;color:#3a3630}
-.pill-cream {background:#f8f3ec;color:#3a3630;border:1.5px solid #b8a98a}
-.pill-olive {background:#5a7357;color:#fff}
-.pill-teal  {background:#6b9e9b;color:#fff}
-.pill-dark  {background:#3a3630;color:#fff}
+.btn:hover{opacity:.85;transform:translateY(-2px)}
+.btn-dark{background:#2c2826;color:#fff}
+.btn-olive{background:#5a7357;color:#fff}
+.btn-teal{background:#6b9e9b;color:#fff}
+.btn-cream{background:#fdf7f0;color:#2c2826;border:1.5px solid #c9a882}
 
-/* ════ RSVP FORM ════ */
+/* ════════════════════════════════
+   AGENDA / TIMELINE
+════════════════════════════════ */
+.tl{
+  position:relative;max-width:340px;margin:0 auto;
+  padding-left:50px;text-align:left;
+}
+.tl::before{
+  content:'';position:absolute;left:14px;top:10px;bottom:10px;
+  width:1px;background:linear-gradient(to bottom,transparent,#ede4d8 8%,#ede4d8 92%,transparent);
+}
+.tl-row{position:relative;margin-bottom:22px}
+.tl-row::before{
+  content:'';position:absolute;left:-37px;top:4px;
+  width:8px;height:8px;border-radius:50%;
+  background:#c9a882;border:2px solid #fff;
+  box-shadow:0 0 0 1.5px #c9a882;
+}
+.tl-h{font-family:'Montserrat',sans-serif;font-size:.56rem;font-weight:600;letter-spacing:.06em;color:#6b9e9b;margin-bottom:2px}
+.tl-a{font-family:'Montserrat',sans-serif;font-size:.62rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#5a7357;margin-bottom:1px}
+.tl-l{font-family:'Montserrat',sans-serif;font-size:.58rem;color:#7a6e68;line-height:1.6}
+
+/* ════════════════════════════════
+   DRESS CODE
+════════════════════════════════ */
+.dc-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:16px;
+  max-width:320px;margin:20px auto 0;
+}
+.dc-item{
+  border:1px solid #ede4d8;border-radius:12px;padding:16px 10px;text-align:center;
+}
+.dc-emoji{font-size:1.5rem;display:block;margin-bottom:6px}
+.dc-lbl{font-family:'Montserrat',sans-serif;font-size:.56rem;letter-spacing:.16em;text-transform:uppercase;color:#7a6e68;line-height:1.6}
+.dc-val{font-family:'Montserrat',sans-serif;font-size:.62rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#2c2826}
+
+/* ════════════════════════════════
+   RSVP FORM
+════════════════════════════════ */
 .rsvp-sec{
-  background:#f8f3ec;
-  padding:48px 28px 60px;
-  border-top:1px solid #e8dfd3;
+  background:#fdf7f0;padding:52px 28px 60px;
+  border-top:1px solid #ede4d8;
 }
-.rsvp-tag{
-  display:block;text-align:center;
-  font-family:'Montserrat',sans-serif;
-  font-size:.55rem;letter-spacing:.38em;text-transform:uppercase;
-  color:#6b9e9b;margin-bottom:8px;
-}
-.rsvp-h{
-  font-family:'Great Vibes',cursive;
-  font-size:3rem;color:#2c2a26;
-  text-align:center;margin-bottom:6px;line-height:1.15;
-}
-.rsvp-note{
-  font-family:'Montserrat',sans-serif;
-  font-size:.56rem;letter-spacing:.14em;text-transform:uppercase;
-  color:#7a7570;text-align:center;margin-bottom:32px;
-}
-.rsvp-form{max-width:360px;margin:0 auto}
+.form-wrap{max-width:360px;margin:0 auto}
 .fg{margin-bottom:22px}
 .fg label{
-  display:block;
-  font-family:'Montserrat',sans-serif;
-  font-size:.54rem;letter-spacing:.22em;text-transform:uppercase;
-  color:#7a7570;margin-bottom:8px;
+  display:block;font-family:'Montserrat',sans-serif;
+  font-size:.52rem;letter-spacing:.24em;text-transform:uppercase;
+  color:#7a6e68;margin-bottom:8px;
 }
-.fg label span{color:#6b9e9b}
+.fg label em{color:#6b9e9b;font-style:normal}
 .fg input,.fg select{
-  width:100%;padding:7px 0 11px;
-  border:none;border-bottom:1.5px solid #e8dfd3;
-  font-family:'Montserrat',sans-serif;font-size:.75rem;
-  background:transparent;color:#2c2a26;
-  outline:none;transition:border-color .2s;
-  appearance:none;-webkit-appearance:none;border-radius:0;
-  letter-spacing:.04em;
+  width:100%;padding:7px 0 11px;border:none;
+  border-bottom:1.5px solid #ede4d8;
+  font-family:'Montserrat',sans-serif;font-size:.72rem;
+  background:transparent;color:#2c2826;outline:none;
+  transition:border-color .2s;appearance:none;-webkit-appearance:none;border-radius:0;
 }
 .fg input:focus,.fg select:focus{border-bottom-color:#6b9e9b}
-.div-txt{
-  font-family:'Montserrat',sans-serif;font-size:.54rem;
-  letter-spacing:.24em;text-transform:uppercase;
-  color:#7a7570;text-align:center;margin:26px 0 14px;
+.asiste-sep{
+  font-family:'Montserrat',sans-serif;font-size:.52rem;
+  letter-spacing:.26em;text-transform:uppercase;color:#7a6e68;
+  text-align:center;margin:26px 0 14px;
 }
 .asiste-row{display:flex;gap:10px}
-.asiste-r{display:none}
-.asiste-l{
-  flex:1;text-align:center;padding:11px 8px;
-  border:1.5px solid #e8dfd3;border-radius:50px;
-  font-family:'Montserrat',sans-serif;font-size:.6rem;
+.ar{display:none}
+.al{
+  flex:1;text-align:center;padding:12px 6px;
+  border:1.5px solid #ede4d8;border-radius:50px;
+  font-family:'Montserrat',sans-serif;font-size:.58rem;
   letter-spacing:.1em;text-transform:uppercase;
-  cursor:pointer;color:#7a7570;transition:.2s;user-select:none;
+  cursor:pointer;color:#7a6e68;transition:.2s;user-select:none;
 }
-.asiste-r:checked+.asiste-l{
-  border-color:#6b9e9b;color:#6b9e9b;background:rgba(107,158,155,.1);
-}
-.btn-enviar{
-  display:block;width:100%;margin-top:28px;
-  padding:15px;background:#5a7357;color:#fff;
-  border-radius:50px;border:none;cursor:pointer;
-  font-family:'Montserrat',sans-serif;font-size:.6rem;
+.ar:checked+.al{border-color:#6b9e9b;color:#6b9e9b;background:rgba(107,158,155,.08)}
+.btn-send{
+  display:block;width:100%;margin-top:28px;padding:15px;
+  background:#5a7357;color:#fff;border-radius:50px;border:none;cursor:pointer;
+  font-family:'Montserrat',sans-serif;font-size:.58rem;
   letter-spacing:.22em;text-transform:uppercase;font-weight:500;
   transition:background .2s,transform .15s;
 }
-.btn-enviar:hover{background:#6b9e9b;transform:translateY(-2px)}
-.btn-enviar:disabled{opacity:.5;transform:none;cursor:default}
-.form-msg{
-  text-align:center;margin-top:14px;
-  font-family:'Montserrat',sans-serif;font-size:.68rem;
-  padding:10px;border-radius:8px;min-height:1.2rem;
+.btn-send:hover{background:#6b9e9b;transform:translateY(-2px)}
+.btn-send:disabled{opacity:.5;transform:none;cursor:default}
+.fmsg{
+  text-align:center;margin-top:14px;min-height:1.2rem;
+  font-family:'Montserrat',sans-serif;font-size:.65rem;
+  padding:10px;border-radius:8px;
 }
-.form-msg.ok{background:#e8f5e9;color:#2e7d32}
-.form-msg.er{background:#fce4e4;color:#b71c1c}
+.fmsg.ok{background:#e8f5e9;color:#2e7d32}
+.fmsg.er{background:#fce4e4;color:#b71c1c}
 
-/* ════ FOOTER ════ */
+/* ════════════════════════════════
+   FOOTER
+════════════════════════════════ */
 .footer{
-  background:#f8f3ec;border-top:1px solid #e8dfd3;
-  padding:30px 20px;text-align:center;
+  background:#fff;border-top:1px solid #ede4d8;
+  padding:36px 20px 28px;text-align:center;
 }
-.footer-names{font-family:'Great Vibes',cursive;font-size:2.6rem;color:#2c2a26}
+.footer-names{font-family:'Great Vibes',cursive;font-size:2.8rem;color:#2c2826}
 .footer-date{
-  font-family:'Montserrat',sans-serif;font-size:.54rem;
-  letter-spacing:.32em;color:#b8a98a;text-transform:uppercase;margin-top:5px;
+  font-family:'Montserrat',sans-serif;font-size:.52rem;
+  letter-spacing:.36em;color:#b8a98a;text-transform:uppercase;margin-top:4px;
 }
+.footer-copas{width:70px;display:block;margin:16px auto 0;opacity:.7}
 
-/* ════ MODAL REGALO ════ */
-.modal-bg{
-  position:fixed;inset:0;background:rgba(0,0,0,.5);
-  z-index:800;display:flex;align-items:center;justify-content:center;
+/* ════════════════════════════════
+   MODAL REGALO
+════════════════════════════════ */
+.mbg{
+  position:fixed;inset:0;background:rgba(0,0,0,.48);
+  z-index:900;display:flex;align-items:center;justify-content:center;
   padding:20px;opacity:0;visibility:hidden;transition:.3s;
 }
-.modal-bg.open{opacity:1;visibility:visible}
-.modal-box{
-  background:#f8f3ec;border-radius:20px;padding:30px 24px;
-  max-width:360px;width:100%;text-align:center;
-  position:relative;transform:translateY(22px);transition:.32s;
-  box-shadow:0 18px 55px rgba(0,0,0,.22);border:1px solid #e8dfd3;
+.mbg.open{opacity:1;visibility:visible}
+.mbox{
+  background:#fdf7f0;border-radius:20px;padding:32px 24px;
+  max-width:360px;width:100%;text-align:center;position:relative;
+  transform:translateY(22px);transition:.32s;
+  box-shadow:0 20px 60px rgba(0,0,0,.22);border:1px solid #ede4d8;
 }
-.modal-bg.open .modal-box{transform:none}
-.modal-x{
-  position:absolute;top:14px;right:18px;font-size:1.3rem;
-  color:#b8a98a;cursor:pointer;background:none;border:none;line-height:1;
-}
-.modal-h{font-family:'Great Vibes',cursive;font-size:2.3rem;color:#2c2a26;margin-bottom:8px}
-.modal-p{font-family:'Montserrat',sans-serif;font-size:.65rem;color:#7a7570;line-height:1.8;margin-bottom:14px}
-.modal-data{
-  background:#fff;border:1px solid #e8dfd3;border-radius:10px;
+.mbg.open .mbox{transform:none}
+.mx{position:absolute;top:14px;right:18px;font-size:1.3rem;color:#b8a98a;cursor:pointer;background:none;border:none;line-height:1}
+.mh{font-family:'Great Vibes',cursive;font-size:2.4rem;color:#2c2826;margin-bottom:8px}
+.mp{font-family:'Montserrat',sans-serif;font-size:.62rem;color:#7a6e68;line-height:1.9;margin-bottom:14px;letter-spacing:.06em}
+.mdata{
+  background:#fff;border:1px solid #ede4d8;border-radius:10px;
   padding:14px 16px;text-align:left;
-  font-family:'Montserrat',sans-serif;font-size:.65rem;
-  color:#7a7570;line-height:2.3;margin-bottom:16px;
+  font-family:'Montserrat',sans-serif;font-size:.64rem;
+  color:#7a6e68;line-height:2.4;margin-bottom:16px;
 }
-.modal-data strong{color:#2c2a26}
-
-@media(min-width:480px){.wrap{box-shadow:0 0 80px rgba(0,0,0,.1)}}
+.mdata strong{color:#2c2826}
 </style>
 </head>
 <body>
 
-<!-- INTRO VIDEO -->
+<!-- ═══ VIDEO INTRO ═══════════════════════════════════════ -->
 <div id="intro">
   <video id="ivid" autoplay muted playsinline>
     <source src="video/Pink And Green Minimalist Wedding Invitation.mp4" type="video/mp4">
   </video>
-  <button id="skip-btn">Saltar intro ›</button>
+  <button id="skip">Saltar intro ›</button>
 </div>
 
-<!-- AUDIO -->
+<!-- ═══ AUDIO ════════════════════════════════════════════ -->
 <audio id="mu" loop preload="auto">
   <source src="music/Christina%20Perri%20-%20A%20Thousand%20Years.mp3" type="audio/mpeg">
 </audio>
-<button id="mu-btn" aria-label="Música"><span class="mu-ring"></span>🎵</button>
+<button id="mu-btn" aria-label="Música"><span class="ring"></span>🎵</button>
 
-<!-- CONTENIDO -->
+<!-- ═══ SITIO ════════════════════════════════════════════ -->
 <div id="main" style="display:none">
 <div class="wrap">
 
-  <!-- ① SLIDE PORTADA/HERO -->
-  <img class="slide" loading="eager"
-    src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial.png"
-    alt="Cristina y Fernando">
+  <!-- ══════════════════════
+       ① HERO / PORTADA
+  ══════════════════════ -->
+  <section class="hero">
+    <!-- flores blancas arriba -->
+    <img class="hero-flowers rv"
+      src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial.png"
+      alt="">
+    <p class="hero-fecha-top rv d1">Domingo · 31 · Enero · 2027</p>
+    <span class="hero-name rv d1">Cristina</span>
+    <span class="hero-y rv d2">&amp;</span>
+    <span class="hero-name rv d2">Fernando</span>
+    <span class="hero-divider rv d3"></span>
+    <p class="hero-info rv d3">
+      Nos casamos<br>
+      y queremos compartir este día<br>
+      tan especial contigo
+    </p>
+    <!-- ramo de flores blancas abajo -->
+    <img class="rv d3" style="width:60%;max-width:200px;display:block;margin:24px auto 0;opacity:.85"
+      src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(4).png"
+      alt="">
+  </section>
 
-  <!-- ② BIENVENIDA -->
-  <img class="slide" loading="lazy"
-    src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(1).png"
-    alt="">
+  <!-- ══════════════════════
+       ② BIENVENIDA / ARCO
+  ══════════════════════ -->
+  <section class="arch-sec">
+    <div class="arch-box rv">
+      <!-- mariposa decorativa -->
+      <img class="arch-butterfly"
+        src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(5).png"
+        alt="">
+      <p class="arch-tag">Con mucha alegría</p>
+      <div class="arch-names rv d1">Cristina<br><small style="font-size:.55em;font-family:'Montserrat',sans-serif;letter-spacing:.2em;font-weight:300;color:#b8a98a">Y</small><br>Fernando</div>
+      <span class="arch-line"></span>
+      <p class="arch-msg rv d2">
+        Te damos la bienvenida<br>
+        a este día tan especial
+      </p>
+    </div>
+    <!-- flores al pie del arco -->
+    <img class="arch-flowers rv d2"
+      src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(7).png"
+      alt="" style="max-width:260px">
+  </section>
 
-  <!-- ③ SLIDE 2 -->
-  <img class="slide" loading="lazy"
-    src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(2).png"
-    alt="">
+  <!-- ══════════════════════
+       ③ CUENTA REGRESIVA
+  ══════════════════════ -->
+  <section class="cd-sec" id="cd-sec">
+    <p class="cd-label rv">Para nuestro gran día</p>
+    <span class="cd-num rv d1" id="days-el">—</span>
+    <p class="cd-sub rv d2">días</p>
+    <p class="cd-date rv d3">Domingo · 31 de enero de 2027</p>
+  </section>
 
-  <!-- ④ SLIDE 3 — CEREMONIA -->
-  <img class="slide" loading="lazy"
-    src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(3).png"
-    alt="Ceremonia">
-  <!-- botón mapa ceremonia -->
-  <div class="btn-strip dark-bg">
+  <!-- ══════════════════════
+       ④ CEREMONIA
+  ══════════════════════ -->
+  <section class="sec white">
+    <img class="sec-img rv" style="width:68%;max-width:240px"
+      src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(2).png"
+      alt="Iglesia">
+    <span class="sec-tag rv d1">Ceremonia religiosa</span>
+    <h2 class="sec-h rv d1">Ceremonia</h2>
+    <p class="sec-body rv d2">
+      <strong>12:00 h</strong><br>
+      Parroquia Virgen del Pilar<br>
+      31 de enero de 2027
+    </p>
     <a href="https://maps.google.com/?q=Parroquia+Virgen+del+Pilar"
        target="_blank" rel="noopener"
-       class="btn-pill pill-white" id="link-ceremonia">
-      📍 Ver ubicación · Ceremonia
+       class="btn btn-dark rv d2" id="link-ceremonia">
+      📍 Ver ubicación
     </a>
-  </div>
+  </section>
 
-  <!-- ⑤ SLIDE 4 — RECEPCIÓN -->
-  <img class="slide" loading="lazy"
-    src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(4).png"
-    alt="Recepción">
-  <!-- botón mapa recepción -->
-  <div class="btn-strip cream-bg">
+  <!-- ══════════════════════
+       ⑤ RECEPCIÓN
+  ══════════════════════ -->
+  <section class="sec cream">
+    <img class="sec-img rv" style="width:82%;max-width:300px"
+      src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(6).png"
+      alt="Recepción">
+    <span class="sec-tag rv d1">Fiesta &amp; celebración</span>
+    <h2 class="sec-h rv d1">Recepción</h2>
+    <p class="sec-body rv d2">
+      <strong>15:30 h</strong><br>
+      Club Villa de Lima · Salón Imperial<br>
+      31 de enero de 2027
+    </p>
     <a href="https://maps.google.com/?q=Club+Villa+de+Lima"
        target="_blank" rel="noopener"
-       class="btn-pill pill-dark" id="link-recepcion">
-      📍 Ver ubicación · Recepción
+       class="btn btn-olive rv d2" id="link-recepcion">
+      📍 Ver ubicación
     </a>
-  </div>
+  </section>
 
-  <!-- ⑥ SLIDE 5 — AGENDA -->
-  <img class="slide" loading="lazy"
-    src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(5).png"
-    alt="Agenda">
+  <!-- ══════════════════════
+       ⑥ AGENDA DEL DÍA
+  ══════════════════════ -->
+  <section class="sec white">
+    <!-- rama de flores rosa arriba -->
+    <img class="div-img rv" style="width:55%;max-width:200px;margin-bottom:28px"
+      src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(10).png"
+      alt="">
+    <span class="sec-tag rv d1">31 de enero · 2027</span>
+    <h2 class="sec-h rv d1">Agenda del Día</h2>
+    <div class="tl" style="margin-top:28px">
+      <div class="tl-row rv">
+        <div class="tl-h">11:00 h</div>
+        <div class="tl-a">Llegada de invitados</div>
+        <div class="tl-l">Jardín principal · Cóctel de bienvenida</div>
+      </div>
+      <div class="tl-row rv d1">
+        <div class="tl-h">12:00 h</div>
+        <div class="tl-a">Ceremonia religiosa</div>
+        <div class="tl-l">Parroquia Virgen del Pilar</div>
+      </div>
+      <div class="tl-row rv d2">
+        <div class="tl-h">13:00 h</div>
+        <div class="tl-a">Sesión de fotos</div>
+        <div class="tl-l">Jardín y salones principales</div>
+      </div>
+      <div class="tl-row rv">
+        <div class="tl-h">14:00 h</div>
+        <div class="tl-a">Aperitivos &amp; cocktail</div>
+        <div class="tl-l">Terraza principal</div>
+      </div>
+      <div class="tl-row rv d1">
+        <div class="tl-h">15:30 h</div>
+        <div class="tl-a">Banquete nupcial</div>
+        <div class="tl-l">Club Villa de Lima · Salón Imperial</div>
+      </div>
+      <div class="tl-row rv d2">
+        <div class="tl-h">17:00 h</div>
+        <div class="tl-a">Pastel &amp; brindis</div>
+        <div class="tl-l">Salón principal</div>
+      </div>
+      <div class="tl-row rv">
+        <div class="tl-h">17:30 h</div>
+        <div class="tl-a">Primer baile</div>
+        <div class="tl-l">"A Thousand Years" — Christina Perri</div>
+      </div>
+      <div class="tl-row rv d1">
+        <div class="tl-h">18:00 h</div>
+        <div class="tl-a">Fiesta &amp; baile</div>
+        <div class="tl-l">Pista central · Música especial</div>
+      </div>
+      <div class="tl-row rv d2">
+        <div class="tl-h">23:00 h</div>
+        <div class="tl-a">Despedida de los novios</div>
+        <div class="tl-l">Pétalos en la salida</div>
+      </div>
+    </div>
+  </section>
 
-  <!-- ⑦ SLIDE 6 — DRESS CODE -->
-  <img class="slide" loading="lazy"
-    src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(6).png"
-    alt="Código de vestimenta">
+  <!-- ══════════════════════
+       ⑦ DRESS CODE
+  ══════════════════════ -->
+  <section class="sec cream">
+    <!-- rosas rosadas -->
+    <img class="div-img rv" style="width:45%;max-width:160px;margin-bottom:22px"
+      src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(8).png"
+      alt="">
+    <span class="sec-tag rv d1">Vestimenta</span>
+    <h2 class="sec-h rv d1">Código de Vestimenta</h2>
+    <p class="sec-body rv d2" style="margin-bottom:0">
+      Formal · Elegante<br>
+      <span style="color:#c9a882">Tonos pasteles preferentemente</span>
+    </p>
+    <div class="dc-grid rv d2">
+      <div class="dc-item">
+        <span class="dc-emoji">👔</span>
+        <div class="dc-lbl">Caballeros</div>
+        <div class="dc-val">Traje formal</div>
+      </div>
+      <div class="dc-item">
+        <span class="dc-emoji">👗</span>
+        <div class="dc-lbl">Damas</div>
+        <div class="dc-val">Vestido largo</div>
+      </div>
+    </div>
+    <p class="rv d3" style="font-family:'Montserrat',sans-serif;font-size:.54rem;letter-spacing:.12em;color:#b8a98a;margin-top:16px">
+      Por favor no usar color blanco
+    </p>
+  </section>
 
-  <!-- ⑧ SLIDE 7 — REGALO -->
-  <img class="slide" loading="lazy"
-    src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(7).png"
-    alt="Detalle de regalo">
-  <!-- botón regalo -->
-  <div class="btn-strip cream-bg">
-    <button class="btn-pill pill-olive" id="btn-regalo">
-      🎁 Ver datos de regalo
+  <!-- ══════════════════════
+       ⑧ DETALLE DE REGALO
+  ══════════════════════ -->
+  <section class="sec white">
+    <img class="div-img rv" style="width:62%;max-width:220px;margin-bottom:22px"
+      src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(11).png"
+      alt="Regalos">
+    <span class="sec-tag rv d1">Con mucho amor</span>
+    <h2 class="sec-h rv d1">Detalle de Regalo</h2>
+    <p class="sec-body rv d2">
+      Tu presencia es nuestro mejor regalo.<br>
+      Si deseas obsequiarnos algo, aquí<br>
+      encontrarás nuestros datos.
+    </p>
+    <button class="btn btn-cream rv d2" id="btn-regalo">
+      🎁 Ver mis datos bancarios
     </button>
-  </div>
+  </section>
 
-  <!-- ⑨ SLIDE 8 — FRASE -->
-  <img class="slide" loading="lazy"
-    src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(8).png"
-    alt="">
+  <!-- ══════════════════════
+       ⑨ FRASE / QUOTE
+  ══════════════════════ -->
+  <section class="sec cream" style="padding:52px 32px">
+    <img class="div-img rv" style="width:65%;max-width:230px;margin-bottom:28px"
+      src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(9).png"
+      alt="">
+    <p class="rv d1" style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.2rem;color:#2c2826;line-height:1.75;max-width:300px;margin:0 auto 14px">
+      "El amor no consiste en mirarse el uno al otro, sino en mirar juntos en la misma dirección."
+    </p>
+    <p class="rv d2" style="font-family:'Montserrat',sans-serif;font-size:.52rem;letter-spacing:.3em;text-transform:uppercase;color:#b8a98a">
+      — Antoine de Saint-Exupéry
+    </p>
+    <span style="display:block;height:24px"></span>
+    <a href="#rsvp" class="btn btn-teal rv d3">💌 Confirmar asistencia</a>
+  </section>
 
-  <!-- ⑩ SLIDE 9 — RSVP visual -->
-  <img class="slide" loading="lazy"
-    src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(9).png"
-    alt="">
-
-  <!-- ⑪ FORMULARIO RSVP -->
+  <!-- ══════════════════════
+       ⑩ RSVP FORM
+  ══════════════════════ -->
   <section class="rsvp-sec" id="rsvp">
-    <span class="rsvp-tag">Nos encantaría verte</span>
-    <h2 class="rsvp-h">¿Contamos contigo?</h2>
-    <p class="rsvp-note">Responde antes del <strong style="color:#6b9e9b">15 de enero · 2027</strong></p>
-    <form class="rsvp-form" id="rsvp-form" novalidate>
+    <!-- rama floral separador -->
+    <img class="div-img rv" style="width:50%;max-width:180px;margin-bottom:28px"
+      src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(3).png"
+      alt="">
+    <span class="sec-tag rv d1" style="text-align:center;display:block">Nos encantaría verte</span>
+    <h2 class="sec-h rv d1" style="text-align:center;margin-bottom:8px">¿Contamos contigo?</h2>
+    <p class="rv d2" style="font-family:'Montserrat',sans-serif;font-size:.54rem;letter-spacing:.14em;text-transform:uppercase;color:#7a6e68;text-align:center;margin-bottom:32px">
+      Responde antes del <strong style="color:#6b9e9b">15 · Enero · 2027</strong>
+    </p>
+
+    <form class="form-wrap rv d2" id="rsvp-form" novalidate>
       <div class="fg">
-        <label>Nombre completo <span>*</span></label>
+        <label>Nombre completo <em>*</em></label>
         <input type="text" id="f-nombre" placeholder="Tu nombre completo" required autocomplete="name">
       </div>
       <div class="fg">
-        <label>Correo electrónico <span>*</span></label>
+        <label>Correo electrónico <em>*</em></label>
         <input type="email" id="f-correo" placeholder="tu@correo.com" required autocomplete="email">
       </div>
       <div class="fg">
@@ -306,7 +607,7 @@ body{background:#f0ebe3;overflow-x:hidden}
         <input type="tel" id="f-tel" placeholder="+51 999 999 999" autocomplete="tel">
       </div>
       <div class="fg">
-        <label>Número de acompañantes <span>*</span></label>
+        <label>Número de acompañantes <em>*</em></label>
         <select id="f-acomp" required>
           <option value="" disabled selected>Seleccionar…</option>
           <option value="0">Solo yo</option>
@@ -316,52 +617,44 @@ body{background:#f0ebe3;overflow-x:hidden}
           <option value="4">4 o más</option>
         </select>
       </div>
-      <div class="div-txt">¿Confirmas tu asistencia?</div>
+      <div class="asiste-sep">¿Confirmas tu asistencia?</div>
       <div class="asiste-row">
-        <input class="asiste-r" type="radio" name="asiste" id="asi-s" value="si">
-        <label class="asiste-l" for="asi-s">💚 Sí asistiré</label>
-        <input class="asiste-r" type="radio" name="asiste" id="asi-n" value="no">
-        <label class="asiste-l" for="asi-n">❤️ No podré ir</label>
+        <input class="ar" type="radio" name="asiste" id="asi-s" value="si">
+        <label class="al" for="asi-s">💚 Sí asistiré</label>
+        <input class="ar" type="radio" name="asiste" id="asi-n" value="no">
+        <label class="al" for="asi-n">❤️ No podré ir</label>
       </div>
-      <button type="submit" class="btn-enviar" id="f-submit">Confirmar asistencia</button>
-      <div class="form-msg" id="form-msg"></div>
+      <button type="submit" class="btn-send" id="f-sub">Confirmar asistencia</button>
+      <div class="fmsg" id="fmsg"></div>
     </form>
   </section>
-
-  <!-- ⑫ SLIDES FINALES -->
-  <img class="slide" loading="lazy"
-    src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(10).png"
-    alt="">
-  <img class="slide" loading="lazy"
-    src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(11).png"
-    alt="">
-  <img class="slide" loading="lazy"
-    src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(12).png"
-    alt="">
 
   <!-- FOOTER -->
   <footer class="footer">
     <div class="footer-names">Cristina &amp; Fernando</div>
     <p class="footer-date">31 · 01 · 2027</p>
+    <img class="footer-copas"
+      src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(12).png"
+      alt="">
   </footer>
 
-</div><!-- /wrap -->
-</div><!-- /main -->
+</div>
+</div>
 
-<!-- MODAL REGALO -->
-<div class="modal-bg" id="m-regalo">
-  <div class="modal-box">
-    <button class="modal-x" id="m-close">×</button>
-    <h3 class="modal-h">🎁 Nuestro nido</h3>
-    <p class="modal-p">Si deseas hacernos un regalo especial, aquí tienes nuestros datos. ¡Te lo agradecemos de corazón!</p>
-    <div class="modal-data">
+<!-- ═══ MODAL REGALO ════════════════════════════════════ -->
+<div class="mbg" id="m-regalo">
+  <div class="mbox">
+    <button class="mx" id="m-x">×</button>
+    <h3 class="mh">🎁 Nuestro nido</h3>
+    <p class="mp">Si deseas hacernos un regalo, aquí tienes nuestros datos bancarios. ¡Te lo agradecemos!</p>
+    <div class="mdata">
       <strong>Titular:</strong> Cristina López / Fernando García<br>
       <strong>Banco:</strong> BCP / Interbank<br>
       <strong>Cuenta:</strong> 000-000000000-0-00<br>
       <strong>CCI:</strong> 000 000 000000000000 00<br>
       <strong>Yape / Plin:</strong> +51 999 000 000
     </div>
-    <button class="btn-pill pill-teal" style="width:100%;justify-content:center"
+    <button class="btn btn-teal" style="width:100%;justify-content:center"
       onclick="document.getElementById('m-regalo').classList.remove('open')">
       ¡Gracias! 💕
     </button>
@@ -370,75 +663,82 @@ body{background:#f0ebe3;overflow-x:hidden}
 
 <script>
 'use strict';
+const BODA = new Date('2027-01-31T12:00:00');
 
 /* ── INTRO ── */
 const intro  = document.getElementById('intro');
 const ivid   = document.getElementById('ivid');
 const mainEl = document.getElementById('main');
 
-function mostrarSitio() {
+function show() {
   if (mainEl.style.display !== 'none') return;
   intro.classList.add('out');
   mainEl.style.display = 'block';
-  intentarMusica();
+  tryMusic();
+  initReveal();
   setTimeout(() => intro.remove(), 950);
 }
-
-document.getElementById('skip-btn').addEventListener('click', mostrarSitio);
-ivid.addEventListener('ended', mostrarSitio);
-ivid.addEventListener('error', () => setTimeout(mostrarSitio, 800));
-setTimeout(mostrarSitio, 9000);
+document.getElementById('skip').addEventListener('click', show);
+ivid.addEventListener('ended', show);
+ivid.addEventListener('error', () => setTimeout(show, 800));
+setTimeout(show, 9000);
 
 /* ── MÚSICA ── */
 const mu    = document.getElementById('mu');
 const muBtn = document.getElementById('mu-btn');
-let muAct   = false;
+let mPlaying = false;
 
-function intentarMusica() {
-  if (muAct) return;
+function tryMusic() {
+  if (mPlaying) return;
   mu.volume = 0.3;
-  mu.play()
-    .then(() => { muAct = true; muBtn.classList.add('on'); })
-    .catch(() => {});
+  mu.play().then(() => { mPlaying = true; muBtn.classList.add('on'); }).catch(() => {});
 }
-
 muBtn.addEventListener('click', () => {
   if (mu.paused) {
-    mu.play().then(() => {
-      muAct = true;
-      muBtn.classList.add('on');
-      muBtn.innerHTML = '<span class="mu-ring"></span>🎵';
-    });
+    mu.play().then(() => { mPlaying=true; muBtn.classList.add('on'); setIcon('🎵'); });
   } else {
-    mu.pause();
-    muBtn.classList.remove('on');
-    muBtn.innerHTML = '<span class="mu-ring"></span>🔇';
+    mu.pause(); muBtn.classList.remove('on'); setIcon('🔇');
   }
 });
-mu.addEventListener('play',  () => { muBtn.classList.add('on');    muBtn.innerHTML='<span class="mu-ring"></span>🎵'; });
+function setIcon(e) { muBtn.innerHTML = `<span class="ring"></span>${e}`; }
+mu.addEventListener('play',  () => { muBtn.classList.add('on');    setIcon('🎵'); });
 mu.addEventListener('pause', () => { muBtn.classList.remove('on'); });
 
+/* ── SCROLL REVEAL ── */
+function initReveal() {
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.06 });
+  document.querySelectorAll('.rv').forEach(el => io.observe(el));
+}
+
+/* ── COUNTDOWN ── */
+function dias() { return Math.max(0, Math.ceil((BODA - new Date()) / 86400000)); }
+function anim(el, n) {
+  let f = 0;
+  const t = setInterval(() => {
+    f++;
+    el.textContent = Math.round(n * (1 - Math.pow(1 - f/55, 3)));
+    if (f >= 55) { el.textContent = n; clearInterval(t); }
+  }, 16);
+}
+new IntersectionObserver(es => {
+  if (es[0].isIntersecting) anim(document.getElementById('days-el'), dias());
+}, { threshold: .3 }).observe(document.getElementById('cd-sec'));
+
 /* ── MODAL REGALO ── */
-document.getElementById('btn-regalo').addEventListener('click',
-  () => document.getElementById('m-regalo').classList.add('open'));
-document.getElementById('m-close').addEventListener('click',
-  () => document.getElementById('m-regalo').classList.remove('open'));
-document.getElementById('m-regalo').addEventListener('click', e => {
-  if (e.target.id === 'm-regalo') document.getElementById('m-regalo').classList.remove('open');
-});
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') document.getElementById('m-regalo').classList.remove('open');
-});
+const mRegalo = document.getElementById('m-regalo');
+document.getElementById('btn-regalo').addEventListener('click', () => mRegalo.classList.add('open'));
+document.getElementById('m-x').addEventListener('click', () => mRegalo.classList.remove('open'));
+mRegalo.addEventListener('click', e => { if (e.target === mRegalo) mRegalo.classList.remove('open'); });
+document.addEventListener('keydown', e => { if (e.key==='Escape') mRegalo.classList.remove('open'); });
 
 /* ── RSVP ── */
 const form = document.getElementById('rsvp-form');
-const fmsg = document.getElementById('form-msg');
-const fsub = document.getElementById('f-submit');
+const fmsg = document.getElementById('fmsg');
+const fsub = document.getElementById('f-sub');
 
-function showMsg(txt, tipo) {
-  fmsg.textContent = txt;
-  fmsg.className = 'form-msg ' + tipo;
-}
+function msg(t, c) { fmsg.textContent = t; fmsg.className = 'fmsg ' + c; }
 
 form.addEventListener('submit', async e => {
   e.preventDefault();
@@ -448,33 +748,23 @@ form.addEventListener('submit', async e => {
   const acomp    = document.getElementById('f-acomp').value;
   const asiste   = (form.querySelector('input[name=asiste]:checked') || {}).value;
 
-  if (!nombre)                                       return showMsg('⚠️ Ingresa tu nombre.', 'er');
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correo))   return showMsg('⚠️ Correo inválido.', 'er');
-  if (!acomp)                                        return showMsg('⚠️ Selecciona acompañantes.', 'er');
-  if (!asiste)                                       return showMsg('⚠️ Indica si asistirás.', 'er');
+  if (!nombre)                                     return msg('⚠️ Ingresa tu nombre.', 'er');
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correo)) return msg('⚠️ Correo inválido.', 'er');
+  if (!acomp)                                      return msg('⚠️ Selecciona acompañantes.', 'er');
+  if (!asiste)                                     return msg('⚠️ Indica si asistirás.', 'er');
 
   fsub.disabled = true; fsub.textContent = 'Enviando…';
   try {
     const r = await fetch('/api/rsvp/exclusivo-13', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        nombre, correo,
-        telefono: telefono || null,
-        acompanantes: parseInt(acomp) || 0,
-        asiste: asiste === 'si'
-      })
+      body: JSON.stringify({ nombre, correo, telefono: telefono||null, acompanantes: parseInt(acomp)||0, asiste: asiste==='si' })
     });
     const j = await r.json();
-    if (r.ok && j.ok) {
-      showMsg('🎉 ¡Gracias! Tu respuesta fue registrada.', 'ok');
-      form.reset();
-    } else throw new Error();
-  } catch {
-    showMsg('❌ Error al enviar. Intenta de nuevo.', 'er');
-  } finally {
-    fsub.disabled = false; fsub.textContent = 'Confirmar asistencia';
-  }
+    if (r.ok && j.ok) { msg('🎉 ¡Gracias! Tu respuesta fue registrada.', 'ok'); form.reset(); }
+    else throw new Error();
+  } catch { msg('❌ Error al enviar. Intenta de nuevo.', 'er'); }
+  finally { fsub.disabled = false; fsub.textContent = 'Confirmar asistencia'; }
 });
 </script>
 </body>
