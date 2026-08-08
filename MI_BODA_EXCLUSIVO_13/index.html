@@ -12,493 +12,432 @@
 html{scroll-behavior:smooth}
 
 :root{
-  --teal:   #6b9e9b;
-  --oliva:  #5a7357;
-  --dorado: #b8a98a;
-  --mocha:  #8a7565;
-  --bg:     #ffffff;
-  --crema:  #f8f3ec;
-  --beige:  #e8dfd3;
-  --texto:  #2c2a26;
-  --gris:   #7a7570;
+  --teal:#6b9e9b; --oliva:#5a7357; --dorado:#b8a98a;
+  --crema:#f8f3ec; --beige:#e8dfd3; --texto:#2c2a26;
+  --gris:#7a7570;
 }
 
 body{
   font-family:'Cormorant Garamond',serif;
-  background:var(--bg);
+  background:#f0ebe3;
   color:var(--texto);
   overflow-x:hidden;
 }
 
-/* ── Wrapper centrado ── */
 .wrap{
   max-width:420px;
   margin:0 auto;
-  background:var(--bg);
+  background:#fff;
 }
 
-/* ── Scroll reveal ── */
-.rv{opacity:0;transform:translateY(22px);transition:.65s ease}
+/* ── REVEAL ── */
+.rv{opacity:0;transform:translateY(18px);transition:.6s ease}
 .rv.in{opacity:1;transform:none}
-.rv-d1{transition-delay:.1s}
-.rv-d2{transition-delay:.2s}
-.rv-d3{transition-delay:.3s}
+.rv-d1{transition-delay:.12s} .rv-d2{transition-delay:.22s} .rv-d3{transition-delay:.32s}
 
-/* ════════════════════════════
-   VIDEO INTRO
-════════════════════════════ */
+/* ════ VIDEO INTRO ════ */
 #intro{
   position:fixed;inset:0;z-index:1000;
-  background:#000;
-  display:flex;align-items:center;justify-content:center;
+  background:#000;display:flex;align-items:center;justify-content:center;
   transition:opacity .8s,visibility .8s;
 }
 #intro.out{opacity:0;visibility:hidden}
 #intro video{width:100%;height:100%;object-fit:cover}
 #skip{
   position:absolute;bottom:24px;right:18px;
-  background:rgba(255,255,255,.18);
-  border:1px solid rgba(255,255,255,.5);
-  color:#fff;padding:8px 18px;border-radius:30px;
+  background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.5);
+  color:#fff;padding:8px 20px;border-radius:30px;
   font-family:'Montserrat',sans-serif;font-size:.62rem;
   letter-spacing:.14em;text-transform:uppercase;cursor:pointer;
   backdrop-filter:blur(5px);
 }
 
-/* ════════════════════════════
-   MÚSICA
-════════════════════════════ */
+/* ════ MÚSICA ════ */
 #mubtn{
   position:fixed;bottom:20px;right:20px;z-index:500;
-  width:44px;height:44px;border-radius:50%;
-  background:var(--oliva);color:#fff;font-size:1.05rem;
+  width:46px;height:46px;border-radius:50%;
+  background:var(--oliva);color:#fff;font-size:1.1rem;
   display:flex;align-items:center;justify-content:center;
-  box-shadow:0 3px 14px rgba(0,0,0,.22);
-  cursor:pointer;border:none;transition:.2s;
+  box-shadow:0 3px 18px rgba(0,0,0,.25);cursor:pointer;border:none;
+  transition:background .2s,transform .2s;
 }
 #mubtn:hover{background:var(--teal);transform:scale(1.08)}
-#mubtn .ring{
+.ring{
   position:absolute;inset:-5px;border-radius:50%;
-  border:2px solid var(--oliva);
-  opacity:0;animation:ring 1.6s infinite;
+  border:2px solid var(--oliva);opacity:0;
+  animation:ring 1.6s infinite;
 }
 #mubtn.on .ring{opacity:1}
 @keyframes ring{0%{transform:scale(1);opacity:.7}100%{transform:scale(1.6);opacity:0}}
 
-/* ════════════════════════════
-   SLIDES DE CANVA  (imagen = sección)
-════════════════════════════ */
+/* ════ SLIDES ════ */
 .slide{display:block;width:100%}
 
-/* ════════════════════════════
-   BOTÓN DE MAPA (sobre la imagen)
-════════════════════════════ */
-.map-area{
-  background:var(--bg);
-  padding:18px 24px 28px;
+/* ════ DIVIDER FLORAL ════ */
+.div-floral{
+  background:var(--crema);
+  padding:10px 0 6px;
   text-align:center;
-  border-bottom:1px solid var(--beige);
-}
-
-/* ════════════════════════════
-   COUNTDOWN  (Live JS)
-════════════════════════════ */
-.cd{
-  background:var(--bg);
-  padding:44px 24px;
-  text-align:center;
+  font-size:1.25rem;
+  letter-spacing:.35em;
+  line-height:1;
+  color:var(--oliva);
   border-top:1px solid var(--beige);
   border-bottom:1px solid var(--beige);
 }
-.cd-pre{
-  font-family:'Montserrat',sans-serif;
-  font-size:.6rem;letter-spacing:.32em;text-transform:uppercase;
-  color:var(--teal);margin-bottom:14px;font-weight:500;
-}
-.cd-num{
-  font-family:'Great Vibes',cursive;
-  font-size:5.5rem;color:var(--texto);
-  display:block;line-height:.9;
-}
-.cd-lbl{
-  font-family:'Montserrat',sans-serif;
-  font-size:.58rem;letter-spacing:.32em;text-transform:uppercase;
-  color:var(--gris);margin-top:8px;
-}
-.cd-date{
-  font-family:'Cormorant Garamond',serif;
-  font-size:.95rem;font-style:italic;
-  color:var(--dorado);margin-top:8px;
-}
 
-/* ════════════════════════════
-   AGENDA LIVE
-════════════════════════════ */
-.agenda-sec{
-  padding:44px 24px 52px;
-  background:var(--bg);
+/* ════ SECCIÓN GENÉRICA ════ */
+.sec{
+  background:var(--crema);
+  padding:44px 28px 50px;
+  text-align:center;
+  border-bottom:1px solid var(--beige);
 }
 .sec-tag{
+  display:block;
   font-family:'Montserrat',sans-serif;
-  font-size:.6rem;letter-spacing:.32em;text-transform:uppercase;
-  color:var(--teal);margin-bottom:6px;font-weight:500;
-  display:block;text-align:center;
+  font-size:.55rem;letter-spacing:.38em;text-transform:uppercase;
+  color:var(--teal);margin-bottom:8px;font-weight:500;
 }
 .sec-h{
   font-family:'Great Vibes',cursive;
-  font-size:2.6rem;color:var(--texto);
-  text-align:center;margin-bottom:28px;line-height:1.1;
+  font-size:2.8rem;color:var(--texto);
+  margin-bottom:6px;line-height:1.15;
 }
+.sec-sub{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1rem;font-style:italic;
+  color:var(--gris);line-height:1.6;
+  margin-bottom:22px;
+}
+
+/* ════ BOTÓN MAPA ════ */
+.btn-loc{
+  display:inline-flex;align-items:center;gap:7px;
+  padding:13px 36px;border-radius:50px;
+  font-family:'Montserrat',sans-serif;font-size:.6rem;
+  font-weight:500;letter-spacing:.18em;text-transform:uppercase;
+  text-decoration:none;cursor:pointer;border:none;
+  transition:transform .2s,opacity .2s;
+}
+.btn-loc:hover{transform:translateY(-2px);opacity:.88}
+.btn-dark{background:#3a3630;color:#fff}
+.btn-mocha{background:#8a7565;color:#fff}
+
+/* ════ ORNAMENTO ════ */
+.orn{
+  display:block;font-size:1rem;letter-spacing:.5em;
+  color:var(--dorado);margin:14px auto;text-align:center;
+}
+.line{
+  width:60px;height:1px;background:var(--beige);
+  display:inline-block;vertical-align:middle;margin:0 10px;
+}
+
+/* ════ COUNTDOWN ════ */
+.cd-box{
+  background:var(--crema);
+  padding:48px 28px 52px;
+  text-align:center;
+  border-bottom:1px solid var(--beige);
+}
+.cd-pre{
+  font-family:'Montserrat',sans-serif;font-size:.55rem;
+  letter-spacing:.38em;text-transform:uppercase;
+  color:var(--teal);margin-bottom:10px;font-weight:500;
+}
+.cd-num{
+  font-family:'Great Vibes',cursive;
+  font-size:6.5rem;color:var(--texto);
+  line-height:.85;display:block;
+}
+.cd-lbl{
+  font-family:'Montserrat',sans-serif;font-size:.58rem;
+  letter-spacing:.32em;text-transform:uppercase;
+  color:var(--gris);margin-top:10px;
+}
+.cd-date{
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;font-size:1.05rem;
+  color:var(--dorado);margin-top:8px;
+}
+
+/* ════ AGENDA ════ */
 .tl{
-  position:relative;max-width:380px;margin:0 auto;padding-left:50px;
+  position:relative;max-width:340px;margin:0 auto;
+  padding-left:48px;text-align:left;
 }
 .tl::before{
-  content:'';position:absolute;left:17px;top:14px;bottom:14px;
-  width:1px;
-  background:linear-gradient(to bottom,transparent,var(--beige) 8%,var(--beige) 92%,transparent);
+  content:'';position:absolute;left:15px;top:10px;bottom:10px;
+  width:1px;background:linear-gradient(to bottom,transparent,var(--beige) 10%,var(--beige) 90%,transparent);
 }
-.tl-item{
-  position:relative;margin-bottom:22px;
-}
-.tl-item::before{
-  content:'';position:absolute;left:-35px;top:4px;
-  width:8px;height:8px;border-radius:50%;
-  background:var(--teal);border:2px solid #fff;box-shadow:0 0 0 1px var(--teal);
+.tl-row{position:relative;margin-bottom:20px}
+.tl-row::before{
+  content:'';position:absolute;left:-34px;top:5px;
+  width:7px;height:7px;border-radius:50%;
+  background:var(--teal);border:2px solid #fff;
+  box-shadow:0 0 0 1.5px var(--teal);
 }
 .tl-hora{
   font-family:'Montserrat',sans-serif;
-  font-size:.58rem;font-weight:600;letter-spacing:.06em;
-  color:var(--teal);margin-bottom:2px;
+  font-size:.56rem;font-weight:600;letter-spacing:.06em;
+  color:var(--teal);margin-bottom:1px;
 }
-.tl-act{
+.tl-acto{
   font-family:'Montserrat',sans-serif;
-  font-size:.64rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  font-size:.62rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
   color:var(--oliva);margin-bottom:1px;
 }
 .tl-lugar{
   font-family:'Montserrat',sans-serif;
-  font-size:.6rem;letter-spacing:.05em;text-transform:uppercase;
-  color:var(--gris);line-height:1.5;
+  font-size:.58rem;color:var(--gris);line-height:1.5;
 }
 
-/* ════════════════════════════
-   RSVP FORM
-════════════════════════════ */
-.rsvp-sec{
-  padding:44px 24px 56px;
+/* ════ RSVP ════ */
+.rsvp-wrap{
   background:var(--crema);
+  padding:48px 28px 60px;
   border-top:1px solid var(--beige);
 }
-.rsvp-form{max-width:380px;margin:0 auto}
-.fg{margin-bottom:18px;text-align:left}
+.rsvp-form{max-width:360px;margin:0 auto}
+.fg{margin-bottom:20px;text-align:left}
 .fg label{
   display:block;
   font-family:'Montserrat',sans-serif;
-  font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;
-  color:var(--gris);margin-bottom:6px;
+  font-size:.55rem;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--gris);margin-bottom:7px;
 }
 .fg label .req{color:var(--teal)}
 .fg input,.fg select{
-  width:100%;padding:6px 0 9px;
+  width:100%;padding:6px 0 10px;
   border:none;border-bottom:1.5px solid var(--beige);
-  font-family:'Cormorant Garamond',serif;font-size:1rem;
-  background:transparent;color:var(--texto);outline:none;
-  transition:border-color .2s;-webkit-appearance:none;appearance:none;
-  border-radius:0;
+  font-family:'Cormorant Garamond',serif;font-size:1.05rem;
+  background:transparent;color:var(--texto);
+  outline:none;transition:border-color .2s;
+  appearance:none;-webkit-appearance:none;border-radius:0;
 }
 .fg input:focus,.fg select:focus{border-bottom-color:var(--teal)}
-
-.asiste-row{display:flex;gap:10px;margin-top:4px}
+.div-txt{
+  font-family:'Montserrat',sans-serif;font-size:.55rem;
+  letter-spacing:.22em;text-transform:uppercase;color:var(--gris);
+  text-align:center;margin:24px 0 12px;
+}
+.asiste-row{display:flex;gap:10px}
 .asiste-r{display:none}
 .asiste-l{
-  flex:1;text-align:center;
-  padding:9px 6px;
+  flex:1;text-align:center;padding:10px 6px;
   border:1.5px solid var(--beige);border-radius:50px;
   font-family:'Montserrat',sans-serif;font-size:.6rem;
   letter-spacing:.1em;text-transform:uppercase;
-  cursor:pointer;color:var(--gris);transition:.25s;user-select:none;
+  cursor:pointer;color:var(--gris);
+  transition:.2s;user-select:none;
 }
-.asiste-r:checked+.asiste-l{
+.asiste-r:checked + .asiste-l{
   border-color:var(--teal);color:var(--teal);
-  background:rgba(107,158,155,.08);
-}
-
-.form-div{
-  font-family:'Montserrat',sans-serif;
-  font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;
-  color:var(--gris);text-align:center;margin:20px 0 10px;
+  background:rgba(107,158,155,.1);
 }
 .btn-submit{
-  display:block;width:100%;margin-top:22px;
-  padding:14px;background:var(--oliva);color:#fff;
+  display:block;width:100%;margin-top:26px;
+  padding:15px;background:var(--oliva);color:#fff;
   border-radius:50px;border:none;cursor:pointer;
   font-family:'Montserrat',sans-serif;font-size:.6rem;
-  letter-spacing:.2em;text-transform:uppercase;font-weight:500;
+  letter-spacing:.22em;text-transform:uppercase;font-weight:500;
   transition:background .2s,transform .2s;
 }
 .btn-submit:hover{background:var(--teal);transform:translateY(-2px)}
-.btn-submit:disabled{opacity:.5;cursor:default;transform:none}
+.btn-submit:disabled{opacity:.5;transform:none;cursor:default}
 .form-msg{
-  text-align:center;margin-top:12px;font-size:.88rem;
-  min-height:1.4rem;border-radius:6px;padding:6px;
+  text-align:center;margin-top:14px;font-size:.92rem;
+  min-height:1.4rem;border-radius:6px;padding:8px;
 }
 .form-msg.ok{background:#e8f5e9;color:#2e7d32}
 .form-msg.er{background:#fce4e4;color:#c0392b}
 
-/* ════════════════════════════
-   BOTONES GENERALES
-════════════════════════════ */
-.btn-map{
-  display:inline-flex;align-items:center;gap:6px;
-  padding:12px 32px;border-radius:50px;
-  font-family:'Montserrat',sans-serif;font-size:.6rem;
-  font-weight:500;letter-spacing:.16em;text-transform:uppercase;
-  text-decoration:none;cursor:pointer;border:none;
-  transition:background .2s,transform .2s;
-}
-.btn-map:hover{transform:translateY(-2px)}
-.btn-dark{background:#3a3630;color:#fff}
-.btn-dark:hover{background:#1a1a14}
-.btn-mocha{background:var(--mocha);color:#fff}
-.btn-mocha:hover{background:#6e5d4d}
-.btn-beige{background:var(--beige);color:var(--texto);border:1px solid var(--dorado)}
-.btn-beige:hover{background:var(--crema)}
-.btn-teal{background:var(--teal);color:#fff}
-.btn-teal:hover{background:#5a8886}
-
-/* ════════════════════════════
-   MODAL REGALO
-════════════════════════════ */
+/* ════ MODAL REGALO ════ */
 .modal-bg{
-  position:fixed;inset:0;background:rgba(0,0,0,.5);
+  position:fixed;inset:0;background:rgba(0,0,0,.48);
   z-index:800;display:flex;align-items:center;justify-content:center;
   padding:20px;opacity:0;visibility:hidden;transition:.3s;
 }
 .modal-bg.open{opacity:1;visibility:visible}
 .modal-box{
-  background:var(--crema);border-radius:18px;
-  padding:28px 22px;max-width:360px;width:100%;
+  background:var(--crema);border-radius:20px;
+  padding:30px 24px;max-width:360px;width:100%;
   text-align:center;position:relative;
-  transform:translateY(28px);transition:.35s;
-  box-shadow:0 14px 44px rgba(0,0,0,.2);
+  transform:translateY(24px);transition:.35s;
+  box-shadow:0 16px 50px rgba(0,0,0,.22);
   border:1px solid var(--beige);
 }
 .modal-bg.open .modal-box{transform:none}
 .modal-x{
-  position:absolute;top:12px;right:16px;
-  font-size:1.1rem;color:var(--dorado);cursor:pointer;background:none;border:none;
+  position:absolute;top:14px;right:18px;
+  font-size:1.2rem;color:var(--dorado);cursor:pointer;
+  background:none;border:none;
 }
 .modal-h{
   font-family:'Great Vibes',cursive;
-  font-size:2rem;color:var(--texto);margin-bottom:8px;
+  font-size:2.2rem;color:var(--texto);margin-bottom:8px;
 }
-.modal-p{font-size:.88rem;color:var(--gris);line-height:1.7;margin-bottom:12px}
+.modal-p{font-size:.92rem;color:var(--gris);line-height:1.7;margin-bottom:14px}
 .modal-data{
   background:#fff;border:1px solid var(--beige);border-radius:10px;
-  padding:12px 14px;text-align:left;
+  padding:13px 16px;text-align:left;
   font-family:'Montserrat',sans-serif;font-size:.68rem;
-  color:var(--gris);line-height:2.1;margin-bottom:14px;
+  color:var(--gris);line-height:2.2;margin-bottom:16px;
 }
 .modal-data strong{color:var(--texto)}
+.btn-close-m{
+  display:block;width:100%;padding:12px;
+  background:var(--teal);color:#fff;border-radius:50px;border:none;cursor:pointer;
+  font-family:'Montserrat',sans-serif;font-size:.6rem;
+  letter-spacing:.18em;text-transform:uppercase;
+}
 
-/* ════════════════════════════
-   FOOTER
-════════════════════════════ */
+/* ════ FOOTER ════ */
 .footer{
   background:var(--crema);border-top:1px solid var(--beige);
-  padding:28px 20px;text-align:center;
+  padding:32px 20px;text-align:center;
 }
 .footer-names{
   font-family:'Great Vibes',cursive;
-  font-size:2.4rem;color:var(--texto);
+  font-size:2.6rem;color:var(--texto);
 }
 .footer-date{
-  font-family:'Montserrat',sans-serif;
-  font-size:.58rem;letter-spacing:.28em;color:var(--dorado);
-  text-transform:uppercase;margin-top:4px;
+  font-family:'Montserrat',sans-serif;font-size:.56rem;
+  letter-spacing:.32em;color:var(--dorado);
+  text-transform:uppercase;margin-top:5px;
 }
 
 @media(min-width:480px){
-  .wrap{box-shadow:0 0 60px rgba(0,0,0,.08)}
+  .wrap{box-shadow:0 0 80px rgba(0,0,0,.1)}
 }
 </style>
 </head>
 <body>
 
-<!-- ═══ VIDEO INTRO ═══════════════════════════════════════════ -->
+<!-- ══ VIDEO INTRO ═══════════════════════════════════════ -->
 <div id="intro">
-  <video id="ivid" autoplay muted playsinline
-    poster="img/mujer-abraza-al-hombre-sostiene-ramo-peonias-blancas-al-aire-libre-vista-frontal-detalles_8353-10966.avif">
+  <video id="ivid" autoplay muted playsinline>
     <source src="video/Pink And Green Minimalist Wedding Invitation.mp4" type="video/mp4">
   </video>
   <button id="skip">Saltar intro &rsaquo;</button>
 </div>
 
-<!-- ═══ AUDIO ══════════════════════════════════════════════════ -->
-<audio id="mu" loop preload="none">
-  <source src="music/Christina Perri - A Thousand Years.mp3" type="audio/mpeg">
+<!-- ══ AUDIO ════════════════════════════════════════════ -->
+<audio id="mu" loop preload="auto">
+  <source src="music/Christina%20Perri%20-%20A%20Thousand%20Years.mp3" type="audio/mpeg">
 </audio>
 <button id="mubtn" aria-label="Música"><span class="ring"></span>🎵</button>
 
-<!-- ═══ CONTENIDO PRINCIPAL ════════════════════════════════════ -->
+<!-- ══ SITIO ════════════════════════════════════════════ -->
 <div id="main" style="display:none">
 <div class="wrap">
 
-  <!-- ── SLIDE 0: HERO / PORTADA ─────────────────────────────── -->
-  <img class="slide rv"
-    src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial.png"
-    alt="Cristina y Fernando · Invitación de Boda"
-    loading="eager">
+  <!-- SLIDE 0 — HERO PORTADA -->
+  <img class="slide" src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial.png" alt="Cristina y Fernando" loading="eager">
 
-  <!-- ── SLIDE 1: BIENVENIDA / ARCO ──────────────────────────── -->
-  <img class="slide rv"
-    src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(1).png"
-    alt="Bienvenida" loading="lazy">
+  <!-- SLIDE 1 — BIENVENIDA -->
+  <img class="slide" src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(1).png" alt="" loading="lazy">
 
-  <!-- ── SLIDE 2: DATOS ADICIONALES ──────────────────────────── -->
-  <img class="slide rv"
-    src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(2).png"
-    alt="" loading="lazy">
+  <!-- SLIDE 2 -->
+  <img class="slide" src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(2).png" alt="" loading="lazy">
 
-  <!-- ── COUNTDOWN LIVE ──────────────────────────────────────── -->
-  <section class="cd" id="cd-sec">
+  <!-- COUNTDOWN EN VIVO -->
+  <div class="cd-box" id="cd-sec">
     <p class="cd-pre rv">Para nuestro gran día</p>
-    <span class="cd-num rv rv-d1" id="days-el">0</span>
+    <span class="cd-num rv rv-d1" id="days-el">—</span>
     <p class="cd-lbl rv rv-d2">días</p>
     <p class="cd-date rv rv-d3">Domingo · 31 de enero de 2027</p>
-  </section>
+  </div>
 
-  <!-- ── SLIDE 3: CEREMONIA ──────────────────────────────────── -->
-  <img class="slide rv"
-    src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(3).png"
-    alt="Ceremonia" loading="lazy">
-  <div class="map-area rv">
+  <!-- SLIDE 3 — CEREMONIA -->
+  <img class="slide" src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(3).png" alt="Ceremonia" loading="lazy">
+
+  <!-- BOTÓN CEREMONIA -->
+  <div class="sec rv" style="padding:28px 24px 36px">
+    <span class="orn">🌿 · 🌿</span>
     <a href="https://maps.google.com/?q=Parroquia+Virgen+del+Pilar"
-       target="_blank" rel="noopener"
-       class="btn-map btn-dark" id="link-ceremonia">
-      📍 Ver ubicación — Ceremonia
+       target="_blank" rel="noopener" class="btn-loc btn-dark" id="link-ceremonia">
+      📍&nbsp; Ver ubicación — Ceremonia
     </a>
   </div>
 
-  <!-- ── SLIDE 4: RECEPCIÓN ──────────────────────────────────── -->
-  <img class="slide rv"
-    src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(4).png"
-    alt="Recepción" loading="lazy">
-  <div class="map-area rv">
+  <!-- SLIDE 4 — RECEPCIÓN -->
+  <img class="slide" src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(4).png" alt="Recepción" loading="lazy">
+
+  <!-- BOTÓN RECEPCIÓN -->
+  <div class="sec rv" style="padding:28px 24px 36px">
+    <span class="orn">🌿 · 🌿</span>
     <a href="https://maps.google.com/?q=Club+Villa+de+Lima"
-       target="_blank" rel="noopener"
-       class="btn-map btn-mocha" id="link-recepcion">
-      📍 Ver ubicación — Recepción
+       target="_blank" rel="noopener" class="btn-loc btn-mocha" id="link-recepcion">
+      📍&nbsp; Ver ubicación — Recepción
     </a>
   </div>
 
-  <!-- ── SLIDE 5: PREVIA AGENDA ──────────────────────────────── -->
-  <img class="slide rv"
-    src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(5).png"
-    alt="Agenda" loading="lazy">
+  <!-- SLIDE 5 — AGENDA -->
+  <img class="slide" src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(5).png" alt="Agenda" loading="lazy">
 
-  <!-- ── AGENDA DEL DÍA LIVE ─────────────────────────────────── -->
-  <section class="agenda-sec">
-    <span class="sec-tag rv">31 de enero de 2027</span>
-    <h2 class="sec-h rv rv-d1">Agenda del Día</h2>
+  <!-- AGENDA EN VIVO -->
+  <div class="sec rv" style="padding:44px 24px 52px;text-align:left">
+    <span class="sec-tag" style="text-align:center;display:block;margin-bottom:6px">31 de enero · 2027</span>
+    <h2 class="sec-h rv rv-d1" style="text-align:center;margin-bottom:28px">Agenda del Día</h2>
     <div class="tl">
-      <div class="tl-item rv">
-        <div class="tl-hora">11:00</div>
-        <div class="tl-act">Llegada de invitados</div>
-        <div class="tl-lugar">Jardín principal · Bienvenida con cóctel</div>
-      </div>
-      <div class="tl-item rv rv-d1">
-        <div class="tl-hora">12:00</div>
-        <div class="tl-act">Ceremonia religiosa</div>
-        <div class="tl-lugar">Parroquia Virgen del Pilar</div>
-      </div>
-      <div class="tl-item rv rv-d2">
-        <div class="tl-hora">13:00</div>
-        <div class="tl-act">Sesión de fotos</div>
-        <div class="tl-lugar">Jardín y salones principales</div>
-      </div>
-      <div class="tl-item rv">
-        <div class="tl-hora">14:00</div>
-        <div class="tl-act">Cocktail &amp; aperitivos</div>
-        <div class="tl-lugar">Terraza principal</div>
-      </div>
-      <div class="tl-item rv rv-d1">
-        <div class="tl-hora">15:30</div>
-        <div class="tl-act">Banquete nupcial</div>
-        <div class="tl-lugar">Club Villa de Lima · Salón Imperial</div>
-      </div>
-      <div class="tl-item rv rv-d2">
-        <div class="tl-hora">17:00</div>
-        <div class="tl-act">Corte del pastel &amp; brindis</div>
-        <div class="tl-lugar">Salón principal</div>
-      </div>
-      <div class="tl-item rv">
-        <div class="tl-hora">17:30</div>
-        <div class="tl-act">Primer baile</div>
-        <div class="tl-lugar">"A Thousand Years" — Christina Perri</div>
-      </div>
-      <div class="tl-item rv rv-d1">
-        <div class="tl-hora">18:00</div>
-        <div class="tl-act">Fiesta &amp; baile libre</div>
-        <div class="tl-lugar">Pista central · Música especial</div>
-      </div>
-      <div class="tl-item rv rv-d2">
-        <div class="tl-hora">23:00</div>
-        <div class="tl-act">Despedida de los novios</div>
-        <div class="tl-lugar">Pétalos y mariposas en la salida</div>
-      </div>
+      <div class="tl-row rv"><div class="tl-hora">11:00 h</div><div class="tl-acto">Llegada de invitados</div><div class="tl-lugar">Jardín principal · Bienvenida con cóctel</div></div>
+      <div class="tl-row rv rv-d1"><div class="tl-hora">12:00 h</div><div class="tl-acto">Ceremonia religiosa</div><div class="tl-lugar">Parroquia Virgen del Pilar</div></div>
+      <div class="tl-row rv rv-d2"><div class="tl-hora">13:00 h</div><div class="tl-acto">Sesión de fotos</div><div class="tl-lugar">Jardín y salones principales</div></div>
+      <div class="tl-row rv"><div class="tl-hora">14:00 h</div><div class="tl-acto">Cocktail &amp; aperitivos</div><div class="tl-lugar">Terraza principal</div></div>
+      <div class="tl-row rv rv-d1"><div class="tl-hora">15:30 h</div><div class="tl-acto">Banquete nupcial</div><div class="tl-lugar">Salón Imperial · Club Villa de Lima</div></div>
+      <div class="tl-row rv rv-d2"><div class="tl-hora">17:00 h</div><div class="tl-acto">Corte del pastel &amp; brindis</div><div class="tl-lugar">Salón principal</div></div>
+      <div class="tl-row rv"><div class="tl-hora">17:30 h</div><div class="tl-acto">Primer baile</div><div class="tl-lugar">"A Thousand Years" — Christina Perri</div></div>
+      <div class="tl-row rv rv-d1"><div class="tl-hora">18:00 h</div><div class="tl-acto">Fiesta &amp; baile libre</div><div class="tl-lugar">Pista central · Música especial</div></div>
+      <div class="tl-row rv rv-d2"><div class="tl-hora">23:00 h</div><div class="tl-acto">Despedida de los novios</div><div class="tl-lugar">Pétalos y mariposas en la salida</div></div>
     </div>
-  </section>
-
-  <!-- ── SLIDE 6: CÓDIGO DE VESTIMENTA ───────────────────────── -->
-  <img class="slide rv"
-    src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(6).png"
-    alt="Código de vestimenta" loading="lazy">
-
-  <!-- ── SLIDE 7: DETALLE DE REGALO ──────────────────────────── -->
-  <img class="slide rv"
-    src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(7).png"
-    alt="Detalle de regalo" loading="lazy">
-  <div class="map-area rv">
-    <button class="btn-map btn-beige" id="btn-regalo">🎁 Abrir aquí</button>
   </div>
 
-  <!-- ── SLIDE 8: FRASE ROMÁNTICA ────────────────────────────── -->
-  <img class="slide rv"
-    src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(8).png"
-    alt="Frase" loading="lazy">
-  <div class="map-area rv">
-    <a href="#rsvp" class="btn-map btn-teal">💌 Confirmar asistencia</a>
+  <!-- SLIDE 6 — DRESS CODE -->
+  <img class="slide" src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(6).png" alt="Código de vestimenta" loading="lazy">
+
+  <!-- SLIDE 7 — REGALO -->
+  <img class="slide" src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(7).png" alt="Detalle de regalo" loading="lazy">
+
+  <!-- BOTÓN REGALO -->
+  <div class="sec rv" style="padding:28px 24px 36px">
+    <span class="orn">🎁 · ✨</span>
+    <button class="btn-loc" id="btn-regalo"
+      style="background:var(--beige);color:var(--texto);border:1.5px solid var(--dorado)">
+      Abrir mis datos bancarios
+    </button>
   </div>
 
-  <!-- ── SLIDE 9: DECORACIÓN RSVP ────────────────────────────── -->
-  <img class="slide rv"
-    src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(9).png"
-    alt="" loading="lazy">
+  <!-- SLIDE 8 — FRASE / QUOTE -->
+  <img class="slide" src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(8).png" alt="" loading="lazy">
 
-  <!-- ── RSVP FORM LIVE ───────────────────────────────────────── -->
-  <section class="rsvp-sec" id="rsvp">
-    <span class="sec-tag rv">Nos encantaría verte</span>
-    <h2 class="sec-h rv rv-d1">¿Contamos contigo?</h2>
-    <p class="rv rv-d2" style="font-family:'Montserrat',sans-serif;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gris);text-align:center;margin-bottom:24px;">
-      Por favor responde antes del 31 de enero de 2027
+  <!-- BOTÓN CONFIRMAR -->
+  <div class="sec rv" style="padding:28px 24px 36px">
+    <span class="orn">💌 · 🌸</span>
+    <a href="#rsvp" class="btn-loc" style="background:var(--oliva);color:#fff">
+      Confirmar mi asistencia
+    </a>
+  </div>
+
+  <!-- SLIDE 9 — RSVP VISUAL -->
+  <img class="slide" src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(9).png" alt="" loading="lazy">
+
+  <!-- FORMULARIO RSVP -->
+  <div class="rsvp-wrap" id="rsvp">
+    <span class="sec-tag rv" style="text-align:center;display:block">Nos encantaría verte</span>
+    <h2 class="sec-h rv rv-d1" style="text-align:center;margin-bottom:6px">¿Contamos contigo?</h2>
+    <p class="rv rv-d2" style="font-family:'Montserrat',sans-serif;font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gris);text-align:center;margin-bottom:28px">
+      Responde antes del <strong style="color:var(--teal)">15 de enero 2027</strong>
     </p>
-
     <form class="rsvp-form rv rv-d2" id="rsvp-form" novalidate>
-      <div class="fg">
-        <label>Nombre completo <span class="req">*</span></label>
-        <input type="text" id="f-nombre" placeholder="Tu nombre completo" required autocomplete="name">
-      </div>
-      <div class="fg">
-        <label>Correo <span class="req">*</span></label>
-        <input type="email" id="f-correo" placeholder="tu@correo.com" required autocomplete="email">
-      </div>
-      <div class="fg">
-        <label>Teléfono / WhatsApp</label>
-        <input type="tel" id="f-tel" placeholder="+51 999 999 999" autocomplete="tel">
-      </div>
-      <div class="fg">
-        <label>Acompañantes <span class="req">*</span></label>
+      <div class="fg"><label>Nombre completo <span class="req">*</span></label>
+        <input type="text" id="f-nombre" placeholder="Tu nombre completo" required autocomplete="name"></div>
+      <div class="fg"><label>Correo electrónico <span class="req">*</span></label>
+        <input type="email" id="f-correo" placeholder="tu@correo.com" required autocomplete="email"></div>
+      <div class="fg"><label>Teléfono / WhatsApp</label>
+        <input type="tel" id="f-tel" placeholder="+51 999 999 999" autocomplete="tel"></div>
+      <div class="fg"><label>Acompañantes <span class="req">*</span></label>
         <select id="f-acomp" required>
           <option value="" disabled selected>Seleccionar…</option>
           <option value="0">Solo yo</option>
@@ -506,9 +445,8 @@ body{
           <option value="2">2 acompañantes</option>
           <option value="3">3 acompañantes</option>
           <option value="4">4 o más</option>
-        </select>
-      </div>
-      <div class="form-div">¿Confirmas tu asistencia?</div>
+        </select></div>
+      <div class="div-txt">¿Confirmas tu asistencia?</div>
       <div class="asiste-row">
         <input class="asiste-r" type="radio" name="asiste" id="asi-s" value="si">
         <label class="asiste-l" for="asi-s">💚 Sí asistiré</label>
@@ -518,18 +456,12 @@ body{
       <button type="submit" class="btn-submit" id="f-submit">Confirmar asistencia</button>
       <div class="form-msg" id="form-msg"></div>
     </form>
-  </section>
+  </div>
 
-  <!-- ── SLIDES FINALES (10-12) ──────────────────────────────── -->
-  <img class="slide rv"
-    src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(10).png"
-    alt="" loading="lazy">
-  <img class="slide rv"
-    src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(11).png"
-    alt="" loading="lazy">
-  <img class="slide rv"
-    src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(12).png"
-    alt="" loading="lazy">
+  <!-- SLIDES FINALES -->
+  <img class="slide" src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(10).png" alt="" loading="lazy">
+  <img class="slide" src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(11).png" alt="" loading="lazy">
+  <img class="slide" src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(12).png" alt="" loading="lazy">
 
   <!-- FOOTER -->
   <footer class="footer">
@@ -537,16 +469,15 @@ body{
     <p class="footer-date">31 · 01 · 2027</p>
   </footer>
 
-</div><!-- /wrap -->
-</div><!-- /main -->
+</div>
+</div>
 
-
-<!-- ═══ MODAL REGALO ═══════════════════════════════════════════ -->
+<!-- ══ MODAL REGALO ══════════════════════════════════════ -->
 <div class="modal-bg" id="m-regalo">
   <div class="modal-box">
     <button class="modal-x" id="m-close">&times;</button>
     <h3 class="modal-h">🎁 Nuestro nido</h3>
-    <p class="modal-p">Si deseas hacernos un regalo especial, aquí tienes nuestros datos bancarios. ¡Te lo agradecemos de corazón!</p>
+    <p class="modal-p">Si deseas hacernos un regalo, aquí tienes nuestros datos bancarios. ¡Te lo agradecemos de corazón!</p>
     <div class="modal-data">
       <strong>Titular:</strong> Cristina López / Fernando García<br>
       <strong>Banco:</strong> BCP / Interbank<br>
@@ -554,28 +485,23 @@ body{
       <strong>CCI:</strong> 000 000 000000000000 00<br>
       <strong>Yape / Plin:</strong> +51 999 000 000
     </div>
-    <button class="btn-map btn-teal" style="width:100%;justify-content:center;"
-      onclick="document.getElementById('m-regalo').classList.remove('open')">
+    <button class="btn-close-m" onclick="document.getElementById('m-regalo').classList.remove('open')">
       ¡Gracias! 💕
     </button>
   </div>
 </div>
 
-
 <script>
 'use strict';
-
-/* ── Configuración ─────────────────────────────────────── */
 const FECHA_BODA = new Date('2027-01-31T12:00:00');
-const API_RSVP   = '/api/rsvp/exclusivo-13';
 
-/* ── Video intro ───────────────────────────────────────── */
+/* ── Intro ─────────────────────────────────────────── */
 const intro  = document.getElementById('intro');
 const ivid   = document.getElementById('ivid');
-const skip   = document.getElementById('skip');
 const mainEl = document.getElementById('main');
 
 function mostrarSitio() {
+  if (mainEl.style.display !== 'none') return;
   intro.classList.add('out');
   mainEl.style.display = 'block';
   intentarMusica();
@@ -583,87 +509,80 @@ function mostrarSitio() {
   setTimeout(() => intro.remove(), 900);
 }
 
-skip.addEventListener('click', mostrarSitio);
+document.getElementById('skip').addEventListener('click', mostrarSitio);
 ivid.addEventListener('ended', mostrarSitio);
-ivid.addEventListener('error', () => setTimeout(mostrarSitio, 1200));
-setTimeout(() => { if (mainEl.style.display === 'none') mostrarSitio(); }, 9000);
+ivid.addEventListener('error', () => setTimeout(mostrarSitio, 800));
+setTimeout(mostrarSitio, 9000);
 
-/* ── Música ────────────────────────────────────────────── */
+/* ── Música ─────────────────────────────────────────── */
 const mu    = document.getElementById('mu');
 const mubtn = document.getElementById('mubtn');
-let muInit  = false;
+let muAct   = false;
 
 function intentarMusica() {
-  if (muInit) return;
-  mu.volume = 0.32;
-  mu.play().then(() => { muInit = true; mubtn.classList.add('on'); })
-            .catch(() => {});
+  if (muAct) return;
+  mu.volume = 0.3;
+  mu.play().then(() => {
+    muAct = true;
+    mubtn.classList.add('on');
+  }).catch(() => {});
 }
 
 mubtn.addEventListener('click', () => {
   if (mu.paused) {
-    mu.play().then(() => { muInit=true; mubtn.classList.add('on'); });
+    mu.play().then(() => { muAct = true; mubtn.classList.add('on'); mubtn.innerHTML='<span class="ring"></span>🎵'; });
   } else {
-    mu.pause(); mubtn.classList.remove('on');
+    mu.pause();
+    mubtn.classList.remove('on');
     mubtn.innerHTML = '<span class="ring"></span>🔇';
   }
 });
+/* Recuperar ícono al reanudar externamente */
+mu.addEventListener('play',  () => { mubtn.classList.add('on');    mubtn.innerHTML='<span class="ring"></span>🎵'; });
+mu.addEventListener('pause', () => { mubtn.classList.remove('on'); });
 
-/* ── Scroll reveal ─────────────────────────────────────── */
+/* ── Scroll reveal ──────────────────────────────────── */
 function initReveal() {
-  const obs = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); }
-    });
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
   }, { threshold: 0.08 });
   document.querySelectorAll('.rv').forEach(el => obs.observe(el));
 }
 
-/* ── Countdown ─────────────────────────────────────────── */
-function calcDias() {
+/* ── Countdown ──────────────────────────────────────── */
+function diasRestantes() {
   return Math.max(0, Math.ceil((FECHA_BODA - new Date()) / 86400000));
 }
-function animarCounter(el, meta) {
-  let frame = 0;
-  const total = 60;
+function animarNum(el, meta) {
+  let f = 0, tot = 55;
   const t = setInterval(() => {
-    frame++;
-    const ease = 1 - Math.pow(1 - frame/total, 3);
-    el.textContent = Math.round(meta * ease);
-    if (frame >= total) { el.textContent = meta; clearInterval(t); }
+    f++;
+    el.textContent = Math.round(meta * (1 - Math.pow(1 - f/tot, 3)));
+    if (f >= tot) { el.textContent = meta; clearInterval(t); }
   }, 16);
 }
-const cdObs = new IntersectionObserver((en) => {
+new IntersectionObserver(en => {
   if (en[0].isIntersecting) {
-    animarCounter(document.getElementById('days-el'), calcDias());
-    cdObs.disconnect();
+    animarNum(document.getElementById('days-el'), diasRestantes());
   }
-}, { threshold: .3 });
-cdObs.observe(document.getElementById('cd-sec'));
+}, { threshold: .3 }).observe(document.getElementById('cd-sec'));
 
-/* ── Modal regalo ──────────────────────────────────────── */
+/* ── Modal regalo ───────────────────────────────────── */
 document.getElementById('btn-regalo').addEventListener('click', () =>
   document.getElementById('m-regalo').classList.add('open'));
 document.getElementById('m-close').addEventListener('click', () =>
   document.getElementById('m-regalo').classList.remove('open'));
 document.getElementById('m-regalo').addEventListener('click', e => {
-  if (e.target === document.getElementById('m-regalo'))
-    document.getElementById('m-regalo').classList.remove('open');
+  if (e.target.id === 'm-regalo') document.getElementById('m-regalo').classList.remove('open');
 });
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') document.getElementById('m-regalo').classList.remove('open');
 });
 
-/* ── RSVP ──────────────────────────────────────────────── */
-const form    = document.getElementById('rsvp-form');
-const fmsg    = document.getElementById('form-msg');
-const fsub    = document.getElementById('f-submit');
-
-function msg(txt, tipo) {
-  fmsg.textContent = txt;
-  fmsg.className = 'form-msg ' + tipo;
-  fmsg.scrollIntoView({ behavior:'smooth', block:'nearest' });
-}
+/* ── RSVP ───────────────────────────────────────────── */
+const form = document.getElementById('rsvp-form');
+const fmsg = document.getElementById('form-msg');
+const fsub = document.getElementById('f-submit');
 
 form.addEventListener('submit', async e => {
   e.preventDefault();
@@ -673,27 +592,28 @@ form.addEventListener('submit', async e => {
   const acomp    = document.getElementById('f-acomp').value;
   const asiste   = (form.querySelector('input[name=asiste]:checked') || {}).value;
 
-  if (!nombre)                         return msg('⚠️ El nombre es requerido.', 'er');
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correo)) return msg('⚠️ Correo inválido.', 'er');
-  if (acomp === '')                    return msg('⚠️ Indica cuántos acompañantes.', 'er');
-  if (!asiste)                         return msg('⚠️ Indica si asistirás.', 'er');
+  fmsg.className = 'form-msg';
+  if (!nombre)                               return (fmsg.textContent='⚠️ El nombre es requerido.', fmsg.classList.add('er'));
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correo)) return (fmsg.textContent='⚠️ Correo inválido.', fmsg.classList.add('er'));
+  if (!acomp)                                return (fmsg.textContent='⚠️ Indica cuántos acompañantes.', fmsg.classList.add('er'));
+  if (!asiste)                               return (fmsg.textContent='⚠️ Indica si asistirás.', fmsg.classList.add('er'));
 
-  fsub.disabled = true;
-  fsub.textContent = 'Enviando…';
+  fsub.disabled = true; fsub.textContent = 'Enviando…';
   try {
-    const r = await fetch(API_RSVP, {
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({ nombre, correo,
-        telefono: telefono || null,
-        acompanantes: parseInt(acomp)||0,
-        asiste: asiste === 'si' }),
+    const r = await fetch('/api/rsvp/exclusivo-13', {
+      method: 'POST',
+      headers: { 'Content-Type':'application/json' },
+      body: JSON.stringify({ nombre, correo, telefono: telefono||null,
+        acompanantes: parseInt(acomp)||0, asiste: asiste==='si' })
     });
     const j = await r.json();
-    if (r.ok && j.ok) { msg('🎉 ¡Gracias! Tu respuesta fue registrada. ¡Te esperamos!', 'ok'); form.reset(); }
-    else throw new Error();
-  } catch { msg('❌ Error al enviar. Intenta de nuevo.', 'er'); }
-  finally { fsub.disabled=false; fsub.textContent='Confirmar asistencia'; }
+    if (r.ok && j.ok) {
+      fmsg.textContent = '🎉 ¡Gracias! Tu respuesta fue registrada.';
+      fmsg.className = 'form-msg ok';
+      form.reset();
+    } else throw new Error();
+  } catch { fmsg.textContent = '❌ Error al enviar. Intenta de nuevo.'; fmsg.className = 'form-msg er'; }
+  finally { fsub.disabled = false; fsub.textContent = 'Confirmar asistencia'; }
 });
 </script>
 </body>
