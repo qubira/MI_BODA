@@ -85,6 +85,36 @@ app.delete('/api/visits', async (req, res) => {
   }
 });
 
+/* ── RSVP exclusivo-13 ────────────────────────────────────────── */
+app.post('/api/rsvp/exclusivo-13', async (req, res) => {
+  try {
+    const { nombre, correo, telefono, acompanantes, asiste, mensaje } = req.body || {};
+    if (!nombre || !correo || asiste === undefined) return res.status(400).json({ error: 'Faltan campos' });
+    await pool.query(
+      `INSERT INTO rsvp_exclusivo_13 (nombre,correo,telefono,acompanantes,asiste,mensaje)
+       VALUES ($1,$2,$3,$4,$5,$6)`,
+      [nombre, correo, telefono||null, parseInt(acompanantes)||0, !!asiste, mensaje||null]
+    );
+    res.json({ ok: true });
+  } catch (e) { console.error('rsvp error:', e.message); res.status(500).json({ error: 'db error' }); }
+});
+
+app.get('/api/rsvp/exclusivo-13', async (req, res) => {
+  if (req.query.key !== ADMIN_KEY) return res.status(403).json({ error: 'forbidden' });
+  try {
+    const { rows } = await pool.query('SELECT * FROM rsvp_exclusivo_13 ORDER BY id DESC');
+    res.json(rows);
+  } catch (e) { res.status(500).json({ error: 'db error' }); }
+});
+
+app.delete('/api/rsvp/exclusivo-13/:id', async (req, res) => {
+  if (req.query.key !== ADMIN_KEY) return res.status(403).json({ error: 'forbidden' });
+  try {
+    await pool.query('DELETE FROM rsvp_exclusivo_13 WHERE id=$1', [req.params.id]);
+    res.json({ ok: true });
+  } catch (e) { res.status(500).json({ error: 'db error' }); }
+});
+
 /* ── Control panel & tracker script ──────────────────────────── */
 app.get('/control', (req, res) =>
   res.sendFile(path.join(__dirname, 'CONTROL', 'control1dff.html'))
@@ -148,6 +178,7 @@ const projects = [
   { slug: 'exclusivo-10',  dir: 'MI_BODA_EXCLUSIVO_10',   admin: true  },
   { slug: 'exclusivo-11',  dir: 'MI_BODA_EXCLUSIVO_11',   admin: true  },
   { slug: 'exclusivo-12',  dir: 'MI_BODA_EXCLUSIVO_12',   admin: true  },
+  { slug: 'exclusivo-13',  dir: 'MI_BODA_EXCLUSIVO_13',   admin: true  },
 ];
 
 projects.forEach(({ slug, dir, admin }) => {
