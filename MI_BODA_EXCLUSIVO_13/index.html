@@ -1,771 +1,1548 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5">
-<title>Cristina &amp; Fernando — 31 Enero 2027</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-<style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{background:#ede8e0;overflow-x:hidden;font-family:'Cormorant Garamond',serif;color:#2c2826}
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,maximum-scale=5"
+    />
+    <title>Cristina &amp; Fernando — 31 Enero 2027</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        background: #ede8e0;
+        overflow-x: hidden;
+        font-family: "Cormorant Garamond", serif;
+        color: #2c2826;
+      }
 
-/* ─── WRAP ─── */
-.wrap{max-width:420px;margin:0 auto;background:#fff}
-@media(min-width:480px){.wrap{box-shadow:0 0 60px rgba(0,0,0,.12)}}
+      .wrap {
+        max-width: 420px;
+        margin: 0 auto;
+        background: #fff;
+      }
+      @media (min-width: 480px) {
+        .wrap {
+          box-shadow: 0 0 60px rgba(0, 0, 0, 0.12);
+        }
+      }
 
-/* ─── REVEAL ─── */
-.rv{opacity:0;transform:translateY(20px);transition:.65s ease}
-.rv.in{opacity:1;transform:none}
-.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}
+      .rv {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: 0.65s ease;
+      }
+      .rv.in {
+        opacity: 1;
+        transform: none;
+      }
+      .d1 {
+        transition-delay: 0.1s;
+      }
+      .d2 {
+        transition-delay: 0.2s;
+      }
+      .d3 {
+        transition-delay: 0.3s;
+      }
 
-/* ════════════════════════════════
-   VIDEO INTRO
-════════════════════════════════ */
-#intro{
-  position:fixed;inset:0;z-index:1000;background:#1a1510;
-  display:flex;align-items:center;justify-content:center;
-  transition:opacity .9s,visibility .9s;
-}
-#intro.out{opacity:0;visibility:hidden;pointer-events:none}
-#intro video{width:100%;height:100%;object-fit:cover}
-#skip{
-  position:absolute;bottom:28px;right:22px;
-  background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.4);
-  color:#fff;padding:9px 22px;border-radius:30px;
-  font-family:'Montserrat',sans-serif;font-size:.58rem;
-  letter-spacing:.16em;text-transform:uppercase;cursor:pointer;
-  backdrop-filter:blur(6px);
-}
+      /* VIDEO INTRO */
+      #intro {
+        position: fixed;
+        inset: 0;
+        z-index: 1000;
+        background: #1a1510;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition:
+          opacity 0.9s,
+          visibility 0.9s;
+      }
+      #intro.out {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
+      #intro video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      #skip {
+        position: absolute;
+        bottom: 28px;
+        right: 22px;
+        background: rgba(255, 255, 255, 0.14);
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        color: #fff;
+        padding: 9px 22px;
+        border-radius: 30px;
+        font-family: "Montserrat", sans-serif;
+        font-size: 0.58rem;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        cursor: pointer;
+        backdrop-filter: blur(6px);
+      }
 
-/* ════════════════════════════════
-   BOTÓN MÚSICA
-════════════════════════════════ */
-#mu-btn{
-  position:fixed;bottom:22px;right:22px;z-index:600;
-  width:46px;height:46px;border-radius:50%;border:none;
-  background:#5a7357;color:#fff;font-size:1.1rem;cursor:pointer;
-  display:flex;align-items:center;justify-content:center;
-  box-shadow:0 4px 18px rgba(0,0,0,.28);transition:.2s;
-}
-#mu-btn:hover{background:#6b9e9b;transform:scale(1.07)}
-.ring{position:absolute;inset:-5px;border-radius:50%;border:2px solid #5a7357;opacity:0;animation:rp 1.7s infinite}
-#mu-btn.on .ring{opacity:1}
-@keyframes rp{0%{transform:scale(1);opacity:.65}100%{transform:scale(1.7);opacity:0}}
+      /* BOTÓN MÚSICA */
+      #mu-btn {
+        position: fixed;
+        bottom: 22px;
+        right: 22px;
+        z-index: 600;
+        width: 46px;
+        height: 46px;
+        border-radius: 50%;
+        border: none;
+        background: #5a7357;
+        color: #fff;
+        font-size: 1.1rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 18px rgba(0, 0, 0, 0.28);
+        transition: 0.2s;
+      }
+      #mu-btn:hover {
+        background: #6b9e9b;
+        transform: scale(1.07);
+      }
+      .ring {
+        position: absolute;
+        inset: -5px;
+        border-radius: 50%;
+        border: 2px solid #5a7357;
+        opacity: 0;
+        animation: rp 1.7s infinite;
+      }
+      #mu-btn.on .ring {
+        opacity: 1;
+      }
+      @keyframes rp {
+        0% {
+          transform: scale(1);
+          opacity: 0.65;
+        }
+        100% {
+          transform: scale(1.7);
+          opacity: 0;
+        }
+      }
 
-/* ════════════════════════════════
-   ① HERO
-════════════════════════════════ */
-.hero{
-  background:#fff;
-  padding:0 0 44px;
-  text-align:center;
-  position:relative;
-  overflow:hidden;
-}
-.hero-flowers{
-  width:85%;max-width:320px;
-  display:block;margin:0 auto;
-}
-.hero-fecha-top{
-  font-family:'Montserrat',sans-serif;
-  font-size:.54rem;letter-spacing:.42em;text-transform:uppercase;
-  color:#b8a98a;margin:10px 0 16px;
-}
-.hero-name{
-  font-family:'Great Vibes',cursive;
-  font-size:4rem;color:#2c2826;line-height:1;display:block;
-}
-.hero-y{
-  font-family:'Cormorant Garamond',serif;
-  font-size:1.1rem;font-style:italic;color:#b8a98a;
-  display:block;margin:4px 0;
-}
-.hero-divider{
-  width:1px;height:36px;background:linear-gradient(to bottom,transparent,#c9c0b5,transparent);
-  display:block;margin:14px auto;
-}
-.hero-info{
-  font-family:'Montserrat',sans-serif;
-  font-size:.56rem;letter-spacing:.3em;text-transform:uppercase;
-  color:#7a6e68;line-height:2;
-}
+      /* ① HERO */
+      .hero {
+        background: #fff;
+        padding: 0 0 44px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+      /* FLORES HERO: cambia width para hacer más grande/pequeño */
+      .hero-flowers {
+        width: 85%;
+        max-width: 320px;
+        display: block;
+        margin: 0 auto;
+      }
+      .hero-fecha-top {
+        font-family: "Montserrat", sans-serif;
+        font-size: 0.54rem;
+        letter-spacing: 0.42em;
+        text-transform: uppercase;
+        color: #b8a98a;
+        margin: 10px 0 16px;
+      }
+      /* FOTO NOVIOS PENTÁGONO */
+      .hero-pentagon {
+        width: 160px;
+        height: 160px;
+        margin: 18px auto 20px;
+        display: block;
+        object-fit: cover;
+        /* clip-path pentágono: cambia los % para ajustar forma */
+        clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+        /* borde dorado: se logra con outline o con wrapper — ver wrapper abajo */
+        filter: drop-shadow(0 0 0 6px #c9a882);
+      }
+      .hero-pentagon-wrap {
+        width: 172px;
+        height: 172px;
+        margin: 18px auto 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        /* fondo dorado que actúa como borde del pentágono */
+        background: #c9a882;
+        clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+        /* TAMAÑO: cambia width/height (ej: 140px más pequeño, 210px más grande) */
+        /* BORDE: cambia background color del wrap (ej: #b8a98a, #5a7357) */
+      }
+      .hero-pentagon-wrap img {
+        width: 160px;
+        height: 160px;
+        object-fit: cover;
+        clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+        display: block;
+      }
 
-/* ════════════════════════════════
-   ② BIENVENIDA / ARCO
-════════════════════════════════ */
-.arch-sec{
-  background:#fdf7f0;
-  padding:48px 28px 52px;
-  text-align:center;
-  border-top:1px solid #ede4d8;border-bottom:1px solid #ede4d8;
-  position:relative;
-}
-.arch-box{
-  display:inline-block;
-  background:#fff;
-  border-radius:50% 50% 12px 12px / 38% 38% 12px 12px;
-  padding:36px 28px 30px;
-  max-width:300px;width:100%;
-  border:1px solid #ede4d8;
-  box-shadow:0 6px 30px rgba(0,0,0,.06);
-  position:relative;
-}
-.arch-butterfly{
-  position:absolute;top:-10px;right:12px;width:44px;
-}
-.arch-tag{
-  font-family:'Montserrat',sans-serif;font-size:.52rem;
-  letter-spacing:.38em;text-transform:uppercase;color:#c9a882;margin-bottom:12px;
-}
-.arch-names{
-  font-family:'Great Vibes',cursive;font-size:2.6rem;color:#2c2826;line-height:1.2;
-}
-.arch-line{
-  width:40px;height:1px;background:#c9a882;display:block;margin:12px auto;
-}
-.arch-msg{
-  font-family:'Montserrat',sans-serif;font-size:.54rem;
-  letter-spacing:.22em;text-transform:uppercase;color:#7a6e68;line-height:1.9;
-}
-.arch-flowers{
-  width:80%;max-width:240px;display:block;margin:20px auto 0;
-}
+      /* NOMBRES: cambia font-size para hacer más grande/pequeño (ej: 3rem, 5rem) */
+      .hero-name {
+        font-family: "Great Vibes", cursive;
+        font-size: 4rem;
+        color: #2c2826;
+        line-height: 1;
+        display: block;
+      }
+      .hero-y {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.1rem;
+        font-style: italic;
+        color: #b8a98a;
+        display: block;
+        margin: 4px 0;
+      }
+      .hero-divider {
+        width: 1px;
+        height: 36px;
+        background: linear-gradient(
+          to bottom,
+          transparent,
+          #c9c0b5,
+          transparent
+        );
+        display: block;
+        margin: 14px auto;
+      }
+      .hero-info {
+        font-family: "Montserrat", sans-serif;
+        font-size: 0.56rem;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: #7a6e68;
+        line-height: 2;
+      }
 
-/* ════════════════════════════════
-   ③ COUNTDOWN
-════════════════════════════════ */
-.cd-sec{
-  background:#fff;
-  padding:52px 28px;
-  text-align:center;
-  border-bottom:1px solid #ede4d8;
-}
-.cd-label{
-  font-family:'Montserrat',sans-serif;font-size:.54rem;
-  letter-spacing:.4em;text-transform:uppercase;color:#b8a98a;margin-bottom:14px;
-}
-.cd-num{
-  font-family:'Great Vibes',cursive;font-size:6rem;color:#2c2826;
-  line-height:.9;display:block;
-}
-.cd-sub{
-  font-family:'Montserrat',sans-serif;font-size:.56rem;
-  letter-spacing:.36em;text-transform:uppercase;color:#7a6e68;margin-top:10px;
-}
-.cd-date{
-  font-family:'Cormorant Garamond',serif;font-style:italic;
-  font-size:1.05rem;color:#c9a882;margin-top:8px;
-}
+      /* ② BIENVENIDA / ARCO */
+      .arch-sec {
+        background: #fdf7f0;
+        padding: 48px 28px 52px;
+        text-align: center;
+        border-top: 1px solid #ede4d8;
+        border-bottom: 1px solid #ede4d8;
+        position: relative;
+      }
+      .arch-box {
+        display: inline-block;
+        background: #fff;
+        border-radius: 50% 50% 12px 12px / 38% 38% 12px 12px;
+        padding: 36px 28px 30px;
+        max-width: 300px;
+        width: 100%;
+        border: 1px solid #ede4d8;
+        box-shadow: 0 6px 30px rgba(0, 0, 0, 0.06);
+        position: relative;
+      }
+      /* MARIPOSA DEL ARCO: ya está posicionada en esquina, cambia top/right/width */
+      .arch-butterfly {
+        position: absolute;
+        top: -10px;
+        right: 12px;
+        width: 44px;
+      }
+      .arch-tag {
+        font-family: "Montserrat", sans-serif;
+        font-size: 0.52rem;
+        letter-spacing: 0.38em;
+        text-transform: uppercase;
+        color: #c9a882;
+        margin-bottom: 12px;
+      }
+      .arch-names {
+        font-family: "Great Vibes", cursive;
+        font-size: 2.6rem;
+        color: #2c2826;
+        line-height: 1.2;
+      }
+      .arch-line {
+        width: 40px;
+        height: 1px;
+        background: #c9a882;
+        display: block;
+        margin: 12px auto;
+      }
+      .arch-msg {
+        font-family: "Montserrat", sans-serif;
+        font-size: 0.54rem;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: #7a6e68;
+        line-height: 1.9;
+      }
+      /* FLORES DIVISOR DEL ARCO: cambia max-width para tamaño */
+      .arch-flowers {
+        width: 80%;
+        max-width: 240px;
+        display: block;
+        margin: 20px auto 0;
+      }
 
-/* ════════════════════════════════
-   SECCIÓN GENÉRICA
-════════════════════════════════ */
-.sec{padding:52px 28px;text-align:center}
-.sec.cream{background:#fdf7f0;border-top:1px solid #ede4d8;border-bottom:1px solid #ede4d8}
-.sec.white{background:#fff}
-.sec-tag{
-  display:block;font-family:'Montserrat',sans-serif;
-  font-size:.52rem;letter-spacing:.4em;text-transform:uppercase;
-  color:#6b9e9b;margin-bottom:8px;font-weight:500;
-}
-.sec-h{
-  font-family:'Great Vibes',cursive;font-size:2.6rem;color:#2c2826;
-  margin-bottom:10px;line-height:1.2;
-}
-.sec-body{
-  font-family:'Montserrat',sans-serif;font-size:.6rem;
-  letter-spacing:.14em;color:#7a6e68;line-height:2.2;
-  text-transform:uppercase;margin-bottom:20px;
-}
-.sec-body strong{color:#2c2826}
-.sec-img{display:block;margin:0 auto 22px}
-.div-img{display:block;margin:0 auto}
+      /* ③ COUNTDOWN */
+      .cd-sec {
+        background: #fff;
+        padding: 52px 28px;
+        text-align: center;
+        border-bottom: 1px solid #ede4d8;
+      }
+      .cd-label {
+        font-family: "Montserrat", sans-serif;
+        font-size: 0.54rem;
+        letter-spacing: 0.4em;
+        text-transform: uppercase;
+        color: #b8a98a;
+        margin-bottom: 14px;
+      }
+      /* NÚMERO COUNTDOWN: cambia font-size (ej: 5rem más pequeño, 8rem más grande) */
+      .cd-num {
+        font-family: "Great Vibes", cursive;
+        font-size: 6rem;
+        color: #2c2826;
+        line-height: 0.9;
+        display: block;
+      }
+      .cd-sub {
+        font-family: "Montserrat", sans-serif;
+        font-size: 0.56rem;
+        letter-spacing: 0.36em;
+        text-transform: uppercase;
+        color: #7a6e68;
+        margin-top: 10px;
+      }
+      .cd-date {
+        font-family: "Cormorant Garamond", serif;
+        font-style: italic;
+        font-size: 1.05rem;
+        color: #c9a882;
+        margin-top: 8px;
+      }
 
-/* ════════════════════════════════
-   BOTONES
-════════════════════════════════ */
-.btn{
-  display:inline-flex;align-items:center;gap:7px;
-  padding:13px 36px;border-radius:50px;
-  font-family:'Montserrat',sans-serif;font-size:.58rem;
-  font-weight:500;letter-spacing:.18em;text-transform:uppercase;
-  text-decoration:none;cursor:pointer;border:none;
-  transition:opacity .2s,transform .15s;line-height:1;
-}
-.btn:hover{opacity:.85;transform:translateY(-2px)}
-.btn-dark{background:#2c2826;color:#fff}
-.btn-olive{background:#5a7357;color:#fff}
-.btn-teal{background:#6b9e9b;color:#fff}
-.btn-cream{background:#fdf7f0;color:#2c2826;border:1.5px solid #c9a882}
+      /* SECCIONES GENÉRICAS */
+      .sec {
+        padding: 52px 28px;
+        text-align: center;
+      }
+      .sec.cream {
+        background: #fdf7f0;
+        border-top: 1px solid #ede4d8;
+        border-bottom: 1px solid #ede4d8;
+      }
+      .sec.white {
+        background: #fff;
+      }
+      /* ETIQUETA VERDE (ej: "Ceremonia religiosa"): cambia color, font-size */
+      .sec-tag {
+        display: block;
+        font-family: "Montserrat", sans-serif;
+        font-size: 0.52rem;
+        letter-spacing: 0.4em;
+        text-transform: uppercase;
+        color: #6b9e9b;
+        margin-bottom: 8px;
+        font-weight: 500;
+      }
+      /* TÍTULO DE SECCIÓN (ej: "Ceremonia"): cambia font-size (2rem–3.5rem) */
+      .sec-h {
+        font-family: "Great Vibes", cursive;
+        font-size: 2.6rem;
+        color: #2c2826;
+        margin-bottom: 10px;
+        line-height: 1.2;
+      }
+      .sec-body {
+        font-family: "Montserrat", sans-serif;
+        font-size: 0.6rem;
+        letter-spacing: 0.14em;
+        color: #7a6e68;
+        line-height: 2.2;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+      }
+      .sec-body strong {
+        color: #2c2826;
+      }
+      .sec-img {
+        display: block;
+        margin: 0 auto 22px;
+      }
+      .div-img {
+        display: block;
+        margin: 0 auto;
+      }
 
-/* ════════════════════════════════
-   AGENDA / TIMELINE
-════════════════════════════════ */
-.tl{
-  position:relative;max-width:340px;margin:0 auto;
-  padding-left:50px;text-align:left;
-}
-.tl::before{
-  content:'';position:absolute;left:14px;top:10px;bottom:10px;
-  width:1px;background:linear-gradient(to bottom,transparent,#ede4d8 8%,#ede4d8 92%,transparent);
-}
-.tl-row{position:relative;margin-bottom:22px}
-.tl-row::before{
-  content:'';position:absolute;left:-37px;top:4px;
-  width:8px;height:8px;border-radius:50%;
-  background:#c9a882;border:2px solid #fff;
-  box-shadow:0 0 0 1.5px #c9a882;
-}
-.tl-h{font-family:'Montserrat',sans-serif;font-size:.56rem;font-weight:600;letter-spacing:.06em;color:#6b9e9b;margin-bottom:2px}
-.tl-a{font-family:'Montserrat',sans-serif;font-size:.62rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#5a7357;margin-bottom:1px}
-.tl-l{font-family:'Montserrat',sans-serif;font-size:.58rem;color:#7a6e68;line-height:1.6}
+      /* BOTONES */
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        padding: 13px 36px;
+        border-radius: 50px;
+        font-family: "Montserrat", sans-serif;
+        font-size: 0.58rem;
+        font-weight: 500;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        text-decoration: none;
+        cursor: pointer;
+        border: none;
+        transition:
+          opacity 0.2s,
+          transform 0.15s;
+        line-height: 1;
+      }
+      .btn:hover {
+        opacity: 0.85;
+        transform: translateY(-2px);
+      }
+      .btn-dark {
+        background: #2c2826;
+        color: #fff;
+      }
+      .btn-olive {
+        background: #5a7357;
+        color: #fff;
+      }
+      .btn-teal {
+        background: #6b9e9b;
+        color: #fff;
+      }
+      .btn-cream {
+        background: #fdf7f0;
+        color: #2c2826;
+        border: 1.5px solid #c9a882;
+      }
 
-/* ════════════════════════════════
-   DRESS CODE
-════════════════════════════════ */
-.dc-grid{
-  display:grid;grid-template-columns:1fr 1fr;gap:16px;
-  max-width:320px;margin:20px auto 0;
-}
-.dc-item{
-  border:1px solid #ede4d8;border-radius:12px;padding:16px 10px;text-align:center;
-}
-.dc-emoji{font-size:1.5rem;display:block;margin-bottom:6px}
-.dc-lbl{font-family:'Montserrat',sans-serif;font-size:.56rem;letter-spacing:.16em;text-transform:uppercase;color:#7a6e68;line-height:1.6}
-.dc-val{font-family:'Montserrat',sans-serif;font-size:.62rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#2c2826}
+      /* AGENDA / TIMELINE */
+      .tl {
+        position: relative;
+        max-width: 340px;
+        margin: 0 auto;
+        padding-left: 50px;
+        text-align: left;
+      }
+      .tl::before {
+        content: "";
+        position: absolute;
+        left: 14px;
+        top: 10px;
+        bottom: 10px;
+        width: 1px;
+        background: linear-gradient(
+          to bottom,
+          transparent,
+          #ede4d8 8%,
+          #ede4d8 92%,
+          transparent
+        );
+      }
+      .tl-row {
+        position: relative;
+        margin-bottom: 22px;
+      }
+      .tl-row::before {
+        content: "";
+        position: absolute;
+        left: -37px;
+        top: 4px;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #c9a882;
+        border: 2px solid #fff;
+        box-shadow: 0 0 0 1.5px #c9a882;
+      }
+      .tl-h {
+        font-family: "Montserrat", sans-serif;
+        font-size: 0.56rem;
+        font-weight: 600;
+        letter-spacing: 0.06em;
+        color: #6b9e9b;
+        margin-bottom: 2px;
+      }
+      .tl-a {
+        font-family: "Montserrat", sans-serif;
+        font-size: 0.62rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: #5a7357;
+        margin-bottom: 1px;
+      }
+      .tl-l {
+        font-family: "Montserrat", sans-serif;
+        font-size: 0.58rem;
+        color: #7a6e68;
+        line-height: 1.6;
+      }
 
-/* ════════════════════════════════
-   RSVP FORM
-════════════════════════════════ */
-.rsvp-sec{
-  background:#fdf7f0;padding:52px 28px 60px;
-  border-top:1px solid #ede4d8;
-}
-.form-wrap{max-width:360px;margin:0 auto}
-.fg{margin-bottom:22px}
-.fg label{
-  display:block;font-family:'Montserrat',sans-serif;
-  font-size:.52rem;letter-spacing:.24em;text-transform:uppercase;
-  color:#7a6e68;margin-bottom:8px;
-}
-.fg label em{color:#6b9e9b;font-style:normal}
-.fg input,.fg select{
-  width:100%;padding:7px 0 11px;border:none;
-  border-bottom:1.5px solid #ede4d8;
-  font-family:'Montserrat',sans-serif;font-size:.72rem;
-  background:transparent;color:#2c2826;outline:none;
-  transition:border-color .2s;appearance:none;-webkit-appearance:none;border-radius:0;
-}
-.fg input:focus,.fg select:focus{border-bottom-color:#6b9e9b}
-.asiste-sep{
-  font-family:'Montserrat',sans-serif;font-size:.52rem;
-  letter-spacing:.26em;text-transform:uppercase;color:#7a6e68;
-  text-align:center;margin:26px 0 14px;
-}
-.asiste-row{display:flex;gap:10px}
-.ar{display:none}
-.al{
-  flex:1;text-align:center;padding:12px 6px;
-  border:1.5px solid #ede4d8;border-radius:50px;
-  font-family:'Montserrat',sans-serif;font-size:.58rem;
-  letter-spacing:.1em;text-transform:uppercase;
-  cursor:pointer;color:#7a6e68;transition:.2s;user-select:none;
-}
-.ar:checked+.al{border-color:#6b9e9b;color:#6b9e9b;background:rgba(107,158,155,.08)}
-.btn-send{
-  display:block;width:100%;margin-top:28px;padding:15px;
-  background:#5a7357;color:#fff;border-radius:50px;border:none;cursor:pointer;
-  font-family:'Montserrat',sans-serif;font-size:.58rem;
-  letter-spacing:.22em;text-transform:uppercase;font-weight:500;
-  transition:background .2s,transform .15s;
-}
-.btn-send:hover{background:#6b9e9b;transform:translateY(-2px)}
-.btn-send:disabled{opacity:.5;transform:none;cursor:default}
-.fmsg{
-  text-align:center;margin-top:14px;min-height:1.2rem;
-  font-family:'Montserrat',sans-serif;font-size:.65rem;
-  padding:10px;border-radius:8px;
-}
-.fmsg.ok{background:#e8f5e9;color:#2e7d32}
-.fmsg.er{background:#fce4e4;color:#b71c1c}
+      /* DRESS CODE */
+      .dc-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        max-width: 320px;
+        margin: 20px auto 0;
+      }
+      .dc-item {
+        border: 1px solid #ede4d8;
+        border-radius: 12px;
+        padding: 16px 10px;
+        text-align: center;
+      }
+      .dc-emoji {
+        font-size: 1.5rem;
+        display: block;
+        margin-bottom: 6px;
+      }
+      .dc-lbl {
+        font-family: "Montserrat", sans-serif;
+        font-size: 0.56rem;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: #7a6e68;
+        line-height: 1.6;
+      }
+      .dc-val {
+        font-family: "Montserrat", sans-serif;
+        font-size: 0.62rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: #2c2826;
+      }
 
-/* ════════════════════════════════
-   FOOTER
-════════════════════════════════ */
-.footer{
-  background:#fff;border-top:1px solid #ede4d8;
-  padding:36px 20px 28px;text-align:center;
-}
-.footer-names{font-family:'Great Vibes',cursive;font-size:2.8rem;color:#2c2826}
-.footer-date{
-  font-family:'Montserrat',sans-serif;font-size:.52rem;
-  letter-spacing:.36em;color:#b8a98a;text-transform:uppercase;margin-top:4px;
-}
-.footer-copas{width:70px;display:block;margin:16px auto 0;opacity:.7}
+      /* RSVP FORM */
+      .rsvp-sec {
+        background: #fdf7f0;
+        padding: 52px 28px 60px;
+        border-top: 1px solid #ede4d8;
+      }
+      .form-wrap {
+        max-width: 360px;
+        margin: 0 auto;
+      }
+      .fg {
+        margin-bottom: 22px;
+      }
+      .fg label {
+        display: block;
+        font-family: "Montserrat", sans-serif;
+        font-size: 0.52rem;
+        letter-spacing: 0.24em;
+        text-transform: uppercase;
+        color: #7a6e68;
+        margin-bottom: 8px;
+      }
+      .fg label em {
+        color: #6b9e9b;
+        font-style: normal;
+      }
+      .fg input,
+      .fg select {
+        width: 100%;
+        padding: 7px 0 11px;
+        border: none;
+        border-bottom: 1.5px solid #ede4d8;
+        font-family: "Montserrat", sans-serif;
+        font-size: 0.72rem;
+        background: transparent;
+        color: #2c2826;
+        outline: none;
+        transition: border-color 0.2s;
+        appearance: none;
+        -webkit-appearance: none;
+        border-radius: 0;
+      }
+      .fg input:focus,
+      .fg select:focus {
+        border-bottom-color: #6b9e9b;
+      }
+      .asiste-sep {
+        font-family: "Montserrat", sans-serif;
+        font-size: 0.52rem;
+        letter-spacing: 0.26em;
+        text-transform: uppercase;
+        color: #7a6e68;
+        text-align: center;
+        margin: 26px 0 14px;
+      }
+      .asiste-row {
+        display: flex;
+        gap: 10px;
+      }
+      .ar {
+        display: none;
+      }
+      .al {
+        flex: 1;
+        text-align: center;
+        padding: 12px 6px;
+        border: 1.5px solid #ede4d8;
+        border-radius: 50px;
+        font-family: "Montserrat", sans-serif;
+        font-size: 0.58rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        cursor: pointer;
+        color: #7a6e68;
+        transition: 0.2s;
+        user-select: none;
+      }
+      .ar:checked + .al {
+        border-color: #6b9e9b;
+        color: #6b9e9b;
+        background: rgba(107, 158, 155, 0.08);
+      }
+      .btn-send {
+        display: block;
+        width: 100%;
+        margin-top: 28px;
+        padding: 15px;
+        background: #5a7357;
+        color: #fff;
+        border-radius: 50px;
+        border: none;
+        cursor: pointer;
+        font-family: "Montserrat", sans-serif;
+        font-size: 0.58rem;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        font-weight: 500;
+        transition:
+          background 0.2s,
+          transform 0.15s;
+      }
+      .btn-send:hover {
+        background: #6b9e9b;
+        transform: translateY(-2px);
+      }
+      .btn-send:disabled {
+        opacity: 0.5;
+        transform: none;
+        cursor: default;
+      }
+      .fmsg {
+        text-align: center;
+        margin-top: 14px;
+        min-height: 1.2rem;
+        font-family: "Montserrat", sans-serif;
+        font-size: 0.65rem;
+        padding: 10px;
+        border-radius: 8px;
+      }
+      .fmsg.ok {
+        background: #e8f5e9;
+        color: #2e7d32;
+      }
+      .fmsg.er {
+        background: #fce4e4;
+        color: #b71c1c;
+      }
 
-/* ════════════════════════════════
-   MODAL REGALO
-════════════════════════════════ */
-.mbg{
-  position:fixed;inset:0;background:rgba(0,0,0,.48);
-  z-index:900;display:flex;align-items:center;justify-content:center;
-  padding:20px;opacity:0;visibility:hidden;transition:.3s;
-}
-.mbg.open{opacity:1;visibility:visible}
-.mbox{
-  background:#fdf7f0;border-radius:20px;padding:32px 24px;
-  max-width:360px;width:100%;text-align:center;position:relative;
-  transform:translateY(22px);transition:.32s;
-  box-shadow:0 20px 60px rgba(0,0,0,.22);border:1px solid #ede4d8;
-}
-.mbg.open .mbox{transform:none}
-.mx{position:absolute;top:14px;right:18px;font-size:1.3rem;color:#b8a98a;cursor:pointer;background:none;border:none;line-height:1}
-.mh{font-family:'Great Vibes',cursive;font-size:2.4rem;color:#2c2826;margin-bottom:8px}
-.mp{font-family:'Montserrat',sans-serif;font-size:.62rem;color:#7a6e68;line-height:1.9;margin-bottom:14px;letter-spacing:.06em}
-.mdata{
-  background:#fff;border:1px solid #ede4d8;border-radius:10px;
-  padding:14px 16px;text-align:left;
-  font-family:'Montserrat',sans-serif;font-size:.64rem;
-  color:#7a6e68;line-height:2.4;margin-bottom:16px;
-}
-.mdata strong{color:#2c2826}
-</style>
-</head>
-<body>
+      /* FOOTER */
+      .footer {
+        background: #fff;
+        border-top: 1px solid #ede4d8;
+        padding: 36px 20px 28px;
+        text-align: center;
+      }
+      .footer-names {
+        font-family: "Great Vibes", cursive;
+        font-size: 2.8rem;
+        color: #2c2826;
+      }
+      .footer-date {
+        font-family: "Montserrat", sans-serif;
+        font-size: 0.52rem;
+        letter-spacing: 0.36em;
+        color: #b8a98a;
+        text-transform: uppercase;
+        margin-top: 4px;
+      }
+      /* COPAS FOOTER: cambia width para tamaño (ej: 50px más pequeño, 100px más grande) */
+      .footer-copas {
+        width: 70px;
+        display: block;
+        margin: 16px auto 0;
+        opacity: 0.7;
+      }
 
-<!-- ═══ VIDEO INTRO ═══════════════════════════════════════ -->
-<div id="intro">
-  <video id="ivid" autoplay muted playsinline>
-    <source src="video/Pink And Green Minimalist Wedding Invitation.mp4" type="video/mp4">
-  </video>
-  <button id="skip">Saltar intro ›</button>
-</div>
+      /* MODAL REGALO */
+      .mbg {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.48);
+        z-index: 900;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        opacity: 0;
+        visibility: hidden;
+        transition: 0.3s;
+      }
+      .mbg.open {
+        opacity: 1;
+        visibility: visible;
+      }
+      .mbox {
+        background: #fdf7f0;
+        border-radius: 20px;
+        padding: 32px 24px;
+        max-width: 360px;
+        width: 100%;
+        text-align: center;
+        position: relative;
+        transform: translateY(22px);
+        transition: 0.32s;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.22);
+        border: 1px solid #ede4d8;
+      }
+      .mbg.open .mbox {
+        transform: none;
+      }
+      .mx {
+        position: absolute;
+        top: 14px;
+        right: 18px;
+        font-size: 1.3rem;
+        color: #b8a98a;
+        cursor: pointer;
+        background: none;
+        border: none;
+        line-height: 1;
+      }
+      .mh {
+        font-family: "Great Vibes", cursive;
+        font-size: 2.4rem;
+        color: #2c2826;
+        margin-bottom: 8px;
+      }
+      .mp {
+        font-family: "Montserrat", sans-serif;
+        font-size: 0.62rem;
+        color: #7a6e68;
+        line-height: 1.9;
+        margin-bottom: 14px;
+        letter-spacing: 0.06em;
+      }
+      .mdata {
+        background: #fff;
+        border: 1px solid #ede4d8;
+        border-radius: 10px;
+        padding: 14px 16px;
+        text-align: left;
+        font-family: "Montserrat", sans-serif;
+        font-size: 0.64rem;
+        color: #7a6e68;
+        line-height: 2.4;
+        margin-bottom: 16px;
+      }
+      .mdata strong {
+        color: #2c2826;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="intro">
+      <video id="ivid" autoplay muted playsinline>
+        <source
+          src="video/Pink And Green Minimalist Wedding Invitation.mp4"
+          type="video/mp4"
+        />
+      </video>
+      <button id="skip">Saltar intro ›</button>
+    </div>
 
-<!-- ═══ AUDIO ════════════════════════════════════════════ -->
-<audio id="mu" loop preload="auto">
-  <source src="music/Christina%20Perri%20-%20A%20Thousand%20Years.mp3" type="audio/mpeg">
-</audio>
-<button id="mu-btn" aria-label="Música"><span class="ring"></span>🎵</button>
+    <audio id="mu" loop preload="auto">
+      <source
+        src="music/Christina%20Perri%20-%20A%20Thousand%20Years.mp3"
+        type="audio/mpeg"
+      />
+    </audio>
+    <button id="mu-btn" aria-label="Música">
+      <span class="ring"></span>🎵
+    </button>
 
-<!-- ═══ SITIO ════════════════════════════════════════════ -->
-<div id="main" style="display:none">
-<div class="wrap">
-
-  <!-- ══════════════════════
+    <div id="main" style="display: none">
+      <div class="wrap">
+        <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
        ① HERO / PORTADA
-  ══════════════════════ -->
-  <section class="hero">
-    <!-- flores blancas arriba -->
-    <img class="hero-flowers rv"
-      src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial.png"
-      alt="">
-    <p class="hero-fecha-top rv d1">Domingo · 31 · Enero · 2027</p>
-    <span class="hero-name rv d1">Cristina</span>
-    <span class="hero-y rv d2">&amp;</span>
-    <span class="hero-name rv d2">Fernando</span>
-    <span class="hero-divider rv d3"></span>
-    <p class="hero-info rv d3">
-      Nos casamos<br>
-      y queremos compartir este día<br>
-      tan especial contigo
-    </p>
-    <!-- ramo de flores blancas abajo -->
-    <img class="rv d3" style="width:60%;max-width:200px;display:block;margin:24px auto 0;opacity:.85"
-      src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(4).png"
-      alt="">
-  </section>
+       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+        <section class="hero">
+          <!--
+    ════════════════════════════════════════
+    IMAGEN: Ramo de flores blancas GRANDE (arriba)
+    ════════════════════════════════════════
+    📐 TAMAÑO   → cambia width (ej: 60% más pequeño, 100% más grande)
+                  cambia max-width (ej: 200px más pequeño, 400px más grande)
+    🔄 ROTAR    → agrega: style="transform:rotate(-15deg)"
+                  valores: -45deg (izq) · 45deg (der) · 180deg (voltear)
+    📌 ESQUINA  → quita la clase hero-flowers, agrega:
+                  style="position:absolute; top:0; left:0; width:50%"
+                  (top/left/right/bottom para elegir esquina)
+    ════════════════════════════════════════ -->
+          <img
+            class="hero-flowers rv"
+            src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial.png"
+            alt=""
+            style="width: 85%; max-width: 320px"
+          />
 
-  <!-- ══════════════════════
+          <p class="hero-fecha-top rv d1">Domingo · 31 · Enero · 2027</p>
+
+          <!--
+          ════════════════════════════════════════
+          FOTO NOVIOS EN PENTÁGONO
+          ════════════════════════════════════════
+          📐 TAMAÑO   → cambia width/height en .hero-pentagon-wrap e img dentro
+                        (ej: 140px más pequeño, 210px más grande — ambos a la vez)
+          🔲 BORDE    → cambia background del .hero-pentagon-wrap
+                        (ej: #b8a98a dorado oscuro · #5a7357 verde · #fff blanco)
+          🔄 GROSOR   → diferencia entre wrap (172px) e img (160px) = 6px de borde
+                        Para más borde: wrap 180px + img 155px
+          ════════════════════════════════════════ -->
+          <div class="hero-pentagon-wrap rv d1">
+            <img src="img/aa.jpg" alt="Cristina y Fernando">
+          </div>
+
+          <span class="hero-name rv d1">Cristina</span>
+          <span class="hero-y rv d2">&amp;</span>
+          <span class="hero-name rv d2">Fernando</span>
+          <span class="hero-divider rv d3"></span>
+          <p class="hero-info rv d3">
+            Nos casamos<br />
+            y queremos compartir este día<br />
+            tan especial contigo
+          </p>
+
+          <img
+            class="hero-flowers rv"
+            src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial.png"
+            alt=""
+            style="width: 85%; max-width: 320px"
+          />
+
+          <!--
+    ════════════════════════════════════════
+    IMAGEN: Ramo de flores blancas PEQUEÑO (abajo del hero)
+    ════════════════════════════════════════
+    📐 TAMAÑO   → cambia width (ej: 40% más pequeño, 80% más grande)
+    🔄 ROTAR    → agrega transform:rotate(180deg) para voltear
+    📌 ESQUINA  → cambia position a absolute y ajusta bottom/left/right
+    ════════════════════════════════════════ -->
+          <img
+            class="rv d3"
+            src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(4).png"
+            alt=""
+            style="
+              width: 60%;
+              max-width: 200px;
+              display: block;
+              margin: 24px auto 0;
+              opacity: 0.85;
+            "
+          />
+        </section>
+
+        <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
        ② BIENVENIDA / ARCO
-  ══════════════════════ -->
-  <section class="arch-sec">
-    <div class="arch-box rv">
-      <!-- mariposa decorativa -->
-      <img class="arch-butterfly"
-        src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(5).png"
-        alt="">
-      <p class="arch-tag">Con mucha alegría</p>
-      <div class="arch-names rv d1">Cristina<br><small style="font-size:.55em;font-family:'Montserrat',sans-serif;letter-spacing:.2em;font-weight:300;color:#b8a98a">Y</small><br>Fernando</div>
-      <span class="arch-line"></span>
-      <p class="arch-msg rv d2">
-        Te damos la bienvenida<br>
-        a este día tan especial
-      </p>
-    </div>
-    <!-- flores al pie del arco -->
-    <img class="arch-flowers rv d2"
-      src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(7).png"
-      alt="" style="max-width:260px">
-  </section>
+       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+        <section class="arch-sec">
+          <div class="arch-box rv">
+            <!--
+      ════════════════════════════════════════
+      IMAGEN: Mariposa (esquina superior del arco)
+      ════════════════════════════════════════
+      📐 TAMAÑO   → cambia width (ej: 30px más pequeño, 65px más grande)
+      🔄 ROTAR    → agrega transform:rotate(20deg)
+      📌 ESQUINA  → ya está en esquina. Mueve con top/right/left/bottom:
+                    top:-10px right:12px  → esquina superior derecha ✓ (actual)
+                    top:-10px left:12px   → esquina superior izquierda
+                    bottom:-10px right:12px → esquina inferior derecha
+      ════════════════════════════════════════ -->
+            <img
+              class="arch-butterfly"
+              src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(5).png"
+              alt=""
+              style="position: absolute; top: -10px; right: 12px; width: 44px"
+            />
 
-  <!-- ══════════════════════
+            <p class="arch-tag">Con mucha alegría</p>
+            <div class="arch-names rv d1">
+              Cristina
+              <br /><small
+                style="
+                  font-size: 0.55em;
+                  font-family: &quot;Montserrat&quot;, sans-serif;
+                  letter-spacing: 0.2em;
+                  font-weight: 300;
+                  color: #b8a98a;
+                "
+                >Y</small
+              ><br />
+              Fernando
+            </div>
+            <span class="arch-line"></span>
+            <p class="arch-msg rv d2">
+              Te damos la bienvenida<br />
+              a este día tan especial
+            </p>
+          </div>
+
+          <!--
+    ════════════════════════════════════════
+    IMAGEN: Flores divisor rosadas (bajo el arco)
+    ════════════════════════════════════════
+    📐 TAMAÑO   → cambia max-width (ej: 160px más pequeño, 320px más grande)
+    🔄 ROTAR    → agrega transform:rotate(180deg) para reflejar verticalmente
+    📌 ESQUINA  → agrega position:absolute; bottom:0; left:0 o right:0
+    ════════════════════════════════════════ -->
+          <img
+            class="arch-flowers rv d2"
+            src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(7).png"
+            alt=""
+            style="
+              width: 80%;
+              max-width: 240px;
+              display: block;
+              margin: 20px auto 0;
+            "
+          />
+        </section>
+
+        <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
        ③ CUENTA REGRESIVA
-  ══════════════════════ -->
-  <section class="cd-sec" id="cd-sec">
-    <p class="cd-label rv">Para nuestro gran día</p>
-    <span class="cd-num rv d1" id="days-el">—</span>
-    <p class="cd-sub rv d2">días</p>
-    <p class="cd-date rv d3">Domingo · 31 de enero de 2027</p>
-  </section>
+       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+        <section class="cd-sec" id="cd-sec">
+          <p class="cd-label rv">Para nuestro gran día</p>
+          <!-- NÚMERO: tamaño en CSS → .cd-num → font-size -->
+          <span class="cd-num rv d1" id="days-el">—</span>
+          <p class="cd-sub rv d2">días</p>
+          <p class="cd-date rv d3">Domingo · 31 de enero de 2027</p>
+        </section>
 
-  <!-- ══════════════════════
+        <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
        ④ CEREMONIA
-  ══════════════════════ -->
-  <section class="sec white">
-    <img class="sec-img rv" style="width:68%;max-width:240px"
-      src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(2).png"
-      alt="Iglesia">
-    <span class="sec-tag rv d1">Ceremonia religiosa</span>
-    <h2 class="sec-h rv d1">Ceremonia</h2>
-    <p class="sec-body rv d2">
-      <strong>12:00 h</strong><br>
-      Parroquia Virgen del Pilar<br>
-      31 de enero de 2027
-    </p>
-    <a href="https://maps.google.com/?q=Parroquia+Virgen+del+Pilar"
-       target="_blank" rel="noopener"
-       class="btn btn-dark rv d2" id="link-ceremonia">
-      📍 Ver ubicación
-    </a>
-  </section>
+       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+        <section class="sec white">
+          <!--
+    ════════════════════════════════════════
+    IMAGEN: Iglesia (acuarela)
+    ════════════════════════════════════════
+    📐 TAMAÑO   → cambia width (ej: 50% más pequeño, 90% más grande)
+                  cambia max-width (ej: 160px, 300px)
+    🔄 ROTAR    → agrega transform:rotate(-5deg) para leve inclinación
+    📌 ESQUINA  → agrega position:absolute para fijar en esquina
+                  Ejemplo esquina inferior izquierda:
+                  style="position:absolute;bottom:0;left:0;width:40%;opacity:.4"
+    ════════════════════════════════════════ -->
+          <img
+            class="sec-img rv"
+            src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(2).png"
+            alt="Iglesia"
+            style="width: 68%; max-width: 240px"
+          />
 
-  <!-- ══════════════════════
+          <span class="sec-tag rv d1">Ceremonia religiosa</span>
+          <h2 class="sec-h rv d1">Ceremonia</h2>
+          <p class="sec-body rv d2">
+            <strong>12:00 h</strong><br />
+            Parroquia Virgen del Pilar<br />
+            31 de enero de 2027
+          </p>
+          <a
+            href="https://maps.google.com/?q=Parroquia+Virgen+del+Pilar"
+            target="_blank"
+            rel="noopener"
+            class="btn btn-dark rv d2"
+            id="link-ceremonia"
+          >
+            📍 Ver ubicación
+          </a>
+        </section>
+
+        <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
        ⑤ RECEPCIÓN
-  ══════════════════════ -->
-  <section class="sec cream">
-    <img class="sec-img rv" style="width:82%;max-width:300px"
-      src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(6).png"
-      alt="Recepción">
-    <span class="sec-tag rv d1">Fiesta &amp; celebración</span>
-    <h2 class="sec-h rv d1">Recepción</h2>
-    <p class="sec-body rv d2">
-      <strong>15:30 h</strong><br>
-      Club Villa de Lima · Salón Imperial<br>
-      31 de enero de 2027
-    </p>
-    <a href="https://maps.google.com/?q=Club+Villa+de+Lima"
-       target="_blank" rel="noopener"
-       class="btn btn-olive rv d2" id="link-recepcion">
-      📍 Ver ubicación
-    </a>
-  </section>
+       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+        <section class="sec cream">
+          <!--
+    ════════════════════════════════════════
+    IMAGEN: Escena de recepción (salón con invitados)
+    ════════════════════════════════════════
+    📐 TAMAÑO   → cambia width (ej: 60% más pequeño, 100% más grande)
+                  cambia max-width (ej: 200px, 380px)
+    🔄 ROTAR    → agrega transform:rotate(5deg) para inclinación
+    📌 ESQUINA  → la sección es cream, agrega position:relative a .sec.cream
+                  y position:absolute a la imagen para fijar en esquina
+    ════════════════════════════════════════ -->
+          <img
+            class="sec-img rv"
+            src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(6).png"
+            alt="Recepción"
+            style="width: 82%; max-width: 300px"
+          />
 
-  <!-- ══════════════════════
+          <span class="sec-tag rv d1">Fiesta &amp; celebración</span>
+          <h2 class="sec-h rv d1">Recepción</h2>
+          <p class="sec-body rv d2">
+            <strong>15:30 h</strong><br />
+            Club Villa de Lima · Salón Imperial<br />
+            31 de enero de 2027
+          </p>
+          <a
+            href="https://maps.google.com/?q=Club+Villa+de+Lima"
+            target="_blank"
+            rel="noopener"
+            class="btn btn-olive rv d2"
+            id="link-recepcion"
+          >
+            📍 Ver ubicación
+          </a>
+        </section>
+
+        <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
        ⑥ AGENDA DEL DÍA
-  ══════════════════════ -->
-  <section class="sec white">
-    <!-- rama de flores rosa arriba -->
-    <img class="div-img rv" style="width:55%;max-width:200px;margin-bottom:28px"
-      src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(10).png"
-      alt="">
-    <span class="sec-tag rv d1">31 de enero · 2027</span>
-    <h2 class="sec-h rv d1">Agenda del Día</h2>
-    <div class="tl" style="margin-top:28px">
-      <div class="tl-row rv">
-        <div class="tl-h">11:00 h</div>
-        <div class="tl-a">Llegada de invitados</div>
-        <div class="tl-l">Jardín principal · Cóctel de bienvenida</div>
-      </div>
-      <div class="tl-row rv d1">
-        <div class="tl-h">12:00 h</div>
-        <div class="tl-a">Ceremonia religiosa</div>
-        <div class="tl-l">Parroquia Virgen del Pilar</div>
-      </div>
-      <div class="tl-row rv d2">
-        <div class="tl-h">13:00 h</div>
-        <div class="tl-a">Sesión de fotos</div>
-        <div class="tl-l">Jardín y salones principales</div>
-      </div>
-      <div class="tl-row rv">
-        <div class="tl-h">14:00 h</div>
-        <div class="tl-a">Aperitivos &amp; cocktail</div>
-        <div class="tl-l">Terraza principal</div>
-      </div>
-      <div class="tl-row rv d1">
-        <div class="tl-h">15:30 h</div>
-        <div class="tl-a">Banquete nupcial</div>
-        <div class="tl-l">Club Villa de Lima · Salón Imperial</div>
-      </div>
-      <div class="tl-row rv d2">
-        <div class="tl-h">17:00 h</div>
-        <div class="tl-a">Pastel &amp; brindis</div>
-        <div class="tl-l">Salón principal</div>
-      </div>
-      <div class="tl-row rv">
-        <div class="tl-h">17:30 h</div>
-        <div class="tl-a">Primer baile</div>
-        <div class="tl-l">"A Thousand Years" — Christina Perri</div>
-      </div>
-      <div class="tl-row rv d1">
-        <div class="tl-h">18:00 h</div>
-        <div class="tl-a">Fiesta &amp; baile</div>
-        <div class="tl-l">Pista central · Música especial</div>
-      </div>
-      <div class="tl-row rv d2">
-        <div class="tl-h">23:00 h</div>
-        <div class="tl-a">Despedida de los novios</div>
-        <div class="tl-l">Pétalos en la salida</div>
-      </div>
-    </div>
-  </section>
+       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+        <section class="sec white">
+          <!--
+    ════════════════════════════════════════
+    IMAGEN: Rama de flores rosas con mariposa (arriba de agenda)
+    ════════════════════════════════════════
+    📐 TAMAÑO   → cambia width (ej: 35% más pequeño, 75% más grande)
+                  cambia max-width (ej: 130px, 260px)
+    🔄 ROTAR    → agrega transform:rotate(-90deg) para rotar
+                  o transform:scaleX(-1) para reflejar horizontalmente
+    📌 ESQUINA  → Ejemplo esquina superior izquierda:
+                  style="position:absolute;top:0;left:-20px;width:45%;transform:rotate(-30deg)"
+                  (necesitas agregar position:relative a la sección)
+    ════════════════════════════════════════ -->
+          <img
+            class="div-img rv"
+            src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(10).png"
+            alt=""
+            style="width: 55%; max-width: 200px; margin-bottom: 28px"
+          />
 
-  <!-- ══════════════════════
+          <span class="sec-tag rv d1">31 de enero · 2027</span>
+          <h2 class="sec-h rv d1">Agenda del Día</h2>
+          <div class="tl" style="margin-top: 28px">
+            <div class="tl-row rv">
+              <div class="tl-h">11:00 h</div>
+              <div class="tl-a">Llegada de invitados</div>
+              <div class="tl-l">Jardín principal · Cóctel de bienvenida</div>
+            </div>
+            <div class="tl-row rv d1">
+              <div class="tl-h">12:00 h</div>
+              <div class="tl-a">Ceremonia religiosa</div>
+              <div class="tl-l">Parroquia Virgen del Pilar</div>
+            </div>
+            <div class="tl-row rv d2">
+              <div class="tl-h">13:00 h</div>
+              <div class="tl-a">Sesión de fotos</div>
+              <div class="tl-l">Jardín y salones principales</div>
+            </div>
+            <div class="tl-row rv">
+              <div class="tl-h">14:00 h</div>
+              <div class="tl-a">Aperitivos &amp; cocktail</div>
+              <div class="tl-l">Terraza principal</div>
+            </div>
+            <div class="tl-row rv d1">
+              <div class="tl-h">15:30 h</div>
+              <div class="tl-a">Banquete nupcial</div>
+              <div class="tl-l">Club Villa de Lima · Salón Imperial</div>
+            </div>
+            <div class="tl-row rv d2">
+              <div class="tl-h">17:00 h</div>
+              <div class="tl-a">Pastel &amp; brindis</div>
+              <div class="tl-l">Salón principal</div>
+            </div>
+            <div class="tl-row rv">
+              <div class="tl-h">17:30 h</div>
+              <div class="tl-a">Primer baile</div>
+              <div class="tl-l">"A Thousand Years" — Christina Perri</div>
+            </div>
+            <div class="tl-row rv d1">
+              <div class="tl-h">18:00 h</div>
+              <div class="tl-a">Fiesta &amp; baile</div>
+              <div class="tl-l">Pista central · Música especial</div>
+            </div>
+            <div class="tl-row rv d2">
+              <div class="tl-h">23:00 h</div>
+              <div class="tl-a">Despedida de los novios</div>
+              <div class="tl-l">Pétalos en la salida</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
        ⑦ DRESS CODE
-  ══════════════════════ -->
-  <section class="sec cream">
-    <!-- rosas rosadas -->
-    <img class="div-img rv" style="width:45%;max-width:160px;margin-bottom:22px"
-      src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(8).png"
-      alt="">
-    <span class="sec-tag rv d1">Vestimenta</span>
-    <h2 class="sec-h rv d1">Código de Vestimenta</h2>
-    <p class="sec-body rv d2" style="margin-bottom:0">
-      Formal · Elegante<br>
-      <span style="color:#c9a882">Tonos pasteles preferentemente</span>
-    </p>
-    <div class="dc-grid rv d2">
-      <div class="dc-item">
-        <span class="dc-emoji">👔</span>
-        <div class="dc-lbl">Caballeros</div>
-        <div class="dc-val">Traje formal</div>
-      </div>
-      <div class="dc-item">
-        <span class="dc-emoji">👗</span>
-        <div class="dc-lbl">Damas</div>
-        <div class="dc-val">Vestido largo</div>
-      </div>
-    </div>
-    <p class="rv d3" style="font-family:'Montserrat',sans-serif;font-size:.54rem;letter-spacing:.12em;color:#b8a98a;margin-top:16px">
-      Por favor no usar color blanco
-    </p>
-  </section>
+       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+        <section class="sec cream">
+          <!--
+    ════════════════════════════════════════
+    IMAGEN: Rosas rosadas con hojas (arriba de dress code)
+    ════════════════════════════════════════
+    📐 TAMAÑO   → cambia width (ej: 30% más pequeño, 60% más grande)
+                  cambia max-width (ej: 100px, 220px)
+    🔄 ROTAR    → agrega transform:rotate(15deg)
+                  o transform:scaleX(-1) para espejo horizontal
+    📌 ESQUINA  → Ejemplo esquina superior derecha de la sección:
+                  style="position:absolute;top:-10px;right:-10px;width:38%;transform:rotate(15deg)"
+    ════════════════════════════════════════ -->
+          <img
+            class="div-img rv"
+            src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(8).png"
+            alt=""
+            style="width: 45%; max-width: 160px; margin-bottom: 22px"
+          />
 
-  <!-- ══════════════════════
+          <span class="sec-tag rv d1">Vestimenta</span>
+          <h2 class="sec-h rv d1">Código de Vestimenta</h2>
+          <p class="sec-body rv d2" style="margin-bottom: 0">
+            Formal · Elegante<br />
+            <span style="color: #c9a882">Tonos pasteles preferentemente</span>
+          </p>
+          <div class="dc-grid rv d2">
+            <div class="dc-item">
+              <span class="dc-emoji">👔</span>
+              <div class="dc-lbl">Caballeros</div>
+              <div class="dc-val">Traje formal</div>
+            </div>
+            <div class="dc-item">
+              <span class="dc-emoji">👗</span>
+              <div class="dc-lbl">Damas</div>
+              <div class="dc-val">Vestido largo</div>
+            </div>
+          </div>
+          <p
+            class="rv d3"
+            style="
+              font-family: &quot;Montserrat&quot;, sans-serif;
+              font-size: 0.54rem;
+              letter-spacing: 0.12em;
+              color: #b8a98a;
+              margin-top: 16px;
+            "
+          >
+            Por favor no usar color blanco
+          </p>
+        </section>
+
+        <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
        ⑧ DETALLE DE REGALO
-  ══════════════════════ -->
-  <section class="sec white">
-    <img class="div-img rv" style="width:62%;max-width:220px;margin-bottom:22px"
-      src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(11).png"
-      alt="Regalos">
-    <span class="sec-tag rv d1">Con mucho amor</span>
-    <h2 class="sec-h rv d1">Detalle de Regalo</h2>
-    <p class="sec-body rv d2">
-      Tu presencia es nuestro mejor regalo.<br>
-      Si deseas obsequiarnos algo, aquí<br>
-      encontrarás nuestros datos.
-    </p>
-    <button class="btn btn-cream rv d2" id="btn-regalo">
-      🎁 Ver mis datos bancarios
-    </button>
-  </section>
+       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+        <section class="sec white">
+          <!--
+    ════════════════════════════════════════
+    IMAGEN: Cajas de regalo (contorno)
+    ════════════════════════════════════════
+    📐 TAMAÑO   → cambia width (ej: 45% más pequeño, 80% más grande)
+                  cambia max-width (ej: 150px, 300px)
+    🔄 ROTAR    → agrega transform:rotate(-10deg) para inclinación
+    📌 ESQUINA  → Ejemplo centrado con sombra de fondo:
+                  style="width:55%;opacity:.15;position:absolute;bottom:10px;right:10px"
+    ════════════════════════════════════════ -->
+          <img
+            class="div-img rv"
+            src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(11).png"
+            alt="Regalos"
+            style="width: 62%; max-width: 220px; margin-bottom: 22px"
+          />
 
-  <!-- ══════════════════════
-       ⑨ FRASE / QUOTE
-  ══════════════════════ -->
-  <section class="sec cream" style="padding:52px 32px">
-    <img class="div-img rv" style="width:65%;max-width:230px;margin-bottom:28px"
-      src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(9).png"
-      alt="">
-    <p class="rv d1" style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.2rem;color:#2c2826;line-height:1.75;max-width:300px;margin:0 auto 14px">
-      "El amor no consiste en mirarse el uno al otro, sino en mirar juntos en la misma dirección."
-    </p>
-    <p class="rv d2" style="font-family:'Montserrat',sans-serif;font-size:.52rem;letter-spacing:.3em;text-transform:uppercase;color:#b8a98a">
-      — Antoine de Saint-Exupéry
-    </p>
-    <span style="display:block;height:24px"></span>
-    <a href="#rsvp" class="btn btn-teal rv d3">💌 Confirmar asistencia</a>
-  </section>
+          <span class="sec-tag rv d1">Con mucho amor</span>
+          <h2 class="sec-h rv d1">Detalle de Regalo</h2>
+          <p class="sec-body rv d2">
+            Tu presencia es nuestro mejor regalo.<br />
+            Si deseas obsequiarnos algo, aquí<br />
+            encontrarás nuestros datos.
+          </p>
+          <button class="btn btn-cream rv d2" id="btn-regalo">
+            🎁 Ver mis datos bancarios
+          </button>
+        </section>
 
-  <!-- ══════════════════════
+        <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       ⑨ FRASE ROMÁNTICA
+       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+        <section class="sec cream" style="padding: 52px 32px">
+          <!--
+    ════════════════════════════════════════
+    IMAGEN: Pareja (dibujo de línea en círculo)
+    ════════════════════════════════════════
+    📐 TAMAÑO   → cambia width (ej: 45% más pequeño, 85% más grande)
+                  cambia max-width (ej: 150px, 300px)
+    🔄 ROTAR    → agrega transform:rotate(5deg) para leve inclinación
+    📌 ESQUINA  → para fondo decorativo, agrega opacity baja:
+                  style="width:70%;opacity:.12;position:absolute;top:20px;right:0"
+    ════════════════════════════════════════ -->
+          <img
+            class="div-img rv"
+            src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(9).png"
+            alt=""
+            style="width: 65%; max-width: 230px; margin-bottom: 28px"
+          />
+
+          <p
+            class="rv d1"
+            style="
+              font-family: &quot;Cormorant Garamond&quot;, serif;
+              font-style: italic;
+              font-size: 1.2rem;
+              color: #2c2826;
+              line-height: 1.75;
+              max-width: 300px;
+              margin: 0 auto 14px;
+            "
+          >
+            "El amor no consiste en mirarse el uno al otro, sino en mirar juntos
+            en la misma dirección."
+          </p>
+          <p
+            class="rv d2"
+            style="
+              font-family: &quot;Montserrat&quot;, sans-serif;
+              font-size: 0.52rem;
+              letter-spacing: 0.3em;
+              text-transform: uppercase;
+              color: #b8a98a;
+            "
+          >
+            — Antoine de Saint-Exupéry
+          </p>
+          <span style="display: block; height: 24px"></span>
+          <a href="#rsvp" class="btn btn-teal rv d3">💌 Confirmar asistencia</a>
+        </section>
+
+        <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
        ⑩ RSVP FORM
-  ══════════════════════ -->
-  <section class="rsvp-sec" id="rsvp">
-    <!-- rama floral separador -->
-    <img class="div-img rv" style="width:50%;max-width:180px;margin-bottom:28px"
-      src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(3).png"
-      alt="">
-    <span class="sec-tag rv d1" style="text-align:center;display:block">Nos encantaría verte</span>
-    <h2 class="sec-h rv d1" style="text-align:center;margin-bottom:8px">¿Contamos contigo?</h2>
-    <p class="rv d2" style="font-family:'Montserrat',sans-serif;font-size:.54rem;letter-spacing:.14em;text-transform:uppercase;color:#7a6e68;text-align:center;margin-bottom:32px">
-      Responde antes del <strong style="color:#6b9e9b">15 · Enero · 2027</strong>
-    </p>
+       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+        <section class="rsvp-sec" id="rsvp">
+          <!--
+    ════════════════════════════════════════
+    IMAGEN: Hoja pequeña verde (separador del RSVP)
+    ════════════════════════════════════════
+    📐 TAMAÑO   → cambia width (ej: 30% más pequeño, 70% más grande)
+                  cambia max-width (ej: 100px, 250px)
+    🔄 ROTAR    → agrega transform:rotate(180deg) para voltear
+                  o transform:scaleX(-1) para espejo
+    📌 ESQUINA  → Ejemplo esquina superior derecha:
+                  style="position:absolute;top:0;right:0;width:35%;transform:rotate(-45deg)"
+    ════════════════════════════════════════ -->
+          <img
+            class="div-img rv"
+            src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(3).png"
+            alt=""
+            style="width: 50%; max-width: 180px; margin-bottom: 28px"
+          />
 
-    <form class="form-wrap rv d2" id="rsvp-form" novalidate>
-      <div class="fg">
-        <label>Nombre completo <em>*</em></label>
-        <input type="text" id="f-nombre" placeholder="Tu nombre completo" required autocomplete="name">
-      </div>
-      <div class="fg">
-        <label>Correo electrónico <em>*</em></label>
-        <input type="email" id="f-correo" placeholder="tu@correo.com" required autocomplete="email">
-      </div>
-      <div class="fg">
-        <label>Teléfono / WhatsApp</label>
-        <input type="tel" id="f-tel" placeholder="+51 999 999 999" autocomplete="tel">
-      </div>
-      <div class="fg">
-        <label>Número de acompañantes <em>*</em></label>
-        <select id="f-acomp" required>
-          <option value="" disabled selected>Seleccionar…</option>
-          <option value="0">Solo yo</option>
-          <option value="1">1 acompañante</option>
-          <option value="2">2 acompañantes</option>
-          <option value="3">3 acompañantes</option>
-          <option value="4">4 o más</option>
-        </select>
-      </div>
-      <div class="asiste-sep">¿Confirmas tu asistencia?</div>
-      <div class="asiste-row">
-        <input class="ar" type="radio" name="asiste" id="asi-s" value="si">
-        <label class="al" for="asi-s">💚 Sí asistiré</label>
-        <input class="ar" type="radio" name="asiste" id="asi-n" value="no">
-        <label class="al" for="asi-n">❤️ No podré ir</label>
-      </div>
-      <button type="submit" class="btn-send" id="f-sub">Confirmar asistencia</button>
-      <div class="fmsg" id="fmsg"></div>
-    </form>
-  </section>
+          <span class="sec-tag rv d1" style="text-align: center; display: block"
+            >Nos encantaría verte</span
+          >
+          <h2
+            class="sec-h rv d1"
+            style="text-align: center; margin-bottom: 8px"
+          >
+            ¿Contamos contigo?
+          </h2>
+          <p
+            class="rv d2"
+            style="
+              font-family: &quot;Montserrat&quot;, sans-serif;
+              font-size: 0.54rem;
+              letter-spacing: 0.14em;
+              text-transform: uppercase;
+              color: #7a6e68;
+              text-align: center;
+              margin-bottom: 32px;
+            "
+          >
+            Responde antes del
+            <strong style="color: #6b9e9b">15 · Enero · 2027</strong>
+          </p>
 
-  <!-- FOOTER -->
-  <footer class="footer">
-    <div class="footer-names">Cristina &amp; Fernando</div>
-    <p class="footer-date">31 · 01 · 2027</p>
-    <img class="footer-copas"
-      src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(12).png"
-      alt="">
-  </footer>
+          <form class="form-wrap rv d2" id="rsvp-form" novalidate>
+            <div class="fg">
+              <label>Nombre completo <em>*</em></label
+              ><input
+                type="text"
+                id="f-nombre"
+                placeholder="Tu nombre completo"
+                required
+                autocomplete="name"
+              />
+            </div>
+            <div class="fg">
+              <label>Correo electrónico <em>*</em></label
+              ><input
+                type="email"
+                id="f-correo"
+                placeholder="tu@correo.com"
+                required
+                autocomplete="email"
+              />
+            </div>
+            <div class="fg">
+              <label>Teléfono / WhatsApp</label
+              ><input
+                type="tel"
+                id="f-tel"
+                placeholder="+51 999 999 999"
+                autocomplete="tel"
+              />
+            </div>
+            <div class="fg">
+              <label>Número de acompañantes <em>*</em></label>
+              <select id="f-acomp" required>
+                <option value="" disabled selected>Seleccionar…</option>
+                <option value="0">Solo yo</option>
+                <option value="1">1 acompañante</option>
+                <option value="2">2 acompañantes</option>
+                <option value="3">3 acompañantes</option>
+                <option value="4">4 o más</option>
+              </select>
+            </div>
+            <div class="asiste-sep">¿Confirmas tu asistencia?</div>
+            <div class="asiste-row">
+              <input
+                class="ar"
+                type="radio"
+                name="asiste"
+                id="asi-s"
+                value="si"
+              />
+              <label class="al" for="asi-s">💚 Sí asistiré</label>
+              <input
+                class="ar"
+                type="radio"
+                name="asiste"
+                id="asi-n"
+                value="no"
+              />
+              <label class="al" for="asi-n">❤️ No podré ir</label>
+            </div>
+            <button type="submit" class="btn-send" id="f-sub">
+              Confirmar asistencia
+            </button>
+            <div class="fmsg" id="fmsg"></div>
+          </form>
+        </section>
 
-</div>
-</div>
-
-<!-- ═══ MODAL REGALO ════════════════════════════════════ -->
-<div class="mbg" id="m-regalo">
-  <div class="mbox">
-    <button class="mx" id="m-x">×</button>
-    <h3 class="mh">🎁 Nuestro nido</h3>
-    <p class="mp">Si deseas hacernos un regalo, aquí tienes nuestros datos bancarios. ¡Te lo agradecemos!</p>
-    <div class="mdata">
-      <strong>Titular:</strong> Cristina López / Fernando García<br>
-      <strong>Banco:</strong> BCP / Interbank<br>
-      <strong>Cuenta:</strong> 000-000000000-0-00<br>
-      <strong>CCI:</strong> 000 000 000000000000 00<br>
-      <strong>Yape / Plin:</strong> +51 999 000 000
+        <!-- FOOTER -->
+        <footer class="footer">
+          <div class="footer-names">Cristina &amp; Fernando</div>
+          <p class="footer-date">31 · 01 · 2027</p>
+          <!--
+    COPAS DE CHAMPÁN: cambia width en CSS (.footer-copas) o aquí abajo
+    Para rotar: agrega style="transform:rotate(-15deg)"
+    -->
+          <img
+            class="footer-copas"
+            src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(12).png"
+            alt=""
+          />
+        </footer>
+      </div>
     </div>
-    <button class="btn btn-teal" style="width:100%;justify-content:center"
-      onclick="document.getElementById('m-regalo').classList.remove('open')">
-      ¡Gracias! 💕
-    </button>
-  </div>
-</div>
 
-<script>
-'use strict';
-const BODA = new Date('2027-01-31T12:00:00');
+    <!-- MODAL REGALO -->
+    <div class="mbg" id="m-regalo">
+      <div class="mbox">
+        <button class="mx" id="m-x">×</button>
+        <h3 class="mh">🎁 Nuestro nido</h3>
+        <p class="mp">
+          Si deseas hacernos un regalo, aquí tienes nuestros datos bancarios.
+          ¡Te lo agradecemos!
+        </p>
+        <div class="mdata">
+          <strong>Titular:</strong> Cristina López / Fernando García<br />
+          <strong>Banco:</strong> BCP / Interbank<br />
+          <strong>Cuenta:</strong> 000-000000000-0-00<br />
+          <strong>CCI:</strong> 000 000 000000000000 00<br />
+          <strong>Yape / Plin:</strong> +51 999 000 000
+        </div>
+        <button
+          class="btn btn-teal"
+          style="width: 100%; justify-content: center"
+          onclick="document.getElementById('m-regalo').classList.remove('open')"
+        >
+          ¡Gracias! 💕
+        </button>
+      </div>
+    </div>
 
-/* ── INTRO ── */
-const intro  = document.getElementById('intro');
-const ivid   = document.getElementById('ivid');
-const mainEl = document.getElementById('main');
-
-function show() {
-  if (mainEl.style.display !== 'none') return;
-  intro.classList.add('out');
-  mainEl.style.display = 'block';
-  tryMusic();
-  initReveal();
-  setTimeout(() => intro.remove(), 950);
-}
-document.getElementById('skip').addEventListener('click', show);
-ivid.addEventListener('ended', show);
-ivid.addEventListener('error', () => setTimeout(show, 800));
-setTimeout(show, 9000);
-
-/* ── MÚSICA ── */
-const mu    = document.getElementById('mu');
-const muBtn = document.getElementById('mu-btn');
-let mPlaying = false;
-
-function tryMusic() {
-  if (mPlaying) return;
-  mu.volume = 0.3;
-  mu.play().then(() => { mPlaying = true; muBtn.classList.add('on'); }).catch(() => {});
-}
-muBtn.addEventListener('click', () => {
-  if (mu.paused) {
-    mu.play().then(() => { mPlaying=true; muBtn.classList.add('on'); setIcon('🎵'); });
-  } else {
-    mu.pause(); muBtn.classList.remove('on'); setIcon('🔇');
-  }
-});
-function setIcon(e) { muBtn.innerHTML = `<span class="ring"></span>${e}`; }
-mu.addEventListener('play',  () => { muBtn.classList.add('on');    setIcon('🎵'); });
-mu.addEventListener('pause', () => { muBtn.classList.remove('on'); });
-
-/* ── SCROLL REVEAL ── */
-function initReveal() {
-  const io = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
-  }, { threshold: 0.06 });
-  document.querySelectorAll('.rv').forEach(el => io.observe(el));
-}
-
-/* ── COUNTDOWN ── */
-function dias() { return Math.max(0, Math.ceil((BODA - new Date()) / 86400000)); }
-function anim(el, n) {
-  let f = 0;
-  const t = setInterval(() => {
-    f++;
-    el.textContent = Math.round(n * (1 - Math.pow(1 - f/55, 3)));
-    if (f >= 55) { el.textContent = n; clearInterval(t); }
-  }, 16);
-}
-new IntersectionObserver(es => {
-  if (es[0].isIntersecting) anim(document.getElementById('days-el'), dias());
-}, { threshold: .3 }).observe(document.getElementById('cd-sec'));
-
-/* ── MODAL REGALO ── */
-const mRegalo = document.getElementById('m-regalo');
-document.getElementById('btn-regalo').addEventListener('click', () => mRegalo.classList.add('open'));
-document.getElementById('m-x').addEventListener('click', () => mRegalo.classList.remove('open'));
-mRegalo.addEventListener('click', e => { if (e.target === mRegalo) mRegalo.classList.remove('open'); });
-document.addEventListener('keydown', e => { if (e.key==='Escape') mRegalo.classList.remove('open'); });
-
-/* ── RSVP ── */
-const form = document.getElementById('rsvp-form');
-const fmsg = document.getElementById('fmsg');
-const fsub = document.getElementById('f-sub');
-
-function msg(t, c) { fmsg.textContent = t; fmsg.className = 'fmsg ' + c; }
-
-form.addEventListener('submit', async e => {
-  e.preventDefault();
-  const nombre   = document.getElementById('f-nombre').value.trim();
-  const correo   = document.getElementById('f-correo').value.trim();
-  const telefono = document.getElementById('f-tel').value.trim();
-  const acomp    = document.getElementById('f-acomp').value;
-  const asiste   = (form.querySelector('input[name=asiste]:checked') || {}).value;
-
-  if (!nombre)                                     return msg('⚠️ Ingresa tu nombre.', 'er');
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correo)) return msg('⚠️ Correo inválido.', 'er');
-  if (!acomp)                                      return msg('⚠️ Selecciona acompañantes.', 'er');
-  if (!asiste)                                     return msg('⚠️ Indica si asistirás.', 'er');
-
-  fsub.disabled = true; fsub.textContent = 'Enviando…';
-  try {
-    const r = await fetch('/api/rsvp/exclusivo-13', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ nombre, correo, telefono: telefono||null, acompanantes: parseInt(acomp)||0, asiste: asiste==='si' })
-    });
-    const j = await r.json();
-    if (r.ok && j.ok) { msg('🎉 ¡Gracias! Tu respuesta fue registrada.', 'ok'); form.reset(); }
-    else throw new Error();
-  } catch { msg('❌ Error al enviar. Intenta de nuevo.', 'er'); }
-  finally { fsub.disabled = false; fsub.textContent = 'Confirmar asistencia'; }
-});
-</script>
-</body>
+    <script>
+      "use strict";
+      const BODA = new Date("2027-01-31T12:00:00");
+      const intro = document.getElementById("intro"),
+        ivid = document.getElementById("ivid"),
+        mainEl = document.getElementById("main");
+      function show() {
+        if (mainEl.style.display !== "none") return;
+        intro.classList.add("out");
+        mainEl.style.display = "block";
+        tryMusic();
+        initReveal();
+        setTimeout(() => intro.remove(), 950);
+      }
+      document.getElementById("skip").addEventListener("click", show);
+      ivid.addEventListener("ended", show);
+      ivid.addEventListener("error", () => setTimeout(show, 800));
+      setTimeout(show, 9000);
+      const mu = document.getElementById("mu"),
+        muBtn = document.getElementById("mu-btn");
+      let mP = false;
+      function tryMusic() {
+        if (mP) return;
+        mu.volume = 0.3;
+        mu.play()
+          .then(() => {
+            mP = true;
+            muBtn.classList.add("on");
+          })
+          .catch(() => {});
+      }
+      function setIcon(e) {
+        muBtn.innerHTML = `<span class="ring"></span>${e}`;
+      }
+      muBtn.addEventListener("click", () => {
+        if (mu.paused) {
+          mu.play().then(() => {
+            mP = true;
+            muBtn.classList.add("on");
+            setIcon("🎵");
+          });
+        } else {
+          mu.pause();
+          muBtn.classList.remove("on");
+          setIcon("🔇");
+        }
+      });
+      mu.addEventListener("play", () => {
+        muBtn.classList.add("on");
+        setIcon("🎵");
+      });
+      mu.addEventListener("pause", () => muBtn.classList.remove("on"));
+      function initReveal() {
+        const io = new IntersectionObserver(
+          (es) => {
+            es.forEach((e) => {
+              if (e.isIntersecting) {
+                e.target.classList.add("in");
+                io.unobserve(e.target);
+              }
+            });
+          },
+          { threshold: 0.06 },
+        );
+        document.querySelectorAll(".rv").forEach((el) => io.observe(el));
+      }
+      function dias() {
+        return Math.max(0, Math.ceil((BODA - new Date()) / 86400000));
+      }
+      function anim(el, n) {
+        let f = 0;
+        const t = setInterval(() => {
+          f++;
+          el.textContent = Math.round(n * (1 - Math.pow(1 - f / 55, 3)));
+          if (f >= 55) {
+            el.textContent = n;
+            clearInterval(t);
+          }
+        }, 16);
+      }
+      new IntersectionObserver(
+        (es) => {
+          if (es[0].isIntersecting)
+            anim(document.getElementById("days-el"), dias());
+        },
+        { threshold: 0.3 },
+      ).observe(document.getElementById("cd-sec"));
+      const mR = document.getElementById("m-regalo");
+      document
+        .getElementById("btn-regalo")
+        .addEventListener("click", () => mR.classList.add("open"));
+      document
+        .getElementById("m-x")
+        .addEventListener("click", () => mR.classList.remove("open"));
+      mR.addEventListener("click", (e) => {
+        if (e.target === mR) mR.classList.remove("open");
+      });
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") mR.classList.remove("open");
+      });
+      const form = document.getElementById("rsvp-form"),
+        fmsg = document.getElementById("fmsg"),
+        fsub = document.getElementById("f-sub");
+      function msg(t, c) {
+        fmsg.textContent = t;
+        fmsg.className = "fmsg " + c;
+      }
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const nombre = document.getElementById("f-nombre").value.trim(),
+          correo = document.getElementById("f-correo").value.trim(),
+          telefono = document.getElementById("f-tel").value.trim(),
+          acomp = document.getElementById("f-acomp").value,
+          asiste = (form.querySelector("input[name=asiste]:checked") || {})
+            .value;
+        if (!nombre) return msg("⚠️ Ingresa tu nombre.", "er");
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correo))
+          return msg("⚠️ Correo inválido.", "er");
+        if (!acomp) return msg("⚠️ Selecciona acompañantes.", "er");
+        if (!asiste) return msg("⚠️ Indica si asistirás.", "er");
+        fsub.disabled = true;
+        fsub.textContent = "Enviando…";
+        try {
+          const r = await fetch("/api/rsvp/exclusivo-13", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              nombre,
+              correo,
+              telefono: telefono || null,
+              acompanantes: parseInt(acomp) || 0,
+              asiste: asiste === "si",
+            }),
+          });
+          const j = await r.json();
+          if (r.ok && j.ok) {
+            msg("🎉 ¡Gracias! Tu respuesta fue registrada.", "ok");
+            form.reset();
+          } else throw new Error();
+        } catch {
+          msg("❌ Error al enviar. Intenta de nuevo.", "er");
+        } finally {
+          fsub.disabled = false;
+          fsub.textContent = "Confirmar asistencia";
+        }
+      });
+    </script>
+  </body>
 </html>
