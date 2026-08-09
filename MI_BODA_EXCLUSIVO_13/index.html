@@ -924,32 +924,37 @@
             <img src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(3).png"
               alt="" style="position:absolute;top:0;right:5%;width:16px;transform:rotate(30deg);opacity:.75">
 
-            <!-- iglesia — izquierda, ~60% -->
+            <!-- iglesia — izquierda, ~62% -->
             <img src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(2).png"
               alt="Iglesia"
-              style="width:60%;display:block;flex-shrink:0;position:relative;z-index:1">
+              style="width:62%;display:block;flex-shrink:0;position:relative;z-index:1">
 
-            <!-- ramo de flores blancas — derecha, ~42% -->
+            <!-- espacio flexible empuja el ramo al extremo derecho -->
+            <div style="flex:1"></div>
+
+            <!-- ramo de flores blancas — extremo derecho, pequeño -->
             <img src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(4).png"
               alt="Flores"
-              style="width:42%;display:block;margin-left:-4%;margin-bottom:-8px">
+              style="width:28%;display:block;align-self:flex-end">
           </div>
 
-          <!-- texto info -->
-          <h2 class="sec-h rv" style="text-align:left;font-size:2.2rem;margin-bottom:6px">Ceremonia</h2>
-          <p class="sec-body rv d1" style="text-align:left;margin-bottom:20px">
+          <!-- texto info CENTRADO -->
+          <h2 class="sec-h rv" style="text-align:center;font-size:2.2rem;margin-bottom:8px">Ceremonia</h2>
+          <p class="sec-body rv d1" style="text-align:center;margin-bottom:22px">
             <strong>12:00 h</strong><br>
             Parroquia Virgen del Pilar<br>
             31 de enero de 2027
           </p>
 
-          <!-- botón oval verde izquierda -->
-          <a href="https://maps.google.com/?q=Parroquia+Virgen+del+Pilar"
-             target="_blank" rel="noopener"
-             class="btn btn-olive rv d2"
-             id="link-ceremonia">
-            📍 Ver ubicación
-          </a>
+          <!-- botón centrado -->
+          <div style="text-align:center">
+            <a href="https://maps.google.com/?q=Parroquia+Virgen+del+Pilar"
+               target="_blank" rel="noopener"
+               class="btn btn-olive rv d2"
+               id="link-ceremonia">
+              📍 Ver ubicación
+            </a>
+          </div>
         </section>
 
         <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
