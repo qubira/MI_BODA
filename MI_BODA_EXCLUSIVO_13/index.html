@@ -268,18 +268,18 @@
         width: 44px;
       }
       .arch-tag {
-        font-family: "Montserrat", sans-serif;
-        font-size: 0.52rem;
-        letter-spacing: 0.38em;
-        text-transform: uppercase;
-        color: #c9a882;
-        margin-bottom: 12px;
+        display: none;
       }
       .arch-names {
-        font-family: "Great Vibes", cursive;
-        font-size: 2.6rem;
+        font-family: "Montserrat", sans-serif;
+        font-size: 0.68rem;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
         color: #2c2826;
-        line-height: 1.2;
+        line-height: 1.7;
+        font-weight: 500;
+        margin: 0 auto;
+        max-width: 230px;
       }
       .arch-line {
         width: 40px;
@@ -295,13 +295,20 @@
         text-transform: uppercase;
         color: #7a6e68;
         line-height: 1.9;
+        margin-top: 10px;
       }
       /* FLORES DIVISOR DEL ARCO: cambia max-width para tamaño */
       .arch-flowers {
-        width: 80%;
-        max-width: 240px;
+        width: 92%;
+        max-width: 380px;
         display: block;
         margin: 20px auto 0;
+      }
+      .slide-hint {
+        display: none;
+      }
+      .slide-line {
+        display: none;
       }
 
       /* ③ COUNTDOWN */
@@ -812,9 +819,8 @@
             class="hero-flowers rv"
             src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial.png"
             alt=""
-            style="width: 85%; max-width: 320px"
+            style="width: 85%; max-width: 320px; transform: rotate(180deg)"
           />
-
           <p class="hero-fecha-top rv d1">Domingo · 31 · Enero · 2027</p>
 
           <!--
@@ -829,13 +835,12 @@
                         Para más borde: wrap 180px + img 155px
           ════════════════════════════════════════ -->
           <div class="hero-pentagon-wrap rv d1">
-            <img src="img/aa.jpg" alt="Cristina y Fernando">
+            <img src="img/aa.jpg" alt="Cristina y Fernando" />
           </div>
 
           <span class="hero-name rv d1">Cristina</span>
           <span class="hero-y rv d2">&amp;</span>
           <span class="hero-name rv d2">Fernando</span>
-          <span class="hero-divider rv d3"></span>
           <p class="hero-info rv d3">
             Nos casamos<br />
             y queremos compartir este día<br />
@@ -857,85 +862,19 @@
     🔄 ROTAR    → agrega transform:rotate(180deg) para voltear
     📌 ESQUINA  → cambia position a absolute y ajusta bottom/left/right
     ════════════════════════════════════════ -->
-          <img
-            class="rv d3"
-            src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(4).png"
-            alt=""
-            style="
-              width: 60%;
-              max-width: 200px;
-              display: block;
-              margin: 24px auto 0;
-              opacity: 0.85;
-            "
-          />
         </section>
 
         <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
        ② BIENVENIDA / ARCO
        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
-        <section class="arch-sec">
-          <div class="arch-box rv">
-            <!--
-      ════════════════════════════════════════
-      IMAGEN: Mariposa (esquina superior del arco)
-      ════════════════════════════════════════
-      📐 TAMAÑO   → cambia width (ej: 30px más pequeño, 65px más grande)
-      🔄 ROTAR    → agrega transform:rotate(20deg)
-      📌 ESQUINA  → ya está en esquina. Mueve con top/right/left/bottom:
-                    top:-10px right:12px  → esquina superior derecha ✓ (actual)
-                    top:-10px left:12px   → esquina superior izquierda
-                    bottom:-10px right:12px → esquina inferior derecha
-      ════════════════════════════════════════ -->
-            <img
-              class="arch-butterfly"
-              src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(5).png"
-              alt=""
-              style="position: absolute; top: -10px; right: 12px; width: 44px"
-            />
-
-            <p class="arch-tag">Con mucha alegría</p>
-            <div class="arch-names rv d1">
-              Cristina
-              <br /><small
-                style="
-                  font-size: 0.55em;
-                  font-family: &quot;Montserrat&quot;, sans-serif;
-                  letter-spacing: 0.2em;
-                  font-weight: 300;
-                  color: #b8a98a;
-                "
-                >Y</small
-              ><br />
-              Fernando
-            </div>
-            <span class="arch-line"></span>
-            <p class="arch-msg rv d2">
-              Te damos la bienvenida<br />
-              a este día tan especial
-            </p>
-          </div>
-
-          <!--
-    ════════════════════════════════════════
-    IMAGEN: Flores divisor rosadas (bajo el arco)
-    ════════════════════════════════════════
-    📐 TAMAÑO   → cambia max-width (ej: 160px más pequeño, 320px más grande)
-    🔄 ROTAR    → agrega transform:rotate(180deg) para reflejar verticalmente
-    📌 ESQUINA  → agrega position:absolute; bottom:0; left:0 o right:0
-    ════════════════════════════════════════ -->
-          <img
-            class="arch-flowers rv d2"
-            src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(7).png"
-            alt=""
-            style="
-              width: 80%;
-              max-width: 240px;
-              display: block;
-              margin: 20px auto 0;
-            "
-          />
-        </section>
+        <!-- ② BIENVENIDA — imagen Canva completa (1).png -->
+        <img
+          class="rv"
+          src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(1).png"
+          alt="Cristina y Fernando · Bienvenida"
+          style="display:block;width:100%"
+          loading="lazy"
+        />
 
         <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
        ③ CUENTA REGRESIVA
