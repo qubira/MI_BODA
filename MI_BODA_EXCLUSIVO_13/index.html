@@ -1043,43 +1043,95 @@
         <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
        ⑤ RECEPCIÓN
        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
-        <section style="background:#fdf7f0;padding:32px 0 36px;position:relative;overflow:hidden">
-
+        <section
+          style="
+            background: #fdf7f0;
+            padding: 32px 0 36px;
+            position: relative;
+            overflow: hidden;
+          "
+        >
           <!-- ① ETIQUETA CENTRADA ARRIBA -->
-          <span class="sec-tag rv"
-            style="display:block;text-align:center;letter-spacing:.22em;margin-bottom:24px;padding:0 18px">
+          <span
+            class="sec-tag rv"
+            style="
+              display: block;
+              text-align: center;
+              letter-spacing: 0.22em;
+              margin-bottom: 24px;
+              padding: 0 18px;
+            "
+          >
             Fiesta &amp; celebración
           </span>
 
           <!-- ② IMÁGENES: mariposas pequeñas izquierda + fiesta derecha más chica -->
-          <div class="rv" style="position:relative;width:100%;margin-bottom:28px;min-height:200px">
-
+          <div
+            class="rv"
+            style="
+              position: relative;
+              width: 100%;
+              margin-bottom: 28px;
+              min-height: 200px;
+            "
+          >
             <!-- mariposa superior izquierda — pequeña, flotando -->
-            <img src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(5).png"
-              alt="" style="position:absolute;top:14px;left:18px;width:38px;transform:rotate(-10deg)">
+            <img
+              src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(5).png"
+              alt=""
+              style="
+                position: absolute;
+                top: 14px;
+                left: 18px;
+                width: 38px;
+                transform: rotate(-10deg);
+              "
+            />
 
             <!-- mariposa inferior izquierda — un poco más abajo y chica -->
-            <img src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(5).png"
-              alt="" style="position:absolute;top:100px;left:10px;width:28px;transform:rotate(12deg)">
+            <img
+              src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(5).png"
+              alt=""
+              style="
+                position: absolute;
+                top: 100px;
+                left: 10px;
+                width: 28px;
+                transform: rotate(12deg);
+              "
+            />
 
             <!-- fiesta (6).png — derecha, más pequeña -->
-            <img src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(6).png"
+            <img
+              src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(6).png"
               alt="Recepción"
-              style="display:block;width:72%;margin-left:auto">
+              style="display: block; width: 72%; margin-left: auto"
+            />
           </div>
 
           <!-- ③ TEXTO + BOTÓN CENTRADOS ABAJO -->
-          <h2 class="sec-h rv d1" style="text-align:center;font-size:2.2rem;margin-bottom:8px">Recepción</h2>
-          <p class="sec-body rv d2" style="text-align:center;margin-bottom:22px;padding:0 18px">
-            <strong>15:30 h</strong><br>
-            Club Villa de Lima · Salón Imperial<br>
+          <h2
+            class="sec-h rv d1"
+            style="text-align: center; font-size: 2.2rem; margin-bottom: 8px"
+          >
+            Recepción
+          </h2>
+          <p
+            class="sec-body rv d2"
+            style="text-align: center; margin-bottom: 22px; padding: 0 18px"
+          >
+            <strong>15:30 h</strong><br />
+            Club Villa de Lima · Salón Imperial<br />
             31 de enero de 2027
           </p>
-          <div style="text-align:center">
-            <a href="https://maps.google.com/?q=Club+Villa+de+Lima"
-               target="_blank" rel="noopener"
-               class="btn btn-olive rv d2"
-               id="link-recepcion">
+          <div style="text-align: center">
+            <a
+              href="https://maps.google.com/?q=Club+Villa+de+Lima"
+              target="_blank"
+              rel="noopener"
+              class="btn btn-olive rv d2"
+              id="link-recepcion"
+            >
               📍 Ver ubicación
             </a>
           </div>
@@ -1103,7 +1155,7 @@
     ════════════════════════════════════════ -->
           <img
             class="div-img rv"
-            src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(10).png"
+            src="imagenes/cristina y fernando te damos la vienvenida a este dia especial (7).png"
             alt=""
             style="width: 55%; max-width: 200px; margin-bottom: 28px"
           />
@@ -1162,30 +1214,40 @@
         <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
        ⑦ DRESS CODE
        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
-        <section class="sec cream">
-          <!--
-    ════════════════════════════════════════
-    IMAGEN: Rosas rosadas con hojas (arriba de dress code)
-    ════════════════════════════════════════
-    📐 TAMAÑO   → cambia width (ej: 30% más pequeño, 60% más grande)
-                  cambia max-width (ej: 100px, 220px)
-    🔄 ROTAR    → agrega transform:rotate(15deg)
-                  o transform:scaleX(-1) para espejo horizontal
-    📌 ESQUINA  → Ejemplo esquina superior derecha de la sección:
-                  style="position:absolute;top:-10px;right:-10px;width:38%;transform:rotate(15deg)"
-    ════════════════════════════════════════ -->
-          <img
-            class="div-img rv"
-            src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(8).png"
-            alt=""
-            style="width: 45%; max-width: 160px; margin-bottom: 22px"
-          />
+        <section style="background:#fff;padding:28px 0 36px;position:relative;overflow:hidden">
 
-          <span class="sec-tag rv d1">Vestimenta</span>
-          <h2 class="sec-h rv d1">Código de Vestimenta</h2>
-          <p class="sec-body rv d2" style="margin-bottom: 0">
-            Formal · Elegante<br />
-            <span style="color: #c9a882">Tonos pasteles preferentemente</span>
+          <!-- fila: flores izquierda + [etiqueta + pareja en círculo] derecha -->
+          <div class="rv" style="display:flex;align-items:center;margin-bottom:26px">
+
+            <!-- (8).png flores — izquierda, grande -->
+            <img src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(8).png"
+              alt=""
+              style="width:46%;display:block;flex-shrink:0">
+
+            <!-- columna derecha: etiqueta arriba + pareja en círculo abajo -->
+            <div style="flex:1;display:flex;flex-direction:column;align-items:center;
+                        justify-content:center;gap:14px;padding:0 14px 0 6px">
+
+              <span class="sec-tag"
+                style="text-align:center;display:block;font-size:.46rem;letter-spacing:.24em">
+                Código de Vestimenta
+              </span>
+
+              <!-- (9).png pareja en círculo beige -->
+              <div style="width:130px;height:130px;border-radius:50%;
+                          background:#f5ede3;overflow:hidden;
+                          display:flex;align-items:center;justify-content:center;flex-shrink:0">
+                <img src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(9).png"
+                  alt="Pareja"
+                  style="width:88%;height:88%;object-fit:contain">
+              </div>
+            </div>
+          </div>
+
+          <!-- texto dress code centrado debajo — NO SE MODIFICA -->
+          <p class="sec-body rv d1" style="text-align:center;margin-bottom:0;padding:0 18px">
+            Formal · Elegante<br>
+            <span style="color:#c9a882">Tonos pasteles preferentemente</span>
           </p>
           <div class="dc-grid rv d2">
             <div class="dc-item">
@@ -1199,16 +1261,9 @@
               <div class="dc-val">Vestido largo</div>
             </div>
           </div>
-          <p
-            class="rv d3"
-            style="
-              font-family: &quot;Montserrat&quot;, sans-serif;
-              font-size: 0.54rem;
-              letter-spacing: 0.12em;
-              color: #b8a98a;
-              margin-top: 16px;
-            "
-          >
+          <p class="rv d3"
+            style="font-family:'Montserrat',sans-serif;font-size:.54rem;
+                   letter-spacing:.12em;color:#b8a98a;margin-top:16px;text-align:center">
             Por favor no usar color blanco
           </p>
         </section>
@@ -1234,7 +1289,6 @@
             style="width: 62%; max-width: 220px; margin-bottom: 22px"
           />
 
-          <span class="sec-tag rv d1">Con mucho amor</span>
           <h2 class="sec-h rv d1">Detalle de Regalo</h2>
           <p class="sec-body rv d2">
             Tu presencia es nuestro mejor regalo.<br />
