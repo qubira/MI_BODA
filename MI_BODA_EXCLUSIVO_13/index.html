@@ -906,39 +906,48 @@
         <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
        ④ CEREMONIA
        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
-        <section class="sec white">
-          <!--
-    ════════════════════════════════════════
-    IMAGEN: Iglesia (acuarela)
-    ════════════════════════════════════════
-    📐 TAMAÑO   → cambia width (ej: 50% más pequeño, 90% más grande)
-                  cambia max-width (ej: 160px, 300px)
-    🔄 ROTAR    → agrega transform:rotate(-5deg) para leve inclinación
-    📌 ESQUINA  → agrega position:absolute para fijar en esquina
-                  Ejemplo esquina inferior izquierda:
-                  style="position:absolute;bottom:0;left:0;width:40%;opacity:.4"
-    ════════════════════════════════════════ -->
-          <img
-            class="sec-img rv"
-            src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(2).png"
-            alt="Iglesia"
-            style="width: 68%; max-width: 240px"
-          />
+        <section style="background:#fff;padding:32px 18px 36px;position:relative;overflow:hidden">
 
-          <span class="sec-tag rv d1">Ceremonia religiosa</span>
-          <h2 class="sec-h rv d1">Ceremonia</h2>
-          <p class="sec-body rv d2">
-            <strong>12:00 h</strong><br />
-            Parroquia Virgen del Pilar<br />
+          <!-- etiqueta superior izquierda -->
+          <span class="sec-tag rv" style="text-align:left;display:block;margin-bottom:16px">
+            Ceremonia religiosa
+          </span>
+
+          <!-- área principal: iglesia izquierda + ramo derecha -->
+          <div class="rv" style="position:relative;display:flex;align-items:flex-end;margin-bottom:20px">
+
+            <!-- mariposas flotantes (3).png — pequeñas, dispersas -->
+            <img src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(3).png"
+              alt="" style="position:absolute;top:4px;right:36%;width:26px;transform:rotate(-20deg);opacity:.9">
+            <img src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(3).png"
+              alt="" style="position:absolute;top:18px;right:16%;width:20px;transform:rotate(15deg);opacity:.85">
+            <img src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(3).png"
+              alt="" style="position:absolute;top:0;right:5%;width:16px;transform:rotate(30deg);opacity:.75">
+
+            <!-- iglesia — izquierda, ~60% -->
+            <img src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(2).png"
+              alt="Iglesia"
+              style="width:60%;display:block;flex-shrink:0;position:relative;z-index:1">
+
+            <!-- ramo de flores blancas — derecha, ~42% -->
+            <img src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(4).png"
+              alt="Flores"
+              style="width:42%;display:block;margin-left:-4%;margin-bottom:-8px">
+          </div>
+
+          <!-- texto info -->
+          <h2 class="sec-h rv" style="text-align:left;font-size:2.2rem;margin-bottom:6px">Ceremonia</h2>
+          <p class="sec-body rv d1" style="text-align:left;margin-bottom:20px">
+            <strong>12:00 h</strong><br>
+            Parroquia Virgen del Pilar<br>
             31 de enero de 2027
           </p>
-          <a
-            href="https://maps.google.com/?q=Parroquia+Virgen+del+Pilar"
-            target="_blank"
-            rel="noopener"
-            class="btn btn-dark rv d2"
-            id="link-ceremonia"
-          >
+
+          <!-- botón oval verde izquierda -->
+          <a href="https://maps.google.com/?q=Parroquia+Virgen+del+Pilar"
+             target="_blank" rel="noopener"
+             class="btn btn-olive rv d2"
+             id="link-ceremonia">
             📍 Ver ubicación
           </a>
         </section>
