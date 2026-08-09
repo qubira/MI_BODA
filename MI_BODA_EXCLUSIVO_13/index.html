@@ -1271,33 +1271,41 @@
         <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
        ⑧ DETALLE DE REGALO
        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
-        <section class="sec white">
-          <!--
-    ════════════════════════════════════════
-    IMAGEN: Cajas de regalo (contorno)
-    ════════════════════════════════════════
-    📐 TAMAÑO   → cambia width (ej: 45% más pequeño, 80% más grande)
-                  cambia max-width (ej: 150px, 300px)
-    🔄 ROTAR    → agrega transform:rotate(-10deg) para inclinación
-    📌 ESQUINA  → Ejemplo centrado con sombra de fondo:
-                  style="width:55%;opacity:.15;position:absolute;bottom:10px;right:10px"
-    ════════════════════════════════════════ -->
-          <img
-            class="div-img rv"
-            src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(11).png"
-            alt="Regalos"
-            style="width: 62%; max-width: 220px; margin-bottom: 22px"
-          />
+        <section style="background:#fff;padding:36px 0 0;position:relative;overflow:hidden">
 
-          <h2 class="sec-h rv d1">Detalle de Regalo</h2>
-          <p class="sec-body rv d2">
-            Tu presencia es nuestro mejor regalo.<br />
-            Si deseas obsequiarnos algo, aquí<br />
-            encontrarás nuestros datos.
-          </p>
-          <button class="btn btn-cream rv d2" id="btn-regalo">
-            🎁 Ver mis datos bancarios
-          </button>
+          <!-- (10).png rama de flores — derecha, absoluta, desde arriba -->
+          <img src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(10).png"
+            alt="" style="position:absolute;top:0;right:0;width:34%;z-index:1">
+
+          <!-- texto centrado arriba -->
+          <div style="text-align:center;padding:0 18px 30px;position:relative;z-index:2">
+
+            <span class="sec-tag rv"
+              style="display:block;letter-spacing:.22em;margin-bottom:14px">
+              Detalle de Regalo
+            </span>
+
+            <p class="rv d1"
+              style="font-family:'Montserrat',sans-serif;font-size:.5rem;
+                     letter-spacing:.2em;text-transform:uppercase;color:#7a6e68;margin-bottom:20px">
+              Con amor para nuestro nido
+            </p>
+
+            <p class="sec-body rv d1" style="text-align:center;margin-bottom:26px">
+              Tu presencia es nuestro mayor regalo.<br>
+              Si deseas obsequiarnos algo especial,<br>
+              aquí tienes algunas ideas que nos encantarían.
+            </p>
+
+            <button class="btn btn-cream rv d2" id="btn-regalo">
+              Abrir aquí
+            </button>
+          </div>
+
+          <!-- (11).png regalos — abajo izquierda, flujo normal -->
+          <img src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(11).png"
+            alt="Regalos" style="display:block;width:68%">
+
         </section>
 
         <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
