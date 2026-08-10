@@ -51,6 +51,35 @@
         opacity: 1;
         transform: none;
       }
+      /* Animación zoom/expansión para imágenes decorativas */
+      .rv-img {
+        opacity: 0;
+        transform: scale(0.78);
+        transition: opacity 0.85s ease, transform 0.85s cubic-bezier(0.34,1.48,0.64,1);
+      }
+      .rv-img.in {
+        opacity: 1;
+        transform: scale(1);
+      }
+      /* Animación deslizamiento lateral para imágenes de sección */
+      .rv-left {
+        opacity: 0;
+        transform: translateX(-28px) scale(0.95);
+        transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.25,0.8,0.25,1);
+      }
+      .rv-left.in {
+        opacity: 1;
+        transform: none;
+      }
+      .rv-right {
+        opacity: 0;
+        transform: translateX(28px) scale(0.95);
+        transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.25,0.8,0.25,1);
+      }
+      .rv-right.in {
+        opacity: 1;
+        transform: none;
+      }
       .d1 {
         transition-delay: 0.1s;
       }
@@ -82,7 +111,8 @@
       #intro video {
         width: 100%;
         height: 100%;
-        object-fit: cover;
+        object-fit: contain;
+        background: #1a1510;
       }
       #skip {
         position: absolute;
@@ -990,26 +1020,18 @@
             />
 
             <!-- iglesia izquierda ~62% -->
-            <img
+            <img class="rv-left"
               src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(2).png"
               alt="Iglesia"
-              style="
-                width: 62%;
-                display: block;
-                flex-shrink: 0;
-                position: relative;
-                z-index: 1;
-              "
-            />
+              style="width:62%;display:block;flex-shrink:0;position:relative;z-index:1"/>
 
             <div style="flex: 1"></div>
 
             <!-- ramo pequeño extremo derecho -->
-            <img
+            <img class="rv-right"
               src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(4).png"
               alt="Flores"
-              style="width: 28%; display: block; align-self: flex-end"
-            />
+              style="width:28%;display:block;align-self:flex-end"/>
           </div>
 
           <h2
@@ -1102,11 +1124,10 @@
             />
 
             <!-- fiesta (6).png — derecha, más pequeña -->
-            <img
+            <img class="rv-img"
               src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(6).png"
               alt="Recepción"
-              style="display: block; width: 72%; margin-left: auto"
-            />
+              style="display:block;width:72%;margin-left:auto"/>
           </div>
 
           <!-- ③ TEXTO + BOTÓN CENTRADOS ABAJO -->
@@ -1154,7 +1175,7 @@
                   (necesitas agregar position:relative a la sección)
     ════════════════════════════════════════ -->
           <img
-            class="div-img rv"
+            class="div-img rv-img"
             src="imagenes/cristina y fernando te damos la vienvenida a este dia especial (7).png"
             alt=""
             style="width: 55%; max-width: 200px; margin-bottom: 28px"
@@ -1220,7 +1241,8 @@
           <div class="rv" style="display:flex;align-items:center;margin-bottom:26px">
 
             <!-- (8).png flores — izquierda, grande -->
-            <img src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(8).png"
+            <img class="rv-left"
+              src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(8).png"
               alt=""
               style="width:46%;display:block;flex-shrink:0">
 
@@ -1305,7 +1327,8 @@
           </div>
 
           <!-- (11).png regalos — abajo izquierda, flujo normal -->
-          <img src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(11).png"
+          <img class="rv-img"
+            src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(11).png"
             alt="Regalos"
             style="display:block;width:62%;position:relative;z-index:2">
 
@@ -1368,7 +1391,7 @@
                   style="position:absolute;top:0;right:0;width:35%;transform:rotate(-45deg)"
     ════════════════════════════════════════ -->
           <img
-            class="div-img rv"
+            class="div-img rv-img"
             src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(3).png"
             alt=""
             style="width: 12%; max-width: 46px; margin-bottom: 16px"
@@ -1573,7 +1596,7 @@
           },
           { threshold: 0.06 },
         );
-        document.querySelectorAll(".rv").forEach((el) => io.observe(el));
+        document.querySelectorAll(".rv,.rv-img,.rv-left,.rv-right").forEach((el) => io.observe(el));
       }
       function dias() {
         return Math.max(0, Math.ceil((BODA - new Date()) / 86400000));
