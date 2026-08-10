@@ -1339,23 +1339,23 @@
               alt="" style="width:48%;display:block">
           </div>
 
-          <!-- botón pill grande verde oliva — centrado abajo -->
+          <!-- botón pill grande verde oliva — abre el formulario RSVP -->
           <div style="text-align:center">
-            <a href="#rsvp" class="rv d2"
+            <button id="btn-abrir-rsvp" class="rv d2"
                style="display:inline-block;background:#5a7357;color:#fff;
                       font-family:'Montserrat',sans-serif;font-size:.52rem;
                       letter-spacing:.24em;text-transform:uppercase;
-                      text-decoration:none;padding:18px 46px;border-radius:50px">
+                      border:none;cursor:pointer;padding:18px 46px;border-radius:50px">
               Confirmar asistencia
-            </a>
+            </button>
           </div>
 
         </section>
 
         <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-       ⑩ RSVP FORM
+       ⑩ RSVP FORM — oculto hasta que se presiona "Confirmar asistencia"
        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
-        <section class="rsvp-sec" id="rsvp">
+        <section class="rsvp-sec" id="rsvp" style="display:none;opacity:0;transition:opacity .5s ease">
           <!--
     ════════════════════════════════════════
     IMAGEN: Hoja pequeña verde (separador del RSVP)
@@ -1609,6 +1609,19 @@
       document.addEventListener("keydown", (e) => {
         if (e.key === "Escape") mR.classList.remove("open");
       });
+
+      /* ── Mostrar formulario RSVP al presionar "Confirmar asistencia" ── */
+      document.getElementById("btn-abrir-rsvp").addEventListener("click", () => {
+        const sec = document.getElementById("rsvp");
+        sec.style.display = "block";
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            sec.style.opacity = "1";
+            sec.scrollIntoView({ behavior: "smooth", block: "start" });
+          });
+        });
+      });
+
       const form = document.getElementById("rsvp-form"),
         fmsg = document.getElementById("fmsg"),
         fsub = document.getElementById("f-sub");
