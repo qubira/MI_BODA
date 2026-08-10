@@ -1271,43 +1271,43 @@
         <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
        ⑧ DETALLE DE REGALO
        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
-        <section style="background:#fff;padding:36px 0 0;overflow:hidden">
+        <section style="background:#fff;padding:36px 0 0;position:relative;overflow:hidden">
 
-          <!-- ① título centrado en todo el ancho -->
-          <span class="sec-tag rv"
-            style="display:block;text-align:center;letter-spacing:.22em;margin-bottom:18px;padding:0 18px">
-            Detalle de Regalo
-          </span>
+          <!-- (10).png flores — absoluta desde arriba a la derecha -->
+          <img src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(10).png"
+            alt=""
+            style="position:absolute;top:0;right:0;width:36%;z-index:1;pointer-events:none">
 
-          <!-- ② fila: texto izquierda | flores derecha (sin toparse) -->
-          <div style="display:flex;align-items:flex-start">
+          <!-- texto todo en la zona izquierda — padding-right deja espacio a las flores -->
+          <div style="position:relative;z-index:2;padding:0 38% 30px 18px;text-align:center">
 
-            <!-- columna texto — izquierda -->
-            <div style="flex:1;text-align:center;padding:0 10px 28px 18px">
-              <p class="rv d1"
-                style="font-family:'Montserrat',sans-serif;font-size:.5rem;
-                       letter-spacing:.2em;text-transform:uppercase;
-                       color:#7a6e68;margin-bottom:18px">
-                Con amor para nuestro nido
-              </p>
-              <p class="sec-body rv d1" style="text-align:center;margin-bottom:24px">
-                Tu presencia es nuestro mayor regalo.<br>
-                Si deseas obsequiarnos algo especial,<br>
-                aquí tienes algunas ideas que nos encantarían.
-              </p>
-              <button class="btn btn-cream rv d2" id="btn-regalo">
-                Abrir aquí
-              </button>
-            </div>
+            <span class="sec-tag rv"
+              style="display:block;letter-spacing:.22em;margin-bottom:16px">
+              Detalle de Regalo
+            </span>
 
-            <!-- columna flores (10).png — derecha, su propio espacio -->
-            <img src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(10).png"
-              alt="" style="width:36%;display:block;flex-shrink:0;align-self:flex-start">
+            <p class="rv d1"
+              style="font-family:'Montserrat',sans-serif;font-size:.5rem;
+                     letter-spacing:.2em;text-transform:uppercase;
+                     color:#7a6e68;margin-bottom:18px">
+              Con amor para nuestro nido
+            </p>
+
+            <p class="sec-body rv d1" style="text-align:center;margin-bottom:24px">
+              Tu presencia es nuestro mayor regalo.<br>
+              Si deseas obsequiarnos algo especial,<br>
+              aquí tienes algunas ideas que nos encantarían.
+            </p>
+
+            <button class="btn btn-cream rv d2" id="btn-regalo">
+              Abrir aquí
+            </button>
           </div>
 
-          <!-- ③ regalos (11).png — abajo izquierda, tamaño moderado -->
+          <!-- (11).png regalos — abajo izquierda, flujo normal -->
           <img src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(11).png"
-            alt="Regalos" style="display:block;width:58%">
+            alt="Regalos"
+            style="display:block;width:62%;position:relative;z-index:2">
 
         </section>
 
