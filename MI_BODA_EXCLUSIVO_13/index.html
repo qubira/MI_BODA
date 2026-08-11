@@ -46,88 +46,148 @@
       .rv {
         opacity: 0;
         transform: translateY(22px);
-        transition: opacity 0.7s ease, transform 0.7s ease;
+        transition:
+          opacity 0.7s ease,
+          transform 0.7s ease;
       }
-      .rv.in { opacity:1; transform:none; }
+      .rv.in {
+        opacity: 1;
+        transform: none;
+      }
 
       /* ══ KEYFRAMES ══ */
-      /* Engrandamiento y retroceso — pop elástico */
+
+      /* ENGRANDAMIENTO Y RETROCESO — pop muy elástico, empieza de casi nada */
       @keyframes popBounce {
-        0%   { opacity:0; transform:scale(0.18) rotate(-6deg); }
-        50%  { opacity:1; transform:scale(1.22) rotate(3deg); }
-        68%  { transform:scale(0.9) rotate(-1.5deg); }
-        82%  { transform:scale(1.07); }
+        0%   { opacity:0; transform:scale(0) rotate(-15deg); }
+        40%  { opacity:1; transform:scale(1.4) rotate(6deg); }
+        60%  { transform:scale(0.85) rotate(-3deg); }
+        75%  { transform:scale(1.15) rotate(2deg); }
+        88%  { transform:scale(0.95); }
         100% { opacity:1; transform:scale(1) rotate(0); }
       }
-      /* Dispersión — entra desde un punto disperso */
+
+      /* DISPERSIÓN — entra desde muy lejos con rotación notoria */
       @keyframes scatterIn {
-        0%   { opacity:0; transform:translate(var(--sx,0px),var(--sy,50px)) scale(0.25) rotate(var(--sr,12deg)); }
-        55%  { opacity:1; }
-        72%  { transform:translate(0,0) scale(1.08) rotate(0deg); }
+        0%   { opacity:0; transform:translate(var(--sx,0px),var(--sy,100px)) scale(0.05) rotate(var(--sr,30deg)); }
+        45%  { opacity:1; }
+        65%  { transform:translate(0,0) scale(1.18) rotate(0deg); }
+        80%  { transform:translate(0,0) scale(0.9) rotate(0deg); }
+        90%  { transform:translate(0,0) scale(1.06); }
         100% { opacity:1; transform:translate(0,0) scale(1) rotate(0deg); }
       }
-      /* Desplazamiento desde la izquierda con rebote */
+
+      /* DESPLAZAMIENTO IZQUIERDA — llega de lejos con overshoot y rebote doble */
       @keyframes slideFromLeft {
-        0%   { opacity:0; transform:translateX(-80px) scale(0.85); }
-        58%  { opacity:1; transform:translateX(10px) scale(1.03); }
-        78%  { transform:translateX(-4px) scale(0.98); }
-        100% { opacity:1; transform:translateX(0) scale(1); }
+        0%   { opacity:0; transform:translateX(-140px) scale(0.7) rotate(-8deg); }
+        50%  { opacity:1; transform:translateX(18px) scale(1.06) rotate(2deg); }
+        68%  { transform:translateX(-8px) scale(0.96) rotate(-1deg); }
+        82%  { transform:translateX(5px) scale(1.03); }
+        92%  { transform:translateX(-2px) scale(0.99); }
+        100% { opacity:1; transform:translateX(0) scale(1) rotate(0); }
       }
-      /* Desplazamiento desde la derecha con rebote */
+
+      /* DESPLAZAMIENTO DERECHA — mismo efecto, desde la derecha */
       @keyframes slideFromRight {
-        0%   { opacity:0; transform:translateX(80px) scale(0.85); }
-        58%  { opacity:1; transform:translateX(-10px) scale(1.03); }
-        78%  { transform:translateX(4px) scale(0.98); }
-        100% { opacity:1; transform:translateX(0) scale(1); }
+        0%   { opacity:0; transform:translateX(140px) scale(0.7) rotate(8deg); }
+        50%  { opacity:1; transform:translateX(-18px) scale(1.06) rotate(-2deg); }
+        68%  { transform:translateX(8px) scale(0.96) rotate(1deg); }
+        82%  { transform:translateX(-5px) scale(1.03); }
+        92%  { transform:translateX(2px) scale(0.99); }
+        100% { opacity:1; transform:translateX(0) scale(1) rotate(0); }
       }
-      /* Colmena: aparición vertical con overshoot */
+
+      /* COLMENA — sube con gran overshoot y rebote */
       @keyframes hiveIn {
-        0%   { opacity:0; transform:translateY(40px) scale(0.6) rotate(var(--hr,0deg)); }
-        55%  { opacity:1; transform:translateY(-6px) scale(1.1) rotate(0deg); }
-        75%  { transform:translateY(2px) scale(0.96); }
+        0%   { opacity:0; transform:translateY(80px) scale(0.4) rotate(var(--hr,0deg)); }
+        45%  { opacity:1; transform:translateY(-12px) scale(1.2) rotate(0deg); }
+        65%  { transform:translateY(4px) scale(0.93); }
+        80%  { transform:translateY(-5px) scale(1.06); }
+        92%  { transform:translateY(2px) scale(0.98); }
         100% { opacity:1; transform:translateY(0) scale(1) rotate(0deg); }
       }
 
       /* ══ CLASES DE ANIMACIÓN ══ */
-      .rv-img   { opacity:0; }
-      .rv-img.in { animation: popBounce 1.05s cubic-bezier(0.22,1,0.36,1) forwards; }
+      .rv-img    { opacity:0; }
+      .rv-img.in { animation: popBounce 1.3s cubic-bezier(0.22,1,0.36,1) forwards; }
 
-      .rv-left  { opacity:0; }
-      .rv-left.in { animation: slideFromLeft 0.9s cubic-bezier(0.22,1,0.36,1) forwards; }
+      .rv-left    { opacity:0; }
+      .rv-left.in { animation: slideFromLeft 1.2s cubic-bezier(0.22,1,0.36,1) forwards; }
 
-      .rv-right { opacity:0; }
-      .rv-right.in { animation: slideFromRight 0.9s cubic-bezier(0.22,1,0.36,1) forwards; }
+      .rv-right    { opacity:0; }
+      .rv-right.in { animation: slideFromRight 1.2s cubic-bezier(0.22,1,0.36,1) forwards; }
 
-      .rv-scatter { opacity:0; }
-      .rv-scatter.in { animation: scatterIn 1.1s cubic-bezier(0.22,1,0.36,1) forwards; }
+      .rv-scatter    { opacity:0; }
+      .rv-scatter.in { animation: scatterIn 1.35s cubic-bezier(0.22,1,0.36,1) forwards; }
 
-      .rv-hive  { opacity:0; }
-      .rv-hive.in { animation: hiveIn 0.95s cubic-bezier(0.22,1,0.36,1) forwards; }
+      .rv-hive    { opacity:0; }
+      .rv-hive.in { animation: hiveIn 1.15s cubic-bezier(0.22,1,0.36,1) forwards; }
 
       /* ══ MARIPOSAS VOLANDO (animación continua) ══ */
       @keyframes butterflyFly {
-        0%   { transform: translate(0,0)     rotate(-10deg) scaleX(1); }
-        12%  { transform: translate(4px,-10px)  rotate(7deg)  scaleX(0.6); }
-        24%  { transform: translate(-4px,-5px)  rotate(-12deg) scaleX(1); }
-        38%  { transform: translate(5px,-18px)  rotate(9deg)  scaleX(0.55); }
-        50%  { transform: translate(-3px,-12px) rotate(-8deg) scaleX(1); }
-        64%  { transform: translate(4px,-20px)  rotate(11deg) scaleX(0.6); }
-        78%  { transform: translate(-5px,-9px)  rotate(-5deg) scaleX(1); }
-        90%  { transform: translate(2px,-4px)   rotate(4deg)  scaleX(0.75); }
-        100% { transform: translate(0,0)     rotate(-10deg) scaleX(1); }
+        0% {
+          transform: translate(0, 0) rotate(-10deg) scaleX(1);
+        }
+        12% {
+          transform: translate(4px, -10px) rotate(7deg) scaleX(0.6);
+        }
+        24% {
+          transform: translate(-4px, -5px) rotate(-12deg) scaleX(1);
+        }
+        38% {
+          transform: translate(5px, -18px) rotate(9deg) scaleX(0.55);
+        }
+        50% {
+          transform: translate(-3px, -12px) rotate(-8deg) scaleX(1);
+        }
+        64% {
+          transform: translate(4px, -20px) rotate(11deg) scaleX(0.6);
+        }
+        78% {
+          transform: translate(-5px, -9px) rotate(-5deg) scaleX(1);
+        }
+        90% {
+          transform: translate(2px, -4px) rotate(4deg) scaleX(0.75);
+        }
+        100% {
+          transform: translate(0, 0) rotate(-10deg) scaleX(1);
+        }
       }
       @keyframes butterflyFlyAlt {
-        0%   { transform: translate(0,0)     rotate(8deg)  scaleX(1); }
-        15%  { transform: translate(-5px,-12px) rotate(-9deg) scaleX(0.6); }
-        30%  { transform: translate(4px,-6px)   rotate(13deg) scaleX(1); }
-        45%  { transform: translate(-4px,-16px) rotate(-7deg) scaleX(0.55); }
-        60%  { transform: translate(5px,-10px)  rotate(10deg) scaleX(1); }
-        75%  { transform: translate(-3px,-19px) rotate(-11deg) scaleX(0.65); }
-        90%  { transform: translate(3px,-7px)   rotate(6deg)  scaleX(1); }
-        100% { transform: translate(0,0)     rotate(8deg)  scaleX(1); }
+        0% {
+          transform: translate(0, 0) rotate(8deg) scaleX(1);
+        }
+        15% {
+          transform: translate(-5px, -12px) rotate(-9deg) scaleX(0.6);
+        }
+        30% {
+          transform: translate(4px, -6px) rotate(13deg) scaleX(1);
+        }
+        45% {
+          transform: translate(-4px, -16px) rotate(-7deg) scaleX(0.55);
+        }
+        60% {
+          transform: translate(5px, -10px) rotate(10deg) scaleX(1);
+        }
+        75% {
+          transform: translate(-3px, -19px) rotate(-11deg) scaleX(0.65);
+        }
+        90% {
+          transform: translate(3px, -7px) rotate(6deg) scaleX(1);
+        }
+        100% {
+          transform: translate(0, 0) rotate(8deg) scaleX(1);
+        }
       }
-      .bfly { animation: butterflyFly 4s ease-in-out infinite; transform-origin:50% 50%; }
-      .bfly-alt { animation: butterflyFlyAlt 3.2s ease-in-out infinite; animation-delay:-1.4s; transform-origin:50% 50%; }
+      .bfly {
+        animation: butterflyFly 4s ease-in-out infinite;
+        transform-origin: 50% 50%;
+      }
+      .bfly-alt {
+        animation: butterflyFlyAlt 3.2s ease-in-out infinite;
+        animation-delay: -1.4s;
+        transform-origin: 50% 50%;
+      }
       .d1 {
         transition-delay: 0.1s;
       }
@@ -1033,29 +1093,54 @@
             style="position: relative; display: flex; align-items: flex-end"
           >
             <!-- mariposas flotantes — animación de vuelo continuo -->
-            <img class="bfly"
+            <img
+              class="bfly"
               src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(3).png"
-              alt="" style="position:absolute;top:6px;right:35%;width:26px"/>
-            <img class="bfly-alt"
+              alt=""
+              style="position: absolute; top: 6px; right: 35%; width: 26px"
+            />
+            <img
+              class="bfly-alt"
               src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(3).png"
-              alt="" style="position:absolute;top:22px;right:16%;width:20px"/>
-            <img class="bfly"
+              alt=""
+              style="position: absolute; top: 22px; right: 16%; width: 20px"
+            />
+            <img
+              class="bfly"
               src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(3).png"
-              alt="" style="position:absolute;top:2px;right:6%;width:16px;animation-delay:-2.1s"/>
+              alt=""
+              style="
+                position: absolute;
+                top: 2px;
+                right: 6%;
+                width: 16px;
+                animation-delay: -2.1s;
+              "
+            />
 
             <!-- iglesia izquierda ~62% -->
-            <img class="rv-left"
+            <img
+              class="rv-left"
               src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(2).png"
               alt="Iglesia"
-              style="width:62%;display:block;flex-shrink:0;position:relative;z-index:1"/>
+              style="
+                width: 62%;
+                display: block;
+                flex-shrink: 0;
+                position: relative;
+                z-index: 1;
+              "
+            />
 
             <div style="flex: 1"></div>
 
             <!-- ramo pequeño extremo derecho -->
-            <img class="rv-right"
+            <img
+              class="rv-right"
               src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(4).png"
               alt="Flores"
-              style="width:28%;display:block;align-self:flex-end"/>
+              style="width: 28%; display: block; align-self: flex-end"
+            />
           </div>
 
           <h2
@@ -1122,20 +1207,33 @@
             "
           >
             <!-- mariposas volando — animación continua -->
-            <img class="bfly-alt"
+            <img
+              class="bfly-alt"
               src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(5).png"
-              alt="" style="position:absolute;top:14px;left:18px;width:38px"/>
+              alt=""
+              style="position: absolute; top: 14px; left: 18px; width: 38px"
+            />
 
-            <img class="bfly"
+            <img
+              class="bfly"
               src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(5).png"
-              alt="" style="position:absolute;top:100px;left:10px;width:28px;animation-delay:-2.6s"
+              alt=""
+              style="
+                position: absolute;
+                top: 100px;
+                left: 10px;
+                width: 28px;
+                animation-delay: -2.6s;
+              "
             />
 
             <!-- fiesta (6).png — derecha, más pequeña -->
-            <img class="rv-img"
+            <img
+              class="rv-img"
               src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(6).png"
               alt="Recepción"
-              style="display:block;width:72%;margin-left:auto"/>
+              style="display: block; width: 72%; margin-left: auto"
+            />
           </div>
 
           <!-- ③ TEXTO + BOTÓN CENTRADOS ABAJO -->
@@ -1243,40 +1341,88 @@
         <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
        ⑦ DRESS CODE
        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
-        <section style="background:#fff;padding:28px 0 36px;position:relative;overflow:hidden">
-
+        <section
+          style="
+            background: #fff;
+            padding: 28px 0 36px;
+            position: relative;
+            overflow: hidden;
+          "
+        >
           <!-- fila: flores izquierda + [etiqueta + pareja en círculo] derecha -->
-          <div class="rv" style="display:flex;align-items:center;margin-bottom:26px">
-
+          <div
+            class="rv"
+            style="display: flex; align-items: center; margin-bottom: 26px"
+          >
             <!-- (8).png flores — izquierda, grande -->
-            <img class="rv-scatter" style="--sx:-40px;--sy:30px;--sr:-8deg;width:46%;display:block;flex-shrink:0"
+            <img
+              class="rv-scatter"
+              style="
+                --sx: -40px;
+                --sy: 30px;
+                --sr: -8deg;
+                width: 46%;
+                display: block;
+                flex-shrink: 0;
+              "
               src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(8).png"
-              alt="">
+              alt=""
+            />
 
             <!-- columna derecha: etiqueta arriba + pareja en círculo abajo -->
-            <div style="flex:1;display:flex;flex-direction:column;align-items:center;
-                        justify-content:center;gap:14px;padding:0 14px 0 6px">
-
-              <span class="sec-tag"
-                style="text-align:center;display:block;font-size:.46rem;letter-spacing:.24em">
+            <div
+              style="
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 14px;
+                padding: 0 14px 0 6px;
+              "
+            >
+              <span
+                class="sec-tag"
+                style="
+                  text-align: center;
+                  display: block;
+                  font-size: 0.46rem;
+                  letter-spacing: 0.24em;
+                "
+              >
                 Código de Vestimenta
               </span>
 
               <!-- (9).png pareja en círculo beige -->
-              <div style="width:130px;height:130px;border-radius:50%;
-                          background:#f5ede3;overflow:hidden;
-                          display:flex;align-items:center;justify-content:center;flex-shrink:0">
-                <img src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(9).png"
+              <div
+                style="
+                  width: 130px;
+                  height: 130px;
+                  border-radius: 50%;
+                  background: #f5ede3;
+                  overflow: hidden;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  flex-shrink: 0;
+                "
+              >
+                <img
+                  src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(9).png"
                   alt="Pareja"
-                  style="width:88%;height:88%;object-fit:contain">
+                  style="width: 88%; height: 88%; object-fit: contain"
+                />
               </div>
             </div>
           </div>
 
           <!-- texto dress code centrado debajo — NO SE MODIFICA -->
-          <p class="sec-body rv d1" style="text-align:center;margin-bottom:0;padding:0 18px">
-            Formal · Elegante<br>
-            <span style="color:#c9a882">Tonos pasteles preferentemente</span>
+          <p
+            class="sec-body rv d1"
+            style="text-align: center; margin-bottom: 0; padding: 0 18px"
+          >
+            Formal · Elegante<br />
+            <span style="color: #c9a882">Tonos pasteles preferentemente</span>
           </p>
           <div class="dc-grid rv d2">
             <div class="dc-item">
@@ -1290,9 +1436,17 @@
               <div class="dc-val">Vestido largo</div>
             </div>
           </div>
-          <p class="rv d3"
-            style="font-family:'Montserrat',sans-serif;font-size:.54rem;
-                   letter-spacing:.12em;color:#b8a98a;margin-top:16px;text-align:center">
+          <p
+            class="rv d3"
+            style="
+              font-family: &quot;Montserrat&quot;, sans-serif;
+              font-size: 0.54rem;
+              letter-spacing: 0.12em;
+              color: #b8a98a;
+              margin-top: 16px;
+              text-align: center;
+            "
+          >
             Por favor no usar color blanco
           </p>
         </section>
@@ -1300,32 +1454,68 @@
         <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
        ⑧ DETALLE DE REGALO
        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
-        <section style="background:#fff;padding:36px 0 0;position:relative;overflow:hidden">
-
+        <section
+          style="
+            background: #fff;
+            padding: 36px 0 0;
+            position: relative;
+            overflow: hidden;
+          "
+        >
           <!-- (10).png flores — absoluta desde arriba a la derecha -->
-          <img src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(10).png"
+          <img
+            src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(10).png"
             alt=""
-            style="position:absolute;top:0;right:0;width:36%;z-index:1;pointer-events:none">
+            style="
+              position: absolute;
+              top: 0;
+              right: 0;
+              width: 36%;
+              z-index: 1;
+              pointer-events: none;
+            "
+          />
 
           <!-- texto — centrado en el ancho total, cerca de las flores -->
-          <div style="position:relative;z-index:2;padding:0 18px 30px 18px;text-align:center">
-
-            <span class="sec-tag rv"
-              style="display:block;letter-spacing:.22em;margin-bottom:16px">
+          <div
+            style="
+              position: relative;
+              z-index: 2;
+              padding: 0 18px 30px 18px;
+              text-align: center;
+            "
+          >
+            <span
+              class="sec-tag rv"
+              style="
+                display: block;
+                letter-spacing: 0.22em;
+                margin-bottom: 16px;
+              "
+            >
               Detalle de Regalo
             </span>
 
-            <p class="rv d1"
-              style="font-family:'Montserrat',sans-serif;font-size:.5rem;
-                     letter-spacing:.2em;text-transform:uppercase;
-                     color:#7a6e68;margin-bottom:18px">
+            <p
+              class="rv d1"
+              style="
+                font-family: &quot;Montserrat&quot;, sans-serif;
+                font-size: 0.5rem;
+                letter-spacing: 0.2em;
+                text-transform: uppercase;
+                color: #7a6e68;
+                margin-bottom: 18px;
+              "
+            >
               Con amor para nuestro nido
             </p>
 
-            <p class="sec-body rv d1" style="text-align:center;margin-bottom:24px">
-              Tu presencia es nuestro mayor regalo.<br>
-              Si deseas obsequiarnos algo especial,<br>
-              aquí tienes algunas ideas que nos encantarían.
+            <p
+              class="sec-body rv d1"
+              style="text-align: center; margin-bottom: 24px"
+            >
+              Si deseas obsequiarnos algo especial,<br />
+              aquí tienes algunas ideas <br />que nos encantarían.
             </p>
 
             <button class="btn btn-cream rv d2" id="btn-regalo">
@@ -1334,57 +1524,116 @@
           </div>
 
           <!-- (11).png regalos — abajo izquierda -->
-          <img class="rv-scatter" style="--sx:-50px;--sy:60px;--sr:6deg;display:block;width:62%;position:relative;z-index:2"
+          <img
+            class="rv-scatter"
+            style="
+              --sx: -50px;
+              --sy: 60px;
+              --sr: 6deg;
+              display: block;
+              width: 62%;
+              position: relative;
+              z-index: 2;
+            "
             src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(11).png"
-            alt="Regalos">
-
+            alt="Regalos"
+          />
         </section>
 
         <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
        ⑨ FRASE ROMÁNTICA
        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
-        <section style="background:#fdf7f0;padding:44px 18px 48px;overflow:hidden">
-
+        <section
+          style="background: #fdf7f0; padding: 44px 18px 48px; overflow: hidden"
+        >
           <!-- píldora beige con la frase — arriba -->
-          <div class="rv" style="background:#ddd4c6;border-radius:60px;
-                                  padding:34px 26px;margin-bottom:22px">
-            <p style="font-family:'Montserrat',sans-serif;font-size:.52rem;
-                      letter-spacing:.1em;text-transform:uppercase;text-align:center;
-                      line-height:2.1;color:#3a3430;margin-bottom:16px">
-              El amor no consiste en mirarse<br>
-              el uno al otro, sino en mirar<br>
+          <div
+            class="rv"
+            style="
+              background: #ddd4c6;
+              border-radius: 60px;
+              padding: 34px 26px;
+              margin-bottom: 22px;
+            "
+          >
+            <p
+              style="
+                font-family: &quot;Montserrat&quot;, sans-serif;
+                font-size: 0.52rem;
+                letter-spacing: 0.1em;
+                text-transform: uppercase;
+                text-align: center;
+                line-height: 2.1;
+                color: #3a3430;
+                margin-bottom: 16px;
+              "
+            >
+              El amor no consiste en mirarse<br />
+              el uno al otro, sino en mirar<br />
               juntos en la misma dirección.
             </p>
-            <p style="font-family:'Montserrat',sans-serif;font-size:.46rem;
-                      letter-spacing:.18em;text-transform:uppercase;
-                      text-align:center;color:#7a6e68">
+            <p
+              style="
+                font-family: &quot;Montserrat&quot;, sans-serif;
+                font-size: 0.46rem;
+                letter-spacing: 0.18em;
+                text-transform: uppercase;
+                text-align: center;
+                color: #7a6e68;
+              "
+            >
               — Antoine de Saint-Exupéry
             </p>
           </div>
 
           <!-- (12).png copas de champán — derecha -->
-          <div class="rv d1" style="display:flex;justify-content:flex-end;margin-bottom:36px">
-            <img src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(12).png"
-              alt="" style="width:48%;display:block">
+          <div
+            class="rv d1"
+            style="
+              display: flex;
+              justify-content: flex-end;
+              margin-bottom: 36px;
+            "
+          >
+            <img
+              src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(12).png"
+              alt=""
+              style="width: 48%; display: block"
+            />
           </div>
 
           <!-- botón pill grande verde oliva — abre el formulario RSVP -->
-          <div style="text-align:center">
-            <button id="btn-abrir-rsvp" class="rv d2"
-               style="display:inline-block;background:#5a7357;color:#fff;
-                      font-family:'Montserrat',sans-serif;font-size:.52rem;
-                      letter-spacing:.24em;text-transform:uppercase;
-                      border:none;cursor:pointer;padding:18px 46px;border-radius:50px">
+          <div style="text-align: center">
+            <button
+              id="btn-abrir-rsvp"
+              class="rv d2"
+              style="
+                display: inline-block;
+                background: #5a7357;
+                color: #fff;
+                font-family: &quot;Montserrat&quot;, sans-serif;
+                font-size: 0.52rem;
+                letter-spacing: 0.24em;
+                text-transform: uppercase;
+                border: none;
+                cursor: pointer;
+                padding: 18px 46px;
+                border-radius: 50px;
+              "
+            >
               Confirmar asistencia
             </button>
           </div>
-
         </section>
 
         <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
        ⑩ RSVP FORM — oculto hasta que se presiona "Confirmar asistencia"
        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
-        <section class="rsvp-sec" id="rsvp" style="display:none;opacity:0;transition:opacity .5s ease">
+        <section
+          class="rsvp-sec"
+          id="rsvp"
+          style="display: none; opacity: 0; transition: opacity 0.5s ease"
+        >
           <!--
     ════════════════════════════════════════
     IMAGEN: Hoja pequeña verde (separador del RSVP)
@@ -1400,7 +1649,14 @@
             class="bfly"
             src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(3).png"
             alt=""
-            style="width: 12%; max-width: 46px; margin-bottom: 16px;display:block;margin-left:auto;margin-right:auto"
+            style="
+              width: 12%;
+              max-width: 46px;
+              margin-bottom: 16px;
+              display: block;
+              margin-left: auto;
+              margin-right: auto;
+            "
           />
 
           <span class="sec-tag rv d1" style="text-align: center; display: block"
@@ -1603,13 +1859,17 @@
           { threshold: 0.06 },
         );
         /* stagger colmena: delay escalonado por índice dentro de su padre */
-        document.querySelectorAll(".rv,.rv-img,.rv-left,.rv-right,.rv-scatter,.rv-hive").forEach((el,i) => {
-          if(el.classList.contains("rv-hive")){
-            const idx = Array.from(el.parentElement.children).indexOf(el);
-            el.style.animationDelay = (idx * 0.14) + "s";
-          }
-          io.observe(el);
-        });
+        document
+          .querySelectorAll(
+            ".rv,.rv-img,.rv-left,.rv-right,.rv-scatter,.rv-hive",
+          )
+          .forEach((el, i) => {
+            if (el.classList.contains("rv-hive")) {
+              const idx = Array.from(el.parentElement.children).indexOf(el);
+              el.style.animationDelay = idx * 0.14 + "s";
+            }
+            io.observe(el);
+          });
       }
       function dias() {
         return Math.max(0, Math.ceil((BODA - new Date()) / 86400000));
@@ -1647,16 +1907,18 @@
       });
 
       /* ── Mostrar formulario RSVP al presionar "Confirmar asistencia" ── */
-      document.getElementById("btn-abrir-rsvp").addEventListener("click", () => {
-        const sec = document.getElementById("rsvp");
-        sec.style.display = "block";
-        requestAnimationFrame(() => {
+      document
+        .getElementById("btn-abrir-rsvp")
+        .addEventListener("click", () => {
+          const sec = document.getElementById("rsvp");
+          sec.style.display = "block";
           requestAnimationFrame(() => {
-            sec.style.opacity = "1";
-            sec.scrollIntoView({ behavior: "smooth", block: "start" });
+            requestAnimationFrame(() => {
+              sec.style.opacity = "1";
+              sec.scrollIntoView({ behavior: "smooth", block: "start" });
+            });
           });
         });
-      });
 
       const form = document.getElementById("rsvp-form"),
         fmsg = document.getElementById("fmsg"),
