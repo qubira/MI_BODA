@@ -134,6 +134,39 @@ function serveWithTracker(res, filePath, slug) {
   });
 }
 
+/* ── Preview silenciado (usado por iframes del catálogo) ─────── */
+function servePreview(res, filePath) {
+  fs.readFile(filePath, 'utf8', (err, html) => {
+    if (err) return res.status(404).send('Página no encontrada');
+    // Inyectar killer de audio ANTES de cualquier otro script de la página.
+    // Anula prototype.play y el constructor Audio para que nunca suenen.
+    const killer = `<script>(function(){
+  var no=function(){this.muted=true;this.volume=0;return Promise.resolve();};
+  try{HTMLAudioElement.prototype.play=no;}catch(e){}
+  try{HTMLMediaElement.prototype.play=no;}catch(e){}
+  var _A=window.Audio;
+  window.Audio=function(s){
+    var a=_A?new _A(s):{play:function(){return Promise.resolve();},pause:function(){},load:function(){},addEventListener:function(){},removeEventListener:function(){}};
+    try{a.muted=true;a.volume=0;}catch(e){}
+    return a;
+  };
+  document.addEventListener('DOMContentLoaded',function(){
+    document.querySelectorAll('audio,video').forEach(function(el){el.muted=true;el.volume=0;el.pause();el.src='';});
+  });
+  new MutationObserver(function(ms){
+    ms.forEach(function(m){m.addedNodes.forEach(function(n){
+      if(!n.querySelectorAll)return;
+      n.querySelectorAll('audio,video').forEach(function(el){el.muted=true;el.volume=0;el.pause();});
+    });});
+  }).observe(document.documentElement,{childList:true,subtree:true});
+})();</script>`;
+    const modified = html.replace('<head>', '<head>' + killer);
+    res.setHeader('Content-Type', 'text/html; charset=utf-8');
+    res.setHeader('Cache-Control', 'no-store');
+    res.send(modified);
+  });
+}
+
 /* ── Catálogo principal ──────────────────────────────────────── */
 app.use(express.static(path.join(__dirname, 'catalog')));
 app.get('/', (req, res) =>
@@ -187,8 +220,8 @@ projects.forEach(({ slug, dir, admin }) => {
   app.use(`/${slug}`, express.static(root, { index: false }));
 
   const indexFile = path.join(root, 'index.html');
-  app.get(`/${slug}`,  (req, res) => serveWithTracker(res, indexFile, slug));
-  app.get(`/${slug}/`, (req, res) => serveWithTracker(res, indexFile, slug));
+  app.get(`/${slug}`,  (req, res) => 'preview' in req.query ? servePreview(res, indexFile) : serveWithTracker(res, indexFile, slug));
+  app.get(`/${slug}/`, (req, res) => 'preview' in req.query ? servePreview(res, indexFile) : serveWithTracker(res, indexFile, slug));
 
   if (admin) {
     app.get(`/${slug}/admin`,      (req, res) => res.sendFile(path.join(root, 'admin.html')));
