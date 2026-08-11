@@ -551,7 +551,7 @@
       /* ③ COUNTDOWN */
       .cd-sec {
         background: #fff;
-        padding: 52px 28px;
+        padding: 52px 18px 48px;
         text-align: center;
         border-bottom: 1px solid #ede4d8;
       }
@@ -561,30 +561,52 @@
         letter-spacing: 0.4em;
         text-transform: uppercase;
         color: #b8a98a;
-        margin-bottom: 14px;
+        margin-bottom: 22px;
       }
-      /* NÚMERO COUNTDOWN: cambia font-size (ej: 5rem más pequeño, 8rem más grande) */
+      /* ── Grid de unidades de cuenta regresiva ── */
+      .cd-grid {
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        gap: 0;
+      }
+      .cd-unit {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-width: 72px;
+      }
       .cd-num {
         font-family: "Great Vibes", cursive;
-        font-size: 6rem;
+        font-size: 4.6rem;
         color: #2c2826;
-        line-height: 0.9;
+        line-height: 1;
         display: block;
+        min-width: 2ch;
       }
       .cd-sub {
         font-family: "Montserrat", sans-serif;
-        font-size: 0.56rem;
-        letter-spacing: 0.36em;
+        font-size: 0.48rem;
+        letter-spacing: 0.32em;
         text-transform: uppercase;
         color: #7a6e68;
-        margin-top: 10px;
+        margin-top: 6px;
+      }
+      .cd-sep {
+        font-family: "Great Vibes", cursive;
+        font-size: 3rem;
+        color: #c9a882;
+        line-height: 1;
+        padding: 0 2px;
+        margin-bottom: 16px;
+        opacity: 0.6;
       }
       .cd-date {
         font-family: "Cormorant Garamond", serif;
         font-style: italic;
         font-size: 1.05rem;
         color: #c9a882;
-        margin-top: 8px;
+        margin-top: 18px;
       }
 
       /* SECCIONES GENÉRICAS */
@@ -1161,10 +1183,28 @@
        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
         <section class="cd-sec" id="cd-sec">
           <p class="cd-label rv">Para nuestro gran día</p>
-          <!-- NÚMERO: tamaño en CSS → .cd-num → font-size -->
-          <span class="cd-num rv d1" id="days-el">—</span>
-          <p class="cd-sub rv d2">días</p>
-          <p class="cd-date rv d3">Domingo · 31 de enero de 2027</p>
+          <div class="cd-grid rv d1">
+            <div class="cd-unit">
+              <span class="cd-num" id="cd-dias">—</span>
+              <span class="cd-sub">días</span>
+            </div>
+            <span class="cd-sep">:</span>
+            <div class="cd-unit">
+              <span class="cd-num" id="cd-horas">—</span>
+              <span class="cd-sub">horas</span>
+            </div>
+            <span class="cd-sep">:</span>
+            <div class="cd-unit">
+              <span class="cd-num" id="cd-mins">—</span>
+              <span class="cd-sub">min</span>
+            </div>
+            <span class="cd-sep">:</span>
+            <div class="cd-unit">
+              <span class="cd-num" id="cd-segs">—</span>
+              <span class="cd-sub">seg</span>
+            </div>
+          </div>
+          <p class="cd-date rv d2">Domingo · 31 de enero de 2027</p>
         </section>
 
         <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -1972,27 +2012,27 @@
             io.observe(el);
           });
       }
-      function dias() {
-        return Math.max(0, Math.ceil((BODA - new Date()) / 86400000));
-      }
-      function anim(el, n) {
-        let f = 0;
-        const t = setInterval(() => {
-          f++;
-          el.textContent = Math.round(n * (1 - Math.pow(1 - f / 55, 3)));
-          if (f >= 55) {
-            el.textContent = n;
-            clearInterval(t);
+      /* ── Cuenta regresiva en tiempo real ── */
+      (function () {
+        const elD = document.getElementById("cd-dias");
+        const elH = document.getElementById("cd-horas");
+        const elM = document.getElementById("cd-mins");
+        const elS = document.getElementById("cd-segs");
+        const pad = (n) => String(Math.floor(n)).padStart(2, "0");
+        function tick() {
+          const diff = BODA - new Date();
+          if (diff <= 0) {
+            [elD, elH, elM, elS].forEach((e) => (e.textContent = "00"));
+            return;
           }
-        }, 16);
-      }
-      new IntersectionObserver(
-        (es) => {
-          if (es[0].isIntersecting)
-            anim(document.getElementById("days-el"), dias());
-        },
-        { threshold: 0.3 },
-      ).observe(document.getElementById("cd-sec"));
+          elD.textContent = Math.floor(diff / 86400000);
+          elH.textContent = pad((diff % 86400000) / 3600000);
+          elM.textContent = pad((diff % 3600000) / 60000);
+          elS.textContent = pad((diff % 60000) / 1000);
+        }
+        tick();
+        setInterval(tick, 1000);
+      })();
       const mR = document.getElementById("m-regalo");
       document
         .getElementById("btn-regalo")
