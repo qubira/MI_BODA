@@ -42,44 +42,92 @@
         }
       }
 
+      /* ══ REVEAL TEXTO ══ */
       .rv {
         opacity: 0;
-        transform: translateY(20px);
-        transition: 0.65s ease;
+        transform: translateY(22px);
+        transition: opacity 0.7s ease, transform 0.7s ease;
       }
-      .rv.in {
-        opacity: 1;
-        transform: none;
+      .rv.in { opacity:1; transform:none; }
+
+      /* ══ KEYFRAMES ══ */
+      /* Engrandamiento y retroceso — pop elástico */
+      @keyframes popBounce {
+        0%   { opacity:0; transform:scale(0.18) rotate(-6deg); }
+        50%  { opacity:1; transform:scale(1.22) rotate(3deg); }
+        68%  { transform:scale(0.9) rotate(-1.5deg); }
+        82%  { transform:scale(1.07); }
+        100% { opacity:1; transform:scale(1) rotate(0); }
       }
-      /* Animación zoom/expansión para imágenes decorativas */
-      .rv-img {
-        opacity: 0;
-        transform: scale(0.78);
-        transition: opacity 0.85s ease, transform 0.85s cubic-bezier(0.34,1.48,0.64,1);
+      /* Dispersión — entra desde un punto disperso */
+      @keyframes scatterIn {
+        0%   { opacity:0; transform:translate(var(--sx,0px),var(--sy,50px)) scale(0.25) rotate(var(--sr,12deg)); }
+        55%  { opacity:1; }
+        72%  { transform:translate(0,0) scale(1.08) rotate(0deg); }
+        100% { opacity:1; transform:translate(0,0) scale(1) rotate(0deg); }
       }
-      .rv-img.in {
-        opacity: 1;
-        transform: scale(1);
+      /* Desplazamiento desde la izquierda con rebote */
+      @keyframes slideFromLeft {
+        0%   { opacity:0; transform:translateX(-80px) scale(0.85); }
+        58%  { opacity:1; transform:translateX(10px) scale(1.03); }
+        78%  { transform:translateX(-4px) scale(0.98); }
+        100% { opacity:1; transform:translateX(0) scale(1); }
       }
-      /* Animación deslizamiento lateral para imágenes de sección */
-      .rv-left {
-        opacity: 0;
-        transform: translateX(-28px) scale(0.95);
-        transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.25,0.8,0.25,1);
+      /* Desplazamiento desde la derecha con rebote */
+      @keyframes slideFromRight {
+        0%   { opacity:0; transform:translateX(80px) scale(0.85); }
+        58%  { opacity:1; transform:translateX(-10px) scale(1.03); }
+        78%  { transform:translateX(4px) scale(0.98); }
+        100% { opacity:1; transform:translateX(0) scale(1); }
       }
-      .rv-left.in {
-        opacity: 1;
-        transform: none;
+      /* Colmena: aparición vertical con overshoot */
+      @keyframes hiveIn {
+        0%   { opacity:0; transform:translateY(40px) scale(0.6) rotate(var(--hr,0deg)); }
+        55%  { opacity:1; transform:translateY(-6px) scale(1.1) rotate(0deg); }
+        75%  { transform:translateY(2px) scale(0.96); }
+        100% { opacity:1; transform:translateY(0) scale(1) rotate(0deg); }
       }
-      .rv-right {
-        opacity: 0;
-        transform: translateX(28px) scale(0.95);
-        transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.25,0.8,0.25,1);
+
+      /* ══ CLASES DE ANIMACIÓN ══ */
+      .rv-img   { opacity:0; }
+      .rv-img.in { animation: popBounce 1.05s cubic-bezier(0.22,1,0.36,1) forwards; }
+
+      .rv-left  { opacity:0; }
+      .rv-left.in { animation: slideFromLeft 0.9s cubic-bezier(0.22,1,0.36,1) forwards; }
+
+      .rv-right { opacity:0; }
+      .rv-right.in { animation: slideFromRight 0.9s cubic-bezier(0.22,1,0.36,1) forwards; }
+
+      .rv-scatter { opacity:0; }
+      .rv-scatter.in { animation: scatterIn 1.1s cubic-bezier(0.22,1,0.36,1) forwards; }
+
+      .rv-hive  { opacity:0; }
+      .rv-hive.in { animation: hiveIn 0.95s cubic-bezier(0.22,1,0.36,1) forwards; }
+
+      /* ══ MARIPOSAS VOLANDO (animación continua) ══ */
+      @keyframes butterflyFly {
+        0%   { transform: translate(0,0)     rotate(-10deg) scaleX(1); }
+        12%  { transform: translate(4px,-10px)  rotate(7deg)  scaleX(0.6); }
+        24%  { transform: translate(-4px,-5px)  rotate(-12deg) scaleX(1); }
+        38%  { transform: translate(5px,-18px)  rotate(9deg)  scaleX(0.55); }
+        50%  { transform: translate(-3px,-12px) rotate(-8deg) scaleX(1); }
+        64%  { transform: translate(4px,-20px)  rotate(11deg) scaleX(0.6); }
+        78%  { transform: translate(-5px,-9px)  rotate(-5deg) scaleX(1); }
+        90%  { transform: translate(2px,-4px)   rotate(4deg)  scaleX(0.75); }
+        100% { transform: translate(0,0)     rotate(-10deg) scaleX(1); }
       }
-      .rv-right.in {
-        opacity: 1;
-        transform: none;
+      @keyframes butterflyFlyAlt {
+        0%   { transform: translate(0,0)     rotate(8deg)  scaleX(1); }
+        15%  { transform: translate(-5px,-12px) rotate(-9deg) scaleX(0.6); }
+        30%  { transform: translate(4px,-6px)   rotate(13deg) scaleX(1); }
+        45%  { transform: translate(-4px,-16px) rotate(-7deg) scaleX(0.55); }
+        60%  { transform: translate(5px,-10px)  rotate(10deg) scaleX(1); }
+        75%  { transform: translate(-3px,-19px) rotate(-11deg) scaleX(0.65); }
+        90%  { transform: translate(3px,-7px)   rotate(6deg)  scaleX(1); }
+        100% { transform: translate(0,0)     rotate(8deg)  scaleX(1); }
       }
+      .bfly { animation: butterflyFly 4s ease-in-out infinite; transform-origin:50% 50%; }
+      .bfly-alt { animation: butterflyFlyAlt 3.2s ease-in-out infinite; animation-delay:-1.4s; transform-origin:50% 50%; }
       .d1 {
         transition-delay: 0.1s;
       }
@@ -984,40 +1032,16 @@
             class="rv"
             style="position: relative; display: flex; align-items: flex-end"
           >
-            <!-- mariposas flotantes dispersas -->
-            <img
+            <!-- mariposas flotantes — animación de vuelo continuo -->
+            <img class="bfly"
               src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(3).png"
-              alt=""
-              style="
-                position: absolute;
-                top: 6px;
-                right: 35%;
-                width: 26px;
-                transform: rotate(-20deg);
-              "
-            />
-            <img
+              alt="" style="position:absolute;top:6px;right:35%;width:26px"/>
+            <img class="bfly-alt"
               src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(3).png"
-              alt=""
-              style="
-                position: absolute;
-                top: 22px;
-                right: 16%;
-                width: 20px;
-                transform: rotate(15deg);
-              "
-            />
-            <img
+              alt="" style="position:absolute;top:22px;right:16%;width:20px"/>
+            <img class="bfly"
               src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(3).png"
-              alt=""
-              style="
-                position: absolute;
-                top: 2px;
-                right: 6%;
-                width: 16px;
-                transform: rotate(30deg);
-              "
-            />
+              alt="" style="position:absolute;top:2px;right:6%;width:16px;animation-delay:-2.1s"/>
 
             <!-- iglesia izquierda ~62% -->
             <img class="rv-left"
@@ -1097,30 +1121,14 @@
               min-height: 200px;
             "
           >
-            <!-- mariposa superior izquierda — pequeña, flotando -->
-            <img
+            <!-- mariposas volando — animación continua -->
+            <img class="bfly-alt"
               src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(5).png"
-              alt=""
-              style="
-                position: absolute;
-                top: 14px;
-                left: 18px;
-                width: 38px;
-                transform: rotate(-10deg);
-              "
-            />
+              alt="" style="position:absolute;top:14px;left:18px;width:38px"/>
 
-            <!-- mariposa inferior izquierda — un poco más abajo y chica -->
-            <img
+            <img class="bfly"
               src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(5).png"
-              alt=""
-              style="
-                position: absolute;
-                top: 100px;
-                left: 10px;
-                width: 28px;
-                transform: rotate(12deg);
-              "
+              alt="" style="position:absolute;top:100px;left:10px;width:28px;animation-delay:-2.6s"
             />
 
             <!-- fiesta (6).png — derecha, más pequeña -->
@@ -1241,10 +1249,9 @@
           <div class="rv" style="display:flex;align-items:center;margin-bottom:26px">
 
             <!-- (8).png flores — izquierda, grande -->
-            <img class="rv-left"
+            <img class="rv-scatter" style="--sx:-40px;--sy:30px;--sr:-8deg;width:46%;display:block;flex-shrink:0"
               src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(8).png"
-              alt=""
-              style="width:46%;display:block;flex-shrink:0">
+              alt="">
 
             <!-- columna derecha: etiqueta arriba + pareja en círculo abajo -->
             <div style="flex:1;display:flex;flex-direction:column;align-items:center;
@@ -1326,11 +1333,10 @@
             </button>
           </div>
 
-          <!-- (11).png regalos — abajo izquierda, flujo normal -->
-          <img class="rv-img"
+          <!-- (11).png regalos — abajo izquierda -->
+          <img class="rv-scatter" style="--sx:-50px;--sy:60px;--sr:6deg;display:block;width:62%;position:relative;z-index:2"
             src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(11).png"
-            alt="Regalos"
-            style="display:block;width:62%;position:relative;z-index:2">
+            alt="Regalos">
 
         </section>
 
@@ -1391,10 +1397,10 @@
                   style="position:absolute;top:0;right:0;width:35%;transform:rotate(-45deg)"
     ════════════════════════════════════════ -->
           <img
-            class="div-img rv-img"
+            class="bfly"
             src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(3).png"
             alt=""
-            style="width: 12%; max-width: 46px; margin-bottom: 16px"
+            style="width: 12%; max-width: 46px; margin-bottom: 16px;display:block;margin-left:auto;margin-right:auto"
           />
 
           <span class="sec-tag rv d1" style="text-align: center; display: block"
@@ -1596,7 +1602,14 @@
           },
           { threshold: 0.06 },
         );
-        document.querySelectorAll(".rv,.rv-img,.rv-left,.rv-right").forEach((el) => io.observe(el));
+        /* stagger colmena: delay escalonado por índice dentro de su padre */
+        document.querySelectorAll(".rv,.rv-img,.rv-left,.rv-right,.rv-scatter,.rv-hive").forEach((el,i) => {
+          if(el.classList.contains("rv-hive")){
+            const idx = Array.from(el.parentElement.children).indexOf(el);
+            el.style.animationDelay = (idx * 0.14) + "s";
+          }
+          io.observe(el);
+        });
       }
       function dias() {
         return Math.max(0, Math.ceil((BODA - new Date()) / 86400000));
