@@ -107,6 +107,42 @@
         100% { opacity:1; transform:translateY(0) scale(1) rotate(0deg); }
       }
 
+      /* ══ FLORES HERO — keyframes con rotación incluida ══ */
+      @keyframes heroTopReveal {
+        0%   { opacity:0; transform:rotate(180deg) scale(0.7) translateY(-30px); }
+        60%  { opacity:1; transform:rotate(180deg) scale(1.08) translateY(4px); }
+        80%  { transform:rotate(180deg) scale(0.96); }
+        100% { opacity:1; transform:rotate(180deg) scale(1) translateY(0); }
+      }
+      @keyframes heroTopLoop {
+        0%,100% { transform:rotate(180deg) scale(1) translateY(0); }
+        30%     { transform:rotate(180deg) scale(1.07) translateY(-10px); }
+        60%     { transform:rotate(180deg) scale(1.03) translateY(-5px); }
+      }
+      @keyframes heroBotReveal {
+        0%   { opacity:0; transform:scale(0.7) translateY(30px); }
+        60%  { opacity:1; transform:scale(1.08) translateY(-4px); }
+        80%  { transform:scale(0.96); }
+        100% { opacity:1; transform:scale(1) translateY(0); }
+      }
+      @keyframes heroBotLoop {
+        0%,100% { transform:scale(1) translateY(0); }
+        30%     { transform:scale(1.07) translateY(-10px); }
+        60%     { transform:scale(1.03) translateY(-5px); }
+      }
+      .hero-img-anim-top { opacity:0; }
+      .hero-img-anim-top.in {
+        animation:
+          heroTopReveal 1.2s cubic-bezier(0.22,1,0.36,1) both,
+          heroTopLoop   3.8s ease-in-out 1.2s infinite;
+      }
+      .hero-img-anim-bot { opacity:0; }
+      .hero-img-anim-bot.in {
+        animation:
+          heroBotReveal 1.2s cubic-bezier(0.22,1,0.36,1) both,
+          heroBotLoop   3.8s ease-in-out 1.7s infinite;
+      }
+
       /* ══ ANIMACIONES IDLE — repiten indefinidamente ══ */
 
       /* Pulso / respiración — escala suave */
@@ -1017,10 +1053,10 @@
                   (top/left/right/bottom para elegir esquina)
     ════════════════════════════════════════ -->
           <img
-            class="hero-flowers rv"
+            class="hero-flowers hero-img-anim-top"
             src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial.png"
             alt=""
-            style="width: 85%; max-width: 320px; transform: rotate(180deg)"
+            style="width: 85%; max-width: 320px"
           />
           <p class="hero-fecha-top rv d1">Domingo · 31 · Enero · 2027</p>
 
@@ -1049,7 +1085,7 @@
           </p>
 
           <img
-            class="hero-flowers rv"
+            class="hero-flowers hero-img-anim-bot"
             src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial.png"
             alt=""
             style="width: 85%; max-width: 320px"
@@ -1527,9 +1563,11 @@
         >
           <!-- (10).png flores — absoluta desde arriba a la derecha -->
           <img
+            class="rv-scatter"
             src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(10).png"
             alt=""
             style="
+              --sx: 40px; --sy: -45px; --sr: -14deg;
               position: absolute;
               top: 0;
               right: 0;
@@ -1651,7 +1689,6 @@
 
           <!-- (12).png copas de champán — derecha -->
           <div
-            class="rv d1"
             style="
               display: flex;
               justify-content: flex-end;
@@ -1659,6 +1696,7 @@
             "
           >
             <img
+              class="rv-img"
               src="imagenes/cristina%20y%20fernando%20te%20damos%20la%20vienvenida%20a%20este%20dia%20especial%20(12).png"
               alt=""
               style="width: 48%; display: block"
@@ -1924,7 +1962,7 @@
         /* stagger colmena: delay escalonado por índice dentro de su padre */
         document
           .querySelectorAll(
-            ".rv,.rv-img,.rv-left,.rv-right,.rv-scatter,.rv-hive",
+            ".rv,.rv-img,.rv-left,.rv-right,.rv-scatter,.rv-hive,.hero-img-anim-top,.hero-img-anim-bot",
           )
           .forEach((el, i) => {
             if (el.classList.contains("rv-hive")) {
