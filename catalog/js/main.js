@@ -66,6 +66,30 @@ for (let i = 0; i < 24; i++) {
   particleContainer.appendChild(p);
 }
 
+/* ── Iframe lazy-load — carga solo cuando el card se acerca al viewport ── */
+(function () {
+  const ifrIO = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((e) => {
+        if (!e.isIntersecting) return;
+        const fr = e.target;
+        const wrap = fr.parentElement;
+        if (fr.dataset.src) {
+          fr.src = fr.dataset.src;
+          fr.removeAttribute('data-src');
+          fr.addEventListener('load', () => wrap.classList.remove('iframe-loading'), { once: true });
+        }
+        ifrIO.unobserve(fr);
+      });
+    },
+    { rootMargin: '500px 0px' }   // empieza a cargar 500px antes de entrar en pantalla
+  );
+  document.querySelectorAll('iframe[data-src]').forEach((fr) => {
+    fr.parentElement.classList.add('iframe-loading');
+    ifrIO.observe(fr);
+  });
+})();
+
 /* ── Reveal on scroll ── */
 const revealEls = document.querySelectorAll('.reveal, .reveal-right');
 const io = new IntersectionObserver(entries => {
