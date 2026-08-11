@@ -107,21 +107,84 @@
         100% { opacity:1; transform:translateY(0) scale(1) rotate(0deg); }
       }
 
-      /* ══ CLASES DE ANIMACIÓN ══ */
+      /* ══ ANIMACIONES IDLE — repiten indefinidamente ══ */
+
+      /* Pulso / respiración — escala suave */
+      @keyframes idlePulse {
+        0%,100% { transform:scale(1); }
+        50%     { transform:scale(1.07); }
+      }
+      /* Flotación vertical */
+      @keyframes idleFloat {
+        0%,100% { transform:translateY(0); }
+        40%     { transform:translateY(-9px); }
+        70%     { transform:translateY(-4px); }
+      }
+      /* Balanceo lateral + rotación leve */
+      @keyframes idleBob {
+        0%,100% { transform:translateX(0) rotate(0deg); }
+        25%     { transform:translateX(-6px) rotate(-1.5deg); }
+        75%     { transform:translateX(6px) rotate(1.5deg); }
+      }
+      /* Desplazamiento circular suave */
+      @keyframes idleDrift {
+        0%   { transform:translate(0,0) rotate(0deg); }
+        25%  { transform:translate(5px,-5px) rotate(1deg); }
+        50%  { transform:translate(0,-9px) rotate(0deg); }
+        75%  { transform:translate(-5px,-5px) rotate(-1deg); }
+        100% { transform:translate(0,0) rotate(0deg); }
+      }
+      /* Parpadeo de brillo */
+      @keyframes idleGlow {
+        0%,100% { filter:brightness(1) drop-shadow(0 0 0px rgba(184,169,138,0)); }
+        50%     { filter:brightness(1.12) drop-shadow(0 0 8px rgba(184,169,138,.45)); }
+      }
+      /* Temblor / sacudida suave */
+      @keyframes idleShake {
+        0%,100% { transform:translateX(0); }
+        20%     { transform:translateX(-5px) rotate(-1deg); }
+        40%     { transform:translateX(5px) rotate(1deg); }
+        60%     { transform:translateX(-3px); }
+        80%     { transform:translateX(3px); }
+      }
+
+      /* ══ CLASES — entrada + idle encadenado ══ */
+      /* El segundo animation-delay = duración del primero → arranca justo al terminar */
+
       .rv-img    { opacity:0; }
-      .rv-img.in { animation: popBounce 1.3s cubic-bezier(0.22,1,0.36,1) forwards; }
+      .rv-img.in {
+        animation:
+          popBounce 1.3s cubic-bezier(0.22,1,0.36,1) both,
+          idlePulse 2.8s ease-in-out 1.3s infinite;
+      }
 
       .rv-left    { opacity:0; }
-      .rv-left.in { animation: slideFromLeft 1.2s cubic-bezier(0.22,1,0.36,1) forwards; }
+      .rv-left.in {
+        animation:
+          slideFromLeft 1.2s cubic-bezier(0.22,1,0.36,1) both,
+          idleBob 3.4s ease-in-out 1.2s infinite;
+      }
 
       .rv-right    { opacity:0; }
-      .rv-right.in { animation: slideFromRight 1.2s cubic-bezier(0.22,1,0.36,1) forwards; }
+      .rv-right.in {
+        animation:
+          slideFromRight 1.2s cubic-bezier(0.22,1,0.36,1) both,
+          idleDrift 4s ease-in-out 1.2s infinite;
+      }
 
       .rv-scatter    { opacity:0; }
-      .rv-scatter.in { animation: scatterIn 1.35s cubic-bezier(0.22,1,0.36,1) forwards; }
+      .rv-scatter.in {
+        animation:
+          scatterIn 1.35s cubic-bezier(0.22,1,0.36,1) both,
+          idleFloat 3.2s ease-in-out 1.35s infinite;
+      }
 
       .rv-hive    { opacity:0; }
-      .rv-hive.in { animation: hiveIn 1.15s cubic-bezier(0.22,1,0.36,1) forwards; }
+      .rv-hive.in {
+        animation:
+          hiveIn 1.15s cubic-bezier(0.22,1,0.36,1) both,
+          idleShake 4.5s ease-in-out 1.15s infinite;
+      }
 
       /* ══ MARIPOSAS VOLANDO (animación continua) ══ */
       @keyframes butterflyFly {
